@@ -1,0 +1,8 @@
+#This page includes the resources referenced from the internet.
+
+= Useful links =
+
+RDF入门标准[http://zh.transwiki.org/cn/rdfprimer.htm]
+
+
+= Details =
