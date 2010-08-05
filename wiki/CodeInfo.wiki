@@ -1,0 +1,11 @@
+#for developing comunication.
+
+= 开发环境=
+
+系统开发环境：
+Eclipse3.4 or above
+SVN（google code）
+DB:MySQL mysql-5.1.42
+
+
+= 系统设计架构 =
