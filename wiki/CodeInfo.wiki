@@ -8,4 +8,6 @@ SVN（google code）
 DB:MySQL mysql-5.1.42
 
 
-= 系统设计架构 =
+= 系统设计技术应用 =
+Jena 2.6.3
+SDB存储技术
