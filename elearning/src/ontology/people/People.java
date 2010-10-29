@@ -1,21 +1,22 @@
 package ontology.people;
 
-import exception.IllegallPersonException;
-
 public class People {
 	public People(){
-		
+
+
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	protected String id;
 	protected String name;
-	protected String password;
-	public boolean login(People person) throws IllegallPersonException{
-		if(person.id==null||person.name==null){
-			throw new IllegallPersonException("Person is not illegal");
-		}
-		//validation code ......
-		
-		
-		return false;
-	}
 }

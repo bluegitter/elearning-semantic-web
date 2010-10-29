@@ -1,4 +1,4 @@
-package xml;
+package jena;
 
 public class OwlFactory {
 
