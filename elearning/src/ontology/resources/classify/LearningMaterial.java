@@ -1,17 +1,18 @@
-package resources;
+package ontology.resources.classify;
 
 import java.util.ArrayList;
 
-import user.Person;
+import ontology.people.People;
 
-public class Resource {
+
+public class LearningMaterial extends E_EducationMaterial{
 	private String resourceId;
 	private String resourceName;
-	protected ArrayList<Category> categories;
+	protected ArrayList<LearningExperience> categories;
 	protected String type;
 	protected String description;
-	protected Person creator;
-	public Resource(){
+	protected People creator;
+	public LearningMaterial(){
 		
 	}
 	public String getResourceId() {

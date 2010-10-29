@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://www.owl-ontologies.com/e-learning.owl#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.owl-ontologies.com/e-learning.owl">
+  <Book rdf:ID="Book_9">
+    <book_isbn xml:lang="en">book_isbn</book_isbn>
+    <book_name xml:lang="en">book_name</book_name>
+    <book_author rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >book-author</book_author>
+    <book_publisher xml:lang="en">bookpublisher</book_publisher>
+  </Book>
+</rdf:RDF>

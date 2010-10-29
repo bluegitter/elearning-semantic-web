@@ -1,0 +1,10 @@
+digraph "elearning" {
+
+"http://www.owl-ontologies.com/e-learning.owl#Exercise" [shape=box, label="Exercise", color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+"http://www.owl-ontologies.com/e-learning.owl#AssessmentMaterial"->"http://www.owl-ontologies.com/e-learning.owl#Exercise" [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+"http://www.owl-ontologies.com/e-learning.owl#E_Learner" [shape=box, label="E_Learner", color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+"http://www.owl-ontologies.com/e-learning.owl#Exam" [shape=box, label="Exam", color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+"http://www.owl-ontologies.com/e-learning.owl#AssessmentMaterial"->"http://www.owl-ontologies.com/e-learning.owl#Exam" [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+"http://www.owl-ontologies.com/e-learning.owl#AssessmentMaterial" [shape=box, label="AssessmentMaterial", color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+"http://www.owl-ontologies.com/e-learning.owl#E_Concept" [shape=box, label="E_Concept", color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0"]
+}

@@ -1,4 +1,4 @@
-package constant;
+package util;
 
 public class Constant {
 	public static String [] post={"post","associate professor","instructor"};

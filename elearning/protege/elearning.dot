@@ -1,0 +1,11 @@
+digraph elearning {
+	node [label="\N"];
+	graph [bb="0,0,324,124"];
+	"http://www.owl-ontologies.com/e-learning.owl#Exercise" [label=Exercise, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="32,18", width="0.88889", height="0.5"];
+	"http://www.owl-ontologies.com/e-learning.owl#AssessmentMaterial" [label=AssessmentMaterial, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="70,106", width="1.7778", height="0.5"];
+	"http://www.owl-ontologies.com/e-learning.owl#E_Learner" [label=E_Learner, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="189,106", width="1.0278", height="0.5"];
+	"http://www.owl-ontologies.com/e-learning.owl#Exam" [label=Exam, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="109,18", width="0.75", height="0.5"];
+	"http://www.owl-ontologies.com/e-learning.owl#E_Concept" [label=E_Concept, shape=box, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="284,106", width="1.1111", height="0.5"];
+	"http://www.owl-ontologies.com/e-learning.owl#AssessmentMaterial" -> "http://www.owl-ontologies.com/e-learning.owl#Exercise" [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,62.126,87.766 58.036,78.295 52.105,64.56 45.109,48.358 39.864,36.21", lp="63,62"];
+	"http://www.owl-ontologies.com/e-learning.owl#AssessmentMaterial" -> "http://www.owl-ontologies.com/e-learning.owl#Exam" [dir=back, label=isa, color="0.0,0.0,0.0", fontcolor="0.0,0.0,0.0", pos="s,78.081,87.766 82.279,78.295 88.366,64.56 95.546,48.358 100.93,36.21", lp="100,62"];
+}

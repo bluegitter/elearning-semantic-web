@@ -1,13 +1,14 @@
-package user;
-import resources.Course;
+package ontology.people;
 import java.util.ArrayList;
 
-public class Teacher extends Person {
+import ontology.resources.Lecture;
+
+public class Teacher extends People {
 	public Teacher(){
 		
 	}
 	private String teacherId;
 	private String teacherName;
 	private String position;
-	private ArrayList<Course> courses;
+	private ArrayList<Lecture> courses;
 }
