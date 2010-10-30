@@ -5,9 +5,26 @@ import ontology.resources.Certification;
 import ontology.resources.Lecture;
 
 public class ELearner extends People{
-	private String learnerId;
-	private String learnerName;
-	private ArrayList<Lecture> finishedCourse;
 	private String grade;
-	private ArrayList<Certification> certifications;
+	private String peopleURL;
+	
+	public ELearner(){
+		
+	}
+	
+	
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+	
+	public String getPeopleURL() {
+		return peopleURL;
+	}
+	public void setPeopleURL(String peopleURL) {
+		this.peopleURL = peopleURL;
+	}
+	
 }
