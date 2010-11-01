@@ -11,7 +11,6 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xml:base="http://www.owl-ontologies.com/e-learning.owl">
   <owl:Ontology rdf:about=""/>
-  <owl:Class rdf:ID="E_Concept"/>
   <owl:Class rdf:ID="Research_Fellow">
     <owl:disjointWith>
       <owl:Class rdf:ID="Associate_Research_Fellow"/>
@@ -29,6 +28,7 @@
       <owl:Class rdf:ID="E_Teacher"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:ID="E_Concept"/>
   <owl:Class rdf:ID="LearningExperience">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="E_EducationMaterial"/>
@@ -268,6 +268,14 @@
   <owl:Class rdf:ID="Corporations">
     <rdfs:subClassOf rdf:resource="#E_Organizations"/>
   </owl:Class>
+  <owl:ObjectProperty rdf:ID="is_application_type_of">
+    <rdfs:range rdf:resource="#E_Resource"/>
+    <rdfs:domain rdf:resource="#E_EducationMaterial"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="has_application_type"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="working_at">
     <rdfs:domain rdf:resource="#E_People"/>
     <rdfs:range>
@@ -300,7 +308,8 @@
       <owl:ObjectProperty rdf:ID="resouce_properties"/>
     </rdfs:subPropertyOf>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="has_application_type">
+  <owl:ObjectProperty rdf:about="#has_application_type">
+    <owl:inverseOf rdf:resource="#is_application_type_of"/>
     <rdfs:range rdf:resource="#E_EducationMaterial"/>
     <rdfs:subPropertyOf rdf:resource="#resouce_properties"/>
     <rdfs:domain rdf:resource="#E_Resource"/>
@@ -439,6 +448,7 @@
           <owl:Class rdf:about="#University"/>
           <owl:Class rdf:about="#Paper"/>
           <owl:Class rdf:about="#E_Organizations"/>
+          <owl:Class rdf:about="#Lecture"/>
         </owl:unionOf>
       </owl:Class>
     </rdfs:domain>
@@ -461,15 +471,11 @@
     <rdfs:range>
       <owl:DataRange>
         <owl:oneOf rdf:parseType="Resource">
-          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-          >text</rdf:first>
           <rdf:rest rdf:parseType="Resource">
             <rdf:rest rdf:parseType="Resource">
               <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
               >audio</rdf:first>
               <rdf:rest rdf:parseType="Resource">
-                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >video</rdf:first>
                 <rdf:rest rdf:parseType="Resource">
                   <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                   >ppt</rdf:first>
@@ -483,11 +489,15 @@
                     >program</rdf:first>
                   </rdf:rest>
                 </rdf:rest>
+                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >video</rdf:first>
               </rdf:rest>
             </rdf:rest>
             <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
             >pic</rdf:first>
           </rdf:rest>
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >text</rdf:first>
         </owl:oneOf>
       </owl:DataRange>
     </rdfs:range>
@@ -568,7 +578,7 @@
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
           <owl:Class rdf:about="#E_Interest"/>
-          <owl:Class rdf:about="#E_Portfolio"/>
+          <owl:Class rdf:about="#E_Performance"/>
         </owl:unionOf>
       </owl:Class>
     </rdfs:range>
@@ -587,7 +597,7 @@
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
           <owl:Class rdf:about="#E_Interest"/>
-          <owl:Class rdf:about="#E_Portfolio"/>
+          <owl:Class rdf:about="#E_Performance"/>
         </owl:unionOf>
       </owl:Class>
     </rdfs:domain>
