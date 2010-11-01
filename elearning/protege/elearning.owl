@@ -663,12 +663,6 @@
                             <id xml:lang="en">concept-owl</id>
                             <is_part_of rdf:resource="#Semantic_Web"/>
                             <is_post_concept rdf:resource="#rdf"/>
-                            <is_concept_of>
-                              <E_Interest rdf:ID="E_Interest_2">
-                                <has_concept rdf:resource="#owl"/>
-                                <value xml:lang="en">interest2</value>
-                              </E_Interest>
-                            </is_concept_of>
                           </E_Concept>
                         </is_pre_concept>
                         <is_part_of rdf:resource="#Semantic_Web"/>
@@ -745,6 +739,12 @@
                     <id xml:lang="en">concept-oracle</id>
                   </E_Concept>
                 </has_part>
+                <is_concept_of>
+                  <E_Interest rdf:ID="E_Interest_2">
+                    <has_concept rdf:resource="#Database"/>
+                    <value xml:lang="en">interest2</value>
+                  </E_Interest>
+                </is_concept_of>
               </E_Concept>
             </has_part>
             <id xml:lang="en">root</id>

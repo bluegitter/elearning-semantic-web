@@ -1,4 +1,4 @@
-; Mon Nov 01 14:51:51 CST 2010
+; Mon Nov 01 16:42:13 CST 2010
 ; 
 ;+ (version "3.4.4")
 ;+ (build "Build 579")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[elearning_ProjectKB_Class22924]
-		[elearning_ProjectKB_Class22925]
-		[elearning_ProjectKB_Class22926]
-		[elearning_ProjectKB_Class22927]
-		[elearning_ProjectKB_Class22928]))
+		[elearning_ProjectKB_Class23745]
+		[elearning_ProjectKB_Class23746]
+		[elearning_ProjectKB_Class23747]
+		[elearning_ProjectKB_Class23748]
+		[elearning_ProjectKB_Class23749]))
 
 ([CLSES_TAB] of  Widget
 
@@ -89,64 +89,64 @@
 ([elearning_ProjectKB_Class22] of  Property_List
 )
 
-([elearning_ProjectKB_Class22924] of  String
+([elearning_ProjectKB_Class23] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [elearning_ProjectKB_Class24])
+	(widget_class_name "edu.stanford.smi.protege.query.LuceneQueryPlugin"))
+
+([elearning_ProjectKB_Class23745] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Class")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class22925] of  String
+([elearning_ProjectKB_Class23746] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([elearning_ProjectKB_Class22926] of  String
+([elearning_ProjectKB_Class23747] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class22927] of  String
+([elearning_ProjectKB_Class23748] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([elearning_ProjectKB_Class22928] of  String
+([elearning_ProjectKB_Class23749] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Thing")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class22929] of  Map_Entry
+([elearning_ProjectKB_Class23750] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class22930] of  Map_Entry
+([elearning_ProjectKB_Class23751] of  Map_Entry
 
 	(key "collab.hide.archived")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class22931] of  Map_Entry
+([elearning_ProjectKB_Class23752] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class22932] of  Map_Entry
+([elearning_ProjectKB_Class23753] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
-
-([elearning_ProjectKB_Class23] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [elearning_ProjectKB_Class24])
-	(widget_class_name "edu.stanford.smi.protege.query.LuceneQueryPlugin"))
 
 ([elearning_ProjectKB_Class24] of  Property_List
 )
@@ -1075,10 +1075,10 @@
 ([KB_325529_Class0] of  Map
 
 	(entries
-		[elearning_ProjectKB_Class22929]
-		[elearning_ProjectKB_Class22930]
-		[elearning_ProjectKB_Class22931]
-		[elearning_ProjectKB_Class22932]))
+		[elearning_ProjectKB_Class23750]
+		[elearning_ProjectKB_Class23751]
+		[elearning_ProjectKB_Class23752]
+		[elearning_ProjectKB_Class23753]))
 
 ([KB_325529_Class4] of  String
 
