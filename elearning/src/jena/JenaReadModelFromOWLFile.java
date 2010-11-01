@@ -33,7 +33,7 @@ public class JenaReadModelFromOWLFile {
         }
         
         // read the RDF/XML file
-        model.read(in, "UTF-8");
+        model.read(in, NS);
         
         OntClass recommendConcept = model.createClass(NS + "RecommandConcept");
         
