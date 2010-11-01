@@ -246,7 +246,7 @@
   <owl:Class rdf:ID="Publisher">
     <rdfs:subClassOf rdf:resource="#E_Organizations"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >å‡ºç‰ˆç¤¾</rdfs:comment>
+    >³ö°æÉç</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Lecture">
     <owl:disjointWith rdf:resource="#Paper"/>
