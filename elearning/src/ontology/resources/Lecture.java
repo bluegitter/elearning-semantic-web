@@ -21,9 +21,9 @@ public class Lecture extends LearningMaterial{
 	private String courseTitle;
 	private ArrayList<Lecture> preCourses;
 	private ArrayList<E_EducationMaterial> courseContents;
-	private String techTime;//学时
-	private String credits;//学分
-	private String difficulty;//难易度
+	private String techTime;
+	private String credits;
+	private String difficulty;
 	private ArrayList<Book> referenceBooks;
 	private ArrayList<Book> textBooks;
 	private People teacher;
