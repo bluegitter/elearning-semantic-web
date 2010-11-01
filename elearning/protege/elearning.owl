@@ -195,7 +195,7 @@
   <owl:Class rdf:about="#Associate_Professor">
     <rdfs:subClassOf rdf:resource="#E_Teacher"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >副教授，助理教授</rdfs:comment>
+    ></rdfs:comment>
     <owl:disjointWith>
       <owl:Class rdf:about="#Lecturer"/>
     </owl:disjointWith>
@@ -207,7 +207,7 @@
   </owl:Class>
   <owl:Class rdf:about="#Lecturer">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >讲师</rdfs:comment>
+    ></rdfs:comment>
     <owl:disjointWith>
       <owl:Class rdf:about="#Professor"/>
     </owl:disjointWith>
@@ -227,7 +227,7 @@
     <owl:disjointWith rdf:resource="#Research_Fellow"/>
     <rdfs:subClassOf rdf:resource="#E_Teacher"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >教授</rdfs:comment>
+    ></rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#LeanringNotes">
     <rdfs:subClassOf rdf:resource="#LearningExperience"/>
