@@ -16,6 +16,7 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.util.FileManager;
+import com.hp.hpl.jena.vocabulary.RDF;
 import com.hp.hpl.jena.vocabulary.RDFS;
 
 public class JenaReadModelFromOWLFile {
@@ -49,8 +50,14 @@ public class JenaReadModelFromOWLFile {
 		InfModel infModel = ModelFactory.createInfModel(reasoner, model);
 		
 		Resource infrc = infModel.getResource(NS + "RecommandConcept");
-
+		Resource infMysql = infModel.getResource(NS + "Oracle");
+		
+		if(infModel.contains(infMysql, RDF.type, infrc))
+			System.out.println("success");
+		else
+			System.out.println("failure");
+		
         // write it to standard out
-        model.write(System.out);            
+        //model.write(System.out);            
     }
 }
