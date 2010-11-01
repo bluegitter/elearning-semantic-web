@@ -1,4 +1,4 @@
-; Sat Oct 30 18:25:03 CST 2010
+; Mon Nov 01 14:06:26 CST 2010
 ; 
 ;+ (version "3.4.4")
 ;+ (build "Build 579")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[elearning_ProjectKB_Class20060]
-		[elearning_ProjectKB_Class20061]
-		[elearning_ProjectKB_Class20062]
-		[elearning_ProjectKB_Class20063]
-		[elearning_ProjectKB_Class20064]))
+		[elearning_ProjectKB_Class10032]
+		[elearning_ProjectKB_Class10033]
+		[elearning_ProjectKB_Class10034]
+		[elearning_ProjectKB_Class10035]
+		[elearning_ProjectKB_Class10036]))
 
 ([CLSES_TAB] of  Widget
 
@@ -31,6 +31,59 @@
 ([elearning_ProjectKB_Class10004] of  String
 
 	(name "SearchTab_Query"))
+
+([elearning_ProjectKB_Class10032] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([elearning_ProjectKB_Class10033] of  String
+
+	(name "http://www.w3.org/2002/07/owl#Class")
+	(string_value "%3ANAME"))
+
+([elearning_ProjectKB_Class10034] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([elearning_ProjectKB_Class10035] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([elearning_ProjectKB_Class10036] of  String
+
+	(name "http://www.w3.org/2002/07/owl#Thing")
+	(string_value "%3ANAME"))
+
+([elearning_ProjectKB_Class10037] of  Map_Entry
+
+	(key "collab.hide.archived")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([elearning_ProjectKB_Class10038] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([elearning_ProjectKB_Class10039] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([elearning_ProjectKB_Class10040] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([elearning_ProjectKB_Class11] of  Widget
 
@@ -79,52 +132,6 @@
 
 ([elearning_ProjectKB_Class20] of  Property_List
 )
-
-([elearning_ProjectKB_Class20060] of  String
-
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
-
-([elearning_ProjectKB_Class20061] of  String
-
-	(name "http://www.w3.org/2002/07/owl#Class")
-	(string_value "%3ANAME"))
-
-([elearning_ProjectKB_Class20062] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([elearning_ProjectKB_Class20063] of  String
-
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
-([elearning_ProjectKB_Class20064] of  String
-
-	(name "http://www.w3.org/2002/07/owl#Thing")
-	(string_value "%3ANAME"))
-
-([elearning_ProjectKB_Class20065] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([elearning_ProjectKB_Class20066] of  Map_Entry
-
-	(key "change_tracking_active")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([elearning_ProjectKB_Class20067] of  Map_Entry
-
-	(key "suppress_instance_counting")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
 
 ([elearning_ProjectKB_Class21] of  Widget
 
@@ -1068,16 +1075,17 @@
 ([KB_325529_Class0] of  Map
 
 	(entries
-		[elearning_ProjectKB_Class20065]
-		[elearning_ProjectKB_Class20066]
-		[elearning_ProjectKB_Class20067]))
+		[elearning_ProjectKB_Class10037]
+		[elearning_ProjectKB_Class10038]
+		[elearning_ProjectKB_Class10039]
+		[elearning_ProjectKB_Class10040]))
 
 ([KB_325529_Class4] of  String
 
 	(name "owl_file_name")
 	(string_value "elearning.owl"))
 
-([KB_391254_Class3] of  Map
+([KB_332811_Class4] of  Map
 )
 
 ([KB_444675_Instance_0] of  String
