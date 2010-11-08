@@ -1,0 +1,329 @@
+<?xml version="1.0"?>
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+    xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+    xmlns:family="http://www.semanticweb.org/ontologies/2010/0/family.owl#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+    xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xml:base="http://www.semanticweb.org/ontologies/2010/0/family.owl">
+  <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="family"/>
+  <owl:Class rdf:ID="male_family_member">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="family_member"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#family_member">
+    <rdfs:subClassOf rdf:resource="#family"/>
+  </owl:Class>
+  <owl:Class rdf:ID="female_family_member">
+    <owl:disjointWith rdf:resource="#male_family_member"/>
+    <rdfs:subClassOf rdf:resource="#family_member"/>
+  </owl:Class>
+  <owl:ObjectProperty rdf:ID="hasHusband">
+    <rdfs:domain rdf:resource="#female_family_member"/>
+    <rdfs:range rdf:resource="#male_family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasGrandSon">
+    <rdfs:domain rdf:resource="#family_member"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="hasGrandChild"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#male_family_member"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="isGrandSonOf"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasSister">
+    <rdfs:subPropertyOf>
+      <owl:SymmetricProperty rdf:ID="sibling"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#family_member"/>
+    <rdfs:range rdf:resource="#female_family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasMother">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="isMotherOf"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#female_family_member"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="hasParent"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasGrandDaughter">
+    <rdfs:range rdf:resource="#female_family_member"/>
+    <rdfs:domain rdf:resource="#family_member"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#hasGrandChild"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="isGrandDaughterOf"/>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isUncleOf">
+    <rdfs:range rdf:resource="#family_member"/>
+    <rdfs:domain rdf:resource="#male_family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isAuntOf">
+    <rdfs:domain rdf:resource="#female_family_member"/>
+    <rdfs:range rdf:resource="#family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasDaughter">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="hasChild"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#family_member"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="isDaughterOf"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#female_family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isSonOf">
+    <rdfs:domain rdf:resource="#male_family_member"/>
+    <rdfs:range rdf:resource="#family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isDaughterOf">
+    <rdfs:domain rdf:resource="#female_family_member"/>
+    <rdfs:range rdf:resource="#family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasWife">
+    <rdfs:domain rdf:resource="#male_family_member"/>
+    <rdfs:range rdf:resource="#female_family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isGrandSonOf">
+    <rdfs:domain rdf:resource="#male_family_member"/>
+    <rdfs:range rdf:resource="#family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasFather">
+    <rdfs:domain rdf:resource="#family_member"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="isFatherOf"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#hasParent"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#male_family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasParent">
+    <rdfs:domain rdf:resource="#family_member"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:ID="hasAncestor"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasCousin">
+    <rdfs:subPropertyOf>
+      <owl:SymmetricProperty rdf:about="#sibling"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#family_member"/>
+    <rdfs:domain rdf:resource="#family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasUncle">
+    <owl:inverseOf rdf:resource="#isUncleOf"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#hasAncestor"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#family_member"/>
+    <rdfs:range rdf:resource="#male_family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isMotherOf">
+    <rdfs:domain rdf:resource="#female_family_member"/>
+    <rdfs:range rdf:resource="#family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isHusbandOf">
+    <rdfs:domain rdf:resource="#male_family_member"/>
+    <rdfs:range rdf:resource="#female_family_member"/>
+    <owl:inverseOf rdf:resource="#hasHusband"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasChild">
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:ID="hasOffSpring"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#family_member"/>
+    <rdfs:domain rdf:resource="#family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isCousinOf">
+    <rdfs:range rdf:resource="#family_member"/>
+    <rdfs:domain rdf:resource="#family_member"/>
+    <owl:inverseOf rdf:resource="#hasCousin"/>
+    <rdfs:subPropertyOf>
+      <owl:SymmetricProperty rdf:about="#sibling"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isWifeOf">
+    <rdfs:domain rdf:resource="#female_family_member"/>
+    <rdfs:range rdf:resource="#male_family_member"/>
+    <owl:inverseOf rdf:resource="#hasWife"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasSon">
+    <rdfs:domain rdf:resource="#family_member"/>
+    <rdfs:range rdf:resource="#male_family_member"/>
+    <owl:inverseOf rdf:resource="#isSonOf"/>
+    <rdfs:subPropertyOf rdf:resource="#hasChild"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasAunt">
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#hasAncestor"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#female_family_member"/>
+    <rdfs:domain rdf:resource="#family_member"/>
+    <owl:inverseOf rdf:resource="#isAuntOf"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isGrandDaughterOf">
+    <rdfs:domain rdf:resource="#female_family_member"/>
+    <rdfs:range rdf:resource="#family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="hasBrother">
+    <rdfs:domain rdf:resource="#family_member"/>
+    <rdfs:subPropertyOf>
+      <owl:SymmetricProperty rdf:about="#sibling"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#male_family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#hasGrandChild">
+    <rdfs:domain rdf:resource="#family_member"/>
+    <rdfs:range rdf:resource="#family_member"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#hasOffSpring"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#isFatherOf">
+    <rdfs:range rdf:resource="#family_member"/>
+    <rdfs:domain rdf:resource="#male_family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isSisterOf">
+    <rdfs:subPropertyOf>
+      <owl:SymmetricProperty rdf:about="#sibling"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#female_family_member"/>
+    <owl:inverseOf rdf:resource="#hasSister"/>
+    <rdfs:range rdf:resource="#family_member"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="isBrotherOf">
+    <rdfs:subPropertyOf>
+      <owl:SymmetricProperty rdf:about="#sibling"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#male_family_member"/>
+    <rdfs:range rdf:resource="#family_member"/>
+    <owl:inverseOf rdf:resource="#hasBrother"/>
+  </owl:ObjectProperty>
+  <owl:TransitiveProperty rdf:about="#hasOffSpring">
+    <rdfs:domain rdf:resource="#family_member"/>
+    <rdfs:range rdf:resource="#family_member"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#hasAncestor">
+    <rdfs:domain rdf:resource="#family_member"/>
+    <rdfs:range rdf:resource="#family_member"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:SymmetricProperty rdf:ID="MarriedWith">
+    <rdfs:range rdf:resource="#family_member"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#family_member"/>
+  </owl:SymmetricProperty>
+  <owl:SymmetricProperty rdf:about="#sibling">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:SymmetricProperty>
+  <family:female_family_member rdf:ID="Kate">
+    <family:isWifeOf>
+      <family:male_family_member rdf:ID="Jim">
+        <family:MarriedWith rdf:resource="#Kate"/>
+        <family:hasWife rdf:resource="#Kate"/>
+        <family:hasDaughter>
+          <family:female_family_member rdf:ID="Lucy">
+            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+            <family:hasBrother>
+              <family:male_family_member rdf:ID="James">
+                <family:MarriedWith>
+                  <family:female_family_member rdf:ID="Holly">
+                    <family:isWifeOf rdf:resource="#James"/>
+                    <family:hasHusband rdf:resource="#James"/>
+                    <family:hasSon>
+                      <family:male_family_member rdf:ID="Sam">
+                        <family:hasFather rdf:resource="#James"/>
+                        <family:hasMother rdf:resource="#Holly"/>
+                        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+                      </family:male_family_member>
+                    </family:hasSon>
+                    <family:MarriedWith rdf:resource="#James"/>
+                    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+                  </family:female_family_member>
+                </family:MarriedWith>
+                <family:hasFather rdf:resource="#Jim"/>
+                <family:hasSon rdf:resource="#Sam"/>
+                <family:hasMother rdf:resource="#Kate"/>
+                <family:isHusbandOf rdf:resource="#Holly"/>
+                <family:hasSister>
+                  <owl:Thing rdf:ID="Lily">
+                    <family:hasFather rdf:resource="#Jim"/>
+                    <family:hasMother rdf:resource="#Kate"/>
+                    <rdf:type rdf:resource="#female_family_member"/>
+                    <family:hasSister rdf:resource="#Lucy"/>
+                    <family:hasBrother rdf:resource="#James"/>
+                    <family:hasBrother>
+                      <owl:Thing rdf:ID="Bob">
+                        <family:isHusbandOf>
+                          <family:female_family_member rdf:ID="Anna">
+                            <family:hasHusband rdf:resource="#Bob"/>
+                            <family:hasSon>
+                              <family:male_family_member rdf:ID="John">
+                                <family:hasFather rdf:resource="#Bob"/>
+                                <family:hasMother rdf:resource="#Anna"/>
+                                <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+                              </family:male_family_member>
+                            </family:hasSon>
+                            <family:MarriedWith rdf:resource="#Bob"/>
+                            <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+                            <family:isWifeOf rdf:resource="#Bob"/>
+                          </family:female_family_member>
+                        </family:isHusbandOf>
+                        <family:hasFather rdf:resource="#Jim"/>
+                        <family:hasWife rdf:resource="#Anna"/>
+                        <family:hasSon rdf:resource="#John"/>
+                        <family:hasBrother rdf:resource="#James"/>
+                        <family:hasSister rdf:resource="#Lily"/>
+                        <family:MarriedWith rdf:resource="#Anna"/>
+                        <family:hasMother rdf:resource="#Kate"/>
+                        <rdf:type rdf:resource="#male_family_member"/>
+                        <family:hasSister rdf:resource="#Lucy"/>
+                      </owl:Thing>
+                    </family:hasBrother>
+                  </owl:Thing>
+                </family:hasSister>
+                <family:hasBrother rdf:resource="#Bob"/>
+                <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+                <family:hasSister rdf:resource="#Lucy"/>
+                <family:hasWife rdf:resource="#Holly"/>
+              </family:male_family_member>
+            </family:hasBrother>
+            <family:hasBrother rdf:resource="#Bob"/>
+            <family:hasFather rdf:resource="#Jim"/>
+            <family:hasSister rdf:resource="#Lily"/>
+            <family:hasMother rdf:resource="#Kate"/>
+          </family:female_family_member>
+        </family:hasDaughter>
+        <family:hasDaughter rdf:resource="#Lily"/>
+        <family:hasSon rdf:resource="#James"/>
+        <family:hasSon rdf:resource="#Bob"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <family:isHusbandOf rdf:resource="#Kate"/>
+      </family:male_family_member>
+    </family:isWifeOf>
+    <family:hasDaughter rdf:resource="#Lucy"/>
+    <family:hasDaughter rdf:resource="#Lily"/>
+    <family:MarriedWith rdf:resource="#Jim"/>
+    <family:hasHusband rdf:resource="#Jim"/>
+    <family:hasSon rdf:resource="#James"/>
+    <family:hasSon rdf:resource="#Bob"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </family:female_family_member>
+</rdf:RDF>
+
+<!-- Created with Protege (with OWL Plugin 3.4.4, Build 579)  http://protege.stanford.edu -->

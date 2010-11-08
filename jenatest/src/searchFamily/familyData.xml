@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE rdf:RDF [
+     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+     ]>
+
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns="http://zhumzhu.com/family#"
+    xml:base="http://zhumzhu.com/family#">
+
+
+<female_family_Member rdf:ID="zhangxiaoli">
+    <isSisterOf rdf:resource="#zhangxiaohua"/>
+    <hasBrother rdf:resource="#zhangwu"/>
+    <hasMother rdf:resource="#miaocuihua"/>
+     <hasFather rdf:resource="#zhangfei"/>    
+</female_family_Member>
+
+   <female_family_Member rdf:ID="zhangxiaohua">
+    <hasBrother rdf:resource="#zhangwu"/>
+</female_family_Member>
+
+<male_family_Member rdf:ID="zhangwu">
+<hasSister rdf:resource="#zhangxiaoli"/>
+   <hasFather rdf:resource="#zhangfei"/>
+</male_family_Member>
+
+<female_family_Member rdf:ID="zhangxiaolismother">
+</female_family_Member>
+
+<female_family_Member rdf:ID="miaocuihua">
+     <owl:sameAs rdf:resource="#zhangxiaolismother"/>
+     <hasDaughter rdf:resource="#zhangxiaoli"/>
+     <hasSon rdf:resource="#zhangwu"/>
+     
+     <hasHusband rdf:resource="#zhangfei"/>
+</female_family_Member>
+
+<female_family_Member rdf:about="#miaocuihua">
+<hasDaughter rdf:resource="#zhangxiaohua"/>
+</female_family_Member>
+
+<male_family_Member rdf:ID="zhangfei">
+    <hasFather rdf:resource="#zhangfeisfather"/>
+    <hasSon rdf:resource="#zhangwu"/>
+</male_family_Member>
+
+<male_family_Member rdf:ID="zhangfeisfather">
+</male_family_Member>
+
+</rdf:RDF>
