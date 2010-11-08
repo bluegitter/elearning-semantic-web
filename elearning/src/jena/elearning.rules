@@ -1,0 +1,5 @@
+@prefix el: <http://www.owl-ontologies.com/e-learning.owl#>.
+@include <RDFS>.
+@include <OWL>.
+
+[rule1: (?a el:is_concept_of ?b)(?b el:inverse_of_has_interest ?c)->(?a el:is_recommend_of ?c)]

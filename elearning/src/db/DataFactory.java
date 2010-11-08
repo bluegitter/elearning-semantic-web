@@ -34,6 +34,9 @@ public class DataFactory {
 	public static void getConnection(){
 		
 	}
+	public static void insertResources(){
+		
+	}
 	
 	public static void insertUsers(){
 		try {
