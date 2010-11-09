@@ -5,7 +5,7 @@
 
 == 本体 ==
  # E_Concept (概念)
- # E_EducationMaterial(教育资源)
+ # E_EducationMaterial (教育资源)
   * AssessmentMaterial (教学评估类资源) 用来评测学习效果的学习资源
    * Exam (考试)
    * Exercise (练习)  
