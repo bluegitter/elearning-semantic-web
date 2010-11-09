@@ -4,14 +4,47 @@
 = 概念术语 =
 
 == 本体 ==
- # 概念(Concept)
- # 用户(Elearner) 系统的使用用户
- # 教育资源 (E_EducationMaterial)
-  * 教学评估资源 (AssessmentMaterial) 用来评测学习者的学习
-   * 考试 (Exam)
-   * 练习 (Exercise)  
-
-== 本体关系 ==
+ # E_Concept (概念)
+ # E_EducationMaterial (教育资源)
+  * AssessmentMaterial (教学评估类资源) 用来评测学习效果的学习资源
+   * Exam (考试)
+   * Exercise (练习)  
+  * LearningExperience (经验分享类资源) 用于学习者之间相互交流的资源
+   * Blog (博客)
+   * LearningNotes (学习笔记)
+  * LearningMaterial (学习资源)
+   * Book (书籍)
+   * Example (示例)
+   * Lecture (讲座)
+   * LectureNotes (讲义)
+   * Paper (论文)
+   * ProjectAssignment (项目课程设计)
+ # E_OptionalConceptRelationship （动态概念关系）
+ # E_Organizations (组织)
+  * Corporations (公司)
+  * Publisher (出版社)
+  * University (大学)
+   * Chinese_University (中国大学)
+    * China_211_Project_University (211工程大学)
+    * China_985_Project_University (985工程大学)
+   * US_University (美国大学)
+    * US_Ivy_League (常青藤大学)
+ # E_People (用户)
+  * E_Learner (学习者)
+  * E_Teacher （教师）
+   * Associate_Professor (副教授)
+   * Associate_Research_Fellow (助理研究员)
+   * Lecturer (讲师)
+   * Professor (教授)
+   * Research_Fellow (研究员)
+ # E_People_Characters (用户特征)
+  * E_Performance (用户认知水平)
+  * E_Personal (用户个人性息)
+  * E_Preference (用户偏好)
+   * E_Interest (用户兴趣)
+   * E_Study_Style (用户偏好学习风格)
+  * E_Security (用户安全信息)
+ # E_Resource (资源)== 本体关系 ==
 
 
 
