@@ -2,6 +2,8 @@ package jena;
 
 import java.io.InputStream;
 
+
+
 import org.mindswap.pellet.jena.PelletReasonerFactory;
 
 import com.hp.hpl.jena.ontology.HasValueRestriction;
