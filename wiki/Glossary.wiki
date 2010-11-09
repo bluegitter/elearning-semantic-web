@@ -44,8 +44,8 @@
    * E_Interest (用户兴趣)
    * E_Study_Style (用户偏好学习风格)
   * E_Security (用户安全信息)
- # E_Resource (资源)== 本体关系 ==
+ # E_Resource (资源)
 
-
+== 本体关系 ==
 
 = 系统中术语 =
