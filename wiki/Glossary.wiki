@@ -1,44 +1,14 @@
+#summary 术语表：the glossary and basic information of the elearning semantic web.
 #labels Glossary
-#the glossary and basic information of the elearning semantic web.
 
 = 概念术语 =
 
-== 13类资源 ==
-||编号||含义||英文||
-||1 ||课件||Document||
-||2 ||认证||Certification||
-||3 ||程序||ComputerProgram||
-||4 ||学位论文||Dissertation||
-||5 ||学习心得||Note||
-||6 ||报告||Report||
-||7 ||试题||ExamPaper||
-||8 ||学术论文||Thesis||
-||9 ||图书||Book||
-||10||图像||Image||
-||11||视频||Video||
-||12||音频||Audio||
-||13||其他||Other||
+== 本体 ==
+ # 概念（Concept）
+ # 用户（Elearner) 系统的使用用户
 
-== 课程本题之间的关系 ==
-||attribute of||x是y的属性||
-||instance of||x是y的实体（实体和概念之间的关系）||
-||kind of||x是y的一种||
-||part of||x是y的组成部分||
+== 本体关系 ==
+
 
 
 = 系统中术语 =
-
-||含义||英文||
-||资源||Resource||
-||课程||Course||
-||书||Book||
-||学生||Learner||
-||教师||Teacher||
-||职称||Position||
-||先修课程||PreviousCourses||
-||课程内容||CourseContent||
-||学时||TechTime||
-||学分||Credits||
-||教材||TextBook||
-||难易度||Difficulty||
-||参考书||ReferenceBook||
