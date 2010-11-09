@@ -4,8 +4,12 @@
 = 概念术语 =
 
 == 本体 ==
- # 概念（Concept）
- # 用户（Elearner) 系统的使用用户
+ # 概念(Concept)
+ # 用户(Elearner) 系统的使用用户
+ # 教育资源 (E_EducationMaterial)
+ ## 教学评估资源 (AssessmentMaterial) 用来评测学习者的学习
+ ### 考试 (Exam)
+ ### 练习 (Exercise)  
 
 == 本体关系 ==
 
