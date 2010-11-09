@@ -38,38 +38,35 @@ public class FamilyReasoner {
 		InfModel inf = ModelFactory.createInfModel(reasoner, om);
 		StmtIterator stmtIter = inf.listStatements(a, null, b);
 		if (!stmtIter.hasNext()) {
-    System.out.println("there is no relation between "
-      + a.getLocalName() + " and " + b.getLocalName());
-    System.out.println("\n-------------------\n");
-   }
-   while (stmtIter.hasNext()) {
-    Statement s = stmtIter.nextStatement();
-    System.out.println("Relation between " + a.getLocalName() + " and "
-      + b.getLocalName() + " is :");
-    System.out.println(a.getLocalName() + " "
-      + s.getPredicate().getLocalName() + " " + b.getLocalName());
-    System.out.println("\n-------------------\n");
-    // System.out.println(s);
-   }
-}
+			System.out.println("there is no relation between " + a.getLocalName() + " and " + b.getLocalName());
+			System.out.println("\n-------------------\n");
+		}
+		while (stmtIter.hasNext()) {
+			Statement s = stmtIter.nextStatement();
+			System.out.println("Relation between " + a.getLocalName() + " and " + b.getLocalName() + " is :");
+			System.out.println(a.getLocalName() + " " + s.getPredicate().getLocalName() + " " + b.getLocalName());
+			System.out.println(s);
+			System.out.println("\n-------------------\n");
+		}
+	}
 
-public static void main(String[] args) {
-   FamilyReasoner f = new FamilyReasoner();
-   Model m = FileManager.get().loadModel("D:\\EclipseWorkspace\\jenatest\\src\\family\\family.owl");
+	public static void main(String[] args) {
+		FamilyReasoner f = new FamilyReasoner();
+		Model m = FileManager.get().loadModel("D:\\EclipseWorkspace\\jenatest\\src\\family\\family.owl");
 
-   Resource Jim = m.getResource(NS + "Jim");
-   Resource John = m.getResource(NS + "John");
-   Resource Lucy = m.getResource(NS + "Lucy");
-   Resource Kate = m.getResource(NS + "Kate");
-   Resource Sam = m.getResource(NS + "Sam");
-   Resource James = m.createResource(NS + "James");
-   f.InferenceRelation(Jim, John);
-   f.InferenceRelation(John, Jim);
-   f.InferenceRelation(John, Sam);
-   f.InferenceRelation(Lucy, John);
-   f.InferenceRelation(Kate, Sam);
-   f.InferenceRelation(Sam, Kate);
-   f.InferenceRelation(James, John);
-}
+		Resource Jim = m.getResource(NS + "Jim");
+		Resource John = m.getResource(NS + "John");
+		Resource Lucy = m.getResource(NS + "Lucy");
+		Resource Kate = m.getResource(NS + "Kate");
+		Resource Sam = m.getResource(NS + "Sam");
+		Resource James = m.createResource(NS + "James");
+		f.InferenceRelation(Jim, John);
+		f.InferenceRelation(John, Jim);
+		f.InferenceRelation(John, Sam);
+		f.InferenceRelation(Lucy, John);
+		f.InferenceRelation(Kate, Sam);
+		f.InferenceRelation(Sam, Kate);
+		f.InferenceRelation(James, John);
+	}
 }
 
