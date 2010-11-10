@@ -1,4 +1,4 @@
-; Tue Nov 09 14:53:45 CST 2010
+; Wed Nov 10 20:36:51 CST 2010
 ; 
 ;+ (version "3.4.4")
 ;+ (build "Build 579")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[elearning_ProjectKB_Class20261]
-		[elearning_ProjectKB_Class20262]
-		[elearning_ProjectKB_Class20263]
-		[elearning_ProjectKB_Class20264]
-		[elearning_ProjectKB_Class20265]))
+		[elearning_ProjectKB_Class20065]
+		[elearning_ProjectKB_Class20066]
+		[elearning_ProjectKB_Class20067]
+		[elearning_ProjectKB_Class20068]
+		[elearning_ProjectKB_Class20069]))
 
 ([CLSES_TAB] of  Widget
 
@@ -80,53 +80,53 @@
 ([elearning_ProjectKB_Class20] of  Property_List
 )
 
-([elearning_ProjectKB_Class20261] of  String
+([elearning_ProjectKB_Class20065] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([elearning_ProjectKB_Class20262] of  String
+([elearning_ProjectKB_Class20066] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Class")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class20263] of  String
+([elearning_ProjectKB_Class20067] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([elearning_ProjectKB_Class20264] of  String
+([elearning_ProjectKB_Class20068] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class20265] of  String
+([elearning_ProjectKB_Class20069] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Thing")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class20266] of  Map_Entry
+([elearning_ProjectKB_Class20070] of  Map_Entry
 
 	(key "collab.hide.archived")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class20267] of  Map_Entry
+([elearning_ProjectKB_Class20071] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class20268] of  Map_Entry
+([elearning_ProjectKB_Class20072] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class20269] of  Map_Entry
+([elearning_ProjectKB_Class20073] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
@@ -811,6 +811,9 @@
 ([KB_140180_Instance_9] of  Property_List
 )
 
+([KB_166103_Class4] of  Map
+)
+
 ([KB_221055_Instance_10] of  Widget
 
 	(height 0)
@@ -1075,10 +1078,10 @@
 ([KB_325529_Class0] of  Map
 
 	(entries
-		[elearning_ProjectKB_Class20266]
-		[elearning_ProjectKB_Class20267]
-		[elearning_ProjectKB_Class20268]
-		[elearning_ProjectKB_Class20269]))
+		[elearning_ProjectKB_Class20070]
+		[elearning_ProjectKB_Class20071]
+		[elearning_ProjectKB_Class20072]
+		[elearning_ProjectKB_Class20073]))
 
 ([KB_325529_Class4] of  String
 
@@ -1096,9 +1099,6 @@
 	(name "http://protege.stanford.edu/plugins/owl/protege#ExternalResource")
 	(property_list [XY_Instance_890])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormWidget"))
-
-([KB_560096_Class4] of  Map
-)
 
 ([KB_632156_Instance_0] of  String
 

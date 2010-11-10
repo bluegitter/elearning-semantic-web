@@ -11,49 +11,20 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xml:base="http://www.owl-ontologies.com/e-learning.owl">
   <owl:Ontology rdf:about=""/>
-  <owl:Class rdf:ID="E_Concept"/>
-  <owl:Class rdf:ID="Research_Fellow">
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Associate_Research_Fellow"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Associate_Professor"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Professor"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Lecturer"/>
-    </owl:disjointWith>
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="E_Teacher"/>
-    </rdfs:subClassOf>
-  </owl:Class>
   <owl:Class rdf:ID="E_OptionalConceptRelationship"/>
-  <owl:Class rdf:ID="LearningExperience">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="E_EducationMaterial"/>
-    </rdfs:subClassOf>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="LearningMaterial"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="AssessmentMaterial"/>
-    </owl:disjointWith>
-  </owl:Class>
   <owl:Class rdf:ID="E_Learner">
     <rdfs:subClassOf>
       <owl:Class rdf:ID="E_People"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="E_Security">
+  <owl:Class rdf:ID="E_Resource_CAJ">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="E_People_Characters"/>
+      <owl:Class rdf:ID="E_Resource_Document"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Example">
     <rdfs:subClassOf>
-      <owl:Class rdf:about="#LearningMaterial"/>
+      <owl:Class rdf:ID="LearningMaterial"/>
     </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:ID="LectureNotes"/>
@@ -70,16 +41,6 @@
     <owl:disjointWith>
       <owl:Class rdf:ID="Paper"/>
     </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:about="#AssessmentMaterial">
-    <rdfs:subClassOf rdf:resource="#E_EducationMaterial"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#LearningMaterial"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#LearningExperience"/>
-  </owl:Class>
-  <owl:Class rdf:ID="E_Preference">
-    <rdfs:subClassOf rdf:resource="#E_People_Characters"/>
   </owl:Class>
   <owl:Class rdf:about="#ProjectAssignment">
     <rdfs:subClassOf>
@@ -99,46 +60,58 @@
       <owl:Class rdf:about="#Paper"/>
     </owl:disjointWith>
   </owl:Class>
+  <owl:Class rdf:ID="E_Resource_CODE">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="E_Resource"/>
+    </rdfs:subClassOf>
+  </owl:Class>
   <owl:Class rdf:ID="E_Portfolio">
-    <rdfs:subClassOf rdf:resource="#E_People_Characters"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="E_People_Characters"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="E_Resource_VIDEO">
+    <rdfs:subClassOf rdf:resource="#E_Resource"/>
   </owl:Class>
   <owl:Class rdf:ID="Blog">
-    <rdfs:subClassOf rdf:resource="#LearningExperience"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="LearningExperience"/>
+    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:ID="LeanringNotes"/>
     </owl:disjointWith>
   </owl:Class>
-  <owl:Class rdf:ID="University">
-    <rdfs:subClassOf>
-      <owl:Class rdf:ID="E_Organizations"/>
-    </rdfs:subClassOf>
-  </owl:Class>
-  <owl:Class rdf:about="#E_Teacher">
-    <rdfs:subClassOf rdf:resource="#E_People"/>
-  </owl:Class>
+  <owl:Class rdf:ID="E_EducationMaterial"/>
   <owl:Class rdf:ID="E_Study_Style">
-    <rdfs:subClassOf rdf:resource="#E_Preference"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="E_Preference"/>
+    </rdfs:subClassOf>
     <owl:disjointWith>
       <owl:Class rdf:ID="E_Interest"/>
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#E_Interest">
     <owl:disjointWith rdf:resource="#E_Study_Style"/>
-    <rdfs:subClassOf rdf:resource="#E_Preference"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#E_Preference"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Exercise">
     <owl:disjointWith>
       <owl:Class rdf:ID="Exam"/>
     </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="#AssessmentMaterial"/>
-  </owl:Class>
-  <owl:Class rdf:ID="E_Performance">
-    <rdfs:subClassOf rdf:resource="#E_People_Characters"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="AssessmentMaterial"/>
+    </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#LearningMaterial">
     <rdfs:subClassOf rdf:resource="#E_EducationMaterial"/>
-    <owl:disjointWith rdf:resource="#LearningExperience"/>
-    <owl:disjointWith rdf:resource="#AssessmentMaterial"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#LearningExperience"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#AssessmentMaterial"/>
+    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#Book">
     <rdfs:subClassOf rdf:resource="#LearningMaterial"/>
@@ -154,30 +127,55 @@
       <owl:Class rdf:about="#Paper"/>
     </owl:disjointWith>
   </owl:Class>
-  <owl:Class rdf:about="#Paper">
+  <owl:Class rdf:ID="E_Personal">
+    <rdfs:subClassOf rdf:resource="#E_People_Characters"/>
+  </owl:Class>
+  <owl:Class rdf:ID="Associate_Research_Fellow">
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Research_Fellow"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Associate_Professor"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Professor"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Lecturer"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="E_Teacher"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#E_Resource_Document">
+    <rdfs:subClassOf rdf:resource="#E_Resource"/>
+  </owl:Class>
+  <owl:Class rdf:about="#LeanringNotes">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#LearningExperience"/>
+    </rdfs:subClassOf>
+    <owl:disjointWith rdf:resource="#Blog"/>
+  </owl:Class>
+  <owl:Class rdf:ID="E_Resource_FLASH">
+    <rdfs:subClassOf rdf:resource="#E_Resource"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Lecture">
     <owl:disjointWith>
       <owl:Class rdf:about="#LectureNotes"/>
     </owl:disjointWith>
     <owl:disjointWith rdf:resource="#Book"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Lecture"/>
-    </owl:disjointWith>
     <owl:disjointWith rdf:resource="#ProjectAssignment"/>
     <owl:disjointWith rdf:resource="#Example"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Paper"/>
+    </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="#LearningMaterial"/>
   </owl:Class>
-  <owl:Class rdf:ID="E_Personal">
-    <rdfs:subClassOf rdf:resource="#E_People_Characters"/>
+  <owl:Class rdf:ID="E_Resource_PDF">
+    <rdfs:subClassOf rdf:resource="#E_Resource_Document"/>
   </owl:Class>
-  <owl:Class rdf:ID="E_Resource"/>
-  <owl:Class rdf:ID="US_University">
-    <rdfs:subClassOf rdf:resource="#University"/>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Chinese_University"/>
-    </owl:disjointWith>
-  </owl:Class>
-  <owl:Class rdf:about="#Associate_Research_Fellow">
-    <owl:disjointWith rdf:resource="#Research_Fellow"/>
+  <owl:Class rdf:about="#Research_Fellow">
+    <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Associate_Professor"/>
     </owl:disjointWith>
@@ -187,10 +185,64 @@
     <owl:disjointWith>
       <owl:Class rdf:about="#Lecturer"/>
     </owl:disjointWith>
-    <rdfs:subClassOf rdf:resource="#E_Teacher"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="#E_Teacher"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:ID="E_Concept"/>
+  <owl:Class rdf:ID="E_Resource_IMAGE">
+    <rdfs:subClassOf rdf:resource="#E_Resource"/>
+  </owl:Class>
+  <owl:Class rdf:about="#LearningExperience">
+    <rdfs:subClassOf rdf:resource="#E_EducationMaterial"/>
+    <owl:disjointWith rdf:resource="#LearningMaterial"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#AssessmentMaterial"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:ID="E_Security">
+    <rdfs:subClassOf rdf:resource="#E_People_Characters"/>
+  </owl:Class>
+  <owl:Class rdf:about="#AssessmentMaterial">
+    <rdfs:subClassOf rdf:resource="#E_EducationMaterial"/>
+    <owl:disjointWith rdf:resource="#LearningMaterial"/>
+    <owl:disjointWith rdf:resource="#LearningExperience"/>
+  </owl:Class>
+  <owl:Class rdf:about="#E_Preference">
+    <rdfs:subClassOf rdf:resource="#E_People_Characters"/>
+  </owl:Class>
+  <owl:Class rdf:ID="University">
+    <rdfs:subClassOf>
+      <owl:Class rdf:ID="E_Organizations"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="#E_Teacher">
+    <rdfs:subClassOf rdf:resource="#E_People"/>
+  </owl:Class>
+  <owl:Class rdf:ID="E_Performance">
+    <rdfs:subClassOf rdf:resource="#E_People_Characters"/>
+  </owl:Class>
+  <owl:Class rdf:ID="US_University">
+    <rdfs:subClassOf rdf:resource="#University"/>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Chinese_University"/>
+    </owl:disjointWith>
+  </owl:Class>
+  <owl:Class rdf:about="#Paper">
+    <owl:disjointWith>
+      <owl:Class rdf:about="#LectureNotes"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Book"/>
+    <owl:disjointWith rdf:resource="#Lecture"/>
+    <owl:disjointWith rdf:resource="#ProjectAssignment"/>
+    <owl:disjointWith rdf:resource="#Example"/>
+    <rdfs:subClassOf rdf:resource="#LearningMaterial"/>
   </owl:Class>
   <owl:Class rdf:ID="US_Ivy_League">
     <rdfs:subClassOf rdf:resource="#US_University"/>
+  </owl:Class>
+  <owl:Class rdf:ID="E_Resource_PPT">
+    <rdfs:subClassOf rdf:resource="#E_Resource"/>
   </owl:Class>
   <owl:Class rdf:about="#Associate_Professor">
     <rdfs:subClassOf rdf:resource="#E_Teacher"/>
@@ -205,33 +257,32 @@
       <owl:Class rdf:about="#Lecturer"/>
     </owl:disjointWith>
   </owl:Class>
+  <owl:Class rdf:about="#Professor">
+    <owl:disjointWith rdf:resource="#Research_Fellow"/>
+    <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
+    <owl:disjointWith rdf:resource="#Associate_Professor"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Lecturer"/>
+    </owl:disjointWith>
+    <rdfs:subClassOf rdf:resource="#E_Teacher"/>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="#Chinese_University">
+    <rdfs:subClassOf rdf:resource="#University"/>
+    <owl:disjointWith rdf:resource="#US_University"/>
+  </owl:Class>
   <owl:Class rdf:about="#Lecturer">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></rdfs:comment>
     <owl:disjointWith rdf:resource="#Research_Fellow"/>
     <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
     <owl:disjointWith rdf:resource="#Associate_Professor"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Professor"/>
-    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Professor"/>
     <rdfs:subClassOf rdf:resource="#E_Teacher"/>
   </owl:Class>
-  <owl:Class rdf:about="#Chinese_University">
-    <rdfs:subClassOf rdf:resource="#University"/>
-    <owl:disjointWith rdf:resource="#US_University"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Professor">
-    <owl:disjointWith rdf:resource="#Research_Fellow"/>
-    <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
-    <owl:disjointWith rdf:resource="#Associate_Professor"/>
-    <owl:disjointWith rdf:resource="#Lecturer"/>
-    <rdfs:subClassOf rdf:resource="#E_Teacher"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
-  </owl:Class>
-  <owl:Class rdf:about="#LeanringNotes">
-    <rdfs:subClassOf rdf:resource="#LearningExperience"/>
-    <owl:disjointWith rdf:resource="#Blog"/>
+  <owl:Class rdf:ID="E_Resource_DOC">
+    <rdfs:subClassOf rdf:resource="#E_Resource_Document"/>
   </owl:Class>
   <owl:Class rdf:ID="China_211_Project_University">
     <rdfs:subClassOf rdf:resource="#Chinese_University"/>
@@ -248,15 +299,11 @@
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Press</rdfs:comment>
   </owl:Class>
-  <owl:Class rdf:about="#Lecture">
-    <owl:disjointWith>
-      <owl:Class rdf:about="#LectureNotes"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Book"/>
-    <owl:disjointWith rdf:resource="#ProjectAssignment"/>
-    <owl:disjointWith rdf:resource="#Example"/>
-    <owl:disjointWith rdf:resource="#Paper"/>
-    <rdfs:subClassOf rdf:resource="#LearningMaterial"/>
+  <owl:Class rdf:ID="E_Resource_AUDIO">
+    <rdfs:subClassOf rdf:resource="#E_Resource"/>
+  </owl:Class>
+  <owl:Class rdf:ID="E_Resource_TXT">
+    <rdfs:subClassOf rdf:resource="#E_Resource_Document"/>
   </owl:Class>
   <owl:Class rdf:about="#LectureNotes">
     <owl:disjointWith rdf:resource="#Book"/>
@@ -469,14 +516,6 @@
   </owl:DatatypeProperty>
   <owl:DatatypeProperty rdf:ID="grade">
     <rdfs:domain rdf:resource="#E_Learner"/>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:ID="password">
-    <rdfs:domain rdf:resource="#E_Security"/>
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    ></rdfs:comment>
-  </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:ID="mediatype">
-    <rdfs:domain rdf:resource="#E_Resource"/>
   </owl:DatatypeProperty>
   <owl:DatatypeProperty rdf:ID="privilege">
     <rdfs:domain rdf:resource="#E_Security"/>
