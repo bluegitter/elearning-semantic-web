@@ -11,6 +11,7 @@
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
   xml:base="http://www.owl-ontologies.com/e-learning.owl">
   <owl:Ontology rdf:about=""/>
+  <owl:Class rdf:ID="E_Concept"/>
   <owl:Class rdf:ID="Research_Fellow">
     <owl:disjointWith>
       <owl:Class rdf:ID="Associate_Research_Fellow"/>
@@ -28,7 +29,6 @@
       <owl:Class rdf:ID="E_Teacher"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="E_Concept"/>
   <owl:Class rdf:ID="E_OptionalConceptRelationship"/>
   <owl:Class rdf:ID="LearningExperience">
     <rdfs:subClassOf>
@@ -523,6 +523,20 @@
   <owl:TransitiveProperty rdf:about="#organization_properties">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#is_post_concept_of">
+    <rdfs:range rdf:resource="#E_Concept"/>
+    <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#E_Concept"/>
+    <owl:inverseOf rdf:resource="#is_pre_concept_of"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="is_recommend_of_2">
+    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="inverse_of_is_recommend_of_2"/>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
   <owl:TransitiveProperty rdf:about="#inverse_of_is_recommend_of">
     <rdfs:range>
       <owl:Class>
@@ -535,13 +549,6 @@
     <rdfs:domain rdf:resource="#E_Learner"/>
     <owl:inverseOf rdf:resource="#is_recommend_of"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="#is_post_concept_of">
-    <rdfs:range rdf:resource="#E_Concept"/>
-    <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#E_Concept"/>
-    <owl:inverseOf rdf:resource="#is_pre_concept_of"/>
   </owl:TransitiveProperty>
   <owl:TransitiveProperty rdf:ID="has_personal">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
@@ -564,19 +571,19 @@
     <rdfs:domain rdf:resource="#E_Interest"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="#has_interest">
-    <rdfs:domain rdf:resource="#E_Learner"/>
-    <rdfs:range rdf:resource="#E_Interest"/>
-    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="#inverse_of_has_interest"/>
-  </owl:TransitiveProperty>
   <owl:TransitiveProperty rdf:about="#inverse_of_is_part_of">
     <rdfs:range rdf:resource="#E_Concept"/>
     <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
     <owl:inverseOf rdf:resource="#is_part_of"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:domain rdf:resource="#E_Concept"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#has_interest">
+    <rdfs:domain rdf:resource="#E_Learner"/>
+    <rdfs:range rdf:resource="#E_Interest"/>
+    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#inverse_of_has_interest"/>
   </owl:TransitiveProperty>
   <owl:TransitiveProperty rdf:about="#inverse_of_is_resource_of">
     <owl:inverseOf rdf:resource="#is_resource_of"/>
@@ -591,6 +598,13 @@
       </owl:Class>
     </rdfs:domain>
     <rdfs:subPropertyOf rdf:resource="#resouce_properties"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="inverse_of_is_recommend_of_1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="is_recommend_of_1"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="#inverse_of_is_recommend_of"/>
   </owl:TransitiveProperty>
   <owl:TransitiveProperty rdf:ID="is_member_of">
     <rdfs:domain rdf:resource="#University"/>
@@ -635,6 +649,16 @@
     </rdfs:domain>
     <rdfs:subPropertyOf rdf:resource="#people_properties"/>
     <owl:inverseOf rdf:resource="#is_concept_of"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#is_recommend_of_1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_1"/>
+    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#inverse_of_is_recommend_of_2">
+    <owl:inverseOf rdf:resource="#is_recommend_of_2"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#inverse_of_is_recommend_of"/>
   </owl:TransitiveProperty>
   <owl:TransitiveProperty rdf:about="#inverse_of_has_portfolio">
     <owl:inverseOf rdf:resource="#has_portfolio"/>
@@ -697,14 +721,55 @@
                   <E_Concept rdf:ID="Oracle">
                     <is_part_of rdf:resource="#Database"/>
                     <id xml:lang="en">concept-oracle</id>
-                  </E_Concept>
-                </inverse_of_is_part_of>
-                <inverse_of_is_part_of>
-                  <E_Concept rdf:ID="MySQL">
-                    <is_part_of rdf:resource="#Database"/>
                     <is_concept_of>
                       <E_Interest rdf:ID="E_Interest_1">
-                        <inverse_of_is_concept_of rdf:resource="#MySQL"/>
+                        <inverse_of_is_concept_of rdf:resource="#Oracle"/>
+                        <inverse_of_is_concept_of>
+                          <E_Concept rdf:ID="MySQL">
+                            <is_part_of rdf:resource="#Database"/>
+                            <is_concept_of rdf:resource="#E_Interest_1"/>
+                            <id xml:lang="en">concept-mysql</id>
+                            <is_pre_concept_of>
+                              <E_Concept rdf:ID="Semantic_Web">
+                                <inverse_of_is_part_of>
+                                  <E_Concept rdf:ID="jena">
+                                    <id xml:lang="en">concept-jena</id>
+                                    <is_part_of rdf:resource="#Semantic_Web"/>
+                                  </E_Concept>
+                                </inverse_of_is_part_of>
+                                <inverse_of_is_part_of>
+                                  <E_Concept rdf:ID="owl">
+                                    <is_post_concept_of>
+                                      <E_Concept rdf:ID="rdf">
+                                        <is_pre_concept_of rdf:resource="#owl"/>
+                                        <is_part_of rdf:resource="#Semantic_Web"/>
+                                        <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                        >concept-rdf</id>
+                                      </E_Concept>
+                                    </is_post_concept_of>
+                                    <id xml:lang="en">concept-owl</id>
+                                    <is_part_of rdf:resource="#Semantic_Web"/>
+                                  </E_Concept>
+                                </inverse_of_is_part_of>
+                                <inverse_of_is_part_of rdf:resource="#rdf"/>
+                                <is_part_of>
+                                  <E_Concept rdf:ID="Web">
+                                    <inverse_of_is_part_of>
+                                      <E_Concept rdf:ID="RIA">
+                                        <id xml:lang="en">concept-ria</id>
+                                        <is_part_of rdf:resource="#Web"/>
+                                      </E_Concept>
+                                    </inverse_of_is_part_of>
+                                    <inverse_of_is_part_of rdf:resource="#Semantic_Web"/>
+                                    <is_part_of rdf:resource="#Root_Concept"/>
+                                    <id xml:lang="en">concept-web</id>
+                                  </E_Concept>
+                                </is_part_of>
+                                <is_post_concept_of rdf:resource="#MySQL"/>
+                              </E_Concept>
+                            </is_pre_concept_of>
+                          </E_Concept>
+                        </inverse_of_is_concept_of>
                         <value xml:lang="en">interest1</value>
                         <inverse_of_has_interest>
                           <E_Learner rdf:ID="el001">
@@ -722,9 +787,9 @@
                         </inverse_of_has_interest>
                       </E_Interest>
                     </is_concept_of>
-                    <id xml:lang="en">concept-mysql</id>
                   </E_Concept>
                 </inverse_of_is_part_of>
+                <inverse_of_is_part_of rdf:resource="#MySQL"/>
                 <is_concept_of>
                   <E_Interest rdf:ID="E_Interest_2">
                     <inverse_of_has_interest>
@@ -752,44 +817,7 @@
                 <id xml:lang="en">concept-se</id>
               </E_Concept>
             </inverse_of_is_part_of>
-            <inverse_of_is_part_of>
-              <E_Concept rdf:ID="Web">
-                <inverse_of_is_part_of>
-                  <E_Concept rdf:ID="RIA">
-                    <id xml:lang="en">concept-ria</id>
-                    <is_part_of rdf:resource="#Web"/>
-                  </E_Concept>
-                </inverse_of_is_part_of>
-                <inverse_of_is_part_of>
-                  <E_Concept rdf:ID="Semantic_Web">
-                    <inverse_of_is_part_of>
-                      <E_Concept rdf:ID="jena">
-                        <id xml:lang="en">concept-jena</id>
-                        <is_part_of rdf:resource="#Semantic_Web"/>
-                      </E_Concept>
-                    </inverse_of_is_part_of>
-                    <inverse_of_is_part_of>
-                      <E_Concept rdf:ID="owl">
-                        <is_post_concept_of>
-                          <E_Concept rdf:ID="rdf">
-                            <is_pre_concept_of rdf:resource="#owl"/>
-                            <is_part_of rdf:resource="#Semantic_Web"/>
-                            <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                            >concept-rdf</id>
-                          </E_Concept>
-                        </is_post_concept_of>
-                        <id xml:lang="en">concept-owl</id>
-                        <is_part_of rdf:resource="#Semantic_Web"/>
-                      </E_Concept>
-                    </inverse_of_is_part_of>
-                    <inverse_of_is_part_of rdf:resource="#rdf"/>
-                    <is_part_of rdf:resource="#Web"/>
-                  </E_Concept>
-                </inverse_of_is_part_of>
-                <is_part_of rdf:resource="#Root_Concept"/>
-                <id xml:lang="en">concept-web</id>
-              </E_Concept>
-            </inverse_of_is_part_of>
+            <inverse_of_is_part_of rdf:resource="#Web"/>
           </E_Concept>
         </is_part_of>
         <is_concept_of rdf:resource="#E_Interest_3"/>
