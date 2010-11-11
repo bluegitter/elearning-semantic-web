@@ -4,7 +4,7 @@
 = 概念术语 =
 
 == 本体 ==
- # E_Concept (概念)
+  # E_Concept (概念)
  # E_EducationMaterial (教育资源)
   * AssessmentMaterial (教学评估类资源) 用来评测学习效果的学习资源
    * Exam (考试)
@@ -12,7 +12,7 @@
   * LearningExperience (经验分享类资源) 用于学习者之间相互交流的资源
    * Blog (博客)
    * LearningNotes (学习笔记)
-  * LearningMaterial (学习资源)
+  * LearningMaterial (学习资源) 
    * Book (书籍)
    * Example (示例)
    * Lecture (讲座)
@@ -45,6 +45,17 @@
    * E_Study_Style (用户偏好学习风格)
   * E_Security (用户安全信息)
  # E_Resource (资源)
+  * E_Resource_AUDIO (音频资源)
+  * E_Resource_CODE (源代码)
+  * E_Resource_DOCUMENT (文档类资源)
+   * E_Resource_CAJ (CAJ格式资源)
+   * E_Resource_DOC (DOC格式资源)
+   * E_Resource_PDF (PDF格式资源)
+   * E_Resource_TXT (TXT格式资源)
+  * E_Resource_FLASH (FLASH资源)
+  * E_Resource_IMAGE (图片资源)
+  * E_Resource_PPT (PPT资源)
+  * E_Resource_VIDEO (视频资源)
 
 == 本体关系 ==
 
