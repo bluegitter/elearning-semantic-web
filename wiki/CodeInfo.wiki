@@ -1,13 +1,15 @@
-#for developing comunication.
+#summary 开发环境和说明文档.
 
 = 开发环境=
 
-系统开发环境：
-Eclipse3.4 or above
-SVN（google code）
-DB:MySQL mysql-5.1.42
+* 系统开发环境：
+ # Eclipse3.4 or above
+ # SVN（google code）
+ # DB:MySQL mysql-5.1.42
+ # Tomcat： 6.0.29
 
 
 = 系统设计技术应用 =
-Jena 2.6.3
-SDB存储技术
+ * Jena 2.6.3
+ * Graphviz 2.26.3
+ * SDB存储技术
