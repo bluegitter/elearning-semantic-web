@@ -19,7 +19,7 @@
   </owl:Class>
   <owl:Class rdf:ID="E_Resource_CAJ">
     <rdfs:subClassOf>
-      <owl:Class rdf:ID="E_Resource_Document"/>
+      <owl:Class rdf:ID="E_Resource_DOCUMENT"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:ID="Example">
@@ -147,7 +147,7 @@
       <owl:Class rdf:ID="E_Teacher"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:about="#E_Resource_Document">
+  <owl:Class rdf:about="#E_Resource_DOCUMENT">
     <rdfs:subClassOf rdf:resource="#E_Resource"/>
   </owl:Class>
   <owl:Class rdf:about="#LeanringNotes">
@@ -172,7 +172,7 @@
     <rdfs:subClassOf rdf:resource="#LearningMaterial"/>
   </owl:Class>
   <owl:Class rdf:ID="E_Resource_PDF">
-    <rdfs:subClassOf rdf:resource="#E_Resource_Document"/>
+    <rdfs:subClassOf rdf:resource="#E_Resource_DOCUMENT"/>
   </owl:Class>
   <owl:Class rdf:about="#Research_Fellow">
     <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
@@ -189,10 +189,10 @@
       <owl:Class rdf:about="#E_Teacher"/>
     </rdfs:subClassOf>
   </owl:Class>
-  <owl:Class rdf:ID="E_Concept"/>
   <owl:Class rdf:ID="E_Resource_IMAGE">
     <rdfs:subClassOf rdf:resource="#E_Resource"/>
   </owl:Class>
+  <owl:Class rdf:ID="E_Concept"/>
   <owl:Class rdf:about="#LearningExperience">
     <rdfs:subClassOf rdf:resource="#E_EducationMaterial"/>
     <owl:disjointWith rdf:resource="#LearningMaterial"/>
@@ -282,7 +282,7 @@
     <rdfs:subClassOf rdf:resource="#E_Teacher"/>
   </owl:Class>
   <owl:Class rdf:ID="E_Resource_DOC">
-    <rdfs:subClassOf rdf:resource="#E_Resource_Document"/>
+    <rdfs:subClassOf rdf:resource="#E_Resource_DOCUMENT"/>
   </owl:Class>
   <owl:Class rdf:ID="China_211_Project_University">
     <rdfs:subClassOf rdf:resource="#Chinese_University"/>
@@ -303,7 +303,7 @@
     <rdfs:subClassOf rdf:resource="#E_Resource"/>
   </owl:Class>
   <owl:Class rdf:ID="E_Resource_TXT">
-    <rdfs:subClassOf rdf:resource="#E_Resource_Document"/>
+    <rdfs:subClassOf rdf:resource="#E_Resource_DOCUMENT"/>
   </owl:Class>
   <owl:Class rdf:about="#LectureNotes">
     <owl:disjointWith rdf:resource="#Book"/>
@@ -341,6 +341,9 @@
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="inverse_of_is_application_type_of"/>
     </owl:inverseOf>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="resouce_properties"/>
+    </rdfs:subPropertyOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="is_post">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
@@ -349,11 +352,12 @@
       <owl:ObjectProperty rdf:ID="inverse_of_is_post"/>
     </owl:inverseOf>
     <rdfs:domain rdf:resource="#E_Concept"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="optional_concept_properties"/>
+    </rdfs:subPropertyOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#inverse_of_is_application_type_of">
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:ID="resouce_properties"/>
-    </rdfs:subPropertyOf>
+    <rdfs:subPropertyOf rdf:resource="#resouce_properties"/>
     <rdfs:domain rdf:resource="#E_Resource"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
     <owl:inverseOf rdf:resource="#is_application_type_of"/>
@@ -410,7 +414,9 @@
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="publish"/>
     </owl:inverseOf>
-    <rdfs:subPropertyOf rdf:resource="#resouce_properties"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#organization_properties"/>
+    </rdfs:subPropertyOf>
     <rdfs:range rdf:resource="#Publisher"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#publish">
@@ -429,6 +435,7 @@
       <owl:ObjectProperty rdf:ID="is_pre"/>
     </owl:inverseOf>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#optional_concept_properties"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="graduate_from">
     <rdfs:subPropertyOf>
@@ -441,6 +448,7 @@
     <rdfs:range rdf:resource="#E_OptionalConceptRelationship"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
     <rdfs:domain rdf:resource="#E_Concept"/>
+    <rdfs:subPropertyOf rdf:resource="#optional_concept_properties"/>
     <owl:inverseOf rdf:resource="#inverse_of_is_pre"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="is_pre_concept_of">
@@ -462,6 +470,7 @@
     <owl:inverseOf rdf:resource="#is_post"/>
     <rdfs:domain rdf:resource="#E_OptionalConceptRelationship"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#optional_concept_properties"/>
     <rdfs:range rdf:resource="#E_Concept"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="has_security">
@@ -545,6 +554,7 @@
         </owl:unionOf>
       </owl:Class>
     </rdfs:domain>
+    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
     <owl:inverseOf>
       <owl:TransitiveProperty rdf:ID="inverse_of_is_recommend_of"/>
     </owl:inverseOf>
@@ -577,6 +587,7 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </owl:TransitiveProperty>
   <owl:TransitiveProperty rdf:about="#inverse_of_is_recommend_of">
+    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
     <rdfs:range>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
@@ -606,7 +617,7 @@
       <owl:TransitiveProperty rdf:ID="has_interest"/>
     </owl:inverseOf>
     <rdfs:range rdf:resource="#E_Learner"/>
-    <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
+    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
     <rdfs:domain rdf:resource="#E_Interest"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </owl:TransitiveProperty>
@@ -686,7 +697,7 @@
         </owl:unionOf>
       </owl:Class>
     </rdfs:domain>
-    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
+    <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
     <owl:inverseOf rdf:resource="#is_concept_of"/>
   </owl:TransitiveProperty>
   <owl:TransitiveProperty rdf:about="#is_recommend_of_1">
