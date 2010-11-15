@@ -1,12 +1,38 @@
 package ontology.resources;
 
 import ontology.people.People;
-import ontology.resources.classify.LearningMaterial;
 
-public class Book extends LearningMaterial{
-	private String bookId;
+public class Book extends EResource{
 	private String bookName;
-	private String ISBN;
-	private People author;
-	private String publisher;
+	private String bookIsbn;
+	private People bookAuthor;
+	private String bookPublisher;
+	public Book(){
+		
+	}
+	public String getBookName() {
+		return bookName;
+	}
+	public void setBookName(String bookName) {
+		this.bookName = bookName;
+	}
+	public String getBookIsbn() {
+		return bookIsbn;
+	}
+	public void setBookIsbn(String bookIsbn) {
+		this.bookIsbn = bookIsbn;
+	}
+	public People getBookAuthor() {
+		return bookAuthor;
+	}
+	public void setBookAuthor(People bookAuthor) {
+		this.bookAuthor = bookAuthor;
+	}
+	public String getBookPublisher() {
+		return bookPublisher;
+	}
+	public void setBookPublisher(String bookPublisher) {
+		this.bookPublisher = bookPublisher;
+	}
+	
 }
