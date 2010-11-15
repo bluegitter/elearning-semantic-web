@@ -4,8 +4,6 @@
 
 <Workspace>
 	<Local Expanded="Yes">
-		<Model ID="{7B928630-DA3D-45F3-95F1-829893341477}" Name="elearning_concept" Type="{1E597170-9350-11D1-AB3C-0020AF71E433}" URL="elearning_concept.cdm"/>
-		<Model ID="{1095203D-82C0-4113-AA01-5930A5EB49BC}" Name="elearning_concept" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="elearning_concept.pdm"/>
 		<Model Expanded="Yes" ID="{79823317-AFB9-49C1-8A2E-90F6E11F9CB9}" Name="elearning" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="elearning.pdm"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
