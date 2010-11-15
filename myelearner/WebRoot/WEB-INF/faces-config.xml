@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="1.2" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xi="http://www.w3.org/2001/XInclude"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+ <managed-bean>
+  <managed-bean-name>elearner</managed-bean-name>
+  <managed-bean-class>ontology.people.ELearner</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <navigation-rule>
+  <from-view-id>/index.jsp</from-view-id>
+  <navigation-case>
+   <from-outcome>goToMain</from-outcome>
+   <to-view-id>/webapp/main_page.jsp</to-view-id>
+  </navigation-case>
+  <navigation-case>
+   <from-outcome>false</from-outcome>
+   <to-view-id>/errors/login_failure.jsp</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/webapp/main_page.jsp</from-view-id>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/errors/login_failure.jsp</from-view-id>
+ </navigation-rule>
+</faces-config>
