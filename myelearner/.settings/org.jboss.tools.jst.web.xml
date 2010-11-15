@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<file-systems model-entity="FileSystems" workspace-home="./WebRoot/WEB-INF">
+ <file-system NAME="myelearner" location="%eclipse.project%" model-entity="FileSystemFolder"/>
+ <file-system NAME="src" location="%workspace.home%/../../src" model-entity="FileSystemFolder"/>
+ <web model-entity="JstWeb"/>
+</file-systems>
