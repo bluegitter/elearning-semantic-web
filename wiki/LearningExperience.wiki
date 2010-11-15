@@ -16,9 +16,9 @@
 
 
 
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+= MySQL 中的BLOB =
+||关键字类型||最大空间||
+||TinyBlob ||255||
+||Blob ||65K ||
+||MediumBlob ||16M||
+||LongBlob ||4G||
