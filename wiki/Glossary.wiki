@@ -44,6 +44,7 @@
    * E_Interest (用户兴趣)
    * E_Study_Style (用户偏好学习风格)
   * E_Security (用户安全信息)
+  * E_Portfolio (用户已学过的资源)
  # E_Resource (资源)
   * E_Resource_AUDIO (音频资源)
   * E_Resource_CODE (源代码)
