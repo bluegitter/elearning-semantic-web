@@ -1,12 +1,15 @@
 package jena;
 
 import java.io.InputStream;
+import java.util.List;
 
 import util.Constant;
 
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.reasoner.rulesys.GenericRuleReasoner;
+import com.hp.hpl.jena.reasoner.rulesys.Rule;
 import com.hp.hpl.jena.util.FileManager;
 
 public class OwlFactory {
@@ -27,6 +30,14 @@ public class OwlFactory {
 		}
 		model.read(in,Constant.NS);
 		return model;
+	}
+	public static GenericRuleReasoner getGenericRuleReasoner(){
+		List<Rule> rules = Rule.rulesFromURL(Constant.RulesFile);
+		GenericRuleReasoner reasoner = new GenericRuleReasoner(rules);
+		reasoner.setOWLTranslation(true);
+		reasoner.setDerivationLogging(true);
+		reasoner.setTransitiveClosureCaching(true);
+		return reasoner;
 	}
 }
 

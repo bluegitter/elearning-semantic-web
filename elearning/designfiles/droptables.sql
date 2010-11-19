@@ -11,3 +11,4 @@ drop table if exists EConcept;
 drop table if exists EResource;
 drop table if exists ResourceType;
 
+drop table if exists OwlFile;
