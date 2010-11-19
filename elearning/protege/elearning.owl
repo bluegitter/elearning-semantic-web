@@ -717,21 +717,30 @@
     <rdfs:domain rdf:resource="#E_Portfolio"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </owl:TransitiveProperty>
+  <E_Resource_DOC rdf:ID="doc2"/>
   <E_Portfolio rdf:ID="p"/>
+  <Lecture rdf:ID="Lecture_6"/>
   <Corporations rdf:ID="Oracle_Beijing">
     <address xml:lang="en">Oracle_Beijing</address>
     <name xml:lang="en">Oracle_Beijing</name>
   </Corporations>
+  <Book rdf:ID="Book_3"/>
   <Corporations rdf:ID="Microsoft_Beijing">
     <address xml:lang="en">Microsoft_Beijing</address>
     <name xml:lang="en">Microsoft_Beijing</name>
   </Corporations>
+  <Lecture rdf:ID="Lecture_7"/>
+  <E_Resource_PDF rdf:ID="pdf1"/>
+  <Book rdf:ID="Book_2"/>
+  <Lecture rdf:ID="Lecture_8"/>
   <Chinese_University rdf:ID="TsinghuaUniversity">
     <address xml:lang="en">Hadian District</address>
     <name xml:lang="en">Tsinghua University</name>
     <is_member_of rdf:resource="#China_985_Project_University"/>
     <is_member_of rdf:resource="#China_211_Project_University"/>
   </Chinese_University>
+  <Book rdf:ID="Book_1"/>
+  <E_Resource_DOC rdf:ID="doc1"/>
   <E_Teacher rdf:ID="t001"/>
   <Corporations rdf:ID="IBM_Beijing">
     <name xml:lang="en">IBM</name>
@@ -747,134 +756,144 @@
     <name xml:lang="en">Post &amp; Telecom Press</name>
     <address xml:lang="en">14A Xi Zhao Si Street, Chong Wen District, Beijing 100061, China</address>
   </Publisher>
-  <E_Interest rdf:ID="E_Interest_3">
-    <inverse_of_has_interest>
-      <E_Learner rdf:ID="el003">
-        <id xml:lang="en">003</id>
-        <has_interest rdf:resource="#E_Interest_3"/>
-      </E_Learner>
-    </inverse_of_has_interest>
-    <value xml:lang="en">interest3</value>
-    <inverse_of_is_concept_of>
-      <E_Concept rdf:ID="Programming_Language">
-        <id xml:lang="en">concept-programming-language</id>
-        <is_part_of>
-          <E_Concept rdf:ID="Root_Concept">
-            <id xml:lang="en">root</id>
-            <inverse_of_is_part_of>
-              <E_Concept rdf:ID="Database">
-                <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >concept-db</id>
-                <is_post_concept_of rdf:resource="#Programming_Language"/>
-                <is_part_of rdf:resource="#Root_Concept"/>
-                <inverse_of_is_part_of>
-                  <E_Concept rdf:ID="Oracle">
-                    <is_part_of rdf:resource="#Database"/>
-                    <id xml:lang="en">concept-oracle</id>
-                    <is_concept_of>
-                      <E_Interest rdf:ID="E_Interest_1">
-                        <inverse_of_is_concept_of rdf:resource="#Oracle"/>
-                        <inverse_of_is_concept_of>
-                          <E_Concept rdf:ID="MySQL">
-                            <is_part_of rdf:resource="#Database"/>
-                            <is_concept_of rdf:resource="#E_Interest_1"/>
-                            <id xml:lang="en">concept-mysql</id>
-                            <is_pre_concept_of>
-                              <E_Concept rdf:ID="Semantic_Web">
+  <E_Performance rdf:ID="E_Performance_1">
+    <inverse_of_has_performance>
+      <E_Learner rdf:ID="el001">
+        <grade xml:lang="en">Grade Two</grade>
+        <has_personal>
+          <E_Personal rdf:ID="E_Personal_11">
+            <address xml:lang="en">tsinghua</address>
+            <name xml:lang="en">hehuajie</name>
+            <email xml:lang="en">hhj@tsinghua.edu.cn</email>
+          </E_Personal>
+        </has_personal>
+        <has_performance rdf:resource="#E_Performance_1"/>
+        <has_interest>
+          <E_Interest rdf:ID="E_Interest_1">
+            <inverse_of_is_concept_of>
+              <E_Concept rdf:ID="Oracle">
+                <is_part_of>
+                  <E_Concept rdf:ID="Database">
+                    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >concept-db</id>
+                    <is_post_concept_of>
+                      <E_Concept rdf:ID="Programming_Language">
+                        <id xml:lang="en">concept-programming-language</id>
+                        <is_part_of>
+                          <E_Concept rdf:ID="Root_Concept">
+                            <id xml:lang="en">root</id>
+                            <inverse_of_is_part_of rdf:resource="#Database"/>
+                            <inverse_of_is_part_of>
+                              <E_Concept rdf:ID="Software_Engineer">
+                                <is_part_of rdf:resource="#Root_Concept"/>
                                 <inverse_of_is_part_of>
-                                  <E_Concept rdf:ID="jena">
-                                    <id xml:lang="en">concept-jena</id>
-                                    <is_part_of rdf:resource="#Semantic_Web"/>
+                                  <E_Concept rdf:ID="Design_Patterns">
+                                    <id xml:lang="en">concept-design-patterns</id>
+                                    <is_part_of rdf:resource="#Software_Engineer"/>
+                                  </E_Concept>
+                                </inverse_of_is_part_of>
+                                <id xml:lang="en">concept-se</id>
+                              </E_Concept>
+                            </inverse_of_is_part_of>
+                            <inverse_of_is_part_of>
+                              <E_Concept rdf:ID="Web">
+                                <inverse_of_is_part_of>
+                                  <E_Concept rdf:ID="RIA">
+                                    <id xml:lang="en">concept-ria</id>
+                                    <is_part_of rdf:resource="#Web"/>
                                   </E_Concept>
                                 </inverse_of_is_part_of>
                                 <inverse_of_is_part_of>
-                                  <E_Concept rdf:ID="owl">
-                                    <is_post_concept_of>
-                                      <E_Concept rdf:ID="rdf">
-                                        <is_pre_concept_of rdf:resource="#owl"/>
-                                        <is_part_of rdf:resource="#Semantic_Web"/>
-                                        <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                                        >concept-rdf</id>
-                                      </E_Concept>
-                                    </is_post_concept_of>
-                                    <id xml:lang="en">concept-owl</id>
-                                    <is_part_of rdf:resource="#Semantic_Web"/>
-                                  </E_Concept>
-                                </inverse_of_is_part_of>
-                                <inverse_of_is_part_of rdf:resource="#rdf"/>
-                                <is_part_of>
-                                  <E_Concept rdf:ID="Web">
+                                  <E_Concept rdf:ID="Semantic_Web">
                                     <inverse_of_is_part_of>
-                                      <E_Concept rdf:ID="RIA">
-                                        <id xml:lang="en">concept-ria</id>
-                                        <is_part_of rdf:resource="#Web"/>
+                                      <E_Concept rdf:ID="jena">
+                                        <id xml:lang="en">concept-jena</id>
+                                        <is_part_of rdf:resource="#Semantic_Web"/>
                                       </E_Concept>
                                     </inverse_of_is_part_of>
-                                    <inverse_of_is_part_of rdf:resource="#Semantic_Web"/>
-                                    <is_part_of rdf:resource="#Root_Concept"/>
-                                    <id xml:lang="en">concept-web</id>
+                                    <inverse_of_is_part_of>
+                                      <E_Concept rdf:ID="owl">
+                                        <is_post_concept_of>
+                                          <E_Concept rdf:ID="rdf">
+                                            <is_pre_concept_of rdf:resource="#owl"/>
+                                            <is_part_of rdf:resource="#Semantic_Web"/>
+                                            <id rdf:datatype=
+                                            "http://www.w3.org/2001/XMLSchema#string"
+                                            >concept-rdf</id>
+                                          </E_Concept>
+                                        </is_post_concept_of>
+                                        <id xml:lang="en">concept-owl</id>
+                                        <is_part_of rdf:resource="#Semantic_Web"/>
+                                      </E_Concept>
+                                    </inverse_of_is_part_of>
+                                    <inverse_of_is_part_of rdf:resource="#rdf"/>
+                                    <is_part_of rdf:resource="#Web"/>
+                                    <is_concept_of rdf:resource="#E_Performance_1"/>
+                                    <is_post_concept_of>
+                                      <E_Concept rdf:ID="MySQL">
+                                        <is_part_of rdf:resource="#Database"/>
+                                        <is_concept_of rdf:resource="#E_Interest_1"/>
+                                        <id xml:lang="en">concept-mysql</id>
+                                        <is_pre_concept_of rdf:resource="#Semantic_Web"/>
+                                      </E_Concept>
+                                    </is_post_concept_of>
                                   </E_Concept>
-                                </is_part_of>
-                                <is_post_concept_of rdf:resource="#MySQL"/>
+                                </inverse_of_is_part_of>
+                                <is_part_of rdf:resource="#Root_Concept"/>
+                                <id xml:lang="en">concept-web</id>
                               </E_Concept>
-                            </is_pre_concept_of>
+                            </inverse_of_is_part_of>
                           </E_Concept>
-                        </inverse_of_is_concept_of>
-                        <value xml:lang="en">interest1</value>
+                        </is_part_of>
+                        <is_concept_of>
+                          <E_Interest rdf:ID="E_Interest_3">
+                            <inverse_of_has_interest>
+                              <E_Learner rdf:ID="el003">
+                                <id xml:lang="en">003</id>
+                                <has_interest rdf:resource="#E_Interest_3"/>
+                              </E_Learner>
+                            </inverse_of_has_interest>
+                            <value xml:lang="en">interest3</value>
+                            <inverse_of_is_concept_of rdf:resource="#Programming_Language"/>
+                          </E_Interest>
+                        </is_concept_of>
+                        <is_pre_concept_of rdf:resource="#Database"/>
+                      </E_Concept>
+                    </is_post_concept_of>
+                    <is_part_of rdf:resource="#Root_Concept"/>
+                    <inverse_of_is_part_of rdf:resource="#Oracle"/>
+                    <inverse_of_is_part_of rdf:resource="#MySQL"/>
+                    <is_concept_of>
+                      <E_Interest rdf:ID="E_Interest_2">
                         <inverse_of_has_interest>
-                          <E_Learner rdf:ID="el001">
-                            <grade xml:lang="en">Grade Two</grade>
-                            <has_personal>
-                              <E_Personal rdf:ID="E_Personal_11">
-                                <address xml:lang="en">tsinghua</address>
-                                <name xml:lang="en">hehuajie</name>
-                                <email xml:lang="en">hhj@tsinghua.edu.cn</email>
-                              </E_Personal>
-                            </has_personal>
-                            <has_interest rdf:resource="#E_Interest_1"/>
-                            <id xml:lang="en">el001</id>
+                          <E_Learner rdf:ID="el002">
+                            <has_interest rdf:resource="#E_Interest_2"/>
+                            <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >el002</id>
                           </E_Learner>
                         </inverse_of_has_interest>
+                        <inverse_of_is_concept_of rdf:resource="#Database"/>
+                        <value xml:lang="en">interest2</value>
                       </E_Interest>
                     </is_concept_of>
                   </E_Concept>
-                </inverse_of_is_part_of>
-                <inverse_of_is_part_of rdf:resource="#MySQL"/>
-                <is_concept_of>
-                  <E_Interest rdf:ID="E_Interest_2">
-                    <inverse_of_has_interest>
-                      <E_Learner rdf:ID="el002">
-                        <has_interest rdf:resource="#E_Interest_2"/>
-                        <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                        >el002</id>
-                      </E_Learner>
-                    </inverse_of_has_interest>
-                    <inverse_of_is_concept_of rdf:resource="#Database"/>
-                    <value xml:lang="en">interest2</value>
-                  </E_Interest>
-                </is_concept_of>
+                </is_part_of>
+                <id xml:lang="en">concept-oracle</id>
+                <is_concept_of rdf:resource="#E_Interest_1"/>
               </E_Concept>
-            </inverse_of_is_part_of>
-            <inverse_of_is_part_of>
-              <E_Concept rdf:ID="Software_Engineer">
-                <is_part_of rdf:resource="#Root_Concept"/>
-                <inverse_of_is_part_of>
-                  <E_Concept rdf:ID="Design_Patterns">
-                    <id xml:lang="en">concept-design-patterns</id>
-                    <is_part_of rdf:resource="#Software_Engineer"/>
-                  </E_Concept>
-                </inverse_of_is_part_of>
-                <id xml:lang="en">concept-se</id>
-              </E_Concept>
-            </inverse_of_is_part_of>
-            <inverse_of_is_part_of rdf:resource="#Web"/>
-          </E_Concept>
-        </is_part_of>
-        <is_concept_of rdf:resource="#E_Interest_3"/>
-        <is_pre_concept_of rdf:resource="#Database"/>
-      </E_Concept>
-    </inverse_of_is_concept_of>
-  </E_Interest>
+            </inverse_of_is_concept_of>
+            <inverse_of_is_concept_of rdf:resource="#MySQL"/>
+            <value xml:lang="en">interest1</value>
+            <inverse_of_has_interest rdf:resource="#el001"/>
+          </E_Interest>
+        </has_interest>
+        <id xml:lang="en">el001</id>
+      </E_Learner>
+    </inverse_of_has_performance>
+    <value rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></value>
+    <inverse_of_is_concept_of rdf:resource="#Semantic_Web"/>
+  </E_Performance>
 </rdf:RDF>
 
 <!-- Created with Protege (with OWL Plugin 3.4.4, Build 579)  http://protege.stanford.edu -->

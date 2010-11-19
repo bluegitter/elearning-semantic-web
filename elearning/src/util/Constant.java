@@ -2,6 +2,8 @@ package util;
 
 public class Constant {
 	public static String NS ="http://www.elearning.com/";
+	public static String OWLFile ="D:\\EclipseWorkspace\\elearning\\protege\\elearning.owl";
+	public static String RulesFile="D: \\EclipseWorkspace\\elearning\\src\\jena\\elearning.rules";
 	
 	
 	public static String [] post={"post","associate professor","instructor"};
@@ -12,4 +14,7 @@ public class Constant {
 		"book","paper","lecture"
 	};
 	public static String [] titles={"porofessor"};
+	public static void println(String s){
+		System.out.println(s);
+	}
 }
