@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2010-11-15 19:53:30                          */
+/* Created on:     2010/11/19 15:24:12                          */
 /*==============================================================*/
 
 
@@ -13,6 +13,8 @@ drop table if exists EConcept;
 drop table if exists ELearner;
 
 drop table if exists EResource;
+
+drop table if exists OwlFile;
 
 drop table if exists ResourceContent;
 
@@ -83,6 +85,17 @@ create table EResource
    resource_difficulty  varchar(1000),
    resource_views       integer,
    primary key (resource_id)
+);
+
+/*==============================================================*/
+/* Table: OwlFile                                               */
+/*==============================================================*/
+create table OwlFile
+(
+   owl_id               varbinary(100) not null,
+   owl_file             longblob,
+   owl_date             date,
+   primary key (owl_id)
 );
 
 /*==============================================================*/
