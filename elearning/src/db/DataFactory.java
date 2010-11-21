@@ -12,20 +12,17 @@ import util.Constant;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
-
+/*****************************************************************
+ * DataFactory gives the Database Connection.
+ * 
+ * @author William
+ *
+ */
 public class DataFactory {
-	static String url = "jdbc:mysql://192.168.8.86:3306/elearning";        
-    static String username = "ms";
-    static String password = "ms";
+	private static String url = Constant.DBURL;
+	private static String username = Constant.DBUSER;
+	private static String password = Constant.DBPASSWORD;
 
-	public static void main(String [] args){
-		initDatabase();
-	}
-	public static void initDatabase(){
-		insertUsers();
-		insertResourceType();
-		insertResources();
-	}
 	public static Connection getConnection(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -42,27 +39,7 @@ public class DataFactory {
 			return null;
 		}
 	}
-	public static void insertResources(){
-		//basic infomation of a paper
-		Paper paper1=new Paper();
-		//paper1.addPaperName("Personalization in distributed e-learning environments");
-		//paper1.setEducation_material_id("rid00001");
-		//paper1.addAuthorName("Peter Dolog");
-		//paper1.addAuthorName("Michael Sintek");
-		//paper1.("rtid5");
-		
-		try{
-			Connection conn = getConnection();
-			PreparedStatement stm = (PreparedStatement)conn.createStatement();
-			String sql = "insert into eresource values(?,?,?,?,?)";
-			stm.execute(sql);
-			stm.close();
-			
-			conn.close();
-		}catch( SQLException sqle){
-			sqle.printStackTrace();
-		}
-	}
+
 	
 	public static void insertResourceType(){
 		try{

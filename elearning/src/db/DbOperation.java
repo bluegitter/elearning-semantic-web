@@ -1,17 +1,13 @@
 package db;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
-import com.mysql.jdbc.Blob;
 public class DbOperation {
 	/************************************************
 	 * validate whether the userId and userPassword is legal
@@ -86,8 +82,5 @@ public class DbOperation {
 			System.out.println("[OutPutFile error : ]" + e.getMessage()); 
 			return false;
 		} 
-	}
-	public static void main(String []args) throws Exception{
-		DbOperation dbo = new DbOperation();
 	}
 }
