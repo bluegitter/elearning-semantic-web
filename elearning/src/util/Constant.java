@@ -8,6 +8,15 @@ public class Constant {
 	public static String OWLFile ="D:\\EclipseWorkspace\\elearning\\protege\\elearning.owl";
 	public static String RulesFile="D: \\EclipseWorkspace\\elearning\\src\\jena\\elearning.rules";
 	
+	/*********************************************************************
+	 * SPARQL Prefix
+	 ********************************************************************/
+	public static String RDFPRE = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
+	public static String BASEPRE = "PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> ";
+	public static String RDFSPRE = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "; 
+	public static String XSDPRE = "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "; 
+	public static String FNPRE = "PREFIX fn: <http://www.w3.org/2005/xpath-functions#> "; 
+
 	/********************************************************************
 	 * Database Connection Config
 	 ********************************************************************/
