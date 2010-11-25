@@ -6,7 +6,7 @@ public class Constant {
 	 *********************************************************************/
 	public static String NS ="http://www.elearning.com/";
 	public static String OWLFile ="D:\\EclipseWorkspace\\elearning\\protege\\elearning.owl";
-	public static String RulesFile="D: \\EclipseWorkspace\\elearning\\src\\jena\\elearning.rules";
+	public static String RulesFile="D:\\EclipseWorkspace\\elearning\\src\\jena\\elearning.rules";
 	
 	/*********************************************************************
 	 * SPARQL Prefix
