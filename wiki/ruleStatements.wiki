@@ -19,18 +19,18 @@ value的平均值高
 interest的instance中该concept出现的次数最多？
 
 5.若一概念属于用户感兴趣的概念集合，
-5.1用户未学习该概念
-5.1.1其前序节点已学习且效果好，只推荐该概念
+ * 5.1用户未学习该概念
+  * 5.1.1其前序节点已学习且效果好，只推荐该概念
 {{{
 [rule4:(?concept el:is_concept_of ?interest) (?learner el:has_interest ?interest)(?learner el:has_performance ?performance)noValue(?concept el:is_concept_of ?performance)(?concept2 el:is_concept_of ?performance)(?concept2 el:is_pre_concept_of ?concept)( ?performance el:value ?perValue)greaterThan(?perValue,0.5) ->(?concept el:is_recommend_of_4 ?learner)]
 }}}
 
-5.1.2其前序节点未学习或学习效果差，推荐其前序节点
+  * 5.1.2其前序节点未学习或学习效果差，推荐其前序节点
 {{{
 [rule5:(?concept el:is_concept_of ?interest) (?learner el:has_interest ?interest)(?learner el:has_performance ?performance)noValue(?concept el:is_concept_of ?performance)(?concept2 el:is_concept_of ?performance)(?concept2 el:is_pre_concept_of ?concept)( ?performance el:value ?perValue)greaterThan(0.5,?perValue) ->(?concept2 el:is_recommend_of_5 ?learner)]
 }}}
 
-5.2用户已学习该概念且学习效果差 ->推荐该概念及其前序节点
+ * 5.2用户已学习该概念且学习效果差 ->推荐该概念及其前序节点
 {{{
 [rule6:(?concept el:is_concept_of ?interest) (?learner el:has_interest ?interest)(?learner el:has_performance ?performance) (?concept el:is_concept_of ?performance) ( ?performance el:value ?perValue)greaterThan(0.5,?perValue) (?concept2 el:is_pre_concept_of ?concept) ->(?concept el:is_recommend_of_6 ?learner) (?concept2 }}}
 el:is_recommend_of_6 ?learner)]
@@ -47,12 +47,12 @@ el:is_recommend_of_6 ?learner)]
 }}}
 
 8.向用户推荐用户
-8.1 用户A对某概念感兴趣，并且用户B,C已经学过此概念；若B的学习效果好于C，则向用户A推荐用户B
+ * 8.1 用户A对某概念感兴趣，并且用户B,C已经学过此概念；若B的学习效果好于C，则向用户A推荐用户B
 {{{
 [rule9:(?concept el:is_concept_of ?interest)(?interest el:inverse_of_has_interest ?learnerA)(?concept el:is_concept_of ?performanceB)(?performanceB el:inverse_of_has_performance ?learnerB)( ?performanceB el:value ?perValueB)(?concept el:is_concept_of ?performanceC)(?performanceC el:inverse_of_has_performance ?learnerC)( ?performanceC el:value ?perValueC)greaterThan(?perValueB,?perValueC)->(?learnerB el:is_recommend_of_9 ?learner)]
 }}}
 
-8.2 用户学习某概念多次且学习效果始终差，期间推荐用户为B；则不再向A推荐B
+ * 8.2 用户学习某概念多次且学习效果始终差，期间推荐用户为B；则不再向A推荐B
 
 
 = 资源相关 =
