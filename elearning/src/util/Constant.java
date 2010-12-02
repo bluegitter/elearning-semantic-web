@@ -4,10 +4,9 @@ public class Constant {
 	/*******************************************************************
 	 * Jena Reasoning Config
 	 *********************************************************************/
-	public static String NS ="http://www.elearning.com/";
+	public static String NS ="http://www.owl-ontologies.com/e-learning.owl#";
 	public static String OWLFile ="D:\\EclipseWorkspace\\elearning\\protege\\elearning.owl";
 	public static String RulesFile="D:\\EclipseWorkspace\\elearning\\src\\jena\\elearning.rules";
-	
 	/*********************************************************************
 	 * SPARQL Prefix
 	 ********************************************************************/
