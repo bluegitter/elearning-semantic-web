@@ -25,7 +25,6 @@ interest的instance中该concept出现的次数最多？
 {{{
 [rule4:(?concept el:is_concept_of ?interest) (?learner el:has_interest ?interest)(?learner el:has_performance ?performance)noValue(?concept el:is_concept_of ?performance)(?concept2 el:is_concept_of ?performance)(?concept2 el:is_pre_concept_of ?concept)( ?performance el:value ?perValue)greaterThan(?perValue,0.5) ->(?concept el:is_recommend_of_4 ?learner)]
 }}}
-
   * 5.1.2其前序节点未学习或学习效果差，推荐其前序节点
 {{{
 [rule5:(?concept el:is_concept_of ?interest) (?learner el:has_interest ?interest)(?learner el:has_performance ?performance)noValue(?concept el:is_concept_of ?performance)(?concept2 el:is_concept_of ?performance)(?concept2 el:is_pre_concept_of ?concept)( ?performance el:value ?perValue)greaterThan(0.5,?perValue) ->(?concept2 el:is_recommend_of_5 ?learner)]
