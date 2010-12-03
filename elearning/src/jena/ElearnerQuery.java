@@ -123,6 +123,50 @@ public class ElearnerQuery {
 		return concepts;
 	}
 	
+	public static int getPerformanceCount(String learner) throws IOException{
+		InputStream in = new FileInputStream(new File(Constant.OWLFile));
+		Model model = ModelFactory.createMemModelMaker().createModel(null);
+		model.read(in,null); // null base URI, since model URIs are absolute
+		in.close();
+
+		// Create a new query
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> " +
+			"SELECT  ?concept ?performance ?value " +
+			"WHERE {" +			
+			"      ?performance base:inverse_of_has_performance base:"+learner+" . "+
+			"      ?concept base:is_concept_of ?performance . "+
+			"      ?performance base:value ?value . "+
+		//	"      FILTER xsd:float(?value) > 0.5^^xsd:float . "+	
+			"      FILTER (?value < 0.5) "+		
+			"      }"+
+			"      ORDER BY ASC(?VALUE) "+
+			"      LIMIT 1 ";
+        
+		Query query = QueryFactory.create(queryString);
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+		// Output query results	
+		ResultSetFormatter.out(System.out, results, query);
+		
+		ArrayList<String> performances = new ArrayList<String>();
+        while(results.hasNext()){
+			QuerySolution qs = results.next();
+			//trim() eliminates the blank space behind the uri, which make the getResource() method working.
+			//String uri = qs.get("?performance").toString().trim();
+			System.out.println(qs.toString());
+			
+			//String name = model.getResource(uri).getLocalName();
+			//concepts.add(name);
+		}
+        int count = results.getRowNumber();
+		qe.close();
+		System.out.println(count);
+		return count;
+	}
 	
 	
 	public static void test() throws IOException{
