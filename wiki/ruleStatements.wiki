@@ -49,7 +49,7 @@ el:is_recommend_of_6 ?learner)]
 8.向用户推荐用户
  * 8.1 用户A对某概念感兴趣，并且用户B,C已经学过此概念；若B的学习效果好于C，则向用户A推荐用户B
 {{{
-[rule9:(?concept el:is_concept_of ?interest)(?interest el:inverse_of_has_interest ?learnerA)(?concept el:is_concept_of ?performanceB)(?performanceB el:inverse_of_has_performance ?learnerB)( ?performanceB el:value ?perValueB)(?concept el:is_concept_of ?performanceC)(?performanceC el:inverse_of_has_performance ?learnerC)( ?performanceC el:value ?perValueC)greaterThan(?perValueB,?perValueC)->(?learnerB el:is_recommend_of_9 ?learner)]
+[rule9:(?concept el:is_concept_of ?interest)(?interest el:inverse_of_has_interest ?learnerA)(?concept el:is_concept_of ?performanceB)(?performanceB el:inverse_of_has_performance ?learnerB)( ?performanceB el:value ?perValueB)(?concept el:is_concept_of ?performanceC)(?performanceC el:inverse_of_has_performance ?learnerC)( ?performanceC el:value ?perValueC)greaterThan(?perValueB,?perValueC)->(?learnerB el:is_recommend_of_9 ?learnerA)]
 }}}
 
  * 8.2 用户学习某概念多次且学习效果始终差，期间推荐用户为B；则不再向A推荐B
