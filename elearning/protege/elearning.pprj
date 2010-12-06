@@ -1,4 +1,4 @@
-; Mon Dec 06 19:54:09 CST 2010
+; Mon Dec 06 20:58:00 CST 2010
 ; 
 ;+ (version "3.4.4")
 ;+ (build "Build 579")
@@ -6,12 +6,12 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[elearning_ProjectKB_Class40015]
-		[elearning_ProjectKB_Class40016]
-		[elearning_ProjectKB_Class40017]
-		[elearning_ProjectKB_Class40018]
-		[elearning_ProjectKB_Class40019]
-		[elearning_ProjectKB_Class40020]))
+		[elearning_ProjectKB_Class40125]
+		[elearning_ProjectKB_Class40126]
+		[elearning_ProjectKB_Class40127]
+		[elearning_ProjectKB_Class40128]
+		[elearning_ProjectKB_Class40129]
+		[elearning_ProjectKB_Class40130]))
 
 ([CLSES_TAB] of  Widget
 
@@ -2881,58 +2881,58 @@
 ([elearning_ProjectKB_Class40] of  Property_List
 )
 
-([elearning_ProjectKB_Class40015] of  String
+([elearning_ProjectKB_Class40125] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Class")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class40016] of  String
+([elearning_ProjectKB_Class40126] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([elearning_ProjectKB_Class40017] of  String
+([elearning_ProjectKB_Class40127] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class40018] of  String
+([elearning_ProjectKB_Class40128] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([elearning_ProjectKB_Class40019] of  String
+([elearning_ProjectKB_Class40129] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Thing")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class40020] of  String
+([elearning_ProjectKB_Class40130] of  String
 
 	(name "http://www.owl-ontologies.com/e-learning.owl#E_Concept")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class40021] of  Map_Entry
+([elearning_ProjectKB_Class40131] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class40022] of  Map_Entry
+([elearning_ProjectKB_Class40132] of  Map_Entry
 
 	(key "collab.hide.archived")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class40023] of  Map_Entry
+([elearning_ProjectKB_Class40133] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class40024] of  Map_Entry
+([elearning_ProjectKB_Class40134] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
@@ -3786,10 +3786,10 @@
 ([KB_325529_Class0] of  Map
 
 	(entries
-		[elearning_ProjectKB_Class40021]
-		[elearning_ProjectKB_Class40022]
-		[elearning_ProjectKB_Class40023]
-		[elearning_ProjectKB_Class40024]))
+		[elearning_ProjectKB_Class40131]
+		[elearning_ProjectKB_Class40132]
+		[elearning_ProjectKB_Class40133]
+		[elearning_ProjectKB_Class40134]))
 
 ([KB_325529_Class4] of  String
 
@@ -8468,6 +8468,7 @@
 		":STANDARD-SLOT"
 		":OWL-ANONYMOUS-ROOT"
 		":MAXIMUM-CARDINALITY"
+		"http://protege.stanford.edu/plugins/owl/protege#ExternalResource"
 		"http://www.w3.org/1999/02/22-rdf-syntax-ns#Alt"
 		"http://www.w3.org/2001/XMLSchema#NMTOKEN"
 		"http://www.w3.org/2002/07/owl#UnionClass"
@@ -8526,8 +8527,8 @@
 		"http://www.w3.org/2002/07/owl#minCardinality"
 		"http://www.w3.org/2002/07/owl#allValuesFrom"
 		":INVERSE"
-		"http://www.w3.org/2003/11/swrl#DataRangeAtom"
 		"http://www.w3.org/2002/07/owl#priorVersion"
+		"http://www.w3.org/2003/11/swrl#DataRangeAtom"
 		"http://www.w3.org/2001/XMLSchema#token"
 		"http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"
 		":DIRECT-TEMPLATE-SLOTS"
