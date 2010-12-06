@@ -834,6 +834,130 @@
                   <E_Interest rdf:ID="E_Interest_2">
                     <inverse_of_has_interest>
                       <E_Learner rdf:ID="el002">
+                        <has_performance>
+                          <E_Performance rdf:ID="E_Performance_5">
+                            <inverse_of_has_performance rdf:resource="#el002"/>
+                          </E_Performance>
+                        </has_performance>
+                        <has_performance>
+                          <E_Performance rdf:ID="E_Performance_3">
+                            <inverse_of_has_performance rdf:resource="#el002"/>
+                            <inverse_of_is_concept_of>
+                              <E_Concept rdf:ID="testPostCnp2">
+                                <is_concept_of rdf:resource="#E_Performance_3"/>
+                                <is_post_concept_of>
+                                  <E_Concept rdf:ID="testPreCnp">
+                                    <is_pre_concept_of>
+                                      <E_Concept rdf:ID="testPostCnp5">
+                                        <is_post_concept_of rdf:resource="#testPreCnp"/>
+                                      </E_Concept>
+                                    </is_pre_concept_of>
+                                    <is_pre_concept_of>
+                                      <E_Concept rdf:ID="testPostCnp4">
+                                        <is_post_concept_of rdf:resource="#testPreCnp"/>
+                                      </E_Concept>
+                                    </is_pre_concept_of>
+                                    <is_pre_concept_of>
+                                      <E_Concept rdf:ID="testPostCnp3">
+                                        <is_post_concept_of rdf:resource="#testPreCnp"/>
+                                        <is_concept_of>
+                                          <E_Performance rdf:ID="E_Performance_4">
+                                            <inverse_of_has_performance>
+                                              <E_Learner rdf:ID="el001">
+                                                <grade xml:lang="en"
+                                                >Grade Two</grade>
+                                                <has_performance rdf:resource="#E_Performance_4"/>
+                                                <has_performance>
+                                                  <E_Performance rdf:ID="E_Performance_2">
+                                                    <inverse_of_is_concept_of>
+                                                      <E_Concept rdf:ID="testPostCnp1">
+                                                        <is_post_concept_of rdf:resource="#testPreCnp"/>
+                                                        <is_concept_of rdf:resource="#E_Performance_2"/>
+                                                      </E_Concept>
+                                                    </inverse_of_is_concept_of>
+                                                    <inverse_of_has_performance rdf:resource="#el001"/>
+                                                  </E_Performance>
+                                                </has_performance>
+                                                <has_performance>
+                                                  <E_Performance rdf:ID="E_Performance_1">
+                                                    <inverse_of_has_performance rdf:resource="#el001"/>
+                                                    <value rdf:datatype=
+                                                    "http://www.w3.org/2001/XMLSchema#string"
+                                                    ></value>
+                                                    <inverse_of_is_concept_of rdf:resource="#testPreCnp"/>
+                                                  </E_Performance>
+                                                </has_performance>
+                                                <has_interest>
+                                                  <E_Interest rdf:ID="E_Interest_1">
+                                                    <inverse_of_is_concept_of>
+                                                      <E_Concept rdf:ID="CMP.CF11_Database_Foundations">
+                                                        <inverse_of_is_part_of>
+                                                          <E_Concept rdf:ID="CMP.CF11_003_Database_Access">
+                                                            <inverse_of_is_part_of>
+                                                              <E_Concept rdf:ID="CMP.CF11_001_DML_Statement">
+    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >DML Statement</name>
+    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >cmp.cf11.001</id>
+    <is_part_of rdf:resource="#CMP.CF11_003_Database_Access"/>
+                                                              </E_Concept>
+                                                            </inverse_of_is_part_of>
+                                                            <is_part_of rdf:resource="#CMP.CF11_Database_Foundations"/>
+                                                          </E_Concept>
+                                                        </inverse_of_is_part_of>
+                                                        <inverse_of_is_part_of>
+                                                          <E_Concept rdf:ID="CMP.CF11_002_Transaction_Control_Statement">
+                                                            <id
+                                                             rdf:datatype=
+                                                            "http://www.w3.org/2001/XMLSchema#string"
+                                                            >cmp.cf11.002</id>
+                                                            <is_part_of rdf:resource="#CMP.CF11_Database_Foundations"/>
+                                                            <name
+                                                             rdf:datatype=
+                                                            "http://www.w3.org/2001/XMLSchema#string"
+                                                            >Transaction Control Statement</name>
+                                                          </E_Concept>
+                                                        </inverse_of_is_part_of>
+                                                        <name
+                                                         rdf:datatype=
+                                                        "http://www.w3.org/2001/XMLSchema#string"
+                                                        >Database_Foundations</name>
+                                                        <is_part_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
+                                                        <id rdf:datatype=
+                                                        "http://www.w3.org/2001/XMLSchema#string"
+                                                        >CMP.CF11</id>
+                                                        <is_concept_of rdf:resource="#E_Interest_1"/>
+                                                      </E_Concept>
+                                                    </inverse_of_is_concept_of>
+                                                    <value xml:lang="en"
+                                                    >interest1</value>
+                                                    <inverse_of_has_interest rdf:resource="#el001"/>
+                                                  </E_Interest>
+                                                </has_interest>
+                                                <id xml:lang="en"
+                                                >el001</id>
+                                                <name rdf:datatype=
+                                                "http://www.w3.org/2001/XMLSchema#string"
+                                                >Ma Sheng</name>
+                                                <email rdf:datatype=
+                                                "http://www.w3.org/2001/XMLSchema#string"
+                                                >williamma.wm@gmail.com</email>
+                                              </E_Learner>
+                                            </inverse_of_has_performance>
+                                            <inverse_of_is_concept_of rdf:resource="#testPostCnp3"/>
+                                          </E_Performance>
+                                        </is_concept_of>
+                                      </E_Concept>
+                                    </is_pre_concept_of>
+                                    <is_pre_concept_of rdf:resource="#testPostCnp2"/>
+                                    <is_pre_concept_of rdf:resource="#testPostCnp1"/>
+                                    <is_concept_of rdf:resource="#E_Performance_1"/>
+                                  </E_Concept>
+                                </is_post_concept_of>
+                              </E_Concept>
+                            </inverse_of_is_concept_of>
+                          </E_Performance>
+                        </has_performance>
                         <has_interest rdf:resource="#E_Interest_2"/>
                         <id xml:lang="en">el002</id>
                         <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -917,62 +1041,7 @@
             </inverse_of_is_part_of>
           </E_Concept>
         </inverse_of_is_part_of>
-        <inverse_of_is_part_of>
-          <E_Concept rdf:ID="CMP.CF11_Database_Foundations">
-            <inverse_of_is_part_of>
-              <E_Concept rdf:ID="CMP.CF11_003_Database_Access">
-                <inverse_of_is_part_of>
-                  <E_Concept rdf:ID="CMP.CF11_001_DML_Statement">
-                    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                    >DML Statement</name>
-                    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                    >cmp.cf11.001</id>
-                    <is_part_of rdf:resource="#CMP.CF11_003_Database_Access"/>
-                  </E_Concept>
-                </inverse_of_is_part_of>
-                <is_part_of rdf:resource="#CMP.CF11_Database_Foundations"/>
-              </E_Concept>
-            </inverse_of_is_part_of>
-            <inverse_of_is_part_of>
-              <E_Concept rdf:ID="CMP.CF11_002_Transaction_Control_Statement">
-                <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >cmp.cf11.002</id>
-                <is_part_of rdf:resource="#CMP.CF11_Database_Foundations"/>
-                <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >Transaction Control Statement</name>
-              </E_Concept>
-            </inverse_of_is_part_of>
-            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >Database_Foundations</name>
-            <is_part_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
-            <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >CMP.CF11</id>
-            <is_concept_of>
-              <E_Interest rdf:ID="E_Interest_1">
-                <inverse_of_is_concept_of rdf:resource="#CMP.CF11_Database_Foundations"/>
-                <value xml:lang="en">interest1</value>
-                <inverse_of_has_interest>
-                  <E_Learner rdf:ID="el001">
-                    <grade xml:lang="en">Grade Two</grade>
-                    <has_performance>
-                      <E_Performance rdf:ID="E_Performance_1">
-                        <inverse_of_has_performance rdf:resource="#el001"/>
-                        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                        ></value>
-                      </E_Performance>
-                    </has_performance>
-                    <has_interest rdf:resource="#E_Interest_1"/>
-                    <id xml:lang="en">el001</id>
-                    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                    >Ma Sheng</name>
-                    <email rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                    >williamma.wm@gmail.com</email>
-                  </E_Learner>
-                </inverse_of_has_interest>
-              </E_Interest>
-            </is_concept_of>
-          </E_Concept>
-        </inverse_of_is_part_of>
+        <inverse_of_is_part_of rdf:resource="#CMP.CF11_Database_Foundations"/>
         <inverse_of_is_part_of>
           <E_Concept rdf:ID="CMP.CF1_Programming_Design_Foundations">
             <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
