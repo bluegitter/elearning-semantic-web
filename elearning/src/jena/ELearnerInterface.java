@@ -14,7 +14,6 @@ public interface ELearnerInterface {
 	Model addInterest(Model model,EInterest interest);
 	Model addPerfomance(Model model,EPerformance performance);
 	
-	
 	Model addConcept(Model model,EConcept concept);
 	
 }
