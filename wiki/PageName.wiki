@@ -1,10 +1,16 @@
-#labels SPARQLintroduction
-= 介绍SPARQL的网页 =
+#summary 一些问题和解决情况
+#labels problem,solution
 
-http://www.cnblogs.com/jghhandsome/articles/775302.html
+= 待更新问题 =
 
-http://www.w3.org/TR/rdf-sparql-query/#docDataDesc
+1）Jena API的write方法写出来的文件Protege无法读取，是否需要考虑用Protege OWL API 来更新OWL的文件。
 
-http://www.ibm.com/developerworks/java/library/j-sparql/?S_TACT=105AGX52&S_CMP=cn-a-j
+2）在E_Resource本体中添加属性fileLocation用来记录，资源存储位置。
 
-http://www.ibm.com/developerworks/cn/education/xml/x-sparql/section2.html
+3）
+
+
+
+= 已解决问题 =
+
+1）暂不需要应用Protege API，以后系统并不需要应用Protege来查看本体和实例关系。
