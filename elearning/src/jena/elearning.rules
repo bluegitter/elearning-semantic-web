@@ -1,8 +1,8 @@
 @prefix el: <http://www.owl-ontologies.com/e-learning.owl#>.
 @include <RDFS>.
 @include <OWL>.
-[rule1:(?concept el:is_concept_of ?performance)(?learner el: has_performance ?performance)(?concept2 el:is_post_concept_of ?concept)noValue(?concept2 el:is_concept_of ?performance)->(?concept2 el:is_recommend_of_1 ?learner)]
-[rule2:(?concept1 el:is_concept_of ?performance)(?learner el: has_performance ?performance)(?concept1 el:is_post_concept_of ?preConcpt)(?concept2 el:is_post_concept_of ?preConcpt)noValue(?concept2 el:is_concept_of ?performance)->(?concept2 el:is_recommend_of_2 ?learner)]
+[rule1:(?concept el:is_concept_of ?performance)(?learner el:has_performance ?performance)(?concept2 el:is_post_concept_of ?concept)noValue(?concept2 el:is_concept_of ?performance)->(?concept2 el:is_recommend_of_1 ?learner)]
+[rule2:(?concept1 el:is_concept_of ?performance)(?learner el:has_performance ?performance)(?concept1 el:is_post_concept_of ?preConcpt)(?concept2 el:is_post_concept_of ?preConcpt)noValue(?concept2 el:is_concept_of ?performance)->(?concept2 el:is_recommend_of_2 ?learner)]
 [rule4:(?concept el:is_concept_of ?interest) (?learner el:has_interest ?interest)(?learner el:has_performance ?performance)noValue(?concept el:is_concept_of ?performance)(?concept2 el:is_concept_of ?performance)(?concept2 el:is_pre_concept_of ?concept)( ?performance el:value ?perValue)greaterThan(?perValue,0.5) ->(?concept el:is_recommend_of_4 ?learner)]
 [rule5:(?concept el:is_concept_of ?interest) (?learner el:has_interest ?interest)(?learner el:has_performance ?performance)noValue(?concept el:is_concept_of ?performance)(?concept2 el:is_concept_of ?performance)(?concept2 el:is_pre_concept_of ?concept)( ?performance el:value ?perValue)greaterThan(0.5,?perValue) ->(?concept2 el:is_recommend_of_5 ?learner)]
 [rule6:(?concept el:is_concept_of ?interest) (?learner el:has_interest ?interest)(?learner el:has_performance ?performance) (?concept el:is_concept_of ?performance) ( ?performance el:value ?perValue)greaterThan(0.5,?perValue) (?concept2 el:is_pre_concept_of ?concept) ->(?concept el:is_recommend_of_6 ?learner) (?concept2 el:is_recommend_of_6 ?learner)]
