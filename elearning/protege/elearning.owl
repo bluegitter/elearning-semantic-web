@@ -27,19 +27,19 @@
       <owl:Class rdf:ID="LearningMaterial"/>
     </rdfs:subClassOf>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Paper"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="ProjectAssignment"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Lecture"/>
+      <owl:Class rdf:ID="LectureNotes"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="Book"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="LectureNotes"/>
+      <owl:Class rdf:ID="Lecture"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="ProjectAssignment"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Paper"/>
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#ProjectAssignment">
@@ -47,17 +47,17 @@
       <owl:Class rdf:about="#LearningMaterial"/>
     </rdfs:subClassOf>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Paper"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Example"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Lecture"/>
+      <owl:Class rdf:about="#LectureNotes"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#Book"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#LectureNotes"/>
+      <owl:Class rdf:about="#Lecture"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Example"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Paper"/>
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:ID="E_Resource_CODE">
@@ -109,38 +109,38 @@
       <owl:Class rdf:about="#LearningMaterial"/>
     </rdfs:subClassOf>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Paper"/>
+      <owl:Class rdf:about="#LectureNotes"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Example"/>
-    <owl:disjointWith rdf:resource="#ProjectAssignment"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Lecture"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#ProjectAssignment"/>
+    <owl:disjointWith rdf:resource="#Example"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#LectureNotes"/>
+      <owl:Class rdf:about="#Paper"/>
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#LearningMaterial">
     <rdfs:subClassOf rdf:resource="#E_EducationMaterial"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#AssessmentMaterial"/>
+      <owl:Class rdf:about="#LearningExperience"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#LearningExperience"/>
+      <owl:Class rdf:about="#AssessmentMaterial"/>
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:ID="Associate_Research_Fellow">
     <owl:disjointWith>
-      <owl:Class rdf:ID="Lecturer"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Professor"/>
+      <owl:Class rdf:ID="Research_Fellow"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="Associate_Professor"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Research_Fellow"/>
+      <owl:Class rdf:ID="Professor"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Lecturer"/>
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="E_Teacher"/>
@@ -160,13 +160,13 @@
   </owl:Class>
   <owl:Class rdf:about="#Lecture">
     <owl:disjointWith>
-      <owl:Class rdf:about="#Paper"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Example"/>
-    <owl:disjointWith rdf:resource="#ProjectAssignment"/>
-    <owl:disjointWith rdf:resource="#Book"/>
-    <owl:disjointWith>
       <owl:Class rdf:about="#LectureNotes"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Book"/>
+    <owl:disjointWith rdf:resource="#ProjectAssignment"/>
+    <owl:disjointWith rdf:resource="#Example"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Paper"/>
     </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="#LearningMaterial"/>
   </owl:Class>
@@ -178,34 +178,34 @@
     <rdfs:subClassOf rdf:resource="#E_Resource"/>
   </owl:Class>
   <owl:Class rdf:about="#Research_Fellow">
+    <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Lecturer"/>
+      <owl:Class rdf:about="#Associate_Professor"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#Professor"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Associate_Professor"/>
+      <owl:Class rdf:about="#Lecturer"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="#E_Teacher"/>
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="#LearningExperience">
     <rdfs:subClassOf rdf:resource="#E_EducationMaterial"/>
+    <owl:disjointWith rdf:resource="#LearningMaterial"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#AssessmentMaterial"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#LearningMaterial"/>
   </owl:Class>
   <owl:Class rdf:ID="E_Security">
     <rdfs:subClassOf rdf:resource="#E_People_Characters"/>
   </owl:Class>
   <owl:Class rdf:about="#AssessmentMaterial">
     <rdfs:subClassOf rdf:resource="#E_EducationMaterial"/>
-    <owl:disjointWith rdf:resource="#LearningExperience"/>
     <owl:disjointWith rdf:resource="#LearningMaterial"/>
+    <owl:disjointWith rdf:resource="#LearningExperience"/>
   </owl:Class>
   <owl:Class rdf:about="#E_Preference">
     <rdfs:subClassOf rdf:resource="#E_People_Characters"/>
@@ -228,13 +228,13 @@
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#Paper">
-    <owl:disjointWith rdf:resource="#Example"/>
-    <owl:disjointWith rdf:resource="#ProjectAssignment"/>
-    <owl:disjointWith rdf:resource="#Lecture"/>
-    <owl:disjointWith rdf:resource="#Book"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#LectureNotes"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Book"/>
+    <owl:disjointWith rdf:resource="#Lecture"/>
+    <owl:disjointWith rdf:resource="#ProjectAssignment"/>
+    <owl:disjointWith rdf:resource="#Example"/>
     <rdfs:subClassOf rdf:resource="#LearningMaterial"/>
   </owl:Class>
   <owl:Class rdf:ID="E_Resource_PPT">
@@ -244,24 +244,24 @@
     <rdfs:subClassOf rdf:resource="#E_Teacher"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></rdfs:comment>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Lecturer"/>
-    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Research_Fellow"/>
+    <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Professor"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
-    <owl:disjointWith rdf:resource="#Research_Fellow"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Lecturer"/>
+    </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#Lecturer">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></rdfs:comment>
+    <owl:disjointWith rdf:resource="#Research_Fellow"/>
+    <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
+    <owl:disjointWith rdf:resource="#Associate_Professor"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Professor"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Associate_Professor"/>
-    <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
-    <owl:disjointWith rdf:resource="#Research_Fellow"/>
     <rdfs:subClassOf rdf:resource="#E_Teacher"/>
   </owl:Class>
   <owl:Class rdf:about="#Chinese_University">
@@ -269,10 +269,10 @@
     <owl:disjointWith rdf:resource="#US_University"/>
   </owl:Class>
   <owl:Class rdf:about="#Professor">
-    <owl:disjointWith rdf:resource="#Lecturer"/>
-    <owl:disjointWith rdf:resource="#Associate_Professor"/>
-    <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
     <owl:disjointWith rdf:resource="#Research_Fellow"/>
+    <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
+    <owl:disjointWith rdf:resource="#Associate_Professor"/>
+    <owl:disjointWith rdf:resource="#Lecturer"/>
     <rdfs:subClassOf rdf:resource="#E_Teacher"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></rdfs:comment>
@@ -296,66 +296,44 @@
     <rdfs:subClassOf rdf:resource="#E_Resource_DOCUMENT"/>
   </owl:Class>
   <owl:Class rdf:about="#LectureNotes">
-    <owl:disjointWith rdf:resource="#Paper"/>
-    <owl:disjointWith rdf:resource="#Example"/>
-    <owl:disjointWith rdf:resource="#ProjectAssignment"/>
-    <owl:disjointWith rdf:resource="#Lecture"/>
     <owl:disjointWith rdf:resource="#Book"/>
+    <owl:disjointWith rdf:resource="#Lecture"/>
+    <owl:disjointWith rdf:resource="#ProjectAssignment"/>
+    <owl:disjointWith rdf:resource="#Example"/>
+    <owl:disjointWith rdf:resource="#Paper"/>
     <rdfs:subClassOf rdf:resource="#LearningMaterial"/>
   </owl:Class>
   <owl:Class rdf:ID="Corporations">
     <rdfs:subClassOf rdf:resource="#E_Organizations"/>
   </owl:Class>
+  <owl:ObjectProperty rdf:ID="inverse_of_has_performance">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="has_performance"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#E_Learner"/>
+    <rdfs:domain rdf:resource="#E_Performance"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="people_properties"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="inverse_of_has_study_style">
     <rdfs:range rdf:resource="#E_Learner"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="has_study_style"/>
     </owl:inverseOf>
     <rdfs:domain rdf:resource="#E_Study_Style"/>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:ID="people_properties"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="is_recommend_of_9">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_9"/>
-    </owl:inverseOf>
-    <rdfs:domain rdf:resource="#E_Learner"/>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:ID="is_recommend_of"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_6">
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="is_recommend_of_6"/>
-    </owl:inverseOf>
-    <rdfs:range rdf:resource="#E_Concept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#is_recommend_of">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
     <rdfs:subPropertyOf rdf:resource="#people_properties"/>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of"/>
-    </owl:inverseOf>
-    <rdfs:range rdf:resource="#E_Learner"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_13">
+  <owl:ObjectProperty rdf:ID="is_post">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:range rdf:resource="#E_OptionalConceptRelationship"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="inverse_of_is_post"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#E_Concept"/>
     <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of"/>
+      <owl:ObjectProperty rdf:ID="optional_concept_properties"/>
     </rdfs:subPropertyOf>
-    <rdfs:range rdf:resource="#E_Resource"/>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="is_recommend_of_13"/>
-    </owl:inverseOf>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="organization_properties">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="working_at">
     <rdfs:domain rdf:resource="#E_People"/>
@@ -367,21 +345,27 @@
         </owl:unionOf>
       </owl:Class>
     </rdfs:range>
-    <rdfs:subPropertyOf rdf:resource="#organization_properties"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:ID="organization_properties"/>
+    </rdfs:subPropertyOf>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="studying_at">
-    <rdfs:range rdf:resource="#University"/>
-    <rdfs:domain rdf:resource="#E_People"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:subPropertyOf rdf:resource="#organization_properties"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="is_recommend_of_5">
+  <owl:ObjectProperty rdf:ID="is_resource_of">
+    <rdfs:range>
+      <owl:Class>
+        <owl:unionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="#E_Concept"/>
+          <owl:Class rdf:about="#E_Portfolio"/>
+        </owl:unionOf>
+      </owl:Class>
+    </rdfs:range>
+    <rdfs:domain rdf:resource="#E_Resource"/>
     <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_5"/>
+      <owl:TransitiveProperty rdf:ID="inverse_of_is_resource_of"/>
     </owl:inverseOf>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
-    <rdfs:domain rdf:resource="#E_Concept"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="resouce_properties"/>
+    </rdfs:subPropertyOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="reasoning_hasPerformance">
     <rdfs:domain rdf:resource="#E_Learner"/>
@@ -396,108 +380,69 @@
     <rdfs:subPropertyOf rdf:resource="#people_properties"/>
     <owl:inverseOf rdf:resource="#inverse_of_has_study_style"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#is_recommend_of_13">
-    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_13"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
-    <rdfs:domain rdf:resource="#E_Resource"/>
+  <owl:ObjectProperty rdf:ID="graduate_from">
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#organization_properties"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#E_People"/>
+    <rdfs:range rdf:resource="#University"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="is_recommend_of_1">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:domain rdf:resource="#E_Concept"/>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_1"/>
-    </owl:inverseOf>
-    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_12">
-    <rdfs:range rdf:resource="#E_Resource"/>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="is_recommend_of_12"/>
-    </owl:inverseOf>
+  <owl:ObjectProperty rdf:about="#inverse_of_is_post">
+    <owl:inverseOf rdf:resource="#is_post"/>
+    <rdfs:domain rdf:resource="#E_OptionalConceptRelationship"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
     <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of"/>
+      <owl:ObjectProperty rdf:about="#optional_concept_properties"/>
     </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_2">
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="is_recommend_of_2"/>
-    </owl:inverseOf>
     <rdfs:range rdf:resource="#E_Concept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="inverse_of_has_portfolio">
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="has_portfolio"/>
-    </owl:inverseOf>
-    <rdfs:range rdf:resource="#E_Learner"/>
-    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
-    <rdfs:domain rdf:resource="#E_Portfolio"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="has_security">
     <rdfs:subPropertyOf rdf:resource="#people_properties"/>
     <rdfs:range rdf:resource="#E_Security"/>
     <rdfs:domain rdf:resource="#E_Learner"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="is_recommend_of_8">
-    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
+  <owl:ObjectProperty rdf:ID="is_application_type_of">
+    <rdfs:domain rdf:resource="#E_EducationMaterial"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="inverse_of_is_application_type_of"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="#resouce_properties"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#inverse_of_is_application_type_of">
+    <rdfs:subPropertyOf rdf:resource="#resouce_properties"/>
+    <rdfs:domain rdf:resource="#E_Resource"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <owl:inverseOf rdf:resource="#is_application_type_of"/>
+    <rdfs:range rdf:resource="#E_EducationMaterial"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="inverse_of_writen_by">
+    <rdfs:domain rdf:resource="#E_People"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="writen_by"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#Lecture"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#optional_concept_properties">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="concept_properties"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="is_part_of">
     <rdfs:domain rdf:resource="#E_Concept"/>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_8"/>
-    </owl:inverseOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="is_concept_of_P">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:ID="is_concept_of"/>
-    </rdfs:subPropertyOf>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="inverse_of_is_concept_of_P"/>
-    </owl:inverseOf>
-    <rdfs:range rdf:resource="#E_Performance"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_7">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="is_recommend_of_7"/>
-    </owl:inverseOf>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of"/>
-    </rdfs:subPropertyOf>
     <rdfs:range rdf:resource="#E_Concept"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="is_recommend_of_4">
-    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
     <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_4"/>
+      <owl:TransitiveProperty rdf:ID="inverse_of_is_part_of"/>
     </owl:inverseOf>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="reasoning_brother">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    <rdfs:range rdf:resource="#E_Concept"/>
+    <owl:inverseOf rdf:resource="#reasoning_brother"/>
+    <rdfs:subPropertyOf rdf:resource="#reasoning_properties"/>
     <rdfs:domain rdf:resource="#E_Concept"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="has_interest">
-    <rdfs:domain rdf:resource="#E_Learner"/>
-    <rdfs:range rdf:resource="#E_Interest"/>
-    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="inverse_of_has_interest"/>
-    </owl:inverseOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="inverse_of_is_concept_of_I">
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="is_concept_of_I"/>
-    </owl:inverseOf>
-    <rdfs:domain rdf:resource="#E_Interest"/>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:ID="inverse_of_is_concept_of"/>
-    </rdfs:subPropertyOf>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="is_published_by">
     <rdfs:domain>
@@ -509,213 +454,21 @@
       </owl:Class>
     </rdfs:domain>
     <owl:inverseOf>
-      <owl:TransitiveProperty rdf:ID="publish"/>
+      <owl:ObjectProperty rdf:ID="publish"/>
     </owl:inverseOf>
-    <rdfs:subPropertyOf rdf:resource="#organization_properties"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#organization_properties"/>
+    </rdfs:subPropertyOf>
     <rdfs:range rdf:resource="#Publisher"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#is_recommend_of_12">
-    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_12"/>
-    <rdfs:domain rdf:resource="#E_Resource"/>
-    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="concept_properties"/>
-  <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_3">
-    <rdfs:range rdf:resource="#E_Concept"/>
+  <owl:ObjectProperty rdf:about="#publish">
+    <rdfs:domain rdf:resource="#Publisher"/>
+    <owl:inverseOf rdf:resource="#is_published_by"/>
     <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of"/>
+      <owl:TransitiveProperty rdf:about="#organization_properties"/>
     </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#Book"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="is_recommend_of_3"/>
-    </owl:inverseOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="has_performance">
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="inverse_of_has_performance"/>
-    </owl:inverseOf>
-    <rdfs:domain rdf:resource="#E_Learner"/>
-    <rdfs:range rdf:resource="#E_Performance"/>
-    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_11">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="is_recommend_of_11"/>
-    </owl:inverseOf>
-    <rdfs:range rdf:resource="#E_Resource"/>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#is_concept_of_I">
-    <owl:inverseOf rdf:resource="#inverse_of_is_concept_of_I"/>
-    <rdfs:range rdf:resource="#E_Interest"/>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#is_concept_of"/>
-    </rdfs:subPropertyOf>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#inverse_of_has_performance">
-    <owl:inverseOf rdf:resource="#has_performance"/>
-    <rdfs:range rdf:resource="#E_Learner"/>
-    <rdfs:domain rdf:resource="#E_Performance"/>
-    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#has_portfolio">
-    <rdfs:range rdf:resource="#E_Portfolio"/>
-    <rdfs:domain rdf:resource="#E_Learner"/>
-    <owl:inverseOf rdf:resource="#inverse_of_has_portfolio"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#is_recommend_of_7">
-    <rdfs:domain rdf:resource="#E_Concept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
-    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_7"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#is_recommend_of_3">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
-    <rdfs:domain rdf:resource="#E_Concept"/>
-    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_3"/>
-    <rdfs:range rdf:resource="#E_Learner"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of_8">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <owl:inverseOf rdf:resource="#is_recommend_of_8"/>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of"/>
-    </rdfs:subPropertyOf>
-    <rdfs:range rdf:resource="#E_Concept"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#inverse_of_has_interest">
-    <owl:inverseOf rdf:resource="#has_interest"/>
-    <rdfs:range rdf:resource="#E_Learner"/>
-    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
-    <rdfs:domain rdf:resource="#E_Interest"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="is_member_of">
-    <rdfs:domain rdf:resource="#University"/>
-    <rdfs:subPropertyOf rdf:resource="#organization_properties"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:range rdf:resource="#University"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="graduate_from">
-    <rdfs:subPropertyOf rdf:resource="#organization_properties"/>
-    <rdfs:domain rdf:resource="#E_People"/>
-    <rdfs:range rdf:resource="#University"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_10">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:range rdf:resource="#E_Learner"/>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of"/>
-    </rdfs:subPropertyOf>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="is_recommend_of_10"/>
-    </owl:inverseOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#is_recommend_of_11">
-    <rdfs:domain rdf:resource="#E_Resource"/>
-    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_11"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of_4">
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of"/>
-    </rdfs:subPropertyOf>
-    <owl:inverseOf rdf:resource="#is_recommend_of_4"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:range rdf:resource="#E_Concept"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#is_recommend_of_6">
-    <rdfs:domain rdf:resource="#E_Concept"/>
-    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
-    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_6"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#is_recommend_of_2">
-    <rdfs:domain rdf:resource="#E_Concept"/>
-    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
-    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_2"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="is_post_concept_of">
-    <rdfs:range rdf:resource="#E_Concept"/>
-    <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:domain rdf:resource="#E_Concept"/>
-    <owl:inverseOf>
-      <owl:TransitiveProperty rdf:ID="is_pre_concept_of"/>
-    </owl:inverseOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of">
-    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
-    <rdfs:domain rdf:resource="#E_Learner"/>
-    <owl:inverseOf rdf:resource="#is_recommend_of"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of_9">
-    <rdfs:range rdf:resource="#E_Learner"/>
-    <owl:inverseOf rdf:resource="#is_recommend_of_9"/>
-    <rdfs:subPropertyOf rdf:resource="#inverse_of_is_recommend_of"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="inverse_of_writen_by">
-    <rdfs:domain rdf:resource="#E_People"/>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:ID="writen_by"/>
-    </owl:inverseOf>
-    <rdfs:range rdf:resource="#Lecture"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="optional_concept_properties">
-    <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="inverse_of_is_part_of">
-    <rdfs:range rdf:resource="#E_Concept"/>
-    <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
-    <owl:inverseOf>
-      <owl:TransitiveProperty rdf:ID="is_part_of"/>
-    </owl:inverseOf>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:domain rdf:resource="#E_Concept"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="inverse_of_is_resource_of">
-    <owl:inverseOf>
-      <owl:TransitiveProperty rdf:ID="is_resource_of"/>
-    </owl:inverseOf>
-    <rdfs:range rdf:resource="#E_Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:domain>
-      <owl:Class>
-        <owl:unionOf rdf:parseType="Collection">
-          <owl:Class rdf:about="#E_Concept"/>
-          <owl:Class rdf:about="#E_Portfolio"/>
-        </owl:unionOf>
-      </owl:Class>
-    </rdfs:domain>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:ID="resouce_properties"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of_1">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <owl:inverseOf rdf:resource="#is_recommend_of_1"/>
-    <rdfs:range rdf:resource="#E_Concept"/>
-    <rdfs:subPropertyOf rdf:resource="#inverse_of_is_recommend_of"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#inverse_of_is_concept_of_P">
-    <owl:inverseOf rdf:resource="#is_concept_of_P"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="#inverse_of_is_concept_of"/>
-    </rdfs:subPropertyOf>
-    <rdfs:domain rdf:resource="#E_Performance"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#writen_by">
     <owl:inverseOf rdf:resource="#inverse_of_writen_by"/>
@@ -730,31 +483,36 @@
       </owl:Class>
     </rdfs:domain>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#is_concept_of">
-    <rdfs:domain rdf:resource="#E_Concept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  <owl:ObjectProperty rdf:ID="inverse_of_is_pre">
+    <rdfs:range rdf:resource="#E_Concept"/>
+    <rdfs:domain rdf:resource="#E_OptionalConceptRelationship"/>
     <owl:inverseOf>
-      <owl:ObjectProperty rdf:about="#inverse_of_is_concept_of"/>
+      <owl:ObjectProperty rdf:ID="is_pre"/>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#optional_concept_properties"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_pre">
+    <rdfs:range rdf:resource="#E_OptionalConceptRelationship"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:domain rdf:resource="#E_Concept"/>
+    <rdfs:subPropertyOf rdf:resource="#optional_concept_properties"/>
+    <owl:inverseOf rdf:resource="#inverse_of_is_pre"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="is_pre_concept_of">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:domain rdf:resource="#E_Concept"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="is_post_concept_of"/>
     </owl:inverseOf>
     <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#inverse_of_is_concept_of">
     <rdfs:range rdf:resource="#E_Concept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
-    <owl:inverseOf rdf:resource="#is_concept_of"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#is_recommend_of_10">
-    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  <owl:ObjectProperty rdf:about="#has_performance">
+    <owl:inverseOf rdf:resource="#inverse_of_has_performance"/>
     <rdfs:domain rdf:resource="#E_Learner"/>
-    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_10"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of_5">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:subPropertyOf rdf:resource="#inverse_of_is_recommend_of"/>
-    <owl:inverseOf rdf:resource="#is_recommend_of_5"/>
-    <rdfs:range rdf:resource="#E_Concept"/>
+    <rdfs:range rdf:resource="#E_Performance"/>
+    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
   </owl:ObjectProperty>
   <owl:DatatypeProperty rdf:ID="id">
     <rdfs:domain>
@@ -823,117 +581,376 @@
       </owl:Class>
     </rdfs:domain>
   </owl:DatatypeProperty>
-  <owl:TransitiveProperty rdf:about="#publish">
-    <rdfs:domain rdf:resource="#Publisher"/>
-    <owl:inverseOf rdf:resource="#is_published_by"/>
-    <rdfs:subPropertyOf rdf:resource="#organization_properties"/>
-    <rdfs:range rdf:resource="#Book"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:ID="is_post">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="#E_OptionalConceptRelationship"/>
+  <owl:TransitiveProperty rdf:ID="inverse_of_is_recommend_of_6">
     <owl:inverseOf>
-      <owl:TransitiveProperty rdf:ID="inverse_of_is_post"/>
+      <owl:TransitiveProperty rdf:ID="is_recommend_of_6"/>
     </owl:inverseOf>
-    <rdfs:domain rdf:resource="#E_Concept"/>
-    <rdfs:subPropertyOf rdf:resource="#optional_concept_properties"/>
-  </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:ID="is_application_type_of">
-    <rdfs:domain rdf:resource="#E_EducationMaterial"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf>
-      <owl:TransitiveProperty rdf:ID="inverse_of_is_application_type_of"/>
-    </owl:inverseOf>
-    <rdfs:subPropertyOf rdf:resource="#resouce_properties"/>
-  </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:ID="inverse_of_is_pre">
     <rdfs:range rdf:resource="#E_Concept"/>
-    <rdfs:domain rdf:resource="#E_OptionalConceptRelationship"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:ID="inverse_of_is_recommend_of"/>
+    </rdfs:subPropertyOf>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="is_recommend_of_9">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <owl:inverseOf>
-      <owl:TransitiveProperty rdf:ID="is_pre"/>
+      <owl:TransitiveProperty rdf:ID="inverse_of_is_recommend_of_9"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#E_Learner"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:ID="is_recommend_of"/>
+    </rdfs:subPropertyOf>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="has_portfolio">
+    <rdfs:range rdf:resource="#E_Portfolio"/>
+    <rdfs:domain rdf:resource="#E_Learner"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="inverse_of_has_portfolio"/>
     </owl:inverseOf>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:subPropertyOf rdf:resource="#optional_concept_properties"/>
+    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
   </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="#inverse_of_is_application_type_of">
-    <rdfs:subPropertyOf rdf:resource="#resouce_properties"/>
-    <rdfs:domain rdf:resource="#E_Resource"/>
+  <owl:TransitiveProperty rdf:ID="inverse_of_is_recommend_of_13">
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#inverse_of_is_recommend_of"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#E_Resource"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="is_recommend_of_13"/>
+    </owl:inverseOf>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <owl:inverseOf rdf:resource="#is_application_type_of"/>
-    <rdfs:range rdf:resource="#E_EducationMaterial"/>
   </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="#is_resource_of">
-    <rdfs:range>
+  <owl:TransitiveProperty rdf:about="#is_recommend_of">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:about="#inverse_of_is_recommend_of"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#E_Learner"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#organization_properties">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="is_recommend_of_7">
+    <rdfs:domain rdf:resource="#E_Concept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="inverse_of_is_recommend_of_7"/>
+    </owl:inverseOf>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="is_recommend_of_3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
+    <rdfs:domain rdf:resource="#E_Concept"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="inverse_of_is_recommend_of_3"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#E_Learner"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="inverse_of_is_recommend_of_8">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="is_recommend_of_8"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#inverse_of_is_recommend_of"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#E_Concept"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="is_recommend_of_5">
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="inverse_of_is_recommend_of_5"/>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
+    <rdfs:domain rdf:resource="#E_Concept"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="studying_at">
+    <rdfs:range rdf:resource="#University"/>
+    <rdfs:domain rdf:resource="#E_People"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#organization_properties"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="inverse_of_has_interest">
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="has_interest"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#E_Learner"/>
+    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
+    <rdfs:domain rdf:resource="#E_Interest"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="is_member_of">
+    <rdfs:domain rdf:resource="#University"/>
+    <rdfs:subPropertyOf rdf:resource="#organization_properties"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#University"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#is_recommend_of_13">
+    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_13"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
+    <rdfs:domain rdf:resource="#E_Resource"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="inverse_of_is_recommend_of_10">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#E_Learner"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#inverse_of_is_recommend_of"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="is_recommend_of_10"/>
+    </owl:inverseOf>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="is_recommend_of_1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#E_Concept"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="inverse_of_is_recommend_of_1"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="is_recommend_of_11">
+    <rdfs:domain rdf:resource="#E_Resource"/>
+    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="inverse_of_is_recommend_of_11"/>
+    </owl:inverseOf>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="inverse_of_is_recommend_of_4">
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#inverse_of_is_recommend_of"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="is_recommend_of_4"/>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#E_Concept"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="inverse_of_is_recommend_of_12">
+    <rdfs:range rdf:resource="#E_Resource"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="is_recommend_of_12"/>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#inverse_of_is_recommend_of"/>
+    </rdfs:subPropertyOf>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#inverse_of_has_portfolio">
+    <owl:inverseOf rdf:resource="#has_portfolio"/>
+    <rdfs:range rdf:resource="#E_Learner"/>
+    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
+    <rdfs:domain rdf:resource="#E_Portfolio"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="inverse_of_is_recommend_of_2">
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="is_recommend_of_2"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#E_Concept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#inverse_of_is_recommend_of"/>
+    </rdfs:subPropertyOf>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="is_concept_of_P">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:ID="is_concept_of"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="inverse_of_is_concept_of_P"/>
+    </owl:inverseOf>
+    <rdfs:range rdf:resource="#E_Performance"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#is_recommend_of_8">
+    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#E_Concept"/>
+    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_8"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#inverse_of_is_recommend_of_7">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#is_recommend_of_7"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#inverse_of_is_recommend_of"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#E_Concept"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#is_recommend_of_6">
+    <rdfs:domain rdf:resource="#E_Concept"/>
+    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
+    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_6"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#is_recommend_of_2">
+    <rdfs:domain rdf:resource="#E_Concept"/>
+    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
+    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_2"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#is_post_concept_of">
+    <rdfs:range rdf:resource="#E_Concept"/>
+    <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#E_Concept"/>
+    <owl:inverseOf rdf:resource="#is_pre_concept_of"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#inverse_of_is_recommend_of">
+    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
+    <rdfs:domain rdf:resource="#E_Learner"/>
+    <owl:inverseOf rdf:resource="#is_recommend_of"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#inverse_of_is_recommend_of_9">
+    <rdfs:range rdf:resource="#E_Learner"/>
+    <owl:inverseOf rdf:resource="#is_recommend_of_9"/>
+    <rdfs:subPropertyOf rdf:resource="#inverse_of_is_recommend_of"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#is_recommend_of_4">
+    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
+    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_4"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#E_Concept"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#inverse_of_is_part_of">
+    <rdfs:range rdf:resource="#E_Concept"/>
+    <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
+    <owl:inverseOf rdf:resource="#is_part_of"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#E_Concept"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#has_interest">
+    <rdfs:domain rdf:resource="#E_Learner"/>
+    <rdfs:range rdf:resource="#E_Interest"/>
+    <rdfs:subPropertyOf rdf:resource="#people_properties"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#inverse_of_has_interest"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#inverse_of_is_resource_of">
+    <owl:inverseOf rdf:resource="#is_resource_of"/>
+    <rdfs:range rdf:resource="#E_Resource"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain>
       <owl:Class>
         <owl:unionOf rdf:parseType="Collection">
           <owl:Class rdf:about="#E_Concept"/>
           <owl:Class rdf:about="#E_Portfolio"/>
         </owl:unionOf>
       </owl:Class>
-    </rdfs:range>
-    <rdfs:domain rdf:resource="#E_Resource"/>
-    <owl:inverseOf rdf:resource="#inverse_of_is_resource_of"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    </rdfs:domain>
     <rdfs:subPropertyOf rdf:resource="#resouce_properties"/>
   </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="#is_pre">
-    <rdfs:range rdf:resource="#E_OptionalConceptRelationship"/>
+  <owl:TransitiveProperty rdf:about="#inverse_of_is_recommend_of_1">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#E_Concept"/>
-    <rdfs:subPropertyOf rdf:resource="#optional_concept_properties"/>
-    <owl:inverseOf rdf:resource="#inverse_of_is_pre"/>
+    <owl:inverseOf rdf:resource="#is_recommend_of_1"/>
+    <rdfs:range rdf:resource="#E_Concept"/>
+    <rdfs:subPropertyOf rdf:resource="#inverse_of_is_recommend_of"/>
   </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="#is_pre_concept_of">
+  <owl:TransitiveProperty rdf:ID="inverse_of_is_concept_of_I">
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="is_concept_of_I"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#E_Interest"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:ID="inverse_of_is_concept_of"/>
+    </rdfs:subPropertyOf>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#inverse_of_is_concept_of_P">
+    <owl:inverseOf rdf:resource="#is_concept_of_P"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#inverse_of_is_concept_of"/>
+    </rdfs:subPropertyOf>
+    <rdfs:domain rdf:resource="#E_Performance"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#is_concept_of">
     <rdfs:domain rdf:resource="#E_Concept"/>
-    <owl:inverseOf rdf:resource="#is_post_concept_of"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:about="#inverse_of_is_concept_of"/>
+    </owl:inverseOf>
     <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
-    <rdfs:range rdf:resource="#E_Concept"/>
   </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="#inverse_of_is_post">
-    <owl:inverseOf rdf:resource="#is_post"/>
-    <rdfs:domain rdf:resource="#E_OptionalConceptRelationship"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:subPropertyOf rdf:resource="#optional_concept_properties"/>
+  <owl:TransitiveProperty rdf:about="#inverse_of_is_concept_of">
     <rdfs:range rdf:resource="#E_Concept"/>
-  </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="#is_part_of">
-    <rdfs:domain rdf:resource="#E_Concept"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="#E_Concept"/>
-    <owl:inverseOf rdf:resource="#inverse_of_is_part_of"/>
     <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
+    <owl:inverseOf rdf:resource="#is_concept_of"/>
   </owl:TransitiveProperty>
-  <owl:SymmetricProperty rdf:ID="reasoning_brother">
+  <owl:TransitiveProperty rdf:about="#is_recommend_of_12">
+    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_12"/>
+    <rdfs:domain rdf:resource="#E_Resource"/>
+    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#inverse_of_is_recommend_of_3">
     <rdfs:range rdf:resource="#E_Concept"/>
-    <owl:inverseOf rdf:resource="#reasoning_brother"/>
-    <rdfs:subPropertyOf rdf:resource="#reasoning_properties"/>
-    <rdfs:domain rdf:resource="#E_Concept"/>
-  </owl:SymmetricProperty>
+    <rdfs:subPropertyOf rdf:resource="#inverse_of_is_recommend_of"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#is_recommend_of_3"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#inverse_of_is_recommend_of_11">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="#is_recommend_of_11"/>
+    <rdfs:range rdf:resource="#E_Resource"/>
+    <rdfs:subPropertyOf rdf:resource="#inverse_of_is_recommend_of"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#is_recommend_of_10">
+    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#E_Learner"/>
+    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_10"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#inverse_of_is_recommend_of_5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="#inverse_of_is_recommend_of"/>
+    <owl:inverseOf rdf:resource="#is_recommend_of_5"/>
+    <rdfs:range rdf:resource="#E_Concept"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#is_concept_of_I">
+    <owl:inverseOf rdf:resource="#inverse_of_is_concept_of_I"/>
+    <rdfs:range rdf:resource="#E_Interest"/>
+    <rdfs:subPropertyOf rdf:resource="#is_concept_of"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
   <Book rdf:ID="Book_3"/>
   <Corporations rdf:ID="Microsoft_Beijing">
     <address xml:lang="en">Microsoft_Beijing</address>
     <name xml:lang="en">Microsoft_Beijing</name>
   </Corporations>
   <Lecture rdf:ID="Lecture_7"/>
+  <E_Learner rdf:ID="el002">
+    <id xml:lang="en">el002</id>
+    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Wang Shuaiguo</name>
+  </E_Learner>
   <Lecture rdf:ID="Lecture_8"/>
+  <E_Learner rdf:ID="el003">
+    <id xml:lang="en">el003</id>
+    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Geng Huihui</name>
+  </E_Learner>
   <Chinese_University rdf:ID="TsinghuaUniversity">
     <address xml:lang="en">Hadian District</address>
     <name xml:lang="en">Tsinghua University</name>
     <is_member_of>
-      <Chinese_University rdf:ID="Project_211_University"/>
+      <Chinese_University rdf:ID="Project_985_University"/>
     </is_member_of>
     <is_member_of>
-      <Chinese_University rdf:ID="Project_985_University"/>
+      <Chinese_University rdf:ID="Project_211_University"/>
     </is_member_of>
   </Chinese_University>
   <E_Resource_DOC rdf:ID="doc1"/>
   <Chinese_University rdf:ID="BeijingUniversity">
     <address xml:lang="en">Tsinghua University</address>
-    <is_member_of rdf:resource="#Project_211_University"/>
     <is_member_of rdf:resource="#Project_985_University"/>
+    <is_member_of rdf:resource="#Project_211_University"/>
     <name xml:lang="en">Tsinghua University</name>
   </Chinese_University>
   <Publisher rdf:ID="E_PTPRESS">
@@ -965,23 +982,66 @@
   </Corporations>
   <US_University rdf:ID="US_Ivy_League"/>
   <E_Study_Style rdf:ID="E_Study_Style_2"/>
+  <E_Performance rdf:ID="E_Performance_1">
+    <inverse_of_has_performance>
+      <E_Learner rdf:ID="el001">
+        <grade xml:lang="en">Grade Two</grade>
+        <has_performance rdf:resource="#E_Performance_1"/>
+        <has_performance>
+          <E_Performance rdf:ID="E_Performance_2">
+            <inverse_of_is_concept_of>
+              <E_Concept rdf:ID="testPostCnp1">
+                <is_post_concept_of>
+                  <E_Concept rdf:ID="testPreCnp">
+                    <is_pre_concept_of>
+                      <E_Concept rdf:ID="testPostCnp4">
+                        <is_post_concept_of rdf:resource="#testPreCnp"/>
+                        <is_concept_of>
+                          <E_Performance rdf:ID="E_Performance_3">
+                            <inverse_of_has_performance rdf:resource="#el001"/>
+                            <inverse_of_is_concept_of rdf:resource="#testPostCnp4"/>
+                          </E_Performance>
+                        </is_concept_of>
+                      </E_Concept>
+                    </is_pre_concept_of>
+                    <is_pre_concept_of>
+                      <E_Concept rdf:ID="testPostCnp3">
+                        <is_post_concept_of rdf:resource="#testPreCnp"/>
+                      </E_Concept>
+                    </is_pre_concept_of>
+                    <is_pre_concept_of>
+                      <E_Concept rdf:ID="testPostCnp2">
+                        <is_post_concept_of rdf:resource="#testPreCnp"/>
+                      </E_Concept>
+                    </is_pre_concept_of>
+                    <is_pre_concept_of rdf:resource="#testPostCnp1"/>
+                    <is_concept_of rdf:resource="#E_Performance_1"/>
+                  </E_Concept>
+                </is_post_concept_of>
+                <is_concept_of rdf:resource="#E_Performance_2"/>
+              </E_Concept>
+            </inverse_of_is_concept_of>
+            <inverse_of_has_performance rdf:resource="#el001"/>
+          </E_Performance>
+        </has_performance>
+        <has_performance rdf:resource="#E_Performance_3"/>
+        <id xml:lang="en">el001</id>
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Ma Sheng</name>
+        <email rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >williamma.wm@gmail.com</email>
+      </E_Learner>
+    </inverse_of_has_performance>
+    <inverse_of_is_concept_of rdf:resource="#testPreCnp"/>
+  </E_Performance>
   <E_Concept rdf:ID="CMP_Computing_Essentials">
     <inverse_of_is_part_of>
-      <E_Concept rdf:ID="CMP.FM_Formal_Construction_Methods">
-        <is_part_of rdf:resource="#CMP_Computing_Essentials"/>
+      <E_Concept rdf:ID="CMP.TL_Construction_Tools">
         <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-        >CMP.FM</id>
+        >CMP.TL</id>
         <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-        >Formal_Construction_Methods</name>
-      </E_Concept>
-    </inverse_of_is_part_of>
-    <inverse_of_is_part_of>
-      <E_Concept rdf:ID="CMP.CT_Construction_Technologies">
-        <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-        >CMP.CT</id>
+        >Construction_Tools</name>
         <is_part_of rdf:resource="#CMP_Computing_Essentials"/>
-        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-        >Construction_Technologies</name>
       </E_Concept>
     </inverse_of_is_part_of>
     <inverse_of_is_part_of>
@@ -1001,6 +1061,38 @@
         <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
         >CMP.CF</id>
         <inverse_of_is_part_of>
+          <E_Concept rdf:ID="CMP.CF11_Database_Foundations">
+            <inverse_of_is_part_of>
+              <E_Concept rdf:ID="CMP.CF11_002_Transaction_Control_Statement">
+                <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >cmp.cf11.002</id>
+                <is_part_of rdf:resource="#CMP.CF11_Database_Foundations"/>
+                <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Transaction Control Statement</name>
+              </E_Concept>
+            </inverse_of_is_part_of>
+            <inverse_of_is_part_of>
+              <E_Concept rdf:ID="CMP.CF11_003_Database_Access">
+                <inverse_of_is_part_of>
+                  <E_Concept rdf:ID="CMP.CF11_001_DML_Statement">
+                    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >DML Statement</name>
+                    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >cmp.cf11.001</id>
+                    <is_part_of rdf:resource="#CMP.CF11_003_Database_Access"/>
+                  </E_Concept>
+                </inverse_of_is_part_of>
+                <is_part_of rdf:resource="#CMP.CF11_Database_Foundations"/>
+              </E_Concept>
+            </inverse_of_is_part_of>
+            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Database_Foundations</name>
+            <is_part_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
+            <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >CMP.CF11</id>
+          </E_Concept>
+        </inverse_of_is_part_of>
+        <inverse_of_is_part_of>
           <E_Concept rdf:ID="CMP.CF9_Programming_Language_Foundations">
             <inverse_of_is_part_of>
               <E_Concept rdf:ID="CMP.CF9_002_CPP">
@@ -1014,106 +1106,6 @@
             <inverse_of_is_part_of>
               <E_Concept rdf:ID="CMP.CF9_003_Java">
                 <is_part_of rdf:resource="#CMP.CF9_Programming_Language_Foundations"/>
-                <is_concept_of>
-                  <E_Interest rdf:ID="E_Interest_2">
-                    <inverse_of_has_interest>
-                      <E_Learner rdf:ID="el002">
-                        <has_performance>
-                          <E_Performance rdf:ID="E_Performance_5">
-                            <inverse_of_has_performance rdf:resource="#el002"/>
-                          </E_Performance>
-                        </has_performance>
-                        <has_performance>
-                          <E_Performance rdf:ID="E_Performance_3">
-                            <inverse_of_has_performance rdf:resource="#el002"/>
-                            <inverse_of_is_concept_of>
-                              <E_Concept rdf:ID="testPostCnp2">
-                                <is_concept_of rdf:resource="#E_Performance_3"/>
-                                <is_post_concept_of>
-                                  <E_Concept rdf:ID="testPreCnp">
-                                    <is_pre_concept_of>
-                                      <E_Concept rdf:ID="testPostCnp5">
-                                        <is_post_concept_of rdf:resource="#testPreCnp"/>
-                                      </E_Concept>
-                                    </is_pre_concept_of>
-                                    <is_pre_concept_of>
-                                      <E_Concept rdf:ID="testPostCnp4">
-                                        <is_post_concept_of rdf:resource="#testPreCnp"/>
-                                        <is_concept_of>
-                                          <E_Performance rdf:ID="E_Performance_4">
-                                            <inverse_of_has_performance>
-                                              <E_Learner rdf:ID="el001">
-                                                <grade xml:lang="en"
-                                                >Grade Two</grade>
-                                                <has_performance rdf:resource="#E_Performance_4"/>
-                                                <has_performance>
-                                                  <E_Performance rdf:ID="E_Performance_2">
-                                                    <inverse_of_is_concept_of>
-                                                      <E_Concept rdf:ID="testPostCnp1">
-                                                        <is_post_concept_of rdf:resource="#testPreCnp"/>
-                                                        <is_concept_of rdf:resource="#E_Performance_2"/>
-                                                      </E_Concept>
-                                                    </inverse_of_is_concept_of>
-                                                    <inverse_of_has_performance rdf:resource="#el001"/>
-                                                  </E_Performance>
-                                                </has_performance>
-                                                <has_performance>
-                                                  <E_Performance rdf:ID="E_Performance_1">
-                                                    <inverse_of_has_performance rdf:resource="#el001"/>
-                                                    <value rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    ></value>
-                                                    <inverse_of_is_concept_of rdf:resource="#testPreCnp"/>
-                                                  </E_Performance>
-                                                </has_performance>
-                                                <has_interest>
-                                                  <E_Interest rdf:ID="E_Interest_1">
-                                                    <inverse_of_is_concept_of>
-                                                      <E_Concept rdf:ID="testPostCnp3">
-                                                        <is_post_concept_of rdf:resource="#testPreCnp"/>
-                                                        <is_concept_of rdf:resource="#E_Interest_1"/>
-                                                      </E_Concept>
-                                                    </inverse_of_is_concept_of>
-                                                    <value xml:lang="en"
-                                                    >interest1</value>
-                                                    <inverse_of_has_interest rdf:resource="#el001"/>
-                                                  </E_Interest>
-                                                </has_interest>
-                                                <id xml:lang="en"
-                                                >el001</id>
-                                                <name rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >Ma Sheng</name>
-                                                <email rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >williamma.wm@gmail.com</email>
-                                              </E_Learner>
-                                            </inverse_of_has_performance>
-                                            <inverse_of_is_concept_of rdf:resource="#testPostCnp4"/>
-                                          </E_Performance>
-                                        </is_concept_of>
-                                      </E_Concept>
-                                    </is_pre_concept_of>
-                                    <is_pre_concept_of rdf:resource="#testPostCnp3"/>
-                                    <is_pre_concept_of rdf:resource="#testPostCnp2"/>
-                                    <is_pre_concept_of rdf:resource="#testPostCnp1"/>
-                                    <is_concept_of rdf:resource="#E_Performance_1"/>
-                                  </E_Concept>
-                                </is_post_concept_of>
-                              </E_Concept>
-                            </inverse_of_is_concept_of>
-                          </E_Performance>
-                        </has_performance>
-                        <has_interest rdf:resource="#E_Interest_2"/>
-                        <id xml:lang="en">el002</id>
-                        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                        >Wang Shuaiguo</name>
-                      </E_Learner>
-                    </inverse_of_has_interest>
-                    <inverse_of_is_concept_of rdf:resource="#CMP.CF9_003_Java"/>
-                    <value xml:lang="en">interest2</value>
-                  </E_Interest>
-                </is_concept_of>
                 <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                 >cmp.cf9.003</id>
                 <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1153,20 +1145,6 @@
                     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                     >CMP.CF2</id>
                     <is_part_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
-                    <is_concept_of>
-                      <E_Interest rdf:ID="E_Interest_3">
-                        <inverse_of_has_interest>
-                          <E_Learner rdf:ID="el003">
-                            <id xml:lang="en">el003</id>
-                            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                            >Geng Huihui</name>
-                            <has_interest rdf:resource="#E_Interest_3"/>
-                          </E_Learner>
-                        </inverse_of_has_interest>
-                        <value xml:lang="en">interest3</value>
-                        <inverse_of_is_concept_of rdf:resource="#CMP.CF2_Algrithm_Data_Structure_and_Complexity"/>
-                      </E_Interest>
-                    </is_concept_of>
                     <inverse_of_is_part_of rdf:resource="#CMP.CF2_0001_Data_Structure"/>
                     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                     >Algrithm_Data_Structure_and_Complexity</name>
@@ -1185,38 +1163,6 @@
                 >cmp.cf9.005</id>
               </E_Concept>
             </inverse_of_is_part_of>
-          </E_Concept>
-        </inverse_of_is_part_of>
-        <inverse_of_is_part_of>
-          <E_Concept rdf:ID="CMP.CF11_Database_Foundations">
-            <inverse_of_is_part_of>
-              <E_Concept rdf:ID="CMP.CF11_003_Database_Access">
-                <inverse_of_is_part_of>
-                  <E_Concept rdf:ID="CMP.CF11_001_DML_Statement">
-                    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                    >DML Statement</name>
-                    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                    >cmp.cf11.001</id>
-                    <is_part_of rdf:resource="#CMP.CF11_003_Database_Access"/>
-                  </E_Concept>
-                </inverse_of_is_part_of>
-                <is_part_of rdf:resource="#CMP.CF11_Database_Foundations"/>
-              </E_Concept>
-            </inverse_of_is_part_of>
-            <inverse_of_is_part_of>
-              <E_Concept rdf:ID="CMP.CF11_002_Transaction_Control_Statement">
-                <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >cmp.cf11.002</id>
-                <is_part_of rdf:resource="#CMP.CF11_Database_Foundations"/>
-                <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >Transaction Control Statement</name>
-              </E_Concept>
-            </inverse_of_is_part_of>
-            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >Database_Foundations</name>
-            <is_part_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
-            <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >CMP.CF11</id>
           </E_Concept>
         </inverse_of_is_part_of>
         <inverse_of_is_part_of>
@@ -1241,12 +1187,21 @@
       </E_Concept>
     </inverse_of_is_part_of>
     <inverse_of_is_part_of>
-      <E_Concept rdf:ID="CMP.TL_Construction_Tools">
+      <E_Concept rdf:ID="CMP.CT_Construction_Technologies">
         <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-        >CMP.TL</id>
-        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-        >Construction_Tools</name>
+        >CMP.CT</id>
         <is_part_of rdf:resource="#CMP_Computing_Essentials"/>
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Construction_Technologies</name>
+      </E_Concept>
+    </inverse_of_is_part_of>
+    <inverse_of_is_part_of>
+      <E_Concept rdf:ID="CMP.FM_Formal_Construction_Methods">
+        <is_part_of rdf:resource="#CMP_Computing_Essentials"/>
+        <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >CMP.FM</id>
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Formal_Construction_Methods</name>
       </E_Concept>
     </inverse_of_is_part_of>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1311,21 +1266,21 @@
           </E_Concept>
         </inverse_of_is_part_of>
         <inverse_of_is_part_of>
-          <E_Concept rdf:ID="VAV_Software_V_and_V">
-            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >Software_V_and_V</name>
-            <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >VAV</id>
-            <is_part_of rdf:resource="#Software_Engineer"/>
-          </E_Concept>
-        </inverse_of_is_part_of>
-        <inverse_of_is_part_of>
           <E_Concept rdf:ID="PRF_Professional_Practice">
             <is_part_of rdf:resource="#Software_Engineer"/>
             <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
             >Professional_Practice</name>
             <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
             >PRF</id>
+          </E_Concept>
+        </inverse_of_is_part_of>
+        <inverse_of_is_part_of>
+          <E_Concept rdf:ID="VAV_Software_V_and_V">
+            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >Software_V_and_V</name>
+            <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >VAV</id>
+            <is_part_of rdf:resource="#Software_Engineer"/>
           </E_Concept>
         </inverse_of_is_part_of>
         <inverse_of_is_part_of>
@@ -1354,17 +1309,17 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >A_Semantic_Web_Primer 2nd</name>
     <writen_by>
-      <E_People rdf:ID="Grigoris_Antoniou">
-        <inverse_of_writen_by rdf:resource="#A_Semantic_Web_Primer"/>
-        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-        >Grigoris_Antoniou</name>
-      </E_People>
-    </writen_by>
-    <writen_by>
       <E_People rdf:ID="Frank_van_Harmelen">
         <inverse_of_writen_by rdf:resource="#A_Semantic_Web_Primer"/>
         <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
         >Frank_van_Harmelen</name>
+      </E_People>
+    </writen_by>
+    <writen_by>
+      <E_People rdf:ID="Grigoris_Antoniou">
+        <inverse_of_writen_by rdf:resource="#A_Semantic_Web_Primer"/>
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Grigoris_Antoniou</name>
       </E_People>
     </writen_by>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
