@@ -14,9 +14,14 @@
         (?concept5 el:is_post_concept_of ?concept4)
         noValue(?learner2 el:reasoning_hasPerformance ?concept5)
         ->(?concept5 el:is_recommend_of_1 ?learner2)]
-[rule2: (?learner3 el:reasoning_hasPerformance ?concept6)
-        (?concept7 el:reasoning_brother ?concept6)
-        noValue(?learner3 el:reasoning_hasPerformance ?concept7)        
+[rule2: (?concept6 rdf:type el:E_Concept)
+        (?concept7 rdf:type el:E_Concept)
+        (?learner3 rdf:type el:E_Learner)
+        
+       
+        (?learner3 el:reasoning_hasPerformance ?concept6)
+        (?concept6 el:reasoning_brother ?concept7)
+          noValue(?learner3 el:reasoning_hasPerformance ?concept7)
         ->(?concept7 el:is_recommend_of_2 ?learner3)]
 
 
