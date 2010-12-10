@@ -23,7 +23,7 @@ import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 public class JenaRdfsRulesReasoner {
 	static String NS="http://www.owl-ontologies.com/e-learning.owl#";
 	static String OWLFile ="D:\\EclipseWorkspace\\elearning\\protege\\elearning.owl";
-	static String RulesFile="D:\\EclipseWorkspace\\elearning\\src\\jena\\elearning.rules";
+	static String RulesFile="D:\\EclipseWorkspace\\elearning\\src\\jena\\elearning2.rules";
 	/**
 	 * @param args
 	 * @throws IOException 
@@ -52,7 +52,7 @@ public class JenaRdfsRulesReasoner {
 		
 		Resource el001 = model.getResource(NS+"el001");
 		Resource mysql = model.getResource(NS+"MySQL");
-		Property p = inf.getProperty(NS+"inverse_of_is_recommend_of");
+		Property p = inf.getProperty(NS+"inverse_of_is_recommend_of_2");
 		inferenceTest(el001,p,inf);
 		
 		System.out.println(System.nanoTime()-nt);
@@ -67,7 +67,7 @@ public class JenaRdfsRulesReasoner {
 		while (stmtIter.hasNext()) {
 			Statement s = stmtIter.nextStatement();
 			System.out.println("Relation between " + a.getLocalName() + " and " + p.getLocalName() + " is :");
-			System.out.println(a.getLocalName() + " " + s.getPredicate().getLocalName() + " " + p.getLocalName());
+			System.out.println(a.getLocalName() + " " + s.getPredicate().getLocalName() + " " + s.getResource().getLocalName());
 			System.out.println(s);
 			System.out.println("\n-------------------\n");
 		}
