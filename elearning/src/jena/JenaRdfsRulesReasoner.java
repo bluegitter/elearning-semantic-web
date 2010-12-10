@@ -68,7 +68,7 @@ public class JenaRdfsRulesReasoner {
 			Statement s = stmtIter.nextStatement();
 			System.out.println("Relation between " + a.getLocalName() + " and " + p.getLocalName() + " is :");
 			System.out.println(a.getLocalName() + " " + s.getPredicate().getLocalName() + " " + s.getResource().getLocalName());
-			System.out.println(s);
+		//	System.out.println(s);
 			System.out.println("\n-------------------\n");
 		}
 	}
