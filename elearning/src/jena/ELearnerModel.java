@@ -29,6 +29,7 @@ public interface ELearnerModel {
 	ArrayList<EConcept> getRecommandConcepts(ELearner elearner);
 	ArrayList<EConcept> getRecommandResources(ELearner elearner);
 	ArrayList<EResource> getResourcesByKey(ELearner elearner, String keyword);
+	ArrayList<EConcept> getPartMember(EConcept concept);
 	
 	EConcept getConcept(String cid);
 	ELearner getLearner(String eid);
