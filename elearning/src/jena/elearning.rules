@@ -1,14 +1,92 @@
 @prefix el: <http://www.owl-ontologies.com/e-learning.owl#>.
 @include <RDFS>.
 @include <OWL>.
-[rule1:(?concept el:is_concept_of ?performance)(?learner el:has_performance ?performance)(?concept2 el:is_post_concept_of ?concept)noValue(?concept2 el:is_concept_of ?performance)->(?concept2 el:is_recommend_of_1 ?learner)]
-[rule2:(?concept1 el:is_concept_of ?performance)(?learner el:has_performance ?performance)(?concept1 el:is_post_concept_of ?preConcpt)(?concept2 el:is_post_concept_of ?preConcpt)noValue(?concept2 el:is_concept_of ?performance)->(?concept2 el:is_recommend_of_2 ?learner)]
-[rule4:(?concept el:is_concept_of ?interest) (?learner el:has_interest ?interest)(?learner el:has_performance ?performance)noValue(?concept el:is_concept_of ?performance)(?concept2 el:is_concept_of ?performance)(?concept2 el:is_pre_concept_of ?concept)( ?performance el:value ?perValue)greaterThan(?perValue,0.5) ->(?concept el:is_recommend_of_4 ?learner)]
-[rule5:(?concept el:is_concept_of ?interest) (?learner el:has_interest ?interest)(?learner el:has_performance ?performance)noValue(?concept el:is_concept_of ?performance)(?concept2 el:is_concept_of ?performance)(?concept2 el:is_pre_concept_of ?concept)( ?performance el:value ?perValue)greaterThan(0.5,?perValue) ->(?concept2 el:is_recommend_of_5 ?learner)]
-[rule6:(?concept el:is_concept_of ?interest) (?learner el:has_interest ?interest)(?learner el:has_performance ?performance) (?concept el:is_concept_of ?performance) ( ?performance el:value ?perValue)greaterThan(0.5,?perValue) (?concept2 el:is_pre_concept_of ?concept) ->(?concept el:is_recommend_of_6 ?learner) (?concept2 el:is_recommend_of_6 ?learner)]
-[rule7:(?concept el:is_concept_of ?interest)(?interest el:inverse_of_has_interest ?learner)(?concept2 el:is_post_concept_of ?concept)->(?concept el:is_recommend_of_7 ?learner) (?concept2 el:is_recommend_of_7 ?learner)]
-[rule8:(?concept el:is_concept_of ?interest)(?interest el:inverse_of_has_interest ?learner)(?concept el:is_part_of ?parentConcept )( ?concept2 el:is_part_of ?parentConcept) ->(?concept el:is_recommend_of_8 ?learner) (?concept2 el:is_recommend_of_8 ?learner)]
-[rule9:(?concept el:is_concept_of ?interest)(?interest el:inverse_of_has_interest ?learnerA)(?concept el:is_concept_of ?performanceB)(?performanceB el:inverse_of_has_performance ?learnerB)( ?performanceB el:value ?perValueB)(?concept el:is_concept_of ?performanceC)(?performanceC el:inverse_of_has_performance ?learnerC)( ?performanceC el:value ?perValueC)greaterThan(?perValueB,?perValueC)->(?learnerB el:is_recommend_of_9 ?learnerA)]
-[rule11:(?resource el:is_resource_of ?portfolio)(?portfolio el:inverse_of_has_portfolio ?learner)(?resource el:is_resource_of ?concept)(?resource2 el:is_concept_of ?concept)->(?resource2 el:is_recommend_of_11 ?learner)]
-[rule12:(?resource el:is_resource_of ?portfolio)(?portfolio el:inverse_of_has_portfolio ?learner)(?resource el:is_resource_of ?concept)(?concept2 el:is_post_concept_of ?concept)(?resource2 el:is_concept_of ?concept2)->(?resource2 el:is_recommend_of_12 ?learner)]
-[rule13:(?resource rdf:type el:E_Resource_AUDIO)(el:E_Study_Style_1 el:inverse_of_has_study_style ?learner)->(?resource el:is_recommend_of_13 ?learner)]
+
+
+[ruleHasPerformance: (?concept1 el:is_concept_of ?performance1)
+        (?learner1 el:has_performance ?performance1)
+        ->(?learner1 el:reasoning_hasPerformance ?concept1)]
+
+[ruleBrother: (?concept2 el:is_post_concept_of ?parentCnp)
+              (?concept3 el:is_post_concept_of ?parentCnp)
+              notEqual(?concept2 ?concept3)
+              ->(?concept2 el:reasoning_brother ?concept3)]
+
+[rule1: (?learner2 el:reasoning_hasPerformance ?concept4)         
+        (?concept5 el:is_post_concept_of ?concept4)
+        noValue(?learner2 el:reasoning_hasPerformance ?concept5)  
+        ->(?concept5 el:is_recommend_of_1 ?learner2)]      
+                
+[rule2: (?learner3 el:reasoning_hasPerformance ?concept7)
+        (?concept6 el:reasoning_brother ?concept7)
+        noValue(?learner3 el:reasoning_hasPerformance ?concept7)
+        ->(?concept7 el:is_recommend_of_2 ?learner3)]
+
+[rule4: (?concept el:is_concept_of ?interest)
+ 	    (?learner el:has_interest ?interest)
+        (?learner el:has_performance ?performance)
+        noValue(?concept el:is_concept_of ?performance)
+        (?concept2 el:is_concept_of ?performance)
+        (?concept2 el:is_pre_concept_of ?concept)
+        (?performance el:value ?perValue)
+        greaterThan(?perValue,0.5) 
+        ->(?concept el:is_recommend_of_4 ?learner)]
+        
+[rule5: (?concept el:is_concept_of ?interest)
+        (?learner el:has_interest ?interest)
+        (?learner el:has_performance ?performance)
+        noValue(?concept el:is_concept_of ?performance)
+        (?concept2 el:is_concept_of ?performance)
+        (?concept2 el:is_pre_concept_of ?concept)
+        (?performance el:value ?perValue)
+        greaterThan(0.5,?perValue) 
+        ->(?concept2 el:is_recommend_of_5 ?learner)]
+        
+[rule6: (?concept el:is_concept_of ?interest) 
+        (?learner el:has_interest ?interest)
+        (?learner el:has_performance ?performance)
+        (?concept el:is_concept_of ?performance) 
+        (?performance el:value ?perValue)
+        greaterThan(0.5,?perValue)
+        (?concept2 el:is_pre_concept_of ?concept) 
+        ->(?concept2 el:is_recommend_of_6 ?learner)]
+        
+[rule7: (?concept el:is_concept_of ?interest)
+        (?interest el:inverse_of_has_interest ?learner)
+        (?concept2 el:is_post_concept_of ?concept)
+        ->(?concept2 el:is_recommend_of_7 ?learner)]
+        
+[rule8: (?concept el:is_concept_of ?interest)
+        (?interest el:inverse_of_has_interest ?learner)
+        (?concept el:is_part_of ?parentConcept )
+        (?concept2 el:is_part_of ?parentConcept) 
+        ->(?concept2 el:is_recommend_of_8 ?learner)]
+        
+[rule9: (?concept el:is_concept_of ?interest)
+	    (?interest el:inverse_of_has_interest ?learnerA)
+		(?concept el:is_concept_of ?performanceB)
+		(?performanceB el:inverse_of_has_performance ?learnerB)
+		(?performanceB el:value ?perValueB)
+		(?concept el:is_concept_of ?performanceC)
+    	(?performanceC el:inverse_of_has_performance ?learnerC)
+		(?performanceC el:value ?perValueC)
+		greaterThan(?perValueB,?perValueC)
+		->(?learnerB el:is_recommend_of_9 ?learnerA)]
+		
+[rule11:(?resource el:is_resource_of ?portfolio)
+		(?portfolio el:inverse_of_has_portfolio ?learner)
+		(?resource el:is_resource_of ?concept)
+		(?resource2 el:is_concept_of ?concept)
+		->(?resource2 el:is_recommend_of_11 ?learner)]
+		
+[rule12:(?resource el:is_resource_of ?portfolio)
+		(?portfolio el:inverse_of_has_portfolio ?learner)
+		(?resource el:is_resource_of ?concept)
+		(?concept2 el:is_post_concept_of ?concept)
+		(?resource2 el:is_concept_of ?concept2)
+		->(?resource2 el:is_recommend_of_12 ?learner)]
+		
+[rule13:(?resource rdf:type el:E_Resource_AUDIO)
+		(el:E_Study_Style_1 el:inverse_of_has_study_style ?learner)
+		->(?resource el:is_recommend_of_13 ?learner)]
+
