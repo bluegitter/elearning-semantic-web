@@ -1,4 +1,4 @@
-; Sun Dec 12 13:58:00 CST 2010
+; Sun Dec 12 18:33:28 CST 2010
 ; 
 ;+ (version "3.4.4")
 ;+ (build "Build 579")
@@ -6,12 +6,12 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[elearning_ProjectKB_Class60015]
-		[elearning_ProjectKB_Class60016]
-		[elearning_ProjectKB_Class60017]
-		[elearning_ProjectKB_Class60018]
-		[elearning_ProjectKB_Class60019]
-		[elearning_ProjectKB_Class60020]))
+		[elearning_ProjectKB_Class70065]
+		[elearning_ProjectKB_Class70066]
+		[elearning_ProjectKB_Class70067]
+		[elearning_ProjectKB_Class70068]
+		[elearning_ProjectKB_Class70069]
+		[elearning_ProjectKB_Class70070]))
 
 ([CLSES_TAB] of  Widget
 
@@ -1097,25 +1097,19 @@
 
 ([elearning_ProjectKB_Class20116] of  Widget
 
-	(height 60)
+	(height 0)
 	(is_hidden FALSE)
 	(name "http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_concept_of")
 	(property_list [elearning_ProjectKB_Class20117])
-	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.SingleResourceWidget")
-	(width 200)
+	(width 0)
 	(x 0)
-	(y 300))
+	(y 0))
 
 ([elearning_ProjectKB_Class20117] of  Property_List
 
-	(properties [elearning_ProjectKB_Class20119]))
+	(properties [elearning_ProjectKB_Class50005]))
 
 ([elearning_ProjectKB_Class20118] of  Boolean
-
-	(boolean_value FALSE)
-	(name "DisabledByUser"))
-
-([elearning_ProjectKB_Class20119] of  Boolean
 
 	(boolean_value FALSE)
 	(name "DisabledByUser"))
@@ -3145,6 +3139,11 @@
 ([elearning_ProjectKB_Class50] of  Property_List
 )
 
+([elearning_ProjectKB_Class50005] of  Boolean
+
+	(boolean_value TRUE)
+	(name "DisabledByUser"))
+
 ([elearning_ProjectKB_Class50125] of  Widget
 
 	(height 120)
@@ -3432,20 +3431,6 @@
 ([elearning_ProjectKB_Class60010] of  Property_List
 )
 
-([elearning_ProjectKB_Class60011] of  Widget
-
-	(height 120)
-	(is_hidden FALSE)
-	(name "http://www.owl-ontologies.com/e-learning.owl#fileLocation")
-	(property_list [elearning_ProjectKB_Class60012])
-	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiLiteralWidget")
-	(width 200)
-	(x 200)
-	(y 660))
-
-([elearning_ProjectKB_Class60012] of  Property_List
-)
-
 ([elearning_ProjectKB_Class60013] of  Widget
 
 	(height 120)
@@ -3460,69 +3445,69 @@
 ([elearning_ProjectKB_Class60014] of  Property_List
 )
 
-([elearning_ProjectKB_Class60015] of  String
+([elearning_ProjectKB_Class7] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [elearning_ProjectKB_Class8])
+	(widget_class_name "edu.stanford.smi.protegex.server_changes.prompt.UsersTab"))
+
+([elearning_ProjectKB_Class70065] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Class")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class60016] of  String
+([elearning_ProjectKB_Class70066] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([elearning_ProjectKB_Class60017] of  String
+([elearning_ProjectKB_Class70067] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class60018] of  String
+([elearning_ProjectKB_Class70068] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([elearning_ProjectKB_Class60019] of  String
+([elearning_ProjectKB_Class70069] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Thing")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class60020] of  String
+([elearning_ProjectKB_Class70070] of  String
 
 	(name "http://www.owl-ontologies.com/e-learning.owl#E_Concept")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class60021] of  Map_Entry
+([elearning_ProjectKB_Class70071] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class60022] of  Map_Entry
+([elearning_ProjectKB_Class70072] of  Map_Entry
 
 	(key "collab.hide.archived")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class60023] of  Map_Entry
+([elearning_ProjectKB_Class70073] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class60024] of  Map_Entry
+([elearning_ProjectKB_Class70074] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
-
-([elearning_ProjectKB_Class7] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [elearning_ProjectKB_Class8])
-	(widget_class_name "edu.stanford.smi.protegex.server_changes.prompt.UsersTab"))
 
 ([elearning_ProjectKB_Class8] of  Property_List
 )
@@ -3780,9 +3765,6 @@
 	(y 0))
 
 ([KB_024013_Instance_5] of  Property_List
-)
-
-([KB_072298_Class4] of  Map
 )
 
 ([KB_100699_Instance_0] of  Widget
@@ -4265,10 +4247,10 @@
 ([KB_325529_Class0] of  Map
 
 	(entries
-		[elearning_ProjectKB_Class60021]
-		[elearning_ProjectKB_Class60022]
-		[elearning_ProjectKB_Class60023]
-		[elearning_ProjectKB_Class60024]))
+		[elearning_ProjectKB_Class70071]
+		[elearning_ProjectKB_Class70072]
+		[elearning_ProjectKB_Class70073]
+		[elearning_ProjectKB_Class70074]))
 
 ([KB_325529_Class4] of  String
 
@@ -4286,6 +4268,9 @@
 	(name "http://protege.stanford.edu/plugins/owl/protege#ExternalResource")
 	(property_list [XY_Instance_890])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormWidget"))
+
+([KB_483417_Class4] of  Map
+)
 
 ([KB_632156_Instance_0] of  String
 
@@ -8947,6 +8932,7 @@
 		":STANDARD-SLOT"
 		":OWL-ANONYMOUS-ROOT"
 		":MAXIMUM-CARDINALITY"
+		"http://protege.stanford.edu/plugins/owl/protege#ExternalResource"
 		"http://www.w3.org/1999/02/22-rdf-syntax-ns#Alt"
 		"http://www.w3.org/2001/XMLSchema#NMTOKEN"
 		"http://www.w3.org/2002/07/owl#UnionClass"
@@ -9005,8 +8991,8 @@
 		"http://www.w3.org/2002/07/owl#minCardinality"
 		"http://www.w3.org/2002/07/owl#allValuesFrom"
 		":INVERSE"
-		"http://www.w3.org/2002/07/owl#priorVersion"
 		"http://www.w3.org/2003/11/swrl#DataRangeAtom"
+		"http://www.w3.org/2002/07/owl#priorVersion"
 		"http://www.w3.org/2001/XMLSchema#token"
 		"http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"
 		":DIRECT-TEMPLATE-SLOTS"
@@ -9101,8 +9087,8 @@
 		"http://www.w3.org/2003/11/swrl#argument2"
 		"http://www.w3.org/2003/11/swrl#argument1"
 		":FACET"
-		":SLOT-VALUES"
 		"http://www.w3.org/2002/07/owl#intersectionOf"
+		":SLOT-VALUES"
 		"http://www.w3.org/2002/07/owl#Nothing"
 		"http://www.w3.org/2002/07/owl#hasValue")
 	(journaling_enabled FALSE)

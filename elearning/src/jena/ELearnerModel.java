@@ -23,11 +23,14 @@ public interface ELearnerModel {
 	boolean writeToFile(File file);
 	
 	//query operations
-	boolean hasELearner(ELearner elearner);
+	boolean containELearner(ELearner elearner);
 	ArrayList<EConcept> getAllConcepts();
 	ArrayList<EConcept> getConcepts(ELearner elearner);
 	ArrayList<EConcept> getRecommandConcepts(ELearner elearner);
 	ArrayList<EConcept> getRecommandResources(ELearner elearner);
 	ArrayList<EResource> getResourcesByKey(ELearner elearner, String keyword);
 	
+	EConcept getConcept(String cid);
+	ELearner getLearner(String eid);
+	EResource getResource(String rid);
 }
