@@ -1,4 +1,4 @@
-; Sun Dec 12 21:56:10 CST 2010
+; Mon Dec 13 00:22:56 CST 2010
 ; 
 ;+ (version "3.4.4")
 ;+ (build "Build 579")
@@ -6,12 +6,12 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[elearning_ProjectKB_Class80111]
-		[elearning_ProjectKB_Class80112]
-		[elearning_ProjectKB_Class80113]
-		[elearning_ProjectKB_Class80114]
-		[elearning_ProjectKB_Class80115]
-		[elearning_ProjectKB_Class80116]))
+		[elearning_ProjectKB_Class90005]
+		[elearning_ProjectKB_Class90006]
+		[elearning_ProjectKB_Class90007]
+		[elearning_ProjectKB_Class90008]
+		[elearning_ProjectKB_Class90009]
+		[elearning_ProjectKB_Class90010]))
 
 ([CLSES_TAB] of  Widget
 
@@ -73,7 +73,9 @@
 		[elearning_ProjectKB_Class40083]
 		[elearning_ProjectKB_Class40085]
 		[elearning_ProjectKB_Class40087]
-		[elearning_ProjectKB_Class40005]))
+		[elearning_ProjectKB_Class40005]
+		[elearning_ProjectKB_Class70166]
+		[elearning_ProjectKB_Class70168]))
 
 ([elearning_ProjectKB_Class10162] of  Widget
 
@@ -114,23 +116,17 @@
 
 ([elearning_ProjectKB_Class10168] of  Widget
 
-	(height 180)
+	(height 0)
 	(is_hidden FALSE)
 	(name "http://protege.stanford.edu/plugins/owl/protege#inferredType")
 	(property_list [elearning_ProjectKB_Class10169])
-	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.HeaderWidget")
-	(width 550)
+	(width 0)
 	(x 0)
 	(y 0))
 
 ([elearning_ProjectKB_Class10169] of  Property_List
 
-	(properties [elearning_ProjectKB_Class10170]))
-
-([elearning_ProjectKB_Class10170] of  Boolean
-
-	(boolean_value FALSE)
-	(name "DisabledByUser"))
+	(properties [elearning_ProjectKB_Class70171]))
 
 ([elearning_ProjectKB_Class10171] of  Widget
 
@@ -186,7 +182,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 0)
-	(y 420))
+	(y 300))
 
 ([elearning_ProjectKB_Class10182] of  Property_List
 )
@@ -199,25 +195,26 @@
 	(property_list [elearning_ProjectKB_Class10184])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 0)
-	(y 540))
+	(x 400)
+	(y 0))
 
 ([elearning_ProjectKB_Class10184] of  Property_List
 )
 
 ([elearning_ProjectKB_Class10185] of  Widget
 
-	(height 240)
+	(height 60)
 	(is_hidden FALSE)
 	(name "http://www.owl-ontologies.com/e-learning.owl#name")
 	(property_list [elearning_ProjectKB_Class10186])
-	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiLiteralWidget")
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.SingleLiteralWidget")
 	(width 200)
-	(x 400)
-	(y 540))
+	(x 200)
+	(y 0))
 
 ([elearning_ProjectKB_Class10186] of  Property_List
-)
+
+	(properties [elearning_ProjectKB_Class70170]))
 
 ([elearning_ProjectKB_Class10187] of  Widget
 
@@ -227,8 +224,8 @@
 	(property_list [elearning_ProjectKB_Class10188])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 200)
-	(y 300))
+	(x 610)
+	(y 120))
 
 ([elearning_ProjectKB_Class10188] of  Property_List
 )
@@ -241,8 +238,8 @@
 	(property_list [elearning_ProjectKB_Class10190])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 200)
-	(y 420))
+	(x 0)
+	(y 180))
 
 ([elearning_ProjectKB_Class10190] of  Property_List
 )
@@ -255,8 +252,8 @@
 	(property_list [elearning_ProjectKB_Class10192])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 0)
-	(y 180))
+	(x 610)
+	(y 0))
 
 ([elearning_ProjectKB_Class10192] of  Property_List
 )
@@ -269,8 +266,8 @@
 	(property_list [elearning_ProjectKB_Class10194])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.SingleLiteralWidget")
 	(width 200)
-	(x 400)
-	(y 420))
+	(x 0)
+	(y 0))
 
 ([elearning_ProjectKB_Class10194] of  Property_List
 
@@ -284,8 +281,8 @@
 	(property_list [elearning_ProjectKB_Class10196])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 200)
-	(y 180))
+	(x 400)
+	(y 120))
 
 ([elearning_ProjectKB_Class10196] of  Property_List
 )
@@ -298,8 +295,8 @@
 	(property_list [elearning_ProjectKB_Class10198])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 0)
-	(y 660))
+	(x 410)
+	(y 420))
 
 ([elearning_ProjectKB_Class10198] of  Property_List
 )
@@ -313,7 +310,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 200)
-	(y 540))
+	(y 300))
 
 ([elearning_ProjectKB_Class10200] of  Property_List
 )
@@ -327,7 +324,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 0)
-	(y 300))
+	(y 60))
 
 ([elearning_ProjectKB_Class10202] of  Property_List
 )
@@ -340,8 +337,8 @@
 	(property_list [elearning_ProjectKB_Class10204])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 400)
-	(y 300))
+	(x 410)
+	(y 540))
 
 ([elearning_ProjectKB_Class10204] of  Property_List
 )
@@ -354,8 +351,8 @@
 	(property_list [elearning_ProjectKB_Class10206])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 400)
-	(y 170))
+	(x 610)
+	(y 420))
 
 ([elearning_ProjectKB_Class10206] of  Property_List
 )
@@ -2837,7 +2834,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 0)
-	(y 780))
+	(y 420))
 
 ([elearning_ProjectKB_Class30006] of  Property_List
 )
@@ -2865,7 +2862,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 0)
-	(y 900))
+	(y 540))
 
 ([elearning_ProjectKB_Class30010] of  Property_List
 )
@@ -2973,8 +2970,8 @@
 	(property_list [elearning_ProjectKB_Class40006])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 0)
-	(y 1860))
+	(x 200)
+	(y 60))
 
 ([elearning_ProjectKB_Class40006] of  Property_List
 )
@@ -2987,8 +2984,8 @@
 	(property_list [elearning_ProjectKB_Class40054])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 0)
-	(y 360))
+	(x 410)
+	(y 190))
 
 ([elearning_ProjectKB_Class40054] of  Property_List
 )
@@ -3001,8 +2998,8 @@
 	(property_list [elearning_ProjectKB_Class40076])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 0)
-	(y 1020))
+	(x 410)
+	(y 660))
 
 ([elearning_ProjectKB_Class40076] of  Property_List
 )
@@ -3015,8 +3012,8 @@
 	(property_list [elearning_ProjectKB_Class40078])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 0)
-	(y 1140))
+	(x 200)
+	(y 180))
 
 ([elearning_ProjectKB_Class40078] of  Property_List
 )
@@ -3029,8 +3026,8 @@
 	(property_list [elearning_ProjectKB_Class40080])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 0)
-	(y 1260))
+	(x 200)
+	(y 660))
 
 ([elearning_ProjectKB_Class40080] of  Property_List
 )
@@ -3044,7 +3041,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 0)
-	(y 1380))
+	(y 660))
 
 ([elearning_ProjectKB_Class40082] of  Property_List
 )
@@ -3057,8 +3054,8 @@
 	(property_list [elearning_ProjectKB_Class40084])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 0)
-	(y 1500))
+	(x 410)
+	(y 290))
 
 ([elearning_ProjectKB_Class40084] of  Property_List
 )
@@ -3071,8 +3068,8 @@
 	(property_list [elearning_ProjectKB_Class40086])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 0)
-	(y 1620))
+	(x 610)
+	(y 540))
 
 ([elearning_ProjectKB_Class40086] of  Property_List
 )
@@ -3085,8 +3082,8 @@
 	(property_list [elearning_ProjectKB_Class40088])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 0)
-	(y 1740))
+	(x 610)
+	(y 660))
 
 ([elearning_ProjectKB_Class40088] of  Property_List
 )
@@ -3454,6 +3451,392 @@
 	(property_list [elearning_ProjectKB_Class8])
 	(widget_class_name "edu.stanford.smi.protegex.server_changes.prompt.UsersTab"))
 
+([elearning_ProjectKB_Class70005] of  Widget
+
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#E_Resource_PDF")
+	(property_list [elearning_ProjectKB_Class70008])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormWidget"))
+
+([elearning_ProjectKB_Class70008] of  Property_List
+
+	(properties
+		[elearning_ProjectKB_Class70009]
+		[elearning_ProjectKB_Class70012]
+		[elearning_ProjectKB_Class70015]
+		[elearning_ProjectKB_Class70018]
+		[elearning_ProjectKB_Class70020]
+		[elearning_ProjectKB_Class70022]
+		[elearning_ProjectKB_Class70024]
+		[elearning_ProjectKB_Class70026]
+		[elearning_ProjectKB_Class70028]
+		[elearning_ProjectKB_Class70030]
+		[elearning_ProjectKB_Class70033]
+		[elearning_ProjectKB_Class70035]
+		[elearning_ProjectKB_Class70037]
+		[elearning_ProjectKB_Class70039]
+		[elearning_ProjectKB_Class70041]
+		[elearning_ProjectKB_Class70044]
+		[elearning_ProjectKB_Class70046]
+		[elearning_ProjectKB_Class70048]
+		[elearning_ProjectKB_Class70050]
+		[elearning_ProjectKB_Class70052]
+		[elearning_ProjectKB_Class70054]
+		[elearning_ProjectKB_Class70056]))
+
+([elearning_ProjectKB_Class70009] of  Widget
+
+	(height 0)
+	(is_hidden FALSE)
+	(label "Name")
+	(name ":NAME")
+	(property_list [elearning_ProjectKB_Class70010])
+	(width 0)
+	(x 0)
+	(y 0))
+
+([elearning_ProjectKB_Class70010] of  Property_List
+
+	(properties [elearning_ProjectKB_Class70011]))
+
+([elearning_ProjectKB_Class70011] of  Boolean
+
+	(boolean_value TRUE)
+	(name "DisabledByUser"))
+
+([elearning_ProjectKB_Class70012] of  Property_List
+
+	(name "layout properties")
+	(properties
+		[elearning_ProjectKB_Class70013]
+		[elearning_ProjectKB_Class70014]))
+
+([elearning_ProjectKB_Class70013] of  String
+
+	(name "horizontal_stretcher")
+	(string_value "<<all>>"))
+
+([elearning_ProjectKB_Class70014] of  String
+
+	(name "vertical_stretcher")
+	(string_value "<<none>>"))
+
+([elearning_ProjectKB_Class70015] of  Widget
+
+	(height 180)
+	(is_hidden FALSE)
+	(name "http://protege.stanford.edu/plugins/owl/protege#inferredType")
+	(property_list [elearning_ProjectKB_Class70016])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.HeaderWidget")
+	(width 550)
+	(x 0)
+	(y 0))
+
+([elearning_ProjectKB_Class70016] of  Property_List
+
+	(properties [elearning_ProjectKB_Class70017]))
+
+([elearning_ProjectKB_Class70017] of  Boolean
+
+	(boolean_value FALSE)
+	(name "DisabledByUser"))
+
+([elearning_ProjectKB_Class70018] of  Widget
+
+	(is_hidden FALSE)
+	(name "http://www.w3.org/2002/07/owl#versionInfo")
+	(property_list [elearning_ProjectKB_Class70019]))
+
+([elearning_ProjectKB_Class70019] of  Property_List
+)
+
+([elearning_ProjectKB_Class70020] of  Widget
+
+	(is_hidden FALSE)
+	(name "http://www.w3.org/2000/01/rdf-schema#isDefinedBy")
+	(property_list [elearning_ProjectKB_Class70021]))
+
+([elearning_ProjectKB_Class70021] of  Property_List
+)
+
+([elearning_ProjectKB_Class70022] of  Widget
+
+	(is_hidden FALSE)
+	(name "http://www.w3.org/2000/01/rdf-schema#comment")
+	(property_list [elearning_ProjectKB_Class70023]))
+
+([elearning_ProjectKB_Class70023] of  Property_List
+)
+
+([elearning_ProjectKB_Class70024] of  Widget
+
+	(is_hidden FALSE)
+	(name "http://www.w3.org/2000/01/rdf-schema#seeAlso")
+	(property_list [elearning_ProjectKB_Class70025]))
+
+([elearning_ProjectKB_Class70025] of  Property_List
+)
+
+([elearning_ProjectKB_Class70026] of  Widget
+
+	(is_hidden FALSE)
+	(name "http://www.w3.org/2000/01/rdf-schema#label")
+	(property_list [elearning_ProjectKB_Class70027]))
+
+([elearning_ProjectKB_Class70027] of  Property_List
+)
+
+([elearning_ProjectKB_Class70028] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_application_type_of")
+	(property_list [elearning_ProjectKB_Class70029])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 600)
+	(y 300))
+
+([elearning_ProjectKB_Class70029] of  Property_List
+)
+
+([elearning_ProjectKB_Class70030] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#id")
+	(property_list [elearning_ProjectKB_Class70031])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.SingleLiteralWidget")
+	(width 200)
+	(x 0)
+	(y 180))
+
+([elearning_ProjectKB_Class70031] of  Property_List
+
+	(properties [elearning_ProjectKB_Class70032]))
+
+([elearning_ProjectKB_Class70032] of  Boolean
+
+	(boolean_value FALSE)
+	(name "DisabledByUser"))
+
+([elearning_ProjectKB_Class70033] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_recommend_of")
+	(property_list [elearning_ProjectKB_Class70034])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 0)
+	(y 300))
+
+([elearning_ProjectKB_Class70034] of  Property_List
+)
+
+([elearning_ProjectKB_Class70035] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_2")
+	(property_list [elearning_ProjectKB_Class70036])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 400)
+	(y 300))
+
+([elearning_ProjectKB_Class70036] of  Property_List
+)
+
+([elearning_ProjectKB_Class70037] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_1")
+	(property_list [elearning_ProjectKB_Class70038])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 0)
+	(y 420))
+
+([elearning_ProjectKB_Class70038] of  Property_List
+)
+
+([elearning_ProjectKB_Class70039] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#difficulty")
+	(property_list [elearning_ProjectKB_Class70040])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiLiteralWidget")
+	(width 200)
+	(x 400)
+	(y 180))
+
+([elearning_ProjectKB_Class70040] of  Property_List
+)
+
+([elearning_ProjectKB_Class70041] of  Widget
+
+	(height 0)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_resource_of")
+	(property_list [elearning_ProjectKB_Class70042])
+	(width 0)
+	(x 0)
+	(y 0))
+
+([elearning_ProjectKB_Class70042] of  Property_List
+
+	(properties [elearning_ProjectKB_Class70043]))
+
+([elearning_ProjectKB_Class70043] of  Boolean
+
+	(boolean_value TRUE)
+	(name "DisabledByUser"))
+
+([elearning_ProjectKB_Class70044] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_13")
+	(property_list [elearning_ProjectKB_Class70045])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 600)
+	(y 420))
+
+([elearning_ProjectKB_Class70045] of  Property_List
+)
+
+([elearning_ProjectKB_Class70046] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_12")
+	(property_list [elearning_ProjectKB_Class70047])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 400)
+	(y 420))
+
+([elearning_ProjectKB_Class70047] of  Property_List
+)
+
+([elearning_ProjectKB_Class70048] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_11")
+	(property_list [elearning_ProjectKB_Class70049])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 800)
+	(y 420))
+
+([elearning_ProjectKB_Class70049] of  Property_List
+)
+
+([elearning_ProjectKB_Class70050] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#fileLocation")
+	(property_list [elearning_ProjectKB_Class70051])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiLiteralWidget")
+	(width 200)
+	(x 600)
+	(y 180))
+
+([elearning_ProjectKB_Class70051] of  Property_List
+
+	(properties [elearning_ProjectKB_Class70079]))
+
+([elearning_ProjectKB_Class70052] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#name")
+	(property_list [elearning_ProjectKB_Class70053])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiLiteralWidget")
+	(width 200)
+	(x 200)
+	(y 180))
+
+([elearning_ProjectKB_Class70053] of  Property_List
+)
+
+([elearning_ProjectKB_Class70054] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_resource_of_C")
+	(property_list [elearning_ProjectKB_Class70055])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 200)
+	(y 300))
+
+([elearning_ProjectKB_Class70055] of  Property_List
+)
+
+([elearning_ProjectKB_Class70056] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_resource_of_P")
+	(property_list [elearning_ProjectKB_Class70057])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 200)
+	(y 420))
+
+([elearning_ProjectKB_Class70057] of  Property_List
+)
+
+([elearning_ProjectKB_Class70079] of  Boolean
+
+	(boolean_value FALSE)
+	(name "DisabledByUser"))
+
+([elearning_ProjectKB_Class70166] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_resource_of_2")
+	(property_list [elearning_ProjectKB_Class70167])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 200)
+	(y 540))
+
+([elearning_ProjectKB_Class70167] of  Property_List
+)
+
+([elearning_ProjectKB_Class70168] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_resource_of_1")
+	(property_list [elearning_ProjectKB_Class70169])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 610)
+	(y 290))
+
+([elearning_ProjectKB_Class70169] of  Property_List
+)
+
+([elearning_ProjectKB_Class70170] of  Boolean
+
+	(boolean_value FALSE)
+	(name "DisabledByUser"))
+
+([elearning_ProjectKB_Class70171] of  Boolean
+
+	(boolean_value TRUE)
+	(name "DisabledByUser"))
+
 ([elearning_ProjectKB_Class8] of  Property_List
 )
 
@@ -3504,69 +3887,69 @@
 	(boolean_value TRUE)
 	(name "DisabledByUser"))
 
-([elearning_ProjectKB_Class80111] of  String
+([elearning_ProjectKB_Class9] of  Widget
+
+	(is_hidden TRUE)
+	(property_list [elearning_ProjectKB_Class10])
+	(widget_class_name "ca.uvic.csr.shrimp.jambalaya.JambalayaTab"))
+
+([elearning_ProjectKB_Class90005] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([elearning_ProjectKB_Class80112] of  String
+([elearning_ProjectKB_Class90006] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Class")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class80113] of  String
+([elearning_ProjectKB_Class90007] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([elearning_ProjectKB_Class80114] of  String
+([elearning_ProjectKB_Class90008] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class80115] of  String
+([elearning_ProjectKB_Class90009] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Thing")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class80116] of  String
+([elearning_ProjectKB_Class90010] of  String
 
 	(name "http://www.owl-ontologies.com/e-learning.owl#E_Concept")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class80117] of  Map_Entry
+([elearning_ProjectKB_Class90011] of  Map_Entry
 
 	(key "collab.hide.archived")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class80118] of  Map_Entry
+([elearning_ProjectKB_Class90012] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class80119] of  Map_Entry
+([elearning_ProjectKB_Class90013] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class80120] of  Map_Entry
+([elearning_ProjectKB_Class90014] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
-
-([elearning_ProjectKB_Class9] of  Widget
-
-	(is_hidden TRUE)
-	(property_list [elearning_ProjectKB_Class10])
-	(widget_class_name "ca.uvic.csr.shrimp.jambalaya.JambalayaTab"))
 
 ([empty.owl_ProjectKB_Class5] of  String
 
@@ -4297,15 +4680,18 @@
 ([KB_325529_Class0] of  Map
 
 	(entries
-		[elearning_ProjectKB_Class80117]
-		[elearning_ProjectKB_Class80118]
-		[elearning_ProjectKB_Class80119]
-		[elearning_ProjectKB_Class80120]))
+		[elearning_ProjectKB_Class90011]
+		[elearning_ProjectKB_Class90012]
+		[elearning_ProjectKB_Class90013]
+		[elearning_ProjectKB_Class90014]))
 
 ([KB_325529_Class4] of  String
 
 	(name "owl_file_name")
 	(string_value "elearning.owl"))
+
+([KB_392973_Class4] of  Map
+)
 
 ([KB_444675_Instance_0] of  String
 
@@ -6559,9 +6945,6 @@
 	(property_list [KB_713803_Instance_981]))
 
 ([KB_713803_Instance_981] of  Property_List
-)
-
-([KB_725076_Class4] of  Map
 )
 
 ([KB_764103_Instance_545] of  Widget
@@ -8912,9 +9295,10 @@
 		[elearning_ProjectKB_Class20209]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[KB_938545_Instance_166]
+		[elearning_ProjectKB_Class70005]
 		[STANDARD_SLOT_FORM_WIDGET]
-		[elearning_ProjectKB_Class20121]
 		[KB_313796_Instance_943]
+		[elearning_ProjectKB_Class20121]
 		[KB_938545_Instance_661]
 		[KB_713803_Instance_648]
 		[elearning_ProjectKB_Class20089]
