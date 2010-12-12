@@ -1,17 +1,19 @@
 package ontology.people;
-import java.util.ArrayList;
-
 import db.DbOperation;
-import ontology.resources.Lecture;
 
 public class ELearner extends People{
 	private String grade;
 	private String peopleURL;
 	private String password;
+	private String email;
+	private String address;
 
-	public ELearner(String id,String password){
-		this.id = id;
+	public ELearner(String eid,String password){
+		this.id = eid;
 		this.password = password;
+	}
+	public ELearner(String eid){
+		this.id = eid;
 	}
 	public ELearner(){
 		id="user";
@@ -19,9 +21,8 @@ public class ELearner extends People{
 	}
 	
 	public String login(){
-		DbOperation dbo=new DbOperation();
 		try {
-			boolean validate = dbo.login(id, password);
+			boolean validate = DbOperation.login(id, password);
 			System.out.println("login validate:"+validate);
 			if(validate){
 				return "goToMain";
@@ -61,9 +62,22 @@ public class ELearner extends People{
 		this.password = password;
 	}
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
 	public String toString(){
 		StringBuffer sb = new StringBuffer();
-		sb.append(id+"\t"+name+"\t"+grade+"\t"+password);
+		sb.append(id+"\t"+name+"\t"+grade+"\t"+password+"\n");
+		sb.append(grade+"\t"+email+"\t"+address);
 		return sb.toString();
 	}
 	

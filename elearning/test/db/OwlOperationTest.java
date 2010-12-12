@@ -7,7 +7,7 @@ import junit.framework.TestCase;
 
 import util.Constant;
 
-public class TestOwlOperator extends TestCase{
+public class OwlOperationTest extends TestCase{
 	public void testSaveOwlFile(){
 		File file = new File(Constant.OWLFile);
 		Date d1= new Date(System.currentTimeMillis());
@@ -24,9 +24,9 @@ public class TestOwlOperator extends TestCase{
 		assertTrue(op.removeOwlFile(id));
 	}
 	public void setUp(){
-		op = new OwlOperator();
+		op = new OwlOperation();
 	}
-	private OwlOperator op;
+	private OwlOperation op;
 	private String id="owlfile5";
 	
 }

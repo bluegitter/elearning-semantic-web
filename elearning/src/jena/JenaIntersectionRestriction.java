@@ -1,25 +1,18 @@
 package jena;
 
 import java.io.InputStream;
-
-
-
 import org.mindswap.pellet.jena.PelletReasonerFactory;
-
 import com.hp.hpl.jena.ontology.HasValueRestriction;
 import com.hp.hpl.jena.ontology.IntersectionClass;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.InfModel;
-import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.RDF;
-import com.hp.hpl.jena.vocabulary.RDFS;
 
 public class JenaIntersectionRestriction {
 	static final String inputFileName  = "D:\\EclipseWorkspace\\elearning\\protege\\elearning.owl";

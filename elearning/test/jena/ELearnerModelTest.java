@@ -9,7 +9,7 @@ import ontology.resources.EResource;
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Model;
 
-import db.OwlOperator;
+import db.OwlOperation;
 
 public class ELearnerModelTest {
 	
@@ -20,7 +20,7 @@ public class ELearnerModelTest {
 		InfModel model = OwlFactory.getGenericRuleReasonerModel();
 		ELearnerModelImpl mo = new ELearnerModelImpl(model);
 		ELearner el = new ELearner();
-		mo.hasELearner(el);
+		mo.containELearner(el);
 	}
 	public static void testAddElearner()throws IOException{
 		File file = new File("D:\\EclipseWorkspace\\elearning\\src\\db\\ms.owl");
@@ -30,7 +30,7 @@ public class ELearnerModelTest {
 		el.setId("eltest");
 		el.setName("testName");
 		mo.addELearner( el);
-		OwlOperator.updateOwlFile(model,file);
+		OwlOperation.updateOwlFile(model,file);
 	}
 	public static void testAddResrouce() throws IOException{
 		File file = new File("D:\\EclipseWorkspace\\elearning\\src\\db\\ms.owl");

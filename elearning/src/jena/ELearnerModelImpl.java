@@ -13,29 +13,26 @@ import ontology.EPerformance;
 import ontology.people.ELearner;
 import ontology.resources.EResource;
 import util.Constant;
+import util.StringExchanger;
+
+import com.hp.hpl.jena.query.Query;
+import com.hp.hpl.jena.query.QueryExecution;
+import com.hp.hpl.jena.query.QueryExecutionFactory;
+import com.hp.hpl.jena.query.QueryFactory;
+import com.hp.hpl.jena.query.QuerySolution;
+import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.AnonId;
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
-import db.OwlOperator;
+import db.OwlOperation;
 
 public class ELearnerModelImpl implements ELearnerModel{
 	private InfModel model;
 	public ELearnerModelImpl(){
-		// Open the bloggers RDF graph from the filesystem
-		InputStream in;
-		try {
-			in = new FileInputStream(new File(Constant.OWLFile));
-			// Create an empty in-memory model and populate it from the graph
-			Model model = ModelFactory.createMemModelMaker().createModel(null);
-			model.read(in,Constant.NS); // null base URI, since model URIs are absolute
-			in.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		model = OwlFactory.getGenericRuleReasonerModel();
 	}
 	public ELearnerModelImpl(InfModel model){
 		this.model = model;
@@ -56,7 +53,7 @@ public class ELearnerModelImpl implements ELearnerModel{
 	@Override
 	public boolean addConcept(EConcept concept) {
 		// TODO Auto-generated method stub
-		Resource con = model.createResource(Constant.NS+concept.getId(),model.getResource(Constant.NS+"E_Concept"));
+		Resource con = model.createResource(Constant.NS+concept.getCid(),model.getResource(Constant.NS+"E_Concept"));
 		con.addProperty(model.getProperty(Constant.NS+"name"), concept.getName());
 		return true;
 	}
@@ -74,7 +71,7 @@ public class ELearnerModelImpl implements ELearnerModel{
 	@Override
 	public boolean writeToFile(File file) {
 		try {
-			OwlOperator.updateOwlFile(model, file);
+			OwlOperation.updateOwlFile(model, file);
 			return true;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -83,7 +80,7 @@ public class ELearnerModelImpl implements ELearnerModel{
 		return false;
 	}
 	@Override
-	public boolean hasELearner(ELearner elearner) {
+	public boolean containELearner(ELearner elearner) {
 		Resource r = model.getResource(Constant.NS+"FUCK");
 		boolean b = r.isURIResource();
 		boolean b2 = r.isResource();
@@ -114,6 +111,80 @@ public class ELearnerModelImpl implements ELearnerModel{
 	@Override
 	public ArrayList<EResource> getResourcesByKey(ELearner elearner,
 			String keyword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	//get a basic Concept by the concept id
+	public EConcept getConcept(String cid) {
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "+
+			"SELECT ?concept ?name " +
+			"WHERE {" +
+			"      ?concept rdf:type base:E_Concept . " +
+			"      ?concept base:id "+StringExchanger.getSparqlString(cid)+" . "+
+			"      ?concept base:name ?name . "+
+			"      }";
+		Query query = QueryFactory.create(queryString);
+
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+		
+		// Output query results	
+		EConcept con = new EConcept(cid);
+		if(results.hasNext()){
+			QuerySolution qs = results.next();
+			String name = qs.get("?name").toString().trim();
+			con.setName(StringExchanger.getCommonString(name));
+		}
+		qe.close();
+		return con;
+	}
+
+	@Override
+	public ELearner getLearner(String eid) {
+		// TODO Auto-generated method stub
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "+
+			"SELECT ?elearner ?name ?grade ?email ?address " +
+			"WHERE {" +
+			"      ?elearner rdf:type base:E_Learner . " +
+		    "      ?elearner base:id "+StringExchanger.getSparqlString(eid)+" . "+
+			"      ?elearner base:name ?name . "+
+		 	"      ?elearner base:grade ?grade . "+
+			"      ?elearner base:email ?email . "+
+			"      ?elearner base:address ?address . "+
+			"      }";
+		Query query = QueryFactory.create(queryString);
+
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+		
+		// Output query results	
+		ELearner el = new ELearner(eid);
+		if(results.hasNext()){
+			QuerySolution qs = results.next();
+			String name = qs.get("?name").toString().trim();
+			String grade = qs.get("?grade").toString().trim();
+			String email = qs.get("?email").toString().trim();
+			String address = qs.get("?address").toString().trim();
+			el.setName(StringExchanger.getCommonString(name));
+			el.setGrade(StringExchanger.getCommonString(grade));
+			el.setEmail(StringExchanger.getCommonString(email));
+			el.setAddress(StringExchanger.getCommonString(address));
+			System.out.println(el);
+		}
+		qe.close();
+		return el;
+	}
+	@Override
+	public EResource getResource(String rid) {
 		// TODO Auto-generated method stub
 		return null;
 	}

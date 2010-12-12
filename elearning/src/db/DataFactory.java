@@ -1,16 +1,10 @@
 package db;
 
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import ontology.resources.Book;
-import ontology.resources.Paper;
 import util.Constant;
-
 import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 /*****************************************************************
  * DataFactory gives the Database Connection.
@@ -39,7 +33,6 @@ public class DataFactory {
 			return null;
 		}
 	}
-
 	
 	public static void insertResourceType(){
 		try{

@@ -2,14 +2,17 @@ package ontology;
 
 public class EConcept {
 	public EConcept(){
-		
+		cid = "tempCID";
 	}
-	
-	public String getId() {
-		return id;
+	public EConcept(String cid){
+		this.cid = cid;
 	}
-	public void setId(String id) {
-		this.id = id;
+
+	public String getCid() {
+		return cid;
+	}
+	public void setCid(String cid) {
+		this.cid = cid;
 	}
 	public String getName() {
 		return name;
@@ -17,8 +20,11 @@ public class EConcept {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String toString(){
+		return cid+"\t"+name;
+	}
 
-	private String id;
+	private String cid;
 	private String name;
 	
 }
