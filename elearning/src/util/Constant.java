@@ -19,8 +19,8 @@ public class Constant {
 	/********************************************************************
 	 * Database Connection Config
 	 ********************************************************************/
-	public static String DBURL = "jdbc:mysql://localhost:3306/elearning";        
-    public static String DBUSER = "root";
+	public static String DBURL = "jdbc:mysql://192.168:3306/elearning";        
+    public static String DBUSER = "ms";
     public static String DBPASSWORD = "ms";
     
     
