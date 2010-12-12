@@ -127,3 +127,4 @@ public class ELearnerReasoner {
 	private File owlFile;
 	private File ruleFile;
 }
+
