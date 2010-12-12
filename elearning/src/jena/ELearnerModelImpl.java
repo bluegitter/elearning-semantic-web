@@ -1,12 +1,8 @@
 package jena;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.EPerformance;
@@ -22,10 +18,7 @@ import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
-import com.hp.hpl.jena.rdf.model.AnonId;
 import com.hp.hpl.jena.rdf.model.InfModel;
-import com.hp.hpl.jena.rdf.model.Model;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 import db.OwlOperation;
 
@@ -44,7 +37,7 @@ public class ELearnerModelImpl implements ELearnerModel{
 		return true;
 	}
 	public boolean addResource(EResource resource){
-		Resource re = model.createResource(Constant.NS+resource.getId(),model.getResource(Constant.NS+"E_Resource"));
+		Resource re = model.createResource(Constant.NS+resource.getRid(),model.getResource(Constant.NS+"E_Resource"));
 		re.addProperty(model.getProperty(Constant.NS+"name"), resource.getName());
 		re.addProperty(model.getProperty(Constant.NS+"difficulty"), resource.getDifficulty());
 		return true;
@@ -52,7 +45,6 @@ public class ELearnerModelImpl implements ELearnerModel{
 	
 	@Override
 	public boolean addConcept(EConcept concept) {
-		// TODO Auto-generated method stub
 		Resource con = model.createResource(Constant.NS+concept.getCid(),model.getResource(Constant.NS+"E_Concept"));
 		con.addProperty(model.getProperty(Constant.NS+"name"), concept.getName());
 		return true;
@@ -74,13 +66,12 @@ public class ELearnerModelImpl implements ELearnerModel{
 			OwlOperation.updateOwlFile(model, file);
 			return true;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return false;
 	}
 	@Override
-	public boolean containELearner(ELearner elearner) {
+	public boolean containELearner(String eid) {
 		Resource r = model.getResource(Constant.NS+"FUCK");
 		boolean b = r.isURIResource();
 		boolean b2 = r.isResource();
@@ -88,25 +79,185 @@ public class ELearnerModelImpl implements ELearnerModel{
 		System.out.println(b+"\t"+b2+"\t"+b3);
 		return true;
 	}
+	public static void main(String [] args){
+		ELearnerModelImpl emi = new ELearnerModelImpl();
+	}
+	
 	@Override
 	public ArrayList<EConcept> getAllConcepts() {
+		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"SELECT ?concept ?id ?name " +
+			"WHERE {" +
+			"      ?concept rdf:type base:E_Concept . " +
+			"      ?concept base:id ?id . " +
+			"      ?concept base:name ?name . "+
+			"      }";
+
+		Query query = QueryFactory.create(queryString);
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+		while(results.hasNext()){
+			QuerySolution qs = results.next();
+			String id = qs.get("?id").toString();
+			String name = qs.get("?name").toString();
+			EConcept con = new EConcept();
+			con.setCid(StringExchanger.getCommonString(id));
+			con.setName(StringExchanger.getCommonString(name));
+			concepts.add(con);
+		}
+		qe.close();
+		return concepts;
+	}
+	@Override
+	public ArrayList<EConcept> getMemberConcept(EConcept concept) {
+		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"SELECT ?concept ?id ?name " +
+			"WHERE {" +
+			"      ?concept rdf:type base:E_Concept . " +
+			"      ?concept base:id ?id . " +
+			"      ?concept base:name ?name . "+
+			"      ?concept base:is_part_of ?fatherConcept . "+
+			"      ?fatherConcept rdf:type base:E_Concept . "+
+			"      ?fatherConcept base:id " +StringExchanger.getSparqlString(concept.getCid())+" . "+
+			"      }";
+
+		Query query = QueryFactory.create(queryString);
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+		while(results.hasNext()){
+			QuerySolution qs = results.next();
+			String id = qs.get("?id").toString();
+			String name = qs.get("?name").toString();
+			EConcept con = new EConcept();
+			con.setCid(StringExchanger.getCommonString(id));
+			con.setName(StringExchanger.getCommonString(name));
+			concepts.add(con);
+		}
+		qe.close();
+		return concepts;
+	}
+	@Override
+	public ArrayList<EConcept> getELearnerConcepts(ELearner elearner) {
+		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"SELECT ?concept ?id ?name " +
+			"WHERE {" +
+			"      ?concept rdf:type base:E_Concept . " +
+			"      ?concept base:id ?id . " +
+			"      ?concept base:name ?name . "+
+			"      ?elearner base:id " +StringExchanger.getSparqlString(elearner.getId())+" . "+
+			"      ?concept base:is_concept_of_I ?interest . "+
+			"      ?elearner base:has_interest ?interest . "+
+			"      }";
+		Query query = QueryFactory.create(queryString);
+		
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+		
+		while(results.hasNext()){
+			QuerySolution qs = results.next();
+			String id = qs.get("?id").toString();
+			String name = qs.get("?name").toString();
+			EConcept con = new EConcept();
+			con.setCid(StringExchanger.getCommonString(id));
+			con.setName(StringExchanger.getCommonString(name));
+			concepts.add(con);
+			//System.out.println(con);
+		}
+		qe.close();
+		return concepts;
+	}
+	
+	@Override
+	public ArrayList<EConcept> getRecommendConcepts(ELearner elearner,int i) {
+		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
+		String rule = "is_recommend_of_"+i;
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"SELECT ?concept ?id ?name " +
+			"WHERE {" +
+			"      ?concept rdf:type base:E_Concept . " +
+			"      ?concept base:id ?id . " +
+			"      ?concept base:name ?name . "+
+			"      ?elearner base:id " +StringExchanger.getSparqlString(elearner.getId())+" . "+
+			"      ?concept base:"+rule+" ?elearner . "+
+			"      }";
+		Query query = QueryFactory.create(queryString);
+		
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+		ResultSetFormatter.out(System.out, results, query);
+		
+		while(results.hasNext()){
+			QuerySolution qs = results.next();
+			String id = qs.get("?id").toString();
+			String name = qs.get("?name").toString();
+			EConcept con = new EConcept();
+			con.setCid(StringExchanger.getCommonString(id));
+			con.setName(StringExchanger.getCommonString(name));
+			concepts.add(con);
+			//System.out.println(con);
+		}
+		qe.close();
+		return concepts;
+	}
+	@Override
+	public ArrayList<ELearner> getRecommendELearner(ELearner elearner, int rule) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public ArrayList<EConcept> getConcepts(ELearner elearner) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public ArrayList<EConcept> getRecommandConcepts(ELearner elearner) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public ArrayList<EConcept> getRecommandResources(ELearner elearner) {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<EResource> getRecommendResources(ELearner elearner,
+			int rule) {
+		ArrayList<EResource> resources = new ArrayList<EResource>();
+		String i = "is_recommend_of_"+rule;
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"SELECT ?resource ?id ?name ?difficulty ?fileLocation " +
+			"WHERE {" +
+			"      ?resource rdf:type base:E_Resource . " +
+			"      ?resource base:id ?id . " +
+			"      ?resource base:name ?name . "+
+			"      ?elearner base:id " +StringExchanger.getSparqlString(elearner.getId())+" . "+
+			"      ?resource base:"+i+" ?elearner . "+
+			"      ?resource base:difficulty ?difficulty . "+
+			"      ?resource base:fileLocation ?fileLocation . "+
+			"      }";
+		Query query = QueryFactory.create(queryString);
+		
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+		
+		while(results.hasNext()){
+			QuerySolution qs = results.next();
+			String id = qs.get("?id").toString();
+			String name = qs.get("?name").toString();
+			String difficulty = qs.get("?difficulty").toString().trim();
+			String fileLocation = qs.get("?fileLocation").toString().trim();
+			EResource res = new EResource();
+			res.setRid(StringExchanger.getCommonString(id));
+			res.setName(StringExchanger.getCommonString(name));
+			res.setDifficulty(StringExchanger.getCommonString(difficulty));
+			res.setFileLocation(StringExchanger.getCommonString(fileLocation));
+			System.out.println(res);resources.add(res);
+		}
+		qe.close();
+		return resources;
 	}
 	@Override
 	public ArrayList<EResource> getResourcesByKey(ELearner elearner,
@@ -144,7 +295,7 @@ public class ELearnerModelImpl implements ELearnerModel{
 		return con;
 	}
 
-	@Override
+	//get a basic ELearner by the given elearner id
 	public ELearner getLearner(String eid) {
 		// TODO Auto-generated method stub
 		String queryString = 
@@ -182,17 +333,103 @@ public class ELearnerModelImpl implements ELearnerModel{
 		qe.close();
 		return el;
 	}
+
 	@Override
 	public EResource getResource(String rid) {
 		// TODO Auto-generated method stub
-		return null;
+		// TODO Auto-generated method stub
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "+
+			"SELECT ?resource ?name ?difficulty ?fileLocation " +
+			"WHERE {" +
+			"      ?resource rdf:type base:E_Resource . " +
+		    "      ?resource base:id "+StringExchanger.getSparqlString(rid)+" . "+
+			"      ?resource base:id ?id . " +
+			"      ?resource base:name ?name . "+
+		 	"      ?resource base:difficulty ?difficulty . "+
+			"      ?resource base:fileLocation ?fileLocation . "+
+			"      }";
+		Query query = QueryFactory.create(queryString);
+
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+		// Output query results	
+		EResource res = new EResource(rid);
+		if(results.hasNext()){
+			QuerySolution qs = results.next();
+			String name = qs.get("?name").toString().trim();
+			String difficulty = qs.get("?difficulty").toString().trim();
+			String fileLocation = qs.get("?fileLocation").toString().trim();
+			res.setName(StringExchanger.getCommonString(name));
+			res.setDifficulty(StringExchanger.getCommonString(difficulty));
+			res.setFileLocation(StringExchanger.getCommonString(fileLocation));
+			System.out.println(res);
+		}
+		qe.close();
+		return res;
+	}
+	//return the root concept which is already set.
+	public EConcept getRootConcept(){
+		EConcept rootConcept = new EConcept();
+		rootConcept.setCid("root-se");
+		rootConcept.setName("software engineering");
+		return rootConcept;
 	}
 	@Override
-	public ArrayList<EConcept> getPartMember(EConcept concept) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean containEConcept(String cid) {
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"SELECT ?concept ?id " +
+			"WHERE {" +
+			"      ?concept rdf:type base:E_Concept . " +
+			"      ?concept base:id ?id . " +
+			"      }";
+		Query query = QueryFactory.create(queryString);
+		
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+		
+		while(results.hasNext()){
+			QuerySolution qs = results.next();
+			String id = qs.get("?id").toString();
+			if(StringExchanger.getCommonString(id).equals(cid)){
+				return true;
+			}
+		}
+		qe.close();
+		return false;
 	}
-
+	@Override
+	public boolean containEResource(String rid) {
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"SELECT ?resource ?id " +
+			"WHERE {" +
+			"      ?resource rdf:type base:E_Resource . " +
+			"      ?resource base:id ?id . " +
+			"      }";
+		Query query = QueryFactory.create(queryString);
+		
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+		
+		while(results.hasNext()){
+			QuerySolution qs = results.next();
+			String id = qs.get("?id").toString();
+			if(StringExchanger.getCommonString(id).equals(rid)){
+				return true;
+			}
+		}
+		qe.close();
+		return false;
+	}
 
 	
 }

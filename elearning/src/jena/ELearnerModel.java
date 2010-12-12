@@ -23,15 +23,24 @@ public interface ELearnerModel {
 	boolean writeToFile(File file);
 	
 	//query operations
-	boolean containELearner(ELearner elearner);
+	boolean containELearner(String eid);
+	boolean containEConcept(String cid);
+	boolean containEResource(String rid);
 	ArrayList<EConcept> getAllConcepts();
-	ArrayList<EConcept> getConcepts(ELearner elearner);
-	ArrayList<EConcept> getRecommandConcepts(ELearner elearner);
-	ArrayList<EConcept> getRecommandResources(ELearner elearner);
+	ArrayList<EConcept> getMemberConcept(EConcept concept);
+	ArrayList<EConcept> getELearnerConcepts(ELearner elearner);
 	ArrayList<EResource> getResourcesByKey(ELearner elearner, String keyword);
-	ArrayList<EConcept> getPartMember(EConcept concept);
-	
 	EConcept getConcept(String cid);
 	ELearner getLearner(String eid);
 	EResource getResource(String rid);
+	/***************************************************************************
+	 * there are 13 rules now
+	 * rule1 to rule8 -->ELearner VS EConcept
+	 * rule9 rule10 --> ELearner VS ELearner
+	 * rule11 to rule 13 -->ELearner VS Resource
+	 * TO BE Test
+	 ****************************************************************************/
+	ArrayList<EConcept> getRecommendConcepts(ELearner elearner,int rule);
+	ArrayList<EResource> getRecommendResources(ELearner elearner,int rule);
+	ArrayList<ELearner> getRecommendELearner(ELearner elearner,int rule);
 }
