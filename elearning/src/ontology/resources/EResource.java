@@ -1,24 +1,30 @@
 package ontology.resources;
 
-import java.util.ArrayList;
-
 public class EResource {
-	private String id;
+	private String rid;
 	private String difficulty;
 	private String name;
+	private String fileLocation;
 
 	public EResource(){
 		
 	}
-
-	public String getId() {
-		return id;
+	public EResource(String rid){
+		this.rid = rid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public String getRid() {
+		return rid;
 	}
-
+	public void setRid(String rid) {
+		this.rid = rid;
+	}
+	public String getFileLocation() {
+		return fileLocation;
+	}
+	public void setFileLocation(String fileLocation) {
+		this.fileLocation = fileLocation;
+	}
 	public String getDifficulty() {
 		return difficulty;
 	}
@@ -33,6 +39,9 @@ public class EResource {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String toString(){
+		return rid+"\t"+name+"\t"+difficulty+"\n"+fileLocation;
 	}
 	
 }

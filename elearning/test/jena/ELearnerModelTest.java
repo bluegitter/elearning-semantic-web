@@ -14,13 +14,12 @@ import db.OwlOperation;
 public class ELearnerModelTest {
 	
 	public static void main(String [] args) throws IOException{
-		testHas();
 	}
-	public static void testHas(){
+	public static void testContainELearner(){
 		InfModel model = OwlFactory.getGenericRuleReasonerModel();
 		ELearnerModelImpl mo = new ELearnerModelImpl(model);
 		ELearner el = new ELearner();
-		mo.containELearner(el);
+		mo.containELearner("el001");
 	}
 	public static void testAddElearner()throws IOException{
 		File file = new File("D:\\EclipseWorkspace\\elearning\\src\\db\\ms.owl");
@@ -37,7 +36,7 @@ public class ELearnerModelTest {
 		InfModel model = OwlFactory.getGenericRuleReasonerModel();
 		ELearnerModelImpl mo = new ELearnerModelImpl(model);
 		EResource res = new EResource();
-		res.setId("testResourse");
+		res.setRid("testResourse");
 		res.setName("testResourceName");
 		res.setDifficulty("35");
 		mo.addResource(res);

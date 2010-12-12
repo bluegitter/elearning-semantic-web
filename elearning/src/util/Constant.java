@@ -35,6 +35,9 @@ public class Constant {
 	public static String [] EDUCATION_TYPES={
 		"book","paper","lecture"
 	};
+	public static String [] RECOMMANDRULES = {
+		
+	};
 	public static String [] titles={"professor"};
 
 }
