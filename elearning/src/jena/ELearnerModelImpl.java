@@ -178,13 +178,17 @@ public class ELearnerModelImpl implements ELearnerModel{
 			el.setGrade(StringExchanger.getCommonString(grade));
 			el.setEmail(StringExchanger.getCommonString(email));
 			el.setAddress(StringExchanger.getCommonString(address));
-			System.out.println(el);
 		}
 		qe.close();
 		return el;
 	}
 	@Override
 	public EResource getResource(String rid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public ArrayList<EConcept> getPartMember(EConcept concept) {
 		// TODO Auto-generated method stub
 		return null;
 	}
