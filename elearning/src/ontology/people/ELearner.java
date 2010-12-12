@@ -9,12 +9,14 @@ public class ELearner extends People{
 	private String peopleURL;
 	private String password;
 
-
+	public ELearner(String id,String password){
+		this.id = id;
+		this.password = password;
+	}
 	public ELearner(){
 		id="user";
 		password="password";
 	}
-	
 	
 	public String login(){
 		DbOperation dbo=new DbOperation();
@@ -55,10 +57,14 @@ public class ELearner extends People{
 	public String getPassword() {
 		return password;
 	}
-
-
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String toString(){
+		StringBuffer sb = new StringBuffer();
+		sb.append(id+"\t"+name+"\t"+grade+"\t"+password);
+		return sb.toString();
 	}
 	
 }

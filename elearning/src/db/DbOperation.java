@@ -21,7 +21,7 @@ public class DbOperation {
 	 * @return true if the elearner pass the validation, else return false
 	 * @throws Exception
 	 */
-	public boolean login(String userId,String userPassword) throws Exception{
+	public static boolean login(String userId,String userPassword) throws Exception{
 		Connection con = DataFactory.getConnection();
 		Statement st = con.createStatement();
 		String sql = "select password from elearner where elearner_id='"+userId+"'";
@@ -35,10 +35,10 @@ public class DbOperation {
 		}
 		return false;
 	}
-	public boolean login(ELearner el) throws Exception {
+	public static boolean login(ELearner el) throws Exception {
 		return login(el.getId(),el.getPassword());
 	}
-	public boolean addELearner(ELearner el) throws Exception{
+	public static boolean addELearner(ELearner el) throws Exception{
 		Connection con = DataFactory.getConnection();
 		Statement st = con.createStatement();
 		String sql = "insert into elearner values('"+el.getId()+"','"+el.getName()+"','"+el.getGrade()+"','"+el.getPassword()+"')";
@@ -46,7 +46,7 @@ public class DbOperation {
 		System.out.println("add ELearner to DB Successfully");
 		return true;
 	}
-	public boolean removeELearner(ELearner el) throws Exception{
+	public static boolean removeELearner(ELearner el) throws Exception{
 		Connection con = DataFactory.getConnection();
 		Statement st = con.createStatement();
 		if(login(el)){
@@ -58,7 +58,7 @@ public class DbOperation {
 		}
 		return true;
 	}
-	public boolean updateELearner(ELearner el) throws Exception{
+	public static boolean updateELearner(ELearner el) throws Exception{
 		Connection con = DataFactory.getConnection();
 		Statement st = con.createStatement();
 		if(login(el)){
@@ -71,7 +71,7 @@ public class DbOperation {
 			return false;
 		}
 	}
-	public ELearner getELearner(String userId,String password) throws Exception{
+	public static ELearner getELearner(String userId,String password) throws Exception{
 		Connection con = DataFactory.getConnection();
 		Statement st = con.createStatement();
 		String sql = "select * from elearner where elearner_id='"+userId+"'";
@@ -89,7 +89,7 @@ public class DbOperation {
 		return el;
 	}
 	
-	public boolean hasELearner(ELearner el) throws SQLException {
+	public static boolean hasELearner(ELearner el) throws SQLException {
 		Connection con = DataFactory.getConnection();
 		Statement st = con.createStatement();
 		String uid = el.getId();
@@ -111,7 +111,7 @@ public class DbOperation {
 	 * @return true/false
 	 * 
 	 */
-	public boolean saveFile(String rid, File file){
+	public static boolean saveFile(String rid, File file){
 		try{
 			Connection con = DataFactory.getConnection();
 			FileInputStream fin = new FileInputStream(file);
@@ -131,7 +131,7 @@ public class DbOperation {
 		}
 	}
 	//read the blob data from the database, and write it to the File
-	public boolean getFile(String rid,File file){
+	public static boolean getFile(String rid,File file){
 		byte[] Buffer = new byte[4096]; 
 		try { 
 			Connection conn = DataFactory.getConnection(); 
@@ -147,7 +147,6 @@ public class DbOperation {
 				} 
 				fos.close();
 			}
-			
 			rs.close();
 			pstmt.close();
 			conn.close();
