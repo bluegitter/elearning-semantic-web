@@ -202,7 +202,7 @@ public class ELearnerModelImpl implements ELearnerModel{
 	@Override
 	public ArrayList<EConcept> getRecommendConcepts(ELearner elearner,int i) {
 		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
-		String rule = "is_recommend_of_"+i;
+		String rule = "is_recommend_of_c_"+i;
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
 			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
@@ -219,7 +219,6 @@ public class ELearnerModelImpl implements ELearnerModel{
 		// Execute the query and obtain results
 		QueryExecution qe = QueryExecutionFactory.create(query, model);
 		ResultSet results = qe.execSelect();
-		ResultSetFormatter.out(System.out, results, query);
 		
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
@@ -236,14 +235,51 @@ public class ELearnerModelImpl implements ELearnerModel{
 	}
 	@Override
 	public ArrayList<ELearner> getRecommendELearner(ELearner elearner, int rule) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<ELearner> elearners = new ArrayList<ELearner>();
+		String i = "is_recommend_of_L_"+rule+"";
+		System.out.println(i);
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"SELECT ?el ?id ?name ?grade ?email ?address " +
+			"WHERE {" +
+			"      ?el rdf:type base:E_Learner . " +
+			"      ?el base:id ?id . " +
+			"      ?el base:name ?name . "+
+		 	"      ?el base:grade ?grade . "+
+			"      ?el base:email ?email . "+
+			"      ?el base:address ?address . "+
+			"      ?elearner base:id " +StringExchanger.getSparqlString(elearner.getId())+" . "+
+			"      ?el base:"+i+" ?elearner . "+
+			"      }";
+		Query query = QueryFactory.create(queryString);
+		
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+		while(results.hasNext()){
+			QuerySolution qs = results.next();
+			ELearner el = new ELearner();
+			String id = qs.get("?id").toString().trim();
+			String name = qs.get("?name").toString().trim();
+			String grade = qs.get("?grade").toString().trim();
+			String email = qs.get("?email").toString().trim();
+			String address = qs.get("?address").toString().trim();
+			el.setId(StringExchanger.getCommonString(id));
+			el.setName(StringExchanger.getCommonString(name));
+			el.setGrade(StringExchanger.getCommonString(grade));
+			el.setEmail(StringExchanger.getCommonString(email));
+			el.setAddress(StringExchanger.getCommonString(address));
+			elearners.add(el);
+		}
+		qe.close();
+		return elearners;
 	}
 	@Override
 	public ArrayList<EResource> getRecommendResources(ELearner elearner,
 			int rule) {
 		ArrayList<EResource> resources = new ArrayList<EResource>();
-		String i = "is_recommend_of_"+rule;
+		String i = "is_recommend_of_r_"+rule;
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
 			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
@@ -363,7 +399,6 @@ public class ELearnerModelImpl implements ELearnerModel{
 			"WHERE {" +
 			"      ?resource rdf:type base:E_Resource . " +
 		    "      ?resource base:id "+StringExchanger.getSparqlString(rid)+" . "+
-			"      ?resource base:id ?id . " +
 			"      ?resource base:name ?name . "+
 		 	"      ?resource base:difficulty ?difficulty . "+
 			"      ?resource base:fileLocation ?fileLocation . "+
@@ -517,8 +552,49 @@ public class ELearnerModelImpl implements ELearnerModel{
 		ELearnerModelImpl emi = new ELearnerModelImpl();
 		ELearner el = new ELearner("el001");
 		//EConcept concept = new EConcept("Software_Engineer");
-		ArrayList<EConcept> c = emi.getPerfomanceConcepts(el);
+		ArrayList<ELearner> c = emi.getRecommendELearner(el, 0);
 		System.out.println("size:"+c.size());
+	}
+	@Override
+	public ArrayList<EResource> getPortfolioResources(ELearner elearner) {
+		ArrayList<EResource> resources = new ArrayList<EResource>();
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"SELECT ?res ?id ?name ?difficulty ?fileLocation " +
+			"WHERE {" +
+			"      ?res rdf:type base:E_Resource . " +
+			"      ?res base:id ?id . " +
+			"      ?res base:name ?name . "+
+		 	"      ?res base:difficulty ?difficulty . "+
+			"      ?res base:fileLocation ?fileLocation . "+
+			"      ?elearner base:id " +StringExchanger.getSparqlString(elearner.getId())+" . "+
+			"      ?portfolio base:inverse_of_is_resource_of_P ?res . "+
+			"      ?elearner base:has_portfolio ?portfolio . "+
+			"      }";
+		Query query = QueryFactory.create(queryString);
+		
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+
+		while(results.hasNext()){
+			QuerySolution qs = results.next();
+			String id = qs.get("?id").toString();
+			String name = qs.get("?name").toString();
+			String difficulty = qs.get("?difficulty").toString().trim();
+			String fileLocation = qs.get("?fileLocation").toString().trim();
+			
+			EResource res = new EResource();
+			res.setRid(StringExchanger.getCommonString(id));
+			res.setName(StringExchanger.getCommonString(name));
+			res.setDifficulty(StringExchanger.getCommonString(difficulty));
+			res.setFileLocation(StringExchanger.getCommonString(fileLocation));
+			resources.add(res);
+	//		System.out.println(res);
+		}
+		qe.close();
+		return resources;
 	}
 	
 }

@@ -32,15 +32,16 @@ public interface ELearnerModel {
 	ArrayList<EConcept> getInterestConcepts(ELearner elearner);
 	ArrayList<EConcept> getPerfomanceConcepts(ELearner elearner);
 	ArrayList<EResource> getResourcesByKey(ELearner elearner, String keyword);
+	ArrayList<EResource> getPortfolioResources(ELearner elearner);
 	EConcept getConcept(String cid);
 	ELearner getLearner(String eid);
 	EResource getResource(String rid);
 	
 	/***************************************************************************
 	 * there are 13 rules now
-	 * rule_c_0 to rule_c_8 -->ELearner VS EConcept
-	 * rule_L_0 rule_L_1 --> ELearner VS ELearner
-	 * rule_r_0 to rule_r_3 -->ELearner VS Resource
+	 * is_recommend_of_c_ (0--8)-->ELearner VS EConcept
+	 * is_recommend_of_L_ (0 1)--> ELearner VS ELearner
+	 * is_recommend_of_r_ (0 3) -->ELearner VS Resource
 	 * TO BE Test
 	 ****************************************************************************/
 	ArrayList<EConcept> getRecommendConcepts(ELearner elearner,int rule);
