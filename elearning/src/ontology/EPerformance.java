@@ -26,8 +26,16 @@ public class EPerformance {
 		this.value = value;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	private ELearner elearner;
 	private EConcept concept;
 	private float value;
-	
+	private String id;
 }

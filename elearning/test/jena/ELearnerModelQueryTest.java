@@ -33,7 +33,7 @@ public class ELearnerModelQueryTest extends TestCase{
 	}
 	public void testGetELearnerConcepts(){
 		ELearner el = new ELearner("el001");
-		ArrayList<EConcept> c = emi.getELearnerConcepts(el);
+		ArrayList<EConcept> c = emi.getInterestConcepts(el);
 		assertTrue(c.size()==4);
 	}
 	public void testContainELearner(){

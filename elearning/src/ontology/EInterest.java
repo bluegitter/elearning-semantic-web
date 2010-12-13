@@ -26,6 +26,15 @@ public class EInterest {
 		this.con = con;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	private String id;
 	private float value;
 	private ELearner el;
 	private EConcept con;
