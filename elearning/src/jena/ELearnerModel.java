@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.EPerformance;
+import ontology.EPortfolio;
 import ontology.people.ELearner;
 import ontology.resources.EResource;
 
@@ -13,6 +14,7 @@ public interface ELearnerModel {
 	//non-user operations
 	boolean addConcept(EConcept concept);
 	boolean addPerfomance(EPerformance performance);
+	boolean addPortfolio(EPortfolio portfolio);
 	
 	//user operations
 	boolean addELearner(ELearner elearner);
@@ -33,6 +35,8 @@ public interface ELearnerModel {
 	ArrayList<EConcept> getPerfomanceConcepts(ELearner elearner);
 	ArrayList<EResource> getResourcesByKey(ELearner elearner, String keyword);
 	ArrayList<EResource> getPortfolioResources(ELearner elearner);
+	ArrayList<EResource> getConceptResources(EConcept concept);
+	ArrayList<EResource> getAllResources();
 	EConcept getConcept(String cid);
 	ELearner getLearner(String eid);
 	EResource getResource(String rid);

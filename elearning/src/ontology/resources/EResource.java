@@ -5,7 +5,7 @@ public class EResource {
 	private String difficulty;
 	private String name;
 	private String fileLocation;
-
+	private String postfix;
 	public EResource(){
 		
 	}
