@@ -76,10 +76,11 @@
 			greaterThan(?perValue_L_1_1,?perValue_L_1_2)
 			->(?learner_L_1_2 el:is_recommend_of_L_1 ?learner_L_1_1)]
 		
-[rule_L_0:(?concept_L_0 el:is_concept_of_I ?interest_L_0_1)
-          (?learner_L_0_1 el:has_interest ?interest_L_0_1)
-          (?concept_L_0 el:is_concept_of_I ?interest_L_0_2)
-          (?learner_L_0_2 el:has_interest ?interest_L_0_2)
+[rule_L_0:(?learner_L_0_1 el:has_interest ?interest_L_0_1)
+          (?concept_L_0 el:is_concept_of_I ?interest_L_0_1)          
+          (?concept_L_0 el:is_concept_of_P ?performance_L_0)          
+          (?learner_L_0_2 el:has_performance ?performance_L_0)
+          notEqual(?learner_L_0_2,?learner_L_0_1)
           ->(?learner_L_0_2 el:is_recommend_of_L_0 ?learner_L_0_1)]
           
 [rule_r_1:(?resource_r_1_1 el:is_resource_of_P ?portfolio_r_1)
