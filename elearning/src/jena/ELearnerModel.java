@@ -38,9 +38,9 @@ public interface ELearnerModel {
 	
 	/***************************************************************************
 	 * there are 13 rules now
-	 * rule1 to rule8 -->ELearner VS EConcept
-	 * rule9 rule10 --> ELearner VS ELearner
-	 * rule11 to rule 13 -->ELearner VS Resource
+	 * rule_c_0 to rule_c_8 -->ELearner VS EConcept
+	 * rule_L_0 rule_L_1 --> ELearner VS ELearner
+	 * rule_r_0 to rule_r_3 -->ELearner VS Resource
 	 * TO BE Test
 	 ****************************************************************************/
 	ArrayList<EConcept> getRecommendConcepts(ELearner elearner,int rule);
