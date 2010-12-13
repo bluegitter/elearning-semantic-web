@@ -1,4 +1,4 @@
-; Mon Dec 13 14:02:59 CST 2010
+; Mon Dec 13 14:10:03 CST 2010
 ; 
 ;+ (version "3.4.4")
 ;+ (build "Build 579")
@@ -6,12 +6,12 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[elearning_ProjectKB_Class100015]
-		[elearning_ProjectKB_Class100016]
-		[elearning_ProjectKB_Class100017]
-		[elearning_ProjectKB_Class100018]
-		[elearning_ProjectKB_Class100019]
-		[elearning_ProjectKB_Class100020]))
+		[elearning_ProjectKB_Class100027]
+		[elearning_ProjectKB_Class100028]
+		[elearning_ProjectKB_Class100029]
+		[elearning_ProjectKB_Class100030]
+		[elearning_ProjectKB_Class100031]
+		[elearning_ProjectKB_Class100032]))
 
 ([CLSES_TAB] of  Widget
 
@@ -57,58 +57,72 @@
 ([elearning_ProjectKB_Class100008] of  Property_List
 )
 
-([elearning_ProjectKB_Class100015] of  String
+([elearning_ProjectKB_Class100025] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_L_0")
+	(property_list [elearning_ProjectKB_Class100026])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 0)
+	(y 1990))
+
+([elearning_ProjectKB_Class100026] of  Property_List
+)
+
+([elearning_ProjectKB_Class100027] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([elearning_ProjectKB_Class100016] of  String
+([elearning_ProjectKB_Class100028] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Class")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class100017] of  String
+([elearning_ProjectKB_Class100029] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([elearning_ProjectKB_Class100018] of  String
+([elearning_ProjectKB_Class100030] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class100019] of  String
+([elearning_ProjectKB_Class100031] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Thing")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class100020] of  String
+([elearning_ProjectKB_Class100032] of  String
 
 	(name "http://www.owl-ontologies.com/e-learning.owl#E_Concept")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class100021] of  Map_Entry
+([elearning_ProjectKB_Class100033] of  Map_Entry
 
 	(key "collab.hide.archived")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class100022] of  Map_Entry
+([elearning_ProjectKB_Class100034] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class100023] of  Map_Entry
+([elearning_ProjectKB_Class100035] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class100024] of  Map_Entry
+([elearning_ProjectKB_Class100036] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
@@ -930,7 +944,8 @@
 		[elearning_ProjectKB_Class90060]
 		[elearning_ProjectKB_Class90062]
 		[elearning_ProjectKB_Class90064]
-		[elearning_ProjectKB_Class90066]))
+		[elearning_ProjectKB_Class90066]
+		[elearning_ProjectKB_Class100025]))
 
 ([elearning_ProjectKB_Class20042] of  Widget
 
@@ -4858,10 +4873,10 @@
 ([KB_325529_Class0] of  Map
 
 	(entries
-		[elearning_ProjectKB_Class100021]
-		[elearning_ProjectKB_Class100022]
-		[elearning_ProjectKB_Class100023]
-		[elearning_ProjectKB_Class100024]))
+		[elearning_ProjectKB_Class100033]
+		[elearning_ProjectKB_Class100034]
+		[elearning_ProjectKB_Class100035]
+		[elearning_ProjectKB_Class100036]))
 
 ([KB_325529_Class4] of  String
 

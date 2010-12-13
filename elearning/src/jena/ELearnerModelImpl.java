@@ -468,7 +468,6 @@ public class ELearnerModelImpl implements ELearnerModel{
 		QueryExecution qe = QueryExecutionFactory.create(query, model);
 		ResultSet results = qe.execSelect();
 		
-		ResultSetFormatter.out(System.out, results, query);
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
 			String id = qs.get("?id").toString();
@@ -516,8 +515,9 @@ public class ELearnerModelImpl implements ELearnerModel{
 	}
 	public static void main(String [] args)throws Exception{
 		ELearnerModelImpl emi = new ELearnerModelImpl();
-		EConcept concept = new EConcept("Software_Engineer");
-		ArrayList<EConcept> c = emi.getSonConcepts(concept);
+		ELearner el = new ELearner("el001");
+		//EConcept concept = new EConcept("Software_Engineer");
+		ArrayList<EConcept> c = emi.getPerfomanceConcepts(el);
 		System.out.println("size:"+c.size());
 	}
 	

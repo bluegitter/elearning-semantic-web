@@ -1480,6 +1480,8 @@
                             </has_interest>
                             <has_performance>
                               <E_Performance rdf:ID="E_Performance_2">
+                                <value rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                >1</value>
                                 <inverse_of_is_concept_of_P>
                                   <E_Concept rdf:ID="testPostCnp1">
                                     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1491,6 +1493,9 @@
                                         <is_concept_of_P>
                                           <E_Performance rdf:ID="E_Performance_1">
                                             <inverse_of_has_performance rdf:resource="#el001"/>
+                                            <value rdf:datatype=
+                                            "http://www.w3.org/2001/XMLSchema#string"
+                                            >1</value>
                                             <inverse_of_is_concept_of_P rdf:resource="#testPreCnp"/>
                                           </E_Performance>
                                         </is_concept_of_P>
@@ -1509,6 +1514,9 @@
                                               <E_Performance rdf:ID="E_Performance_3">
                                                 <inverse_of_is_concept_of_P rdf:resource="#testPostCnp4"/>
                                                 <inverse_of_has_performance rdf:resource="#el001"/>
+                                                <value rdf:datatype=
+                                                "http://www.w3.org/2001/XMLSchema#string"
+                                                >1</value>
                                               </E_Performance>
                                             </is_concept_of_P>
                                           </E_Concept>
