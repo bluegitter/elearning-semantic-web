@@ -1,5 +1,6 @@
 package jena;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 import org.mindswap.pellet.jena.PelletReasonerFactory;
@@ -41,6 +42,19 @@ public class OwlFactory {
 	 *************************************************************/
 	public static InfModel getGenericRuleReasonerModel(){
 		List<Rule> rules = Rule.rulesFromURL(Constant.RulesFile);
+		GenericRuleReasoner reasoner = new GenericRuleReasoner(rules);
+		reasoner.setOWLTranslation(true);
+		reasoner.setDerivationLogging(true);
+		reasoner.setTransitiveClosureCaching(true);
+		
+		OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM,OwlFactory.getDefaultOWLModel());
+		Resource configuration = model.createResource();
+		configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
+		InfModel infModel = ModelFactory.createInfModel(reasoner, model);
+		return infModel;
+	}
+	public static InfModel getGenericRuleReasonerModel(String fileURL){
+		List<Rule> rules = Rule.rulesFromURL(fileURL);
 		GenericRuleReasoner reasoner = new GenericRuleReasoner(rules);
 		reasoner.setOWLTranslation(true);
 		reasoner.setDerivationLogging(true);
