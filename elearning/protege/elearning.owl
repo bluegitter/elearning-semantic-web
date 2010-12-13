@@ -978,11 +978,17 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Oracle_Beijing</name>
   </Corporations>
+  <E_Resource_DOC rdf:ID="rid00004">
+    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >doc2</name>
+    <fileLocation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></fileLocation>
+    <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >hard</difficulty>
+    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >rid00004</id>
+  </E_Resource_DOC>
   <Paper rdf:ID="Paper1"/>
-  <E_Study_Style rdf:ID="E_Study_Style_1">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >DOC</rdfs:comment>
-  </E_Study_Style>
   <Corporations rdf:ID="IBM_Beijing">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >IBM</name>
@@ -990,10 +996,16 @@
     >Beijing</address>
   </Corporations>
   <US_University rdf:ID="US_Ivy_League"/>
-  <E_Study_Style rdf:ID="E_Study_Style_2">
-    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >PDF</rdfs:comment>
-  </E_Study_Style>
+  <E_Resource_PDF rdf:ID="rid00002">
+    <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >easy</difficulty>
+    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >rid00002</id>
+    <fileLocation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >filelocation</fileLocation>
+    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >pdf2</name>
+  </E_Resource_PDF>
   <E_Concept rdf:ID="CMP.CT_Construction_Technologies">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >CMP.CT_Construction_Technologies</id>
@@ -1227,7 +1239,6 @@
                                           </E_Concept>
                                         </inverse_of_is_son_of>
                                         <inverse_of_is_part_of rdf:resource="#CMP.CF9_004_JavaScripts"/>
-                                        <inverse_of_is_son_of rdf:resource="#CMP.CF9_003_Java"/>
                                         <inverse_of_is_son_of>
                                           <E_Concept rdf:ID="CMP.CF9_005_Python">
                                             <name rdf:datatype=
@@ -1240,6 +1251,7 @@
                                             <is_son_of rdf:resource="#CMP.CF9_Programming_Language_Foundations"/>
                                           </E_Concept>
                                         </inverse_of_is_son_of>
+                                        <inverse_of_is_son_of rdf:resource="#CMP.CF9_003_Java"/>
                                         <is_son_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
                                         <inverse_of_is_son_of rdf:resource="#CMP.CF9_001_C"/>
                                         <is_part_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
@@ -1315,6 +1327,15 @@
                                         >1</value>
                                         <inverse_of_has_interest>
                                           <E_Learner rdf:ID="el002">
+                                            <has_study_style>
+                                              <E_Study_Style rdf:ID="E_Study_Style_2">
+                                                <rdfs:comment
+                                                 rdf:datatype=
+                                                "http://www.w3.org/2001/XMLSchema#string"
+                                                >PDF</rdfs:comment>
+                                                <inverse_of_has_study_style rdf:resource="#el002"/>
+                                              </E_Study_Style>
+                                            </has_study_style>
                                             <has_portfolio>
                                               <E_Portfolio rdf:ID="E_Portfolio_el002-1">
                                                 <inverse_of_has_portfolio rdf:resource="#el002"/>
@@ -1328,27 +1349,6 @@
                                                     <is_resource_of_P>
                                                       <E_Portfolio rdf:ID="E_Portfolio_el001-2">
                                                         <inverse_of_is_resource_of_P rdf:resource="#rid00003"/>
-                                                        <inverse_of_is_resource_of_P>
-                                                          <E_Resource_DOC rdf:ID="rid00004">
-                                                            <name
-                                                             rdf:datatype=
-                                                            "http://www.w3.org/2001/XMLSchema#string"
-                                                            >doc2</name>
-                                                            <fileLocation
-                                                             rdf:datatype=
-                                                            "http://www.w3.org/2001/XMLSchema#string"
-                                                            ></fileLocation>
-                                                            <is_resource_of_P rdf:resource="#E_Portfolio_el001-2"/>
-                                                            <difficulty
-                                                             rdf:datatype=
-                                                            "http://www.w3.org/2001/XMLSchema#string"
-                                                            >hard</difficulty>
-                                                            <id
-                                                             rdf:datatype=
-                                                            "http://www.w3.org/2001/XMLSchema#string"
-                                                            >rid00004</id>
-                                                          </E_Resource_DOC>
-                                                        </inverse_of_is_resource_of_P>
                                                         <inverse_of_has_portfolio rdf:resource="#el001"/>
                                                       </E_Portfolio>
                                                     </is_resource_of_P>
@@ -1451,21 +1451,6 @@
                                     <is_resource_of_P rdf:resource="#E_Portfolio_el001-1"/>
                                   </E_Resource_PDF>
                                 </inverse_of_is_resource_of_P>
-                                <inverse_of_is_resource_of_P>
-                                  <E_Resource_PDF rdf:ID="rid00002">
-                                    <is_resource_of_P rdf:resource="#E_Portfolio_el001-1"/>
-                                    <difficulty rdf:datatype=
-                                    "http://www.w3.org/2001/XMLSchema#string"
-                                    >easy</difficulty>
-                                    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                                    >rid00002</id>
-                                    <fileLocation rdf:datatype=
-                                    "http://www.w3.org/2001/XMLSchema#string"
-                                    >filelocation</fileLocation>
-                                    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                                    >pdf2</name>
-                                  </E_Resource_PDF>
-                                </inverse_of_is_resource_of_P>
                               </E_Portfolio>
                             </has_portfolio>
                             <grade rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1478,6 +1463,13 @@
                                 <inverse_of_is_concept_of_I rdf:resource="#CMP.CF11_Database_Foundations"/>
                               </E_Interest>
                             </has_interest>
+                            <has_study_style>
+                              <E_Study_Style rdf:ID="E_Study_Style_1">
+                                <inverse_of_has_study_style rdf:resource="#el001"/>
+                                <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                >DOC</rdfs:comment>
+                              </E_Study_Style>
+                            </has_study_style>
                             <has_performance>
                               <E_Performance rdf:ID="E_Performance_2">
                                 <value rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1510,15 +1502,6 @@
                                             <id rdf:datatype=
                                             "http://www.w3.org/2001/XMLSchema#string"
                                             >testPostCnp4</id>
-                                            <is_concept_of_P>
-                                              <E_Performance rdf:ID="E_Performance_3">
-                                                <inverse_of_is_concept_of_P rdf:resource="#testPostCnp4"/>
-                                                <inverse_of_has_performance rdf:resource="#el001"/>
-                                                <value rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >1</value>
-                                              </E_Performance>
-                                            </is_concept_of_P>
                                           </E_Concept>
                                         </is_pre_concept_of>
                                         <is_pre_concept_of>
@@ -1537,6 +1520,15 @@
                                             <id rdf:datatype=
                                             "http://www.w3.org/2001/XMLSchema#string"
                                             >testPostCnp2</id>
+                                            <is_concept_of_P>
+                                              <E_Performance rdf:ID="E_Performance_3">
+                                                <inverse_of_is_concept_of_P rdf:resource="#testPostCnp2"/>
+                                                <inverse_of_has_performance rdf:resource="#el001"/>
+                                                <value rdf:datatype=
+                                                "http://www.w3.org/2001/XMLSchema#string"
+                                                >1</value>
+                                              </E_Performance>
+                                            </is_concept_of_P>
                                             <name rdf:datatype=
                                             "http://www.w3.org/2001/XMLSchema#string"
                                             >p2</name>
