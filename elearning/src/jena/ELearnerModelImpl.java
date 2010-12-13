@@ -19,7 +19,10 @@ import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.InfModel;
+import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
+
 import db.OwlOperation;
 
 public class ELearnerModelImpl implements ELearnerModel{
@@ -507,12 +510,12 @@ public class ELearnerModelImpl implements ELearnerModel{
 		return false;
 	}
 	@Override
-	public ArrayList<EConcept> getPerfomanceConcepts(ELearner elearner) {
-		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
+	public ArrayList<EPerformance> getPerfomanceByConcepts(ELearner elearner) {
+		ArrayList<EPerformance> ps = new ArrayList<EPerformance>();
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
 			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
-			"SELECT ?concept ?id ?name ?performance " +
+			"SELECT ?perform ?id ?name ?performance ?pid ?pvalue " +
 			"WHERE {" +
 			"      ?concept rdf:type base:E_Concept . " +
 			"      ?concept base:id ?id . " +
@@ -520,6 +523,8 @@ public class ELearnerModelImpl implements ELearnerModel{
 			"      ?elearner base:id " +StringExchanger.getSparqlString(elearner.getId())+" . "+
 			"      ?performance base:inverse_of_is_concept_of_P ?concept . "+
 			"      ?elearner base:has_performance ?performance . "+
+			"      ?performance base:id ?pid . "+
+			"      ?performance base:value ?pvalue . "+
 			"      }";
 		Query query = QueryFactory.create(queryString);
 		
@@ -534,11 +539,17 @@ public class ELearnerModelImpl implements ELearnerModel{
 			EConcept con = new EConcept();
 			con.setCid(StringExchanger.getCommonString(id));
 			con.setName(StringExchanger.getCommonString(name));
-			concepts.add(con);
-			System.out.println(con);
+			
+			EPerformance per = new EPerformance();
+			per.setElearner(elearner);
+			per.setConcept(con);
+			per.setId(StringExchanger.getCommonString(qs.get("?pid").toString()));
+			String value = StringExchanger.getCommonString(qs.get("?pvalue").toString());
+			per.setValue(Float.valueOf(value));
+			ps.add(per);
 		}
 		qe.close();
-		return concepts;
+		return ps;
 	}
 	@Override
 	public ArrayList<EConcept> getSonConcepts(EConcept concept) {
@@ -573,27 +584,22 @@ public class ELearnerModelImpl implements ELearnerModel{
 		return concepts;
 	}
 	public static void main(String [] args)throws Exception{
+		//E_Performance_1
 		ELearnerModelImpl emi = new ELearnerModelImpl();
-		String queryString = 
-			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
-			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
-			"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "+
-			"SELECT ?type " +
-			"WHERE {" +
-			"      ?resource rdf:type ?type . " +
-		    "      ?resource base:id "+StringExchanger.getSparqlString("rid00001")+" . "+
-			"      ?resource base:name ?name . "+
-		 	"      ?resource base:difficulty ?difficulty . "+
-			"      ?resource base:fileLocation ?fileLocation . "+
-			"      }";
-		Query query = QueryFactory.create(queryString);
-
-		// Execute the query and obtain results
-		QueryExecution qe = QueryExecutionFactory.create(query, emi.getModel());
-		ResultSet results = qe.execSelect();
+		EConcept concept = new EConcept("testPreCnp");
+		ELearner elearner = new ELearner("el001");
+		EPerformance perf  = emi.getPerformance(elearner, concept);
+		System.out.println(perf.getValue());
 		
-		ResultSetFormatter.out(System.out, results, query);
-		qe.close();
+		EPerformance up = new EPerformance();
+		up.setId(perf.getId());
+		up.setConcept(concept);
+		up.setElearner(elearner);
+		up.setValue(5);
+		emi.updatePerformance(up);
+		EPerformance newP = emi.getPerformance(elearner, concept);
+		System.out.println(newP.getValue());
+
 	}
 	@Override
 	public ArrayList<EResource> getPortfolioResources(ELearner elearner) {
@@ -710,5 +716,46 @@ public class ELearnerModelImpl implements ELearnerModel{
 		}
 		qe.close();
 		return resources;
+	}
+	@Override
+	public EPerformance getPerformance(ELearner elearner, EConcept concept) {
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"SELECT ?perform ?id ?name ?difficulty ?fileLocation " +
+			"WHERE {" +
+			"      ?perform rdf:type base:E_Performance . " +
+		    "      ?perform base:id ?id . "+
+			"      ?perform base:value ?value . "+
+		 	"      ?perform base:inverse_of_has_performance ?elearner . "+
+			"      ?perform base:inverse_of_is_concept_of_P ?concept . "+
+			"      ?concept base:id "+StringExchanger.getSparqlString(concept.getCid())+" . "+
+			"      ?elearner base:id "+StringExchanger.getSparqlString(elearner.getId())+" . "+
+			"      }";
+
+		Query query = QueryFactory.create(queryString);
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+		EPerformance performance = new EPerformance();
+		while(results.hasNext()){
+			QuerySolution qs = results.next();
+			String id =qs.get("?id").toString().trim();
+			String value = qs.get("?value").toString().trim();
+			
+			performance.setId(StringExchanger.getCommonString(id));
+			float v = Float.parseFloat(StringExchanger.getCommonString(value));
+			performance.setValue(v);
+		}
+		qe.close();
+		return performance;
+	}
+	@Override
+	public boolean updatePerformance(EPerformance performance) {
+		// TODO Auto-generated method stub
+		Resource r = model.getResource(Constant.NS+performance.getId());
+		r.removeAll(model.getProperty(Constant.NS+"value"));
+		r.addProperty(model.getProperty(Constant.NS+"value"), String.valueOf(performance.getValue()));
+		return true;
 	}
 }
