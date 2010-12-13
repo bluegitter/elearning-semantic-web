@@ -30,7 +30,19 @@ public class ELearnerModelImpl implements ELearnerModel{
 	public ELearnerModelImpl(InfModel model){
 		this.model = model;
 	}
-
+	public ELearnerModelImpl(String fileURL){
+		
+	}
+	@Override
+	public boolean writeToFile(File file) {
+		try {
+			OwlOperation.updateOwlFile(model, file);
+			return true;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	public boolean addELearner(ELearner elearner){
 		Resource el = model.createResource(Constant.NS+elearner.getId(),model.getResource(Constant.NS+"E_Learner"));
 		el.addProperty(model.getProperty(Constant.NS+"name"), elearner.getName());
@@ -52,24 +64,35 @@ public class ELearnerModelImpl implements ELearnerModel{
 	
 	@Override
 	public boolean addInterest(EInterest interest) {
-		// TODO Auto-generated method stub
-		return false;
+		ELearner el = interest.getEl();
+		EConcept con = interest.getCon();
+		if(!containELearner(el.getId())){
+			return false;
+		}
+		if(!containEConcept(con.getCid())){
+			return false;
+		}
+		Resource in = model.createResource(Constant.NS+interest.getId(),model.getResource(Constant.NS+"E_Interest"));
+		in.addProperty(model.getProperty(Constant.NS+"inverse_of_has_interest"),model.getResource(Constant.NS+el.getId()));
+		in.addProperty(model.getProperty(Constant.NS+"inverse_of_is_concept_of_I"),model.getResource(Constant.NS+con.getCid()));
+		return true;
 	}
 	@Override
 	public boolean addPerfomance(EPerformance performance) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean writeToFile(File file) {
-		try {
-			OwlOperation.updateOwlFile(model, file);
-			return true;
-		} catch (IOException e) {
-			e.printStackTrace();
+		ELearner el = performance.getElearner();
+		EConcept con = performance.getConcept();
+		if(!containELearner(el.getId())){
+			return false;
 		}
-		return false;
+		if(!containEConcept(con.getCid())){
+			return false;
+		}
+		Resource in = model.createResource(Constant.NS+performance.getId(),model.getResource(Constant.NS+"E_Performance"));
+		in.addProperty(model.getProperty(Constant.NS+"inverse_of_has_performance"),model.getResource(Constant.NS+el.getId()));
+		in.addProperty(model.getProperty(Constant.NS+"inverse_of_is_concept_of_P"),model.getResource(Constant.NS+con.getCid()));
+		return true;
 	}
+	
 	@Override
 	public boolean containELearner(String eid) {
 		Resource r = model.getResource(Constant.NS+"FUCK");
@@ -81,6 +104,7 @@ public class ELearnerModelImpl implements ELearnerModel{
 	}
 	public static void main(String [] args){
 		ELearnerModelImpl emi = new ELearnerModelImpl();
+emi.getPerfomanceConcepts(new ELearner("el001"));
 	}
 	
 	@Override
@@ -145,7 +169,7 @@ public class ELearnerModelImpl implements ELearnerModel{
 		return concepts;
 	}
 	@Override
-	public ArrayList<EConcept> getELearnerConcepts(ELearner elearner) {
+	public ArrayList<EConcept> getInterestConcepts(ELearner elearner) {
 		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
@@ -297,7 +321,6 @@ public class ELearnerModelImpl implements ELearnerModel{
 
 	//get a basic ELearner by the given elearner id
 	public ELearner getLearner(String eid) {
-		// TODO Auto-generated method stub
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
 			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
@@ -336,8 +359,6 @@ public class ELearnerModelImpl implements ELearnerModel{
 
 	@Override
 	public EResource getResource(String rid) {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
 			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
@@ -429,6 +450,41 @@ public class ELearnerModelImpl implements ELearnerModel{
 		}
 		qe.close();
 		return false;
+	}
+	@Override
+	public ArrayList<EConcept> getPerfomanceConcepts(ELearner elearner) {
+		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"SELECT ?concept ?id ?name ?performance " +
+			"WHERE {" +
+			"      ?concept rdf:type base:E_Concept . " +
+			"      ?concept base:id ?id . " +
+			"      ?concept base:name ?name . "+
+			"      ?elearner base:id " +StringExchanger.getSparqlString(elearner.getId())+" . "+
+			"      ?performance base:inverse_of_is_concept_of_P ?concept . "+
+			"      ?elearner base:has_performance ?performance . "+
+			"      }";
+		Query query = QueryFactory.create(queryString);
+		
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+		
+		ResultSetFormatter.out(System.out, results, query);
+		while(results.hasNext()){
+			QuerySolution qs = results.next();
+			String id = qs.get("?id").toString();
+			String name = qs.get("?name").toString();
+			EConcept con = new EConcept();
+			con.setCid(StringExchanger.getCommonString(id));
+			con.setName(StringExchanger.getCommonString(name));
+			concepts.add(con);
+			System.out.println(con);
+		}
+		qe.close();
+		return concepts;
 	}
 
 	

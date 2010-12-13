@@ -19,8 +19,11 @@ public class Constant {
 	/********************************************************************
 	 * Database Connection Config
 	 ********************************************************************/
-	public static String DBURL = "jdbc:mysql://192.168.8.86:3306/elearning";        
-    public static String DBUSER = "ms";
+	//laptop ip : 192.168.9.161
+	//destop ip : 192.168.8.86
+	//public static String DBURL = "jdbc:mysql://localhost:3306/elearning"
+	public static String DBURL = "jdbc:mysql://192.168.8.86:3306/elearning"; 
+	public static String DBUSER = "ms";
     public static String DBPASSWORD = "ms";
     public static String SERVERURL = "http://192.168.8.86:8080/myelearner";
     public static String SERVERTESTURL = "http://192.168.8.86:8080/myelearner/webapp/mylife.jpg";

@@ -28,11 +28,13 @@ public interface ELearnerModel {
 	boolean containEResource(String rid);
 	ArrayList<EConcept> getAllConcepts();
 	ArrayList<EConcept> getMemberConcept(EConcept concept);
-	ArrayList<EConcept> getELearnerConcepts(ELearner elearner);
+	ArrayList<EConcept> getInterestConcepts(ELearner elearner);
+	ArrayList<EConcept> getPerfomanceConcepts(ELearner elearner);
 	ArrayList<EResource> getResourcesByKey(ELearner elearner, String keyword);
 	EConcept getConcept(String cid);
 	ELearner getLearner(String eid);
 	EResource getResource(String rid);
+	
 	/***************************************************************************
 	 * there are 13 rules now
 	 * rule1 to rule8 -->ELearner VS EConcept
