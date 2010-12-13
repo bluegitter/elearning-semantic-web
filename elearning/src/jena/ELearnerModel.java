@@ -32,7 +32,7 @@ public interface ELearnerModel {
 	ArrayList<EConcept> getSonConcepts(EConcept concept);
 	ArrayList<EConcept> getMemberConcept(EConcept concept);
 	ArrayList<EConcept> getInterestConcepts(ELearner elearner);
-	ArrayList<EConcept> getPerfomanceConcepts(ELearner elearner);
+	ArrayList<EPerformance> getPerfomanceByConcepts(ELearner elearner);
 	ArrayList<EResource> getResourcesByKey(ELearner elearner, String keyword);
 	ArrayList<EResource> getPortfolioResources(ELearner elearner);
 	ArrayList<EResource> getConceptResources(EConcept concept);
@@ -41,6 +41,8 @@ public interface ELearnerModel {
 	ELearner getLearner(String eid);
 	EResource getResource(String rid);
 	
+	EPerformance getPerformance(ELearner elearner, EConcept concept);
+	boolean updatePerformance(EPerformance performance);
 	/***************************************************************************
 	 * there are 13 rules now
 	 * is_recommend_of_c_ (0--8)-->ELearner VS EConcept
