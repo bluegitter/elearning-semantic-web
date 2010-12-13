@@ -6,18 +6,17 @@ import java.util.ArrayList;
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.EPerformance;
+import ontology.EPortfolio;
 import ontology.people.ELearner;
 import ontology.resources.EResource;
 import util.Constant;
 import util.StringExchanger;
-
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Resource;
 import db.OwlOperation;
@@ -54,7 +53,22 @@ public class ELearnerModelImpl implements ELearnerModel{
 		re.addProperty(model.getProperty(Constant.NS+"difficulty"), resource.getDifficulty());
 		return true;
 	}
-	
+	@Override
+	public boolean addPortfolio(EPortfolio portfolio) {
+		ELearner el = portfolio.getElearner();
+		EResource res = portfolio.getResource();
+		if(!containELearner(el.getId())){
+			return false;
+		}
+		if(!containEResource(res.getRid())){
+			return false;
+		}
+		Resource in = model.createResource(Constant.NS+portfolio.getId(),model.getResource(Constant.NS+"E_Interest"));
+		in.addProperty(model.getProperty(Constant.NS+"inverse_of_has_portfolio"),model.getResource(Constant.NS+el.getId()));
+		in.addProperty(model.getProperty(Constant.NS+"inverse_of_is_resource_of_P"),model.getResource(Constant.NS+res.getRid()));
+		in.addProperty(model.getProperty(Constant.NS+"value"),"-1");
+		return true;
+	}
 	@Override
 	public boolean addConcept(EConcept concept) {
 		Resource con = model.createResource(Constant.NS+concept.getCid(),model.getResource(Constant.NS+"E_Concept"));
@@ -75,6 +89,7 @@ public class ELearnerModelImpl implements ELearnerModel{
 		Resource in = model.createResource(Constant.NS+interest.getId(),model.getResource(Constant.NS+"E_Interest"));
 		in.addProperty(model.getProperty(Constant.NS+"inverse_of_has_interest"),model.getResource(Constant.NS+el.getId()));
 		in.addProperty(model.getProperty(Constant.NS+"inverse_of_is_concept_of_I"),model.getResource(Constant.NS+con.getCid()));
+		in.addProperty(model.getProperty(Constant.NS+"value"),"-1");
 		return true;
 	}
 	@Override
@@ -90,6 +105,7 @@ public class ELearnerModelImpl implements ELearnerModel{
 		Resource in = model.createResource(Constant.NS+performance.getId(),model.getResource(Constant.NS+"E_Performance"));
 		in.addProperty(model.getProperty(Constant.NS+"inverse_of_has_performance"),model.getResource(Constant.NS+el.getId()));
 		in.addProperty(model.getProperty(Constant.NS+"inverse_of_is_concept_of_P"),model.getResource(Constant.NS+con.getCid()));
+		in.addProperty(model.getProperty(Constant.NS+"value"),"-1");
 		return true;
 	}
 	
@@ -552,7 +568,10 @@ public class ELearnerModelImpl implements ELearnerModel{
 		ELearnerModelImpl emi = new ELearnerModelImpl();
 		ELearner el = new ELearner("el001");
 		//EConcept concept = new EConcept("Software_Engineer");
-		ArrayList<ELearner> c = emi.getRecommendELearner(el, 0);
+		EResource r = emi.getResource("rid00003");
+		EPortfolio p = new EPortfolio("new portfolio",el,r,0);
+		emi.addPortfolio(p);
+		ArrayList<EResource> c = emi.getPortfolioResources(el);
 		System.out.println("size:"+c.size());
 	}
 	@Override
@@ -596,5 +615,82 @@ public class ELearnerModelImpl implements ELearnerModel{
 		qe.close();
 		return resources;
 	}
+	
+	@Override
+	public ArrayList<EResource> getConceptResources(EConcept concept) {
+		ArrayList<EResource> resources = new ArrayList<EResource>();
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"SELECT ?resource ?id ?name ?difficulty ?fileLocation " +
+			"WHERE {" +
+			"      ?resource rdf:type base:E_Resource . " +
+			"      ?resource base:id ?id . " +
+			"      ?resource base:name ?name . "+
+			"      ?concept base:id " +StringExchanger.getSparqlString(concept.getCid())+" . "+
+			"      ?resource base:is_resource_of_C ?concept . "+
+			"      ?resource base:difficulty ?difficulty . "+
+			"      ?resource base:fileLocation ?fileLocation . "+
+			"      }";
+		Query query = QueryFactory.create(queryString);
+		
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+		
+		while(results.hasNext()){
+			QuerySolution qs = results.next();
+			String id = qs.get("?id").toString();
+			String name = qs.get("?name").toString();
+			String difficulty = qs.get("?difficulty").toString().trim();
+			String fileLocation = qs.get("?fileLocation").toString().trim();
+			EResource res = new EResource();
+			res.setRid(StringExchanger.getCommonString(id));
+			res.setName(StringExchanger.getCommonString(name));
+			res.setDifficulty(StringExchanger.getCommonString(difficulty));
+			res.setFileLocation(StringExchanger.getCommonString(fileLocation));
+			System.out.println(res);resources.add(res);
+		}
+		qe.close();
+		return resources;
+	}
+	@Override
+	public ArrayList<EResource> getAllResources() {
+		ArrayList<EResource> resources = new ArrayList<EResource>();
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"SELECT ?resource ?id ?name ?difficulty ?fileLocation " +
+			"WHERE {" +
+			"      ?resource rdf:type base:E_Resource . " +
+		    "      ?resource base:id ?id . "+
+			"      ?resource base:name ?name . "+
+		 	"      ?resource base:difficulty ?difficulty . "+
+			"      ?resource base:fileLocation ?fileLocation . "+
+			"      }";
+
+		Query query = QueryFactory.create(queryString);
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+		while(results.hasNext()){
+			QuerySolution qs = results.next();
+			EResource res = new EResource();
+			String id =qs.get("?id").toString().trim();
+			String name = qs.get("?name").toString().trim();
+			String difficulty = qs.get("?difficulty").toString().trim();
+			String fileLocation = qs.get("?fileLocation").toString().trim();
+			res.setRid(StringExchanger.getCommonString(id));
+			res.setName(StringExchanger.getCommonString(name));
+			res.setDifficulty(StringExchanger.getCommonString(difficulty));
+			res.setFileLocation(StringExchanger.getCommonString(fileLocation));
+			System.out.println(res);
+			resources.add(res);
+		}
+		qe.close();
+		return resources;
+	}
+	
+
 	
 }

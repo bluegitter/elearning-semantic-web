@@ -2,6 +2,7 @@ package jena;
 
 import java.util.ArrayList;
 import ontology.EConcept;
+import ontology.EPortfolio;
 import ontology.people.ELearner;
 import ontology.resources.EResource;
 import junit.framework.TestCase;
@@ -63,6 +64,22 @@ public class ELearnerModelQueryTest extends TestCase{
 	public void testGetRecommendEConcept(){
 		ArrayList<EConcept> c = emi.getRecommendConcepts(el, 0);
 		assertTrue(c.size()==5);
+	}
+	public void testGetConceptResources(){
+		ArrayList<EResource> c = emi.getConceptResources(rootConcept);
+		System.out.println("size:"+c.size());
+	}
+	public void testAddPortfolio(){
+		EResource r = emi.getResource("rid00003");
+		EPortfolio p = new EPortfolio("new portfolio",el,r,0);
+		int size =  emi.getPortfolioResources(el).size();
+		emi.addPortfolio(p);
+		ArrayList<EResource> c = emi.getPortfolioResources(el);
+		assertTrue(c.size() == (size+1));
+	}
+	public void testGetAllResources(){
+		ArrayList<EResource> c = emi.getAllResources();
+		assertTrue(c.size()==4);
 	}
 	public void setUp(){
 		emi  = new ELearnerModelImpl();
