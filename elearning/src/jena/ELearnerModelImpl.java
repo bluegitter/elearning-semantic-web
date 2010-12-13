@@ -17,6 +17,7 @@ import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Resource;
 import db.OwlOperation;
@@ -31,6 +32,19 @@ public class ELearnerModelImpl implements ELearnerModel{
 	}
 	public ELearnerModelImpl(String fileURL,String ruleURL){
 		model = OwlFactory.getGenericRuleReasonerModel(fileURL,ruleURL);
+	}
+	
+	public InfModel getModel() {
+		return model;
+	}
+	public void setModel(InfModel model) {
+		this.model = model;
+	}
+	@Override
+	public ArrayList<EResource> getResourcesByKey(ELearner elearner,
+			String keyword) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	@Override
 	public boolean writeToFile(File file) {
@@ -331,12 +345,6 @@ public class ELearnerModelImpl implements ELearnerModel{
 		qe.close();
 		return resources;
 	}
-	@Override
-	public ArrayList<EResource> getResourcesByKey(ELearner elearner,
-			String keyword) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	//get a basic Concept by the concept id
 	public EConcept getConcept(String cid) {
@@ -566,13 +574,26 @@ public class ELearnerModelImpl implements ELearnerModel{
 	}
 	public static void main(String [] args)throws Exception{
 		ELearnerModelImpl emi = new ELearnerModelImpl();
-		ELearner el = new ELearner("el001");
-		//EConcept concept = new EConcept("Software_Engineer");
-		EResource r = emi.getResource("rid00003");
-		EPortfolio p = new EPortfolio("new portfolio",el,r,0);
-		emi.addPortfolio(p);
-		ArrayList<EResource> c = emi.getPortfolioResources(el);
-		System.out.println("size:"+c.size());
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "+
+			"SELECT ?type " +
+			"WHERE {" +
+			"      ?resource rdf:type ?type . " +
+		    "      ?resource base:id "+StringExchanger.getSparqlString("rid00001")+" . "+
+			"      ?resource base:name ?name . "+
+		 	"      ?resource base:difficulty ?difficulty . "+
+			"      ?resource base:fileLocation ?fileLocation . "+
+			"      }";
+		Query query = QueryFactory.create(queryString);
+
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, emi.getModel());
+		ResultSet results = qe.execSelect();
+		
+		ResultSetFormatter.out(System.out, results, query);
+		qe.close();
 	}
 	@Override
 	public ArrayList<EResource> getPortfolioResources(ELearner elearner) {
@@ -690,7 +711,4 @@ public class ELearnerModelImpl implements ELearnerModel{
 		qe.close();
 		return resources;
 	}
-	
-
-	
 }
