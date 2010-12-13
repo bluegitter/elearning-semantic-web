@@ -383,6 +383,16 @@
     </rdfs:subPropertyOf>
     <rdfs:range rdf:resource="#E_Concept"/>
   </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="is_son_of">
+    <rdfs:range rdf:resource="#E_Concept"/>
+    <rdfs:domain rdf:resource="#E_Concept"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="inverse_of_is_son_of"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="concept_properties"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#is_recommend_of_c_8">
     <rdfs:domain rdf:resource="#E_Concept"/>
     <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_c_8"/>
@@ -436,17 +446,17 @@
     </owl:inverseOf>
     <rdfs:subPropertyOf rdf:resource="#resouce_properties"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#is_recommend_of_c_4">
-    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_c_4"/>
-    <rdfs:domain rdf:resource="#E_Concept"/>
-    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="is_recommend_of_c_0">
     <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
     <rdfs:domain rdf:resource="#E_Concept"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_c_0"/>
     </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_recommend_of_c_4">
+    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_c_4"/>
+    <rdfs:domain rdf:resource="#E_Concept"/>
+    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#is_recommend_of_r_2">
     <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
@@ -523,7 +533,6 @@
       <owl:ObjectProperty rdf:ID="optional_concept_properties"/>
     </rdfs:subPropertyOf>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="concept_properties"/>
   <owl:ObjectProperty rdf:about="#is_pre">
     <rdfs:range rdf:resource="#E_OptionalConceptRelationship"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
@@ -640,6 +649,12 @@
     <rdfs:subPropertyOf>
       <owl:ObjectProperty rdf:about="#inverse_of_is_resource_of"/>
     </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#inverse_of_is_son_of">
+    <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
+    <rdfs:range rdf:resource="#E_Concept"/>
+    <owl:inverseOf rdf:resource="#is_son_of"/>
+    <rdfs:domain rdf:resource="#E_Concept"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#is_recommend_of_L_0">
     <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>

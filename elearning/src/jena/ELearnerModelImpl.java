@@ -486,6 +486,38 @@ emi.getPerfomanceConcepts(new ELearner("el001"));
 		qe.close();
 		return concepts;
 	}
+	@Override
+	public ArrayList<EConcept> getSonConcepts(EConcept concept) {
+		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"SELECT ?concept ?id ?name " +
+			"WHERE {" +
+			"      ?concept rdf:type base:E_Concept . " +
+			"      ?concept base:id ?id . " +
+			"      ?concept base:name ?name . "+
+			"      ?concept base:is_son_of ?fatherConcept . "+
+			"      ?fatherConcept rdf:type base:E_Concept . "+
+			"      ?fatherConcept base:id " +StringExchanger.getSparqlString(concept.getCid())+" . "+
+			"      }";
+
+		Query query = QueryFactory.create(queryString);
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+		while(results.hasNext()){
+			QuerySolution qs = results.next();
+			String id = qs.get("?id").toString();
+			String name = qs.get("?name").toString();
+			EConcept con = new EConcept();
+			con.setCid(StringExchanger.getCommonString(id));
+			con.setName(StringExchanger.getCommonString(name));
+			concepts.add(con);
+		}
+		qe.close();
+		return concepts;
+	}
 
 	
 }

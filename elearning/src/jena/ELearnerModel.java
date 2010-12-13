@@ -27,6 +27,7 @@ public interface ELearnerModel {
 	boolean containEConcept(String cid);
 	boolean containEResource(String rid);
 	ArrayList<EConcept> getAllConcepts();
+	ArrayList<EConcept> getSonConcepts(EConcept concept);
 	ArrayList<EConcept> getMemberConcept(EConcept concept);
 	ArrayList<EConcept> getInterestConcepts(ELearner elearner);
 	ArrayList<EConcept> getPerfomanceConcepts(ELearner elearner);
