@@ -7,10 +7,11 @@ public class EResource {
 	private String fileLocation;
 	private String postfix;
 	public EResource(){
-		
+		postfix="pdf";
 	}
 	public EResource(String rid){
 		this.rid = rid;
+		postfix="pdf";
 	}
 
 	public String getRid() {
@@ -37,6 +38,12 @@ public class EResource {
 		return name;
 	}
 
+	public String getPostfix() {
+		return postfix;
+	}
+	public void setPostfix(String postfix) {
+		this.postfix = postfix;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}
