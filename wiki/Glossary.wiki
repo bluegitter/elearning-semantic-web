@@ -40,9 +40,8 @@
  # E_People_Characters (用户特征)
   * E_Performance (用户认知水平)
   * E_Personal (用户个人性息)
-  * E_Preference (用户偏好)
-   * E_Interest (用户兴趣)
-   * E_Study_Style (用户偏好学习风格)
+  * E_Interest (用户兴趣)
+  * E_Study_Style (用户偏好学习风格)
   * E_Security (用户安全信息)
   * E_Portfolio (用户已学过的资源)
  # E_Resource (资源)
@@ -65,10 +64,10 @@
 || E_Concept || inverse_of_is_part_of || E_Concept || 
 || E_Concept || is_post_concept_of || E_Concept || 
 || E_Concept || is_pre_concept_of || E_Concept || 
-|| E_Concept || is_concept_of || E_Interest ||
-|| E_Concept || is_concept_of || E_Performance ||
-|| E_Interest || inverse_of_is_concept_of || E_Concept ||
-|| E_Performance || inverse_of_is_concept_of || E_Concept ||
+|| E_Concept || is_concept_of_I || E_Interest ||
+|| E_Concept || is_concept_of_P || E_Performance ||
+|| E_Interest || inverse_of_is_concept_of_I || E_Concept ||
+|| E_Performance || inverse_of_is_concept_of_P || E_Concept ||
 
 *optinal_concept_properties*
 || *Domain* || *Property* || *Range* || 
@@ -131,26 +130,42 @@
 || E_Study_Style || inverse_of_has_study_style || E_Learner ||
 || E_People || has_personal|| E_Personal ||
 || E_Learner || has_security|| E_Security ||
-|| E_Concept || is_recommended_of || E_Learner ||
-|| E_Resource || is_recommended_of || E_Learner ||
-|| E_Concept || is_recommended_of_1 || E_Learner ||
-|| E_Resource || is_recommended_of_1 || E_Learner ||
-|| E_Concept || is_recommended_of_2 || E_Learner ||
-|| E_Resource || is_recommended_of_2 || E_Learner ||
-|| E_Learner || inverse_of_is_recommended_of || E_Concept ||
-|| E_Learner || inverse_of_is_recommended_of || E_Resource ||
-|| E_Learner || inverse_of_is_recommended_of_1 || E_Concept ||
-|| E_Learner || inverse_of_is_recommended_of_1 || E_Resource ||
-|| E_Learner || inverse_of_is_recommended_of_2 || E_Concept ||
-|| E_Learner || inverse_of_is_recommended_of_2 || E_Resource ||
+|| E_Concept || is_recommended_of_c_0 || E_Learner ||
+|| E_Concept || is_recommended_of_c_1 || E_Learner ||
+|| E_Concept || is_recommended_of_c_2 || E_Learner ||
+|| E_Concept || is_recommended_of_c_3 || E_Learner ||
+|| E_Concept || is_recommended_of_c_4 || E_Learner ||
+|| E_Concept || is_recommended_of_c_5 || E_Learner ||
+|| E_Concept || is_recommended_of_c_6 || E_Learner ||
+|| E_Concept || is_recommended_of_c_7 || E_Learner ||
+|| E_Concept || is_recommended_of_c_8 || E_Learner ||
+|| E_Resource || is_recommended_of_r_0 || E_Learner ||
+|| E_Resource || is_recommended_of_r_1 || E_Learner ||
+|| E_Resource || is_recommended_of_r_2 || E_Learner ||
+|| E_Learner || is_recommended_of_L_0 || E_Learner ||
+|| E_Learner || is_recommended_of_L_1 || E_Learner ||
+|| E_Learner || inverse_of_is_recommended_of_c_0 || E_Concept ||
+|| E_Learner || inverse_of_is_recommended_of_c_1 || E_Concept ||
+|| E_Learner || inverse_of_is_recommended_of_c_2 || E_Concept ||
+|| E_Learner || inverse_of_is_recommended_of_c_3 || E_Concept ||
+|| E_Learner || inverse_of_is_recommended_of_c_4 || E_Concept ||
+|| E_Learner || inverse_of_is_recommended_of_c_5 || E_Concept ||
+|| E_Learner || inverse_of_is_recommended_of_c_6 || E_Concept ||
+|| E_Learner || inverse_of_is_recommended_of_c_7 || E_Concept ||
+|| E_Learner || inverse_of_is_recommended_of_c_8 || E_Concept ||
+|| E_Learner || inverse_of_is_recommended_of_r_0 || E_Resource ||
+|| E_Learner || inverse_of_is_recommended_of_r_1 || E_Resource ||
+|| E_Learner || inverse_of_is_recommended_of_r_2 || E_Resource ||
+|| E_Learner || inverse_of_is_recommended_of_L_0 || E_Learner ||
+|| E_Learner || inverse_of_is_recommended_of_L_1 || E_Learner ||
 
 *resource_properties*
 || *Domain* || *Property* || *Range* || 
 || E_EducationMaterial || is_application_type_of || E_Resouce ||
 || E_Resouce || inverse_of_is_application_type_of || E_EducationMaterial ||
-|| E_Resouce || is_resource_of || E_Concept ||
-|| E_Resouce || is_resource_of || E_Portfolio ||
-|| E_Concept || inverse_of_is_resource_of || E_Resource ||
-|| E_Portfolio || inverse_of_is_resource_of || E_Resource ||
+|| E_Resouce || is_resource_of_C || E_Concept ||
+|| E_Resouce || is_resource_of_P || E_Portfolio ||
+|| E_Concept || inverse_of_is_resource_of_C || E_Resource ||
+|| E_Portfolio || inverse_of_is_resource_of_P || E_Resource ||
 
 = 系统中术语 =
