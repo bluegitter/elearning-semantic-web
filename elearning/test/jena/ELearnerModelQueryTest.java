@@ -27,26 +27,30 @@ public class ELearnerModelQueryTest extends TestCase{
 		ArrayList<EConcept> c = emi.getMemberConcept(rootConcept);
 		assertTrue(c.size()==30);
 	}
-	public void testGetELearnerConcepts(){
+	public void testGetInterestConcepts(){
 		ArrayList<EConcept> c = emi.getInterestConcepts(el);
-		assertTrue(c.size()==4);
+		assertTrue(c.size()==5);
+	}
+	public void testGetPerformanceConcepts(){
+		ArrayList<EConcept> c = emi.getPerfomanceConcepts(el);
+		assertTrue(c.size()==3);
 	}
 	public void testContainELearner(){
 		assertTrue(emi.containELearner("el001"));
 	}
 	public void testContainEConcept(){
-		assertTrue(emi.containEConcept("root-se"));
+		assertTrue(emi.containEConcept("Software_Engineer"));
 	}
 	public void testContainEResource(){
 		assertTrue(emi.containEResource("rid00001"));
 	}
 	public void testGetSonConcepts(){
-		ArrayList<EConcept> c = emi.getMemberConcept(rootConcept);
-		assertTrue(c.size()==30);
+		ArrayList<EConcept> c = emi.getSonConcepts(rootConcept);
+		assertTrue(c.size()==11);
 	}
 	public void setUp(){
 		emi  = new ELearnerModelImpl();
-		rootConcept = new EConcept("root-se");
+		rootConcept = new EConcept("Software_Engineer");
 		el = new ELearner("el001");
 	}
 	private ELearnerModelImpl emi;
