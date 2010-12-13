@@ -30,9 +30,15 @@ public class DbOperation {
 			String pas=(String)rs.getString("password");
 			System.out.println(pas);
 			if(pas.equals(userPassword)){
+				rs.close();
+				st.close();
+				con.close();
 				return true;
 			}
 		}
+		rs.close();
+		st.close();
+		con.close();
 		return false;
 	}
 	public static boolean login(ELearner el) throws Exception {
@@ -43,6 +49,8 @@ public class DbOperation {
 		Statement st = con.createStatement();
 		String sql = "insert into elearner values('"+el.getId()+"','"+el.getName()+"','"+el.getGrade()+"','"+el.getPassword()+"')";
 		st.execute(sql);
+		st.close();
+		con.close();
 		System.out.println("add ELearner to DB Successfully");
 		return true;
 	}
@@ -52,11 +60,15 @@ public class DbOperation {
 		if(login(el)){
 			String sql = "delete from elearner where elearner_id ='"+el.getId()+"'";
 			st.execute(sql);
+			st.close();
+			con.close();
 			System.out.println("remove ELearner to DB Successfully");
+			return true;
 		}else{
 			System.out.println("user is and password are not matched ");
+			return false;
 		}
-		return true;
+		
 	}
 	public static boolean updateELearner(ELearner el) throws Exception{
 		Connection con = DataFactory.getConnection();
@@ -64,9 +76,13 @@ public class DbOperation {
 		if(login(el)){
 			String sql = "update elearner set people_name='a',grade='a',password ='a' where elearner_id ='"+el.getId()+"'";
 			st.execute(sql);
+			st.close();
+			con.close();
 			System.out.println("update ELearner to DB Successfully");
 			return true;
 		}else{
+			st.close();
+			con.close();
 			System.out.println("user is and password are not matched ");
 			return false;
 		}
@@ -83,9 +99,15 @@ public class DbOperation {
 				el.setName((String)rs.getString("people_name"));
 				el.setGrade((String)rs.getString("grade"));
 			}else{
+				rs.close();
+				st.close();
+				con.close();
 				throw new IllegallPersonException("user is not a register user");
 			}
 		}
+		rs.close();
+		st.close();
+		con.close();
 		return el;
 	}
 	
@@ -98,9 +120,15 @@ public class DbOperation {
 		while(rs.next()){
 			String id=(String)rs.getString("elearner_id");
 			if(id.equals(uid)){
+				rs.close();
+				st.close();
+				con.close();
 				return true;
 			}
 		}
+		rs.close();
+		st.close();
+		con.close();
 		return false;
 	}	
 	

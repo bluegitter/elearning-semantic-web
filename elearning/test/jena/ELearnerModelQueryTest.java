@@ -48,6 +48,22 @@ public class ELearnerModelQueryTest extends TestCase{
 		ArrayList<EConcept> c = emi.getSonConcepts(rootConcept);
 		assertTrue(c.size()==11);
 	}
+	public void testGetPortfolioResources(){
+		ArrayList<EResource> c = emi.getPortfolioResources(el);
+		assertTrue(c.size()==2);
+	}
+	public void testGetRecommendELearner(){
+		ArrayList<ELearner> c = emi.getRecommendELearner(el, 0);
+		assertTrue(c.size()==1);
+	}
+	public void testGetRecommendResource(){
+		ArrayList<EResource> c = emi.getRecommendResources(el, 0);
+		assertTrue(c.size()==2);
+	}
+	public void testGetRecommendEConcept(){
+		ArrayList<EConcept> c = emi.getRecommendConcepts(el, 0);
+		assertTrue(c.size()==5);
+	}
 	public void setUp(){
 		emi  = new ELearnerModelImpl();
 		rootConcept = new EConcept("Software_Engineer");

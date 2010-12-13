@@ -3,9 +3,11 @@ package ontology;
 public class EConcept {
 	public EConcept(){
 		cid = "tempCID";
+		name = "name";
 	}
 	public EConcept(String cid){
 		this.cid = cid;
+		this.name = "name";
 	}
 
 	public String getCid() {
