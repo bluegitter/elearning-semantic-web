@@ -30,8 +30,8 @@ public class ELearnerModelImpl implements ELearnerModel{
 	public ELearnerModelImpl(InfModel model){
 		this.model = model;
 	}
-	public ELearnerModelImpl(String fileURL){
-		
+	public ELearnerModelImpl(String fileURL,String ruleURL){
+		model = OwlFactory.getGenericRuleReasonerModel(fileURL,ruleURL);
 	}
 	@Override
 	public boolean writeToFile(File file) {
@@ -101,10 +101,6 @@ public class ELearnerModelImpl implements ELearnerModel{
 		boolean b3 = r.isLiteral();
 		System.out.println(b+"\t"+b2+"\t"+b3);
 		return true;
-	}
-	public static void main(String [] args){
-		ELearnerModelImpl emi = new ELearnerModelImpl();
-emi.getPerfomanceConcepts(new ELearner("el001"));
 	}
 	
 	@Override
@@ -395,7 +391,7 @@ emi.getPerfomanceConcepts(new ELearner("el001"));
 	//return the root concept which is already set.
 	public EConcept getRootConcept(){
 		EConcept rootConcept = new EConcept();
-		rootConcept.setCid("root-se");
+		rootConcept.setCid("Software_Engineer");
 		rootConcept.setName("software engineering");
 		return rootConcept;
 	}
@@ -518,6 +514,11 @@ emi.getPerfomanceConcepts(new ELearner("el001"));
 		qe.close();
 		return concepts;
 	}
-
+	public static void main(String [] args)throws Exception{
+		ELearnerModelImpl emi = new ELearnerModelImpl();
+		EConcept concept = new EConcept("Software_Engineer");
+		ArrayList<EConcept> c = emi.getSonConcepts(concept);
+		System.out.println("size:"+c.size());
+	}
 	
 }

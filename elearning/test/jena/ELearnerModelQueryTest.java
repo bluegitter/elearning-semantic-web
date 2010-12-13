@@ -1,9 +1,6 @@
 package jena;
 
 import java.util.ArrayList;
-
-import com.hp.hpl.jena.rdf.model.InfModel;
-
 import ontology.EConcept;
 import ontology.people.ELearner;
 import ontology.resources.EResource;
@@ -11,7 +8,7 @@ import junit.framework.TestCase;
 
 public class ELearnerModelQueryTest extends TestCase{
 	public void testGetConcept(){
-		EConcept con = emi.getConcept("cmp.cf9.001");
+		EConcept con = emi.getConcept("CMP.CF9_001_C");
 		assertTrue(con.getName().equals("c"));
 	}
 	public void testGetELearner(){
@@ -24,15 +21,13 @@ public class ELearnerModelQueryTest extends TestCase{
 	}
 	public void testGetAllConcepts(){
 		ArrayList<EConcept> c = emi.getAllConcepts();
-		assertTrue(c.size()==31);
+		assertTrue(c.size()==36);
 	}
 	public void testGetMemberConcepts(){
-		EConcept concept = new EConcept("root-se");
-		ArrayList<EConcept> c = emi.getMemberConcept(concept);
+		ArrayList<EConcept> c = emi.getMemberConcept(rootConcept);
 		assertTrue(c.size()==30);
 	}
 	public void testGetELearnerConcepts(){
-		ELearner el = new ELearner("el001");
 		ArrayList<EConcept> c = emi.getInterestConcepts(el);
 		assertTrue(c.size()==4);
 	}
@@ -45,9 +40,16 @@ public class ELearnerModelQueryTest extends TestCase{
 	public void testContainEResource(){
 		assertTrue(emi.containEResource("rid00001"));
 	}
+	public void testGetSonConcepts(){
+		ArrayList<EConcept> c = emi.getMemberConcept(rootConcept);
+		assertTrue(c.size()==30);
+	}
 	public void setUp(){
 		emi  = new ELearnerModelImpl();
+		rootConcept = new EConcept("root-se");
+		el = new ELearner("el001");
 	}
-
 	private ELearnerModelImpl emi;
+	private EConcept rootConcept;
+	private ELearner el;
 }

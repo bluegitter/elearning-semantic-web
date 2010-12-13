@@ -1,6 +1,5 @@
 package jena;
 
-import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 import org.mindswap.pellet.jena.PelletReasonerFactory;
@@ -21,6 +20,15 @@ public class OwlFactory {
 	public static Model getDefaultOWLModel(){
 		Model model = ModelFactory.createDefaultModel();
 		InputStream in = FileManager.get().open(Constant.OWLFile);
+		if(in ==null){
+			throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
+		}
+		model.read(in,Constant.NS);
+		return model;
+	}
+	public static Model getDefaultOWLModel(String fileURL){
+		Model model = ModelFactory.createDefaultModel();
+		InputStream in = FileManager.get().open(fileURL);
 		if(in ==null){
 			throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
 		}
@@ -53,14 +61,14 @@ public class OwlFactory {
 		InfModel infModel = ModelFactory.createInfModel(reasoner, model);
 		return infModel;
 	}
-	public static InfModel getGenericRuleReasonerModel(String fileURL){
-		List<Rule> rules = Rule.rulesFromURL(fileURL);
+	public static InfModel getGenericRuleReasonerModel(String fileURL,String ruleURL){
+		List<Rule> rules = Rule.rulesFromURL(ruleURL);
 		GenericRuleReasoner reasoner = new GenericRuleReasoner(rules);
 		reasoner.setOWLTranslation(true);
 		reasoner.setDerivationLogging(true);
 		reasoner.setTransitiveClosureCaching(true);
 		
-		OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM,OwlFactory.getDefaultOWLModel());
+		OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM,OwlFactory.getDefaultOWLModel(fileURL));
 		Resource configuration = model.createResource();
 		configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
 		InfModel infModel = ModelFactory.createInfModel(reasoner, model);
