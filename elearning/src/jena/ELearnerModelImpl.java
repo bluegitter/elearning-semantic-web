@@ -737,8 +737,9 @@ public class ELearnerModelImpl implements ELearnerModel{
 		// Execute the query and obtain results
 		QueryExecution qe = QueryExecutionFactory.create(query, model);
 		ResultSet results = qe.execSelect();
-		EPerformance performance = new EPerformance();
+		EPerformance performance = null;
 		while(results.hasNext()){
+			performance = new EPerformance();
 			QuerySolution qs = results.next();
 			String id =qs.get("?id").toString().trim();
 			String value = qs.get("?value").toString().trim();
