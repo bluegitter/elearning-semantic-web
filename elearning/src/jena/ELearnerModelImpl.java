@@ -510,7 +510,7 @@ public class ELearnerModelImpl implements ELearnerModel{
 		return false;
 	}
 	@Override
-	public ArrayList<EPerformance> getPerfomanceByConcepts(ELearner elearner) {
+	public ArrayList<EPerformance> getPerformanceByConcepts(ELearner elearner) {
 		ArrayList<EPerformance> ps = new ArrayList<EPerformance>();
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
@@ -523,7 +523,6 @@ public class ELearnerModelImpl implements ELearnerModel{
 			"      ?elearner base:id " +StringExchanger.getSparqlString(elearner.getId())+" . "+
 			"      ?performance base:inverse_of_is_concept_of_P ?concept . "+
 			"      ?elearner base:has_performance ?performance . "+
-			"      ?performance base:id ?pid . "+
 			"      ?performance base:value ?pvalue . "+
 			"      }";
 		Query query = QueryFactory.create(queryString);
@@ -543,7 +542,9 @@ public class ELearnerModelImpl implements ELearnerModel{
 			EPerformance per = new EPerformance();
 			per.setElearner(elearner);
 			per.setConcept(con);
-			per.setId(StringExchanger.getCommonString(qs.get("?pid").toString()));
+			String performanceURI = qs.get("?performance").toString();
+			String pid = model.getResource(performanceURI).getLocalName();
+			per.setId(pid);
 			String value = StringExchanger.getCommonString(qs.get("?pvalue").toString());
 			per.setValue(Float.valueOf(value));
 			ps.add(per);
@@ -587,15 +588,8 @@ public class ELearnerModelImpl implements ELearnerModel{
 		//E_Performance_1
 		ELearnerModelImpl emi = new ELearnerModelImpl();
 		EConcept concept = new EConcept("testPreCnp");
-		ELearner elearner = new ELearner("el002");
-		EPerformance performance = new EPerformance();
-		performance.setConcept(concept);
-		performance.setElearner(elearner);
-		performance.setId("jklfdsj");
-		performance.setValue(2);
-		emi.addPerfomance(performance);
-		EPerformance perf = emi.getPerformance(elearner, concept);
-		System.out.println(perf.getValue());
+		ELearner elearner = new ELearner("el001");
+		emi.getPerformanceByConcepts(elearner);
 		
 		
 		/*
@@ -741,12 +735,10 @@ public class ELearnerModelImpl implements ELearnerModel{
 			"      ?concept base:id "+StringExchanger.getSparqlString(concept.getCid())+" . "+
 			"      ?elearner base:id "+StringExchanger.getSparqlString(elearner.getId())+" . "+
 			"      }";
-
 		Query query = QueryFactory.create(queryString);
 		// Execute the query and obtain results
 		QueryExecution qe = QueryExecutionFactory.create(query, model);
 		ResultSet results = qe.execSelect();
-		//ResultSetFormatter.out(System.out, results, query);
 		
 		EPerformance performance = null;
 		while(results.hasNext()){

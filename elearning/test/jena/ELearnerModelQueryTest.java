@@ -2,6 +2,7 @@ package jena;
 
 import java.util.ArrayList;
 import ontology.EConcept;
+import ontology.EPerformance;
 import ontology.EPortfolio;
 import ontology.people.ELearner;
 import ontology.resources.EResource;
@@ -32,9 +33,26 @@ public class ELearnerModelQueryTest extends TestCase{
 		ArrayList<EConcept> c = emi.getInterestConcepts(el);
 		assertTrue(c.size()==5);
 	}
-	public void testGetPerformanceConcepts(){
-		ArrayList<EConcept> c = emi.getPerfomanceConcepts(el);
+	public void testGetPerformanceByConcepts(){
+		ArrayList<EPerformance> c = emi.getPerformanceByConcepts(el);
 		assertTrue(c.size()==3);
+	}
+	public void testAddPerformance(){
+		ELearnerModelImpl emi = new ELearnerModelImpl();
+		EConcept concept = new EConcept("testPreCnp");
+		ELearner elearner = new ELearner("el002");
+		EPerformance performance = new EPerformance();
+		performance.setConcept(concept);
+		performance.setElearner(elearner);
+		String newId ="newIDFORADD";
+		performance.setId(newId);
+		float newValue = 2;
+		performance.setValue(newValue);
+		emi.addPerfomance(performance);
+		
+		EPerformance perf = emi.getPerformance(elearner, concept);
+		assertTrue(perf.getId().equals(newId));
+		assertTrue(newValue==perf.getValue());
 	}
 	public void testContainELearner(){
 		assertTrue(emi.containELearner("el001"));
