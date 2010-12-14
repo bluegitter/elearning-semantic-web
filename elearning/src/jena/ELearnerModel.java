@@ -12,14 +12,14 @@ import ontology.resources.EResource;
 
 public interface ELearnerModel {
 	//non-user operations
-	boolean addConcept(EConcept concept);
-	boolean addPerfomance(EPerformance performance);
-	boolean addPortfolio(EPortfolio portfolio);
+	boolean addEConcept(EConcept concept);
+	boolean addEPerfomance(EPerformance performance);
+	boolean addEPortfolio(EPortfolio portfolio);
 	
 	//user operations
 	boolean addELearner(ELearner elearner);
-	boolean addResource(EResource resource);
-	boolean addInterest(EInterest interest);
+	boolean addEResource(EResource resource);
+	boolean addEInterest(EInterest interest);
 	
 	//io opertaions
 	boolean writeToFile(File file);
@@ -28,20 +28,20 @@ public interface ELearnerModel {
 	boolean containELearner(String eid);
 	boolean containEConcept(String cid);
 	boolean containEResource(String rid);
-	ArrayList<EConcept> getAllConcepts();
+	ArrayList<EConcept> getAllEConcepts();
 	ArrayList<EConcept> getSonConcepts(EConcept concept);
 	ArrayList<EConcept> getMemberConcept(EConcept concept);
 	ArrayList<EConcept> getInterestConcepts(ELearner elearner);
-	ArrayList<EPerformance> getPerformanceByConcepts(ELearner elearner);
 	ArrayList<EResource> getResourcesByKey(ELearner elearner, String keyword);
 	ArrayList<EResource> getPortfolioResources(ELearner elearner);
 	ArrayList<EResource> getConceptResources(EConcept concept);
-	ArrayList<EResource> getAllResources();
-	EConcept getConcept(String cid);
-	ELearner getLearner(String eid);
-	EResource getResource(String rid);
+	ArrayList<EResource> getAllEResources();
+	EConcept getEConcept(String cid);
+	ELearner getELearner(String eid);
+	EResource getEResource(String rid);
 	
 	EPerformance getPerformance(ELearner elearner, EConcept concept);
+	ArrayList<EPerformance> getPerformances(ELearner elearner);
 	boolean updatePerformance(EPerformance performance);
 	/***************************************************************************
 	 * there are 13 rules now
@@ -50,7 +50,7 @@ public interface ELearnerModel {
 	 * is_recommend_of_r_ (0 3) -->ELearner VS Resource
 	 * TO BE Test
 	 ****************************************************************************/
-	ArrayList<EConcept> getRecommendConcepts(ELearner elearner,int rule);
-	ArrayList<EResource> getRecommendResources(ELearner elearner,int rule);
-	ArrayList<ELearner> getRecommendELearner(ELearner elearner,int rule);
+	ArrayList<EConcept> getRecommendEConcepts(ELearner elearner,int rule);
+	ArrayList<EResource> getRecommendEResources(ELearner elearner,int rule);
+	ArrayList<ELearner> getRecommendELearners(ELearner elearner,int rule);
 }

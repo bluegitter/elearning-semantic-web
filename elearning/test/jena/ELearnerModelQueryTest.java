@@ -10,19 +10,19 @@ import junit.framework.TestCase;
 
 public class ELearnerModelQueryTest extends TestCase{
 	public void testGetConcept(){
-		EConcept con = emi.getConcept("CMP.CF9_001_C");
+		EConcept con = emi.getEConcept("CMP.CF9_001_C");
 		assertTrue(con.getName().equals("c"));
 	}
 	public void testGetELearner(){
-		ELearner c = emi.getLearner("el001");
+		ELearner c = emi.getELearner("el001");
 		assertTrue(c.getName().equals("Ma Sheng"));
 	}
 	public void testGetEResource(){
-		EResource res = emi.getResource("rid00001");
+		EResource res = emi.getEResource("rid00001");
 		assertTrue(res.getName().equals("semantic web primer"));
 	}
 	public void testGetAllConcepts(){
-		ArrayList<EConcept> c = emi.getAllConcepts();
+		ArrayList<EConcept> c = emi.getAllEConcepts();
 		assertTrue(c.size()==36);
 	}
 	public void testGetMemberConcepts(){
@@ -33,14 +33,14 @@ public class ELearnerModelQueryTest extends TestCase{
 		ArrayList<EConcept> c = emi.getInterestConcepts(el);
 		assertTrue(c.size()==5);
 	}
-	public void testGetPerformanceByConcepts(){
-		ArrayList<EPerformance> c = emi.getPerformanceByConcepts(el);
+	public void testAllPerformanceByELearner(){
+		ArrayList<EPerformance> c = emi.getPerformances(el);
 		assertTrue(c.size()==3);
 	}
 	public void testAddPerformance(){
 		ELearnerModelImpl emi = new ELearnerModelImpl();
 		EConcept concept = new EConcept("testPreCnp");
-		ELearner elearner = new ELearner("el002");
+		ELearner elearner = new ELearner("el001");
 		EPerformance performance = new EPerformance();
 		performance.setConcept(concept);
 		performance.setElearner(elearner);
@@ -48,7 +48,7 @@ public class ELearnerModelQueryTest extends TestCase{
 		performance.setId(newId);
 		float newValue = 2;
 		performance.setValue(newValue);
-		emi.addPerfomance(performance);
+		emi.addEPerfomance(performance);
 		
 		EPerformance perf = emi.getPerformance(elearner, concept);
 		assertTrue(perf.getId().equals(newId));
@@ -72,15 +72,15 @@ public class ELearnerModelQueryTest extends TestCase{
 		assertTrue(c.size()==2);
 	}
 	public void testGetRecommendELearner(){
-		ArrayList<ELearner> c = emi.getRecommendELearner(el, 0);
+		ArrayList<ELearner> c = emi.getRecommendELearners(el, 0);
 		assertTrue(c.size()==1);
 	}
 	public void testGetRecommendResource(){
-		ArrayList<EResource> c = emi.getRecommendResources(el, 0);
+		ArrayList<EResource> c = emi.getRecommendEResources(el, 0);
 		assertTrue(c.size()==2);
 	}
 	public void testGetRecommendEConcept(){
-		ArrayList<EConcept> c = emi.getRecommendConcepts(el, 0);
+		ArrayList<EConcept> c = emi.getRecommendEConcepts(el, 0);
 		assertTrue(c.size()==5);
 	}
 	public void testGetConceptResources(){
@@ -88,15 +88,15 @@ public class ELearnerModelQueryTest extends TestCase{
 		System.out.println("size:"+c.size());
 	}
 	public void testAddPortfolio(){
-		EResource r = emi.getResource("rid00003");
+		EResource r = emi.getEResource("rid00003");
 		EPortfolio p = new EPortfolio("new portfolio",el,r,0);
 		int size =  emi.getPortfolioResources(el).size();
-		emi.addPortfolio(p);
+		emi.addEPortfolio(p);
 		ArrayList<EResource> c = emi.getPortfolioResources(el);
 		assertTrue(c.size() == (size+1));
 	}
 	public void testGetAllResources(){
-		ArrayList<EResource> c = emi.getAllResources();
+		ArrayList<EResource> c = emi.getAllEResources();
 		assertTrue(c.size()==4);
 	}
 	public void setUp(){

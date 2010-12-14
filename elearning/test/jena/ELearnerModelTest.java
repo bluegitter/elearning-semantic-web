@@ -39,7 +39,7 @@ public class ELearnerModelTest {
 		res.setRid("testResourse");
 		res.setName("testResourceName");
 		res.setDifficulty("35");
-		mo.addResource(res);
+		mo.addEResource(res);
 		mo.writeToFile(file);
 	}
 }
