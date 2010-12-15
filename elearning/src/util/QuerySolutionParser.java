@@ -1,6 +1,7 @@
 package util;
 
 import ontology.EConcept;
+import ontology.EPortfolio;
 import ontology.people.ELearner;
 import ontology.resources.EResource;
 
@@ -54,6 +55,18 @@ public class QuerySolutionParser {
 		con.setCid(id);
 		con.setName(StringExchanger.getCommonString(name));
 		return con;
+	}
+	public static EPortfolio getEPortfolio(QuerySolution qs,Model model){
+		EPortfolio portfolio = new EPortfolio();
+		String id = getIdByURI(qs,model,"?portfolio");
+		float value = 0;
+		ELearner elearner = getELearner(qs,model);
+		EResource resource = getEResource(qs,model);
+		portfolio.setId(id);
+		portfolio.setElearner(elearner);
+		portfolio.setResource(resource);
+		portfolio.setValue(value);
+		return portfolio;
 	}
 	/****************************************************************************
 	 * THE ID of the ontology is the same as its URI

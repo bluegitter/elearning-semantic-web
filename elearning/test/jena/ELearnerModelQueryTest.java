@@ -33,14 +33,14 @@ public class ELearnerModelQueryTest extends TestCase{
 		ArrayList<EConcept> c = emi.getInterestConcepts(el);
 		assertTrue(c.size()==5);
 	}
-	public void testAllPerformanceByELearner(){
-		ArrayList<EPerformance> c = emi.getPerformances(el);
+	public void testGetPerformances(){
+		ArrayList<EPerformance> c = emi.getEPerformances(el);
 		assertTrue(c.size()==3);
 	}
 	public void testAddPerformance(){
 		ELearnerModelImpl emi = new ELearnerModelImpl();
 		EConcept concept = new EConcept("testPreCnp");
-		ELearner elearner = new ELearner("el001");
+		ELearner elearner = new ELearner("el002");
 		EPerformance performance = new EPerformance();
 		performance.setConcept(concept);
 		performance.setElearner(elearner);
@@ -50,7 +50,8 @@ public class ELearnerModelQueryTest extends TestCase{
 		performance.setValue(newValue);
 		emi.addEPerfomance(performance);
 		
-		EPerformance perf = emi.getPerformance(elearner, concept);
+		EPerformance perf = emi.getEPerformance(elearner, concept);
+		
 		assertTrue(perf.getId().equals(newId));
 		assertTrue(newValue==perf.getValue());
 	}
@@ -68,7 +69,7 @@ public class ELearnerModelQueryTest extends TestCase{
 		assertTrue(c.size()==11);
 	}
 	public void testGetPortfolioResources(){
-		ArrayList<EResource> c = emi.getPortfolioResources(el);
+		ArrayList<EPortfolio> c = emi.getPortfolios(el);
 		assertTrue(c.size()==2);
 	}
 	public void testGetRecommendELearner(){
@@ -84,15 +85,15 @@ public class ELearnerModelQueryTest extends TestCase{
 		assertTrue(c.size()==5);
 	}
 	public void testGetConceptResources(){
-		ArrayList<EResource> c = emi.getConceptResources(rootConcept);
+		ArrayList<EResource> c = emi.getEResourcesByEConcepts(rootConcept);
 		System.out.println("size:"+c.size());
 	}
 	public void testAddPortfolio(){
 		EResource r = emi.getEResource("rid00003");
 		EPortfolio p = new EPortfolio("new portfolio",el,r,0);
-		int size =  emi.getPortfolioResources(el).size();
+		int size =  emi.getPortfolios(el).size();
 		emi.addEPortfolio(p);
-		ArrayList<EResource> c = emi.getPortfolioResources(el);
+		ArrayList<EPortfolio> c = emi.getPortfolios(el);
 		assertTrue(c.size() == (size+1));
 	}
 	public void testGetAllResources(){

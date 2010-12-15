@@ -12,6 +12,8 @@ import ontology.resources.EResource;
 import util.Constant;
 import util.QuerySolutionParser;
 import util.StringExchanger;
+
+import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
@@ -94,7 +96,7 @@ public class ELearnerModelImpl implements ELearnerModel{
 		Resource in = model.createResource(Constant.NS+portfolio.getId(),model.getResource(Constant.NS+"E_Interest"));
 		in.addProperty(model.getProperty(Constant.NS+"inverse_of_has_portfolio"),model.getResource(Constant.NS+el.getId()));
 		in.addProperty(model.getProperty(Constant.NS+"inverse_of_is_resource_of_P"),model.getResource(Constant.NS+res.getRid()));
-		in.addProperty(model.getProperty(Constant.NS+"value"),"-1");
+		in.addProperty(model.getProperty(Constant.NS+"value"),String.valueOf(portfolio.getValue()),new XSDDatatype("string"));
 		return true;
 	}
 	@Override
@@ -117,7 +119,7 @@ public class ELearnerModelImpl implements ELearnerModel{
 		Resource in = model.createResource(Constant.NS+interest.getId(),model.getResource(Constant.NS+"E_Interest"));
 		in.addProperty(model.getProperty(Constant.NS+"inverse_of_has_interest"),model.getResource(Constant.NS+el.getId()));
 		in.addProperty(model.getProperty(Constant.NS+"inverse_of_is_concept_of_I"),model.getResource(Constant.NS+con.getCid()));
-		in.addProperty(model.getProperty(Constant.NS+"value"),"-1");
+		in.addProperty(model.getProperty(Constant.NS+"value"),String.valueOf(interest.getValue()),new XSDDatatype("string"));
 		return true;
 	}
 	@Override
@@ -133,7 +135,7 @@ public class ELearnerModelImpl implements ELearnerModel{
 		Resource in = model.createResource(Constant.NS+performance.getId(),model.getResource(Constant.NS+"E_Performance"));
 		in.addProperty(model.getProperty(Constant.NS+"inverse_of_has_performance"),model.getResource(Constant.NS+el.getId()));
 		in.addProperty(model.getProperty(Constant.NS+"inverse_of_is_concept_of_P"),model.getResource(Constant.NS+con.getCid()));
-		in.addProperty(model.getProperty(Constant.NS+"value"),StringExchanger.getSparqlString(String.valueOf(performance.getValue())));
+		in.addProperty(model.getProperty(Constant.NS+"value"),(String.valueOf(performance.getValue())),new XSDDatatype("string"));
 		return true;
 	}
 	
@@ -330,7 +332,6 @@ public class ELearnerModelImpl implements ELearnerModel{
 	public ArrayList<ELearner> getRecommendELearners(ELearner elearner, int rule) {
 		ArrayList<ELearner> elearners = new ArrayList<ELearner>();
 		String i = "is_recommend_of_L_"+rule+"";
-		System.out.println(i);
 		//this rule is used to recommend elearner to rec_el
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
@@ -478,20 +479,19 @@ public class ELearnerModelImpl implements ELearnerModel{
 	}
 	
 	@Override
-	public ArrayList<EPerformance> getPerformances(ELearner elearner) {
+	public ArrayList<EPerformance> getEPerformances(ELearner elearner) {
 		ArrayList<EPerformance> ps = new ArrayList<EPerformance>();
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
 			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
-			"SELECT ?perform ?c_id ?name ?performance ?p_value " +
+			"SELECT ?concept ?c_name ?performance ?performance_value " +
 			"WHERE {" +
 			"      ?concept rdf:type base:E_Concept . " +
-			"      ?concept base:id ?c_id . " +
 			"      ?concept base:name ?c_name . "+
 			"      ?elearner base:id " +StringExchanger.getSparqlString(elearner.getId())+" . "+
 			"      ?performance base:inverse_of_is_concept_of_P ?concept . "+
 			"      ?elearner base:has_performance ?performance . "+
-			"      ?performance base:value ?p_value . "+
+			"      ?performance base:value ?performance_value . "+
 			"      }";
 		Query query = QueryFactory.create(queryString);
 		
@@ -503,12 +503,13 @@ public class ELearnerModelImpl implements ELearnerModel{
 			QuerySolution qs = results.next();
 			EConcept con = QuerySolutionParser.getEConcept(qs, model);
 			EPerformance per = new EPerformance();
+			String pid = QuerySolutionParser.getIdByURI(qs, model, "?performance");
+			String valueString = StringExchanger.getCommonString(qs.get("?performance_value").toString().trim());
+			float value = Float.valueOf(valueString);
+			per.setId(pid);
 			per.setElearner(elearner);
 			per.setConcept(con);
-			String pid = QuerySolutionParser.getIdByURI(qs, model, "?performance");
-			per.setId(pid);
-			String value = qs.get("?pvalue").toString();
-//			per.setValue(Float.valueOf(StringExchanger.getCommonString()));
+			per.setValue(value);
 			ps.add(per);
 		}
 		qe.close();
@@ -542,40 +543,15 @@ public class ELearnerModelImpl implements ELearnerModel{
 		return concepts;
 	}
 	public static void main(String [] args)throws Exception{
-		ELearnerModelImpl emi = new ELearnerModelImpl();
 		
-		EResource res = emi.getEResource("rid00001");
-		System.out.println(res);
-		/*
-		ELearnerModelImpl emi = new ELearnerModelImpl();
-		EConcept concept = new EConcept("testPreCnp");
-		ELearner elearner = new ELearner("el001");
-		EPerformance performance = new EPerformance();
-		performance.setConcept(concept);
-		performance.setElearner(elearner);
-		String newId ="newIDFORADD";
-		performance.setId(newId);
-		float newValue = 2;
-		performance.setValue(newValue);
-		ArrayList<EPerformance> s1 = emi.getAllPerformanceByELearner(elearner);
-		System.out.println(s1.size()+"init");
-		
-		emi.addPerfomance(performance);
-		
-		EPerformance perf = emi.getPerformance(elearner, concept);
-		ArrayList<EPerformance> s = emi.getAllPerformanceByELearner(elearner);
-		System.out.println(s.size()+"added");
-		System.out.println(perf.getId().equals(newId));
-		System.out.println(newValue==perf.getValue());
-		*/
 	}
 	@Override
-	public ArrayList<EResource> getPortfolioResources(ELearner elearner) {
-		ArrayList<EResource> resources = new ArrayList<EResource>();
+	public ArrayList<EPortfolio> getPortfolios(ELearner elearner) {
+		ArrayList<EPortfolio> portfolios = new ArrayList<EPortfolio>();
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
 			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
-			"SELECT ?resource ?r_name ?r_difficulty ?r_fileLocation " +
+			"SELECT ?resource ?r_name ?r_difficulty ?r_fileLocation ?portfolio ?portfolio_value " +
 			"WHERE {" +
 			"      ?resource rdf:type base:E_Resource . " +
 			"      ?resource base:name ?r_name . "+
@@ -584,6 +560,7 @@ public class ELearnerModelImpl implements ELearnerModel{
 			"      ?elearner base:id " +StringExchanger.getSparqlString(elearner.getId())+" . "+
 			"      ?portfolio base:inverse_of_is_resource_of_P ?resource . "+
 			"      ?elearner base:has_portfolio ?portfolio . "+
+			"      ?portfolio base:value ?portfolio_value . "+
 			"      }";
 		Query query = QueryFactory.create(queryString);
 		
@@ -593,15 +570,24 @@ public class ELearnerModelImpl implements ELearnerModel{
 
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
-			EResource res = QuerySolutionParser.getEResource(qs, model);
-			resources.add(res);
+			EResource resource = QuerySolutionParser.getEResource(qs, model);
+			EPortfolio port = new EPortfolio();
+			String id = QuerySolutionParser.getIdByURI(qs, model, "?portfolio");
+			String valueString =StringExchanger.getCommonString(qs.get("?portfolio_value").toString().trim());
+			float value = Float.valueOf(valueString);
+			
+			port.setId(id);
+			port.setResource(resource);
+			port.setElearner(elearner);
+			port.setValue(value);
+			portfolios.add(port);
 		}
 		qe.close();
-		return resources;
+		return portfolios;
 	}
 	
 	@Override
-	public ArrayList<EResource> getConceptResources(EConcept concept) {
+	public ArrayList<EResource> getEResourcesByEConcepts(EConcept concept) {
 		ArrayList<EResource> resources = new ArrayList<EResource>();
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
@@ -609,12 +595,11 @@ public class ELearnerModelImpl implements ELearnerModel{
 			"SELECT ?resource ?id ?name ?difficulty ?fileLocation " +
 			"WHERE {" +
 			"      ?resource rdf:type base:E_Resource . " +
-			"      ?resource base:id ?id . " +
-			"      ?resource base:name ?name . "+
+			"      ?resource base:name ?r_name . "+
 			"      ?concept base:id " +StringExchanger.getSparqlString(concept.getCid())+" . "+
 			"      ?resource base:is_resource_of_C ?concept . "+
-			"      ?resource base:difficulty ?difficulty . "+
-			"      ?resource base:fileLocation ?fileLocation . "+
+			"      ?resource base:difficulty ?r_difficulty . "+
+			"      ?resource base:fileLocation ?r_fileLocation . "+
 			"      }";
 		Query query = QueryFactory.create(queryString);
 		
@@ -624,16 +609,8 @@ public class ELearnerModelImpl implements ELearnerModel{
 		
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
-			String id = qs.get("?id").toString();
-			String name = qs.get("?name").toString();
-			String difficulty = qs.get("?difficulty").toString().trim();
-			String fileLocation = qs.get("?fileLocation").toString().trim();
-			EResource res = new EResource();
-			res.setRid(StringExchanger.getCommonString(id));
-			res.setName(StringExchanger.getCommonString(name));
-			res.setDifficulty(StringExchanger.getCommonString(difficulty));
-			res.setFileLocation(StringExchanger.getCommonString(fileLocation));
-			System.out.println(res);resources.add(res);
+			EResource res = QuerySolutionParser.getEResource(qs, model);
+			resources.add(res);
 		}
 		qe.close();
 		return resources;
@@ -665,18 +642,19 @@ public class ELearnerModelImpl implements ELearnerModel{
 		return resources;
 	}
 	@Override
-	public EPerformance getPerformance(ELearner elearner, EConcept concept) {
+	public EPerformance getEPerformance(ELearner elearner, EConcept concept) {
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
 			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
-			"SELECT ?perform ?id ?value " +
+			"SELECT ?performance ?preformance_value " +
 			"WHERE {" +
-			"      ?perform rdf:type base:E_Performance . " +
-			"      ?perform base:value ?value . "+
-		 	"      ?perform base:inverse_of_has_performance ?elearner . "+
-			"      ?perform base:inverse_of_is_concept_of_P ?concept . "+
+			"      ?performance rdf:type base:E_Performance . " +
+			"      ?performance base:value ?preformance_value . "+
+		 	"      ?performance base:inverse_of_has_performance ?elearner . "+
+			"      ?performance base:inverse_of_is_concept_of_P ?concept . "+
 			"      ?concept base:id "+StringExchanger.getSparqlString(concept.getCid())+" . "+
 			"      ?elearner base:id "+StringExchanger.getSparqlString(elearner.getId())+" . "+
+			"      "+
 			"      }";
 		Query query = QueryFactory.create(queryString);
 		// Execute the query and obtain results
@@ -687,13 +665,14 @@ public class ELearnerModelImpl implements ELearnerModel{
 		while(results.hasNext()){
 			performance = new EPerformance();
 			QuerySolution qs = results.next();
-			String uri =qs.get("?perform").toString().trim();
-			String id = model.getResource(uri).getLocalName();
-			String value = qs.get("?value").toString().trim();
+			String id = QuerySolutionParser.getIdByURI(qs, model, "?performance");
+			String v= qs.get("?preformance_value").toString().trim();
+			String valueString = StringExchanger.getCommonString(v);
+			float value = Float.parseFloat((valueString));
 			performance.setId(id);
-			System.out.println("getPerformanceValue\t"+value);
-			float v = Float.parseFloat(StringExchanger.getCommonString(value));
-			performance.setValue(v);
+			performance.setValue(value);
+			performance.setConcept(concept);
+			performance.setElearner(elearner);
 		}
 		qe.close();
 		return performance;
