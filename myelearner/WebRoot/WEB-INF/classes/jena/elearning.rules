@@ -1,8 +1,0 @@
-@prefix el: <http://www.owl-ontologies.com/e-learning.owl#>.
-@include <RDFS>.
-@include <OWL>.
-
-[rule1:(?concept el:is_concept_of ?performance)(?performance el:inverse_of_has_performance ?learner)(?concept2 el:is_post_concept_of ?concept)->(?concept2 el:is_recommend_of ?learner)]
-[rule2:(?concept el:is_concept_of ?performance)(?performance el:inverse_of_has_performance ?learner)(?concept el:is_part_of ?conceptFather)(?concept2 el:inverse_of_is_part_of ?conceptFather)->(?concept2 el:is_recommend_of ?learner)]
-[rule3:(?concept el:is_concept_of ?interest)(?interest el:inverse_of_has_interest ?learner)(?concept2 el:is_post_concept_of ?concept)->(?concept2 el:is_recommend_of ?learner)]
-[rule4:(?concept el:is_concept_of ?interest)(?interest el:inverse_of_has_interest ?learner)->(?concept el:is_recommend_of ?learner)]
