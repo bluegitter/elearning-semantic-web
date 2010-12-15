@@ -50,7 +50,10 @@ public class ELearnerModelImpl implements ELearnerModel{
 		rootConcept.setName("software engineering");
 		return rootConcept;
 	}
-	
+	public int getAllEConceptsSize(){
+		ArrayList<EConcept> c = getAllEConcepts();
+		return c.size();
+	}
 	
 	@Override
 	public ArrayList<EResource> getResourcesByKey(ELearner elearner,

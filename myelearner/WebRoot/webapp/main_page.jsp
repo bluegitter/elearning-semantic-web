@@ -9,5 +9,5 @@
 <body>
 Login Successfully
 
-</body>
+ <input type="button" value="getConcepts" name="allConceptsTableButton"> <input type="text" value="allConceptsTable" name="allConceptsTable"></body>
 </html>
