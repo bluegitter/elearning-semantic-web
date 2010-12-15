@@ -33,15 +33,15 @@ public interface ELearnerModel {
 	ArrayList<EConcept> getMemberConcept(EConcept concept);
 	ArrayList<EConcept> getInterestConcepts(ELearner elearner);
 	ArrayList<EResource> getResourcesByKey(ELearner elearner, String keyword);
-	ArrayList<EResource> getPortfolioResources(ELearner elearner);
-	ArrayList<EResource> getConceptResources(EConcept concept);
+	ArrayList<EPortfolio> getPortfolios(ELearner elearner);
+	ArrayList<EResource> getEResourcesByEConcepts(EConcept concept);
 	ArrayList<EResource> getAllEResources();
 	EConcept getEConcept(String cid);
 	ELearner getELearner(String eid);
 	EResource getEResource(String rid);
 	
-	EPerformance getPerformance(ELearner elearner, EConcept concept);
-	ArrayList<EPerformance> getPerformances(ELearner elearner);
+	EPerformance getEPerformance(ELearner elearner, EConcept concept);
+	ArrayList<EPerformance> getEPerformances(ELearner elearner);
 	boolean updatePerformance(EPerformance performance);
 	/***************************************************************************
 	 * there are 13 rules now

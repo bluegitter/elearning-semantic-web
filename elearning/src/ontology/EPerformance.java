@@ -33,7 +33,9 @@ public class EPerformance {
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	public String toString(){
+		return id+"\t"+value+"\t"+elearner.getId()+"\t"+concept.getCid();
+	}
 	private ELearner elearner;
 	private EConcept concept;
 	private float value;
