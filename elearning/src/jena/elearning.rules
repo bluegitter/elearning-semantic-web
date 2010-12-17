@@ -2,8 +2,10 @@
 @include <RDFS>.
 @include <OWL>.
 
-[ruleHasPerformance: (?_concept1 el:is_concept_of ?_performance1)
+[ruleHasPerformance: (?_concept1 el:is_concept_of_P ?_performance1)
+
         (?_learner1 el:has_performance ?_performance1)
+       
         ->(?_learner1 el:reasoning_hasPerformance ?_concept1)]
 
 [ruleBrother: (?_concept2 el:is_post_concept_of ?_parentCnp)
@@ -11,9 +13,15 @@
                  notEqual(?_concept2 ?_concept3)
                  ->(?_concept2 el:reasoning_brother ?_concept3)]
 
-[rule_c_1: (?learner_c_1 el:reasoning_hasPerformance ?concept_c_1_1)         
+[rule_c_1: (?learner_c_1 el:reasoning_hasPerformance ?concept_c_1_1)
+         
+            print(?learner_c_1 ?concept_c_1_1)
            (?concept_c_1_2 el:is_post_concept_of ?concept_c_1_1)
-        	noValue(?learner_c_1 el:reasoning_hasPerformance ?concept_c_1_2)  
+
+        
+         
+     
+      
         	->(?concept_c_1_2 el:is_recommend_of_c_1 ?learner_c_1)]  
 
 [rule_c_2: (?learner_c_2 el:reasoning_hasPerformance ?concept_c_2_1)
