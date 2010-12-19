@@ -298,6 +298,8 @@ public class AllConceptDisplay extends Display {
                 cd.uriLabel.setText(util.Constant.NS + ec.getCid());
                 cd.cdec = ec;
 
+                cd.updateData();
+
                 ArrayList<EResource> ra = LPApp.lpModel.getEResourcesByEConcept(ec);
                 JTable table = cd.resouceTable;
                 DefaultTableModel model = (DefaultTableModel) table.getModel();
