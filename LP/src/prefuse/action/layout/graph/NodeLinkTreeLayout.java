@@ -13,20 +13,6 @@ import prefuse.util.ArrayLib;
 import prefuse.visual.NodeItem;
 
 /**
- * <p>TreeLayout that computes a tidy layout of a node-link tree
- * diagram. This algorithm lays out a rooted tree such that each
- * depth level of the tree is on a shared line. The orientation of the
- * tree can be set such that the tree goes left-to-right (default),
- * right-to-left, top-to-bottom, or bottom-to-top.</p>
- * 
- * <p>The algorithm used is that of Christoph Buchheim, Michael Jünger,
- * and Sebastian Leipert from their research paper
- * <a href="http://citeseer.ist.psu.edu/buchheim02improving.html">
- * Improving Walker's Algorithm to Run in Linear Time</a>, Graph Drawing 2002.
- * This algorithm corrects performance issues in Walker's algorithm, which
- * generalizes Reingold and Tilford's method for tidy drawings of trees to
- * support trees with an arbitrary number of children at any given node.</p>
- * 
  * @author <a href="http://jheer.org">jeffrey heer</a>
  */
 public class NodeLinkTreeLayout extends TreeLayout {
