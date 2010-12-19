@@ -38,7 +38,7 @@ public class MultipleFileReaderTest {
 		InputStream inData = new FileInputStream(new File(dataFile));
 		InputStream inOnto = new FileInputStream(new File(ontologyFile));
 		
-		InfModel model = OwlFactory.getGenericRuleReasonerModel();
+		InfModel model = OwlFactory.getInfoModel(OwlFactory.getGenericRuleReasoner(), OwlFactory.getOntModel());
 		model.read(inData,"http://localhost:8080/myelearner/webapp/data.owl"); // null base URI, since model URIs are absolute
 		
 		// Create a new query
