@@ -1,0 +1,27 @@
+@prefix el: <http://www.owl-ontologies.com/e-learning.owl#>.
+@include <RDFS>.
+@include <OWL>.
+
+
+[ruleHasPerformance: (?concept1 el:is_concept_of ?performance1)
+        (?learner1 el:has_performance ?performance1)
+        ->(?learner1 el:reasoning_hasPerformance ?concept1)]
+[ruleBrother: (?concept2 el:is_post_concept_of ?parentCnp)
+              (?concept3 el:is_post_concept_of ?parentCnp)
+              notEqual(?concept2 ?concept3)
+              ->(?concept2 el:reasoning_brother ?concept3)]
+[rule1: (?learner2 el:reasoning_hasPerformance ?concept4)
+        (?concept5 el:is_post_concept_of ?concept4)
+        noValue(?learner2 el:reasoning_hasPerformance ?concept5)
+        ->(?concept5 el:is_recommend_of_1 ?learner2)]
+[rule2: (?concept6 rdf:type el:E_Concept)
+        (?concept7 rdf:type el:E_Concept)
+        (?learner3 rdf:type el:E_Learner)
+        
+       
+        (?learner3 el:reasoning_hasPerformance ?concept6)
+        (?concept6 el:reasoning_brother ?concept7)
+          noValue(?learner3 el:reasoning_hasPerformance ?concept7)
+        ->(?concept7 el:is_recommend_of_2 ?learner3)]
+
+
