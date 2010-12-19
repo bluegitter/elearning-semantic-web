@@ -21,9 +21,11 @@ import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.InfModel;
+import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
 
 import db.OwlOperation;
+import exception.ConceptNotExistInModelException;
 
 public class ELearnerModelImpl implements ELearnerModel{
 	private InfModel model;
@@ -53,7 +55,7 @@ public class ELearnerModelImpl implements ELearnerModel{
 	
 	
 	@Override
-	public ArrayList<EResource> getResourcesByKey(ELearner elearner,
+	public ArrayList<EResource> getEResourcesByKey(ELearner elearner,
 			String keyword) {
 		// TODO Auto-generated method stub
 		return null;
@@ -86,7 +88,7 @@ public class ELearnerModelImpl implements ELearnerModel{
 	@Override
 	public boolean addEPortfolio(EPortfolio portfolio) {
 		ELearner el = portfolio.getElearner();
-		EResource res = portfolio.getResource();
+		EResource res = portfolio.getEResource();
 		if(!containELearner(el.getId())){
 			return false;
 		}
@@ -103,6 +105,12 @@ public class ELearnerModelImpl implements ELearnerModel{
 	public boolean addEConcept(EConcept concept) {
 		Resource con = model.createResource(Constant.NS+concept.getCid(),model.getResource(Constant.NS+"E_Concept"));
 		con.addProperty(model.getProperty(Constant.NS+"name"), concept.getName());
+		return true;
+	}
+	public boolean addPropertyIsSonOf(EConcept fatherConcept,EConcept sonConcept){
+		Resource son = model.getResource(Constant.NS+sonConcept.getCid());
+		Property p = model.getProperty(Constant.NS+"is_son_of");
+		model.add(son, p, model.getResource(Constant.NS+fatherConcept.getCid()));
 		return true;
 	}
 	
@@ -543,10 +551,16 @@ public class ELearnerModelImpl implements ELearnerModel{
 		return concepts;
 	}
 	public static void main(String [] args)throws Exception{
-		
+		ELearnerModelImpl emi = new ELearnerModelImpl();
+		EConcept root = emi.getRootConcept();
+		EConcept son1 = new EConcept("son1_Id","son1_Name");
+		System.out.println("==="+emi.getAllEConcepts().size());
+		emi.addEConcept(son1);
+		emi.addPropertyIsSonOf(root, son1);
+		System.out.println(emi.getAllEConcepts().size()+"===");
 	}
 	@Override
-	public ArrayList<EPortfolio> getPortfolios(ELearner elearner) {
+	public ArrayList<EPortfolio> getEPortfolios(ELearner elearner) {
 		ArrayList<EPortfolio> portfolios = new ArrayList<EPortfolio>();
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
@@ -577,7 +591,7 @@ public class ELearnerModelImpl implements ELearnerModel{
 			float value = Float.valueOf(valueString);
 			
 			port.setId(id);
-			port.setResource(resource);
+			port.setEResource(resource);
 			port.setElearner(elearner);
 			port.setValue(value);
 			portfolios.add(port);
@@ -587,12 +601,12 @@ public class ELearnerModelImpl implements ELearnerModel{
 	}
 	
 	@Override
-	public ArrayList<EResource> getEResourcesByEConcepts(EConcept concept) {
+	public ArrayList<EResource> getEResourcesByEConcept(EConcept concept) {
 		ArrayList<EResource> resources = new ArrayList<EResource>();
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
 			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
-			"SELECT ?resource ?id ?name ?difficulty ?fileLocation " +
+			"SELECT ?resource ?id ?name ?r_difficulty ?r_fileLocation " +
 			"WHERE {" +
 			"      ?resource rdf:type base:E_Resource . " +
 			"      ?resource base:name ?r_name . "+
@@ -685,4 +699,10 @@ public class ELearnerModelImpl implements ELearnerModel{
 		r.addProperty(model.getProperty(Constant.NS+"value"), String.valueOf(performance.getValue()));
 		return true;
 	}
+	@Override
+	public EConcept getEConceptByName(String cname) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

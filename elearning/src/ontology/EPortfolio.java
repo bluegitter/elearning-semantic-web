@@ -23,10 +23,10 @@ public class EPortfolio {
 	public void setElearner(ELearner elearner) {
 		this.elearner = elearner;
 	}
-	public EResource getResource() {
+	public EResource getEResource() {
 		return resource;
 	}
-	public void setResource(EResource resource) {
+	public void setEResource(EResource resource) {
 		this.resource = resource;
 	}
 	public float getValue() {

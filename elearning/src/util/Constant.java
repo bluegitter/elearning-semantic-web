@@ -5,9 +5,9 @@ public class Constant {
 	 * Jena Reasoning Config
 	 *********************************************************************/
 	public static String NS ="http://www.owl-ontologies.com/e-learning.owl#";
-	public static String OWLFile ="D:\\EclipseWorkspace\\elearning\\protege\\elearning.owl";
-	public static String RulesFile="D:\\EclipseWorkspace\\elearning\\src\\jena\\elearning.rules";
-	public static String newOwlFile = "D:\\EclipseWorkspace\\elearning\\src\\db\\newOwlFile.owl";
+	public static String OWLFile ="protege\\elearning.owl";
+	public static String RulesFile="src\\jena\\elearning.rules";
+	public static String newOwlFile = "src\\db\\newOwlFile.owl";
 	/*********************************************************************
 	 * SPARQL Prefix
 	 ********************************************************************/
@@ -22,9 +22,10 @@ public class Constant {
 	 ********************************************************************/
 	//public static String DBURL = "jdbc:mysql://localhost:3306/elearning";
 	//public static String DBURL = "jdbc:mysql://192.168.8.86:3306/elearning"; //destop ip
-	public static String DBURL = "jdbc:mysql://192.168.9.161:3306/elearning"; 	//laptop ip
 	
-	public static String DBUSER = "root";
+	public static String DBURL = "jdbc:mysql://192.168.9.161:3306/elearning"; 	//laptop ip
+	 
+	public static String DBUSER = "ms";
     public static String DBPASSWORD = "ms";
     public static String SERVERURL = "http://192.168.8.86:8080/myelearner";
     public static String SERVERTESTURL = "http://192.168.8.86:8080/myelearner/webapp/mylife.jpg";
