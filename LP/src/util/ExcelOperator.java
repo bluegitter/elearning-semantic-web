@@ -17,23 +17,23 @@ public class ExcelOperator {
 		// TODO Auto-generated method stub
 		jxl.Workbook rwb = null;
 	    try{
-	      //¹¹½¨Workbook¶ÔÏó, Ö»¶ÁWorkbook¶ÔÏó
-	      //Ö±½Ó´Ó±¾µØÎÄ¼ş´´½¨Workbook
-	      //´ÓÊäÈëÁ÷´´½¨Workbook
+	      //æ„å»ºWorkbookå¯¹è±¡, åªè¯»Workbookå¯¹è±¡
+	      //ç›´æ¥ä»æœ¬åœ°æ–‡ä»¶åˆ›å»ºWorkbook
+	      //ä»è¾“å…¥æµåˆ›å»ºWorkbook
 	    	WorkbookSettings workbookSettings = new WorkbookSettings();
             workbookSettings.setEncoding("ISO-8859-1");
             rwb= Workbook.getWorkbook(new File("D:/EclipseWorkspace/knowledge.xls"),workbookSettings); 
 
 	//      InputStream is = new FileInputStream("D:/EclipseWorkspace/knowledge.xls");
-	//      rwb = Workbook.getWorkbook(is);      //Sheet(ÊõÓï£º¹¤×÷±í)¾ÍÊÇExcel±í¸ñ×óÏÂ½ÇµÄSheet1,Sheet2,Sheet3µ«ÔÚ³ÌĞòÖĞ
-	      //SheetµÄÏÂ±êÊÇ´Ó0¿ªÊ¼
-	      //»ñÈ¡µÚÒ»ÕÅSheet±í
+	//      rwb = Workbook.getWorkbook(is);      //Sheet(æœ¯è¯­ï¼šå·¥ä½œè¡¨)å°±æ˜¯Excelè¡¨æ ¼å·¦ä¸‹è§’çš„Sheet1,Sheet2,Sheet3ä½†åœ¨ç¨‹åºä¸­
+	      //Sheetçš„ä¸‹æ ‡æ˜¯ä»0å¼€å§‹
+	      //è·å–ç¬¬ä¸€å¼ Sheetè¡¨
 	       Sheet rs = rwb.getSheet(0);
-	       //»ñÈ¡Sheet±íÖĞËù°üº¬µÄ×ÜÁĞÊı
+	       //è·å–Sheetè¡¨ä¸­æ‰€åŒ…å«çš„æ€»åˆ—æ•°
 	       int rsColumns = rs.getColumns();
-	       //»ñÈ¡Sheet±íÖĞËù°üº¬µÄ×ÜĞĞÊı
+	       //è·å–Sheetè¡¨ä¸­æ‰€åŒ…å«çš„æ€»è¡Œæ•°
 	       int rsRows = rs.getRows();
-	       //»ñÈ¡Ö¸¶¨µ¥Ôª¸ñµÄ¶ÔÏóÒıÓÃ
+	       //è·å–æŒ‡å®šå•å…ƒæ ¼çš„å¯¹è±¡å¼•ç”¨
 	       String cellContent = "";
 	       for(int i=0;i<rsRows;i++){
 	         for(int j=0;j<rsColumns;j++){
@@ -44,25 +44,25 @@ public class ExcelOperator {
 	         }
 	         System.out.println();
 	       }
-	       //ÀûÓÃÒÑ¾­´´½¨µÄExcel¹¤×÷±¡´´½¨ĞÂµÄ¿ÉĞ´ÈëµÄExcel¹¤×÷±¡
+	       //åˆ©ç”¨å·²ç»åˆ›å»ºçš„Excelå·¥ä½œè–„åˆ›å»ºæ–°çš„å¯å†™å…¥çš„Excelå·¥ä½œè–„
 	       jxl.write.WritableWorkbook wwb = Workbook.createWorkbook(new File("D:/EclipseWorkspace/knowledge2.xls"),rwb);
-	       //¶ÁÈ¡µÚÒ»ÕÅ¹¤×÷±í
-	       jxl.write.WritableSheet ws = wwb.getSheet(0);       //»ñµÃµÚÒ»¸öµ¥Ôª¸ñ¶ÔÏó
+	       //è¯»å–ç¬¬ä¸€å¼ å·¥ä½œè¡¨
+	       jxl.write.WritableSheet ws = wwb.getSheet(0);       //è·å¾—ç¬¬ä¸€ä¸ªå•å…ƒæ ¼å¯¹è±¡
 	       jxl.write.WritableCell wc = ws.getWritableCell(0, 0);
-	       //ÅĞ¶Ïµ¥Ôª¸ñµÄÀàĞÍ, ×ö³öÏàÓ¦µÄ×ª»¯
+	       //åˆ¤æ–­å•å…ƒæ ¼çš„ç±»å‹, åšå‡ºç›¸åº”çš„è½¬åŒ–
 	      /*
 	       if (wc.getType() == CellType.LABEL) {
 	         Label l = (Label) wc;
 	         l.setString("The value has been modified.");
 	       }
 	       */
-	       //Ğ´ÈëExcel¶ÔÏó
+	       //å†™å…¥Excelå¯¹è±¡
 	       wwb.write();
 	       wwb.close();    }catch(Exception e){
 	      e.printStackTrace();
 	    }
 	    finally{
-	      //²Ù×÷Íê³ÉÊ±£¬¹Ø±Õ¶ÔÏó£¬ÊÍ·ÅÕ¼ÓÃµÄÄÚ´æ¿Õ¼ä
+	      //æ“ä½œå®Œæˆæ—¶ï¼Œå…³é—­å¯¹è±¡ï¼Œé‡Šæ”¾å ç”¨çš„å†…å­˜ç©ºé—´
 	      rwb.close();    }
 	  }
 	
