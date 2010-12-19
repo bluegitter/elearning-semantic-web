@@ -54,6 +54,11 @@ public class ELearnerModelQueryTest extends TestCase{
 		ArrayList<EPortfolio> c = emi.getEPortfolios(el);
 		assertTrue(c.size()==2);
 	}
+	public void testGetPortfolio(){
+		EResource res = emi.getEResource("rid00001");
+		EPortfolio ep = emi.getEPortfolio(el, res);
+		assertTrue(ep.getValue()==1);
+	}
 	
 	public void testGetConceptResources(){
 		ArrayList<EResource> c = emi.getEResourcesByEConcept(rootConcept);
