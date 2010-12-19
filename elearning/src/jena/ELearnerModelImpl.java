@@ -33,7 +33,7 @@ import exception.ConceptNotExistInModelException;
 public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 	private InfModel model;
 	public ELearnerModelImpl(){
-		model = OwlFactory.getOntModel();
+		model = OwlFactory.getInfoModel(OwlFactory.getGenericRuleReasoner(), OwlFactory.getOntModel());
 	}
 	public ELearnerModelImpl(OntModel model){
 		this.model = model;
@@ -41,7 +41,6 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 	public ELearnerModelImpl(String fileURL){
 		model = OwlFactory.getOntModel(fileURL);
 	}
-	
 	
 	public InfModel getModel() {
 		return model;
@@ -55,13 +54,6 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		rootConcept.setCid("Software_Engineer");
 		rootConcept.setName("software engineering");
 		return rootConcept;
-	}
-	
-	@Override
-	public ArrayList<EResource> getEResourcesByKey(ELearner elearner,
-			String keyword) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	@Override
 	public boolean writeToFile(File file) {
@@ -88,8 +80,10 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 	}
 	public boolean addEResource(EResource resource){
 		Resource re = model.createResource(Constant.NS+resource.getRid(),model.getResource(Constant.NS+"E_Resource"));
-		re.addProperty(model.getProperty(Constant.NS+"name"), resource.getName(),new XSDDatatype("string"));
-		re.addProperty(model.getProperty(Constant.NS+"difficulty"), resource.getDifficulty(),new XSDDatatype("string"));
+		model.add(re,model.getProperty(Constant.NS+"id"), resource.getRid());
+		model.add(re,model.getProperty(Constant.NS+"name"), resource.getName(),new XSDDatatype("string"));
+		model.add(re,model.getProperty(Constant.NS+"fileLocation"), resource.getFileLocation(),new XSDDatatype("string"));
+		model.add(re,model.getProperty(Constant.NS+"difficulty"), resource.getDifficulty(),new XSDDatatype("string"));
 		return true;
 	}
 	@Override
@@ -117,8 +111,7 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 	}
 	public boolean addPropertyIsSonOf(EConcept fatherConcept,EConcept sonConcept){
 		Resource son = model.getResource(Constant.NS+sonConcept.getCid());
-		Property p = model.getProperty(Constant.NS+"is_son_of");
-		model.add(son, p, model.getResource(Constant.NS+fatherConcept.getCid()));
+		model.add(son, model.getProperty(Constant.NS+"is_son_of"), model.getResource(Constant.NS+fatherConcept.getCid()));
 		return true;
 	}
 	
@@ -149,9 +142,9 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 			return false;
 		}
 		Resource in = model.createResource(Constant.NS+performance.getId(),model.getResource(Constant.NS+"E_Performance"));
-		in.addProperty(model.getProperty(Constant.NS+"inverse_of_has_performance"),model.getResource(Constant.NS+el.getId()));
-		in.addProperty(model.getProperty(Constant.NS+"inverse_of_is_concept_of_P"),model.getResource(Constant.NS+con.getCid()));
-		in.addProperty(model.getProperty(Constant.NS+"value"),(String.valueOf(performance.getValue())),new XSDDatatype("string"));
+		model.add(in,model.getProperty(Constant.NS+"inverse_of_has_performance"),model.getResource(Constant.NS+el.getId()));
+		model.add(in,model.getProperty(Constant.NS+"inverse_of_is_concept_of_P"),model.getResource(Constant.NS+con.getCid()));
+		model.add(in,model.getProperty(Constant.NS+"value"),(String.valueOf(performance.getValue())),new XSDDatatype("string"));
 		return true;
 	}
 	
@@ -503,12 +496,13 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
 			"SELECT ?concept ?c_name ?performance ?performance_value " +
 			"WHERE {" +
+			"      ?performance rdf:type base:E_Performance . " +
+			"      ?performance base:inverse_of_is_concept_of_P ?concept . "+
+			"      ?performance base:inverse_of_has_performance ?elearner . "+
+			"      ?performance base:value ?performance_value . "+
 			"      ?concept rdf:type base:E_Concept . " +
 			"      ?concept base:name ?c_name . "+
-			"      ?elearner base:id " +StringExchanger.getSparqlString(elearner.getId())+" . "+
-			"      ?performance base:inverse_of_is_concept_of_P ?concept . "+
-			"      ?elearner base:has_performance ?performance . "+
-			"      ?performance base:value ?performance_value . "+
+			"      ?elearner base:id "+StringExchanger.getSparqlString(elearner.getId())+" . "+
 			"      }";
 		Query query = QueryFactory.create(queryString);
 		
@@ -560,38 +554,7 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		return concepts;
 	}
 	public static void main(String [] args)throws Exception{
-		ELearnerModelImpl emi = new ELearnerModelImpl();
-		ELearner el = emi.getELearner("el001");
-		System.out.println(el+"!!!");
-		EResource r = emi.getEResource("rid00003");
-		EPortfolio p = new EPortfolio("new_portfolio",el,r,0);
-		System.out.println(emi.getEPortfolios(el).size()+"====init");
-		boolean b = emi.addEPortfolio(p);
-		System.out.println(b);
-		ArrayList<EPortfolio> c = emi.getEPortfolios(el);
 		
-		System.out.println(emi.getEPortfolios(el).size()+"----sucdess");
-	//	emi.writeToFile(new File("src\\db\\newOwlFile.owl"));
-		//emi.addPropertyIsSonOf(root, son1);
-		//System.out.println(emi.getAllEConcepts().size()+"===");
-		/*
-		String queryString = 
-			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
-			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
-			"SELECT ?concept ?id ?c_name " +
-			"WHERE {" +
-			"      ?concept rdf:type base:E_Concept . " +
-			"      ?concept base:id ?id . " +
-			"      ?concept base:name ?c_name . "+
-			"      }";
-		Query query = QueryFactory.create(queryString);
-		
-		// Execute the query and obtain results
-		QueryExecution qe = QueryExecutionFactory.create(query, emi.getModel());
-		ResultSet results = qe.execSelect();
-		ResultSetFormatter.out(System.out, results, query);
-		qe.close();
-		*/
 	}
 	@Override
 	public ArrayList<EPortfolio> getEPortfolios(ELearner elearner) {
@@ -615,7 +578,6 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		// Execute the query and obtain results
 		QueryExecution qe = QueryExecutionFactory.create(query, model);
 		ResultSet results = qe.execSelect();
-
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
 			EResource resource = QuerySolutionParser.getEResource(qs, model);
@@ -736,8 +698,38 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 	
 	@Override
 	public EPortfolio getEPortfolio(ELearner elearner, EResource resource) {
-		// TODO Auto-generated method stub
-		return null;
+		String queryString = 
+			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
+			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
+			"SELECT ?portfolio ?portfolio_value " +
+			"WHERE {" +
+			"      ?portfolio rdf:type base:E_Portfolio . " +
+			"      ?portfolio base:value ?portfolio_value . "+
+		 	"      ?portfolio base:inverse_of_is_resource_of_P ?resource . "+
+			"      ?portfolio base:inverse_of_has_portfolio ?elearner . "+
+			"      ?resource base:id "+StringExchanger.getSparqlString(resource.getRid())+" . "+
+			"      ?elearner base:id "+StringExchanger.getSparqlString(elearner.getId())+" . "+
+			"      }";
+		Query query = QueryFactory.create(queryString);
+		// Execute the query and obtain results
+		QueryExecution qe = QueryExecutionFactory.create(query, model);
+		ResultSet results = qe.execSelect();
+		
+		EPortfolio portfolio = null;
+		while(results.hasNext()){
+			portfolio = new EPortfolio();
+			QuerySolution qs = results.next();
+			String id = QuerySolutionParser.getIdByURI(qs, model, "?portfolio");
+			String v= qs.get("?portfolio_value").toString().trim();
+			String valueString = StringExchanger.getCommonString(v);
+			float value = Float.parseFloat((valueString));
+			portfolio.setId(id);
+			portfolio.setValue(value);
+			portfolio.setEResource(resource);
+			portfolio.setElearner(elearner);
+		}
+		qe.close();
+		return portfolio;
 	}
 	
 }
