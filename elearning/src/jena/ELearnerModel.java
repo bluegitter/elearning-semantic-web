@@ -33,7 +33,6 @@ public interface ELearnerModel {
 	ArrayList<EConcept> getAllEConcepts();
 	ArrayList<EConcept> getSonConcepts(EConcept concept);
 	ArrayList<EConcept> getInterestConcepts(ELearner elearner);
-	ArrayList<EResource> getEResourcesByKey(ELearner elearner, String keyword);
 	ArrayList<EPortfolio> getEPortfolios(ELearner elearner);
 	ArrayList<EResource> getEResourcesByEConcept(EConcept concept);
 	ArrayList<EResource> getAllEResources();
