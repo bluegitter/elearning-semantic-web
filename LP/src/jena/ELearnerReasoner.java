@@ -39,7 +39,7 @@ public class ELearnerReasoner {
 	 * @return
 	 ******************************************************************/
 	public ArrayList<Individual> getAllConcepts(){
-		OntModel model = OwlFactory.getOntOWLModel();
+		OntModel model = OwlFactory.getOntModel();
 		ArrayList <Individual> concepts = new ArrayList<Individual>();
 		OntClass concept = model.getOntClass(Constant.NS+"E_Concept");
 		Iterator <Individual>iter2 = model.listIndividuals();
@@ -53,7 +53,7 @@ public class ELearnerReasoner {
 		return concepts;
 	}
 	public ArrayList<Individual> getAllResources(){
-		OntModel model = OwlFactory.getOntOWLModel();
+		OntModel model = OwlFactory.getOntModel();
 		ArrayList <Individual> resources = new ArrayList<Individual>();
 		OntClass resource = model.getOntClass(Constant.NS+"E_Resource");
 		Iterator <Individual>iter2 = model.listIndividuals();

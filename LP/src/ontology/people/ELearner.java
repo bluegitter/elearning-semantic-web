@@ -2,11 +2,11 @@ package ontology.people;
 import db.DbOperation;
 
 public class ELearner extends People{
-	private String grade;
 	private String peopleURL;
 	private String password;
-	private String email;
-	private String address;
+	private String grade="";
+	private String email="";
+	private String address="";
 
 	public ELearner(String eid,String password){
 		this.id = eid;

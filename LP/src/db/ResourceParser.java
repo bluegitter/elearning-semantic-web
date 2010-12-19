@@ -14,8 +14,7 @@ import com.mysql.jdbc.Connection;
 
 public class ResourceParser {
 	public ResourceParser(){
-		
-		emi = new ELearnerModelImpl(owl,rule);
+		emi = new ELearnerModelImpl(owl);
 	}
 	public boolean writeToFile(File file){
 		return emi.writeToFile(file);

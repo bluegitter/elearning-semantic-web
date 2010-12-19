@@ -103,7 +103,7 @@ public class ELearnerQuery {
 	 */
 	public static ArrayList<String> getInterestConcepts(String uid){
 		ArrayList<String> concepts = new ArrayList<String>();
-		Model model = OwlFactory.getGenericRuleReasonerModel();
+		InfModel model = OwlFactory.getInfoModel(OwlFactory.getGenericRuleReasoner(), OwlFactory.getDefaultOWLModel());
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
 			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
@@ -179,7 +179,7 @@ public class ELearnerQuery {
 		InputStream in = new FileInputStream(new File(Constant.OWLFile));
 
 		// Create an empty in-memory model and populate it from the graph
-		Model model = OwlFactory.getGenericRuleReasonerModel();
+		InfModel model = OwlFactory.getInfoModel(OwlFactory.getGenericRuleReasoner(), OwlFactory.getDefaultOWLModel());
 		// Create a new query
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+

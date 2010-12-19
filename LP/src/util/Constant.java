@@ -5,6 +5,7 @@ public class Constant {
 	 * Jena Reasoning Config
 	 *********************************************************************/
 	public static String NS ="http://www.owl-ontologies.com/e-learning.owl#";
+	public static String NSRDF = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 	public static String OWLFile ="protege\\elearning.owl";
 	public static String RulesFile="src\\jena\\elearning.rules";
 	public static String newOwlFile = "src\\db\\newOwlFile.owl";
