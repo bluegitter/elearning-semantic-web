@@ -1,12 +1,18 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2010/11/19 15:24:12                          */
+/* Created on:     2010/12/19 10:14:21                          */
 /*==============================================================*/
 
 
 drop table if exists AuthorName;
 
 drop table if exists Book;
+
+drop table if exists Course;
+
+drop table if exists CourseInfo;
+
+drop table if exists CourseResourceInfo;
 
 drop table if exists EConcept;
 
@@ -51,13 +57,57 @@ create table Book
 );
 
 /*==============================================================*/
+/* Table: Course                                                */
+/*==============================================================*/
+create table Course
+(
+   resource_id          varchar(100),
+   资源标题                 varchar(255),
+   文件路径                 varchar(500)
+);
+
+/*==============================================================*/
+/* Table: CourseInfo                                            */
+/*==============================================================*/
+create table CourseInfo
+(
+   课程编号                 varchar(255) not null,
+   课程名称                 varchar(255),
+   课程安装性质               varchar(255),
+   课程运行位置               varchar(255),
+   资源数量                 int,
+   primary key (课程编号)
+);
+
+/*==============================================================*/
+/* Table: CourseResourceInfo                                    */
+/*==============================================================*/
+create table CourseResourceInfo
+(
+   course_resource_id   varchar(255) not null,
+   资源标题                 varchar(500),
+   所属课程                 varchar(500),
+   文件路径                 varchar(500),
+   关键词                  varchar(500),
+   作者                   varchar(500),
+   学科1                  varchar(500),
+   学科2                  varchar(500),
+   所属知识点1               varchar(500),
+   所属知识点2               varchar(500),
+   资源描述                 varchar(500),
+   媒体类型                 varchar(500),
+   资源应用类型               varchar(500),
+   文件格式                 varchar(500),
+   primary key (course_resource_id)
+);
+
+/*==============================================================*/
 /* Table: EConcept                                              */
 /*==============================================================*/
 create table EConcept
 (
    concept_id           varchar(100) not null,
    concept_name         varchar(1000),
-   concept_views        integer,
    primary key (concept_id)
 );
 
@@ -83,7 +133,6 @@ create table EResource
    resource_education_type varchar(100),
    resource_name        varchar(1000),
    resource_difficulty  varchar(1000),
-   resource_views       integer,
    primary key (resource_id)
 );
 
@@ -162,6 +211,9 @@ alter table AuthorName add constraint FK_resource_author foreign key (resource_i
       references EResource (resource_id) on delete restrict on update restrict;
 
 alter table Book add constraint FK_book_resource foreign key (resource_id)
+      references EResource (resource_id) on delete restrict on update restrict;
+
+alter table Course add constraint FK_FK_course_resource foreign key (resource_id)
       references EResource (resource_id) on delete restrict on update restrict;
 
 alter table EResource add constraint FK_education_type foreign key (resource_education_type)
