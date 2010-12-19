@@ -21,6 +21,8 @@ public interface ELearnerModel {
 	boolean addEResource(EResource resource);
 	boolean addEInterest(EInterest interest);
 	
+	//add opertions for properties
+	boolean addPropertyIsSonOf(EConcept fatherConcept,EConcept sonConcept);
 	//io opertaions
 	boolean writeToFile(File file);
 	
@@ -32,11 +34,12 @@ public interface ELearnerModel {
 	ArrayList<EConcept> getSonConcepts(EConcept concept);
 	ArrayList<EConcept> getMemberConcept(EConcept concept);
 	ArrayList<EConcept> getInterestConcepts(ELearner elearner);
-	ArrayList<EResource> getResourcesByKey(ELearner elearner, String keyword);
-	ArrayList<EPortfolio> getPortfolios(ELearner elearner);
-	ArrayList<EResource> getEResourcesByEConcepts(EConcept concept);
+	ArrayList<EResource> getEResourcesByKey(ELearner elearner, String keyword);
+	ArrayList<EPortfolio> getEPortfolios(ELearner elearner);
+	ArrayList<EResource> getEResourcesByEConcept(EConcept concept);
 	ArrayList<EResource> getAllEResources();
 	EConcept getEConcept(String cid);
+	EConcept getEConceptByName(String cname);
 	ELearner getELearner(String eid);
 	EResource getEResource(String rid);
 	

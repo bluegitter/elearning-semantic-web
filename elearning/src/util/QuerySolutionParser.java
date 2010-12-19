@@ -64,7 +64,7 @@ public class QuerySolutionParser {
 		EResource resource = getEResource(qs,model);
 		portfolio.setId(id);
 		portfolio.setElearner(elearner);
-		portfolio.setResource(resource);
+		portfolio.setEResource(resource);
 		portfolio.setValue(value);
 		return portfolio;
 	}

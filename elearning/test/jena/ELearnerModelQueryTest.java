@@ -61,6 +61,9 @@ public class ELearnerModelQueryTest extends TestCase{
 	public void testContainEConcept(){
 		assertTrue(emi.containEConcept("Software_Engineer"));
 	}
+	public void testContainEConcept2(){
+		assertFalse(emi.containEConcept("noConcept"));
+	}
 	public void testContainEResource(){
 		assertTrue(emi.containEResource("rid00001"));
 	}
@@ -69,7 +72,7 @@ public class ELearnerModelQueryTest extends TestCase{
 		assertTrue(c.size()==11);
 	}
 	public void testGetPortfolioResources(){
-		ArrayList<EPortfolio> c = emi.getPortfolios(el);
+		ArrayList<EPortfolio> c = emi.getEPortfolios(el);
 		assertTrue(c.size()==2);
 	}
 	public void testGetRecommendELearner(){
@@ -85,15 +88,15 @@ public class ELearnerModelQueryTest extends TestCase{
 		assertTrue(c.size()==5);
 	}
 	public void testGetConceptResources(){
-		ArrayList<EResource> c = emi.getEResourcesByEConcepts(rootConcept);
+		ArrayList<EResource> c = emi.getEResourcesByEConcept(rootConcept);
 		System.out.println("size:"+c.size());
 	}
 	public void testAddPortfolio(){
 		EResource r = emi.getEResource("rid00003");
 		EPortfolio p = new EPortfolio("new portfolio",el,r,0);
-		int size =  emi.getPortfolios(el).size();
+		int size =  emi.getEPortfolios(el).size();
 		emi.addEPortfolio(p);
-		ArrayList<EPortfolio> c = emi.getPortfolios(el);
+		ArrayList<EPortfolio> c = emi.getEPortfolios(el);
 		assertTrue(c.size() == (size+1));
 	}
 	public void testGetAllResources(){
