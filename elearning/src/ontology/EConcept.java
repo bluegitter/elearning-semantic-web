@@ -9,6 +9,10 @@ public class EConcept {
 		this.cid = cid;
 		this.name = "name";
 	}
+	public EConcept(String cid,String cname){
+		this.cid = cid;
+		this.name = cname;
+	}
 
 	public String getCid() {
 		return cid;

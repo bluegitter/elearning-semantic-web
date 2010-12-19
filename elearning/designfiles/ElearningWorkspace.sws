@@ -4,9 +4,7 @@
 
 <Workspace>
 	<Local Expanded="Yes">
-		<Model Expanded="Yes" ID="{79823317-AFB9-49C1-8A2E-90F6E11F9CB9}" Loaded="No" Name="elearning" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="elearning.pdm"/>
-		<Model Expanded="Yes" ID="{DCDF63E1-E775-4DC3-B526-FD530DAAA942}" Loaded="No" Name="ElearningClass" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="ElearningClass.oom"/>
-		<Model Expanded="Yes" ID="{DCDF63E1-E775-4DC3-B526-FD530DAAA942}" Name="ElearningClass" Selected="Yes" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="ElearningClass.oom"/>
+		<Model Expanded="Yes" ID="{79823317-AFB9-49C1-8A2E-90F6E11F9CB9}" Name="elearning" Type="{CDE44E21-9669-11D1-9914-006097355D9B}" URL="elearning.pdm"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>
