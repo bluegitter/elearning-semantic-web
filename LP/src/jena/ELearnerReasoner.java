@@ -47,7 +47,7 @@ public class ELearnerReasoner {
 			Individual indi= (Individual) iter2.next();
 			if(concept.equals(indi.getOntClass())){
 				concepts.add(indi);
-				System.out.println(indi.getLocalName());
+				//System.out.println(indi.getLocalName());
 			}
 		}
 		return concepts;

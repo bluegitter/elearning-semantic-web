@@ -23,6 +23,7 @@ public interface ELearnerModel {
 	
 	//add opertions for properties
 	boolean addPropertyIsSonOf(EConcept fatherConcept,EConcept sonConcept);
+	boolean addPropertyIsResourceOfC(EResource resource,EConcept concept);
 	//io opertaions
 	boolean writeToFile(File file);
 	

@@ -111,7 +111,8 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 	}
 	public boolean addPropertyIsSonOf(EConcept fatherConcept,EConcept sonConcept){
 		Resource son = model.getResource(Constant.NS+sonConcept.getCid());
-		model.add(son, model.getProperty(Constant.NS+"is_son_of"), model.getResource(Constant.NS+fatherConcept.getCid()));
+		Resource father = model.getResource(Constant.NS+fatherConcept.getCid());
+		model.add(son, model.getProperty(Constant.NS+"is_son_of"), father);
 		return true;
 	}
 	
@@ -730,6 +731,13 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		}
 		qe.close();
 		return portfolio;
+	}
+	@Override
+	public boolean addPropertyIsResourceOfC(EResource resource, EConcept concept) {
+		Resource res = model.getResource(Constant.NS+resource.getRid());
+		Resource con = model.getResource(Constant.NS+concept.getCid());
+		model.add(res, model.getProperty(Constant.NS+"is_resource_of_C"), con);
+		return true;
 	}
 	
 }
