@@ -40,7 +40,7 @@ public class QuerySolutionParser {
 		String grade = qs.get("?el_grade").toString().trim();
 		String email = qs.get("?el_email").toString().trim();
 		String address = qs.get("?el_address").toString().trim();
-		el.setName(id);
+		el.setId(id);
 		el.setName(StringExchanger.getCommonString(name));
 		el.setGrade(StringExchanger.getCommonString(grade));
 		el.setEmail(StringExchanger.getCommonString(email));

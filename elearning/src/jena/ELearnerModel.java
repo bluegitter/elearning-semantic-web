@@ -32,28 +32,18 @@ public interface ELearnerModel {
 	boolean containEResource(String rid);
 	ArrayList<EConcept> getAllEConcepts();
 	ArrayList<EConcept> getSonConcepts(EConcept concept);
-	ArrayList<EConcept> getMemberConcept(EConcept concept);
 	ArrayList<EConcept> getInterestConcepts(ELearner elearner);
 	ArrayList<EResource> getEResourcesByKey(ELearner elearner, String keyword);
 	ArrayList<EPortfolio> getEPortfolios(ELearner elearner);
 	ArrayList<EResource> getEResourcesByEConcept(EConcept concept);
 	ArrayList<EResource> getAllEResources();
 	EConcept getEConcept(String cid);
-	EConcept getEConceptByName(String cname);
 	ELearner getELearner(String eid);
 	EResource getEResource(String rid);
-	
+	EPortfolio getEPortfolio(ELearner elearner,EResource resource);
 	EPerformance getEPerformance(ELearner elearner, EConcept concept);
 	ArrayList<EPerformance> getEPerformances(ELearner elearner);
 	boolean updatePerformance(EPerformance performance);
-	/***************************************************************************
-	 * there are 13 rules now
-	 * is_recommend_of_c_ (0--8)-->ELearner VS EConcept
-	 * is_recommend_of_L_ (0 1)--> ELearner VS ELearner
-	 * is_recommend_of_r_ (0 3) -->ELearner VS Resource
-	 * TO BE Test
-	 ****************************************************************************/
-	ArrayList<EConcept> getRecommendEConcepts(ELearner elearner,int rule);
-	ArrayList<EResource> getRecommendEResources(ELearner elearner,int rule);
-	ArrayList<ELearner> getRecommendELearners(ELearner elearner,int rule);
+	
+	
 }
