@@ -21,53 +21,52 @@ public class ResourceParser {
 	public boolean writeToFile(File file){
 		return emi.writeToFile(file);
 	}
-	public ArrayList<EConcept> getAllEConcepts() throws Exception{
-		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
+	public HashMap<String,EConcept> getAllEConcepts() throws Exception{
 		con = DataFactory.getConnection();
 		Statement st = con.createStatement();
-		String sql = "select course_resource_id,course_resource_title,courser_resource_location,concept1,concept2 from courseresourceinfo";
+		String sql = "select course_resource_id,course_resource_title,course_resource_location,concept1,concept2 from courseresourceinfo";
 		ResultSet rs =  st.executeQuery(sql);
 		String idprefix = "cid";
 		System.out.println("all concepts size:"+emi.getAllEConcepts().size());
-		HashMap<String,EConcept> record = new HashMap<String,EConcept>();
+		HashMap<String,EConcept> concepts = new HashMap<String,EConcept>();
 		ArrayList<EResource> resources = new ArrayList<EResource>();
 		while(rs.next()){
 			EResource resource = new EResource();
 			resource.setDifficulty("easy");
 			resource.setRid(rs.getString("course_resource_id"));
 			resource.setName(rs.getString("course_resource_title"));
-			resource.setFileLocation(rs.getString("courser_resource_location"));
+			resource.setFileLocation(rs.getString("course_resource_location"));
+			resources.add(resource);
 			emi.addEResource(resource);
 			
 			String con1=(String)rs.getString("concept1");
 			EConcept conceptTemp = null;
-			boolean isContain1 = record.containsKey(con1);
+			boolean isContain1 = concepts.containsKey(con1);
 			
 			if(!isContain1){
 				conceptTemp = new EConcept(idprefix+(concepts.size()+1),con1);
-				record.put(con1,conceptTemp);
-				concepts.add(conceptTemp);
+				concepts.put(con1,conceptTemp);
 				emi.addEConcept(conceptTemp);
 				emi.addPropertyIsSonOf(emi.getRootConcept(),conceptTemp);
 			}else{
-				conceptTemp = record.get(con1);
-				
+				conceptTemp = concepts.get(con1);
 			}
 			String con2=(String)rs.getString("concept2");
-			boolean isContain2 = record.containsKey(con2);
+			boolean isContain2 = concepts.containsKey(con2);
+			EConcept temp2 = null;
 			if(!isContain2){
-				EConcept temp = new EConcept(idprefix+(concepts.size()+1),con1);
-				record.put(con2,temp);
-				concepts.add(temp);
-				emi.addEConcept(temp);
-				emi.addPropertyIsSonOf(conceptTemp,temp);
+				temp2 = new EConcept(idprefix+(concepts.size()+1),con1);
+				concepts.put(con2,temp2);
+				emi.addEConcept(temp2);
+				emi.addPropertyIsSonOf(conceptTemp,temp2);
+			}else{
+				temp2 = concepts.get(con2);
 			}
+			emi.addPropertyIsResourceOfC(resource, conceptTemp);
+			emi.addPropertyIsResourceOfC(resource, temp2);
+			
 			System.out.println(con1+"\t"+con2);
 		}
-	//	emi.writeToFile(new File(newOwl));
-		System.out.println("all concepts new size:"+emi.getAllEConcepts().size());
-		System.out.println("new Concepts Size:"+concepts.size());
-		System.out.println("hah\n"+emi.getSonConcepts(emi.getRootConcept()));
 		rs.close();
 		st.close();
 		con.close();
