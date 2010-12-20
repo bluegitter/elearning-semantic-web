@@ -79,7 +79,7 @@ public class ResourceParser {
 	}
 	private ELearnerModelImpl emi;
 	private Connection con;
-	private String newOwl = Constant.newOwlFile;
+	private String userOwl = Constant.userOwlFile;
 	private String owl = Constant.OWLFile;
 	private String rule = Constant.RulesFile;
 	
