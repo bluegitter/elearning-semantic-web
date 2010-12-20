@@ -1,12 +1,18 @@
 package util;
 
 import ontology.EConcept;
+import ontology.EPerformance;
 import ontology.EPortfolio;
 import ontology.people.ELearner;
 import ontology.resources.EResource;
 
+import com.hp.hpl.jena.ontology.Individual;
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.query.QuerySolution;
+import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Model;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
 
 /*********************************************************************************************
  * This class is used to parse the QuerySolution to create relative class.
@@ -14,59 +20,88 @@ import com.hp.hpl.jena.rdf.model.Model;
  *
  ****************************************************************************************/
 public class QuerySolutionParser {
-	/*
-	public getEPerformance(QuerySolution qs){
-		
-	}
-	*/
-	public static EResource getEResource(QuerySolution qs,Model model){
+	public static EResource getEResource(String uri,InfModel model){
 		EResource res = new EResource();
-		String uri = qs.get("?resource").toString().trim();
-		String id = model.getResource(uri).getLocalName();
-		String name = qs.get("?r_name").toString().trim();
-		String difficulty = qs.get("?r_difficulty").toString().trim();
-		String fileLocation = qs.get("?r_fileLocation").toString().trim();
+		OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, model);
+		Individual indi = ontModel.getIndividual(uri);
+		String id  = indi.getPropertyValue(model.getProperty(Constant.NS+"id")).asLiteral().getString();
+		String name = indi.getPropertyValue(model.getProperty(Constant.NS+"name")).asLiteral().getString();
+		String difficulty = indi.getPropertyValue(model.getProperty(Constant.NS+"difficulty")).asLiteral().getString();
+		String fileLocation = indi.getPropertyValue(model.getProperty(Constant.NS+"fileLocation")).asLiteral().getString();
+
 		res.setRid(id);
-		res.setName(StringExchanger.getCommonString(name));
-		res.setDifficulty(StringExchanger.getCommonString(difficulty));
-		res.setFileLocation(StringExchanger.getCommonString(fileLocation));
+		res.setName(name);
+		res.setDifficulty(difficulty);
+		res.setFileLocation(fileLocation);
+		//System.out.println(res);
 		return res;
 	}
-	public static ELearner getELearner(QuerySolution qs, Model model){
+	public static ELearner getELearner(String uri, Model model){
 		ELearner el = new ELearner();
-		String uri = qs.get("?elearner").toString().trim();
-		String id = model.getResource(uri).getLocalName();
-		String name = qs.get("?el_name").toString().trim();
-		String grade = qs.get("?el_grade").toString().trim();
-		String email = qs.get("?el_email").toString().trim();
-		String address = qs.get("?el_address").toString().trim();
+		OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, model);
+		Individual indi = ontModel.getIndividual(uri);
+		
+		String id = indi.getLocalName();
+		String name = indi.getPropertyValue(model.getProperty(Constant.NS+"name")).asLiteral().getString();
+		String grade = indi.getPropertyValue(model.getProperty(Constant.NS+"grade")).asLiteral().getString();
+		String email = indi.getPropertyValue(model.getProperty(Constant.NS+"email")).asLiteral().getString();
+		String address = indi.getPropertyValue(model.getProperty(Constant.NS+"address")).asLiteral().getString();
+		
 		el.setId(id);
-		el.setName(StringExchanger.getCommonString(name));
-		el.setGrade(StringExchanger.getCommonString(grade));
-		el.setEmail(StringExchanger.getCommonString(email));
-		el.setAddress(StringExchanger.getCommonString(address));
+		el.setName(name);
+		el.setGrade(grade);
+		el.setEmail(email);
+		el.setAddress(address);
+//		System.out.println(el);
 		return el;
 	}
-	public static EConcept getEConcept(QuerySolution qs, Model model){
+	public static EConcept getEConcept(String uri, InfModel model){
+		OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, model);
+		Individual indi = ontModel.getIndividual(uri);
+		String id = indi.getPropertyValue(model.getProperty(Constant.NS+"id")).asLiteral().getString();
+		String name = indi.getPropertyValue(model.getProperty(Constant.NS+"name")).asLiteral().getString();
 		EConcept con = new EConcept();
-		String uri = qs.get("?concept").toString().trim();
-		String id = model.getResource(uri).getLocalName();
-		String name = qs.get("?c_name").toString().trim();
 		con.setCid(id);
-		con.setName(StringExchanger.getCommonString(name));
+		con.setName(name);
 		return con;
 	}
-	public static EPortfolio getEPortfolio(QuerySolution qs,Model model){
+	public static EPortfolio getEPortfolio(QuerySolution qs,InfModel model){
+		String portURI = getURI(qs,"?portfolio");
+		OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, model);
+		Individual indi = ontModel.getIndividual(portURI);
+		String id = indi.getLocalName();
+		String elURI = getURI(qs,"?elearner");
+		String resURI  = getURI(qs,"?resource");
+		ELearner elearner = getELearner(elURI,model);
+		EResource resource = getEResource(resURI,model);
+		float value = indi.getPropertyValue(model.getProperty("value")).asLiteral().getFloat();
 		EPortfolio portfolio = new EPortfolio();
-		String id = getIdByURI(qs,model,"?portfolio");
-		float value = 0;
-		ELearner elearner = getELearner(qs,model);
-		EResource resource = getEResource(qs,model);
 		portfolio.setId(id);
 		portfolio.setElearner(elearner);
 		portfolio.setEResource(resource);
 		portfolio.setValue(value);
+//		System.out.println(portfolio);
 		return portfolio;
+	}
+	public static EPerformance getEPerformance(QuerySolution qs,InfModel model){
+		String conURI = QuerySolutionParser.getURI(qs, "?concept");
+		String elURI = QuerySolutionParser.getURI(qs, "?elearner");
+		String perURI = QuerySolutionParser.getURI(qs, "?performance");
+		OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, model);
+		Individual indi = ontModel.getIndividual(perURI);
+		
+		EConcept con = QuerySolutionParser.getEConcept(conURI, model);
+		ELearner el = QuerySolutionParser.getELearner(elURI, model);
+		String pid = indi.getLocalName();
+		String valueString = indi.getPropertyValue(model.getProperty(Constant.NS+"value")).toString();
+		float value = Float.valueOf(valueString);
+		
+		EPerformance perf  = new EPerformance();
+		perf.setId(pid);
+		perf.setElearner(el);
+		perf.setConcept(con);
+		perf.setValue(value);
+		return perf;
 	}
 	/****************************************************************************
 	 * THE ID of the ontology is the same as its URI
@@ -75,11 +110,16 @@ public class QuerySolutionParser {
 	 * @param model
 	 * @param column   eg:"?elearner"
 	 * @return id
-	 */
+	 ***************************************************************************/
 	public static String getIdByURI(QuerySolution qs,Model model,String column){
 		String uri = qs.get(column).toString();
 		String id = model.getResource(uri).getLocalName();
 		return id;
+	}
+	public static String getURI(QuerySolution qs,String column){
+		String uri = qs.get(column).toString().trim();
+		return uri;
+		
 	}
 	
 }

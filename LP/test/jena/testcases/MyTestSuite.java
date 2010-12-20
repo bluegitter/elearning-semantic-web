@@ -1,4 +1,4 @@
-package jena;
+package jena.testcases;
 
 import junit.framework.TestSuite;
 
