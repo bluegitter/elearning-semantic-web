@@ -25,12 +25,28 @@ import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
+import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Resource;
 import db.OwlOperation;
 
 public class ELearnerModelImpl implements ELearnerModel, ELearnerRuleModel {
-
+	public static void main(String []args){
+		ELearnerModelImpl emi = new ELearnerModelImpl();
+//		ELearner newEL = new ELearner("newELearner");
+//		newEL.setName("name");
+//		newEL.setAddress("address");
+//		newEL.setEmail("enmail");
+//		newEL.setGrade("grade");
+//		emi.addELearner(newEL);
+//		System.out.println(emi.getELearner(newEL.getId()));
+		EConcept con = new EConcept("newCID","newCName");
+//		System.out.println(emi.addEConcept(con));
+		System.out.println(emi.getEConcept(con.getCid()));
+		System.out.println(emi.getEConcept("CMP.CF10_Operating_System_Foundations"));
+		emi.getAllEConcepts();
+//	 	emi.writeToFile(new File(Constant.userOwlFile));
+	}
     private OntModel ontModel;
     private InfModel infModel;
 
@@ -59,7 +75,8 @@ public class ELearnerModelImpl implements ELearnerModel, ELearnerRuleModel {
     @Override
     public boolean writeToFile(File file) {
         try {
-            OwlOperation.updateOwlFile(ontModel, file);
+        	updateModel();
+            OwlOperation.updateOwlFile(infModel, file);
             return true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -73,7 +90,7 @@ public class ELearnerModelImpl implements ELearnerModel, ELearnerRuleModel {
     @Override
     public boolean addELearner(ELearner elearner) {
         Resource el = ontModel.createResource(Constant.NS + elearner.getId(), ontModel.getResource(Constant.NS + "E_Learner"));
-        ontModel.add(el, ontModel.getProperty(Constant.NS + "id"), elearner.getId());
+        ontModel.add(el, ontModel.getProperty(Constant.NS + "id"), elearner.getId(), new XSDDatatype("string"));
         ontModel.add(el, ontModel.getProperty(Constant.NS + "name"), elearner.getName(), new XSDDatatype("string"));
         ontModel.add(el, ontModel.getProperty(Constant.NS + "grade"), elearner.getGrade(), new XSDDatatype("string"));
         ontModel.add(el, ontModel.getProperty(Constant.NS + "address"), elearner.getAddress(), new XSDDatatype("string"));
@@ -171,8 +188,8 @@ public class ELearnerModelImpl implements ELearnerModel, ELearnerRuleModel {
 
     @Override
     public boolean addPropertyIsResourceOfC(EResource resource, EConcept concept) {
-        Resource res = ontModel.getResource(Constant.NS + resource.getRid());
-        Resource con = ontModel.getResource(Constant.NS + concept.getCid());
+        Individual res = ontModel.getIndividual(Constant.NS + resource.getRid());
+        Individual con = ontModel.getIndividual(Constant.NS + concept.getCid());
         ontModel.add(res, ontModel.getProperty(Constant.NS + "is_resource_of_C"), con);
         return true;
     }
@@ -182,10 +199,10 @@ public class ELearnerModelImpl implements ELearnerModel, ELearnerRuleModel {
         String queryString =
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
                 + "PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> "
-                + "SELECT ?concept ?id "
+                + "SELECT ?concept "
                 + "WHERE {"
                 + "      ?concept rdf:type base:E_Concept . "
-                + "      ?concept base:id ?id . "
+                + "      ?concept base:id \""+cid+"\" . "
                 + "      }";
         Query query = QueryFactory.create(queryString);
 
@@ -194,11 +211,7 @@ public class ELearnerModelImpl implements ELearnerModel, ELearnerRuleModel {
         ResultSet results = qe.execSelect();
 
         while (results.hasNext()) {
-            QuerySolution qs = results.next();
-            String id = qs.get("?id").toString();
-            if (StringExchanger.getCommonString(id).equals(cid)) {
-                return true;
-            }
+            return true;
         }
         qe.close();
         return false;
@@ -209,10 +222,10 @@ public class ELearnerModelImpl implements ELearnerModel, ELearnerRuleModel {
         String queryString =
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
                 + "PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> "
-                + "SELECT ?elearner ?el_id "
+                + "SELECT ?elearner "
                 + "WHERE {"
                 + "      ?elearner rdf:type base:E_Learner . "
-                + "      ?elearner base:id ?el_id . "
+                + "      ?elearner base:id \""+eid+"\". "
                 + "      }";
         Query query = QueryFactory.create(queryString);
 
@@ -221,11 +234,7 @@ public class ELearnerModelImpl implements ELearnerModel, ELearnerRuleModel {
         ResultSet results = qe.execSelect();
 
         while (results.hasNext()) {
-            QuerySolution qs = results.next();
-            String id = qs.get("?el_id").toString().trim();
-            if (StringExchanger.getCommonString(id).equals(eid)) {
-                return true;
-            }
+            return true;
         }
         qe.close();
         return false;
@@ -236,10 +245,10 @@ public class ELearnerModelImpl implements ELearnerModel, ELearnerRuleModel {
         String queryString =
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
                 + "PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> "
-                + "SELECT ?resource ?r_id "
+                + "SELECT ?resource "
                 + "WHERE {"
                 + "      ?resource rdf:type base:E_Resource . "
-                + "      ?resource base:id ?r_id . "
+                + "      ?resource base:id \""+rid+"\" . "
                 + "      }";
         Query query = QueryFactory.create(queryString);
 
@@ -247,12 +256,8 @@ public class ELearnerModelImpl implements ELearnerModel, ELearnerRuleModel {
         QueryExecution qe = QueryExecutionFactory.create(query, ontModel);
         ResultSet results = qe.execSelect();
 
-        while (results.hasNext()) {
-            QuerySolution qs = results.next();
-            String id = qs.get("?r_id").toString();
-            if (StringExchanger.getCommonString(id).equals(rid)) {
-                return true;
-            }
+        if (results.hasNext()) {
+            return true;
         }
         qe.close();
         return false;
@@ -264,15 +269,17 @@ public class ELearnerModelImpl implements ELearnerModel, ELearnerRuleModel {
         String queryString =
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
                 + "PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> "
-                + "SELECT ?concept "
+                + "SELECT ?concept ?id ?name "
                 + "WHERE {"
                 + "      ?concept rdf:type base:E_Concept . "
-                + "      }";
+                +"    ?concept base:id ?id . "
+                 +"      }";
 
         Query query = QueryFactory.create(queryString);
         // Execute the query and obtain results
         QueryExecution qe = QueryExecutionFactory.create(query, ontModel);
         ResultSet results = qe.execSelect();
+        ResultSetFormatter.out(System.out, results, query);
         while (results.hasNext()) {
             QuerySolution qs = results.next();
             String conURI = QuerySolutionParser.getURI(qs, "?concept");
@@ -346,10 +353,10 @@ public class ELearnerModelImpl implements ELearnerModel, ELearnerRuleModel {
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
                 + "PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> "
                 + "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "
-                + "SELECT ?concept "
+                + "SELECT ?concept  "
                 + "WHERE {"
                 + "      ?concept rdf:type base:E_Concept . "
-                + "      ?concept base:id " + StringExchanger.getSparqlString(cid) + " . "
+                + "      ?concept base:id \""+cid+"\" . "
                 + "      }";
         Query query = QueryFactory.create(queryString);
         // Execute the query and obtain results
@@ -357,7 +364,7 @@ public class ELearnerModelImpl implements ELearnerModel, ELearnerRuleModel {
         ResultSet results = qe.execSelect();
         // Output query results
         EConcept con = null;
-        if (results.hasNext()) {
+        while (results.hasNext()) {
             QuerySolution qs = results.next();
             String conURI = QuerySolutionParser.getURI(qs, "?concept");
             con = QuerySolutionParser.getEConcept(conURI, ontModel);

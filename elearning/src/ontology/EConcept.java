@@ -27,7 +27,7 @@ public class EConcept {
 		this.name = name;
 	}
 	public String toString(){
-		return name;
+		return cid+"\t"+name;
 	}
 
 	private String cid;
