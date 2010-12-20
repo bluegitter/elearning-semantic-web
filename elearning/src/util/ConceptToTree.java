@@ -24,7 +24,8 @@ public class ConceptToTree {
 	
 	public void init() throws Exception
 	{
-		this.conceptList = DbOperation.getAllEConcepts();
+		this.conceptList = null;
+			//DbOperation.getAllEConcepts();
 		treeList.add(rootNode);
 		setTreeHeight();
 		setParentSonRelation();
@@ -125,7 +126,8 @@ public class ConceptToTree {
 	public static void addChilds(TreeNode tn,int level) throws Exception
 	{
 		String strId = tn.getNodeId();
-		List<EConcept> list = DbOperation.getEConceptsOfLevel(level);
+		List<EConcept> list = null;
+		//DbOperation.getEConceptsOfLevel(level);
 		for(int i =0; i<list.size();i++)
 		{
 			String regId = list.get(i).getCid();

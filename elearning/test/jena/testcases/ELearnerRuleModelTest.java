@@ -1,6 +1,8 @@
-package jena;
+package jena.testcases;
 
 import java.util.ArrayList;
+
+import jena.impl.ELearnerModelImpl;
 
 import junit.framework.TestCase;
 

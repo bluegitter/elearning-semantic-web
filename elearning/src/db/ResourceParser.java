@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import jena.ELearnerModelImpl;
+import jena.impl.ELearnerModelImpl;
 
 import ontology.EConcept;
 import ontology.resources.EResource;
@@ -16,7 +16,7 @@ import com.mysql.jdbc.Connection;
 
 public class ResourceParser {
 	public ResourceParser(){
-		emi = new ELearnerModelImpl(owl);
+		emi = new ELearnerModelImpl();
 	}
 	public boolean writeToFile(File file){
 		return emi.writeToFile(file);

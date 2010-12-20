@@ -1,6 +1,8 @@
-package jena;
+package jena.testcases;
 
 import java.util.ArrayList;
+
+import jena.impl.ELearnerModelImpl;
 import ontology.EConcept;
 import ontology.EPerformance;
 import ontology.EPortfolio;
@@ -62,7 +64,6 @@ public class ELearnerModelQueryTest extends TestCase{
 	
 	public void testGetConceptResources(){
 		ArrayList<EResource> c = emi.getEResourcesByEConcept(rootConcept);
-		System.out.println("size:"+c.size());
 	}
 	
 	public void testGetAllResources(){
