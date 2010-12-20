@@ -10,6 +10,7 @@
  */
 package lp;
 
+import java.util.Date;
 import ontology.EConcept;
 import ontology.EPerformance;
 import ontology.people.ELearner;
@@ -175,6 +176,7 @@ public class ConceptDialog extends javax.swing.JDialog {
             ep.setConcept(cdec);
             ep.setElearner(LPApp.getApplication().user.learner);
             ep.setId(LPApp.getApplication().user.learner.getId() + cdec.getCid() + "_p");
+            ep.setDatetime(new Date(System.currentTimeMillis()));
             LPApp.lpModel.addEPerfomance(ep);
         }
         this.updateData();
