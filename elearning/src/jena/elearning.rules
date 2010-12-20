@@ -15,7 +15,6 @@
 
 [rule_c_1: (?learner_c_1 el:reasoning_hasPerformance ?concept_c_1_1)
          
-            print(?learner_c_1 ?concept_c_1_1)
            (?concept_c_1_2 el:is_post_concept_of ?concept_c_1_1)
 
         

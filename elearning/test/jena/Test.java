@@ -1,5 +1,7 @@
 package jena;
 
+import jena.impl.ELearnerModelImpl;
+
 import com.hp.hpl.jena.query.ResultSetFormatter;
 
 public class Test {

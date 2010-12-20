@@ -48,7 +48,7 @@ public class EResource {
 		this.name = name;
 	}
 	public String toString(){
-		return rid+"\t"+name+"\t"+difficulty+"\n"+fileLocation;
+		return rid+"\t"+name+"\t"+difficulty+"\t"+fileLocation;
 	}
 	
 }

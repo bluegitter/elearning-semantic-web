@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import ontology.EConcept;
 
 public class ConceptTree {
+	@SuppressWarnings("unused")
 	private EConcept root;
 	public ArrayList<EConcept> concepts;
 	public ConceptTree(){

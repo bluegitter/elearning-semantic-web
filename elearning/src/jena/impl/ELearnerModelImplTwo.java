@@ -1,8 +1,12 @@
-package jena;
+package jena.impl;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import jena.OwlFactory;
+import jena.interfaces.ELearnerModel;
+import jena.interfaces.ELearnerRuleModel;
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.EPerformance;
@@ -10,9 +14,8 @@ import ontology.EPortfolio;
 import ontology.people.ELearner;
 import ontology.resources.EResource;
 import util.Constant;
-import util.QuerySolutionParser;
+import util.QuerySolutionParserTwo;
 import util.StringExchanger;
-
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.query.Query;
@@ -21,24 +24,20 @@ import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.InfModel;
-import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
-import com.hp.hpl.jena.rdf.model.Statement;
 
 import db.OwlOperation;
-import exception.ConceptNotExistInModelException;
 
-public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
+public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 	private InfModel model;
-	public ELearnerModelImpl(){
+	public ELearnerModelImplTwo(){
 		model = OwlFactory.getInfoModel(OwlFactory.getGenericRuleReasoner(), OwlFactory.getOntModel());
 	}
-	public ELearnerModelImpl(OntModel model){
+	public ELearnerModelImplTwo(OntModel model){
 		this.model = model;
 	}
-	public ELearnerModelImpl(String fileURL){
+	public ELearnerModelImplTwo(String fileURL){
 		model = OwlFactory.getOntModel(fileURL);
 	}
 	
@@ -248,7 +247,7 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		ResultSet results = qe.execSelect();
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
-			EConcept con = QuerySolutionParser.getEConcept(qs, model);
+			EConcept con = QuerySolutionParserTwo.getEConcept(qs, model);
 			concepts.add(con);
 		}
 		qe.close();
@@ -275,7 +274,7 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		ResultSet results = qe.execSelect();
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
-			EConcept con = QuerySolutionParser.getEConcept(qs, model);
+			EConcept con = QuerySolutionParserTwo.getEConcept(qs, model);
 			concepts.add(con);
 		}
 		qe.close();
@@ -303,7 +302,7 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
-			EConcept con = QuerySolutionParser.getEConcept(qs, model);
+			EConcept con = QuerySolutionParserTwo.getEConcept(qs, model);
 			concepts.add(con);
 		}
 		qe.close();
@@ -332,7 +331,7 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
-			EConcept con = QuerySolutionParser.getEConcept(qs, model);
+			EConcept con = QuerySolutionParserTwo.getEConcept(qs, model);
 			concepts.add(con);
 		}
 		qe.close();
@@ -362,7 +361,7 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		ResultSet results = qe.execSelect();
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
-			ELearner el = QuerySolutionParser.getELearner(qs, model);
+			ELearner el = QuerySolutionParserTwo.getELearner(qs, model);
 			elearners.add(el);
 		}
 		qe.close();
@@ -393,7 +392,7 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
-			EResource res = QuerySolutionParser.getEResource(qs, model);
+			EResource res = QuerySolutionParserTwo.getEResource(qs, model);
 			resources.add(res);
 		}
 		qe.close();
@@ -423,7 +422,7 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		EConcept con = null;
 		if(results.hasNext()){
 			QuerySolution qs = results.next();
-			con = QuerySolutionParser.getEConcept(qs, model);
+			con = QuerySolutionParserTwo.getEConcept(qs, model);
 		}
 		qe.close();
 		return con;
@@ -454,7 +453,7 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		ELearner el = null;
 		if(results.hasNext()){
 			QuerySolution qs = results.next();
-			el = QuerySolutionParser.getELearner(qs, model);
+			el = QuerySolutionParserTwo.getELearner(qs, model);
 		}
 		qe.close();
 		return el;
@@ -483,7 +482,7 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		EResource res = null;
 		if(results.hasNext()){
 			QuerySolution qs = results.next();
-			res = QuerySolutionParser.getEResource(qs, model);
+			res = QuerySolutionParserTwo.getEResource(qs, model);
 		}
 		qe.close();
 		return res;
@@ -513,9 +512,9 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
-			EConcept con = QuerySolutionParser.getEConcept(qs, model);
+			EConcept con = QuerySolutionParserTwo.getEConcept(qs, model);
 			EPerformance per = new EPerformance();
-			String pid = QuerySolutionParser.getIdByURI(qs, model, "?performance");
+			String pid = QuerySolutionParserTwo.getIdByURI(qs, model, "?performance");
 			String valueString = StringExchanger.getCommonString(qs.get("?performance_value").toString().trim());
 			float value = Float.valueOf(valueString);
 			per.setId(pid);
@@ -548,14 +547,15 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		ResultSet results = qe.execSelect();
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
-			EConcept con = QuerySolutionParser.getEConcept(qs, model);
+			EConcept con = QuerySolutionParserTwo.getEConcept(qs, model);
 			concepts.add(con);
 		}
 		qe.close();
 		return concepts;
 	}
 	public static void main(String [] args)throws Exception{
-		
+		ELearnerModelImpl emi = new ELearnerModelImpl();
+		emi.getEResource("rid00001");
 	}
 	@Override
 	public ArrayList<EPortfolio> getEPortfolios(ELearner elearner) {
@@ -581,9 +581,9 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		ResultSet results = qe.execSelect();
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
-			EResource resource = QuerySolutionParser.getEResource(qs, model);
+			EResource resource = QuerySolutionParserTwo.getEResource(qs, model);
 			EPortfolio port = new EPortfolio();
-			String pid = QuerySolutionParser.getIdByURI(qs, model, "?portfolio");
+			String pid = QuerySolutionParserTwo.getIdByURI(qs, model, "?portfolio");
 			String valueString = StringExchanger.getCommonString(qs.get("?portfolio_value").toString().trim());
 			float value = Float.valueOf(valueString);
 			
@@ -620,7 +620,7 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
-			EResource res = QuerySolutionParser.getEResource(qs, model);
+			EResource res = QuerySolutionParserTwo.getEResource(qs, model);
 			resources.add(res);
 		}
 		qe.close();
@@ -646,7 +646,7 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		ResultSet results = qe.execSelect();
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
-			EResource res = QuerySolutionParser.getEResource(qs, model);
+			EResource res = QuerySolutionParserTwo.getEResource(qs, model);
 			resources.add(res);
 		}
 		qe.close();
@@ -676,7 +676,7 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		while(results.hasNext()){
 			performance = new EPerformance();
 			QuerySolution qs = results.next();
-			String id = QuerySolutionParser.getIdByURI(qs, model, "?performance");
+			String id = QuerySolutionParserTwo.getIdByURI(qs, model, "?performance");
 			String v= qs.get("?preformance_value").toString().trim();
 			String valueString = StringExchanger.getCommonString(v);
 			float value = Float.parseFloat((valueString));
@@ -720,7 +720,7 @@ public class ELearnerModelImpl implements ELearnerModel,ELearnerRuleModel{
 		while(results.hasNext()){
 			portfolio = new EPortfolio();
 			QuerySolution qs = results.next();
-			String id = QuerySolutionParser.getIdByURI(qs, model, "?portfolio");
+			String id = QuerySolutionParserTwo.getIdByURI(qs, model, "?portfolio");
 			String v= qs.get("?portfolio_value").toString().trim();
 			String valueString = StringExchanger.getCommonString(v);
 			float value = Float.parseFloat((valueString));

@@ -1,4 +1,4 @@
-package jena;
+package jena.interfaces;
 
 import java.io.File;
 import java.util.ArrayList;
