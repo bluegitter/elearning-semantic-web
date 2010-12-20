@@ -1,6 +1,8 @@
-package jena;
+package jena.testcases;
 
 import java.util.ArrayList;
+
+import jena.impl.ELearnerModelImpl;
 import ontology.EConcept;
 import ontology.EPerformance;
 import ontology.EPortfolio;
