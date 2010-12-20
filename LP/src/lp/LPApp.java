@@ -4,9 +4,11 @@
 
 package lp;
 
-import jena.ELearnerModelImpl;
+import java.io.File;
+import jena.impl.ELearnerModelImpl;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
+import util.Constant;
 
 /**
  * The main class of the application.
@@ -38,6 +40,14 @@ public class LPApp extends SingleFrameApplication {
         view.mainPanel.add(new LoginPanel());
         view.lpToolBar.setVisible(false);
         show(view);
+    }
+
+    @Override
+    protected void shutdown() {
+        File f = new File(Constant.userOwlFile);
+        lpModel.writeToFile(f);
+
+        super.shutdown();
     }
 
     /**
