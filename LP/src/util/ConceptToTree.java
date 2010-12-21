@@ -24,8 +24,7 @@ public class ConceptToTree {
 	
 	public void init() throws Exception
 	{
-		this.conceptList = null;
-			//DbOperation.getAllEConcepts();
+		this.conceptList = DbOperation.getAllEConcepts();
 		treeList.add(rootNode);
 		setTreeHeight();
 		setParentSonRelation();
@@ -41,7 +40,7 @@ public class ConceptToTree {
 		return conceptList.size();
 	}
 
-	//ÉèÖÃÊ÷µÄ¸ß¶È TreeHight=0±íÊ¾Ö»ÓÐ¸ù½Úµã
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ß¶ï¿½ TreeHight=0ï¿½ï¿½Ê¾Ö»ï¿½Ð¸ï¿½Úµï¿½
 	public void setTreeHeight()
 	{
 		int height=0;
@@ -67,13 +66,13 @@ public class ConceptToTree {
 			this.TreeHight = height;
 		}
 	}
-	//·µ»ØÊ÷µÄ¸ß¶È TreeHight=0±íÊ¾Ö»ÓÐ¸ù½Úµã
+
 	public int getTreeHeight()
 	{
 		return this.TreeHight;
 	}
 
-	//ÒÑ¾­Éè¶¨ÁËÃ¿¸önodeµÄlevel£¬´Ëº¯Êý¹ØÁª¸¸×Ó½Úµã
+
 	public static void setParentSonRelation() throws Exception
 	{
 		List<TreeNode> nodes =  new ArrayList<TreeNode>();
@@ -104,7 +103,7 @@ public class ConceptToTree {
 
 		if(level == 1)
 		{
-	        //µÃµ½µÚÒ»²ãµÄ½Úµã
+                    
 		//	List<TreeNode> nodes = getNodes(1);
 			List<TreeNode> nodes = null;
 			for(int j=0;j<nodes.size();j++)
