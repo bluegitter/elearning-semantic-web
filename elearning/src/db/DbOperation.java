@@ -9,9 +9,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import exception.IllegallPersonException;
 
+import ontology.EConcept;
 import ontology.people.ELearner;
 public class DbOperation {
 	/*********************************************************************
@@ -184,4 +187,23 @@ public class DbOperation {
 			return false;
 		} 
 	}
+	
+	public static List<EConcept> getAllEConcepts() throws Exception{
+		Connection con = DataFactory.getConnection();
+		Statement st = con.createStatement();		
+		String sql = "select * from econcept ";
+		ResultSet rs =  st.executeQuery(sql);
+		List<EConcept> conceptsList = new ArrayList<EConcept>();
+		while(rs.next()){
+			String concept_id =(String)rs.getString("concept_id");
+			String concept_name = (String)rs.getString("concept_name");
+			EConcept tmpConcept  = new EConcept(concept_id,concept_name);
+			conceptsList.add(tmpConcept);			
+		}
+		rs.close();
+		st.close();
+		con.close();
+		return conceptsList;
+	}
+
 }
