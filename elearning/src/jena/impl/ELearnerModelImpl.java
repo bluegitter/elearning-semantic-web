@@ -57,12 +57,15 @@ public class ELearnerModelImpl implements ELearnerModel, ELearnerRuleModel {
 
     public ELearnerModelImpl(OntModel ontModel) {
         this.ontModel = ontModel;
+        updateModel();
     }
 
     public void updateModel() {
         infModel = OwlFactory.getInfoModel(OwlFactory.getGenericRuleReasoner(), ontModel);
     }
-
+    public OntModel getOntModel(){
+    	return ontModel;
+    }
     public InfModel getInfModel() {
         return infModel;
     }
@@ -90,7 +93,7 @@ public class ELearnerModelImpl implements ELearnerModel, ELearnerRuleModel {
     @Override
     public boolean addELearner(ELearner elearner) {
         Resource el = ontModel.createResource(Constant.NS + elearner.getId(), ontModel.getResource(Constant.NS + "E_Learner"));
-        ontModel.add(el, ontModel.getProperty(Constant.NS + "id"), elearner.getId(), new XSDDatatype("string"));
+        ontModel.add(el, ontModel.getProperty(Constant.NS + "id"), elearner.getId());
         ontModel.add(el, ontModel.getProperty(Constant.NS + "name"), elearner.getName(), new XSDDatatype("string"));
         ontModel.add(el, ontModel.getProperty(Constant.NS + "grade"), elearner.getGrade(), new XSDDatatype("string"));
         ontModel.add(el, ontModel.getProperty(Constant.NS + "address"), elearner.getAddress(), new XSDDatatype("string"));
@@ -269,17 +272,16 @@ public class ELearnerModelImpl implements ELearnerModel, ELearnerRuleModel {
         String queryString =
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
                 + "PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> "
-                + "SELECT ?concept ?id ?name "
+                + "SELECT ?concept "
                 + "WHERE {"
                 + "      ?concept rdf:type base:E_Concept . "
-                +"    ?concept base:id ?id . "
                  +"      }";
 
         Query query = QueryFactory.create(queryString);
         // Execute the query and obtain results
         QueryExecution qe = QueryExecutionFactory.create(query, ontModel);
         ResultSet results = qe.execSelect();
-        ResultSetFormatter.out(System.out, results, query);
+       // ResultSetFormatter.out(System.out, results, query);
         while (results.hasNext()) {
             QuerySolution qs = results.next();
             String conURI = QuerySolutionParser.getURI(qs, "?concept");
