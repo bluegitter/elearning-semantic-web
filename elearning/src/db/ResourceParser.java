@@ -73,7 +73,7 @@ public class ResourceParser {
 				emi.addPropertyIsResourceOfC(resource, temp2);
 			}
 		}
-		emi.writeToFile(new File(Constant.userOwlFile));
+		System.out.println(concepts.size()+" concepts added\t"+resources.size()+" resources added");
 		System.out.println(emi.getEResourcesByEConcept(emi.getEConcept("cid1")));
 		rs.close();
 		st.close();
@@ -136,7 +136,9 @@ public class ResourceParser {
 	public static void main(String []args) throws Exception{
 		ResourceParser rp = new ResourceParser();
 		rp.getBasicEConcepts();
-      //  rp.writeToFile(new File( Constant.userOwlFile));
+		rp.getAllEConcepts();
+		System.out.println("Begin Writing ....");
+		rp.writeToFile(new File( Constant.userOwlFile));
 	}
 	private ELearnerModelImpl emi;
 	
