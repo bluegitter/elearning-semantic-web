@@ -4,7 +4,6 @@ import java.io.File;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
 import jena.impl.ELearnerModelImpl;
@@ -13,6 +12,7 @@ import ontology.EConcept;
 import ontology.resources.EResource;
 import util.Constant;
 
+import com.hp.hpl.jena.ontology.OntModel;
 import com.mysql.jdbc.Connection;
 
 public class ResourceParser {
@@ -22,8 +22,11 @@ public class ResourceParser {
 	public boolean writeToFile(File file){
 		return emi.writeToFile(file);
 	}
+	public OntModel getOntModel(){
+		return emi.getOntModel();
+	}
 	public HashMap<String,EConcept> getAllEConcepts() throws Exception{
-		con = DataFactory.getConnection();
+		Connection con = DataFactory.getConnection();
 		Statement st = con.createStatement();
 		String sql = "select course_resource_id,course_resource_title,course_resource_location,concept1,concept2 from courseresourceinfo";
 		ResultSet rs =  st.executeQuery(sql);
@@ -38,7 +41,7 @@ public class ResourceParser {
 			resource.setFileLocation(rs.getString("course_resource_location"));
 			resources.add(resource);
 			emi.addEResource(resource);
-			System.out.println("addRes:"+emi.getEResource(resource.getRid()));
+			//System.out.println("addRes:"+emi.getEResource(resource.getRid()));
 			String con1=(String)rs.getString("concept1");
 			EConcept conceptTemp = null;
 			boolean isContain1 = concepts.containsKey(con1);
@@ -47,7 +50,7 @@ public class ResourceParser {
 				conceptTemp = new EConcept(idprefix+(concepts.size()+1),con1);
 				concepts.put(con1,conceptTemp);
 				emi.addEConcept(conceptTemp);
-				System.out.println("addOne:"+emi.getEConcept(conceptTemp.getCid()));
+				//System.out.println("addOne:"+emi.getEConcept(conceptTemp.getCid()));
 				emi.addPropertyIsSonOf(emi.getRootConcept(),conceptTemp);
 			}else{
 				conceptTemp = concepts.get(con1);
@@ -62,7 +65,7 @@ public class ResourceParser {
 					temp2 = new EConcept((idprefix+(concepts.size()+1)),con2);
 					concepts.put(con2,temp2);
 					emi.addEConcept(temp2);
-					System.out.println("addTwo:"+emi.getEConcept(temp2.getCid()));
+					//System.out.println("addTwo:"+emi.getEConcept(temp2.getCid()));
 					emi.addPropertyIsSonOf(conceptTemp,temp2);
 				}else{
 					temp2 = concepts.get(con2);
@@ -71,27 +74,70 @@ public class ResourceParser {
 			}
 		}
 		emi.writeToFile(new File(Constant.userOwlFile));
-		
-		//System.out.println(emi.getAllEResources().size());
 		System.out.println(emi.getEResourcesByEConcept(emi.getEConcept("cid1")));
-//		Collection<EConcept> cs = concepts.values();
-//		for(EConcept c :cs){
-//			System.out.println(c);
-//		}
-//		//System.out.println(emi.getAllEConcepts());
-//		System.out.println(emi.getEConcept("cid1"));
 		rs.close();
 		st.close();
 		con.close();
 		return concepts;
 	}
-	 
+	public ArrayList<EConcept> getBasicEConcepts() throws Exception{
+		Connection con = DataFactory.getConnection();
+		Statement st = con.createStatement();
+		String sql = "select concept_id,concept_name from econcept";
+		ResultSet rs =  st.executeQuery(sql);
+		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
+		EConcept currentRootConcept = emi.getRootConcept();
+		EConcept lastConcept = emi.getRootConcept();
+		EConcept rootConcept = emi.getRootConcept();
+		int currentLevel = 0;
+		while(rs.next()){
+			String cid = rs.getString("concept_id");
+			String cname = rs.getString("concept_name");
+			EConcept concept = new EConcept(cid,cname);
+			emi.addEConcept(concept);
+			concepts.add(concept);
+			int level = countDot(cid);
+			//add new son
+			if(currentLevel<level){
+				currentRootConcept = lastConcept;
+				emi.addPropertyIsSonOf(currentRootConcept, concept);
+				currentLevel = level;
+			}
+			//add leaf member
+			if(currentLevel ==level){
+				emi.addPropertyIsSonOf(currentRootConcept, concept);
+			}
+			//add new son of the root concept
+			if(currentLevel > level){
+				currentRootConcept = rootConcept;
+				emi.addPropertyIsSonOf(currentRootConcept, concept);
+				currentLevel = level;
+			}
+			lastConcept = concept;
+		}
+		System.out.println(emi.getAllEConcepts().size());
+		System.out.println(concepts);
+		rs.close();
+		st.close();
+		con.close();
+		return concepts;
+	}
+	private int countDot(String s){
+		char cs []= s.toCharArray();
+		int i = 0;
+		for(char c :cs){
+			if(c=='.'){
+				i++;
+			}
+		}
+		return i;
+	}
+	
 	public static void main(String []args) throws Exception{
 		ResourceParser rp = new ResourceParser();
-		rp.getAllEConcepts();
+		rp.getBasicEConcepts();
       //  rp.writeToFile(new File( Constant.userOwlFile));
 	}
 	private ELearnerModelImpl emi;
-	private Connection con;
 	
 }
