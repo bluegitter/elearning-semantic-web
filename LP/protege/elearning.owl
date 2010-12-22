@@ -13,16 +13,16 @@
   <owl:Ontology rdf:about=""/>
   <owl:Class rdf:ID="Research_Fellow">
     <owl:disjointWith>
-      <owl:Class rdf:ID="Lecturer"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Professor"/>
+      <owl:Class rdf:ID="Associate_Research_Fellow"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="Associate_Professor"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Associate_Research_Fellow"/>
+      <owl:Class rdf:ID="Professor"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Lecturer"/>
     </owl:disjointWith>
     <rdfs:subClassOf>
       <owl:Class rdf:ID="E_Teacher"/>
@@ -40,10 +40,10 @@
       <owl:Class rdf:ID="E_EducationMaterial"/>
     </rdfs:subClassOf>
     <owl:disjointWith>
-      <owl:Class rdf:ID="AssessmentMaterial"/>
+      <owl:Class rdf:ID="LearningMaterial"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="LearningMaterial"/>
+      <owl:Class rdf:ID="AssessmentMaterial"/>
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:ID="E_Security">
@@ -56,44 +56,44 @@
       <owl:Class rdf:about="#LearningMaterial"/>
     </rdfs:subClassOf>
     <owl:disjointWith>
-      <owl:Class rdf:ID="Paper"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="ProjectAssignment"/>
-    </owl:disjointWith>
-    <owl:disjointWith>
-      <owl:Class rdf:ID="Lecture"/>
+      <owl:Class rdf:ID="LectureNotes"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:ID="Book"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:ID="LectureNotes"/>
+      <owl:Class rdf:ID="Lecture"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="ProjectAssignment"/>
+    </owl:disjointWith>
+    <owl:disjointWith>
+      <owl:Class rdf:ID="Paper"/>
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#AssessmentMaterial">
     <rdfs:subClassOf rdf:resource="#E_EducationMaterial"/>
-    <owl:disjointWith rdf:resource="#LearningExperience"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#LearningMaterial"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#LearningExperience"/>
   </owl:Class>
   <owl:Class rdf:about="#ProjectAssignment">
     <rdfs:subClassOf>
       <owl:Class rdf:about="#LearningMaterial"/>
     </rdfs:subClassOf>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Paper"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Example"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Lecture"/>
+      <owl:Class rdf:about="#LectureNotes"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#Book"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#LectureNotes"/>
+      <owl:Class rdf:about="#Lecture"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Example"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Paper"/>
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:ID="E_Portfolio">
@@ -137,32 +137,32 @@
       <owl:Class rdf:about="#LearningMaterial"/>
     </rdfs:subClassOf>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Paper"/>
+      <owl:Class rdf:about="#LectureNotes"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Example"/>
-    <owl:disjointWith rdf:resource="#ProjectAssignment"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Lecture"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#ProjectAssignment"/>
+    <owl:disjointWith rdf:resource="#Example"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#LectureNotes"/>
+      <owl:Class rdf:about="#Paper"/>
     </owl:disjointWith>
   </owl:Class>
   <owl:Class rdf:about="#LearningMaterial">
     <rdfs:subClassOf rdf:resource="#E_EducationMaterial"/>
-    <owl:disjointWith rdf:resource="#AssessmentMaterial"/>
     <owl:disjointWith rdf:resource="#LearningExperience"/>
+    <owl:disjointWith rdf:resource="#AssessmentMaterial"/>
   </owl:Class>
   <owl:Class rdf:about="#Paper">
-    <owl:disjointWith rdf:resource="#Example"/>
-    <owl:disjointWith rdf:resource="#ProjectAssignment"/>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Lecture"/>
-    </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Book"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#LectureNotes"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Book"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Lecture"/>
+    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#ProjectAssignment"/>
+    <owl:disjointWith rdf:resource="#Example"/>
     <rdfs:subClassOf rdf:resource="#LearningMaterial"/>
   </owl:Class>
   <owl:Class rdf:ID="US_University">
@@ -173,38 +173,38 @@
   </owl:Class>
   <owl:Class rdf:ID="E_Resource"/>
   <owl:Class rdf:about="#Associate_Research_Fellow">
+    <owl:disjointWith rdf:resource="#Research_Fellow"/>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Lecturer"/>
+      <owl:Class rdf:about="#Associate_Professor"/>
     </owl:disjointWith>
     <owl:disjointWith>
       <owl:Class rdf:about="#Professor"/>
     </owl:disjointWith>
     <owl:disjointWith>
-      <owl:Class rdf:about="#Associate_Professor"/>
+      <owl:Class rdf:about="#Lecturer"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Research_Fellow"/>
     <rdfs:subClassOf rdf:resource="#E_Teacher"/>
   </owl:Class>
   <owl:Class rdf:about="#Associate_Professor">
     <rdfs:subClassOf rdf:resource="#E_Teacher"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></rdfs:comment>
-    <owl:disjointWith>
-      <owl:Class rdf:about="#Lecturer"/>
-    </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Research_Fellow"/>
+    <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#Professor"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
-    <owl:disjointWith rdf:resource="#Research_Fellow"/>
-  </owl:Class>
-  <owl:Class rdf:about="#Professor">
     <owl:disjointWith>
       <owl:Class rdf:about="#Lecturer"/>
     </owl:disjointWith>
-    <owl:disjointWith rdf:resource="#Associate_Professor"/>
-    <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
+  </owl:Class>
+  <owl:Class rdf:about="#Professor">
     <owl:disjointWith rdf:resource="#Research_Fellow"/>
+    <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
+    <owl:disjointWith rdf:resource="#Associate_Professor"/>
+    <owl:disjointWith>
+      <owl:Class rdf:about="#Lecturer"/>
+    </owl:disjointWith>
     <rdfs:subClassOf rdf:resource="#E_Teacher"/>
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></rdfs:comment>
@@ -212,10 +212,10 @@
   <owl:Class rdf:about="#Lecturer">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     ></rdfs:comment>
-    <owl:disjointWith rdf:resource="#Professor"/>
-    <owl:disjointWith rdf:resource="#Associate_Professor"/>
-    <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
     <owl:disjointWith rdf:resource="#Research_Fellow"/>
+    <owl:disjointWith rdf:resource="#Associate_Research_Fellow"/>
+    <owl:disjointWith rdf:resource="#Associate_Professor"/>
+    <owl:disjointWith rdf:resource="#Professor"/>
     <rdfs:subClassOf rdf:resource="#E_Teacher"/>
   </owl:Class>
   <owl:Class rdf:about="#Chinese_University">
@@ -236,24 +236,24 @@
     >Press</rdfs:comment>
   </owl:Class>
   <owl:Class rdf:about="#Lecture">
-    <owl:disjointWith rdf:resource="#Paper"/>
-    <owl:disjointWith rdf:resource="#Example"/>
-    <owl:disjointWith rdf:resource="#ProjectAssignment"/>
-    <owl:disjointWith rdf:resource="#Book"/>
     <owl:disjointWith>
       <owl:Class rdf:about="#LectureNotes"/>
     </owl:disjointWith>
+    <owl:disjointWith rdf:resource="#Book"/>
+    <owl:disjointWith rdf:resource="#ProjectAssignment"/>
+    <owl:disjointWith rdf:resource="#Example"/>
+    <owl:disjointWith rdf:resource="#Paper"/>
     <rdfs:subClassOf rdf:resource="#LearningMaterial"/>
   </owl:Class>
   <owl:Class rdf:ID="Corporations">
     <rdfs:subClassOf rdf:resource="#E_Organizations"/>
   </owl:Class>
   <owl:Class rdf:about="#LectureNotes">
-    <owl:disjointWith rdf:resource="#Paper"/>
-    <owl:disjointWith rdf:resource="#Example"/>
-    <owl:disjointWith rdf:resource="#ProjectAssignment"/>
-    <owl:disjointWith rdf:resource="#Lecture"/>
     <owl:disjointWith rdf:resource="#Book"/>
+    <owl:disjointWith rdf:resource="#Lecture"/>
+    <owl:disjointWith rdf:resource="#ProjectAssignment"/>
+    <owl:disjointWith rdf:resource="#Example"/>
+    <owl:disjointWith rdf:resource="#Paper"/>
     <rdfs:subClassOf rdf:resource="#LearningMaterial"/>
   </owl:Class>
   <owl:ObjectProperty rdf:ID="inverse_of_has_study_style">
@@ -272,9 +272,6 @@
       <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of"/>
     </owl:inverseOf>
     <rdfs:range rdf:resource="#E_Learner"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="organization_properties">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_r_1">
     <rdfs:range rdf:resource="#E_Resource"/>
@@ -303,7 +300,9 @@
         </owl:unionOf>
       </owl:Class>
     </rdfs:range>
-    <rdfs:subPropertyOf rdf:resource="#organization_properties"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:ID="organization_properties"/>
+    </rdfs:subPropertyOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="is_resource_of">
     <rdfs:domain rdf:resource="#E_Resource"/>
@@ -313,12 +312,6 @@
     <rdfs:subPropertyOf>
       <owl:ObjectProperty rdf:ID="resouce_properties"/>
     </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="studying_at">
-    <rdfs:range rdf:resource="#University"/>
-    <rdfs:domain rdf:resource="#E_People"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:subPropertyOf rdf:resource="#organization_properties"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_L_0">
     <rdfs:range rdf:resource="#E_Learner"/>
@@ -470,10 +463,21 @@
       </owl:Class>
     </rdfs:domain>
     <owl:inverseOf>
-      <owl:TransitiveProperty rdf:ID="publish"/>
+      <owl:ObjectProperty rdf:ID="publish"/>
     </owl:inverseOf>
-    <rdfs:subPropertyOf rdf:resource="#organization_properties"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#organization_properties"/>
+    </rdfs:subPropertyOf>
     <rdfs:range rdf:resource="#Publisher"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#publish">
+    <rdfs:domain rdf:resource="#Publisher"/>
+    <owl:inverseOf rdf:resource="#is_published_by"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#organization_properties"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#Book"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_c_7">
     <owl:inverseOf>
@@ -483,6 +487,26 @@
     <rdfs:subPropertyOf>
       <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of"/>
     </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="inverse_of_is_pre">
+    <rdfs:range rdf:resource="#E_Concept"/>
+    <rdfs:domain rdf:resource="#E_OptionalConceptRelationship"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="is_pre"/>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="optional_concept_properties"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_pre">
+    <rdfs:range rdf:resource="#E_OptionalConceptRelationship"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:domain rdf:resource="#E_Concept"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#optional_concept_properties"/>
+    </rdfs:subPropertyOf>
+    <owl:inverseOf rdf:resource="#inverse_of_is_pre"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="has_performance">
     <owl:inverseOf>
@@ -524,6 +548,17 @@
     </rdfs:subPropertyOf>
     <rdfs:range rdf:resource="#E_Resource"/>
     <owl:inverseOf rdf:resource="#is_recommend_of_r_3"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="is_post">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:range rdf:resource="#E_OptionalConceptRelationship"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:ID="inverse_of_is_post"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="#E_Concept"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#optional_concept_properties"/>
+    </rdfs:subPropertyOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="inverse_of_is_resource_of_P">
     <rdfs:domain rdf:resource="#E_Portfolio"/>
@@ -572,12 +607,6 @@
       <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of"/>
     </rdfs:subPropertyOf>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="is_member_of">
-    <rdfs:domain rdf:resource="#University"/>
-    <rdfs:subPropertyOf rdf:resource="#organization_properties"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:range rdf:resource="#University"/>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="inverse_of_is_resource_of_C">
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="is_resource_of_C"/>
@@ -599,7 +628,9 @@
     <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_L_0"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="graduate_from">
-    <rdfs:subPropertyOf rdf:resource="#organization_properties"/>
+    <rdfs:subPropertyOf>
+      <owl:TransitiveProperty rdf:about="#organization_properties"/>
+    </rdfs:subPropertyOf>
     <rdfs:domain rdf:resource="#E_People"/>
     <rdfs:range rdf:resource="#University"/>
   </owl:ObjectProperty>
@@ -607,6 +638,15 @@
     <rdfs:range rdf:resource="#E_Concept"/>
     <rdfs:subPropertyOf rdf:resource="#is_resource_of"/>
     <owl:inverseOf rdf:resource="#inverse_of_is_resource_of_C"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#inverse_of_is_post">
+    <owl:inverseOf rdf:resource="#is_post"/>
+    <rdfs:domain rdf:resource="#E_OptionalConceptRelationship"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="#optional_concept_properties"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="#E_Concept"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#is_resource_of_P">
     <owl:inverseOf rdf:resource="#inverse_of_is_resource_of_P"/>
@@ -634,15 +674,6 @@
     <rdfs:domain rdf:resource="#E_Learner"/>
     <owl:inverseOf rdf:resource="#is_recommend_of"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="is_post_concept_of">
-    <rdfs:range rdf:resource="#E_Concept"/>
-    <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:domain rdf:resource="#E_Concept"/>
-    <owl:inverseOf>
-      <owl:TransitiveProperty rdf:ID="is_pre_concept_of"/>
-    </owl:inverseOf>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="is_recommend_of_r_0">
     <rdfs:domain rdf:resource="#E_Resource"/>
     <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
@@ -663,7 +694,7 @@
     <owl:inverseOf rdf:resource="#is_application_type_of"/>
     <rdfs:range rdf:resource="#E_EducationMaterial"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="optional_concept_properties">
+  <owl:ObjectProperty rdf:about="#optional_concept_properties">
     <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#is_recommend_of_c_6">
@@ -681,13 +712,20 @@
     <rdfs:domain rdf:resource="#E_Concept"/>
     <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="inverse_of_is_part_of">
-    <rdfs:range rdf:resource="#E_Concept"/>
-    <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
-    <owl:inverseOf>
-      <owl:TransitiveProperty rdf:ID="is_part_of"/>
-    </owl:inverseOf>
+  <owl:ObjectProperty rdf:ID="is_part_of">
+    <rdfs:domain rdf:resource="#E_Concept"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:range rdf:resource="#E_Concept"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="inverse_of_is_part_of"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="reasoning_brother">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    <rdfs:range rdf:resource="#E_Concept"/>
+    <owl:inverseOf rdf:resource="#reasoning_brother"/>
+    <rdfs:subPropertyOf rdf:resource="#reasoning_properties"/>
     <rdfs:domain rdf:resource="#E_Concept"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of_c_5">
@@ -747,6 +785,15 @@
     <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
     <owl:inverseOf rdf:resource="#is_concept_of"/>
   </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="is_pre_concept_of">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:domain rdf:resource="#E_Concept"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:ID="is_post_concept_of"/>
+    </owl:inverseOf>
+    <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
+    <rdfs:range rdf:resource="#E_Concept"/>
+  </owl:ObjectProperty>
   <owl:DatatypeProperty rdf:ID="resourceType">
     <rdfs:range>
       <owl:DataRange>
@@ -754,41 +801,41 @@
           <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
           >audio</rdf:first>
           <rdf:rest rdf:parseType="Resource">
+            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >code</rdf:first>
             <rdf:rest rdf:parseType="Resource">
               <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
               >caj</rdf:first>
               <rdf:rest rdf:parseType="Resource">
-                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >doc</rdf:first>
                 <rdf:rest rdf:parseType="Resource">
+                  <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >pdf</rdf:first>
                   <rdf:rest rdf:parseType="Resource">
                     <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                     >txt</rdf:first>
                     <rdf:rest rdf:parseType="Resource">
-                      <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                      >flash</rdf:first>
                       <rdf:rest rdf:parseType="Resource">
-                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                        >image</rdf:first>
                         <rdf:rest rdf:parseType="Resource">
                           <rdf:rest rdf:parseType="Resource">
-                            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                             <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                             >video</rdf:first>
+                            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                           </rdf:rest>
                           <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                           >ppt</rdf:first>
                         </rdf:rest>
+                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >image</rdf:first>
                       </rdf:rest>
+                      <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                      >flash</rdf:first>
                     </rdf:rest>
                   </rdf:rest>
-                  <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                  >pdf</rdf:first>
                 </rdf:rest>
+                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >doc</rdf:first>
               </rdf:rest>
             </rdf:rest>
-            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >code</rdf:first>
           </rdf:rest>
         </owl:oneOf>
       </owl:DataRange>
@@ -879,66 +926,35 @@
       </owl:Class>
     </rdfs:domain>
   </owl:DatatypeProperty>
-  <owl:TransitiveProperty rdf:about="#publish">
-    <rdfs:domain rdf:resource="#Publisher"/>
-    <owl:inverseOf rdf:resource="#is_published_by"/>
+  <owl:TransitiveProperty rdf:about="#inverse_of_is_part_of">
+    <rdfs:range rdf:resource="#E_Concept"/>
+    <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
+    <owl:inverseOf rdf:resource="#is_part_of"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="#E_Concept"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="#organization_properties">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:ID="is_member_of">
+    <rdfs:domain rdf:resource="#University"/>
     <rdfs:subPropertyOf rdf:resource="#organization_properties"/>
-    <rdfs:range rdf:resource="#Book"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="#University"/>
   </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:ID="is_post">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="#E_OptionalConceptRelationship"/>
-    <owl:inverseOf>
-      <owl:TransitiveProperty rdf:ID="inverse_of_is_post"/>
-    </owl:inverseOf>
-    <rdfs:domain rdf:resource="#E_Concept"/>
-    <rdfs:subPropertyOf rdf:resource="#optional_concept_properties"/>
-  </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:ID="inverse_of_is_pre">
+  <owl:TransitiveProperty rdf:about="#is_post_concept_of">
     <rdfs:range rdf:resource="#E_Concept"/>
-    <rdfs:domain rdf:resource="#E_OptionalConceptRelationship"/>
-    <owl:inverseOf>
-      <owl:TransitiveProperty rdf:ID="is_pre"/>
-    </owl:inverseOf>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:subPropertyOf rdf:resource="#optional_concept_properties"/>
-  </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="#is_pre">
-    <rdfs:range rdf:resource="#E_OptionalConceptRelationship"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#E_Concept"/>
-    <rdfs:subPropertyOf rdf:resource="#optional_concept_properties"/>
-    <owl:inverseOf rdf:resource="#inverse_of_is_pre"/>
-  </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="#is_pre_concept_of">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="#E_Concept"/>
-    <owl:inverseOf rdf:resource="#is_post_concept_of"/>
     <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
-    <rdfs:range rdf:resource="#E_Concept"/>
-  </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="#inverse_of_is_post">
-    <owl:inverseOf rdf:resource="#is_post"/>
-    <rdfs:domain rdf:resource="#E_OptionalConceptRelationship"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:subPropertyOf rdf:resource="#optional_concept_properties"/>
-    <rdfs:range rdf:resource="#E_Concept"/>
-  </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="#is_part_of">
     <rdfs:domain rdf:resource="#E_Concept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="#E_Concept"/>
-    <owl:inverseOf rdf:resource="#inverse_of_is_part_of"/>
-    <rdfs:subPropertyOf rdf:resource="#concept_properties"/>
+    <owl:inverseOf rdf:resource="#is_pre_concept_of"/>
   </owl:TransitiveProperty>
-  <owl:SymmetricProperty rdf:ID="reasoning_brother">
+  <owl:TransitiveProperty rdf:ID="studying_at">
+    <rdfs:range rdf:resource="#University"/>
+    <rdfs:domain rdf:resource="#E_People"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="#E_Concept"/>
-    <owl:inverseOf rdf:resource="#reasoning_brother"/>
-    <rdfs:subPropertyOf rdf:resource="#reasoning_properties"/>
-    <rdfs:domain rdf:resource="#E_Concept"/>
-  </owl:SymmetricProperty>
+    <rdfs:subPropertyOf rdf:resource="#organization_properties"/>
+  </owl:TransitiveProperty>
   <E_Teacher rdf:ID="tid0001">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >teacher1</name>
@@ -960,17 +976,17 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Tsinghua University</name>
     <is_member_of>
-      <Chinese_University rdf:ID="Project_211_University"/>
+      <Chinese_University rdf:ID="Project_985_University"/>
     </is_member_of>
     <is_member_of>
-      <Chinese_University rdf:ID="Project_985_University"/>
+      <Chinese_University rdf:ID="Project_211_University"/>
     </is_member_of>
   </Chinese_University>
   <Chinese_University rdf:ID="BeijingUniversity">
     <address rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Tsinghua University</address>
-    <is_member_of rdf:resource="#Project_211_University"/>
     <is_member_of rdf:resource="#Project_985_University"/>
+    <is_member_of rdf:resource="#Project_211_University"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Tsinghua University</name>
   </Chinese_University>
@@ -1086,21 +1102,21 @@
                         <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                         >A_Semantic_Web_Primer 2nd</name>
                         <writen_by>
-                          <E_People rdf:ID="pid0002">
-                            <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                            >pid0002</id>
-                            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                            >Grigoris_Antoniou</name>
-                            <inverse_of_writen_by rdf:resource="#A_Semantic_Web_Primer"/>
-                          </E_People>
-                        </writen_by>
-                        <writen_by>
                           <E_People rdf:ID="pid0001">
                             <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                             >pid0001</id>
                             <inverse_of_writen_by rdf:resource="#A_Semantic_Web_Primer"/>
                             <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                             >Frank_van_Harmelen</name>
+                          </E_People>
+                        </writen_by>
+                        <writen_by>
+                          <E_People rdf:ID="pid0002">
+                            <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >pid0002</id>
+                            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >Grigoris_Antoniou</name>
+                            <inverse_of_writen_by rdf:resource="#A_Semantic_Web_Primer"/>
                           </E_People>
                         </writen_by>
                         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1147,7 +1163,7 @@
                                             <is_concept_of_I>
                                               <E_Interest rdf:ID="E_Interest_el001-2">
                                                 <value rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
+                                                "http://www.w3.org/2001/XMLSchema#float"
                                                 >0.3</value>
                                                 <inverse_of_has_interest rdf:resource="#el001"/>
                                                 <inverse_of_is_concept_of_I rdf:resource="#CMP.CF9_002_CPP"/>
@@ -1163,6 +1179,84 @@
                                             "http://www.w3.org/2001/XMLSchema#string"
                                             >c</name>
                                             <is_son_of rdf:resource="#CMP.CF9_Programming_Language_Foundations"/>
+                                            <inverse_of_is_resource_of_C>
+                                              <E_Resource rdf:ID="rid00006">
+                                                <is_resource_of_C rdf:resource="#CMP.CF9_001_C"/>
+                                                <name rdf:datatype=
+                                                "http://www.w3.org/2001/XMLSchema#string"
+                                                >c</name>
+                                                <difficulty rdf:datatype=
+                                                "http://www.w3.org/2001/XMLSchema#string"
+                                                >hard</difficulty>
+                                                <fileLocation
+                                                 rdf:datatype=
+                                                "http://www.w3.org/2001/XMLSchema#string"
+                                                >file c</fileLocation>
+                                                <id rdf:datatype=
+                                                "http://www.w3.org/2001/XMLSchema#string"
+                                                >rid00006</id>
+                                              </E_Resource>
+                                            </inverse_of_is_resource_of_C>
+                                            <inverse_of_is_resource_of_C>
+                                              <E_Resource rdf:ID="rid00005">
+                                                <id rdf:datatype=
+                                                "http://www.w3.org/2001/XMLSchema#string"
+                                                >rid00005</id>
+                                                <is_resource_of_C rdf:resource="#CMP.CF9_001_C"/>
+                                                <difficulty rdf:datatype=
+                                                "http://www.w3.org/2001/XMLSchema#string"
+                                                >hard</difficulty>
+                                                <fileLocation
+                                                 rdf:datatype=
+                                                "http://www.w3.org/2001/XMLSchema#string"
+                                                >C://</fileLocation>
+                                                <name rdf:datatype=
+                                                "http://www.w3.org/2001/XMLSchema#string"
+                                                >c</name>
+                                              </E_Resource>
+                                            </inverse_of_is_resource_of_C>
+                                            <is_concept_of_I>
+                                              <E_Interest rdf:ID="E_Interest_1">
+                                                <value rdf:datatype=
+                                                "http://www.w3.org/2001/XMLSchema#float"
+                                                >0.5</value>
+                                                <inverse_of_is_concept_of_I rdf:resource="#CMP.CF9_001_C"/>
+                                                <inverse_of_has_interest>
+                                                  <E_Learner rdf:ID="el003">
+                                                    <address rdf:datatype=
+                                                    "http://www.w3.org/2001/XMLSchema#string"
+                                                    ></address>
+                                                    <email rdf:datatype=
+                                                    "http://www.w3.org/2001/XMLSchema#string"
+                                                    ></email>
+                                                    <id rdf:datatype=
+                                                    "http://www.w3.org/2001/XMLSchema#string"
+                                                    >el003</id>
+                                                    <name rdf:datatype=
+                                                    "http://www.w3.org/2001/XMLSchema#string"
+                                                    >Geng Huihui</name>
+                                                    <has_interest rdf:resource="#E_Interest_1"/>
+                                                    <has_performance>
+                                                      <E_Performance rdf:ID="E_Performance_4">
+                                                        <inverse_of_is_concept_of_P rdf:resource="#CMP.CF9_003_Java"/>
+                                                        <inverse_of_has_performance rdf:resource="#el003"/>
+                                                        <datetime
+                                                         rdf:datatype=
+                                                        "http://www.w3.org/2001/XMLSchema#dateTime"
+                                                        >2010-12-06T14:34:57</datetime>
+                                                        <value
+                                                         rdf:datatype=
+                                                        "http://www.w3.org/2001/XMLSchema#float"
+                                                        >0.8</value>
+                                                      </E_Performance>
+                                                    </has_performance>
+                                                    <grade rdf:datatype=
+                                                    "http://www.w3.org/2001/XMLSchema#string"
+                                                    ></grade>
+                                                  </E_Learner>
+                                                </inverse_of_has_interest>
+                                              </E_Interest>
+                                            </is_concept_of_I>
                                             <id rdf:datatype=
                                             "http://www.w3.org/2001/XMLSchema#string"
                                             >CMP.CF9_001_C</id>
@@ -1224,7 +1318,7 @@
                                                       <E_Interest rdf:ID="E_Interest_el001-5">
                                                         <value
                                                          rdf:datatype=
-                                                        "http://www.w3.org/2001/XMLSchema#string"
+                                                        "http://www.w3.org/2001/XMLSchema#float"
                                                         >0.8</value>
                                                         <inverse_of_is_concept_of_I rdf:resource="#CMP.CF11_003_Database_Access"/>
                                                         <inverse_of_has_interest rdf:resource="#el001"/>
@@ -1289,7 +1383,7 @@
                                                   <E_Interest rdf:ID="E_Interest_el001-4">
                                                     <inverse_of_has_interest rdf:resource="#el001"/>
                                                     <value rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
+                                                    "http://www.w3.org/2001/XMLSchema#float"
                                                     >0.5</value>
                                                     <inverse_of_is_concept_of_I rdf:resource="#CMP.CF11_Database_Foundations"/>
                                                   </E_Interest>
@@ -1327,8 +1421,8 @@
                                                 <is_part_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
                                               </E_Concept>
                                             </inverse_of_is_son_of>
-                                            <inverse_of_is_part_of rdf:resource="#CMP.CF9_Programming_Language_Foundations"/>
                                             <inverse_of_is_part_of rdf:resource="#CMP.CF11_Database_Foundations"/>
+                                            <inverse_of_is_part_of rdf:resource="#CMP.CF9_Programming_Language_Foundations"/>
                                             <inverse_of_is_son_of>
                                               <E_Concept rdf:ID="CMP.CF13_Programming_Language_Semantics">
                                                 <is_part_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
@@ -1395,7 +1489,7 @@
                                                   <E_Interest rdf:ID="E_Interest_el001-3">
                                                     <inverse_of_has_interest rdf:resource="#el001"/>
                                                     <value rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
+                                                    "http://www.w3.org/2001/XMLSchema#float"
                                                     >0.6</value>
                                                     <inverse_of_is_concept_of_I rdf:resource="#CMP.CF2_Algrithm_Data_Structure_and_Complexity"/>
                                                   </E_Interest>
@@ -1420,43 +1514,15 @@
                                     </is_part_of>
                                     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                                     >CMP.CF9_003_Java</id>
-                                    <is_concept_of_P>
-                                      <E_Performance rdf:ID="E_Performance_4">
-                                        <inverse_of_is_concept_of_P rdf:resource="#CMP.CF9_003_Java"/>
-                                        <inverse_of_has_performance>
-                                          <E_Learner rdf:ID="el003">
-                                            <address rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            ></address>
-                                            <email rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            ></email>
-                                            <id rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >el003</id>
-                                            <name rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >Geng Huihui</name>
-                                            <has_performance rdf:resource="#E_Performance_4"/>
-                                            <grade rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            ></grade>
-                                          </E_Learner>
-                                        </inverse_of_has_performance>
-                                        <datetime rdf:datatype=
-                                        "http://www.w3.org/2001/XMLSchema#dateTime"
-                                        >2010-12-06T14:34:57</datetime>
-                                        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
-                                        >0.8</value>
-                                      </E_Performance>
-                                    </is_concept_of_P>
+                                    <is_concept_of_P rdf:resource="#E_Performance_4"/>
                                     <is_son_of rdf:resource="#CMP.CF9_Programming_Language_Foundations"/>
                                     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                                     >java language</name>
+                                    <is_concept_of_I rdf:resource="#E_Interest_el001-1"/>
                                     <is_concept_of_I>
                                       <E_Interest rdf:ID="E_Interest_el002-1">
-                                        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                                        >1</value>
+                                        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                                        >1.0</value>
                                         <inverse_of_has_interest>
                                           <E_Learner rdf:ID="el002">
                                             <has_study_style>
@@ -1511,12 +1577,11 @@
                                         <inverse_of_is_concept_of_I rdf:resource="#CMP.CF9_003_Java"/>
                                       </E_Interest>
                                     </is_concept_of_I>
-                                    <is_concept_of_I rdf:resource="#E_Interest_el001-1"/>
                                     <inverse_of_is_resource_of_C rdf:resource="#rid00003"/>
                                   </E_Concept>
                                 </inverse_of_is_concept_of_I>
-                                <value rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                                >1</value>
+                                <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                                >1.0</value>
                               </E_Interest>
                             </has_interest>
                             <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1562,29 +1627,6 @@
                                         </is_concept_of_P>
                                         <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                                         >testPreCnp</id>
-                                        <is_pre_concept_of rdf:resource="#testPostCnp1"/>
-                                        <is_pre_concept_of>
-                                          <E_Concept rdf:ID="testPostCnp2">
-                                            <id rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >testPostCnp2</id>
-                                            <name rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >p2</name>
-                                            <is_post_concept_of rdf:resource="#testPreCnp"/>
-                                          </E_Concept>
-                                        </is_pre_concept_of>
-                                        <is_pre_concept_of>
-                                          <E_Concept rdf:ID="testPostCnp3">
-                                            <is_post_concept_of rdf:resource="#testPreCnp"/>
-                                            <id rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >testPostCnp3</id>
-                                            <name rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >p3</name>
-                                          </E_Concept>
-                                        </is_pre_concept_of>
                                         <is_pre_concept_of>
                                           <E_Concept rdf:ID="testPostCnp4">
                                             <name rdf:datatype=
@@ -1608,6 +1650,29 @@
                                             </is_concept_of_P>
                                           </E_Concept>
                                         </is_pre_concept_of>
+                                        <is_pre_concept_of>
+                                          <E_Concept rdf:ID="testPostCnp3">
+                                            <is_post_concept_of rdf:resource="#testPreCnp"/>
+                                            <id rdf:datatype=
+                                            "http://www.w3.org/2001/XMLSchema#string"
+                                            >testPostCnp3</id>
+                                            <name rdf:datatype=
+                                            "http://www.w3.org/2001/XMLSchema#string"
+                                            >p3</name>
+                                          </E_Concept>
+                                        </is_pre_concept_of>
+                                        <is_pre_concept_of>
+                                          <E_Concept rdf:ID="testPostCnp2">
+                                            <id rdf:datatype=
+                                            "http://www.w3.org/2001/XMLSchema#string"
+                                            >testPostCnp2</id>
+                                            <name rdf:datatype=
+                                            "http://www.w3.org/2001/XMLSchema#string"
+                                            >p2</name>
+                                            <is_post_concept_of rdf:resource="#testPreCnp"/>
+                                          </E_Concept>
+                                        </is_pre_concept_of>
+                                        <is_pre_concept_of rdf:resource="#testPostCnp1"/>
                                       </E_Concept>
                                     </is_post_concept_of>
                                     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1690,8 +1755,8 @@
             <inverse_of_is_son_of rdf:resource="#CMP_Computing_Essentials"/>
             <inverse_of_is_part_of rdf:resource="#FND_Mathematical_and_Engineering_Fundamentals"/>
             <inverse_of_is_part_of rdf:resource="#MAA_Software_Modeling_and_Analysis"/>
-            <inverse_of_is_part_of rdf:resource="#PRF_Professional_Practice"/>
             <inverse_of_is_part_of rdf:resource="#VAV_Software_V_and_V"/>
+            <inverse_of_is_part_of rdf:resource="#PRF_Professional_Practice"/>
             <inverse_of_is_part_of>
               <E_Concept rdf:ID="PRO_Software_Process">
                 <is_son_of rdf:resource="#Software_Engineer"/>

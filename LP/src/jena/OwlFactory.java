@@ -1,5 +1,8 @@
 package jena;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.List;
 import org.mindswap.pellet.jena.PelletReasonerFactory;
@@ -49,6 +52,22 @@ public class OwlFactory {
 	public static OntModel getOntModel(String fileURL){
 		OntModel model = ModelFactory.createOntologyModel();
 		InputStream in = FileManager.get().open(fileURL);
+		if(in ==null){
+			throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
+		}
+		model.read(in,Constant.NS);
+		Resource configuration = model.createResource();
+		configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
+		return model;
+	}
+	public static OntModel getOntModel(File file){
+		OntModel model = ModelFactory.createOntologyModel();
+		InputStream in = null;
+		try {
+			in = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		if(in ==null){
 			throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
 		}

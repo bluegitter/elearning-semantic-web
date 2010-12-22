@@ -1,11 +1,16 @@
 package jena;
 
+import java.io.File;
 import java.util.ArrayList;
 
+import db.ResourceParser;
+
+import jena.impl.ELearnerModel;
 import jena.impl.ELearnerModelImpl;
 import jena.impl.ELearnerModelImplTwo;
 import ontology.EPerformance;
 import ontology.people.ELearner;
+import util.Constant;
 
 public class ModelTest {
 	public static void  contrastPerformance1(){
@@ -24,5 +29,25 @@ public class ModelTest {
 		long time2 = System.currentTimeMillis();
 		System.out.println("time1"+(time1-time));
 		System.out.println("time2"+(time2-time1));
+	}
+	public static void FileWritingPerformanceTest(){
+		ResourceParser rp = new ResourceParser();
+		rp.getBasicEConcepts();
+		//rp.getDataStructureResrouces();
+		System.out.println("Begin Writing ....");
+		long time1 = System.currentTimeMillis();
+		File file = new File( Constant.userOwlFile);
+		rp.writeToFile(file);
+		long time2 = System.currentTimeMillis();
+		
+		ELearnerModelImpl newEMI = new ELearnerModelImpl(file);
+		
+		long time3 = System.currentTimeMillis();
+		
+		System.out.println("write basic concepts results");
+		
+	}
+	public static void main(String [] args){
+		FileWritingPerformanceTest();
 	}
 }
