@@ -1,11 +1,10 @@
 package jena.impl;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import jena.OwlFactory;
-import jena.interfaces.ELearnerModel;
+import jena.interfaces.ELearnerModelOperationInterface;
+import jena.interfaces.ELearnerModelQueryInterface;
 import jena.interfaces.ELearnerRuleModel;
 import ontology.EConcept;
 import ontology.EInterest;
@@ -18,7 +17,6 @@ import util.QuerySolutionParser;
 import util.StringExchanger;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.ontology.Individual;
-import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.query.Query;
 import com.hp.hpl.jena.query.QueryExecution;
 import com.hp.hpl.jena.query.QueryExecutionFactory;
@@ -28,63 +26,17 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Resource;
-import db.OwlOperation;
 
-public class ELearnerModelImpl implements ELearnerModel, ELearnerRuleModel {
-	public static void main(String []args){
-		ELearnerModelImpl emi = new ELearnerModelImpl();
-//		ELearner newEL = new ELearner("newELearner");
-//		newEL.setName("name");
-//		newEL.setAddress("address");
-//		newEL.setEmail("enmail");
-//		newEL.setGrade("grade");
-//		emi.addELearner(newEL);
-//		System.out.println(emi.getELearner(newEL.getId()));
-		EConcept con = new EConcept("newCID","newCName");
-//		System.out.println(emi.addEConcept(con));
-		System.out.println(emi.getEConcept(con.getCid()));
-		System.out.println(emi.getEConcept("CMP.CF10_Operating_System_Foundations"));
-		emi.getAllEConcepts();
-//	 	emi.writeToFile(new File(Constant.userOwlFile));
+public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOperationInterface,ELearnerModelQueryInterface, ELearnerRuleModel {
+	public ELearnerModelImpl(File file){
+		super(file);
 	}
-    private OntModel ontModel;
-    private InfModel infModel;
-
-    public ELearnerModelImpl() {
-        ontModel = OwlFactory.getOntModel();
-        updateModel();
-    }
-
-    public ELearnerModelImpl(OntModel ontModel) {
-        this.ontModel = ontModel;
-        updateModel();
-    }
-
-    public void updateModel() {
-        infModel = OwlFactory.getInfoModel(OwlFactory.getGenericRuleReasoner(), ontModel);
-    }
-    public OntModel getOntModel(){
-    	return ontModel;
-    }
-    public InfModel getInfModel() {
-        return infModel;
-    }
-
+	public ELearnerModelImpl(){
+		super();
+	}
     //return the root concept which is already set.
     public EConcept getRootConcept() {
         return getEConcept("Software_Engineer");
-    }
-
-    @Override
-    public boolean writeToFile(File file) {
-        try {
-        	updateModel();
-            OwlOperation.updateOwlFile(infModel, file);
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
     }
 
     /*******************************************************************************************************
@@ -778,4 +730,43 @@ public class ELearnerModelImpl implements ELearnerModel, ELearnerRuleModel {
         qe.close();
         return resources;
     }
+	@Override
+	public ArrayList<EResource> getEResourcesByInterestEConcepts(
+			ELearner elearner, EConcept concept) {
+		ArrayList<EResource> resources = new ArrayList<EResource>();
+        String queryString =
+                "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
+                + "PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> "
+                + "SELECT ?resource  "
+                + "WHERE {"
+                + "      ?resource rdf:type base:E_Resource . "
+                + "      ?elearner base:id \"" + elearner.getId() + "\" . "
+                + "      ?concept base:id \"" +concept.getCid()+"\" . "
+                + "      ?elearner base:has_interest ?interest ."
+                + "      ?interest base:inverse_of_is_concept_of_I ?concept ."
+                + "      ?resource base:is_resource_of_C ?concept ."
+                + "      }";
+        Query query = QueryFactory.create(queryString);
+
+        // Execute the query and obtain results
+        InfModel infModel = getInfModel();
+        QueryExecution qe = QueryExecutionFactory.create(query, infModel);
+        ResultSet results = qe.execSelect();
+     //   ResultSetFormatter.out(System.out, results, query);
+        while (results.hasNext()) {
+            QuerySolution qs = results.next();
+            String uri = QuerySolutionParser.getURI(qs, "?resource");
+            EResource res = QuerySolutionParser.getEResource(uri, ontModel);
+            resources.add(res);
+        }
+        qe.close();
+        return resources;
+	}
+	public static void main(String [] args){
+		ELearnerModelImpl emi = new ELearnerModelImpl();
+		ELearner elearner = emi.getELearner("el003");
+		EConcept concept = emi.getEConcept("CMP.CF9_001_C");
+		ArrayList<EResource> rs = emi.getEResourcesByInterestEConcepts(elearner, concept);
+		System.out.println(rs);
+	}
 }

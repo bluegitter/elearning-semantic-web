@@ -64,12 +64,11 @@ public class ELearnerModelQueryTest extends TestCase{
 	
 	public void testGetConceptResources(){
 		ArrayList<EResource> c = emi.getEResourcesByEConcept(rootConcept);
-		System.out.println("size:"+c.size());
 	}
 	
 	public void testGetAllResources(){
 		ArrayList<EResource> c = emi.getAllEResources();
-		assertTrue(c.size()==4);
+		assertTrue(c.size()==6);
 	}
 	public void setUp(){
 		emi  = new ELearnerModelImpl();
