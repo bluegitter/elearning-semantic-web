@@ -31,7 +31,7 @@ public class Constant {
     public static String DBPASSWORD = "ms";
     public static String SERVERURL = "http://192.168.8.86:8080/myelearner";
     public static String SERVERTESTURL = "http://192.168.8.86:8080/myelearner/webapp/mylife.jpg";
-    
+    public static String OWLONSERVER = "http://localhost:8080/myelearner/owls/";
 	/**********************************************************************
 	 * To Be Used, but now useless....
 	 **********************************************************************/
