@@ -1,4 +1,5 @@
-﻿CMP	计算基础
+﻿concept_id	concept_name
+CMP	计算基础
 CMP.cf	计算机科学基础
 CMP.cf1	程序设计基础
 CMP.cf2	算法、数据结构与复杂性
