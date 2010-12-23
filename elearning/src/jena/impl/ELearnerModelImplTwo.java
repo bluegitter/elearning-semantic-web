@@ -5,7 +5,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import jena.OwlFactory;
-import jena.interfaces.ELearnerModel;
+import jena.interfaces.ELearnerModelOperationInterface;
+import jena.interfaces.ELearnerModelQueryInterface;
 import jena.interfaces.ELearnerRuleModel;
 import ontology.EConcept;
 import ontology.EInterest;
@@ -29,7 +30,7 @@ import com.hp.hpl.jena.rdf.model.Resource;
 
 import db.OwlOperation;
 
-public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
+public class ELearnerModelImplTwo {
 	private InfModel model;
 	public ELearnerModelImplTwo(){
 		model = OwlFactory.getInfoModel(OwlFactory.getGenericRuleReasoner(), OwlFactory.getOntModel());
@@ -54,16 +55,6 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		rootConcept.setName("software engineering");
 		return rootConcept;
 	}
-	@Override
-	public boolean writeToFile(File file) {
-		try {
-			OwlOperation.updateOwlFile(model, file);
-			return true;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
 	
 	/*******************************************************************************************************
 	 * Add new Data Operations 
@@ -85,7 +76,6 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		model.add(re,model.getProperty(Constant.NS+"difficulty"), resource.getDifficulty(),new XSDDatatype("string"));
 		return true;
 	}
-	@Override
 	public boolean addEPortfolio(EPortfolio portfolio) {
 		ELearner el = portfolio.getElearner();
 		EResource res = portfolio.getEResource();
@@ -101,7 +91,6 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		model.add(port,model.getProperty(Constant.NS+"value"),(String.valueOf(portfolio.getValue())),new XSDDatatype("string"));
 		return true;
 	}
-	@Override
 	public boolean addEConcept(EConcept concept) {
 		Resource con = model.createResource(Constant.NS+concept.getCid(),model.getResource(Constant.NS+"E_Concept"));
 		model.add(con, model.getProperty(Constant.NS+"id"), concept.getCid());
@@ -115,7 +104,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		return true;
 	}
 	
-	@Override
+	 
 	public boolean addEInterest(EInterest interest) {
 		ELearner el = interest.getEl();
 		EConcept con = interest.getCon();
@@ -131,7 +120,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		in.addProperty(model.getProperty(Constant.NS+"value"),String.valueOf(interest.getValue()),new XSDDatatype("string"));
 		return true;
 	}
-	@Override
+	 
 	public boolean addEPerfomance(EPerformance performance) {
 		ELearner el = performance.getElearner();
 		EConcept con = performance.getConcept();
@@ -148,7 +137,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		return true;
 	}
 	
-	@Override
+	 
 	public boolean containEConcept(String cid) {
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
@@ -175,7 +164,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		return false;
 	}
 	
-	@Override
+	 
 	public boolean containELearner(String eid) {
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
@@ -202,7 +191,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		return false;
 	}
 	
-	@Override
+	 
 	public boolean containEResource(String rid) {
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
@@ -229,7 +218,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		return false;
 	}
 	
-	@Override
+	 
 	public ArrayList<EConcept> getAllEConcepts() {
 		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
 		String queryString = 
@@ -253,7 +242,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		qe.close();
 		return concepts;
 	}
-	@Override
+	 
 	public ArrayList<EConcept> getMemberConcept(EConcept concept) {
 		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
 		String queryString = 
@@ -280,7 +269,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		qe.close();
 		return concepts;
 	}
-	@Override
+	 
 	public ArrayList<EConcept> getInterestConcepts(ELearner elearner) {
 		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
 		String queryString = 
@@ -309,7 +298,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		return concepts;
 	}
 	
-	@Override
+	 
 	public ArrayList <EConcept> getRecommendEConcepts(ELearner elearner,int i) {
 		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
 		String rule = "is_recommend_of_c_"+i;
@@ -337,7 +326,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		qe.close();
 		return concepts;
 	}
-	@Override
+	 
 	public ArrayList<ELearner> getRecommendELearners(ELearner elearner, int rule) {
 		ArrayList<ELearner> elearners = new ArrayList<ELearner>();
 		String i = "is_recommend_of_L_"+rule+"";
@@ -367,7 +356,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		qe.close();
 		return elearners;
 	}
-	@Override
+	 
 	public ArrayList<EResource> getRecommendEResources(ELearner elearner,
 			int rule) {
 		ArrayList<EResource> resources = new ArrayList<EResource>();
@@ -459,7 +448,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		return el;
 	}
 
-	@Override
+	 
 	public EResource getEResource(String rid) {
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
@@ -488,7 +477,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		return res;
 	}
 	
-	@Override
+	 
 	public ArrayList<EPerformance> getEPerformances(ELearner elearner) {
 		ArrayList<EPerformance> ps = new ArrayList<EPerformance>();
 		String queryString = 
@@ -526,7 +515,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		qe.close();
 		return ps;
 	}
-	@Override
+	 
 	public ArrayList<EConcept> getSonConcepts(EConcept concept) {
 		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
 		String queryString = 
@@ -557,7 +546,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		ELearnerModelImpl emi = new ELearnerModelImpl();
 		emi.getEResource("rid00001");
 	}
-	@Override
+	 
 	public ArrayList<EPortfolio> getEPortfolios(ELearner elearner) {
 		ArrayList<EPortfolio> portfolios = new ArrayList<EPortfolio>();
 		String queryString = 
@@ -597,7 +586,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		return portfolios;
 	}
 	
-	@Override
+	 
 	public ArrayList<EResource> getEResourcesByEConcept(EConcept concept) {
 		ArrayList<EResource> resources = new ArrayList<EResource>();
 		String queryString = 
@@ -626,7 +615,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		qe.close();
 		return resources;
 	}
-	@Override
+	 
 	public ArrayList<EResource> getAllEResources() {
 		ArrayList<EResource> resources = new ArrayList<EResource>();
 		String queryString = 
@@ -652,7 +641,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		qe.close();
 		return resources;
 	}
-	@Override
+	 
 	public EPerformance getEPerformance(ELearner elearner, EConcept concept) {
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
@@ -688,7 +677,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		qe.close();
 		return performance;
 	}
-	@Override
+	 
 	public boolean updatePerformance(EPerformance performance) {
 		// TODO Auto-generated method stub
 		Resource r = model.getResource(Constant.NS+performance.getId());
@@ -697,7 +686,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		return true;
 	}
 	
-	@Override
+	 
 	public EPortfolio getEPortfolio(ELearner elearner, EResource resource) {
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
@@ -732,7 +721,7 @@ public class ELearnerModelImplTwo implements ELearnerModel,ELearnerRuleModel{
 		qe.close();
 		return portfolio;
 	}
-	@Override
+	 
 	public boolean addPropertyIsResourceOfC(EResource resource, EConcept concept) {
 		Resource res = model.getResource(Constant.NS+resource.getRid());
 		Resource con = model.getResource(Constant.NS+concept.getCid());

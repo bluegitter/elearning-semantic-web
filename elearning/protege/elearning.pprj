@@ -1,4 +1,4 @@
-; Mon Dec 20 17:54:30 CST 2010
+; Wed Dec 22 15:30:24 CST 2010
 ; 
 ;+ (version "3.4.4")
 ;+ (build "Build 579")
@@ -6,12 +6,12 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[elearning_ProjectKB_Class80035]
-		[elearning_ProjectKB_Class80036]
-		[elearning_ProjectKB_Class80037]
-		[elearning_ProjectKB_Class80038]
-		[elearning_ProjectKB_Class80039]
-		[elearning_ProjectKB_Class80040]))
+		[elearning_ProjectKB_Class80015]
+		[elearning_ProjectKB_Class80016]
+		[elearning_ProjectKB_Class80017]
+		[elearning_ProjectKB_Class80018]
+		[elearning_ProjectKB_Class80019]
+		[elearning_ProjectKB_Class80020]))
 
 ([CLSES_TAB] of  Widget
 
@@ -118,8 +118,8 @@
 	(property_list [elearning_ProjectKB_Class100026])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 0)
-	(y 1990))
+	(x 610)
+	(y 660))
 
 ([elearning_ProjectKB_Class100026] of  Property_List
 )
@@ -724,8 +724,8 @@
 	(property_list [elearning_ProjectKB_Class110040])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 0)
-	(y 780))
+	(x 200)
+	(y 420))
 
 ([elearning_ProjectKB_Class110040] of  Property_List
 )
@@ -1254,7 +1254,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 0)
-	(y 550))
+	(y 540))
 
 ([elearning_ProjectKB_Class20086] of  Property_List
 )
@@ -2558,8 +2558,8 @@
 	(property_list [elearning_ProjectKB_Class20584])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 0)
-	(y 300))
+	(x 400)
+	(y 420))
 
 ([elearning_ProjectKB_Class20584] of  Property_List
 )
@@ -2815,7 +2815,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 400)
-	(y 550))
+	(y 540))
 
 ([elearning_ProjectKB_Class20990] of  Property_List
 )
@@ -3452,8 +3452,8 @@
 	(property_list [elearning_ProjectKB_Class50130])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 400)
-	(y 1030))
+	(x 840)
+	(y 660))
 
 ([elearning_ProjectKB_Class50130] of  Property_List
 )
@@ -3604,8 +3604,8 @@
 	(property_list [elearning_ProjectKB_Class80008])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 200)
-	(y 300))
+	(x 800)
+	(y 180))
 
 ([elearning_ProjectKB_Class80008] of  Property_List
 )
@@ -3618,8 +3618,8 @@
 	(property_list [elearning_ProjectKB_Class80010])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 200)
-	(y 420))
+	(x 800)
+	(y 300))
 
 ([elearning_ProjectKB_Class80010] of  Property_List
 )
@@ -3629,58 +3629,58 @@
 	(boolean_value TRUE)
 	(name "DisabledByUser"))
 
-([elearning_ProjectKB_Class80035] of  String
-
-	(name "http://www.w3.org/2002/07/owl#Class")
-	(string_value "%3ANAME"))
-
-([elearning_ProjectKB_Class80036] of  String
+([elearning_ProjectKB_Class80015] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([elearning_ProjectKB_Class80037] of  String
+([elearning_ProjectKB_Class80016] of  String
 
-	(name ":META-CLASS")
+	(name "http://www.w3.org/2002/07/owl#Class")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class80038] of  String
+([elearning_ProjectKB_Class80017] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([elearning_ProjectKB_Class80039] of  String
+([elearning_ProjectKB_Class80018] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([elearning_ProjectKB_Class80019] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Thing")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class80040] of  String
+([elearning_ProjectKB_Class80020] of  String
 
 	(name "http://www.owl-ontologies.com/e-learning.owl#E_Concept")
 	(string_value "%3ANAME"))
 
-([elearning_ProjectKB_Class80041] of  Map_Entry
-
-	(key "add_name_on_instance_form")
-	(key_class "java.lang.String")
-	(value "false")
-	(value_class "java.lang.String"))
-
-([elearning_ProjectKB_Class80042] of  Map_Entry
+([elearning_ProjectKB_Class80021] of  Map_Entry
 
 	(key "collab.hide.archived")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class80043] of  Map_Entry
+([elearning_ProjectKB_Class80022] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([elearning_ProjectKB_Class80023] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([elearning_ProjectKB_Class80044] of  Map_Entry
+([elearning_ProjectKB_Class80024] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
@@ -3785,8 +3785,8 @@
 	(property_list [elearning_ProjectKB_Class90037])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 400)
-	(y 1750))
+	(x 840)
+	(y 900))
 
 ([elearning_ProjectKB_Class90037] of  Property_List
 )
@@ -3800,7 +3800,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 0)
-	(y 1390))
+	(y 900))
 
 ([elearning_ProjectKB_Class90039] of  Property_List
 )
@@ -3814,7 +3814,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 0)
-	(y 1510))
+	(y 1020))
 
 ([elearning_ProjectKB_Class90041] of  Property_List
 )
@@ -3828,7 +3828,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 0)
-	(y 1630))
+	(y 780))
 
 ([elearning_ProjectKB_Class90043] of  Property_List
 )
@@ -3841,8 +3841,8 @@
 	(property_list [elearning_ProjectKB_Class90045])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 0)
-	(y 1750))
+	(x 610)
+	(y 780))
 
 ([elearning_ProjectKB_Class90045] of  Property_List
 )
@@ -3855,8 +3855,8 @@
 	(property_list [elearning_ProjectKB_Class90047])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 0)
-	(y 1870))
+	(x 610)
+	(y 900))
 
 ([elearning_ProjectKB_Class90047] of  Property_List
 )
@@ -3870,7 +3870,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 200)
-	(y 1270))
+	(y 660))
 
 ([elearning_ProjectKB_Class90049] of  Property_List
 )
@@ -3884,7 +3884,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 200)
-	(y 1390))
+	(y 780))
 
 ([elearning_ProjectKB_Class90051] of  Property_List
 )
@@ -3898,7 +3898,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 200)
-	(y 1510))
+	(y 900))
 
 ([elearning_ProjectKB_Class90053] of  Property_List
 )
@@ -3912,7 +3912,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 200)
-	(y 1630))
+	(y 1020))
 
 ([elearning_ProjectKB_Class90055] of  Property_List
 )
@@ -3925,8 +3925,8 @@
 	(property_list [elearning_ProjectKB_Class90057])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 200)
-	(y 1750))
+	(x 840)
+	(y 420))
 
 ([elearning_ProjectKB_Class90057] of  Property_List
 )
@@ -3940,7 +3940,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 400)
-	(y 1270))
+	(y 660))
 
 ([elearning_ProjectKB_Class90059] of  Property_List
 )
@@ -3954,7 +3954,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 400)
-	(y 1390))
+	(y 780))
 
 ([elearning_ProjectKB_Class90061] of  Property_List
 )
@@ -3968,7 +3968,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 400)
-	(y 1630))
+	(y 1020))
 
 ([elearning_ProjectKB_Class90063] of  Property_List
 )
@@ -3982,7 +3982,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 400)
-	(y 1510))
+	(y 900))
 
 ([elearning_ProjectKB_Class90065] of  Property_List
 )
@@ -3996,7 +3996,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 0)
-	(y 1270))
+	(y 660))
 
 ([elearning_ProjectKB_Class90067] of  Property_List
 )
@@ -4009,8 +4009,8 @@
 	(property_list [elearning_ProjectKB_Class90072])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 200)
-	(y 540))
+	(x 0)
+	(y 300))
 
 ([elearning_ProjectKB_Class90072] of  Property_List
 )
@@ -4023,8 +4023,8 @@
 	(property_list [elearning_ProjectKB_Class90074])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 0)
-	(y 660))
+	(x 400)
+	(y 300))
 
 ([elearning_ProjectKB_Class90074] of  Property_List
 )
@@ -4037,8 +4037,8 @@
 	(property_list [elearning_ProjectKB_Class90076])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 0)
-	(y 540))
+	(x 200)
+	(y 300))
 
 ([elearning_ProjectKB_Class90076] of  Property_List
 )
@@ -4508,6 +4508,9 @@
 ([KB_140180_Instance_9] of  Property_List
 )
 
+([KB_187726_Class4] of  Map
+)
+
 ([KB_221055_Instance_10] of  Widget
 
 	(height 0)
@@ -4772,10 +4775,10 @@
 ([KB_325529_Class0] of  Map
 
 	(entries
-		[elearning_ProjectKB_Class80041]
-		[elearning_ProjectKB_Class80042]
-		[elearning_ProjectKB_Class80043]
-		[elearning_ProjectKB_Class80044]))
+		[elearning_ProjectKB_Class80021]
+		[elearning_ProjectKB_Class80022]
+		[elearning_ProjectKB_Class80023]
+		[elearning_ProjectKB_Class80024]))
 
 ([KB_325529_Class4] of  String
 
@@ -7034,9 +7037,6 @@
 	(property_list [KB_713803_Instance_981]))
 
 ([KB_713803_Instance_981] of  Property_List
-)
-
-([KB_760394_Class4] of  Map
 )
 
 ([KB_764103_Instance_545] of  Widget
@@ -9379,17 +9379,17 @@
 	(customized_instance_widgets
 		[elearning_ProjectKB_Class20745]
 		[KB_713803_Instance_477]
-		[KB_313796_Instance_852]
-		[PAL_FORM_WIDGET]
 		[KB_691299_Instance_398]
+		[PAL_FORM_WIDGET]
+		[KB_313796_Instance_852]
 		[Instance_581]
 		[KB_713803_Instance_693]
 		[elearning_ProjectKB_Class20209]
 		[INSTANCE_ANNOTATION_FORM_WIDGET]
 		[KB_938545_Instance_166]
 		[STANDARD_SLOT_FORM_WIDGET]
-		[KB_313796_Instance_943]
 		[elearning_ProjectKB_Class20121]
+		[KB_313796_Instance_943]
 		[KB_938545_Instance_661]
 		[KB_713803_Instance_648]
 		[elearning_ProjectKB_Class20089]
@@ -9407,16 +9407,16 @@
 		[elearning_ProjectKB_Class20005]
 		[KB_713803_Instance_303]
 		[Instance_1005]
-		[elearning_ProjectKB_Class20242]
 		[elearning_ProjectKB_Class20178]
+		[elearning_ProjectKB_Class20242]
 		[KB_938545_Instance_329]
 		[KB_764103_Instance_545]
 		[KB_301165_Instance_1013]
 		[elearning_ProjectKB_Class90005]
 		[elearning_ProjectKB_Class10005]
-		[elearning_ProjectKB_Class20275]
+		[KB_713803_Instance_390]
 		[Instance_443]
-		[KB_713803_Instance_390])
+		[elearning_ProjectKB_Class20275])
 	(default_cls_metaclass "http://www.w3.org/2002/07/owl#Class")
 	(default_facet_metaclass ":STANDARD-FACET")
 	(default_instance_widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormWidget")
@@ -9430,8 +9430,8 @@
 		":MODIFIER"
 		"http://protege.stanford.edu/plugins/owl/protege#SLOT-CONSTRAINTS"
 		"http://www.w3.org/2000/01/rdf-schema#Container"
-		"http://www.w3.org/2001/XMLSchema#integer"
 		":SLOT-NUMERIC-MINIMUM"
+		"http://www.w3.org/2001/XMLSchema#integer"
 		"http://www.w3.org/2003/11/swrl#DatavaluedPropertyAtom"
 		"http://www.w3.org/1999/02/22-rdf-syntax-ns#Statement"
 		":NUMERIC-MAXIMUM"
@@ -9469,22 +9469,22 @@
 		"http://www.w3.org/2002/07/owl#equivalentClass"
 		"http://www.w3.org/2002/07/owl#FunctionalProperty"
 		"http://protege.stanford.edu/plugins/owl/protege#inferredSubclassOf"
-		"http://www.w3.org/2003/11/swrl#SameIndividualAtom"
 		":PAL-DESCRIPTION"
-		"http://www.w3.org/2002/07/owl#MinCardinalityRestriction"
-		"http://www.w3.org/2002/07/owl#AnonymousClass"
+		"http://www.w3.org/2003/11/swrl#SameIndividualAtom"
 		"http://www.w3.org/2001/XMLSchema#anyURI"
+		"http://www.w3.org/2002/07/owl#AnonymousClass"
+		"http://www.w3.org/2002/07/owl#MinCardinalityRestriction"
 		"http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
 		":CLASS"
 		"http://www.w3.org/2002/07/owl#complementOf"
 		":ROLE"
-		"http://www.w3.org/2002/07/owl#TransitiveProperty"
-		"http://www.w3.org/2002/07/owl#IntersectionClass"
 		":DOCUMENTATION-IN-FRAME"
+		"http://www.w3.org/2002/07/owl#IntersectionClass"
+		"http://www.w3.org/2002/07/owl#TransitiveProperty"
 		"http://www.w3.org/2000/01/rdf-schema#range"
 		"http://www.w3.org/2001/XMLSchema#gYearMonth"
-		"http://www.w3.org/2002/07/owl#ComplementClass"
 		":CREATOR"
+		"http://www.w3.org/2002/07/owl#ComplementClass"
 		":ASSOCIATED-FACET"
 		":DOCUMENTATION"
 		":DIRECT-SUPERCLASSES"
@@ -9496,23 +9496,23 @@
 		":MODIFICATION-TIMESTAMP"
 		"http://www.w3.org/2001/XMLSchema#gYear"
 		"http://www.w3.org/2001/XMLSchema#gMonthDay"
-		"http://www.w3.org/2001/XMLSchema#normalizedString"
 		"http://www.w3.org/1999/02/22-rdf-syntax-ns#value"
+		"http://www.w3.org/2001/XMLSchema#normalizedString"
 		"http://protege.stanford.edu/plugins/owl/protege#FROM"
 		"http://www.w3.org/2001/XMLSchema#nonPositiveInteger"
 		"http://www.w3.org/2002/07/owl#someValuesFrom"
 		"http://protege.stanford.edu/plugins/owl/protege#classificationStatus"
 		"http://protege.stanford.edu/plugins/owl/protege#inferredSuperclassOf"
-		"http://www.w3.org/1999/02/22-rdf-syntax-ns#List"
 		"http://www.w3.org/2000/01/rdf-schema#subPropertyOf"
+		"http://www.w3.org/1999/02/22-rdf-syntax-ns#List"
 		"http://www.w3.org/2003/11/swrl#DifferentIndividualsAtom"
 		"http://www.w3.org/2003/11/swrl#dataRange"
 		"http://www.w3.org/2002/07/owl#AllDifferent"
 		"http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"
 		"http://www.w3.org/2003/11/swrl#Variable"
 		":DIRECT-INSTANCES"
-		"http://protege.stanford.edu/plugins/owl/protege#DIRECTED-BINARY-RELATION"
 		"http://www.w3.org/2002/07/owl#unionOf"
+		"http://protege.stanford.edu/plugins/owl/protege#DIRECTED-BINARY-RELATION"
 		":SLOT"
 		"http://www.w3.org/1999/02/22-rdf-syntax-ns#predicate"
 		"http://www.w3.org/2002/07/owl#minCardinality"
@@ -9614,8 +9614,8 @@
 		"http://www.w3.org/2003/11/swrl#argument2"
 		"http://www.w3.org/2003/11/swrl#argument1"
 		":FACET"
-		"http://www.w3.org/2002/07/owl#intersectionOf"
 		":SLOT-VALUES"
+		"http://www.w3.org/2002/07/owl#intersectionOf"
 		"http://www.w3.org/2002/07/owl#Nothing"
 		"http://www.w3.org/2002/07/owl#hasValue")
 	(journaling_enabled FALSE)

@@ -23,9 +23,9 @@ public class Constant {
 	 * Database Connection Config
 	 ********************************************************************/
 	//public static String DBURL = "jdbc:mysql://localhost:3306/elearning";
-	//public static String DBURL = "jdbc:mysql://192.168.8.86:3306/elearning"; //destop ip
+	public static String DBURL = "jdbc:mysql://192.168.8.86:3306/elearning"; //destop ip
 	
-	public static String DBURL = "jdbc:mysql://192.168.9.161:3306/elearning"; 	//laptop ip
+	//public static String DBURL = "jdbc:mysql://192.168.9.161:3306/elearning"; 	//laptop ip
 	 
 	public static String DBUSER = "ms";
     public static String DBPASSWORD = "ms";
