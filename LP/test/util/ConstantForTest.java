@@ -11,4 +11,7 @@ package util;
  */
 public class ConstantForTest {
     public static String TestOwlFileLocation = "test\\owl\\";
+    
+    public static String OWLONSERVER = "http://localhost:8080/myelearner/owls/";
+	
 }
