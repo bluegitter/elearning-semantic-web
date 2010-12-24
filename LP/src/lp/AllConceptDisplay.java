@@ -124,7 +124,7 @@ public class AllConceptDisplay extends Display {
         // create the filtering and layout
         ActionList filter = new ActionList();
         filter.add(new FisheyeTreeFilter(tree, 2));
-        filter.add(new FontAction(treeNodes, FontLib.getFont("Tahoma", 16)));
+        filter.add(new FontAction(treeNodes, FontLib.getFont("微软雅黑", 16)));
         filter.add(treeLayout);
         filter.add(subLayout);
         filter.add(textColor);

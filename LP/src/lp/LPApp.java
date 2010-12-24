@@ -4,7 +4,10 @@
 
 package lp;
 
+import db.ResourceParser;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jena.impl.ELearnerModelImpl;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
@@ -32,6 +35,13 @@ public class LPApp extends SingleFrameApplication {
      * At startup create and show the main frame of the application.
      */
     @Override protected void startup() {
+//        ResourceParser rp = null;
+//        try {
+//            rp = new ResourceParser();
+//        } catch (Exception ex) {
+//            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+
         lpModel = new ELearnerModelImpl();
 
         user = null;
@@ -44,8 +54,8 @@ public class LPApp extends SingleFrameApplication {
 
     @Override
     protected void shutdown() {
-        File f = new File(Constant.userOwlFile);
-        lpModel.writeToFile(f);
+//        File f = new File(Constant.userOwlFile);
+//        lpModel.writeToFile(f);
 
         super.shutdown();
     }
