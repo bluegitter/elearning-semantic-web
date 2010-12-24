@@ -82,6 +82,7 @@ public class ResourceParser {
 		}
 		return concepts;
 	}
+	
 	public ArrayList<EConcept> getBasicEConcepts() {
 		Connection con = DataFactory.getConnection();
 		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
