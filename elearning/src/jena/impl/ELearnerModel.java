@@ -26,6 +26,10 @@ public class ELearnerModel {
     	this.ontModel = OwlFactory.getOntModel(file);
     	init();
     }
+    public ELearnerModel(File file,String lang){
+    	this.ontModel = OwlFactory.getOntModel(file, lang);
+    	init();
+    }
     protected void init(){
     	updateInfModel();
     }

@@ -26,6 +26,9 @@ import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.SimpleSelector;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOperationInterface,ELearnerModelQueryInterface, ELearnerRuleModel {
 	public ELearnerModelImpl(File file){
@@ -33,6 +36,9 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOpe
 	}
 	public ELearnerModelImpl(){
 		super();
+	}
+	public ELearnerModelImpl(File file,String lang){
+		super(file,lang);
 	}
     //return the root concept which is already set.
     public EConcept getRootConcept() {
@@ -271,6 +277,22 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOpe
         qe.close();
         return concepts;
     }
+    
+    public ArrayList<EConcept> getSonConceptsTwo(EConcept econcept){
+		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
+		Resource concept = ontModel.getResource(Constant.NS+econcept.getCid());
+		SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS+"is_son_of"), concept);
+
+		StmtIterator iter = ontModel.listStatements(selector);
+		while(iter.hasNext()){
+			Statement s = iter.nextStatement();
+			Resource r = s.getSubject();
+			String nameString = r.getRequiredProperty(ontModel.getProperty(Constant.NS+"name")).asTriple().getObject().toString();
+			String name = StringExchanger.getCommonString(nameString);
+			concepts.add(new EConcept(s.getSubject().getLocalName(),name));
+		}
+		return concepts;
+	}
 
     @Override
     public ArrayList<EConcept> getInterestConcepts(ELearner elearner) {

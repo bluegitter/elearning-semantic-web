@@ -73,7 +73,7 @@ public class ResourceParser {
 				}
 			}
 			System.out.println(concepts.size()+" concepts added\t"+resources.size()+" resources added");
-			System.out.println(emi.getEResourcesByEConcept(emi.getEConcept("cid1")));
+			//System.out.println(emi.getEResourcesByEConcept(emi.getEConcept("cid1")));
 			rs.close();
 			st.close();
 			con.close();
@@ -118,8 +118,8 @@ public class ResourceParser {
 				}
 				lastConcept = concept;
 			}
-			System.out.println(emi.getAllEConcepts().size());
-			System.out.println(concepts);
+			//System.out.println(emi.getAllEConcepts().size());
+			System.out.println(concepts.size()+" concepts added\t");
 			rs.close();
 			st.close();
 			con.close();

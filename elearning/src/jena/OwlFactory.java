@@ -76,6 +76,23 @@ public class OwlFactory {
 		configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
 		return model;
 	}
+	public static OntModel getOntModel(File file,String lang){
+		OntModel model = ModelFactory.createOntologyModel();
+		InputStream in = null;
+		try {
+			in = new FileInputStream(file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		if(in ==null){
+			throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
+		}
+		model.read(in,Constant.NS,lang);
+		Resource configuration = model.createResource();
+		configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
+		return model;
+	}
+
 	/**************************************************************
 	 * Get a inf model with some kind of reasoner
 	 * @return kind of reason

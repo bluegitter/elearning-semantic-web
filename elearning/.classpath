@@ -9,7 +9,7 @@
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/arq-2.8.4.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/icu4j-3.4.4.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/iri-0.8.jar"/>
-	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/jena-2.6.3.jar"/>
+	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/jena-2.6.3.jar" sourcepath="D:/semantic/jena-2.6.3/jena-2.6.3-sources.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/jxl.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/log4j-1.2.13.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/lucene-1.4.3.jar"/>
