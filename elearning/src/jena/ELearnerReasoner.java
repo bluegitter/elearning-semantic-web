@@ -4,6 +4,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import jena.impl.ELearnerModelImpl;
+
+import ontology.EConcept;
+
 import util.Constant;
 
 import com.hp.hpl.jena.ontology.Individual;
@@ -15,6 +19,7 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.rdf.model.impl.StatementImpl;
 
 import exception.ConceptNotExistInModelException;
 /*************************************************************
@@ -28,6 +33,9 @@ public class ELearnerReasoner {
 
 	public ELearnerReasoner(){
 		
+	}
+	public ELearnerReasoner(OntModel ontModel){
+		this.ontModel = ontModel;
 	}
 	public ELearnerReasoner(File owlFile,File ruleFile){
 		this.owlFile = owlFile;
@@ -87,6 +95,7 @@ public class ELearnerReasoner {
 		}
 		return concepts;
 	}
+	 
 	public boolean hasConcept(Individual concept,OntModel model){
 		Individual con = model.getIndividual(concept.getURI());
 		if(con ==null){
@@ -121,7 +130,20 @@ public class ELearnerReasoner {
 		this.ruleFile = ruleFile;
 	}
 
-
+	public static void main(String []args){
+		ELearnerModelImpl emi = new ELearnerModelImpl(new File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
+		ELearnerReasoner er = new ELearnerReasoner(emi.getOntModel());
+		EConcept concept = emi.getRootConcept();
+		long time1 = System.currentTimeMillis();
+		System.out.println(emi.getSonConcepts(concept).size());
+		long time2 = System.currentTimeMillis();
+		System.out.println(emi.getSonConceptsTwo(concept).size());
+		long time3 = System.currentTimeMillis();
+		System.out.println("getSonConcepts"+(time2-time1)+"ms");
+		System.out.println("getSonConceptsTwo"+(time3-time2)+"ms");
+		
+		
+	}
 	private InfModel infModel;
 	private OntModel ontModel;
 	private File owlFile;
