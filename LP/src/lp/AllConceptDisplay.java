@@ -340,7 +340,7 @@ public class AllConceptDisplay extends Display {
     }
 
     private void addNodes(Tree t, Node n, EConcept r) {
-        ArrayList<EConcept> a = LPApp.lpModel.getSonConcepts(r);
+        ArrayList<EConcept> a = LPApp.lpModel.getSonConceptsTwo(r);
         for (EConcept c : a) {
             Node cn = t.addChild(n);
             cn.set(m_label, c);
