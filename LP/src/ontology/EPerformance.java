@@ -43,9 +43,18 @@ public class EPerformance {
 		this.datetime = datetime;
 	}
 
+    @Override
 	public String toString(){
-		return id+"\t"+value+"\t"+elearner.getId()+"\t"+concept.getCid()+"\t"+datetime;
+		//return id+"\t"+value+"\t"+elearner.getId()+"\t"+concept.getCid()+"\t"+datetime;
+            return concept.getName() + " " + valueString();
 	}
+
+        private String valueString() {
+            if(value < 0) {
+                return "学习中";
+            } else
+                return "成绩:" + value;
+        }
 	
 	private ELearner elearner;
 	private EConcept concept;
