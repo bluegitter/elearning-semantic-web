@@ -23,14 +23,16 @@ import com.hp.hpl.jena.query.QueryExecutionFactory;
 import com.hp.hpl.jena.query.QueryFactory;
 import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
-import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.InfModel;
-import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
-
+/***********************************************
+ * Operation on the model with the SPARQL language.
+ * @author william
+ *
+ */
 public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOperationInterface,ELearnerModelQueryInterface, ELearnerRuleModel {
 	public ELearnerModelImpl(File file){
 		super(file);
@@ -41,10 +43,6 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOpe
 	public ELearnerModelImpl(File file,String lang){
 		super(file,lang);
 	}
-    //return the root concept which is already set.
-    public EConcept getRootConcept() {
-        return getEConcept("Software_Engineer");
-    }
 
     /*******************************************************************************************************
      * Add new Data Operations
@@ -834,9 +832,14 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOpe
 		ELearnerModelImpl emi = new ELearnerModelImpl(new File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
 		
 		ELearner elearner = emi.getELearner("el001");
-		long t = System.currentTimeMillis();
-		ArrayList<EPortfolio> rs = emi.getEPortfoliosTwo(elearner);
-		System.out.println(System.currentTimeMillis()-t);
-		System.out.println(rs.size());
+		ArrayList<EConcept> cons = emi.getRecommendEConcepts(elearner, 1);
+		ArrayList<EConcept> cons2 = emi.getRecommendEConcepts(elearner,3);
+		System.out.println(cons.size());
+		System.out.println(cons);
+		System.out.println(cons2);
+	//	long t = System.currentTimeMillis();
+		//ArrayList<EPortfolio> rs = emi.getEPortfoliosTwo(elearner);
+		//System.out.println(System.currentTimeMillis()-t);
+		//System.out.println(rs.size());
 	}
 }

@@ -3,6 +3,8 @@ package jena.impl;
 import java.io.File;
 import java.io.IOException;
 
+import ontology.EConcept;
+
 import jena.OwlFactory;
 
 import com.hp.hpl.jena.ontology.OntModel;
@@ -43,6 +45,12 @@ public class ELearnerModel {
         }
         return false;
     }
+	public EConcept getRootConcept(){
+		EConcept rootConcept = new EConcept();
+		rootConcept.setCid("Software_Engineer");
+		rootConcept.setName("software engineering");
+		return rootConcept;
+	}
     public void updateInfModel() {
         infModel = OwlFactory.getInfoModel(OwlFactory.getGenericRuleReasoner(), ontModel);
     }
