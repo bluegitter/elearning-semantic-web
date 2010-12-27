@@ -23,7 +23,7 @@ import javax.swing.JFrame;
 public class LPView extends FrameView {
 
     private javax.swing.JPanel[] panes = {new MyConceptPane(),
-        new AllConceptPane(), new RecommendPane(), new SearchPane(), new lp.display.MyConceptDemo()};
+        new AllConceptPane(), new RecommendContainer(), new SearchPane(), new lp.display.MyConceptDemo()};
 
     public LPView(SingleFrameApplication app) {
         super(app);
