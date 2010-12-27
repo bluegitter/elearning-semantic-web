@@ -25,6 +25,7 @@ import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.query.ResultSetFormatter;
 import com.hp.hpl.jena.rdf.model.InfModel;
+import com.hp.hpl.jena.rdf.model.Literal;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.Statement;
@@ -403,7 +404,10 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOpe
         qe.close();
         return res;
     }
-
+    public EResource getEResourceTwo(String rid){
+    	EResource resource = new EResource();
+    	return resource;
+    }
     @Override
     public ArrayList<EPerformance> getEPerformances(ELearner elearner) {
         ArrayList<EPerformance> ps = new ArrayList<EPerformance>();
@@ -488,7 +492,9 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOpe
 
     @Override
     public ArrayList<EPortfolio> getEPortfolios(ELearner elearner) {
-        ArrayList<EPortfolio> portfolios = new ArrayList<EPortfolio>();
+    	long all = System.currentTimeMillis();
+    	long qt = all;
+    	ArrayList<EPortfolio> portfolios = new ArrayList<EPortfolio>();
         String queryString =
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
                 + "PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> "
@@ -504,7 +510,10 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOpe
         // Execute the query and obtain results
         QueryExecution qe = QueryExecutionFactory.create(query, infModel);
         ResultSet results = qe.execSelect();
+        System.out.println(System.currentTimeMillis()-qt+"qt");
+        long wt = System.currentTimeMillis();
         while (results.hasNext()) {
+        	long t = System.currentTimeMillis();
             QuerySolution qs = results.next();
             String portURI = QuerySolutionParser.getURI(qs, "?portfolio");
             String resURI = QuerySolutionParser.getURI(qs, "?resource");
@@ -513,7 +522,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOpe
             float value = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "value")).asLiteral().getFloat();
             String dateString = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "datetime")).asLiteral().getString();
             Date datetime = StringExchanger.parse(dateString);
-
+            
             EResource resource = QuerySolutionParser.getEResource(resURI, ontModel);
             EPortfolio port = new EPortfolio();
             port.setId(pid);
@@ -523,12 +532,49 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOpe
             port.setDatetime(datetime);
          //   System.out.println(port);
             portfolios.add(port);
+            System.out.println("==resource=="+(System.currentTimeMillis()-t));
         }
+        System.out.println(portfolios.size()+"size");
+        System.out.println(System.currentTimeMillis()-wt+"while loop");
+        
         qe.close();
+        System.out.println("all"+(System.currentTimeMillis()-all));
+        return portfolios;
+    }
+    
+    public ArrayList<EPortfolio> getEPortfoliosTwo(ELearner elearner) {
+    	ArrayList<EPortfolio> portfolios = new ArrayList<EPortfolio>();
+    	Resource el = ontModel.getResource(Constant.NS+ elearner.getId());
+    	SimpleSelector port_selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS+"inverse_of_has_portfolio"), el);
+
+		StmtIterator port_iter = ontModel.listStatements(port_selector);
+		while(port_iter.hasNext()){
+			Statement s = port_iter.nextStatement();
+			Resource portResource = s.getSubject();
+			float value =(Float) portResource.getRequiredProperty(ontModel.getProperty(Constant.NS+"value")).asTriple().getObject().getLiteralValue();
+			String dateString = portResource.getRequiredProperty(ontModel.getProperty(Constant.NS + "datetime")).asTriple().getObject().getLiteralValue().toString();
+			Date datetime = StringExchanger.parse(dateString);
+			SimpleSelector res_selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS+"is_resource_of_P"), portResource);
+			StmtIterator res_iter = ontModel.listStatements(res_selector);
+			EResource resource  = null;
+			while(res_iter.hasNext()){
+				Statement res_statement = res_iter.nextStatement();
+				Resource resResource = res_statement.getSubject();
+				String resId = resResource.getLocalName();
+				resource = getEResource(resId);
+			}
+			EPortfolio port = new EPortfolio();
+			port.setId(portResource.getLocalName());
+            port.setEResource(resource);
+            port.setElearner(elearner);
+            port.setValue(value);
+            port.setDatetime(datetime);
+            portfolios.add(port);
+		}
         return portfolios;
     }
 
-    @Override
+	@Override
     public ArrayList<EResource> getEResourcesByEConcept(EConcept concept) {
         ArrayList<EResource> resources = new ArrayList<EResource>();
         String queryString =
@@ -785,10 +831,12 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOpe
         return resources;
 	}
 	public static void main(String [] args){
-		ELearnerModelImpl emi = new ELearnerModelImpl();
-		ELearner elearner = emi.getELearner("el003");
-		EConcept concept = emi.getEConcept("CMP.CF9_001_C");
-		ArrayList<EResource> rs = emi.getEResourcesByInterestEConcepts(elearner, concept);
-		System.out.println(rs);
+		ELearnerModelImpl emi = new ELearnerModelImpl(new File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
+		
+		ELearner elearner = emi.getELearner("el001");
+		long t = System.currentTimeMillis();
+		ArrayList<EPortfolio> rs = emi.getEPortfoliosTwo(elearner);
+		System.out.println(System.currentTimeMillis()-t);
+		System.out.println(rs.size());
 	}
 }
