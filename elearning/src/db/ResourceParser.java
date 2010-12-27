@@ -1,11 +1,14 @@
 package db;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import jena.OwlFactory;
 import jena.impl.ELearnerModelImpl;
 import ontology.EConcept;
 import ontology.resources.EResource;
@@ -15,6 +18,9 @@ import com.mysql.jdbc.Connection;
 public class ResourceParser {
 	public ResourceParser(){
 		emi = new ELearnerModelImpl();
+	}
+	public ResourceParser(File file){
+		emi = new ELearnerModelImpl(file);
 	}
 	public boolean writeToFile(File file){
 		return emi.writeToFile(file);
@@ -32,6 +38,7 @@ public class ResourceParser {
 			ResultSet rs =  st.executeQuery(sql);
 			String idprefix = "cid";
 			ArrayList<EResource> resources = new ArrayList<EResource>();
+			EConcept rootConcept = emi.getEConcept("CMP.cf.2");
 			while(rs.next()){
 				EResource resource = new EResource();
 				resource.setDifficulty("easy");
@@ -50,7 +57,7 @@ public class ResourceParser {
 					concepts.put(con1,conceptTemp);
 					emi.addEConcept(conceptTemp);
 					//System.out.println("addOne:"+emi.getEConcept(conceptTemp.getCid()));
-					emi.addPropertyIsSonOf(emi.getRootConcept(),conceptTemp);
+					emi.addPropertyIsSonOf(rootConcept,conceptTemp);
 				}else{
 					conceptTemp = concepts.get(con1);
 				}
@@ -89,10 +96,10 @@ public class ResourceParser {
 			Statement st = con.createStatement();
 			String sql = "select concept_id,concept_name from econcept";
 			ResultSet rs =  st.executeQuery(sql);
-			EConcept currentRootConcept = emi.getRootConcept();
-			EConcept lastConcept = emi.getRootConcept();
 			EConcept rootConcept = emi.getRootConcept();
-			int currentLevel = 0;
+			
+			HashMap<Integer ,EConcept> tempConcepts = new HashMap<Integer,EConcept> ();
+			tempConcepts.put(-1, rootConcept);
 			while(rs.next()){
 				String cid = rs.getString("concept_id");
 				String cname = rs.getString("concept_name");
@@ -100,23 +107,12 @@ public class ResourceParser {
 				emi.addEConcept(concept);
 				concepts.add(concept);
 				int level = countDot(cid);
-				//add new son
-				if(currentLevel<level){
-					currentRootConcept = lastConcept;
-					emi.addPropertyIsSonOf(currentRootConcept, concept);
-					currentLevel = level;
+				EConcept father  = rootConcept;
+				if(level != 0){
+					father = tempConcepts.get(level);
 				}
-				//add leaf member
-				if(currentLevel ==level){
-					emi.addPropertyIsSonOf(currentRootConcept, concept);
-				}
-				//add new son of the root concept
-				if(currentLevel > level){
-					currentRootConcept = rootConcept;
-					emi.addPropertyIsSonOf(currentRootConcept, concept);
-					currentLevel = level;
-				}
-				lastConcept = concept;
+				emi.addPropertyIsSonOf(father, concept);
+				tempConcepts.put((level+1), concept);
 			}
 			//System.out.println(emi.getAllEConcepts().size());
 			System.out.println(concepts.size()+" concepts added\t");
@@ -139,7 +135,14 @@ public class ResourceParser {
 		}
 		return i;
 	}
-	
+	public static void main(String [] args) throws IOException{
+		File file = new File("test\\owl\\conceptsAndresource_RDF-XML.owl");
+		ResourceParser rp = new ResourceParser();
+		rp.getBasicEConcepts();
+		rp.getDataStructureResrouces();
+		System.out.println("beginto write");
+		OwlOperation.writeOwlFile(rp.getOntModel(), file);
+	}
 	private ELearnerModelImpl emi;
 	
 }

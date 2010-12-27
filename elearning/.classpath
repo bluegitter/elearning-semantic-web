@@ -44,12 +44,12 @@
 	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/lucene-core-2.3.1.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/orphanNodesAlg.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/owlsyntax.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/protege-owl.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/stax-api-1.0.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/swingx-1.0.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/swrl-jess-bridge.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/wstx-asl-3.0.0.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/xercesImpl.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/xml-apis.jar"/>
+	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/protege.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
