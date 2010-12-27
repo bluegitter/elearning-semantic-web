@@ -3,25 +3,44 @@
 @include <OWL>.
 
 
-[ruleHasPerformance: (?concept1 el:is_concept_of ?performance1)
-        (?learner1 el:has_performance ?performance1)
-        ->(?learner1 el:reasoning_hasPerformance ?concept1)]
-[ruleBrother: (?concept2 el:is_post_concept_of ?parentCnp)
-              (?concept3 el:is_post_concept_of ?parentCnp)
-              notEqual(?concept2 ?concept3)
-              ->(?concept2 el:reasoning_brother ?concept3)]
-[rule1: (?learner2 el:reasoning_hasPerformance ?concept4)
-        (?concept5 el:is_post_concept_of ?concept4)
-        noValue(?learner2 el:reasoning_hasPerformance ?concept5)
-        ->(?concept5 el:is_recommend_of_1 ?learner2)]
-[rule2: (?concept6 rdf:type el:E_Concept)
-        (?concept7 rdf:type el:E_Concept)
-        (?learner3 rdf:type el:E_Learner)
-        
-       
-        (?learner3 el:reasoning_hasPerformance ?concept6)
-        (?concept6 el:reasoning_brother ?concept7)
-          noValue(?learner3 el:reasoning_hasPerformance ?concept7)
-        ->(?concept7 el:is_recommend_of_2 ?learner3)]
+
+[rule_c_1: (?learner_c_1 el:has_performance ?performance_c_1)
+           (?concept_c_1_1 el:is_concept_of_P ?performance_c_1)            
+           (?concept_c_1_2 el:is_post_concept_of ?concept_c_1_1)
+           ->(?concept_c_1_2 el:is_recommend_of_c_1 ?learner_c_1)]
+
+[rule_c_2: (?learner_c_2 el:has_performance ?performance_c_2)
+           (?concept_c_2_1 el:is_concept_of_P ?performance_c_2)
+           (?concept_c_2_2 el:is_son_of ?concept_c_2_1)
+           ->(?concept_c_2_2 el:is_recommend_of_c_2 ?learner_c_2)]
+
+[rule_c_3:  (?concept_c_3 el:is_concept_of_I ?interest_c_3)
+            (?learner_c_3 el:has_interest ?interest_c_3)
+            ->(?concept_c_3 el:is_recommend_of_c_3 ?learner_c_3)]
+
+[rule_c_4:  (?concept_c_4 el:is_concept_of_P ?performance_c_4)
+            (?learner_c_4 el:has_performance ?performance_c_4)
+            (?performance_c_4 el:value ?perValue_c_4)
+            greaterThan(0.5,?perValue_c_4)
+            ->(?concept_c_4 el:is_recommend_of_c_4 ?learner_c_4)]
+
+[rule_r_5:  (?concept_r_5 el:is_concept_of_P ?performance_r_5)
+            (?learner_r_5 el:has_performance ?performance_c_5)
+            (?performance_r_5 el:value ?perValue_r_5)
+            greaterThan(0,?perValue_r_5)        
+            (?resource_r_5 el:is_resource_of_C ?concept_r_5)
+            ->(?resource_r_5 el:is_recommend_of_r_5 ?learner_r_5)]
+
+[rule_r_6: (?resource_r_6_1 el:is_resource_of_P ?portfolio_r_6)
+           (?learner_r_6 el:has_portfolio ?portfolio_r_6)
+           (?resource_r_6_2 el:is_post_of_R ?resource_r_6_1)
+	   ->(?resource_r_6_2 el:is_recommend_of_r_6 ?learner_r_6)]
+
+[rule_L_0:(?learner_L_0_1 el:has_interest ?interest_L_0_1)
+          (?concept_L_0 el:is_concept_of_I ?interest_L_0_1)
+          (?concept_L_0 el:is_concept_of_P ?performance_L_0)
+          (?learner_L_0_2 el:has_performance ?performance_L_0)
+          notEqual(?learner_L_0_2,?learner_L_0_1)
+          ->(?learner_L_0_2 el:is_recommend_of_L_0 ?learner_L_0_1)]
 
 
