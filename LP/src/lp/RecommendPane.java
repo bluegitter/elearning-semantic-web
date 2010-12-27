@@ -7,7 +7,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import lp.display.EBalloon;
+import lp.display.EClass;
+import ontology.EConcept;
 
 /**
  *
@@ -26,7 +31,6 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
         showTime = 0;
 
         this.balloons = new ArrayList<EBalloon>();
-        balloons.add(new EBalloon(200, 200, 150, "软件工程", java.awt.Color.RED));
 
         addMouseListener(this);
         addMouseMotionListener(this);
@@ -125,6 +129,42 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
             thread.start();
         }
         this.showTime = 0;
+    }
+
+    public void reRecommend(double[] r)  {
+        System.out.println("ttttttt");
+        this.balloons.clear();
+        HashMap<String, EClass> map = new HashMap<String, EClass>();
+        for (int i = 0; i <= 3; i++) {
+            ArrayList<EConcept> l = LPApp.lpModel.getRecommendEConcepts(LPApp.getApplication().user.learner, i);
+            for(EConcept c : l) {
+                if(map.containsKey(c.getCid())) {
+                    EClass ec = map.get(c.getCid());
+                    ec.rank += r[i - 1];
+                } else {
+                    EClass ec = new EClass(c);
+                    map.put(c.getCid(), ec);
+                    ec.rank += r[i - 1];
+                }
+            }
+        }
+        ArrayList<EClass> list = new ArrayList(map.size());
+        for(EClass tec: map.values()) {
+            list.add(tec);
+        }
+        java.util.Collections.sort(list);
+
+        java.awt.Color[] colors = {java.awt.Color.RED, java.awt.Color.BLUE, java.awt.Color.GREEN};
+        float[] x = {200, 400, 600, 800, 200, 400}, y= {200, 200, 200, 200, 400, 400};
+        int len = list.size() > 6 ? 6 : list.size();
+        System.out.println(len);
+        for(int i = 0; i < len; i++) {
+            EClass nec = list.get(i);
+            System.out.println(nec.toString() + " " + nec.rank);
+
+            this.balloons.add(new EBalloon(x[i], y[i], 150, nec.toString(), colors[i % 3]));
+        }
+        this.repaint();
     }
 
     @Override
