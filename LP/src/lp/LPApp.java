@@ -42,7 +42,7 @@ public class LPApp extends SingleFrameApplication {
 //            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 
-        lpModel = new ELearnerModelImpl();
+        lpModel = new ELearnerModelImpl(new java.io.File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
 
         user = null;
         view = new LPView(this);

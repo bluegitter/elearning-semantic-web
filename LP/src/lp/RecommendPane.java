@@ -13,13 +13,23 @@ import lp.display.EBalloon;
  *
  * @author Shuaiguo Wang
  */
-public class RecommendPane extends javax.swing.JPanel implements MouseListener, MouseMotionListener {
+public class RecommendPane extends javax.swing.JPanel implements MouseListener, MouseMotionListener, Runnable {
 
-    ArrayList<EBalloon> balloons;
+    private ArrayList<EBalloon> balloons;
+    private EBalloon on;
+    private int showTime;
+    public Thread thread;
 
     public RecommendPane() {
+        on = null;
+        thread = null;
+        showTime = 0;
+
         this.balloons = new ArrayList<EBalloon>();
         balloons.add(new EBalloon(200, 200, 150, "软件工程", java.awt.Color.RED));
+
+        addMouseListener(this);
+        addMouseMotionListener(this);
     }
 
     @Override
@@ -88,6 +98,48 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        ;
+        EBalloon balloon = null;
+        for (EBalloon b : balloons) {
+            if (b.contains(e.getPoint())) {
+                balloon = b;
+            }
+        }
+        if (on != balloon) {
+            if (on != null) {
+                on.mouseout();
+                on = null;
+            }
+            if (balloon != null) {
+                on = balloon;
+                on.mouseon();
+            }
+            rpstart();
+        }
+    }
+
+    public void rpstart() {
+        if (thread == null) {
+            thread = new Thread(this);
+            thread.setPriority(Thread.MAX_PRIORITY);
+            thread.setName("Balloon Demo");
+            thread.start();
+        }
+        this.showTime = 0;
+    }
+
+    @Override
+    public void run() {
+        Thread me = Thread.currentThread();
+
+        while (thread == me && this.showTime <= 6) {
+            repaint();
+            showTime++;
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+            }
+        }
+
+        thread = null;
     }
 }

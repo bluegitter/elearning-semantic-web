@@ -41,7 +41,7 @@ public class AllConceptPane extends javax.swing.JPanel {
             AllConceptDisplay.treeNodes, Visualization.SEARCH_ITEMS, d.m_label, true, true);
         search.setShowResultCount(true);
         search.setBorder(BorderFactory.createEmptyBorder(5,5,4,0));
-        search.setFont(FontLib.getFont("Tahoma", Font.PLAIN, 11));
+        search.setFont(FontLib.getFont("微软雅黑", Font.PLAIN, 11));
         search.setForeground(Color.BLACK);
         search.setBackground(bg);
 
@@ -49,7 +49,7 @@ public class AllConceptPane extends javax.swing.JPanel {
         title.setPreferredSize(new Dimension(350, 20));
         title.setVerticalAlignment(SwingConstants.BOTTOM);
         title.setBorder(BorderFactory.createEmptyBorder(3,0,0,0));
-        title.setFont(FontLib.getFont("Tahoma", Font.PLAIN, 16));
+        title.setFont(FontLib.getFont("微软雅黑", Font.PLAIN, 16));
         title.setForeground(Color.BLACK);
 
         d.addControlListener(new ControlAdapter() {

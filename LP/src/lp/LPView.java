@@ -113,7 +113,7 @@ public class LPView extends FrameView {
             cd.setVisible(false);
 
         if(i == LPApp.MY_CONCEPT) {
-            ((MyConceptPane)this.panes[i]).updateTable();
+            //((MyConceptPane)this.panes[i]).updateTable();
         }
     }
 
