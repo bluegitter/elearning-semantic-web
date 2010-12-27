@@ -22,6 +22,7 @@
             (?learner_c_4 el:has_performance ?performance_c_4)
             (?performance_c_4 el:value ?perValue_c_4)
             greaterThan(0.5,?perValue_c_4)
+            greaterThan(?perValue_c_4,0)
             ->(?concept_c_4 el:is_recommend_of_c_4 ?learner_c_4)]
 
 [rule_r_5:  (?concept_r_5 el:is_concept_of_P ?performance_r_5)
