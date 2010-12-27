@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2010/12/19 10:14:21                          */
+/* Created on:     2010-12-27 15:29:10                          */
 /*==============================================================*/
 
 
@@ -108,6 +108,7 @@ create table EConcept
 (
    concept_id           varchar(100) not null,
    concept_name         varchar(1000),
+   concept_name_en      varchar(1000),
    primary key (concept_id)
 );
 
