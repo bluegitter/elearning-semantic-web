@@ -320,6 +320,13 @@
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
     <rdfs:subPropertyOf rdf:resource="#organization_properties"/>
   </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:ID="reasoning_hasPerformance">
+    <rdfs:domain rdf:resource="#E_Learner"/>
+    <rdfs:range rdf:resource="#E_Concept"/>
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:ID="reasoning_properties"/>
+    </rdfs:subPropertyOf>
+  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_L_0">
     <rdfs:range rdf:resource="#E_Learner"/>
     <owl:inverseOf>
@@ -327,13 +334,6 @@
     </owl:inverseOf>
     <rdfs:subPropertyOf>
       <owl:ObjectProperty rdf:about="#inverse_of_is_recommend_of"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:ID="reasoning_hasPerformance">
-    <rdfs:domain rdf:resource="#E_Learner"/>
-    <rdfs:range rdf:resource="#E_Concept"/>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:ID="reasoning_properties"/>
     </rdfs:subPropertyOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#is_recommend_of_r_1">
@@ -419,17 +419,17 @@
     </owl:inverseOf>
     <rdfs:subPropertyOf rdf:resource="#resouce_properties"/>
   </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="#is_recommend_of_c_4">
+    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_c_4"/>
+    <rdfs:domain rdf:resource="#E_Concept"/>
+    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
+  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:ID="is_recommend_of_c_0">
     <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
     <rdfs:domain rdf:resource="#E_Concept"/>
     <owl:inverseOf>
       <owl:ObjectProperty rdf:ID="inverse_of_is_recommend_of_c_0"/>
     </owl:inverseOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="#is_recommend_of_c_4">
-    <owl:inverseOf rdf:resource="#inverse_of_is_recommend_of_c_4"/>
-    <rdfs:domain rdf:resource="#E_Concept"/>
-    <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="#is_recommend_of_r_2">
     <rdfs:subPropertyOf rdf:resource="#is_recommend_of"/>
@@ -825,8 +825,6 @@
               >caj</rdf:first>
               <rdf:rest rdf:parseType="Resource">
                 <rdf:rest rdf:parseType="Resource">
-                  <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                  >pdf</rdf:first>
                   <rdf:rest rdf:parseType="Resource">
                     <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                     >txt</rdf:first>
@@ -834,20 +832,22 @@
                       <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                       >flash</rdf:first>
                       <rdf:rest rdf:parseType="Resource">
-                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                        >image</rdf:first>
                         <rdf:rest rdf:parseType="Resource">
+                          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >ppt</rdf:first>
                           <rdf:rest rdf:parseType="Resource">
                             <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                             >video</rdf:first>
                             <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                           </rdf:rest>
-                          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                          >ppt</rdf:first>
                         </rdf:rest>
+                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >image</rdf:first>
                       </rdf:rest>
                     </rdf:rest>
                   </rdf:rest>
+                  <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >pdf</rdf:first>
                 </rdf:rest>
                 <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                 >doc</rdf:first>
@@ -991,12 +991,38 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Tsinghua University</name>
   </Chinese_University>
+  <E_Concept rdf:ID="Software_Engineer">
+    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >software engineering</name>
+    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Software_Engineer</id>
+  </E_Concept>
   <Publisher rdf:ID="E_PTPRESS">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Post &amp; Telecom Press</name>
     <address rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >14A Xi Zhao Si Street, Chong Wen District, Beijing 100061, China</address>
   </Publisher>
+  <E_Resource rdf:ID="rid00005">
+    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >rid00005</id>
+    <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >hard</difficulty>
+    <fileLocation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >C://</fileLocation>
+    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >c</name>
+  </E_Resource>
+  <E_Resource rdf:ID="rid00006">
+    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >c</name>
+    <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >hard</difficulty>
+    <fileLocation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >file c</fileLocation>
+    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >rid00006</id>
+  </E_Resource>
   <Lecture rdf:ID="Lecture_6"/>
   <Corporations rdf:ID="Oracle_Beijing">
     <address rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1004,6 +1030,16 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Oracle_Beijing</name>
   </Corporations>
+  <E_Resource rdf:ID="rid00004">
+    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >doc2</name>
+    <fileLocation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></fileLocation>
+    <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >hard</difficulty>
+    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >rid00004</id>
+  </E_Resource>
   <Paper rdf:ID="Paper1"/>
   <Corporations rdf:ID="IBM_Beijing">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -1012,780 +1048,237 @@
     >Beijing</address>
   </Corporations>
   <US_University rdf:ID="US_Ivy_League"/>
-  <E_Concept rdf:ID="CMP.CT_Construction_Technologies">
-    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >CMP.CT_Construction_Technologies</id>
-    <is_part_of>
-      <E_Concept rdf:ID="CMP_Computing_Essentials">
-        <inverse_of_is_son_of>
-          <E_Concept rdf:ID="CMP.TL_Construction_Tools">
-            <is_son_of rdf:resource="#CMP_Computing_Essentials"/>
-            <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >CMP.TL_Construction_Tools</id>
-            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >constructionTools</name>
-            <is_part_of rdf:resource="#CMP_Computing_Essentials"/>
-          </E_Concept>
-        </inverse_of_is_son_of>
-        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-        >ComputingEssentials</name>
-        <inverse_of_is_son_of>
-          <E_Concept rdf:ID="CMP.FM_Formal_Construction_Methods">
-            <is_part_of rdf:resource="#CMP_Computing_Essentials"/>
-            <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >CMP.FM_Formal_Construction_Methods</id>
-            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >formalConstructionMethods</name>
-            <is_son_of rdf:resource="#CMP_Computing_Essentials"/>
-          </E_Concept>
-        </inverse_of_is_son_of>
-        <inverse_of_is_part_of rdf:resource="#CMP.CT_Construction_Technologies"/>
-        <inverse_of_is_part_of rdf:resource="#CMP.FM_Formal_Construction_Methods"/>
-        <inverse_of_is_son_of rdf:resource="#CMP.CT_Construction_Technologies"/>
-        <is_part_of>
-          <E_Concept rdf:ID="Software_Engineer">
-            <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >Software_Engineer</id>
-            <inverse_of_is_son_of>
-              <E_Concept rdf:ID="PRF_Professional_Practice">
-                <is_part_of rdf:resource="#Software_Engineer"/>
-                <is_son_of rdf:resource="#Software_Engineer"/>
-                <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >Professional_Practice</name>
-                <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >PRF_Professional_Practice</id>
-              </E_Concept>
-            </inverse_of_is_son_of>
-            <inverse_of_is_part_of>
-              <E_Concept rdf:ID="MGT_Software_Management">
-                <is_son_of rdf:resource="#Software_Engineer"/>
-                <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >MGT_Software_Management</id>
-                <is_part_of rdf:resource="#Software_Engineer"/>
-                <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >Software_Management</name>
-              </E_Concept>
-            </inverse_of_is_part_of>
-            <inverse_of_is_son_of>
-              <E_Concept rdf:ID="DES_Software_Design">
-                <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >Software_Design</name>
-                <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >DES_Software_Design</id>
-                <is_son_of rdf:resource="#Software_Engineer"/>
-                <is_part_of rdf:resource="#Software_Engineer"/>
-              </E_Concept>
-            </inverse_of_is_son_of>
-            <inverse_of_is_son_of>
-              <E_Concept rdf:ID="FND_Mathematical_and_Engineering_Fundamentals">
-                <is_son_of rdf:resource="#Software_Engineer"/>
-                <is_part_of rdf:resource="#Software_Engineer"/>
-                <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >Mathematical_&amp;_Engineering_Fundamentals</name>
-                <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >FND_Mathematical_and_Engineering_Fundamentals</id>
-              </E_Concept>
-            </inverse_of_is_son_of>
-            <inverse_of_is_son_of>
-              <E_Concept rdf:ID="EVO_Software_Evolution">
-                <is_son_of rdf:resource="#Software_Engineer"/>
-                <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >EVO_Software_Evolution</id>
-                <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >Software_Evolution</name>
-                <inverse_of_is_resource_of_C>
-                  <E_Resource rdf:ID="rid00001">
-                    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                    >rid00001</id>
-                    <is_resource_of_C rdf:resource="#EVO_Software_Evolution"/>
-                    <inverse_of_is_application_type_of>
-                      <Book rdf:ID="A_Semantic_Web_Primer">
-                        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                        >A_Semantic_Web_Primer 2nd</name>
-                        <writen_by>
-                          <E_People rdf:ID="pid0002">
-                            <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                            >pid0002</id>
-                            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                            >Grigoris_Antoniou</name>
-                            <inverse_of_writen_by rdf:resource="#A_Semantic_Web_Primer"/>
-                          </E_People>
-                        </writen_by>
-                        <writen_by>
-                          <E_People rdf:ID="pid0001">
-                            <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                            >pid0001</id>
-                            <inverse_of_writen_by rdf:resource="#A_Semantic_Web_Primer"/>
-                            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                            >Frank_van_Harmelen</name>
-                          </E_People>
-                        </writen_by>
-                        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                        >2nd_2008</rdfs:comment>
-                        <is_published_by>
-                          <Publisher rdf:ID="MIT_Press">
-                            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                            >MIT_Press</name>
-                            <publish rdf:resource="#A_Semantic_Web_Primer"/>
-                          </Publisher>
-                        </is_published_by>
-                        <is_application_type_of rdf:resource="#rid00001"/>
-                        <book_isbn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                        >978-0-262-01242-3</book_isbn>
-                      </Book>
-                    </inverse_of_is_application_type_of>
-                    <fileLocation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                    >fileLocation</fileLocation>
-                    <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                    >hard</difficulty>
-                    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                    >semantic web primer</name>
-                    <is_resource_of_P>
-                      <E_Portfolio rdf:ID="E_Portfolio_el001-1">
-                        <inverse_of_has_portfolio>
-                          <E_Learner rdf:ID="el001">
-                            <has_interest>
-                              <E_Interest rdf:ID="E_Interest_el001-1">
-                                <inverse_of_has_interest rdf:resource="#el001"/>
-                                <inverse_of_is_concept_of_I>
-                                  <E_Concept rdf:ID="CMP.CF9_003_Java">
-                                    <is_part_of>
-                                      <E_Concept rdf:ID="CMP.CF9_Programming_Language_Foundations">
-                                        <inverse_of_is_part_of>
-                                          <E_Concept rdf:ID="CMP.CF9_002_CPP">
-                                            <id rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >CMP.CF9_002_CPP</id>
-                                            <is_son_of rdf:resource="#CMP.CF9_Programming_Language_Foundations"/>
-                                            <name rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >c++ language</name>
-                                            <is_part_of rdf:resource="#CMP.CF9_Programming_Language_Foundations"/>
-                                            <is_concept_of_I>
-                                              <E_Interest rdf:ID="E_Interest_el001-2">
-                                                <value rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#float"
-                                                >0.3</value>
-                                                <inverse_of_has_interest rdf:resource="#el001"/>
-                                                <inverse_of_is_concept_of_I rdf:resource="#CMP.CF9_002_CPP"/>
-                                              </E_Interest>
-                                            </is_concept_of_I>
-                                          </E_Concept>
-                                        </inverse_of_is_part_of>
-                                        <inverse_of_is_part_of rdf:resource="#CMP.CF9_003_Java"/>
-                                        <inverse_of_is_son_of rdf:resource="#CMP.CF9_002_CPP"/>
-                                        <inverse_of_is_part_of>
-                                          <E_Concept rdf:ID="CMP.CF9_001_C">
-                                            <name rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >c</name>
-                                            <is_son_of rdf:resource="#CMP.CF9_Programming_Language_Foundations"/>
-                                            <inverse_of_is_resource_of_C>
-                                              <E_Resource rdf:ID="rid00005">
-                                                <id rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >rid00005</id>
-                                                <is_resource_of_C rdf:resource="#CMP.CF9_001_C"/>
-                                                <difficulty rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >hard</difficulty>
-                                                <fileLocation
-                                                 rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >C://</fileLocation>
-                                                <name rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >c</name>
-                                              </E_Resource>
-                                            </inverse_of_is_resource_of_C>
-                                            <inverse_of_is_resource_of_C>
-                                              <E_Resource rdf:ID="rid00006">
-                                                <is_resource_of_C rdf:resource="#CMP.CF9_001_C"/>
-                                                <name rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >c</name>
-                                                <difficulty rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >hard</difficulty>
-                                                <fileLocation
-                                                 rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >file c</fileLocation>
-                                                <id rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >rid00006</id>
-                                              </E_Resource>
-                                            </inverse_of_is_resource_of_C>
-                                            <is_concept_of_I>
-                                              <E_Interest rdf:ID="E_Interest_1">
-                                                <value rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#float"
-                                                >0.5</value>
-                                                <inverse_of_is_concept_of_I rdf:resource="#CMP.CF9_001_C"/>
-                                                <inverse_of_has_interest>
-                                                  <E_Learner rdf:ID="el003">
-                                                    <address rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    ></address>
-                                                    <email rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    ></email>
-                                                    <id rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    >el003</id>
-                                                    <name rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    >Geng Huihui</name>
-                                                    <has_interest rdf:resource="#E_Interest_1"/>
-                                                    <has_performance>
-                                                      <E_Performance rdf:ID="E_Performance_4">
-                                                        <inverse_of_is_concept_of_P rdf:resource="#CMP.CF9_003_Java"/>
-                                                        <inverse_of_has_performance rdf:resource="#el003"/>
-                                                        <datetime
-                                                         rdf:datatype=
-                                                        "http://www.w3.org/2001/XMLSchema#dateTime"
-                                                        >2010-12-06T14:34:57</datetime>
-                                                        <value
-                                                         rdf:datatype=
-                                                        "http://www.w3.org/2001/XMLSchema#float"
-                                                        >0.8</value>
-                                                      </E_Performance>
-                                                    </has_performance>
-                                                    <grade rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    ></grade>
-                                                  </E_Learner>
-                                                </inverse_of_has_interest>
-                                              </E_Interest>
-                                            </is_concept_of_I>
-                                            <id rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >CMP.CF9_001_C</id>
-                                            <is_part_of rdf:resource="#CMP.CF9_Programming_Language_Foundations"/>
-                                          </E_Concept>
-                                        </inverse_of_is_part_of>
-                                        <inverse_of_is_son_of>
-                                          <E_Concept rdf:ID="CMP.CF9_004_JavaScripts">
-                                            <is_son_of rdf:resource="#CMP.CF9_Programming_Language_Foundations"/>
-                                            <is_part_of rdf:resource="#CMP.CF9_Programming_Language_Foundations"/>
-                                            <id rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >CMP.CF9_004_JavaScripts</id>
-                                            <name rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >Java Scripts</name>
-                                          </E_Concept>
-                                        </inverse_of_is_son_of>
-                                        <inverse_of_is_part_of rdf:resource="#CMP.CF9_004_JavaScripts"/>
-                                        <inverse_of_is_son_of>
-                                          <E_Concept rdf:ID="CMP.CF9_005_Python">
-                                            <name rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >Python</name>
-                                            <is_part_of rdf:resource="#CMP.CF9_Programming_Language_Foundations"/>
-                                            <id rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >CMP.CF9_005_Python</id>
-                                            <is_son_of rdf:resource="#CMP.CF9_Programming_Language_Foundations"/>
-                                          </E_Concept>
-                                        </inverse_of_is_son_of>
-                                        <inverse_of_is_son_of rdf:resource="#CMP.CF9_003_Java"/>
-                                        <is_son_of>
-                                          <E_Concept rdf:ID="CMP.CF_Computer_Science_Foundations">
-                                            <inverse_of_is_part_of>
-                                              <E_Concept rdf:ID="CMP.CF10_Operating_System_Foundations">
-                                                <name rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >operationsystem</name>
-                                                <is_son_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
-                                                <id rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >CMP.CF10_Operating_System_Foundations</id>
-                                                <is_part_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
-                                              </E_Concept>
-                                            </inverse_of_is_part_of>
-                                            <is_part_of rdf:resource="#CMP_Computing_Essentials"/>
-                                            <inverse_of_is_son_of>
-                                              <E_Concept rdf:ID="CMP.CF11_Database_Foundations">
-                                                <inverse_of_is_son_of>
-                                                  <E_Concept rdf:ID="CMP.CF11_003_Database_Access">
-                                                    <name rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    >databaseAccess</name>
-                                                    <id rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    >CMP.CF11_003_Database_Access</id>
-                                                    <is_concept_of_I>
-                                                      <E_Interest rdf:ID="E_Interest_el001-5">
-                                                        <value
-                                                         rdf:datatype=
-                                                        "http://www.w3.org/2001/XMLSchema#float"
-                                                        >0.8</value>
-                                                        <inverse_of_is_concept_of_I rdf:resource="#CMP.CF11_003_Database_Access"/>
-                                                        <inverse_of_has_interest rdf:resource="#el001"/>
-                                                      </E_Interest>
-                                                    </is_concept_of_I>
-                                                    <inverse_of_is_resource_of_C>
-                                                      <E_Resource rdf:ID="rid00002">
-                                                        <is_resource_of_P>
-                                                          <E_Portfolio rdf:ID="E_Portfolio_el001-2">
-                                                            <inverse_of_is_resource_of_P rdf:resource="#rid00002"/>
-                                                            <value
-                                                             rdf:datatype=
-                                                            "http://www.w3.org/2001/XMLSchema#float"
-                                                            >1.0</value>
-                                                            <datetime
-                                                             rdf:datatype=
-                                                            "http://www.w3.org/2001/XMLSchema#dateTime"
-                                                            >2010-12-19T22:31:56</datetime>
-                                                            <inverse_of_has_portfolio rdf:resource="#el001"/>
-                                                          </E_Portfolio>
-                                                        </is_resource_of_P>
-                                                        <difficulty
-                                                         rdf:datatype=
-                                                        "http://www.w3.org/2001/XMLSchema#string"
-                                                        >easy</difficulty>
-                                                        <is_resource_of_C rdf:resource="#CMP.CF11_003_Database_Access"/>
-                                                        <id rdf:datatype=
-                                                        "http://www.w3.org/2001/XMLSchema#string"
-                                                        >rid00002</id>
-                                                        <fileLocation
-                                                         rdf:datatype=
-                                                        "http://www.w3.org/2001/XMLSchema#string"
-                                                        >filelocation</fileLocation>
-                                                        <name
-                                                         rdf:datatype=
-                                                        "http://www.w3.org/2001/XMLSchema#string"
-                                                        >pdf2</name>
-                                                      </E_Resource>
-                                                    </inverse_of_is_resource_of_C>
-                                                    <is_part_of rdf:resource="#CMP.CF11_Database_Foundations"/>
-                                                    <is_son_of rdf:resource="#CMP.CF11_Database_Foundations"/>
-                                                  </E_Concept>
-                                                </inverse_of_is_son_of>
-                                                <is_son_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
-                                                <inverse_of_is_part_of>
-                                                  <E_Concept rdf:ID="CMP.CF11_001_DML_Statement">
-                                                    <name rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    >dmlStatement</name>
-                                                    <is_son_of rdf:resource="#CMP.CF11_Database_Foundations"/>
-                                                    <id rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    >CMP.CF11_001_DML_Statement</id>
-                                                    <is_part_of rdf:resource="#CMP.CF11_Database_Foundations"/>
-                                                  </E_Concept>
-                                                </inverse_of_is_part_of>
-                                                <id rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >CMP.CF11_Database_Foundations</id>
-                                                <inverse_of_is_son_of rdf:resource="#CMP.CF11_001_DML_Statement"/>
-                                                <is_concept_of_I>
-                                                  <E_Interest rdf:ID="E_Interest_el001-4">
-                                                    <inverse_of_has_interest rdf:resource="#el001"/>
-                                                    <value rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#float"
-                                                    >0.5</value>
-                                                    <inverse_of_is_concept_of_I rdf:resource="#CMP.CF11_Database_Foundations"/>
-                                                  </E_Interest>
-                                                </is_concept_of_I>
-                                                <name rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >databaseFoundations</name>
-                                                <is_part_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
-                                                <inverse_of_is_part_of>
-                                                  <E_Concept rdf:ID="CMP.CF11_002_Transaction_Control_Statement">
-                                                    <id rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    >CMP.CF11_002_Transaction_Control_Statement</id>
-                                                    <is_part_of rdf:resource="#CMP.CF11_Database_Foundations"/>
-                                                    <is_son_of rdf:resource="#CMP.CF11_Database_Foundations"/>
-                                                    <name rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    >controStatement</name>
-                                                  </E_Concept>
-                                                </inverse_of_is_part_of>
-                                                <inverse_of_is_part_of rdf:resource="#CMP.CF11_003_Database_Access"/>
-                                                <inverse_of_is_son_of rdf:resource="#CMP.CF11_002_Transaction_Control_Statement"/>
-                                              </E_Concept>
-                                            </inverse_of_is_son_of>
-                                            <is_son_of rdf:resource="#CMP_Computing_Essentials"/>
-                                            <inverse_of_is_son_of>
-                                              <E_Concept rdf:ID="CMP.CF1_Programming_Design_Foundations">
-                                                <name rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >programmingDesign</name>
-                                                <is_son_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
-                                                <id rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >CMP.CF1_Programming_Design_Foundations</id>
-                                                <is_part_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
-                                              </E_Concept>
-                                            </inverse_of_is_son_of>
-                                            <inverse_of_is_part_of rdf:resource="#CMP.CF9_Programming_Language_Foundations"/>
-                                            <inverse_of_is_part_of rdf:resource="#CMP.CF11_Database_Foundations"/>
-                                            <inverse_of_is_son_of>
-                                              <E_Concept rdf:ID="CMP.CF13_Programming_Language_Semantics">
-                                                <is_part_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
-                                                <id rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >CMP.CF13_Programming_Language_Semantics</id>
-                                                <name rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >programmingLanguageSemantics</name>
-                                                <is_son_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
-                                              </E_Concept>
-                                            </inverse_of_is_son_of>
-                                            <inverse_of_is_son_of rdf:resource="#CMP.CF10_Operating_System_Foundations"/>
-                                            <inverse_of_is_part_of rdf:resource="#CMP.CF1_Programming_Design_Foundations"/>
-                                            <name rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >computerScienceFoundations</name>
-                                            <inverse_of_is_part_of rdf:resource="#CMP.CF13_Programming_Language_Semantics"/>
-                                            <id rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >CMP.CF_Computer_Science_Foundations</id>
-                                            <inverse_of_is_son_of rdf:resource="#CMP.CF9_Programming_Language_Foundations"/>
-                                            <inverse_of_is_son_of>
-                                              <E_Concept rdf:ID="CMP.CF2_Algrithm_Data_Structure_and_Complexity">
-                                                <inverse_of_is_resource_of_C>
-                                                  <E_Resource rdf:ID="rid00004">
-                                                    <name rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    >doc2</name>
-                                                    <fileLocation
-                                                     rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    ></fileLocation>
-                                                    <difficulty
-                                                     rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    >hard</difficulty>
-                                                    <id rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    >rid00004</id>
-                                                    <is_resource_of_C rdf:resource="#CMP.CF2_Algrithm_Data_Structure_and_Complexity"/>
-                                                  </E_Resource>
-                                                </inverse_of_is_resource_of_C>
-                                                <id rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >CMP.CF2_Algrithm_Data_Structure_and_Complexity</id>
-                                                <is_part_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
-                                                <inverse_of_is_son_of>
-                                                  <E_Concept rdf:ID="CMP.CF2_0001_Data_Structure">
-                                                    <id rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    >CMP.CF2_0001_Data_Structure</id>
-                                                    <name rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    >dataStructure</name>
-                                                    <is_son_of rdf:resource="#CMP.CF2_Algrithm_Data_Structure_and_Complexity"/>
-                                                    <is_pre_concept_of rdf:resource="#CMP.CF9_Programming_Language_Foundations"/>
-                                                    <is_part_of rdf:resource="#CMP.CF2_Algrithm_Data_Structure_and_Complexity"/>
-                                                  </E_Concept>
-                                                </inverse_of_is_son_of>
-                                                <is_son_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
-                                                <inverse_of_is_part_of rdf:resource="#CMP.CF2_0001_Data_Structure"/>
-                                                <is_concept_of_I>
-                                                  <E_Interest rdf:ID="E_Interest_el001-3">
-                                                    <inverse_of_has_interest rdf:resource="#el001"/>
-                                                    <value rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#float"
-                                                    >0.6</value>
-                                                    <inverse_of_is_concept_of_I rdf:resource="#CMP.CF2_Algrithm_Data_Structure_and_Complexity"/>
-                                                  </E_Interest>
-                                                </is_concept_of_I>
-                                                <name rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >structureComplexity</name>
-                                              </E_Concept>
-                                            </inverse_of_is_son_of>
-                                            <inverse_of_is_part_of rdf:resource="#CMP.CF2_Algrithm_Data_Structure_and_Complexity"/>
-                                          </E_Concept>
-                                        </is_son_of>
-                                        <inverse_of_is_son_of rdf:resource="#CMP.CF9_001_C"/>
-                                        <is_part_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
-                                        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                                        >programmingLanguageFoundations</name>
-                                        <is_post_concept_of rdf:resource="#CMP.CF2_0001_Data_Structure"/>
-                                        <inverse_of_is_part_of rdf:resource="#CMP.CF9_005_Python"/>
-                                        <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                                        >CMP.CF9_Programming_Language_Foundations</id>
-                                      </E_Concept>
-                                    </is_part_of>
-                                    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                                    >CMP.CF9_003_Java</id>
-                                    <is_concept_of_P rdf:resource="#E_Performance_4"/>
-                                    <is_son_of rdf:resource="#CMP.CF9_Programming_Language_Foundations"/>
-                                    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                                    >java language</name>
-                                    <is_concept_of_I>
-                                      <E_Interest rdf:ID="E_Interest_el002-1">
-                                        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
-                                        >1.0</value>
-                                        <inverse_of_has_interest>
-                                          <E_Learner rdf:ID="el002">
-                                            <has_study_style>
-                                              <E_Study_Style rdf:ID="E_Study_Style_2">
-                                                <rdfs:comment
-                                                 rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#string"
-                                                >PDF</rdfs:comment>
-                                                <inverse_of_has_study_style rdf:resource="#el002"/>
-                                              </E_Study_Style>
-                                            </has_study_style>
-                                            <has_portfolio>
-                                              <E_Portfolio rdf:ID="E_Portfolio_el002-1">
-                                                <inverse_of_has_portfolio rdf:resource="#el002"/>
-                                                <datetime rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#dateTime"
-                                                >2010-12-19T22:32:00</datetime>
-                                                <inverse_of_is_resource_of_P>
-                                                  <E_Resource rdf:ID="rid00003">
-                                                    <difficulty
-                                                     rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    >easy</difficulty>
-                                                    <is_resource_of_P rdf:resource="#E_Portfolio_el002-1"/>
-                                                    <is_resource_of_C rdf:resource="#CMP.CF9_003_Java"/>
-                                                    <id rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    >rid00003</id>
-                                                    <name rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    >doc1</name>
-                                                    <fileLocation
-                                                     rdf:datatype=
-                                                    "http://www.w3.org/2001/XMLSchema#string"
-                                                    >file</fileLocation>
-                                                  </E_Resource>
-                                                </inverse_of_is_resource_of_P>
-                                                <value rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#float"
-                                                >0.5</value>
-                                              </E_Portfolio>
-                                            </has_portfolio>
-                                            <has_interest rdf:resource="#E_Interest_el002-1"/>
-                                            <id rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >el002</id>
-                                            <name rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >Wang Shuaiguo</name>
-                                          </E_Learner>
-                                        </inverse_of_has_interest>
-                                        <inverse_of_is_concept_of_I rdf:resource="#CMP.CF9_003_Java"/>
-                                      </E_Interest>
-                                    </is_concept_of_I>
-                                    <is_concept_of_I rdf:resource="#E_Interest_el001-1"/>
-                                    <inverse_of_is_resource_of_C rdf:resource="#rid00003"/>
-                                  </E_Concept>
-                                </inverse_of_is_concept_of_I>
-                                <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
-                                >1.0</value>
-                              </E_Interest>
-                            </has_interest>
-                            <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                            >el001</id>
-                            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                            >Ma Sheng</name>
-                            <email rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                            >williamma.wm@gmail.com</email>
-                            <has_portfolio rdf:resource="#E_Portfolio_el001-1"/>
-                            <grade rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                            >Grade Two</grade>
-                            <has_interest rdf:resource="#E_Interest_el001-4"/>
-                            <has_study_style>
-                              <E_Study_Style rdf:ID="E_Study_Style_1">
-                                <inverse_of_has_study_style rdf:resource="#el001"/>
-                                <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                                >DOC</rdfs:comment>
-                              </E_Study_Style>
-                            </has_study_style>
-                            <has_performance>
-                              <E_Performance rdf:ID="E_Performance_2">
-                                <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
-                                >1.0</value>
-                                <inverse_of_is_concept_of_P>
-                                  <E_Concept rdf:ID="testPostCnp1">
-                                    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                                    >p1</name>
-                                    <is_post_concept_of>
-                                      <E_Concept rdf:ID="testPreCnp">
-                                        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                                        >pre</name>
-                                        <is_concept_of_P>
-                                          <E_Performance rdf:ID="E_Performance_1">
-                                            <datetime rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#dateTime"
-                                            >2010-12-20T14:31:45</datetime>
-                                            <inverse_of_has_performance rdf:resource="#el001"/>
-                                            <value rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#float"
-                                            >1.0</value>
-                                            <inverse_of_is_concept_of_P rdf:resource="#testPreCnp"/>
-                                          </E_Performance>
-                                        </is_concept_of_P>
-                                        <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                                        >testPreCnp</id>
-                                        <is_pre_concept_of rdf:resource="#testPostCnp1"/>
-                                        <is_pre_concept_of>
-                                          <E_Concept rdf:ID="testPostCnp2">
-                                            <id rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >testPostCnp2</id>
-                                            <name rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >p2</name>
-                                            <is_post_concept_of rdf:resource="#testPreCnp"/>
-                                          </E_Concept>
-                                        </is_pre_concept_of>
-                                        <is_pre_concept_of>
-                                          <E_Concept rdf:ID="testPostCnp3">
-                                            <is_post_concept_of rdf:resource="#testPreCnp"/>
-                                            <id rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >testPostCnp3</id>
-                                            <name rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >p3</name>
-                                          </E_Concept>
-                                        </is_pre_concept_of>
-                                        <is_pre_concept_of>
-                                          <E_Concept rdf:ID="testPostCnp4">
-                                            <name rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >p4</name>
-                                            <is_post_concept_of rdf:resource="#testPreCnp"/>
-                                            <id rdf:datatype=
-                                            "http://www.w3.org/2001/XMLSchema#string"
-                                            >testPostCnp4</id>
-                                            <is_concept_of_P>
-                                              <E_Performance rdf:ID="E_Performance_3">
-                                                <inverse_of_is_concept_of_P rdf:resource="#testPostCnp4"/>
-                                                <inverse_of_has_performance rdf:resource="#el001"/>
-                                                <datetime rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#dateTime"
-                                                >2010-12-02T14:34:53</datetime>
-                                                <value rdf:datatype=
-                                                "http://www.w3.org/2001/XMLSchema#float"
-                                                >1.0</value>
-                                              </E_Performance>
-                                            </is_concept_of_P>
-                                          </E_Concept>
-                                        </is_pre_concept_of>
-                                      </E_Concept>
-                                    </is_post_concept_of>
-                                    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                                    >testPostCnp1</id>
-                                    <is_concept_of_P rdf:resource="#E_Performance_2"/>
-                                  </E_Concept>
-                                </inverse_of_is_concept_of_P>
-                                <datetime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
-                                >2010-12-19T14:34:47</datetime>
-                                <inverse_of_has_performance rdf:resource="#el001"/>
-                              </E_Performance>
-                            </has_performance>
-                            <has_performance rdf:resource="#E_Performance_3"/>
-                            <has_interest rdf:resource="#E_Interest_el001-2"/>
-                            <has_portfolio rdf:resource="#E_Portfolio_el001-2"/>
-                            <has_interest rdf:resource="#E_Interest_el001-3"/>
-                            <address rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                            >addr_el001</address>
-                            <has_interest rdf:resource="#E_Interest_el001-5"/>
-                            <has_performance rdf:resource="#E_Performance_1"/>
-                          </E_Learner>
-                        </inverse_of_has_portfolio>
-                        <inverse_of_is_resource_of_P rdf:resource="#rid00001"/>
-                        <datetime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
-                        >2010-12-19T22:31:40</datetime>
-                        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
-                        >1.0</value>
-                      </E_Portfolio>
-                    </is_resource_of_P>
-                  </E_Resource>
-                </inverse_of_is_resource_of_C>
-                <is_part_of rdf:resource="#Software_Engineer"/>
-              </E_Concept>
-            </inverse_of_is_son_of>
-            <inverse_of_is_son_of>
-              <E_Concept rdf:ID="SAS_Spacific_System_Domain_and_Application">
-                <is_part_of rdf:resource="#Software_Engineer"/>
-                <is_son_of rdf:resource="#Software_Engineer"/>
-                <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >SAS_Spacific_System_Domain_and_Application</id>
-                <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >Spacific_System_Domain_and_Application</name>
-              </E_Concept>
-            </inverse_of_is_son_of>
-            <inverse_of_is_part_of rdf:resource="#SAS_Spacific_System_Domain_and_Application"/>
-            <inverse_of_is_son_of>
-              <E_Concept rdf:ID="VAV_Software_V_and_V">
-                <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >Software_V_and_V</name>
-                <is_son_of rdf:resource="#Software_Engineer"/>
-                <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >VAV_Software_V_and_V</id>
-                <is_part_of rdf:resource="#Software_Engineer"/>
-              </E_Concept>
-            </inverse_of_is_son_of>
-            <inverse_of_is_son_of>
-              <E_Concept rdf:ID="QUA_Software_Quality">
-                <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >Software_Quality</name>
-                <is_son_of rdf:resource="#Software_Engineer"/>
-                <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >QUA_Software_Quality</id>
-                <is_part_of rdf:resource="#Software_Engineer"/>
-              </E_Concept>
-            </inverse_of_is_son_of>
-            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >software engineering</name>
-            <inverse_of_is_son_of>
-              <E_Concept rdf:ID="MAA_Software_Modeling_and_Analysis">
-                <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >MAA_Software_Modeling_and_Analysis</id>
-                <is_son_of rdf:resource="#Software_Engineer"/>
-                <is_part_of rdf:resource="#Software_Engineer"/>
-                <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >Software_Modeling_and_Analysis</name>
-              </E_Concept>
-            </inverse_of_is_son_of>
-            <inverse_of_is_part_of rdf:resource="#EVO_Software_Evolution"/>
-            <inverse_of_is_part_of rdf:resource="#DES_Software_Design"/>
-            <inverse_of_is_son_of rdf:resource="#CMP_Computing_Essentials"/>
-            <inverse_of_is_part_of rdf:resource="#FND_Mathematical_and_Engineering_Fundamentals"/>
-            <inverse_of_is_part_of rdf:resource="#MAA_Software_Modeling_and_Analysis"/>
-            <inverse_of_is_part_of rdf:resource="#PRF_Professional_Practice"/>
-            <inverse_of_is_part_of rdf:resource="#VAV_Software_V_and_V"/>
-            <inverse_of_is_part_of>
-              <E_Concept rdf:ID="PRO_Software_Process">
-                <is_son_of rdf:resource="#Software_Engineer"/>
-                <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >Software_Process</name>
-                <is_part_of rdf:resource="#Software_Engineer"/>
-                <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >PRO_Software_Process</id>
-              </E_Concept>
-            </inverse_of_is_part_of>
-            <inverse_of_is_son_of rdf:resource="#MGT_Software_Management"/>
-            <inverse_of_is_part_of rdf:resource="#QUA_Software_Quality"/>
-            <inverse_of_is_son_of rdf:resource="#PRO_Software_Process"/>
-            <inverse_of_is_part_of rdf:resource="#CMP_Computing_Essentials"/>
-          </E_Concept>
-        </is_part_of>
-        <inverse_of_is_son_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
-        <inverse_of_is_part_of rdf:resource="#CMP.TL_Construction_Tools"/>
-        <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-        >CMP_Computing_Essentials</id>
-        <is_son_of rdf:resource="#Software_Engineer"/>
-        <inverse_of_is_part_of rdf:resource="#CMP.CF_Computer_Science_Foundations"/>
-      </E_Concept>
-    </is_part_of>
+  <Book rdf:ID="A_Semantic_Web_Primer">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >constructionTechnologies</name>
-    <is_son_of rdf:resource="#CMP_Computing_Essentials"/>
-  </E_Concept>
+    >A_Semantic_Web_Primer 2nd</name>
+    <writen_by>
+      <E_People rdf:ID="pid0002">
+        <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >pid0002</id>
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Grigoris_Antoniou</name>
+        <inverse_of_writen_by rdf:resource="#A_Semantic_Web_Primer"/>
+      </E_People>
+    </writen_by>
+    <writen_by>
+      <E_People rdf:ID="pid0001">
+        <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >pid0001</id>
+        <inverse_of_writen_by rdf:resource="#A_Semantic_Web_Primer"/>
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >Frank_van_Harmelen</name>
+      </E_People>
+    </writen_by>
+    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >2nd_2008</rdfs:comment>
+    <is_published_by>
+      <Publisher rdf:ID="MIT_Press">
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >MIT_Press</name>
+        <publish rdf:resource="#A_Semantic_Web_Primer"/>
+      </Publisher>
+    </is_published_by>
+    <is_application_type_of>
+      <E_Resource rdf:ID="rid00001">
+        <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >rid00001</id>
+        <inverse_of_is_application_type_of rdf:resource="#A_Semantic_Web_Primer"/>
+        <fileLocation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >fileLocation</fileLocation>
+        <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >hard</difficulty>
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >semantic web primer</name>
+        <is_resource_of_P>
+          <E_Portfolio rdf:ID="E_Portfolio_el001-1">
+            <inverse_of_has_portfolio>
+              <E_Learner rdf:ID="el001">
+                <has_interest>
+                  <E_Interest rdf:ID="E_Interest_el001-1">
+                    <inverse_of_has_interest rdf:resource="#el001"/>
+                    <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >1.0</value>
+                  </E_Interest>
+                </has_interest>
+                <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >el001</id>
+                <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Ma Sheng</name>
+                <email rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >williamma.wm@gmail.com</email>
+                <has_portfolio rdf:resource="#E_Portfolio_el001-1"/>
+                <grade rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >Grade Two</grade>
+                <has_interest>
+                  <E_Interest rdf:ID="E_Interest_el001-4">
+                    <inverse_of_has_interest rdf:resource="#el001"/>
+                    <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >0.5</value>
+                  </E_Interest>
+                </has_interest>
+                <has_study_style>
+                  <E_Study_Style rdf:ID="E_Study_Style_1">
+                    <inverse_of_has_study_style rdf:resource="#el001"/>
+                    <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >DOC</rdfs:comment>
+                  </E_Study_Style>
+                </has_study_style>
+                <has_performance>
+                  <E_Performance rdf:ID="E_Performance_2">
+                    <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >1.0</value>
+                    <datetime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+                    >2010-12-19T14:34:47</datetime>
+                    <inverse_of_has_performance rdf:resource="#el001"/>
+                  </E_Performance>
+                </has_performance>
+                <has_performance>
+                  <E_Performance rdf:ID="E_Performance_3">
+                    <inverse_of_has_performance rdf:resource="#el001"/>
+                    <datetime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+                    >2010-12-02T14:34:53</datetime>
+                    <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >1.0</value>
+                  </E_Performance>
+                </has_performance>
+                <has_interest>
+                  <E_Interest rdf:ID="E_Interest_el001-2">
+                    <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >0.3</value>
+                    <inverse_of_has_interest rdf:resource="#el001"/>
+                  </E_Interest>
+                </has_interest>
+                <has_portfolio>
+                  <E_Portfolio rdf:ID="E_Portfolio_el001-2">
+                    <inverse_of_is_resource_of_P>
+                      <E_Resource rdf:ID="rid00002">
+                        <is_resource_of_P rdf:resource="#E_Portfolio_el001-2"/>
+                        <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >easy</difficulty>
+                        <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >rid00002</id>
+                        <fileLocation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >filelocation</fileLocation>
+                        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >pdf2</name>
+                      </E_Resource>
+                    </inverse_of_is_resource_of_P>
+                    <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >1.0</value>
+                    <datetime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+                    >2010-12-19T22:31:56</datetime>
+                    <inverse_of_has_portfolio rdf:resource="#el001"/>
+                  </E_Portfolio>
+                </has_portfolio>
+                <has_interest>
+                  <E_Interest rdf:ID="E_Interest_el001-3">
+                    <inverse_of_has_interest rdf:resource="#el001"/>
+                    <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >0.6</value>
+                  </E_Interest>
+                </has_interest>
+                <address rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >addr_el001</address>
+                <has_interest>
+                  <E_Interest rdf:ID="E_Interest_el001-5">
+                    <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >0.8</value>
+                    <inverse_of_has_interest rdf:resource="#el001"/>
+                  </E_Interest>
+                </has_interest>
+                <has_performance>
+                  <E_Performance rdf:ID="E_Performance_1">
+                    <datetime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+                    >2010-12-20T14:31:45</datetime>
+                    <inverse_of_has_performance rdf:resource="#el001"/>
+                    <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+                    >1.0</value>
+                  </E_Performance>
+                </has_performance>
+              </E_Learner>
+            </inverse_of_has_portfolio>
+            <inverse_of_is_resource_of_P rdf:resource="#rid00001"/>
+            <datetime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+            >2010-12-19T22:31:40</datetime>
+            <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+            >1.0</value>
+          </E_Portfolio>
+        </is_resource_of_P>
+      </E_Resource>
+    </is_application_type_of>
+    <book_isbn rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >978-0-262-01242-3</book_isbn>
+  </Book>
+  <E_Learner rdf:ID="el002">
+    <has_study_style>
+      <E_Study_Style rdf:ID="E_Study_Style_2">
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+        >PDF</rdfs:comment>
+        <inverse_of_has_study_style rdf:resource="#el002"/>
+      </E_Study_Style>
+    </has_study_style>
+    <has_portfolio>
+      <E_Portfolio rdf:ID="E_Portfolio_el002-1">
+        <inverse_of_has_portfolio rdf:resource="#el002"/>
+        <datetime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+        >2010-12-19T22:32:00</datetime>
+        <inverse_of_is_resource_of_P>
+          <E_Resource rdf:ID="rid00003">
+            <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >easy</difficulty>
+            <is_resource_of_P rdf:resource="#E_Portfolio_el002-1"/>
+            <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >rid00003</id>
+            <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >doc1</name>
+            <fileLocation rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >file</fileLocation>
+          </E_Resource>
+        </inverse_of_is_resource_of_P>
+        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0.5</value>
+      </E_Portfolio>
+    </has_portfolio>
+    <has_interest>
+      <E_Interest rdf:ID="E_Interest_el002-1">
+        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >1.0</value>
+        <inverse_of_has_interest rdf:resource="#el002"/>
+      </E_Interest>
+    </has_interest>
+    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >el002</id>
+    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Wang Shuaiguo</name>
+  </E_Learner>
+  <E_Learner rdf:ID="el003">
+    <address rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></address>
+    <email rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></email>
+    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >el003</id>
+    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >Geng Huihui</name>
+    <has_interest>
+      <E_Interest rdf:ID="E_Interest_1">
+        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0.5</value>
+        <inverse_of_has_interest rdf:resource="#el003"/>
+      </E_Interest>
+    </has_interest>
+    <has_performance>
+      <E_Performance rdf:ID="E_Performance_4">
+        <inverse_of_has_performance rdf:resource="#el003"/>
+        <datetime rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime"
+        >2010-12-06T14:34:57</datetime>
+        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float"
+        >0.8</value>
+      </E_Performance>
+    </has_performance>
+    <grade rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    ></grade>
+  </E_Learner>
   <Book rdf:ID="China_Software_Engineering_Curricula">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >China_Software_Engineering_Curricula</name>
