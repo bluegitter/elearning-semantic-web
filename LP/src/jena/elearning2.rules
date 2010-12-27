@@ -9,16 +9,16 @@
            (?concept_c_1_2 el:is_post_concept_of ?concept_c_1_1)
            ->(?concept_c_1_2 el:is_recommend_of_c_1 ?learner_c_1)]
 
-[rule_c_2: (?learner_c_2 el:has_performance ?performance_c_2)
+[rule_c_4: (?learner_c_2 el:has_performance ?performance_c_2)
            (?concept_c_2_1 el:is_concept_of_P ?performance_c_2)
            (?concept_c_2_2 el:is_son_of ?concept_c_2_1)
            ->(?concept_c_2_2 el:is_recommend_of_c_2 ?learner_c_2)]
 
-[rule_c_3:  (?concept_c_3 el:is_concept_of_I ?interest_c_3)
+[rule_c_2:  (?concept_c_3 el:is_concept_of_I ?interest_c_3)
             (?learner_c_3 el:has_interest ?interest_c_3)
             ->(?concept_c_3 el:is_recommend_of_c_3 ?learner_c_3)]
 
-[rule_c_4:  (?concept_c_4 el:is_concept_of_P ?performance_c_4)
+[rule_c_3:  (?concept_c_4 el:is_concept_of_P ?performance_c_4)
             (?learner_c_4 el:has_performance ?performance_c_4)
             (?performance_c_4 el:value ?perValue_c_4)
             greaterThan(0.5,?perValue_c_4)

@@ -8,7 +8,7 @@ public class Constant {
 	public static String NSRDF = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 	public static String OWLFile ="protege\\elearning.owl";
 	//public static String OWLFile ="src\\db\\userOwlFile.owl";
-	public static String RulesFile="src\\jena\\elearning.rules";
+	public static String RulesFile="src\\jena\\elearning2.rules";
 	public static String userOwlFile = "src\\db\\userOwlFile.owl";
 	/*********************************************************************
 	 * SPARQL Prefix

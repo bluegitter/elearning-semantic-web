@@ -10,11 +10,13 @@ import ontology.resources.EResource;
  *
  * @author David
  */
-public class EClass {
+public class EClass implements Comparable{
     private enum CType {learner, concept, resource, performance};
 
     private CType type;
     private Object object;
+
+    public double rank = 0;
 
     public EClass(ELearner l) {
         type = CType.learner;
@@ -41,7 +43,7 @@ public class EClass {
         String ts = "";
         switch(type) {
             case concept:
-                ts = "知识:";
+                ts = "";
             case learner:
                 ts = "学习者:";
             case resource:
@@ -52,5 +54,9 @@ public class EClass {
         return ts + object.toString();
     }
 
+    @Override
+    public int compareTo(Object o) {
+        return (int) (((EClass) o).rank * 1000 - this.rank * 1000);
+    }
 
 }
