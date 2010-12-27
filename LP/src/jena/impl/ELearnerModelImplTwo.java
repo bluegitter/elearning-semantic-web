@@ -1,13 +1,7 @@
 package jena.impl;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-
 import jena.OwlFactory;
-import jena.interfaces.ELearnerModelOperationInterface;
-import jena.interfaces.ELearnerModelQueryInterface;
-import jena.interfaces.ELearnerRuleModel;
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.EPerformance;
@@ -27,8 +21,6 @@ import com.hp.hpl.jena.query.QuerySolution;
 import com.hp.hpl.jena.query.ResultSet;
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Resource;
-
-import db.OwlOperation;
 
 public class ELearnerModelImplTwo {
 	private InfModel model;
