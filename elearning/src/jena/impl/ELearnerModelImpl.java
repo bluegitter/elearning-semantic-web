@@ -402,10 +402,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOpe
         qe.close();
         return res;
     }
-    public EResource getEResourceTwo(String rid){
-    	EResource resource = new EResource();
-    	return resource;
-    }
+
     @Override
     public ArrayList<EPerformance> getEPerformances(ELearner elearner) {
         ArrayList<EPerformance> ps = new ArrayList<EPerformance>();
