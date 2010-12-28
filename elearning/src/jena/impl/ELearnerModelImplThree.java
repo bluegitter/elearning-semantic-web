@@ -3,7 +3,13 @@ package jena.impl;
 import java.io.File;
 import java.util.ArrayList;
 
+import com.hp.hpl.jena.ontology.HasValueRestriction;
 import com.hp.hpl.jena.ontology.Individual;
+import com.hp.hpl.jena.rdf.model.RDFNode;
+import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.SimpleSelector;
+import com.hp.hpl.jena.rdf.model.Statement;
+import com.hp.hpl.jena.rdf.model.StmtIterator;
 
 import ontology.EConcept;
 import ontology.EPerformance;
@@ -11,6 +17,7 @@ import ontology.EPortfolio;
 import ontology.people.ELearner;
 import ontology.resources.EResource;
 import util.Constant;
+import util.StringExchanger;
 import jena.interfaces.ELearnerModelQueryInterface;
 import jena.interfaces.ELearnerRuleModel;
 /**************************************************************************
@@ -69,7 +76,6 @@ public class ELearnerModelImplThree extends ELearnerModel implements ELearnerMod
 	}
 	@Override
 	public ELearner getELearner(String eid) {
-		// TODO Auto-generated method stub
 		ELearner elearner = new ELearner(eid);
 		Individual indi = ontModel.getIndividual(Constant.NS+eid);
 		elearner.setName(indi.getPropertyValue(ontModel.getProperty(Constant.NS+"name")).asLiteral().getString());
@@ -80,7 +86,30 @@ public class ELearnerModelImplThree extends ELearnerModel implements ELearnerMod
 	}
 	@Override
 	public EPerformance getEPerformance(ELearner elearner, EConcept concept) {
-		// TODO Auto-generated method stub
+		Resource con = ontModel.getResource(Constant.NS+concept.getCid());
+		Resource el = ontModel.getResource(Constant.NS+elearner.getId());
+		
+		SimpleSelector selector_el = new SimpleSelector(null, ontModel.getProperty(Constant.NS+"inverse_of_has_performance"), el);
+		StmtIterator iter_el = ontModel.listStatements(selector_el);
+		while(iter_el.hasNext()){
+			Statement s = iter_el.nextStatement();
+			Resource r = s.getSubject();
+			
+			SimpleSelector selector_con = new SimpleSelector(r, ontModel.getProperty(Constant.NS+"inverse_of_is_concept_of_P"), con);
+			StmtIterator iter_con = ontModel.listStatements(selector_con);
+			while(iter_con.hasNext()){
+				float value = (Float) r.getRequiredProperty(ontModel.getProperty(Constant.NS+"value")).getLiteral().getFloat();
+				System.out.println(value);
+				EPerformance performance = new EPerformance();
+				performance.setElearner(elearner);
+				performance.setConcept(concept);
+				//performance.setDatetime(datetime);
+				performance.setId(r.getLocalName());
+				performance.setValue(value);
+				return performance;
+			}
+			
+		}
 		return null;
 	}
 	@Override
@@ -123,15 +152,34 @@ public class ELearnerModelImplThree extends ELearnerModel implements ELearnerMod
 		// TODO Auto-generated method stub
 		return null;
 	}
-	@Override
-	public ArrayList<EConcept> getSonConcepts(EConcept concept) {
-		// TODO Auto-generated method stub
-		return null;
+    public ArrayList<EConcept> getSonConcepts(EConcept econcept){
+		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
+		Resource concept = ontModel.getResource(Constant.NS+econcept.getCid());
+		SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS+"is_son_of"), concept);
+		StmtIterator iter = ontModel.listStatements(selector);
+		while(iter.hasNext()){
+			Statement s = iter.nextStatement();
+			Resource r = s.getSubject();
+			String nameString = r.getRequiredProperty(ontModel.getProperty(Constant.NS+"name")).asTriple().getObject().toString();
+			String name = StringExchanger.getCommonString(nameString);
+			concepts.add(new EConcept(s.getSubject().getLocalName(),name));
+		}
+		return concepts;
 	}
 	@Override
 	public ArrayList<EConcept> getMemberConcept(EConcept concept) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
+		Resource con = ontModel.getResource(Constant.NS+concept.getCid());
+		SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS+"is_part_of"), con);
+		StmtIterator iter = ontModel.listStatements(selector);
+		while(iter.hasNext()){
+			Statement s = iter.nextStatement();
+			Resource r = s.getSubject();
+			String nameString = r.getRequiredProperty(ontModel.getProperty(Constant.NS+"name")).asTriple().getObject().toString();
+			String name = StringExchanger.getCommonString(nameString);
+			concepts.add(new EConcept(s.getSubject().getLocalName(),name));
+		}
+		return concepts;
 	}
 	@Override
 	public ArrayList<EConcept> getRecommendEConcepts(ELearner elearner, int rule) {
