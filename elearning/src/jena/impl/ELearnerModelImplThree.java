@@ -2,6 +2,7 @@ package jena.impl;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.hp.hpl.jena.ontology.HasValueRestriction;
 import com.hp.hpl.jena.ontology.Individual;
@@ -41,6 +42,18 @@ public class ELearnerModelImplThree extends ELearnerModel implements ELearnerMod
     	File file = new File("test\\owl\\conceptsAndresource_RDF-XML.owl");
     	ELearnerModelImplThree emi = new ELearnerModelImplThree(file);
     	emi.getEConcept("CMP");
+    	/*
+    	 ELearnerModelImpl emi = new ELearnerModelImpl(new File(Constant.OWLFile));
+		ELearnerReasoner er = new ELearnerReasoner(emi.getOntModel());
+		long time1 = System.currentTimeMillis();
+		ArrayList<EResource> er_resources = er.getAllEResources();
+		long time2 = System.currentTimeMillis();
+		ArrayList<EResource> emi_resources =emi.getAllEResources();
+		long time3 = System.currentTimeMillis();
+		
+		System.out.println("er executing time: "+(time2-time1)+"ms\t"+er_resources.size());
+		System.out.println("emi executing time: "+(time3-time2)+"ms\t"+emi_resources.size());
+    	 */
     }
     @Override
 	public boolean containEConcept(String cid) {
@@ -64,8 +77,26 @@ public class ELearnerModelImplThree extends ELearnerModel implements ELearnerMod
 	}
 	@Override
 	public ArrayList<EResource> getAllEResources() {
-		// TODO Auto-generated method stub
-		return null;
+		Resource resourceClass = ontModel.getResource(Constant.NS+"E_Resource");
+		SimpleSelector selector = new SimpleSelector(null,ontModel.getProperty(Constant.NSRDF+"type"),resourceClass);
+		StmtIterator iter = ontModel.listStatements(selector);
+		
+		ArrayList<EResource> resources = new ArrayList<EResource>();
+		while(iter.hasNext()){
+			Statement s = iter.nextStatement();
+			System.out.println(s);
+			Resource r = s.getResource();
+			
+			EResource er  = new EResource(r.getLocalName());
+	//		String name = r.getRequiredProperty(ontModel.getProperty(Constant.NS+"name")).toString();
+	//		String difficulty = r.getRequiredProperty(ontModel.getProperty(Constant.NS+"difficulty")).toString();
+			
+	//		er.setName(name);
+	//		er.setDifficulty(difficulty);
+			System.out.println(er);
+			resources.add(er);
+		}
+		return resources;
 	}
 	@Override
 	public EConcept getEConcept(String cid) {
@@ -124,9 +155,37 @@ public class ELearnerModelImplThree extends ELearnerModel implements ELearnerMod
 	}
 	@Override
 	public ArrayList<EPortfolio> getEPortfolios(ELearner elearner) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    	ArrayList<EPortfolio> portfolios = new ArrayList<EPortfolio>();
+    	Resource el = ontModel.getResource(Constant.NS+ elearner.getId());
+    	SimpleSelector port_selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS+"inverse_of_has_portfolio"), el);
+
+		StmtIterator port_iter = ontModel.listStatements(port_selector);
+		while(port_iter.hasNext()){
+			Statement s = port_iter.nextStatement();
+			Resource portResource = s.getSubject();
+			float value =(Float) portResource.getRequiredProperty(ontModel.getProperty(Constant.NS+"value")).asTriple().getObject().getLiteralValue();
+			String dateString = portResource.getRequiredProperty(ontModel.getProperty(Constant.NS + "datetime")).asTriple().getObject().getLiteralValue().toString();
+			Date datetime = StringExchanger.parse(dateString);
+			SimpleSelector res_selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS+"is_resource_of_P"), portResource);
+			StmtIterator res_iter = ontModel.listStatements(res_selector);
+			EResource resource  = null;
+			while(res_iter.hasNext()){
+				Statement res_statement = res_iter.nextStatement();
+				Resource resResource = res_statement.getSubject();
+				String resId = resResource.getLocalName();
+				resource = getEResource(resId);
+			}
+			EPortfolio port = new EPortfolio();
+			port.setId(portResource.getLocalName());
+            port.setEResource(resource);
+            port.setElearner(elearner);
+            port.setValue(value);
+            port.setDatetime(datetime);
+            portfolios.add(port);
+		}
+        return portfolios;
+    }
+
 	@Override
 	public EResource getEResource(String rid) {
 		EResource resource = new EResource(rid);
