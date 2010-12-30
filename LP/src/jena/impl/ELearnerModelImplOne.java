@@ -800,7 +800,7 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
     }
 	@Override
 	public ArrayList<EResource> getEResourcesByInterestEConcepts(
-			ELearner elearner, EConcept concept) {
+			ELearner elearner) {
 		ArrayList<EResource> resources = new ArrayList<EResource>();
         String queryString =
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
@@ -809,7 +809,6 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
                 + "WHERE {"
                 + "      ?resource rdf:type base:E_Resource . "
                 + "      ?elearner base:id \"" + elearner.getId() + "\" . "
-                + "      ?concept base:id \"" +concept.getCid()+"\" . "
                 + "      ?elearner base:has_interest ?interest ."
                 + "      ?interest base:inverse_of_is_concept_of_I ?concept ."
                 + "      ?resource base:is_resource_of_C ?concept ."
