@@ -93,7 +93,7 @@ public class StringExchanger {
 	 * @param s
 	 * @return
 	 ****************************************************/
-	public static Date parse(String dateString){
+	public static Date parseStringToDate(String dateString){
 		String s = dateString.replace('T', ' ');
 		//String s = "2010-12-02 14:34:53";
 		DateFormat dateFormat =getDateFormat();
