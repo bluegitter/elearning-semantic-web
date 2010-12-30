@@ -45,12 +45,6 @@ public class EPortfolio {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public EResource getResource() {
-		return resource;
-	}
-	public void setResource(EResource resource) {
-		this.resource = resource;
-	}
 	public Date getDatetime() {
 		return datetime;
 	}
