@@ -10,7 +10,7 @@ import ontology.people.ELearner;
 import ontology.resources.EResource;
 import util.StringExchanger;
 
-import jena.impl.ELearnerModelImplThree;
+import jena.impl.ELearnerModelImpl;
 import junit.framework.TestCase;
 
 public class ELearnerModelImplThreeTest extends TestCase {
@@ -57,8 +57,8 @@ public class ELearnerModelImplThreeTest extends TestCase {
 	
 	public void setUp(){
 		File file = new File("test\\owl\\conceptsAndresource_RDF-XML.owl");
-		emi = new ELearnerModelImplThree(file);
+		emi = new ELearnerModelImpl(file);
 	}
-	private ELearnerModelImplThree emi;
+	private ELearnerModelImpl emi;
 	
 }

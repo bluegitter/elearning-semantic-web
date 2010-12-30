@@ -4,9 +4,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import jena.impl.ELearnerModelImpl;
+import jena.impl.ELearnerModelImplOne;
 
 import ontology.EConcept;
+import ontology.people.ELearner;
 
 import util.Constant;
 
@@ -31,40 +32,22 @@ import exception.ConceptNotExistInModelException;
  */
 public class ELearnerReasoner {
 
-	public ELearnerReasoner(){
-		
-	}
-	public ELearnerReasoner(OntModel ontModel){
-		this.ontModel = ontModel;
-	}
-	public ELearnerReasoner(File owlFile,File ruleFile){
-		this.owlFile = owlFile;
-		this.ruleFile = ruleFile;
-	}
-	
-	/********************************************************************
-	 * the initial model location is set in the file Constant which locates in the util package.
-	 * @return
-	 ******************************************************************/
-	public ArrayList<Individual> getAllConcepts(){
-		OntModel model = OwlFactory.getOntModel();
+	public static ArrayList<Individual> getAllConcepts(OntModel ontModel){
 		ArrayList <Individual> concepts = new ArrayList<Individual>();
-		OntClass concept = model.getOntClass(Constant.NS+"E_Concept");
-		Iterator <Individual>iter2 = model.listIndividuals();
+		OntClass concept = ontModel.getOntClass(Constant.NS+"E_Concept");
+		Iterator <Individual>iter2 = ontModel.listIndividuals();
 		while(iter2.hasNext()){
 			Individual indi= (Individual) iter2.next();
 			if(concept.equals(indi.getOntClass())){
 				concepts.add(indi);
-				//System.out.println(indi.getLocalName());
 			}
 		}
 		return concepts;
 	}
-	public ArrayList<Individual> getAllResources(){
-		OntModel model = OwlFactory.getOntModel();
+	public static ArrayList<Individual> getAllResources(OntModel ontModel){
 		ArrayList <Individual> resources = new ArrayList<Individual>();
-		OntClass resource = model.getOntClass(Constant.NS+"E_Resource");
-		Iterator <Individual>iter2 = model.listIndividuals();
+		OntClass resource = ontModel.getOntClass(Constant.NS+"E_Resource");
+		Iterator <Individual>iter2 = ontModel.listIndividuals();
 		while(iter2.hasNext()){
 			Individual indi= (Individual) iter2.next();
 			if(indi==null)break;
@@ -75,78 +58,36 @@ public class ELearnerReasoner {
 		}
 		return resources;
 	}
-	public ArrayList<Individual> getPreConcepts(Resource concept,OntModel model) throws ConceptNotExistInModelException{
-		/*
-		if(!hasConcept(concept,model)){
-			throw new ConceptNotExistInModelException("the model doesn't contain the concept"+concept.getLocalName());
-		}*/
-		Resource ontConcept = model.getResource(Constant.NS+"RIA");
-		SimpleSelector selector = new SimpleSelector(concept, model.getProperty(Constant.NS+"is_post_concept_of"), (RDFNode)ontConcept);
-		StmtIterator iter = model.listStatements(selector);
-		
-		ArrayList <Individual> concepts = new ArrayList<Individual>();
+	public static EConcept getEConcept(OntModel ontModel,String cid){
+		EConcept concept = new EConcept(cid);
+		Individual indi = ontModel.getIndividual(Constant.NS+cid);
+		concept.setName(indi.getPropertyValue(ontModel.getProperty(Constant.NS+"name")).asLiteral().getString());
+		return concept;
+	}
+	
+	public static ArrayList<EConcept> getRecommendEConcepts_1(OntModel ontModel,ELearner elearner){
+		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
+		Resource el = ontModel.getResource(Constant.NS+elearner.getId());
+		SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS+"inverse_of_has_performance"), el);
+		StmtIterator iter = ontModel.listStatements(selector);
 		while(iter.hasNext()){
-			Statement s = iter.nextStatement();
-			System.out.println(s);
-			Individual indi= (Individual) iter.next();
-			System.out.println("ms");
-				concepts.add(indi);
-				System.out.println(indi.getLocalName());
+			Resource per = iter.nextStatement().getSubject();
+			SimpleSelector per_con = new SimpleSelector(null, ontModel.getProperty(Constant.NS+"is_concept_of_P"), per);
+			StmtIterator iter2 = ontModel.listStatements(per_con);
+			while(iter2.hasNext()){
+				Resource con = iter2.nextStatement().getSubject();
+				SimpleSelector con_con = new SimpleSelector(null, ontModel.getProperty(Constant.NS+"is_post_concept_of"), con);
+				StmtIterator iter3 = ontModel.listStatements(con_con);
+				while(iter3.hasNext()){
+					Resource result = iter3.nextStatement().getSubject();
+					String id = result.getLocalName();
+					System.out.println(id);
+					EConcept newCon = getEConcept(ontModel,id);
+					concepts.add(newCon);
+				}
+			}
 		}
 		return concepts;
 	}
-	 
-	public boolean hasConcept(Individual concept,OntModel model){
-		Individual con = model.getIndividual(concept.getURI());
-		if(con ==null){
-			return false;
-		}
-		return true;
-	}
-	
-	
-	public InfModel getInfModel() {
-		return infModel;
-	}
-	public void setInfModel(InfModel infModel) {
-		this.infModel = infModel;
-	}
-	public OntModel getOntModel() {
-		return ontModel;
-	}
-	public void setOntModel(OntModel ontModel) {
-		this.ontModel = ontModel;
-	}
-	public File getOwlFile() {
-		return owlFile;
-	}
-	public void setOwlFile(File owlFile) {
-		this.owlFile = owlFile;
-	}
-	public File getRuleFile() {
-		return ruleFile;
-	}
-	public void setRuleFile(File ruleFile) {
-		this.ruleFile = ruleFile;
-	}
-
-	public static void main(String []args){
-		ELearnerModelImpl emi = new ELearnerModelImpl(new File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
-		ELearnerReasoner er = new ELearnerReasoner(emi.getOntModel());
-		EConcept concept = emi.getRootConcept();
-		long time1 = System.currentTimeMillis();
-		System.out.println(emi.getSonConcepts(concept).size());
-		long time2 = System.currentTimeMillis();
-		System.out.println(emi.getSonConceptsTwo(concept).size());
-		long time3 = System.currentTimeMillis();
-		System.out.println("getSonConcepts"+(time2-time1)+"ms");
-		System.out.println("getSonConceptsTwo"+(time3-time2)+"ms");
-		
-		
-	}
-	private InfModel infModel;
-	private OntModel ontModel;
-	private File owlFile;
-	private File ruleFile;
 }
 

@@ -535,7 +535,7 @@ public class ELearnerModelImplTwo {
 		return concepts;
 	}
 	public static void main(String [] args)throws Exception{
-		ELearnerModelImpl emi = new ELearnerModelImpl();
+		ELearnerModelImplOne emi = new ELearnerModelImplOne();
 		emi.getEResource("rid00001");
 	}
 	 
