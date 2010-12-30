@@ -3,7 +3,9 @@ package jena.impl;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import com.hp.hpl.jena.ontology.Individual;
+import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
@@ -39,53 +41,52 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
     	long init = System.currentTimeMillis();
     	ELearnerModelImpl  emi = new ELearnerModelImpl(file);
     	System.out.println("intitime:"+(System.currentTimeMillis()-init)+"ms");
-    	ELearnerModelImplOne emi1 = new ELearnerModelImplOne(file);
-    	ELearner el = emi.getELearner("el001");
-		EConcept con = emi.getEConcept("cid1");
-		long t1 = System.currentTimeMillis();
-		System.out.println(emi.getRecommendEConcepts(el,1));
-		System.out.println("first execution:"+(System.currentTimeMillis()-t1)+"ms");
-		long t2 = System.currentTimeMillis();
-		System.out.println(emi1.getRecommendEConcepts(el, 1));
-		System.out.println("second execution:"+(System.currentTimeMillis()-t2)+"ms");
-		 
+    	//ELearner el = emi.getELearner("el001");
+    	//EConcept con = emi.getEConcept("cid1");
 		
-	//	System.out.println(emi.getRecommendELearners(el, 0));
-	//	System.out.println(emi.getRecommendEResources(el, 0));
-	//	ArrayList<EResource> perform = emi.getAllEResources();
-		//emi.getEConcept("CMP");
-    	/*
-		ELearnerReasoner er = new ELearnerReasoner(emi.getOntModel());
-		long time1 = System.currentTimeMillis();
-		ArrayList<EResource> er_resources = er.getAllEResources();
-		long time2 = System.currentTimeMillis();
-		ArrayList<EResource> emi_resources =emi.getAllEResources();
-		long time3 = System.currentTimeMillis();
+		long t1 = System.nanoTime();
 		
-		System.out.println("er executing time: "+(time2-time1)+"ms\t"+er_resources.size());
-		System.out.println("emi executing time: "+(time3-time2)+"ms\t"+emi_resources.size());
-    	 */
+		long t2 = System.nanoTime();
+		System.out.println("time:"+(t2-t1)+"ms");
     }
     @Override
 	public boolean containEConcept(String cid) {
-		// TODO Auto-generated method stub
-		return false;
+    	return ontModel.containsResource(ontModel.getResource(Constant.NS+cid));
 	}
 	@Override
 	public boolean containELearner(String eid) {
-		// TODO Auto-generated method stub
-		return false;
+		return ontModel.containsResource(ontModel.getResource(Constant.NS+eid));
 	}
 	@Override
 	public boolean containEResource(String rid) {
-		// TODO Auto-generated method stub
-		return false;
+		return ontModel.containsResource(ontModel.getResource(Constant.NS+rid));
 	}
 	@Override
 	public ArrayList<EConcept> getAllEConcepts() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<EConcept> concepts= new ArrayList<EConcept>();
+		OntClass concept = ontModel.getOntClass(Constant.NS+"E_Concept");
+		Iterator <Individual> iter = ontModel.listIndividuals(concept);
+		while(iter.hasNext()){
+			Individual indi= (Individual) iter.next();
+			String id = indi.getLocalName();
+			String name = indi.getPropertyValue(ontModel.getProperty(Constant.NS+"name")).asLiteral().getString();
+			EConcept con = new EConcept(id,name);
+			concepts.add(con);
+		}
+		return concepts;
 	}
+	public ArrayList<EConcept> getAllEConceptsTwo() {
+		ArrayList<EConcept> concepts= new ArrayList<EConcept>();
+		OntClass concept = ontModel.getOntClass(Constant.NS+"E_Concept");
+		Iterator <Individual> iter = ontModel.listIndividuals(concept);
+		while(iter.hasNext()){
+			Individual indi= (Individual) iter.next();
+			String id = indi.getLocalName();
+			concepts.add(getEConcept(id));
+		}
+		return concepts;
+	}
+	
 	@Override
 	public ArrayList<EResource> getAllEResources() {
 		Resource resourceClass = ontModel.getResource(Constant.NS+"E_Resource");
@@ -196,7 +197,28 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 	}
 	@Override
 	public EPortfolio getEPortfolio(ELearner elearner, EResource resource) {
-		// TODO Auto-generated method stub
+		Resource res = ontModel.getResource(Constant.NS+resource.getRid());
+		Resource el = ontModel.getResource(Constant.NS+elearner.getId());
+		SimpleSelector selector_con = new SimpleSelector(res, ontModel.getProperty(Constant.NS+"is_resource_of_P"),(RDFNode)null);
+		StmtIterator iter_con = ontModel.listStatements(selector_con);
+		while(iter_con.hasNext()){
+			SimpleSelector selector_el = new SimpleSelector(el, ontModel.getProperty(Constant.NS+"has_portfolio"), (RDFNode)null);
+			StmtIterator iter_el = ontModel.listStatements(selector_el);
+			while(iter_el.hasNext()){
+				Resource port = (Resource) iter_el.nextStatement().getObject();
+				float value = (Float) port.getRequiredProperty(ontModel.getProperty(Constant.NS+"value")).getLiteral().getFloat();
+				String dateString = port.getRequiredProperty(ontModel.getProperty(Constant.NS+"datetime")).getLiteral().getString();
+				Date datetime = StringExchanger.parseStringToDate(dateString);
+				
+				EPortfolio portfolio = new EPortfolio();
+				portfolio.setId(port.getLocalName());
+				portfolio.setElearner(elearner);
+				portfolio.setEResource(resource);
+				portfolio.setValue(value);
+				portfolio.setDatetime(datetime);
+				return portfolio;
+			}
+		}
 		return null;
 	}
 	@Override
@@ -204,7 +226,6 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
     	ArrayList<EPortfolio> portfolios = new ArrayList<EPortfolio>();
     	Resource el = ontModel.getResource(Constant.NS+ elearner.getId());
     	SimpleSelector port_selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS+"inverse_of_has_portfolio"), el);
-
 		StmtIterator port_iter = ontModel.listStatements(port_selector);
 		while(port_iter.hasNext()){
 			Statement s = port_iter.nextStatement();
@@ -243,19 +264,66 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 	}
 	@Override
 	public ArrayList<EResource> getEResourcesByEConcept(EConcept concept) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<EResource> resources = new ArrayList<EResource>();
+		Resource con = ontModel.getResource(Constant.NS+concept.getCid());
+		SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS+"is_resource_of_C"), con);
+		StmtIterator iter = ontModel.listStatements(selector);
+		while(iter.hasNext()){
+			Resource indi = iter.nextStatement().getSubject();
+			EResource resource = new EResource(indi.getLocalName());
+			resource.setName(indi.getRequiredProperty(ontModel.getProperty(Constant.NS+"name")).getLiteral().getString());
+			resource.setFileLocation(indi.getRequiredProperty(ontModel.getProperty(Constant.NS+"fileLocation")).getLiteral().getString());
+			resource.setDifficulty(indi.getRequiredProperty(ontModel.getProperty(Constant.NS+"difficulty")).getLiteral().getString());
+			resources.add(resource);
+			//resources.add(getEResource(indi.getLocalName())); 
+		}
+		return resources;
 	}
 	@Override
 	public ArrayList<EResource> getEResourcesByInterestEConcepts(
-			ELearner elearner, EConcept concept) {
-		// TODO Auto-generated method stub
-		return null;
+			ELearner elearner) {
+		ArrayList<EResource> resources = new ArrayList<EResource>();
+		Resource el = ontModel.getResource(Constant.NS+elearner.getId());
+		SimpleSelector selector_interest = new SimpleSelector(el, ontModel.getProperty(Constant.NS+"has_interest"), (RDFNode)null);
+		StmtIterator iter_interest = ontModel.listStatements(selector_interest);
+		while(iter_interest.hasNext()){
+			Resource interest = (Resource)iter_interest.nextStatement().getObject();
+			SimpleSelector selector_con = new SimpleSelector(null, ontModel.getProperty(Constant.NS+"is_concept_of_I"), interest);
+			StmtIterator iter_con = ontModel.listStatements(selector_con);
+			while(iter_con.hasNext()){
+				Resource con = iter_con.nextStatement().getSubject();
+				SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS+"is_resource_of_C"), con);
+				StmtIterator iter = ontModel.listStatements(selector);
+				while(iter.hasNext()){
+					Resource indi = iter.nextStatement().getSubject();
+					EResource resource = new EResource(indi.getLocalName());
+					resource.setName(indi.getRequiredProperty(ontModel.getProperty(Constant.NS+"name")).getLiteral().getString());
+					resource.setFileLocation(indi.getRequiredProperty(ontModel.getProperty(Constant.NS+"fileLocation")).getLiteral().getString());
+					resource.setDifficulty(indi.getRequiredProperty(ontModel.getProperty(Constant.NS+"difficulty")).getLiteral().getString());
+					resources.add(resource);
+					//resources.add(getEResource(indi.getLocalName())); 
+				}
+			}
+		}
+		return resources;
 	}
 	@Override
 	public ArrayList<EConcept> getInterestConcepts(ELearner elearner) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
+		Resource el = ontModel.getResource(Constant.NS+elearner.getId());
+		SimpleSelector selector_interest = new SimpleSelector(el, ontModel.getProperty(Constant.NS+"has_interest"), (RDFNode)null);
+		StmtIterator iter_interest = ontModel.listStatements(selector_interest);
+		while(iter_interest.hasNext()){
+			Resource interest = (Resource)iter_interest.nextStatement().getObject();
+			SimpleSelector selector_con = new SimpleSelector(null, ontModel.getProperty(Constant.NS+"is_concept_of_I"), interest);
+			StmtIterator iter_con = ontModel.listStatements(selector_con);
+			while(iter_con.hasNext()){
+				Resource con = iter_con.nextStatement().getSubject();
+				String name = con.getRequiredProperty(ontModel.getProperty(Constant.NS+"name")).getLiteral().getString();
+				concepts.add(new EConcept(con.getLocalName(),name));
+			}
+		}
+		return concepts;
 	}
     public ArrayList<EConcept> getSonConcepts(EConcept econcept){
 		ArrayList<EConcept> concepts = new ArrayList<EConcept>();

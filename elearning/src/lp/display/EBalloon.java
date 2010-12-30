@@ -25,7 +25,6 @@ public class EBalloon implements Runnable {
     private float rd;
     public Thread thread;
     private boolean ison;
-
     public EBalloon(float x, float y, float d, String label, Color color) {
         this.diameter = d;
         this.x = x;
@@ -102,5 +101,30 @@ public class EBalloon implements Runnable {
         }
         thread = null;
     }
+
+	public float getDiameter() {
+		return diameter;
+	}
+
+	public void setDiameter(float diameter) {
+		this.diameter = diameter;
+	}
+
+	public float getX() {
+		return x;
+	}
+
+	public void setX(float x) {
+		this.x = x;
+	}
+
+	public float getY() {
+		return y;
+	}
+
+	public void setY(float y) {
+		this.y = y;
+	}
+    
 }
 
