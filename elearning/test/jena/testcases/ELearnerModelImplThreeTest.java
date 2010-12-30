@@ -45,6 +45,14 @@ public class ELearnerModelImplThreeTest extends TestCase {
 		assertTrue(perform.getDatetime().equals(StringExchanger.parseStringToDate("2010-12-19T14:34:47")));
 		assertTrue(perform.getValue()==1.0);
 	}
+	public void testGetEPortfolio(){
+		ELearner el = emi.getELearner("el001");
+		EResource resource = emi.getEResource("rid000622");
+		EPortfolio port = emi.getEPortfolio(el, resource);
+		assertTrue(port.getId().equals("E_Portfolio_el001-1"));
+		assertTrue(port.getDatetime().equals(StringExchanger.parseStringToDate("2010-12-19T22:31:40")));
+		assertTrue(port.getValue()==1.0);
+	}
 	public void testGetRecommendEConcepts(){
 		
 	}
