@@ -4,52 +4,25 @@
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/protege"/>
-	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/xercesImpl-2.7.1.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/arq-2.8.4.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/icu4j-3.4.4.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/iri-0.8.jar"/>
-	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/jena-2.6.3.jar" sourcepath="D:/semantic/jena-2.6.3/jena-2.6.3-sources.jar"/>
+	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/jena-2.6.3.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/jxl.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/log4j-1.2.13.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/lucene-1.4.3.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/mysql-connector-java-5.0.8-bin.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/pellet-jena.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/prefuse.jar"/>
+	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/protege.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/protege-owl.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/slf4j-api-1.5.8.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/slf4j-log4j12-1.5.8.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/stax-api-1.0.1.jar"/>
 	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/wstx-asl-3.2.9.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/antlr-2.7.5.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/arq.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/arq-extra.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/axis.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/commons-discovery-0.4.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/commons-lang-2.0.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/concurrent.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/edtftpj-1.5.2.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/ekitspell.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/icu4j_3_4.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/iri.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/jcalendar.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/jdom.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/jena.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/jep-2.4.0.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/json.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/junit.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/kazuki.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/log4j-1.2.12.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/lucene-core-2.3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/orphanNodesAlg.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/owlsyntax.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/stax-api-1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/swingx-1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/swrl-jess-bridge.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/wstx-asl-3.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/xercesImpl.jar"/>
-	<classpathentry kind="lib" path="C:/Program Files/Protege_3.4.4/plugins/edu.stanford.smi.protegex.owl/xml-apis.jar"/>
-	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/protege.jar"/>
+	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/xercesImpl-2.7.1.jar"/>
+	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/swing-worker.jar"/>
+	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/beansbinding-1.2.1.jar"/>
+	<classpathentry kind="lib" path="D:/EclipseWorkspace/elearning/lib/appframework-1.0.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
