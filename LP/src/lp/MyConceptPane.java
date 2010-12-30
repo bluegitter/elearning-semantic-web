@@ -50,7 +50,7 @@ public class MyConceptPane extends javax.swing.JPanel {
             model.removeRow(index);
         }
 
-        ArrayList<EPortfolio> eps = LPApp.lpModel.getEPortfoliosTwo(LPApp.getApplication().user.learner);
+        ArrayList<EPortfolio> eps = LPApp.lpModel.getEPortfolios(LPApp.getApplication().user.learner);
 
         ArrayList<EResource> erl = new ArrayList<EResource>();
         for(EPortfolio ep:eps){
