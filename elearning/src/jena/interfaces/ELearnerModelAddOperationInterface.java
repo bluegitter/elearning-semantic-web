@@ -10,7 +10,7 @@ import ontology.EPortfolio;
 import ontology.people.ELearner;
 import ontology.resources.EResource;
 
-public interface ELearnerModelOperationInterface {
+public interface ELearnerModelAddOperationInterface {
 	//non-user operations
 	boolean addEConcept(EConcept concept);
 	boolean addEPerfomance(EPerformance performance);
@@ -25,7 +25,6 @@ public interface ELearnerModelOperationInterface {
 	boolean addPropertyIsSonOf(EConcept fatherConcept,EConcept sonConcept);
 	boolean addPropertyIsResourceOfC(EResource resource,EConcept concept);
 	
-	boolean updatePerformance(EPerformance performance);
 	
 	
 }

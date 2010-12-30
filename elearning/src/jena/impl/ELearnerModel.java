@@ -4,15 +4,27 @@ import java.io.File;
 import java.io.IOException;
 
 import ontology.EConcept;
+import ontology.EInterest;
+import ontology.EPerformance;
+import ontology.EPortfolio;
+import ontology.people.ELearner;
+import ontology.resources.EResource;
+import util.Constant;
+import util.StringExchanger;
 
 import jena.OwlFactory;
+import jena.interfaces.ELearnerModelAddOperationInterface;
 
+import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
+import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.InfModel;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
+import com.hp.hpl.jena.rdf.model.Resource;
 
 import db.OwlOperation;
 
-public class ELearnerModel {
+public class ELearnerModel implements ELearnerModelAddOperationInterface{
 	protected OntModel ontModel;
     protected InfModel infModel;
 
@@ -52,12 +64,94 @@ public class ELearnerModel {
 		return rootConcept;
 	}
     public void updateInfModel() {
-        infModel = OwlFactory.getInfoModel(OwlFactory.getGenericRuleReasoner(), ontModel);
+        infModel = ModelFactory.createInfModel(OwlFactory.getGenericRuleReasoner(), ontModel);
     }
     public OntModel getOntModel(){
     	return ontModel;
     }
     public InfModel getInfModel() {
         return infModel;
+    }
+    
+    /*******************************************************************************************************
+     * Add new Data Operations
+     *******************************************************************************************************/
+    @Override
+    public boolean addELearner(ELearner elearner) {
+        Resource el = ontModel.createResource(Constant.NS + elearner.getId(), ontModel.getResource(Constant.NS + "E_Learner"));
+        ontModel.add(el, ontModel.getProperty(Constant.NS + "id"), elearner.getId());
+        ontModel.add(el, ontModel.getProperty(Constant.NS + "name"), elearner.getName(), new XSDDatatype("string"));
+        ontModel.add(el, ontModel.getProperty(Constant.NS + "grade"), elearner.getGrade(), new XSDDatatype("string"));
+        ontModel.add(el, ontModel.getProperty(Constant.NS + "address"), elearner.getAddress(), new XSDDatatype("string"));
+        ontModel.add(el, ontModel.getProperty(Constant.NS + "email"), elearner.getEmail(), new XSDDatatype("string"));
+        return true;
+    }
+
+    @Override
+    public boolean addEResource(EResource resource) {
+        Resource re = ontModel.createResource(Constant.NS + resource.getRid(), ontModel.getResource(Constant.NS + "E_Resource"));
+        ontModel.add(re, ontModel.getProperty(Constant.NS + "id"), resource.getRid());
+        ontModel.add(re, ontModel.getProperty(Constant.NS + "name"), resource.getName(), new XSDDatatype("string"));
+        ontModel.add(re, ontModel.getProperty(Constant.NS + "fileLocation"), resource.getFileLocation(), new XSDDatatype("string"));
+        ontModel.add(re, ontModel.getProperty(Constant.NS + "difficulty"), resource.getDifficulty(), new XSDDatatype("string"));
+        return true;
+    }
+
+    @Override
+    public boolean addEPortfolio(EPortfolio portfolio) {
+        ELearner el = portfolio.getElearner();
+        EResource res = portfolio.getEResource();
+        Resource port = ontModel.createResource(Constant.NS + portfolio.getId(), ontModel.getResource(Constant.NS + "E_Portfolio"));
+        ontModel.add(port, ontModel.getProperty(Constant.NS + "inverse_of_has_portfolio"), ontModel.getResource(Constant.NS + el.getId()));
+        ontModel.add(port, ontModel.getProperty(Constant.NS + "inverse_of_is_resource_of_P"), ontModel.getResource(Constant.NS + res.getRid()));
+        ontModel.addLiteral(port, ontModel.getProperty(Constant.NS + "value"), portfolio.getValue());
+        ontModel.add(port, ontModel.getProperty(Constant.NS + "datetime"), StringExchanger.parseDateToString(portfolio.getDatetime()), new XSDDatatype("dateTime"));
+        return true;
+    }
+
+    @Override
+    public boolean addEConcept(EConcept concept) {
+        Resource con = ontModel.createResource(Constant.NS + concept.getCid(), ontModel.getResource(Constant.NS + "E_Concept"));
+        ontModel.add(con, ontModel.getProperty(Constant.NS + "id"), concept.getCid());
+        ontModel.add(con, ontModel.getProperty(Constant.NS + "name"), concept.getName(), new XSDDatatype("string"));
+        return true;
+    }
+
+    @Override
+    public boolean addEInterest(EInterest interest) {
+        ELearner el = interest.getEl();
+        EConcept con = interest.getCon();
+        Resource in = ontModel.createResource(Constant.NS + interest.getId(), ontModel.getResource(Constant.NS + "E_Interest"));
+        in.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_has_interest"), ontModel.getResource(Constant.NS + el.getId()));
+        in.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_is_concept_of_I"), ontModel.getResource(Constant.NS + con.getCid()));
+        in.addProperty(ontModel.getProperty(Constant.NS + "value"), String.valueOf(interest.getValue()), new XSDDatatype("string"));
+        return true;
+    }
+
+    @Override
+    public boolean addEPerfomance(EPerformance performance) {
+        ELearner el = performance.getElearner();
+        EConcept con = performance.getConcept();
+        Resource perf = ontModel.createResource(Constant.NS + performance.getId(), ontModel.getResource(Constant.NS + "E_Performance"));
+        ontModel.add(perf, ontModel.getProperty(Constant.NS + "inverse_of_has_performance"), ontModel.getResource(Constant.NS + el.getId()));
+        ontModel.add(perf, ontModel.getProperty(Constant.NS + "inverse_of_is_concept_of_P"), ontModel.getResource(Constant.NS + con.getCid()));
+        ontModel.addLiteral(perf, ontModel.getProperty(Constant.NS + "value"), performance.getValue());
+        ontModel.add(perf, ontModel.getProperty(Constant.NS + "datetime"), StringExchanger.parseDateToString(performance.getDatetime()), new XSDDatatype("dateTime"));
+        return true;
+    }
+    @Override
+    public boolean addPropertyIsSonOf(EConcept fatherConcept, EConcept sonConcept) {
+        Resource son = ontModel.getResource(Constant.NS + sonConcept.getCid());
+        Resource father = ontModel.getResource(Constant.NS + fatherConcept.getCid());
+        ontModel.add(son, ontModel.getProperty(Constant.NS + "is_son_of"), father);
+        return true;
+    }
+
+    @Override
+    public boolean addPropertyIsResourceOfC(EResource resource, EConcept concept) {
+        Individual res = ontModel.getIndividual(Constant.NS + resource.getRid());
+        Individual con = ontModel.getIndividual(Constant.NS + concept.getCid());
+        ontModel.add(res, ontModel.getProperty(Constant.NS + "is_resource_of_C"), con);
+        return true;
     }
 }

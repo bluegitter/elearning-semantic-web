@@ -2,7 +2,7 @@ package jena.testcases;
 
 import java.util.ArrayList;
 
-import jena.impl.ELearnerModelImpl;
+import jena.impl.ELearnerModelImplOne;
 
 import junit.framework.TestCase;
 
@@ -28,11 +28,11 @@ public class ELearnerRuleModelTest extends TestCase{
 		assertTrue(c.size()==5);
 	}
 	public void setUp(){
-		emi  = new ELearnerModelImpl();
+		emi  = new ELearnerModelImplOne();
 		rootConcept = new EConcept("Software_Engineer");
 		el = new ELearner("el001");
 	}
-	private ELearnerModelImpl emi;
+	private ELearnerModelImplOne emi;
 	private EConcept rootConcept;
 	private ELearner el;
 }

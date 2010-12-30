@@ -10,6 +10,7 @@ import db.ResourceParser;
 
 import jena.impl.ELearnerModel;
 import jena.impl.ELearnerModelImpl;
+import jena.impl.ELearnerModelImplOne;
 import jena.impl.ELearnerModelImplTwo;
 import ontology.EConcept;
 import ontology.EPerformance;
@@ -24,7 +25,7 @@ public class ModelTest {
 			//start up the program
 		}
 		long time = System.currentTimeMillis();
-		ELearnerModelImpl emi = new ELearnerModelImpl();
+		ELearnerModelImplOne emi = new ELearnerModelImplOne();
 		ELearner el = new ELearner("el001");
 		ArrayList<EPerformance> c = emi.getEPerformances(el);
 		System.out.println("csize:"+c.size());
@@ -81,15 +82,15 @@ public class ModelTest {
 		long time6 = System.currentTimeMillis();
 		System.out.println("write basic concepts results"); 
 		
-		ELearnerModelImpl newEMI = new ELearnerModelImpl(file);
+		ELearnerModelImplOne newEMI = new ELearnerModelImplOne(file);
 		long time7 = System.currentTimeMillis();
-		ELearnerModelImpl newEMI2 = new ELearnerModelImpl(file2,lang[0]);
+		ELearnerModelImplOne newEMI2 = new ELearnerModelImplOne(file2,lang[0]);
 		long time8 = System.currentTimeMillis();
-		ELearnerModelImpl newEMI3 = new ELearnerModelImpl(file3,lang[1]);
+		ELearnerModelImplOne newEMI3 = new ELearnerModelImplOne(file3,lang[1]);
 		long time9 = System.currentTimeMillis();
-		ELearnerModelImpl newEMI4 = new ELearnerModelImpl(file4,lang[2]);
+		ELearnerModelImplOne newEMI4 = new ELearnerModelImplOne(file4,lang[2]);
 		long time10 = System.currentTimeMillis();
-		ELearnerModelImpl newEMI5 = new ELearnerModelImpl(file5,lang[3]);
+		ELearnerModelImplOne newEMI5 = new ELearnerModelImplOne(file5,lang[3]);
 		long time11 = System.currentTimeMillis();
 		
 		System.out.println("writing default value RDF/XML: "+(time2-time1)+"ms");
@@ -123,8 +124,56 @@ public class ModelTest {
 		System.out.println("querying TURTLE: "+(time17-time16)+"ms");
 		
 	}
+	public static void testSPARQLandRuleFile(){
+		File file = new File("test\\owl\\conceptsAndresource_RDF-XML.owl");
+    	long init = System.currentTimeMillis();
+    	ELearnerModelImpl  emi = new ELearnerModelImpl(file);
+    	System.out.println("intitime:"+(System.currentTimeMillis()-init)+"ms");
+    	ELearnerModelImplOne emi1 = new ELearnerModelImplOne(file);
+    	ELearner el = emi.getELearner("el001");
+		EConcept con = emi.getEConcept("cid1");
+		long t1 = System.currentTimeMillis();
+		System.out.println(emi.getRecommendEConcepts(el,1));
+		System.out.println("first execution:"+(System.currentTimeMillis()-t1)+"ms");
+		long t2 = System.currentTimeMillis();
+		System.out.println(emi1.getRecommendEConcepts(el, 1));
+		System.out.println("second execution:"+(System.currentTimeMillis()-t2)+"ms");
+		long t3 = System.currentTimeMillis();
+		System.out.println(emi1.getRecommendEConcepts(el, 1));
+		System.out.println("first execution:"+(System.currentTimeMillis()-t3)+"ms");
+		
+		long t4 = System.currentTimeMillis();
+		System.out.println(emi1.getRecommendEConcepts(el, 1));
+		System.out.println("second execution:"+(System.currentTimeMillis()-t4)+"ms");
+	}
+	public static void testSPARQL(){
+		File file = new File("test\\owl\\conceptsAndresource_RDF-XML.owl");
+		long init = System.currentTimeMillis();
+    	ELearnerModelImplOne  emi = new ELearnerModelImplOne(file);
+    	System.out.println("intitime:"+(System.currentTimeMillis()-init)+"ms");
+    	ELearner el = emi.getELearner("el001");
+		for(int i = 0;i<10;i++){
+			long t1 = System.currentTimeMillis();
+			//System.out.println(emi.getRecommendEConcepts(el,1));
+			ArrayList<EConcept> cons = emi.getRecommendEConcepts(el,1);
+			System.out.println("first execution:"+(System.currentTimeMillis()-t1)+"ms");
+			
+		}
+	}
+	public static void testRuleFile(){
+		File file = new File("test\\owl\\conceptsAndresource_RDF-XML.owl");
+		long init = System.currentTimeMillis();
+    	ELearnerModelImpl emi = new ELearnerModelImpl(file);
+    	System.out.println("intitime:"+(System.currentTimeMillis()-init)+"ms");
+    	ELearner el = emi.getELearner("el001");
+		for(int i = 0;i<5;i++){
+			long t1 = System.currentTimeMillis();
+			//System.out.println(emi.getRecommendEConcepts(el,1));
+			ArrayList<EConcept> cons = emi.getRecommendEConcepts(el,1);
+			System.out.println("first execution:"+(System.currentTimeMillis()-t1)+"ms");
+		}
+	}
 	public static void main(String [] args) throws IOException{
-		ELearnerModelImpl emi = new ELearnerModelImpl(new File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
-		System.out.println(emi.getAllEConcepts().size()+"concepts");
+		testRuleFile();
 	}
 }
