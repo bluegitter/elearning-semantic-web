@@ -437,7 +437,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOpe
             per.setElearner(elearner);
             per.setConcept(QuerySolutionParser.getEConcept(conURI, ontModel));
             per.setValue(value);
-            per.setDatetime(StringExchanger.parse(dateString));
+            per.setDatetime(StringExchanger.parseStringToDate(dateString));
             //	System.out.println(per);
             ps.add(per);
         }
@@ -471,7 +471,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOpe
             String id = indi.getLocalName();
             float value = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "value")).asLiteral().getFloat();
             String dateString = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "datetime")).asLiteral().getString();
-            Date datetime = StringExchanger.parse(dateString);
+            Date datetime = StringExchanger.parseStringToDate(dateString);
 
             portfolio = new EPortfolio();
             portfolio.setId(id);
@@ -516,7 +516,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOpe
             String pid = indi.getLocalName();
             float value = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "value")).asLiteral().getFloat();
             String dateString = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "datetime")).asLiteral().getString();
-            Date datetime = StringExchanger.parse(dateString);
+            Date datetime = StringExchanger.parseStringToDate(dateString);
             
             EResource resource = QuerySolutionParser.getEResource(resURI, ontModel);
             EPortfolio port = new EPortfolio();
@@ -548,7 +548,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOpe
 			Resource portResource = s.getSubject();
 			float value =(Float) portResource.getRequiredProperty(ontModel.getProperty(Constant.NS+"value")).asTriple().getObject().getLiteralValue();
 			String dateString = portResource.getRequiredProperty(ontModel.getProperty(Constant.NS + "datetime")).asTriple().getObject().getLiteralValue().toString();
-			Date datetime = StringExchanger.parse(dateString);
+			Date datetime = StringExchanger.parseStringToDate(dateString);
 			SimpleSelector res_selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS+"is_resource_of_P"), portResource);
 			StmtIterator res_iter = ontModel.listStatements(res_selector);
 			EResource resource  = null;
@@ -650,7 +650,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOpe
             String pid = ontModel.getResource(perURI).getLocalName();
             float value = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "value")).asLiteral().getFloat();
             String dateString = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "datetime")).asLiteral().getString();
-            Date datetime = StringExchanger.parse(dateString);
+            Date datetime = StringExchanger.parseStringToDate(dateString);
             performance = new EPerformance();
             performance.setId(pid);
             performance.setConcept(concept);
@@ -705,9 +705,9 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOpe
     }
 
     @Override
-    public ArrayList<EConcept> getRecommendEConcepts(ELearner elearner, int i) {
+    public ArrayList<EConcept> getRecommendEConcepts(ELearner elearner, int rule) {
         ArrayList<EConcept> concepts = new ArrayList<EConcept>();
-        String rule = "is_recommend_of_c_" + i;
+        String i = "is_recommend_of_c_" + rule;
         String queryString =
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
                 + "PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> "
@@ -715,7 +715,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelOpe
                 + "WHERE {"
                 + "      ?concept rdf:type base:E_Concept . "
                 + "      ?elearner base:id " + StringExchanger.getSparqlString(elearner.getId()) + " . "
-                + "      ?concept base:" + rule + " ?elearner . "
+                + "      ?concept base:" + i + " ?elearner . "
                 + "      }";
         Query query = QueryFactory.create(queryString);
 
