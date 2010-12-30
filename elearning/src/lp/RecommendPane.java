@@ -135,7 +135,7 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
         System.out.println("ttttttt");
         this.balloons.clear();
         HashMap<String, EClass> map = new HashMap<String, EClass>();
-        for (int i = 0; i <= 3; i++) {
+        for (int i = 1; i <= 3; i++) {
             ArrayList<EConcept> l = LPApp.lpModel.getRecommendEConcepts(LPApp.getApplication().user.learner, i);
             for(EConcept c : l) {
                 if(map.containsKey(c.getCid())) {

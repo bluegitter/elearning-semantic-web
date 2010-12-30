@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import jena.OwlFactory;
-import jena.impl.ELearnerModelImpl;
+import jena.impl.ELearnerModelImplOne;
 import ontology.EConcept;
 import ontology.resources.EResource;
 import com.hp.hpl.jena.ontology.OntModel;
@@ -17,10 +17,10 @@ import com.mysql.jdbc.Connection;
 
 public class ResourceParser {
 	public ResourceParser(){
-		emi = new ELearnerModelImpl();
+		emi = new ELearnerModelImplOne();
 	}
 	public ResourceParser(File file){
-		emi = new ELearnerModelImpl(file);
+		emi = new ELearnerModelImplOne(file);
 	}
 	public boolean writeToFile(File file){
 		return emi.writeToFile(file);
@@ -143,6 +143,6 @@ public class ResourceParser {
 		System.out.println("beginto write");
 		OwlOperation.writeOwlFile(rp.getOntModel(), file);
 	}
-	private ELearnerModelImpl emi;
+	private ELearnerModelImplOne emi;
 	
 }

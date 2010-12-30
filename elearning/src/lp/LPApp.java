@@ -8,7 +8,7 @@ import db.ResourceParser;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jena.impl.ELearnerModelImpl;
+import jena.impl.ELearnerModelImplOne;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 import util.Constant;
@@ -21,7 +21,7 @@ public class LPApp extends SingleFrameApplication {
     public EUser user;
     public LPView view;
 
-    public static ELearnerModelImpl lpModel;
+    public static ELearnerModelImplOne lpModel;
 
     public static int TOOL_STATE = -1;
 
@@ -42,7 +42,7 @@ public class LPApp extends SingleFrameApplication {
 //            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 
-        lpModel = new ELearnerModelImpl(new java.io.File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
+        lpModel = new ELearnerModelImplOne(new java.io.File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
 
         user = null;
         view = new LPView(this);
