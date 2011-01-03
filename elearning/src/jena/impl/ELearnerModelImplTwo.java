@@ -98,8 +98,8 @@ public class ELearnerModelImplTwo {
 	
 	 
 	public boolean addEInterest(EInterest interest) {
-		ELearner el = interest.getEl();
-		EConcept con = interest.getCon();
+		ELearner el = interest.getELearner();
+		EConcept con = interest.getEConcept();
 		if(!containELearner(el.getId())){
 			return false;
 		}
