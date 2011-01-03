@@ -6,26 +6,28 @@ public class EInterest {
 	public EInterest(){
 		
 	}
-	
+	public EInterest(String id){
+		this.id = id;
+	}	
 	public float getValue() {
 		return value;
 	}
 	public void setValue(float value) {
 		this.value = value;
 	}
-	public ELearner getEl() {
-		return el;
+	
+	public ELearner getELearner() {
+		return elearner;
 	}
-	public void setEl(ELearner el) {
-		this.el = el;
+	public void setELearner(ELearner elearner) {
+		this.elearner = elearner;
 	}
-	public EConcept getCon() {
-		return con;
+	public EConcept getEConcept() {
+		return econcept;
 	}
-	public void setCon(EConcept con) {
-		this.con = con;
+	public void setEConcept(EConcept econcept) {
+		this.econcept = econcept;
 	}
-
 	public String getId() {
 		return id;
 	}
@@ -36,7 +38,7 @@ public class EInterest {
 
 	private String id;
 	private float value;
-	private ELearner el;
-	private EConcept con;
+	private ELearner elearner;
+	private EConcept econcept;
 	
 }

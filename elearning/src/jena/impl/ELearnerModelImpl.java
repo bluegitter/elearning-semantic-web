@@ -1,17 +1,24 @@
 package jena.impl;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+
+import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
+import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
+
+import exception.jena.IndividualNotExistException;
 import ontology.EConcept;
+import ontology.EInterest;
 import ontology.EPerformance;
 import ontology.EPortfolio;
 import ontology.people.ELearner;
@@ -19,13 +26,17 @@ import ontology.resources.EResource;
 import util.Constant;
 import util.StringExchanger;
 import jena.interfaces.ELearnerModelQueryInterface;
+import jena.interfaces.ELearnerModelRemoveOperationInterface;
+import jena.interfaces.ELearnerModelUpdateOperationInterface;
 import jena.interfaces.ELearnerRuleModel;
 /**************************************************************************
  * Model Query with ontology Model
  * @author william
  *
- */
-public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQueryInterface, ELearnerRuleModel{
+ **************************************************************************/
+public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQueryInterface,
+	ELearnerModelUpdateOperationInterface, ELearnerModelRemoveOperationInterface,ELearnerRuleModel{
+	
 	public ELearnerModelImpl(){
 		super();
 	}
@@ -36,31 +47,29 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 		super(file,lang);
 	}
 
-    public static void main(String [] args){
-    	File file = new File("test\\owl\\conceptsAndresource_RDF-XML.owl");
+    public static void main(String [] args) throws IndividualNotExistException, IOException{
+    	File file = new File("test\\owl\\ms2.owl");
     	long init = System.currentTimeMillis();
     	ELearnerModelImpl  emi = new ELearnerModelImpl(file);
     	System.out.println("intitime:"+(System.currentTimeMillis()-init)+"ms");
-    	//ELearner el = emi.getELearner("el001");
-    	//EConcept con = emi.getEConcept("cid1");
-		
-		long t1 = System.nanoTime();
-		
-		long t2 = System.nanoTime();
+    	ELearner el = emi.getELearner("el001");
+    	EConcept con = emi.getEConcept("cid38");
+	    	
+    	//emi.removeEInterest(el,con);
+    	EInterest in = new EInterest("E_Interest_el001-1");
+    	in.setEConcept(con);
+    	in.setELearner(el);
+    	//EInterest in = emi.getEInterest(el,con);
+    	
+    	
+		long t1 = System.currentTimeMillis();
+		emi.removeEInterest(in);
+		long t2 = System.currentTimeMillis();
 		System.out.println("time:"+(t2-t1)+"ms");
+		System.out.println("new:"+emi.getELearner(el.getId()));
+		emi.writeToFile(file);
     }
-    @Override
-	public boolean containEConcept(String cid) {
-    	return ontModel.containsResource(ontModel.getResource(Constant.NS+cid));
-	}
-	@Override
-	public boolean containELearner(String eid) {
-		return ontModel.containsResource(ontModel.getResource(Constant.NS+eid));
-	}
-	@Override
-	public boolean containEResource(String rid) {
-		return ontModel.containsResource(ontModel.getResource(Constant.NS+rid));
-	}
+    
 	@Override
 	public ArrayList<EConcept> getAllEConcepts() {
 		ArrayList<EConcept> concepts= new ArrayList<EConcept>();
@@ -413,6 +422,152 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 		}	
 		return resources;
 	}
-
-
+	 /*******************************************************************************************************
+     * Update Data in model 
+     * @throws IndividualNotExistException 
+     *******************************************************************************************************/
+    
+	@Override
+	public boolean updateEConcept(EConcept concept) throws IndividualNotExistException {
+		if(!containEConcept(concept.getCid())){
+    		throw new IndividualNotExistException("EConcept "+concept.getCid()+"  does not exist");
+    	}
+		Individual indi = ontModel.getIndividual(Constant.NS+concept.getCid());
+		Property p = ontModel.getProperty(Constant.NS +"name");
+		ontModel.remove(indi, p ,indi.getPropertyValue(p));
+		ontModel.add(indi, p, concept.getName() , new XSDDatatype("string"));
+		return false;
+	}
+	
+	@Override
+	public boolean updateELearner(ELearner elearner) throws IndividualNotExistException {
+		if(!(containELearner(elearner.getId()))){
+    		throw new IndividualNotExistException("elearner "+elearner.getId()+" does not exist");
+    	}
+		ELearner el = getELearner(elearner.getId());
+		Individual indi = ontModel.getIndividual(Constant.NS+elearner.getId());
+		if(!elearner.getName().equals(el.getName())){
+//			SimpleSelector selector = new SimpleSelector(indi, ontModel.getProperty(Constant.NS+"name"), (RDFNode)null);
+//			StmtIterator iter = infModel.listStatements(selector);
+//			ontModel.remove(iter);
+			Property p = ontModel.getProperty(Constant.NS+"name");
+			ontModel.remove(indi, p ,indi.getPropertyValue(p));
+			ontModel.add(indi, p, elearner.getName(), new XSDDatatype("string"));
+		}
+		if(!elearner.getAddress().equals(el.getAddress())){
+			Property p = ontModel.getProperty(Constant.NS +"address");
+			ontModel.remove(indi,p,indi.getPropertyValue(p));
+			ontModel.add(indi, p, elearner.getAddress(), new XSDDatatype("string"));
+		}
+		if(!elearner.getEmail().equals(el.getEmail())){
+			Property p = ontModel.getProperty(Constant.NS +"email");
+			ontModel.remove(indi,p,indi.getPropertyValue(p));
+			ontModel.add(indi, p, elearner.getEmail(), new XSDDatatype("string"));
+		}
+		if(!elearner.getGrade().equals(el.getGrade())){
+			Property p = ontModel.getProperty(Constant.NS+"grade");
+			ontModel.remove(indi,p,indi.getPropertyValue(p));
+			ontModel.add(indi, p, elearner.getGrade(), new XSDDatatype("string"));
+		}
+		return true;
+	}
+	/*******************************************************************************************
+	 * update the value of the EPerformance
+	 *****************************************************************************************/
+	@Override
+	public boolean updateEPerfomance(EPerformance performance) throws IndividualNotExistException{
+		if(!containEPerformance(performance.getId())){
+			throw new IndividualNotExistException("EPerformance "+performance.getId()+" does not exist"); 
+		}
+		Individual indi = ontModel.getIndividual(Constant.NS+performance.getId());
+		float newValue = performance.getValue();
+		Property p = ontModel.getProperty(Constant.NS + "value");
+		ontModel.remove(indi, p ,indi.getPropertyValue(p));
+		ontModel.add(indi, p, String.valueOf(newValue) , new XSDDatatype("float"));
+		return true;
+	}
+	/*******************************************************************************************
+	 * update the value of the EPortfolio
+	 *****************************************************************************************/
+	@Override
+	public boolean updateEPortfolio(EPortfolio portfolio) throws IndividualNotExistException {
+		if(!containEPortfolio(portfolio.getId())){
+			throw new IndividualNotExistException("EPortfolio "+portfolio.getId()+" does not exist"); 
+		}
+		Individual indi = ontModel.getIndividual(Constant.NS+portfolio.getId());
+		float newValue = portfolio.getValue();
+		Property p = ontModel.getProperty(Constant.NS + "value");
+		ontModel.remove(indi, p ,indi.getPropertyValue(p));
+		ontModel.add(indi, p, String.valueOf(newValue) , new XSDDatatype("float"));
+		return true;
+	}
+	@Override
+	public boolean updateEResource(EResource resource) throws IndividualNotExistException {
+		if(!(containEResource(resource.getRid()))){
+    		throw new IndividualNotExistException("EResource "+resource.getRid()+" does not exist");
+    	}
+		EResource res = getEResource(resource.getRid());
+		Individual indi = ontModel.getIndividual(Constant.NS+resource.getRid());
+		if(!resource.getName().equals(res.getName())){
+			Property p = ontModel.getProperty(Constant.NS + "name");
+			ontModel.remove(indi, p ,indi.getPropertyValue(p));
+			ontModel.add(indi, p, resource.getName(), new XSDDatatype("string"));
+		}
+		if(!resource.getFileLocation().equals(res.getFileLocation())){
+			Property p = ontModel.getProperty(Constant.NS + "fileLocation");
+			ontModel.remove(indi, p ,indi.getPropertyValue(p));
+			ontModel.add(indi, p, resource.getFileLocation(), new XSDDatatype("string"));
+		}
+		if(!resource.getDifficulty().equals(res.getDifficulty())){
+			Property p = ontModel.getProperty(Constant.NS + "difficulty");
+			ontModel.remove(indi, p ,indi.getPropertyValue(p));
+			ontModel.add(indi, p, resource.getDifficulty(), new XSDDatatype("string"));
+		}
+		return true;
+	}
+	
+	@Override
+	public boolean removeEInterest(EInterest interest)
+			throws IndividualNotExistException {
+		if(!containEInterest(interest.getId())){
+			throw new IndividualNotExistException("EInterest "+interest.getId()+" does not exist in the model"); 
+		}
+		Individual in = ontModel.getIndividual(Constant.NS+interest.getId());
+		in.remove();
+		return true;
+	}
+	@Override
+	public boolean removeEInterest(ELearner el, EConcept con)
+			throws IndividualNotExistException {
+		EInterest in = getEInterest(el,con);
+		if(in == null){
+			throw new IndividualNotExistException("This EInterest does not exist in the model");  
+		}
+		Individual interest = ontModel.getIndividual(Constant.NS + in.getId());
+		interest.remove();
+		return true;
+	}
+	@Override
+	public EInterest getEInterest(ELearner elearner, EConcept concept) {
+		Individual el = ontModel.getIndividual(Constant.NS+elearner.getId());
+		Individual con = ontModel.getIndividual(Constant.NS+concept.getCid());
+		Property p1= ontModel.getProperty(Constant.NS +"inverse_of_has_interest");
+		Property p2 = ontModel.getProperty(Constant.NS +"inverse_of_is_concept_of_I");
+		SimpleSelector selector = new SimpleSelector(null,p1,el);
+		StmtIterator iter = infModel.listStatements(selector);
+		while(iter.hasNext()){
+			Resource in = iter.nextStatement().getSubject();
+			SimpleSelector selector2 = new SimpleSelector(in,p2,con);
+			StmtIterator iter2 = infModel.listStatements(selector2);
+			while(iter2.hasNext()){
+				String id = in.getLocalName();
+				EInterest interest = new EInterest(id);
+				interest.setEConcept(concept);
+				interest.setELearner(elearner);
+				return interest;
+			}
+		}	
+		return null;
+	}
+   
 }
