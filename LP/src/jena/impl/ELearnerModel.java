@@ -2,7 +2,6 @@ package jena.impl;
 
 import java.io.File;
 import java.io.IOException;
-
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.EPerformance;
@@ -11,7 +10,6 @@ import ontology.people.ELearner;
 import ontology.resources.EResource;
 import util.Constant;
 import util.StringExchanger;
-
 import jena.OwlFactory;
 import jena.interfaces.ELearnerModelAddOperationInterface;
 
@@ -21,8 +19,8 @@ import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
-
 import db.OwlOperation;
+import exception.jena.IndividualNotExistException;
 
 public class ELearnerModel implements ELearnerModelAddOperationInterface{
 	protected OntModel ontModel;
@@ -49,8 +47,7 @@ public class ELearnerModel implements ELearnerModelAddOperationInterface{
     }
     public boolean writeToFile(File file) {
         try {
-        	updateInfModel();
-            OwlOperation.writeOwlFile(infModel, file);
+            OwlOperation.writeOwlFile(ontModel, file);
             return true;
         } catch (IOException e) {
             e.printStackTrace();
@@ -72,12 +69,36 @@ public class ELearnerModel implements ELearnerModelAddOperationInterface{
     public InfModel getInfModel() {
         return infModel;
     }
-    
+    /**************************************************************************************************
+     * Check whether the individual exists in the model
+     ***************************************************************************************************/
+	public boolean containEConcept(String cid) {
+    	return ontModel.containsResource(ontModel.getResource(Constant.NS+cid));
+	}
+	public boolean containELearner(String eid) {
+		return ontModel.containsResource(ontModel.getResource(Constant.NS+eid));
+	}
+	public boolean containEResource(String rid) {
+		return ontModel.containsResource(ontModel.getResource(Constant.NS+rid));
+	}
+	public boolean containEPortfolio(String portId) {
+		return ontModel.containsResource(ontModel.getResource(Constant.NS+portId));
+	}
+	public boolean containEPerformance(String performId){
+		return ontModel.containsResource(ontModel.getResource(Constant.NS+performId));
+	}
+	public boolean containEInterest(String interestId){
+		return ontModel.containsResource(ontModel.getResource(Constant.NS+interestId));
+	}
     /*******************************************************************************************************
      * Add new Data Operations
+     * @throws IndividualNotExistException 
      *******************************************************************************************************/
     @Override
-    public boolean addELearner(ELearner elearner) {
+    public boolean addELearner(ELearner elearner) throws IndividualNotExistException {
+    	if(containELearner(elearner.getId())){
+    		throw new IndividualNotExistException("elearner "+elearner.getId()+" has already existed in the model");
+    	}
         Resource el = ontModel.createResource(Constant.NS + elearner.getId(), ontModel.getResource(Constant.NS + "E_Learner"));
         ontModel.add(el, ontModel.getProperty(Constant.NS + "id"), elearner.getId());
         ontModel.add(el, ontModel.getProperty(Constant.NS + "name"), elearner.getName(), new XSDDatatype("string"));
@@ -87,9 +108,12 @@ public class ELearnerModel implements ELearnerModelAddOperationInterface{
         return true;
     }
 
-    @Override
-    public boolean addEResource(EResource resource) {
-        Resource re = ontModel.createResource(Constant.NS + resource.getRid(), ontModel.getResource(Constant.NS + "E_Resource"));
+    @Override 
+    public boolean addEResource(EResource resource) throws IndividualNotExistException {
+    	if(containEResource(resource.getRid())){
+    		throw new IndividualNotExistException("EResource "+resource.getRid()+" has already existed in the model");
+    	}
+    	Resource re = ontModel.createResource(Constant.NS + resource.getRid(), ontModel.getResource(Constant.NS + "E_Resource"));
         ontModel.add(re, ontModel.getProperty(Constant.NS + "id"), resource.getRid());
         ontModel.add(re, ontModel.getProperty(Constant.NS + "name"), resource.getName(), new XSDDatatype("string"));
         ontModel.add(re, ontModel.getProperty(Constant.NS + "fileLocation"), resource.getFileLocation(), new XSDDatatype("string"));
@@ -109,8 +133,11 @@ public class ELearnerModel implements ELearnerModelAddOperationInterface{
         return true;
     }
 
-    @Override
-    public boolean addEConcept(EConcept concept) {
+    @Override 
+    public boolean addEConcept(EConcept concept) throws IndividualNotExistException {
+    	if(containEConcept(concept.getCid())){
+    		throw new IndividualNotExistException("EConcept "+concept.getCid()+"  has already existed in the model");
+    	}
         Resource con = ontModel.createResource(Constant.NS + concept.getCid(), ontModel.getResource(Constant.NS + "E_Concept"));
         ontModel.add(con, ontModel.getProperty(Constant.NS + "id"), concept.getCid());
         ontModel.add(con, ontModel.getProperty(Constant.NS + "name"), concept.getName(), new XSDDatatype("string"));
@@ -119,8 +146,8 @@ public class ELearnerModel implements ELearnerModelAddOperationInterface{
 
     @Override
     public boolean addEInterest(EInterest interest) {
-        ELearner el = interest.getEl();
-        EConcept con = interest.getCon();
+        ELearner el = interest.getELearner();
+        EConcept con = interest.getEConcept();
         Resource in = ontModel.createResource(Constant.NS + interest.getId(), ontModel.getResource(Constant.NS + "E_Interest"));
         in.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_has_interest"), ontModel.getResource(Constant.NS + el.getId()));
         in.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_is_concept_of_I"), ontModel.getResource(Constant.NS + con.getCid()));
@@ -154,4 +181,6 @@ public class ELearnerModel implements ELearnerModelAddOperationInterface{
         ontModel.add(res, ontModel.getProperty(Constant.NS + "is_resource_of_C"), con);
         return true;
     }
+	
+	
 }

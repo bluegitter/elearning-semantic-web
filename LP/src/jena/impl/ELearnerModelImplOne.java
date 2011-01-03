@@ -102,8 +102,8 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
 
     @Override
     public boolean addEInterest(EInterest interest) {
-        ELearner el = interest.getEl();
-        EConcept con = interest.getCon();
+        ELearner el = interest.getELearner();
+        EConcept con = interest.getEConcept();
         if (!containELearner(el.getId())) {
             return false;
         }
@@ -842,5 +842,10 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
 		//ArrayList<EPortfolio> rs = emi.getEPortfoliosTwo(elearner);
 		//System.out.println(System.currentTimeMillis()-t);
 		//System.out.println(rs.size());
+	}
+	@Override
+	public EInterest getEInterest(ELearner elearner, EConcept concept) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
