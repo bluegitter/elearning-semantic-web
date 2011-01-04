@@ -12,6 +12,13 @@ public class ELearner extends People{
 		this.id = eid;
 		this.password = password;
 	}
+        public ELearner(String eid,String _password,String _email,String _address){
+		this.id = eid;
+		this.password = _password;
+                this.email = _email;
+                this.address = _address;
+	}
+
 	public ELearner(String eid){
 		this.id = eid;
 	}
