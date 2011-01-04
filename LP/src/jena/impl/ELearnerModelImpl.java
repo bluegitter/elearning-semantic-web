@@ -202,7 +202,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 				performances.add(performance);
 			}
 		}
-		return null;
+		return performances;
 	}
 	@Override
 	public EPortfolio getEPortfolio(ELearner elearner, EResource resource) {
