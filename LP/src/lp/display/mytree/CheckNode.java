@@ -57,7 +57,7 @@ public class CheckNode extends DefaultMutableTreeNode {
 	    return null;
 	} else {
             EConcept ec = (EConcept)userObject;
-	    return ec.getCid();
+	    return ec.getName();
 	}
     }
    // If you want to change "isSelected" by CellEditor,
