@@ -11,6 +11,9 @@
 
 package lp;
 
+import exception.jena.IndividualNotExistException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ontology.people.ELearner;
 
 /**
@@ -157,7 +160,11 @@ public class RegistPane extends javax.swing.JPanel {
          el.setPassword(new String(password.getPassword()));
          el.setAddress(jTextField3.getText());
          el.setEmail(jTextField4.getText());
-         LPApp.lpModel.addELearner(el);
+        try {
+            LPApp.lpModel.addELearner(el);
+        } catch (IndividualNotExistException ex) {
+            Logger.getLogger(RegistPane.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
          parent.setNext();
 

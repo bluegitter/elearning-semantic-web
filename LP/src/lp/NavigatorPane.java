@@ -97,7 +97,7 @@ public class NavigatorPane extends javax.swing.JPanel {
 
     private CheckNode addNodes(CheckNode n, EConcept r) {
 
-        ArrayList<EConcept> a = LPApp.getApplication().lpModel.getSonConceptsTwo(r);
+        ArrayList<EConcept> a = LPApp.getApplication().lpModel.getSonConcepts(r);
         for (EConcept c : a) {
             //System.out.println(c.getCid() + c.getName() + "hahahahahaha");
             CheckNode child = new CheckNode(c);
@@ -359,8 +359,8 @@ public class NavigatorPane extends javax.swing.JPanel {
         {
             EInterest ei = new EInterest();
             String cid = selectedNodes.get(i).toString();
-            ei.setCon(LPApp.lpModel.getEConcept(cid));
-            ei.setEl(LPApp.getApplication().user.learner);
+            ei.setEConcept(LPApp.lpModel.getEConcept(cid));
+            ei.setELearner(LPApp.getApplication().user.learner);
             ei.setId("newinterest"+i);
             ei.setValue(0.5f);
             LPApp.lpModel.addEInterest(ei);
