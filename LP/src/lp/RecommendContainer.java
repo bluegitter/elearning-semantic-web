@@ -131,8 +131,9 @@ public class RecommendContainer extends javax.swing.JPanel implements Runnable {
             thread.setName("Recommend Changing");
             thread.start();
         }
-        timeout = 5;
+        timeout = 8;
     }//GEN-LAST:event_elementChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -156,14 +157,14 @@ public class RecommendContainer extends javax.swing.JPanel implements Runnable {
         Thread me = Thread.currentThread();
 
         while (thread == me && this.timeout > 0) {
-            System.out.println("xxxxxx");
-            renew();
             timeout--;
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
             }
         }
+        
+        renew();
 
         thread = null;
     }

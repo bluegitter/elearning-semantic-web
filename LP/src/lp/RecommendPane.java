@@ -1,5 +1,6 @@
 package lp;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -8,8 +9,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 import lp.display.EBalloon;
 import lp.display.EClass;
 import ontology.EConcept;
@@ -23,6 +22,7 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
     private ArrayList<EBalloon> balloons;
     private EBalloon on;
     private int showTime;
+    private boolean showing;
     public Thread thread;
 
     public RecommendPane() {
@@ -117,68 +117,80 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
                 on = balloon;
                 on.mouseon();
             }
-            rpstart();
+            rpstart(6);
         }
     }
 
-    public void rpstart() {
+    public void rpstart(int st) {
         if (thread == null) {
             thread = new Thread(this);
             thread.setPriority(Thread.MAX_PRIORITY);
             thread.setName("Balloon Demo");
             thread.start();
         }
-        this.showTime = 0;
+        this.showTime = st;
     }
 
-    public void reRecommend(double[] r)  {
+    public void reRecommend(double[] r) {
+        showing = true;
         this.balloons.clear();
         HashMap<String, EClass> map = new HashMap<String, EClass>();
         for (int i = 1; i <= 3; i++) {
-            ArrayList<EConcept> l = LPApp.lpModel.getRecommendEConcepts(LPApp.getApplication().user.learner, i);
-            for(EConcept c : l) {
-                if(map.containsKey(c.getCid())) {
+            ArrayList<EConcept> l = jena.ELearnerReasoner.getRecommendEConcepts(LPApp.lpModel.getOntModel(), LPApp.getApplication().user.learner, i);
+            for (EConcept c : l) {
+                if (map.containsKey(c.getCid())) {
                     EClass ec = map.get(c.getCid());
                     ec.rank += r[i - 1];
+                    ec.r[i - 1] = (float)r[i - 1];
                 } else {
                     EClass ec = new EClass(c);
                     map.put(c.getCid(), ec);
                     ec.rank += r[i - 1];
+                    ec.r[i - 1] = (float)r[i - 1];
                 }
             }
         }
         ArrayList<EClass> list = new ArrayList(map.size());
-        for(EClass tec: map.values()) {
+        for (EClass tec : map.values()) {
             list.add(tec);
         }
         java.util.Collections.sort(list);
 
-        java.awt.Color[] colors = {java.awt.Color.RED, java.awt.Color.BLUE, java.awt.Color.GREEN};
-        float[] x = {200, 400, 600, 800, 200, 400}, y= {200, 200, 200, 200, 400, 400};
+        float[] x = {422, 255, 573, 266, 572, 477}, y = {265, 155, 154, 356, 336, 457}, d = {190, 150, 150, 150, 110, 90};
         int len = list.size() > 6 ? 6 : list.size();
-        System.out.println(len);
-        for(int i = 0; i < len; i++) {
+        for (int i = 0; i < len; i++) {
             EClass nec = list.get(i);
-            System.out.println(nec.toString() + " " + nec.rank);
 
-            this.balloons.add(new EBalloon(x[i], y[i], 150, nec.toString(), colors[i % 3]));
+            EBalloon newb = new EBalloon(x[i], y[i], d[i], nec.toString(), new Color(nec.r[0], nec.r[1], nec.r[2]));
+            this.balloons.add(newb);
         }
-        this.repaint();
+        rpstart(22);
     }
 
     @Override
     public void run() {
         Thread me = Thread.currentThread();
 
-        while (thread == me && this.showTime <= 6) {
+        while (thread == me && this.showTime >= 0) {
+            if (showing) {
+                for (EBalloon b : balloons) {
+                    if(!b.shown) {
+                        b.rd += b.diameter / 20f;
+                        if(b.rd >= b.diameter)
+                            b.shown = true;
+                    }
+                }
+            }
+
             repaint();
-            showTime++;
+            showTime--;
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
             }
         }
 
+        showing= false;
         thread = null;
     }
 }
