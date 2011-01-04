@@ -58,15 +58,34 @@ public class MyPane extends javax.swing.JPanel implements MouseListener{
 			double x = this.getSize().getWidth();
 			double y = this.getSize().getHeight();
 			ArrayList<Cell> cells= RandomEBalloon.getRandomBallons(balloons,(float)x,(float)y);
-	        for(int i = 0;i<6;i++){
+	        Color cs [] = {Color.RED,Color.black,Color.YELLOW};
+			for(int i = 0;i<6;i++){
 				float diameter = balloons.get(i).getDiameter();
 				Couple center = RandomEBalloon.getCenter(cells.get(i),diameter);
 				System.out.println(center);
-			    balloons.set(i, new EBalloon(center.x,center.y,diameter,"ball", Color.RED));
+				int t = getRandom();
+			    balloons.set(i, new EBalloon(center.x,center.y,diameter*getRandomTwo(),"ball", cs[t]));
 			}
+	        
 	        this.repaint();
 		}
-
+		private float getRandomTwo(){
+			double d = Math.random();
+			if(d<0.5){
+				return 1f/(float)d;
+			}else{
+				return (float)d;
+			}
+		}
+		private int getRandom(){
+			double d = Math.random();
+			if(d<0.3){
+				return 0;
+			}if(d<0.6&&d>0.3){
+				return 1;
+			}
+			return 2;
+		}
 		@Override
 		public void mouseEntered(MouseEvent e) {
 			// TODO Auto-generated method stub

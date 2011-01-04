@@ -32,4 +32,12 @@ public class EUser {
             return false;
         }
     }
+
+     public boolean regist(String passwd,String email,String address) {
+        try {
+            return db.DbOperation.addELearner(new ELearner(username, passwd , email,address));
+        } catch(Exception ex) {
+            return false;
+        }
+    }
 }

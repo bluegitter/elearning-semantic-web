@@ -117,6 +117,8 @@ public class LPView extends FrameView {
         } else if (i == LPApp.RECOMMEND) {
             ((RecommendContainer)this.panes[i]).renew();
         }
+
+       
     }
 
     /** This method is called from within the constructor to
@@ -145,7 +147,7 @@ public class LPView extends FrameView {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
-        javax.swing.JMenuItem aboutMenuItem = new javax.swing.JMenuItem();
+        aboutMenuItem = new javax.swing.JMenuItem();
         statusPanel = new javax.swing.JPanel();
         javax.swing.JSeparator statusPanelSeparator = new javax.swing.JSeparator();
         statusMessageLabel = new javax.swing.JLabel();
@@ -170,7 +172,7 @@ public class LPView extends FrameView {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 495, Short.MAX_VALUE)
+            .addGap(0, 493, Short.MAX_VALUE)
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -391,6 +393,7 @@ public class LPView extends FrameView {
     }//GEN-LAST:event_jToggleButton5ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -424,4 +427,6 @@ public class LPView extends FrameView {
     private int busyIconIndex = 0;
     private JDialog aboutBox;
     public ConceptDialog cd = null;
+    public NavigatorPane np = null;
+    public RegistPane rp = null;
 }
