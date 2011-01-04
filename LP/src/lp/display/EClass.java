@@ -17,6 +17,7 @@ public class EClass implements Comparable{
     private Object object;
 
     public double rank = 0;
+    public float[] r = new float[3];
 
     public EClass(ELearner l) {
         type = CType.learner;
