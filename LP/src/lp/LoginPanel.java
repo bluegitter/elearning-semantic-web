@@ -1,5 +1,8 @@
 package lp;
 
+import javax.swing.JDialog;
+import javax.swing.UIManager;
+
 /**
  *
  * @author Shuaiguo
@@ -120,14 +123,13 @@ public class LoginPanel extends javax.swing.JPanel {
 }//GEN-LAST:event_loginBtnActionPerformed
 
     private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
-        LPApp.getApplication().user = new EUser(username.getText());
-        if (LPApp.getApplication().user.reg(new String(password.getPassword()))) {
-            LPApp.getApplication().view.setMainTool(LPApp.MY_CONCEPT);
-            LPApp.getApplication().view.lpToolBar.setVisible(true);
-        } else {
-            this.tipLabel.setText("注册失败");
-            username.grabFocus();
-        }
+
+//            LPApp.getApplication().view.setMainTool(LPApp.REGIST);
+            JDialog d = new NavigatorDialog(LPApp.getApplication().getMainFrame());
+            d.setTitle("注册向导");
+            d.setModal(true);
+            d.pack();
+            d.setVisible(true);
     }//GEN-LAST:event_regBtnActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
