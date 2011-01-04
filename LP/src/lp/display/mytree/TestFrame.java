@@ -91,7 +91,7 @@ public final class TestFrame extends JFrame {
 
     private CheckNode addNodes(CheckNode n, EConcept r) {
 
-        ArrayList<EConcept> a = lpModel.getSonConceptsTwo(r);
+        ArrayList<EConcept> a = lpModel.getSonConcepts(r);
         for (EConcept c : a) {
             //System.out.println(c.getCid() + c.getName() + "hahahahahaha");
             CheckNode child = new CheckNode(c);
