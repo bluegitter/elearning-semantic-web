@@ -30,6 +30,8 @@ public class LPApp extends SingleFrameApplication {
     public static final int RECOMMEND = 2;
     public static final int SEARCH = 3;
     public static final int PROFILE = 4;
+    public static final int NAVIGATOR = 5;
+    public static final int REGIST = 6;
 
     /**
      * At startup create and show the main frame of the application.
@@ -42,12 +44,13 @@ public class LPApp extends SingleFrameApplication {
 //            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 
-        lpModel = new ELearnerModelImpl(new java.io.File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
+        lpModel = new ELearnerModelImpl(new java.io.File("test\\owl\\elearning.owl"));
 
         user = null;
         view = new LPView(this);
         view.mainPanel.setLayout(new CentralLayout());
-        view.mainPanel.add(new LoginPanel());
+       view.mainPanel.add(new LoginPanel());
+      //  view.mainPanel.add(new NavigatorPane());
         view.lpToolBar.setVisible(false);
         show(view);
     }
@@ -81,5 +84,6 @@ public class LPApp extends SingleFrameApplication {
      */
     public static void main(String[] args) {
         launch(LPApp.class, args);
+       // new TestFrame();
     }
 }
