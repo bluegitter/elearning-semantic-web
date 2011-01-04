@@ -25,6 +25,7 @@ public class EBalloon implements Runnable {
     private float rd;
     public Thread thread;
     private boolean ison;
+
     public EBalloon(float x, float y, float d, String label, Color color) {
         this.diameter = d;
         this.x = x;
@@ -86,13 +87,14 @@ public class EBalloon implements Runnable {
         while (thread == me) {
             if (ison) {
                 rd += 6;
-                if(this.rd >= this.diameter + 20)
+                if (this.rd >= this.diameter + 20) {
                     break;
-            }
-            else {
+                }
+            } else {
                 rd -= 6;
-                if(this.rd <= this.diameter)
+                if (this.rd <= this.diameter) {
                     break;
+                }
             }
             try {
                 Thread.sleep(50);
@@ -102,29 +104,27 @@ public class EBalloon implements Runnable {
         thread = null;
     }
 
-	public float getDiameter() {
-		return diameter;
-	}
+    public float getDiameter() {
+        return diameter;
+    }
 
-	public void setDiameter(float diameter) {
-		this.diameter = diameter;
-	}
+    public void setDiameter(float diameter) {
+        this.diameter = diameter;
+    }
 
-	public float getX() {
-		return x;
-	}
+    public float getX() {
+        return x;
+    }
 
-	public void setX(float x) {
-		this.x = x;
-	}
+    public void setX(float x) {
+        this.x = x;
+    }
 
-	public float getY() {
-		return y;
-	}
+    public float getY() {
+        return y;
+    }
 
-	public void setY(float y) {
-		this.y = y;
-	}
-    
+    public void setY(float y) {
+        this.y = y;
+    }
 }
-
