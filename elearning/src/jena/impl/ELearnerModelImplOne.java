@@ -700,7 +700,7 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
 		Individual el = ontModel.getIndividual(Constant.NS+elearner.getId());
 		String ruleString = "is_recommend_of_c_" + rule;
         SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS+ruleString), el);
-        StmtIterator iter = infModel.listStatements(selector);
+        StmtIterator iter = ontModel.listStatements(selector);
 		while(iter.hasNext()){
 			Statement s = iter.nextStatement();
 			Resource r = s.getSubject();
