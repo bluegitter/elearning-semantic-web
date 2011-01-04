@@ -47,8 +47,8 @@ public class NavigatorPane extends javax.swing.JPanel {
    // public ELearnerModelImpl lpModel = new ELearnerModelImpl(new java.io.File("test\\owl\\elearning.owl"));
     //public CheckNode[] nodes = new CheckNode[5];
     private CheckNode root = null;
-
     private NavigatorDialog parent;
+    public ArrayList<EInterest>  EInterests = new ArrayList<EInterest>();
     /** Creates new form NavigatorPane */
     public NavigatorPane(NavigatorDialog parent) {
         this.parent = parent;
@@ -244,11 +244,14 @@ public class NavigatorPane extends javax.swing.JPanel {
     //存储用户选择的节点
     public void getUserSelect(CheckNode node){
         //ArrayList result = new ArrayList();
-        if (node.getChildCount() == 0&&node.isSelected()) {
-            selectedNodes.add(node.toString());
+        EConcept ec = (EConcept)node.getUserObject();
+       // LPApp.lpModel.getInterestConcepts(LPApp.getApplication().user.learner).remove(ec);
+        selectedNodes.remove(ec.getCid());
+        if (node.getChildCount() == 0&&node.isSelected()) {           
+            selectedNodes.add(ec.getCid());
         } else if (node.getChildCount() > 0) {
             if(node.isSelected())
-                selectedNodes.add(node.toString());
+                selectedNodes.add(ec.getCid());
             for (int i = 0; i < node.getChildCount(); i++) {
                 getUserSelect((CheckNode) node.getChildAt(i));
             }
@@ -302,6 +305,11 @@ public class NavigatorPane extends javax.swing.JPanel {
 
         jButton3.setLabel(resourceMap.getString("jButton3.label")); // NOI18N
         jButton3.setName("jButton3"); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
         jButton4.setName("jButton4"); // NOI18N
@@ -364,11 +372,19 @@ public class NavigatorPane extends javax.swing.JPanel {
             ei.setId("newinterest"+i);
             ei.setValue(0.5f);
             LPApp.lpModel.addEInterest(ei);
+            EInterests.add(ei);
         }
 
+       // parent.nodes = this.selectedNodes;
 
+        parent.setNext(EInterests);
 
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        parent.setPrevious();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
