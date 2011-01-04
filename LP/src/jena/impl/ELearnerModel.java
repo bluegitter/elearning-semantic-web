@@ -24,27 +24,20 @@ import exception.jena.IndividualNotExistException;
 
 public class ELearnerModel implements ELearnerModelAddOperationInterface{
 	protected OntModel ontModel;
-    protected InfModel infModel;
 
     public ELearnerModel() {
         ontModel = OwlFactory.getOntModel();
-        init();
     }
     public ELearnerModel(OntModel ontModel) {
         this.ontModel = ontModel;
-        init();
     }
     public ELearnerModel(File file){
     	this.ontModel = OwlFactory.getOntModel(file);
-    	init();
     }
     public ELearnerModel(File file,String lang){
     	this.ontModel = OwlFactory.getOntModel(file, lang);
-    	init();
     }
-    protected void init(){
-    	updateInfModel();
-    }
+    
     public boolean writeToFile(File file) {
         try {
             OwlOperation.writeOwlFile(ontModel, file);
@@ -60,14 +53,12 @@ public class ELearnerModel implements ELearnerModelAddOperationInterface{
 		rootConcept.setName("software engineering");
 		return rootConcept;
 	}
-    public void updateInfModel() {
-        infModel = ModelFactory.createInfModel(OwlFactory.getGenericRuleReasoner(), ontModel);
-    }
+    
     public OntModel getOntModel(){
     	return ontModel;
     }
-    public InfModel getInfModel() {
-        return infModel;
+    public InfModel getInfModel(){
+    	return ontModel;
     }
     /**************************************************************************************************
      * Check whether the individual exists in the model

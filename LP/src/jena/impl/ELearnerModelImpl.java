@@ -354,7 +354,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 		
 		Resource con = ontModel.getResource(Constant.NS+concept.getCid());
 		SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS+"is_part_of"), con);
-		StmtIterator iter = infModel.listStatements(selector);
+		StmtIterator iter = ontModel.listStatements(selector);
 		while(iter.hasNext()){
 			Statement s = iter.nextStatement();
 			Resource r = s.getSubject();
@@ -395,7 +395,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 		Individual el = ontModel.getIndividual(Constant.NS+elearner.getId());
 		String ruleString = "is_recommend_of_L_" + rule + "";
 		SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS+ruleString), el);
-		StmtIterator iter = infModel.listStatements(selector);
+		StmtIterator iter = ontModel.listStatements(selector);
 		while(iter.hasNext()){
 			Statement s = iter.nextStatement();
 			Resource r = s.getSubject();
@@ -412,7 +412,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 		Individual el = ontModel.getIndividual(Constant.NS+elearner.getId());
 		String ruleString =  "is_recommend_of_r_" + rule;
 		SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS+ruleString), el);
-		StmtIterator iter = infModel.listStatements(selector);
+		StmtIterator iter = ontModel.listStatements(selector);
 		while(iter.hasNext()){
 			Statement s = iter.nextStatement();
 			Resource r = s.getSubject();
@@ -554,16 +554,18 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 		Property p1= ontModel.getProperty(Constant.NS +"inverse_of_has_interest");
 		Property p2 = ontModel.getProperty(Constant.NS +"inverse_of_is_concept_of_I");
 		SimpleSelector selector = new SimpleSelector(null,p1,el);
-		StmtIterator iter = infModel.listStatements(selector);
+		StmtIterator iter = ontModel.listStatements(selector);
 		while(iter.hasNext()){
 			Resource in = iter.nextStatement().getSubject();
 			SimpleSelector selector2 = new SimpleSelector(in,p2,con);
-			StmtIterator iter2 = infModel.listStatements(selector2);
+			StmtIterator iter2 = ontModel.listStatements(selector2);
 			while(iter2.hasNext()){
 				String id = in.getLocalName();
 				EInterest interest = new EInterest(id);
 				interest.setEConcept(concept);
 				interest.setELearner(elearner);
+				float value = in.getRequiredProperty(ontModel.getProperty(Constant.NS+ "value")).getFloat();
+				interest.setValue(value);
 				return interest;
 			}
 		}	
