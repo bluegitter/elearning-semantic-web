@@ -12,36 +12,51 @@ package lp.display;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import javax.swing.JFrame;
+
 
 /**
  *
  * @author student
  */
-public class LPItemPane extends javax.swing.JPanel implements MouseListener {
+public class RemoveLPInterestItemPane extends javax.swing.JPanel implements java.awt.event.MouseListener {
 
     public static void main(String[] args) {
-        JFrame jf = new JFrame();
-        LPItemPane lpp = new LPItemPane();
-        jf.add(lpp);
-        jf.setVisible(true);
-        jf.pack();
-    }
-
-    public class DeleteOperationException {
-
-        public DeleteOperationException(String string) {
+        jena.impl.ELearnerModelImpl emi = new jena.impl.ELearnerModelImpl(new java.io.File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
+        ontology.people.ELearner el = emi.getELearner("el001");
+        java.util.ArrayList<ontology.EInterest> interests = emi.getEInterests(el);
+        System.out.println(interests);
+        javax.swing.JFrame frame = new javax.swing.JFrame();
+        // LPListPane lppane = new LPListPane(interests);
+        javax.swing.JPanel pane = new javax.swing.JPanel();
+        frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        pane.setLayout(new javax.swing.BoxLayout(pane, javax.swing.BoxLayout.Y_AXIS));
+        for (int i = 0; i < interests.size(); i++) {
+            RemoveLPInterestItemPane p = new RemoveLPInterestItemPane(interests.get(i));
+            pane.add(p);
         }
+        frame.add(pane);
+        frame.pack();
+        frame.setVisible(true);
     }
 
     /** Creates new form LPItemPane */
-    public LPItemPane() {
+    public RemoveLPInterestItemPane() {
         initComponents();
-       jLabel1.setIcon(null);
+        jLabel1.setIcon(null);
+        jLabel2.setText(interest.getEConcept().getName());
+        jLabel3.setText(String.valueOf(interest.getValue()));
         addMouseListener(this);
-
     }
+
+    public RemoveLPInterestItemPane(ontology.EInterest interest) {
+        this.interest = interest;
+        initComponents();
+        jLabel1.setIcon(null);
+        jLabel2.setText(interest.getEConcept().getName());
+        jLabel3.setText(String.valueOf(interest.getValue()));
+        addMouseListener(this);
+    }
+    public ontology.EInterest interest;
     public javax.swing.Icon icon;
 
     /** This method is called from within the constructor to
@@ -55,10 +70,11 @@ public class LPItemPane extends javax.swing.JPanel implements MouseListener {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setName("Form"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(LPItemPane.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(RemoveLPInterestItemPane.class);
         jLabel1.setIcon(resourceMap.getIcon("jLabel1.icon")); // NOI18N
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
@@ -69,30 +85,32 @@ public class LPItemPane extends javax.swing.JPanel implements MouseListener {
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
 
+        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
+        jLabel3.setName("jLabel3"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JLabel jLabel1;
     protected javax.swing.JLabel jLabel2;
+    protected javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 
     @Override
