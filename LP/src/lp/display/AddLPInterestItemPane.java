@@ -11,7 +11,6 @@
 package lp.display;
 
 import java.awt.event.MouseEvent;
-
 /**
  *
  * @author william
@@ -41,17 +40,23 @@ public class AddLPInterestItemPane extends javax.swing.JPanel implements java.aw
     /** Creates new form AddLPInterestItemPane */
     public AddLPInterestItemPane() {
         initComponents();
-        jLabel3.setText("");
-        jLabel1.setText(concept.getCid());
-        jLabel2.setText(concept.getName());
-        addMouseListener(this);
+        myInit();
     }
 
     public AddLPInterestItemPane(ontology.EConcept concept) {
         this.concept = concept;
         initComponents();
-        jLabel3.setText("");
-       jLabel1.setText(concept.getCid());
+        myInit();
+    }
+
+    private void myInit() {
+        color = new java.awt.Color(244, 244, 245);
+        jLabel1.setOpaque(true);
+        jLabel2.setOpaque(true);
+        jLabel3.setOpaque(true);
+        this.setBackground(java.awt.Color.WHITE);
+        jLabel3.setIcon(null);
+        jLabel1.setText(concept.getCid());
         jLabel2.setText(concept.getName());
         addMouseListener(this);
     }
@@ -69,27 +74,31 @@ public class AddLPInterestItemPane extends javax.swing.JPanel implements java.aw
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(321, 32));
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("jLabel1");
         jLabel1.setName("jLabel1"); // NOI18N
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("jLabel2");
         jLabel2.setName("jLabel2"); // NOI18N
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("添加");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/display/resources/+.png"))); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
+        icon = new javax.swing.ImageIcon(getClass().getResource("/lp/display/resources/+.png"));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -97,8 +106,8 @@ public class AddLPInterestItemPane extends javax.swing.JPanel implements java.aw
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -107,6 +116,8 @@ public class AddLPInterestItemPane extends javax.swing.JPanel implements java.aw
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
     public ontology.EConcept concept;
+    public java.awt.Color color;
+    public javax.swing.Icon icon;
 
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -123,11 +134,20 @@ public class AddLPInterestItemPane extends javax.swing.JPanel implements java.aw
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        jLabel3.setText("添加");
+        jLabel3.setIcon(icon);
+        this.setBackground(color);
+        jLabel1.setBackground(color);
+        jLabel2.setBackground(color);
+        jLabel3.setBackground(color);
+
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        jLabel3.setText("");
+        jLabel3.setIcon(null);
+        this.setBackground(java.awt.Color.WHITE);
+        jLabel1.setBackground(java.awt.Color.WHITE);
+        jLabel2.setBackground(java.awt.Color.WHITE);
+        jLabel3.setBackground(java.awt.Color.WHITE);
     }
 }

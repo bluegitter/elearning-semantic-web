@@ -13,7 +13,6 @@ package lp.display;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 
-
 /**
  *
  * @author student
@@ -27,8 +26,8 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel implements java
         System.out.println(interests);
         javax.swing.JFrame frame = new javax.swing.JFrame();
         // LPListPane lppane = new LPListPane(interests);
-        javax.swing.JPanel pane = new javax.swing.JPanel();
         frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        javax.swing.JPanel pane = new javax.swing.JPanel();
         pane.setLayout(new javax.swing.BoxLayout(pane, javax.swing.BoxLayout.Y_AXIS));
         for (int i = 0; i < interests.size(); i++) {
             RemoveLPInterestItemPane p = new RemoveLPInterestItemPane(interests.get(i));
@@ -42,20 +41,27 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel implements java
     /** Creates new form LPItemPane */
     public RemoveLPInterestItemPane() {
         initComponents();
-        jLabel1.setIcon(null);
-        jLabel2.setText(interest.getEConcept().getName());
-        jLabel3.setText(String.valueOf(interest.getValue()));
-        addMouseListener(this);
+        myInit();
     }
 
     public RemoveLPInterestItemPane(ontology.EInterest interest) {
         this.interest = interest;
         initComponents();
+        myInit();
+    }
+
+    private void myInit() {
+        jLabel1.setOpaque(true);
+        jLabel2.setOpaque(true);
+        jLabel3.setOpaque(true);
+        this.setBackground(Color.WHITE);
         jLabel1.setIcon(null);
         jLabel2.setText(interest.getEConcept().getName());
         jLabel3.setText(String.valueOf(interest.getValue()));
+        color = new Color(244, 244, 245);
         addMouseListener(this);
     }
+    public Color color;
     public ontology.EInterest interest;
     public javax.swing.Icon icon;
 
@@ -72,9 +78,11 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel implements java
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(RemoveLPInterestItemPane.class);
+        setBackground(resourceMap.getColor("Form.background")); // NOI18N
         setName("Form"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(RemoveLPInterestItemPane.class);
+        jLabel1.setBackground(resourceMap.getColor("jLabel1.background")); // NOI18N
         jLabel1.setIcon(resourceMap.getIcon("jLabel1.icon")); // NOI18N
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
@@ -85,6 +93,7 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel implements java
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
 
+        jLabel3.setBackground(resourceMap.getColor("jLabel3.background")); // NOI18N
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
 
@@ -102,9 +111,9 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel implements java
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -115,30 +124,36 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel implements java
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.out.println("delete interest " + interest);
+        jLabel2.setBackground(Color.RED);
+
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
         jLabel1.setIcon(icon);
-        jLabel2.setBackground(Color.RED);
-        this.repaint();
+        this.setBackground(color);
+        jLabel2.setBackground(color);
+        jLabel1.setBackground(color);
+        jLabel3.setBackground(color);
+        this.updateUI();
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
         jLabel1.setIcon(null);
-        jLabel2.setBackground(Color.GREEN);
-        this.repaint();
+        this.setBackground(Color.WHITE);
+        jLabel1.setBackground(Color.WHITE);
+        jLabel3.setBackground(Color.WHITE);
+        jLabel2.setBackground(Color.WHITE);
+        this.updateUI();
     }
 }
