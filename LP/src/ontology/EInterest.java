@@ -31,7 +31,19 @@ public class EInterest {
 	public String getId() {
 		return id;
 	}
-
+        public boolean equals(Object o){
+            if(o instanceof EInterest){
+               EInterest ei = (EInterest) o;
+               if(!this.id.equals(ei.getId())){
+                   return false;
+               }
+               if(this.value != ei.getValue()){
+                   return false;
+               }
+               return true;
+            }
+            return false;
+        }
 	public void setId(String id) {
 		this.id = id;
 	}
