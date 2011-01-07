@@ -118,7 +118,18 @@ public class LPView extends FrameView {
             ((RecommendContainer)this.panes[i]).renew();
         }
 
-       
+        if( i == LPApp.PROFILE)
+        {
+            System.out.println("hahahahaha");
+            JDialog jd  = new JDialog();
+            jd.setContentPane(new UserProfilePane());
+            jd.pack();
+            jd.setTitle("个人资料");
+          //  jd.setLocation(850, 50);
+            jd.setVisible(true);
+           // jd.setSize(800, 800);
+            
+        }
     }
 
     /** This method is called from within the constructor to
