@@ -49,8 +49,8 @@ public class LPApp extends SingleFrameApplication {
         user = null;
         view = new LPView(this);
         view.mainPanel.setLayout(new CentralLayout());
-       view.mainPanel.add(new LoginPanel());
-      //  view.mainPanel.add(new NavigatorPane());
+        view.mainPanel.add(new LoginPanel());
+       //  view.mainPanel.add(new NavigatorPane());
         view.lpToolBar.setVisible(false);
         show(view);
     }
