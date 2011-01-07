@@ -157,17 +157,12 @@ public class NavigatorFinishPane extends javax.swing.JPanel {
         System.out.println(row);
         for (int i =0;i<row;i++)
         {
-           String cid = model.getValueAt(i, 0).toString();
-            long t1 = System.currentTimeMillis();
-             EConcept ec = LPApp.lpModel.getEConcept(cid);
-            System.out.println("current time:"+(System.currentTimeMillis()-t1)+"ms");
+             String cid = model.getValueAt(i, 0).toString();
+            EConcept ec = LPApp.lpModel.getEConcept(cid);            
             float value = Float.parseFloat(model.getValueAt(i, 2).toString());
             ELearner el = LPApp.getApplication().user.learner;
-             long t2 = System.currentTimeMillis();
-            EInterest ei = LPApp.lpModel.getEInterest(el, ec);
-            System.out.println("current time:"+(System.currentTimeMillis()-t2)+"ms");
-            ei.setValue(value);
-           
+            EInterest ei = LPApp.lpModel.getEInterest(el, ec);          
+            ei.setValue(value);        
 
         }
         parent.setVisible(false);
