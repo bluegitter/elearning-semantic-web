@@ -51,26 +51,22 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
     }
 
     public static void main(String[] args) throws IndividualNotExistException, IOException {
-        File file = new File("test\\owl\\ms2.owl");
+        File file = new File("test\\owl\\conceptsAndresource_RDF-XML.owl");
         long init = System.currentTimeMillis();
         ELearnerModelImpl emi = new ELearnerModelImpl(file);
         System.out.println("intitime:" + (System.currentTimeMillis() - init) + "ms");
         ELearner el = emi.getELearner("el001");
         EConcept con = emi.getEConcept("cid38");
-
-        //emi.removeEInterest(el,con);
-        EInterest in = new EInterest("E_Interest_el001-1");
-        in.setEConcept(con);
-        in.setELearner(el);
-        //EInterest in = emi.getEInterest(el,con);
-
-
         long t1 = System.currentTimeMillis();
-        emi.removeEInterest(in);
+        ArrayList<EConcept> inte = emi.getInterestConcepts(el);
+        System.out.println("time:" + (System.currentTimeMillis() - t1) + "ms\tintests: " + inte.size());
         long t2 = System.currentTimeMillis();
-        System.out.println("time:" + (t2 - t1) + "ms");
-        System.out.println("new:" + emi.getELearner(el.getId()));
-        emi.writeToFile(file);
+        ArrayList<EConcept> all = emi.getAllEConcepts();
+        System.out.println("time:" + (System.currentTimeMillis() - t2) + "ms\talls: " + all.size());
+        long t3 = System.currentTimeMillis();
+        ArrayList<EConcept> unin = emi.getUnInterestConcepts(el);
+        System.out.println("time:" + (System.currentTimeMillis() - t2) + "ms\tunins: " + unin.size());
+
     }
 
     @Override
@@ -196,7 +192,6 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
             while (iter_con.hasNext()) {
                 Resource conResource = iter_con.nextStatement().getSubject();
                 EConcept concept = getEConcept(conResource.getLocalName());
-
                 float value = (Float) r.getRequiredProperty(ontModel.getProperty(Constant.NS + "value")).getLiteral().getFloat();
                 String dateString = r.getRequiredProperty(ontModel.getProperty(Constant.NS + "datetime")).getLiteral().getString();
                 Date datetime = StringExchanger.parseStringToDate(dateString);
@@ -348,6 +343,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         return concepts;
     }
 
+    @Override
     public ArrayList<EConcept> getSonConcepts(EConcept econcept) {
         ArrayList<EConcept> concepts = new ArrayList<EConcept>();
         Resource concept = ontModel.getResource(Constant.NS + econcept.getCid());
@@ -619,4 +615,16 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         return interests;
     }
 
+    @Override
+    public ArrayList<EConcept> getUnInterestConcepts(ELearner elearner) {
+        ArrayList<EConcept> interestConcepts = getInterestConcepts(elearner);
+        ArrayList<EConcept> uninterest = new ArrayList<EConcept>();
+        ArrayList<EConcept> allConcepts = getAllEConcepts();
+        for (EConcept con : allConcepts) {
+            if (!interestConcepts.contains(con)) {
+                uninterest.add(con);
+            }
+        }
+        return uninterest;
+    }
 }
