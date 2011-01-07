@@ -53,38 +53,7 @@ public class NavigatorPane extends javax.swing.JPanel {
     public NavigatorPane(NavigatorDialog parent) {
         this.parent = parent;
        initComponents();
-//         EConcept cn = this.getRootConcept();
-//        root = addNodes(new CheckNode(cn), cn);
-//        JTree tree = new JTree(root);
-//        //use our CheckRenderer
-//        tree.setCellRenderer(new CheckRenderer());
-//        tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-//        tree.addMouseListener(new NodeSelectionListener(tree));
-//      jScrollPane1 = new JScrollPane(tree);
-
-       /*  JScrollPane sp = new JScrollPane(tree);
-        sp.setVisible(true);
-        ModePanel mp = new ModePanel(nodes);
-        mp.setVisible(true);
-        JTextArea textArea = new JTextArea(3, 10);
-        JScrollPane textPanel = new JScrollPane(textArea);
-        JButton button = new JButton("print");
-
-        button.addActionListener(new ButtonActionListener(nodes[0], textArea));
-
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.add(mp, BorderLayout.CENTER);
-        panel.add(button, BorderLayout.SOUTH);
-        jInternalFrame1.getContentPane().add(sp, BorderLayout.CENTER);
-        jInternalFrame1.getContentPane().add(panel, BorderLayout.EAST);
-        jInternalFrame1.getContentPane().add(textPanel, BorderLayout.SOUTH);
-
-        this.jInternalFrame1.setSize(300, 200);
-        this.jInternalFrame1.setBounds(200, 200, 300, 200);
-        this.jInternalFrame1.setVisible(true);
-        jInternalFrame1.getContentPane().setVisible(true);
-      */
-        
+       
     }
 
 
@@ -369,7 +338,7 @@ public class NavigatorPane extends javax.swing.JPanel {
             String cid = selectedNodes.get(i).toString();
             ei.setEConcept(LPApp.lpModel.getEConcept(cid));
             ei.setELearner(LPApp.getApplication().user.learner);
-            ei.setId("newinterest"+i);
+            ei.setId("newinterest"+LPApp.getApplication().user.learner.getId()+i);
             ei.setValue(0.5f);
             LPApp.lpModel.addEInterest(ei);
             EInterests.add(ei);
