@@ -1,4 +1,0 @@
-
-  <owl:Ontology rdf:about="http://localhost:8080/myelearner/webapp/elearning.owl"/>
-  
-  <owl:imports rdf:resource ="http://localhost:8080/myelearner/webapp/elearning.owl"/>
