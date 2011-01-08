@@ -132,7 +132,7 @@ public class ModelTest {
     	ELearner el = emi.getELearner("el001");
 		EConcept con = emi.getEConcept("cid1");
 		long t1 = System.currentTimeMillis();
-		System.out.println(emi.getRecommendEConcepts(el,1));
+//		System.out.println(emi.getRecommendEConcepts(el,1));
 		System.out.println("first execution:"+(System.currentTimeMillis()-t1)+"ms");
 		long t2 = System.currentTimeMillis();
 		System.out.println(emi1.getRecommendEConcepts(el, 1));
@@ -168,7 +168,7 @@ public class ModelTest {
 		for(int i = 0;i<5;i++){
 			long t1 = System.currentTimeMillis();
 			//System.out.println(emi.getRecommendEConcepts(el,1));
-			ArrayList<EConcept> cons = emi.getRecommendEConcepts(el,1);
+	//		ArrayList<EConcept> cons = emi.getRecommendEConcepts(el,1);
 			System.out.println("first execution:"+(System.currentTimeMillis()-t1)+"ms");
 		}
 	}

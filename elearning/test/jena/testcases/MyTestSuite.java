@@ -10,7 +10,6 @@ public class MyTestSuite extends TestSuite{
 	    TestSuite suite= new TestSuite(); 
 	    suite.addTestSuite(ELearnerModelTest.class); 
 	    suite.addTestSuite(ELearnerModelQueryTest.class); 
-	    suite.addTestSuite(ELearnerRuleModelTest.class); 
 	    return suite; 
 	}
 

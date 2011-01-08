@@ -26,17 +26,15 @@ import ontology.resources.EResource;
 import util.Constant;
 import util.StringExchanger;
 import jena.interfaces.ELearnerModelQueryInterface;
-import jena.interfaces.ELearnerModelRemoveOperationInterface;
-import jena.interfaces.ELearnerModelUpdateOperationInterface;
-import jena.interfaces.ELearnerRuleModel;
+import jena.interfaces.ELearnerUserOperationInterface;
 
 /**************************************************************************
  * Model Query with ontology Model
  * @author william
  *
  **************************************************************************/
-public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQueryInterface,
-        ELearnerModelUpdateOperationInterface, ELearnerModelRemoveOperationInterface, ELearnerRuleModel {
+public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQueryInterface,ELearnerUserOperationInterface
+         {
 
     public ELearnerModelImpl() {
         super();
@@ -359,7 +357,6 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         return concepts;
     }
 
-    @Override
     public ArrayList<EConcept> getMemberConcept(EConcept concept) {
         ArrayList<EConcept> concepts = new ArrayList<EConcept>();
 
@@ -375,66 +372,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         return concepts;
     }
 
-    @Override
-    public ArrayList<EConcept> getRecommendEConcepts(ELearner elearner, int rule) {
-        ArrayList<EConcept> concepts = new ArrayList<EConcept>();
-        Resource el = ontModel.getResource(Constant.NS + elearner.getId());
-        SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS + "inverse_of_has_performance"), el);
-        StmtIterator iter = ontModel.listStatements(selector);
-        while (iter.hasNext()) {
-            Resource per = iter.nextStatement().getSubject();
-            SimpleSelector per_con = new SimpleSelector(null, ontModel.getProperty(Constant.NS + "is_concept_of_P"), per);
-            StmtIterator iter2 = ontModel.listStatements(per_con);
-            while (iter2.hasNext()) {
-                Resource con = iter2.nextStatement().getSubject();
-                SimpleSelector con_con = new SimpleSelector(null, ontModel.getProperty(Constant.NS + "is_post_concept_of"), con);
-                StmtIterator iter3 = ontModel.listStatements(con_con);
-                while (iter3.hasNext()) {
-                    Resource result = iter3.nextStatement().getSubject();
-                    String id = result.getLocalName();
-                    System.out.println(id);
-                    EConcept newCon = getEConcept(id);
-                    concepts.add(newCon);
-                }
-            }
-        }
-        return concepts;
-    }
 
-    @Override
-    public ArrayList<ELearner> getRecommendELearners(ELearner elearner, int rule) {
-        ArrayList<ELearner> elearners = new ArrayList<ELearner>();
-        Individual el = ontModel.getIndividual(Constant.NS + elearner.getId());
-        String ruleString = "is_recommend_of_L_" + rule + "";
-        SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS + ruleString), el);
-        StmtIterator iter = ontModel.listStatements(selector);
-        while (iter.hasNext()) {
-            Statement s = iter.nextStatement();
-            Resource r = s.getSubject();
-            String id = r.getLocalName();
-            ELearner newEL = getELearner(id);
-            elearners.add(newEL);
-        }
-        return elearners;
-    }
-
-    @Override
-    public ArrayList<EResource> getRecommendEResources(ELearner elearner,
-            int rule) {
-        ArrayList<EResource> resources = new ArrayList<EResource>();
-        Individual el = ontModel.getIndividual(Constant.NS + elearner.getId());
-        String ruleString = "is_recommend_of_r_" + rule;
-        SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS + ruleString), el);
-        StmtIterator iter = ontModel.listStatements(selector);
-        while (iter.hasNext()) {
-            Statement s = iter.nextStatement();
-            Resource r = s.getSubject();
-            String id = r.getLocalName();
-            EResource res = getEResource(id);
-            resources.add(res);
-        }
-        return resources;
-    }
 
     /*******************************************************************************************************
      * Update Data in model 
@@ -542,29 +480,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         return true;
     }
 
-    @Override
-    public boolean removeEInterest(EInterest interest)
-            throws IndividualNotExistException {
-        if (!containEInterest(interest.getId())) {
-            throw new IndividualNotExistException("EInterest " + interest.getId() + " does not exist in the model");
-        }
-        Individual in = ontModel.getIndividual(Constant.NS + interest.getId());
-        in.remove();
-        return true;
-    }
-
-    @Override
-    public boolean removeEInterest(ELearner el, EConcept con)
-            throws IndividualNotExistException {
-        EInterest in = getEInterest(el, con);
-        if (in == null) {
-            throw new IndividualNotExistException("This EInterest does not exist in the model");
-        }
-        Individual interest = ontModel.getIndividual(Constant.NS + in.getId());
-        interest.remove();
-        return true;
-    }
-
+    
     @Override
     public EInterest getEInterest(ELearner elearner, EConcept concept) {
         Individual el = ontModel.getIndividual(Constant.NS + elearner.getId());
@@ -627,4 +543,42 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         }
         return uninterest;
     }
+    /***************************************************************************************
+     * 
+     */
+
+    @Override
+    public boolean addEInterest(EInterest interest) {
+        ELearner el = interest.getELearner();
+        EConcept con = interest.getEConcept();
+        Resource in = ontModel.createResource(Constant.NS + interest.getId(), ontModel.getResource(Constant.NS + "E_Interest"));
+        in.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_has_interest"), ontModel.getResource(Constant.NS + el.getId()));
+        in.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_is_concept_of_I"), ontModel.getResource(Constant.NS + con.getCid()));
+        in.addProperty(ontModel.getProperty(Constant.NS + "value"), String.valueOf(interest.getValue()), new XSDDatatype("string"));
+        return true;
+    }
+	@Override
+    public boolean removeEInterest(EInterest interest)
+            throws IndividualNotExistException {
+        if (!containEInterest(interest.getId())) {
+            throw new IndividualNotExistException("EInterest " + interest.getId() + " does not exist in the model");
+        }
+        Individual in = ontModel.getIndividual(Constant.NS + interest.getId());
+        in.remove();
+        return true;
+    }
+
+    @Override
+    public boolean removeEInterest(ELearner el, EConcept con)
+            throws IndividualNotExistException {
+        EInterest in = getEInterest(el, con);
+        if (in == null) {
+            throw new IndividualNotExistException("This EInterest does not exist in the model");
+        }
+        Individual interest = ontModel.getIndividual(Constant.NS + in.getId());
+        interest.remove();
+        return true;
+    }
+
+
 }

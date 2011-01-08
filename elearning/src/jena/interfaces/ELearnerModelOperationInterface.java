@@ -12,21 +12,25 @@ import ontology.EPortfolio;
 import ontology.people.ELearner;
 import ontology.resources.EResource;
 
-public interface ELearnerModelAddOperationInterface {
-	//non-user operations
+public interface ELearnerModelOperationInterface {
+	/*****************************************************
+	 * ADD 
+	 *****************************************************/
 	boolean addEConcept(EConcept concept) throws IndividualNotExistException;
 	boolean addEPerfomance(EPerformance performance);
 	boolean addEPortfolio(EPortfolio portfolio);
-	
-	//user operations
 	boolean addELearner(ELearner elearner) throws IndividualNotExistException;
 	boolean addEResource(EResource resource)throws IndividualNotExistException;
-	boolean addEInterest(EInterest interest)throws IndividualNotExistException;
-	
-	//add opertions for properties
+
 	boolean addPropertyIsSonOf(EConcept fatherConcept,EConcept sonConcept);
 	boolean addPropertyIsResourceOfC(EResource resource,EConcept concept);
-	
-	
+		
+	/*****************************************************
+	 * UPDATE 
+	 *****************************************************/
+	boolean updateEConcept(EConcept concept) throws IndividualNotExistException;
+	boolean updateEPerfomance(EPerformance performance)throws IndividualNotExistException;
+	boolean updateEPortfolio(EPortfolio portfolio) throws IndividualNotExistException;
+	boolean updateEResource(EResource resource) throws IndividualNotExistException;
 	
 }
