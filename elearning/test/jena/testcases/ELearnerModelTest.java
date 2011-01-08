@@ -2,7 +2,9 @@ package jena.testcases;
 
 import java.io.IOException;
 import java.util.Date;
-import jena.impl.ELearnerModelImplOne;
+
+import exception.jena.IndividualNotExistException;
+import jena.impl.ELearnerModelImpl;
 import junit.framework.TestCase;
 import ontology.EConcept;
 import ontology.EPerformance;
@@ -12,8 +14,8 @@ import ontology.resources.EResource;
 
 public class ELearnerModelTest extends TestCase{
 	
-	public void testAddEConcept(){
-		ELearnerModelImplOne emi = new ELearnerModelImplOne();
+	public void testAddEConcept() throws IndividualNotExistException{
+		ELearnerModelImpl emi = new ELearnerModelImpl();
 		EConcept con = new EConcept();
 		con.setCid("testAddConcept");
 		con.setName("testName");
@@ -21,8 +23,8 @@ public class ELearnerModelTest extends TestCase{
 		EConcept newC = emi.getEConcept(con.getCid());
 		assertTrue(newC.getCid().equals(con.getCid()));
 	}
-	public void testAddElearner()throws IOException{
-		ELearnerModelImplOne emi = new ELearnerModelImplOne();
+	public void testAddElearner()throws IOException, IndividualNotExistException{
+		ELearnerModelImpl emi = new ELearnerModelImpl();
 		ELearner el = new ELearner();
 		el.setId("eltest");
 		el.setName("testName");
@@ -31,8 +33,8 @@ public class ELearnerModelTest extends TestCase{
 		ELearner newE = emi.getELearner(el.getId());
 		assertTrue(newE.getId().equals(el.getId()));
 	}
-	public void testAddEResource(){
-		ELearnerModelImplOne emi = new ELearnerModelImplOne();
+	public void testAddEResource() throws IndividualNotExistException{
+		ELearnerModelImpl emi = new ELearnerModelImpl();
 		EResource res = new EResource();
 		res.setRid("res_ID");
 		res.setName("res_Name");
@@ -43,7 +45,7 @@ public class ELearnerModelTest extends TestCase{
 		assertTrue(newRes.getRid().equals(res.getRid()));
 	}
 	public void testAddPerformance(){
-		ELearnerModelImplOne emi = new ELearnerModelImplOne();
+		ELearnerModelImpl emi = new ELearnerModelImpl();
 		EConcept concept = new EConcept("testPreCnp");
 		ELearner elearner = new ELearner("el002");
 		EPerformance performance =getNewPerformance(concept,elearner);
@@ -55,7 +57,7 @@ public class ELearnerModelTest extends TestCase{
 		assertTrue(perf.getDatetime().toString().equals(performance.getDatetime().toString()));
 	}
 	public void testGetAllAfterAddPerformance(){
-		ELearnerModelImplOne emi = new ELearnerModelImplOne();
+		ELearnerModelImpl emi = new ELearnerModelImpl();
 		EConcept concept = new EConcept("testPreCnp");
 		ELearner elearner = new ELearner("el002");
 		EPerformance performance = getNewPerformance(concept,elearner);
@@ -93,9 +95,9 @@ public class ELearnerModelTest extends TestCase{
 		return performance;
 	}
 	public void setUp(){
-		emi  = new ELearnerModelImplOne();
+		emi  = new ELearnerModelImpl();
 		el = new ELearner("el001");
 	}
-	private ELearnerModelImplOne emi;
+	private ELearnerModelImpl emi;
 	private ELearner el;
 }

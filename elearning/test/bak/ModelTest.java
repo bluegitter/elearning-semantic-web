@@ -1,4 +1,4 @@
-package jena;
+package bak;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,11 +7,10 @@ import java.util.HashMap;
 
 import db.OwlOperation;
 import db.ResourceParser;
+import exception.jena.IndividualNotExistException;
 
 import jena.impl.ELearnerModel;
 import jena.impl.ELearnerModelImpl;
-import jena.impl.ELearnerModelImplOne;
-import jena.impl.ELearnerModelImplTwo;
 import ontology.EConcept;
 import ontology.EPerformance;
 import ontology.people.ELearner;
@@ -37,7 +36,7 @@ public class ModelTest {
 		System.out.println("time1"+(time1-time));
 		System.out.println("time2"+(time2-time1));
 	}
-	public static void fileWritingPerformanceTest() throws IOException{
+	public static void fileWritingPerformanceTest() throws IOException, IndividualNotExistException{
 		ResourceParser rp = new ResourceParser();
 		rp.getBasicEConcepts();
 		rp.getDataStructureResrouces();

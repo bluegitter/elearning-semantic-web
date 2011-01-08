@@ -1,8 +1,10 @@
-package jena.impl;
+package bak;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
+
+import jena.impl.ELearnerModel;
 import jena.interfaces.ELearnerModelAddOperationInterface;
 import jena.interfaces.ELearnerModelQueryInterface;
 import jena.interfaces.ELearnerRuleModel;

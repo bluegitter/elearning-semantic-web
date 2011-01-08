@@ -2,7 +2,7 @@ package jena.testcases;
 
 import java.util.ArrayList;
 
-import jena.impl.ELearnerModelImplOne;
+import jena.impl.ELearnerModelImpl;
 import ontology.EConcept;
 import ontology.EPerformance;
 import ontology.EPortfolio;
@@ -71,11 +71,11 @@ public class ELearnerModelQueryTest extends TestCase{
 		assertTrue(c.size()==6);
 	}
 	public void setUp(){
-		emi  = new ELearnerModelImplOne();
+		emi  = new ELearnerModelImpl();
 		rootConcept = new EConcept("Software_Engineer");
 		el = new ELearner("el001");
 	}
-	private ELearnerModelImplOne emi;
+	private ELearnerModelImpl emi;
 	private EConcept rootConcept;
 	private ELearner el;
 }

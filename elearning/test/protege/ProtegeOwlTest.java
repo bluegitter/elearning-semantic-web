@@ -3,7 +3,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
-import jena.impl.ELearnerModelImplOne;
+import jena.impl.ELearnerModelImpl;
 
 import com.hp.hpl.jena.util.FileManager;
 
@@ -22,7 +22,7 @@ public class ProtegeOwlTest {
 		OWLModel owlModel = ProtegeOWL.createJenaOWLModelFromInputStream(in);
 		//OWLModel owlModel = ProtegeOWL.createJenaOWLModelFromURI(Constant.OWLONSERVER+"userOwlFile2.owl");
         long time2 = System.currentTimeMillis();
-       ELearnerModelImplOne emi = new ELearnerModelImplOne(new File(Constant.OWLFile));
+       ELearnerModelImpl emi = new ELearnerModelImpl(new File(Constant.OWLFile));
         long time3 = System.currentTimeMillis();
         System.out.println((time2-time1)+"ms Protege Reading Model Time");
         System.out.println((time3-time2)+"ms Jena Reading Model Time");
