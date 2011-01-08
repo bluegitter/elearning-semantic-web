@@ -18,6 +18,7 @@ public interface ELearnerModelQueryInterface {
 	ArrayList<EConcept> getAllEConcepts();
 	ArrayList<EConcept> getSonConcepts(EConcept concept);
 	ArrayList<EConcept> getInterestConcepts(ELearner elearner);
+        ArrayList<EConcept> getUnInterestConcepts(ELearner elearner);
 	ArrayList<EPortfolio> getEPortfolios(ELearner elearner);
 	ArrayList<EResource> getEResourcesByEConcept(EConcept concept);
 	ArrayList<EResource> getEResourcesByInterestEConcepts(ELearner elearner);
