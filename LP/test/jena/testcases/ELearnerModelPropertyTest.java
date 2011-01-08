@@ -1,8 +1,7 @@
 package jena.testcases;
 
-import jena.impl.ELearnerModelImplOne;
+import jena.impl.ELearnerModelImpl;
 import ontology.EConcept;
-import ontology.people.ELearner;
 import ontology.resources.EResource;
 import junit.framework.TestCase;
 
@@ -11,7 +10,7 @@ public class ELearnerModelPropertyTest extends TestCase{
 		
 	}
 	public static void main(String [] args){
-		ELearnerModelImplOne emi = new ELearnerModelImplOne();
+		ELearnerModelImpl emi = new ELearnerModelImpl();
 		EResource resource = emi.getEResource("rid00004");
 		EConcept concept = emi.getRootConcept();
 		emi.addPropertyIsResourceOfC(resource, concept);
@@ -19,7 +18,7 @@ public class ELearnerModelPropertyTest extends TestCase{
 		System.out.println(emi.getEResourcesByEConcept(concept));
 	}
 	public void setUp(){
-		emi  = new ELearnerModelImplOne();
+		emi  = new ELearnerModelImpl();
 	}
-	private ELearnerModelImplOne emi;
+	private ELearnerModelImpl emi;
 }
