@@ -3,7 +3,6 @@ package jena.impl;
 import java.io.File;
 import java.io.IOException;
 import ontology.EConcept;
-import ontology.EInterest;
 import ontology.EPerformance;
 import ontology.EPortfolio;
 import ontology.people.ELearner;
@@ -11,18 +10,17 @@ import ontology.resources.EResource;
 import util.Constant;
 import util.StringExchanger;
 import jena.OwlFactory;
-import jena.interfaces.ELearnerModelAddOperationInterface;
+import jena.interfaces.ELearnerModelOperationInterface;
 
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.InfModel;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Resource;
 import db.OwlOperation;
 import exception.jena.IndividualNotExistException;
 
-public class ELearnerModel implements ELearnerModelAddOperationInterface{
+public class ELearnerModel implements ELearnerModelOperationInterface{
 	protected OntModel ontModel;
 
     public ELearnerModel() {
@@ -50,7 +48,7 @@ public class ELearnerModel implements ELearnerModelAddOperationInterface{
 	public EConcept getRootConcept(){
 		EConcept rootConcept = new EConcept();
 		rootConcept.setCid("Software_Engineer");
-		rootConcept.setName("software engineering");
+		rootConcept.setName("软件工程");
 		return rootConcept;
 	}
     
@@ -135,16 +133,7 @@ public class ELearnerModel implements ELearnerModelAddOperationInterface{
         return true;
     }
 
-    @Override
-    public boolean addEInterest(EInterest interest) {
-        ELearner el = interest.getELearner();
-        EConcept con = interest.getEConcept();
-        Resource in = ontModel.createResource(Constant.NS + interest.getId(), ontModel.getResource(Constant.NS + "E_Interest"));
-        in.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_has_interest"), ontModel.getResource(Constant.NS + el.getId()));
-        in.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_is_concept_of_I"), ontModel.getResource(Constant.NS + con.getCid()));
-        in.addProperty(ontModel.getProperty(Constant.NS + "value"), String.valueOf(interest.getValue()), new XSDDatatype("string"));
-        return true;
-    }
+   
 
     @Override
     public boolean addEPerfomance(EPerformance performance) {
@@ -172,6 +161,31 @@ public class ELearnerModel implements ELearnerModelAddOperationInterface{
         ontModel.add(res, ontModel.getProperty(Constant.NS + "is_resource_of_C"), con);
         return true;
     }
-	
-	
+	@Override
+	public boolean updateEConcept(EConcept concept)
+			throws IndividualNotExistException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean updateEPerfomance(EPerformance performance)
+			throws IndividualNotExistException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean updateEPortfolio(EPortfolio portfolio)
+			throws IndividualNotExistException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public boolean updateEResource(EResource resource)
+			throws IndividualNotExistException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+ 
+
+
 }

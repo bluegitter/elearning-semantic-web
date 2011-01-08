@@ -9,18 +9,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import jena.OwlFactory;
-import jena.impl.ELearnerModelImplOne;
+import jena.impl.ELearnerModelImpl;
 import ontology.EConcept;
 import ontology.resources.EResource;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.mysql.jdbc.Connection;
 
+import exception.jena.IndividualNotExistException;
+
 public class ResourceParser {
 	public ResourceParser(){
-		emi = new ELearnerModelImplOne();
+		emi = new ELearnerModelImpl();
 	}
 	public ResourceParser(File file){
-		emi = new ELearnerModelImplOne(file);
+		emi = new ELearnerModelImpl(file);
 	}
 	public boolean writeToFile(File file){
 		return emi.writeToFile(file);
@@ -28,7 +30,7 @@ public class ResourceParser {
 	public OntModel getOntModel(){
 		return emi.getOntModel();
 	}
-	public HashMap<String,EConcept> getDataStructureResrouces(){
+	public HashMap<String,EConcept> getDataStructureResrouces() throws IndividualNotExistException{
 		Connection con = DataFactory.getConnection();
 		HashMap<String,EConcept> concepts = new HashMap<String,EConcept>();
 		try{
@@ -89,7 +91,7 @@ public class ResourceParser {
 		}
 		return concepts;
 	}
-	public ArrayList<EConcept> getBasicEConcepts() {
+	public ArrayList<EConcept> getBasicEConcepts() throws IndividualNotExistException {
 		Connection con = DataFactory.getConnection();
 		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
 		try{
@@ -135,7 +137,7 @@ public class ResourceParser {
 		}
 		return i;
 	}
-	public static void main(String [] args) throws IOException{
+	public static void main(String [] args) throws IOException, IndividualNotExistException{
 		File file = new File("test\\owl\\conceptsAndresource_RDF-XML.owl");
 		ResourceParser rp = new ResourceParser();
 		rp.getBasicEConcepts();
@@ -143,6 +145,6 @@ public class ResourceParser {
 		System.out.println("beginto write");
 		OwlOperation.writeOwlFile(rp.getOntModel(), file);
 	}
-	private ELearnerModelImplOne emi;
+	private ELearnerModelImpl emi;
 	
 }
