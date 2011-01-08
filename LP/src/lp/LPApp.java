@@ -1,7 +1,6 @@
 /*
  * LPApp.java
  */
-
 package lp;
 
 import db.ResourceParser;
@@ -20,11 +19,8 @@ public class LPApp extends SingleFrameApplication {
 
     public EUser user;
     public LPView view;
-
     public static ELearnerModelImpl lpModel;
-
     public static int TOOL_STATE = -1;
-
     public static final int MY_CONCEPT = 0;
     public static final int ALL_CONCEPT = 1;
     public static final int RECOMMEND = 2;
@@ -36,7 +32,8 @@ public class LPApp extends SingleFrameApplication {
     /**
      * At startup create and show the main frame of the application.
      */
-    @Override protected void startup() {
+    @Override
+    protected void startup() {
 //        ResourceParser rp = null;
 //        try {
 //            rp = new ResourceParser();
@@ -44,14 +41,14 @@ public class LPApp extends SingleFrameApplication {
 //            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 
-        lpModel = new ELearnerModelImpl(new java.io.File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
+        lpModel = new ELearnerModelImpl(new java.io.File("test/owl/conceptsAndresource_RDF-XML.owl"));
 
         user = null;
         view = new LPView(this);
         view.mainPanel.setLayout(new CentralLayout());
         view.mainPanel.add(new LoginPanel());
-       //  view.mainPanel.add(new NavigatorPane());
         view.lpToolBar.setVisible(false);
+        view.getFrame().setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         show(view);
     }
 
@@ -68,7 +65,8 @@ public class LPApp extends SingleFrameApplication {
      * Windows shown in our application come fully initialized from the GUI
      * builder, so this additional configuration is not needed.
      */
-    @Override protected void configureWindow(java.awt.Window root) {
+    @Override
+    protected void configureWindow(java.awt.Window root) {
     }
 
     /**
@@ -84,6 +82,6 @@ public class LPApp extends SingleFrameApplication {
      */
     public static void main(String[] args) {
         launch(LPApp.class, args);
-       // new TestFrame();
+        // new TestFrame();
     }
 }
