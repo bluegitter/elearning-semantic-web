@@ -3,7 +3,7 @@ package lp.display;
 import ontology.EConcept;
 import ontology.EPerformance;
 import ontology.people.ELearner;
-import ontology.resources.EResource;
+import ontology.resources.ISCB_Resource;
 
 
 /**
@@ -29,7 +29,7 @@ public class EClass implements Comparable{
         object = c;
     }
 
-    public EClass(EResource r) {
+    public EClass(ISCB_Resource r) {
         type = CType.resource;
         object = r;
     }

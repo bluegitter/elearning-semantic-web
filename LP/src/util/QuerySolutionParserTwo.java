@@ -3,7 +3,7 @@ package util;
 import ontology.EConcept;
 import ontology.EPortfolio;
 import ontology.people.ELearner;
-import ontology.resources.EResource;
+import ontology.resources.ISCB_Resource;
 
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntModel;
@@ -19,8 +19,8 @@ public class QuerySolutionParserTwo {
 		
 	}
 	*/
-	public static EResource getEResource(QuerySolution qs,Model model){
-		EResource res = new EResource();
+	public static ISCB_Resource getEResource(QuerySolution qs,Model model){
+		ISCB_Resource res = new ISCB_Resource();
 		String uri = qs.get("?resource").toString().trim();
 		String id = model.getResource(uri).getLocalName();
 		String name = qs.get("?r_name").toString().trim();
@@ -61,7 +61,7 @@ public class QuerySolutionParserTwo {
 		String id = getIdByURI(qs,model,"?portfolio");
 		float value = 0;
 		ELearner elearner = getELearner(qs,model);
-		EResource resource = getEResource(qs,model);
+		ISCB_Resource resource = getEResource(qs,model);
 		portfolio.setId(id);
 		portfolio.setElearner(elearner);
 		portfolio.setEResource(resource);

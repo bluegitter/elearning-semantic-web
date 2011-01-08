@@ -2,138 +2,174 @@ package jena.impl;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ontology.EConcept;
 import ontology.EPerformance;
 import ontology.EPortfolio;
 import ontology.people.ELearner;
-import ontology.resources.EResource;
+import ontology.resources.ISCB_Resource;
 import util.Constant;
 import util.StringExchanger;
 import jena.OwlFactory;
 import jena.interfaces.ELearnerModelOperationInterface;
-
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.ontology.Individual;
+import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.rdf.model.InfModel;
+import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.Resource;
+import com.hp.hpl.jena.rdf.model.Statement;
 import db.OwlOperation;
 import exception.jena.IndividualNotExistException;
+import java.util.Date;
 
-public class ELearnerModel implements ELearnerModelOperationInterface{
-	protected OntModel ontModel;
+public class ELearnerModel implements ELearnerModelOperationInterface {
+
+    protected OntModel ontModel;
 
     public ELearnerModel() {
         ontModel = OwlFactory.getOntModel();
     }
+
     public ELearnerModel(OntModel ontModel) {
         this.ontModel = ontModel;
     }
-    public ELearnerModel(File file){
-    	this.ontModel = OwlFactory.getOntModel(file);
+
+    public ELearnerModel(File file) {
+        this.ontModel = OwlFactory.getOntModel(file);
     }
-    public ELearnerModel(File file,String lang){
-    	this.ontModel = OwlFactory.getOntModel(file, lang);
+
+    public ELearnerModel(File file, String lang) {
+        this.ontModel = OwlFactory.getOntModel(file, lang);
     }
-    
+
     public boolean writeToFile(File file) {
         try {
             OwlOperation.writeOwlFile(ontModel, file);
             return true;
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            Logger.getLogger(ELearnerModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
-	public EConcept getRootConcept(){
-		EConcept rootConcept = new EConcept();
-		rootConcept.setCid("Software_Engineer");
-		rootConcept.setName("软件工程");
-		return rootConcept;
-	}
-    
-    public OntModel getOntModel(){
-    	return ontModel;
+
+    public EConcept getRootConcept() {
+        EConcept rootConcept = new EConcept();
+        rootConcept.setCid("Computer_Science");
+        rootConcept.setName("软件工程");
+        return rootConcept;
     }
-    public InfModel getInfModel(){
-    	return ontModel;
+
+    public OntModel getOntModel() {
+        return ontModel;
     }
+
     /**************************************************************************************************
      * Check whether the individual exists in the model
      ***************************************************************************************************/
-	public boolean containEConcept(String cid) {
-    	return ontModel.containsResource(ontModel.getResource(Constant.NS+cid));
-	}
-	public boolean containELearner(String eid) {
-		return ontModel.containsResource(ontModel.getResource(Constant.NS+eid));
-	}
-	public boolean containEResource(String rid) {
-		return ontModel.containsResource(ontModel.getResource(Constant.NS+rid));
-	}
-	public boolean containEPortfolio(String portId) {
-		return ontModel.containsResource(ontModel.getResource(Constant.NS+portId));
-	}
-	public boolean containEPerformance(String performId){
-		return ontModel.containsResource(ontModel.getResource(Constant.NS+performId));
-	}
-	public boolean containEInterest(String interestId){
-		return ontModel.containsResource(ontModel.getResource(Constant.NS+interestId));
-	}
+    public boolean containEConcept(String cid) {
+        return ontModel.containsResource(ontModel.getResource(Constant.NS + cid));
+    }
+
+    public boolean containELearner(String eid) {
+        return ontModel.containsResource(ontModel.getResource(Constant.NS + eid));
+    }
+
+    public boolean containEResource(String rid) {
+        return ontModel.containsResource(ontModel.getResource(Constant.NS + rid));
+    }
+
+    public boolean containEPortfolio(String portId) {
+        return ontModel.containsResource(ontModel.getResource(Constant.NS + portId));
+    }
+
+    public boolean containEPerformance(String performId) {
+        return ontModel.containsResource(ontModel.getResource(Constant.NS + performId));
+    }
+
+    public boolean containEInterest(String interestId) {
+        return ontModel.containsResource(ontModel.getResource(Constant.NS + interestId));
+    }
+
     /*******************************************************************************************************
      * Add new Data Operations
      * @throws IndividualNotExistException 
      *******************************************************************************************************/
     @Override
     public boolean addELearner(ELearner elearner) throws IndividualNotExistException {
-    	if(containELearner(elearner.getId())){
-    		throw new IndividualNotExistException("elearner "+elearner.getId()+" has already existed in the model");
-    	}
+        if (containELearner(elearner.getId())) {
+            throw new IndividualNotExistException("elearner " + elearner.getId() + " has already existed in the model");
+        }
         Resource el = ontModel.createResource(Constant.NS + elearner.getId(), ontModel.getResource(Constant.NS + "E_Learner"));
         ontModel.add(el, ontModel.getProperty(Constant.NS + "id"), elearner.getId());
         ontModel.add(el, ontModel.getProperty(Constant.NS + "name"), elearner.getName(), new XSDDatatype("string"));
+        ontModel.add(el, ontModel.getProperty(Constant.NS + "gender"), elearner.getGender(), new XSDDatatype("string"));
         ontModel.add(el, ontModel.getProperty(Constant.NS + "grade"), elearner.getGrade(), new XSDDatatype("string"));
         ontModel.add(el, ontModel.getProperty(Constant.NS + "address"), elearner.getAddress(), new XSDDatatype("string"));
         ontModel.add(el, ontModel.getProperty(Constant.NS + "email"), elearner.getEmail(), new XSDDatatype("string"));
         return true;
     }
 
-    @Override 
-    public boolean addEResource(EResource resource) throws IndividualNotExistException {
-    	if(containEResource(resource.getRid())){
-    		throw new IndividualNotExistException("EResource "+resource.getRid()+" has already existed in the model");
-    	}
-    	Resource re = ontModel.createResource(Constant.NS + resource.getRid(), ontModel.getResource(Constant.NS + "E_Resource"));
+    @Override
+    public boolean addEResource(ISCB_Resource resource) throws IndividualNotExistException {
+        if (containEResource(resource.getRid())) {
+            throw new IndividualNotExistException("EResource " + resource.getRid() + " has already existed in the model");
+        }
+        Resource re = ontModel.createResource(Constant.NS + resource.getRid(), ontModel.getResource(Constant.NS + "ISCB_Resource"));
         ontModel.add(re, ontModel.getProperty(Constant.NS + "id"), resource.getRid());
         ontModel.add(re, ontModel.getProperty(Constant.NS + "name"), resource.getName(), new XSDDatatype("string"));
-        ontModel.add(re, ontModel.getProperty(Constant.NS + "fileLocation"), resource.getFileLocation(), new XSDDatatype("string"));
+        ontModel.add(re, ontModel.getProperty(Constant.NS + "description"), resource.getResourceDescription(), new XSDDatatype("string"));
+        ontModel.add(re, ontModel.getProperty(Constant.NS + "resource_quality"), resource.getResourceQuality(), new XSDDatatype("string"));
+        ontModel.add(re, ontModel.getProperty(Constant.NS + "resource_type"), resource.getResourceType(), new XSDDatatype("string"));
+        ontModel.add(re, ontModel.getProperty(Constant.NS + "upload_time"), StringExchanger.parseDateToString(resource.getUploadTime()), new XSDDatatype("date"));
+        ontModel.add(re, ontModel.getProperty(Constant.NS + "file_location"), resource.getFileLocation(), new XSDDatatype("string"));
         ontModel.add(re, ontModel.getProperty(Constant.NS + "difficulty"), resource.getDifficulty(), new XSDDatatype("string"));
+        String postfix = resource.getPostfix();
+        Individual indi = getFileFormat(postfix);
+        if (indi != null) {
+            Statement s = ontModel.createStatement(re, ontModel.getProperty(Constant.NS + "has_postfix"), indi);
+            ontModel.add(s);
+        }
         return true;
+    }
+
+    @Override
+    public Individual getFileFormat(String postfix) {
+        OntClass concept = ontModel.getOntClass(Constant.NS + "File_Format");
+        java.util.Iterator<Individual> iter = ontModel.listIndividuals(concept);
+        while (iter.hasNext()) {
+            Individual indi = (Individual) iter.next();
+            String s = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "file_postfix")).getLiteral().getString();
+            if (postfix.equals(s)) {
+                return indi;
+            }
+        }
+        return null;
     }
 
     @Override
     public boolean addEPortfolio(EPortfolio portfolio) {
         ELearner el = portfolio.getElearner();
-        EResource res = portfolio.getEResource();
+        ISCB_Resource res = portfolio.getEResource();
         Resource port = ontModel.createResource(Constant.NS + portfolio.getId(), ontModel.getResource(Constant.NS + "E_Portfolio"));
         ontModel.add(port, ontModel.getProperty(Constant.NS + "inverse_of_has_portfolio"), ontModel.getResource(Constant.NS + el.getId()));
         ontModel.add(port, ontModel.getProperty(Constant.NS + "inverse_of_is_resource_of_P"), ontModel.getResource(Constant.NS + res.getRid()));
         ontModel.addLiteral(port, ontModel.getProperty(Constant.NS + "value"), portfolio.getValue());
-        ontModel.add(port, ontModel.getProperty(Constant.NS + "datetime"), StringExchanger.parseDateToString(portfolio.getDatetime()), new XSDDatatype("dateTime"));
+        ontModel.add(port, ontModel.getProperty(Constant.NS + "date_time"), StringExchanger.parseDateToString(portfolio.getDatetime()), new XSDDatatype("dateTime"));
         return true;
     }
 
-    @Override 
+    @Override
     public boolean addEConcept(EConcept concept) throws IndividualNotExistException {
-    	if(containEConcept(concept.getCid())){
-    		throw new IndividualNotExistException("EConcept "+concept.getCid()+"  has already existed in the model");
-    	}
+        if (containEConcept(concept.getCid())) {
+            throw new IndividualNotExistException("EConcept " + concept.getCid() + "  has already existed in the model");
+        }
         Resource con = ontModel.createResource(Constant.NS + concept.getCid(), ontModel.getResource(Constant.NS + "E_Concept"));
         ontModel.add(con, ontModel.getProperty(Constant.NS + "id"), concept.getCid());
         ontModel.add(con, ontModel.getProperty(Constant.NS + "name"), concept.getName(), new XSDDatatype("string"));
         return true;
     }
-
-   
 
     @Override
     public boolean addEPerfomance(EPerformance performance) {
@@ -143,9 +179,10 @@ public class ELearnerModel implements ELearnerModelOperationInterface{
         ontModel.add(perf, ontModel.getProperty(Constant.NS + "inverse_of_has_performance"), ontModel.getResource(Constant.NS + el.getId()));
         ontModel.add(perf, ontModel.getProperty(Constant.NS + "inverse_of_is_concept_of_P"), ontModel.getResource(Constant.NS + con.getCid()));
         ontModel.addLiteral(perf, ontModel.getProperty(Constant.NS + "value"), performance.getValue());
-        ontModel.add(perf, ontModel.getProperty(Constant.NS + "datetime"), StringExchanger.parseDateToString(performance.getDatetime()), new XSDDatatype("dateTime"));
+        ontModel.add(perf, ontModel.getProperty(Constant.NS + "date_time"), StringExchanger.parseDateToString(performance.getDatetime()), new XSDDatatype("dateTime"));
         return true;
     }
+
     @Override
     public boolean addPropertyIsSonOf(EConcept fatherConcept, EConcept sonConcept) {
         Resource son = ontModel.getResource(Constant.NS + sonConcept.getCid());
@@ -155,37 +192,126 @@ public class ELearnerModel implements ELearnerModelOperationInterface{
     }
 
     @Override
-    public boolean addPropertyIsResourceOfC(EResource resource, EConcept concept) {
+    public boolean addPropertyIsResourceOfC(ISCB_Resource resource, EConcept concept) {
         Individual res = ontModel.getIndividual(Constant.NS + resource.getRid());
         Individual con = ontModel.getIndividual(Constant.NS + concept.getCid());
         ontModel.add(res, ontModel.getProperty(Constant.NS + "is_resource_of_C"), con);
         return true;
     }
-	@Override
-	public boolean updateEConcept(EConcept concept)
-			throws IndividualNotExistException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean updateEPerfomance(EPerformance performance)
-			throws IndividualNotExistException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean updateEPortfolio(EPortfolio portfolio)
-			throws IndividualNotExistException {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	@Override
-	public boolean updateEResource(EResource resource)
-			throws IndividualNotExistException {
-		// TODO Auto-generated method stub
-		return false;
-	}
- 
 
+    @Override
+    public boolean updateEConcept(EConcept concept) throws IndividualNotExistException {
+        if (!containEConcept(concept.getCid())) {
+            throw new IndividualNotExistException("EConcept " + concept.getCid() + "  does not exist");
+        }
+        Individual indi = ontModel.getIndividual(Constant.NS + concept.getCid());
+        Property p = ontModel.getProperty(Constant.NS + "name");
+        ontModel.remove(indi, p, indi.getPropertyValue(p));
+        ontModel.add(indi, p, concept.getName(), new XSDDatatype("string"));
+        return false;
+    }
 
+    /*******************************************************************************************
+     * update the value of the EPerformance
+     *****************************************************************************************/
+    @Override
+    public boolean updateEPerfomance(EPerformance performance) throws IndividualNotExistException {
+        if (!containEPerformance(performance.getId())) {
+            throw new IndividualNotExistException("EPerformance " + performance.getId() + " does not exist");
+        }
+        Individual indi = ontModel.getIndividual(Constant.NS + performance.getId());
+        float newValue = performance.getValue();
+        Property p = ontModel.getProperty(Constant.NS + "value");
+        ontModel.remove(indi, p, indi.getPropertyValue(p));
+        ontModel.add(indi, p, String.valueOf(newValue), new XSDDatatype("float"));
+        return true;
+    }
+
+    /*******************************************************************************************
+     * update the value of the EPortfolio
+     *****************************************************************************************/
+    @Override
+    public boolean updateEPortfolio(EPortfolio portfolio) throws IndividualNotExistException {
+        if (!containEPortfolio(portfolio.getId())) {
+            throw new IndividualNotExistException("EPortfolio " + portfolio.getId() + " does not exist");
+        }
+        Individual indi = ontModel.getIndividual(Constant.NS + portfolio.getId());
+        float newValue = portfolio.getValue();
+        Property p = ontModel.getProperty(Constant.NS + "value");
+        ontModel.remove(indi, p, indi.getPropertyValue(p));
+        ontModel.add(indi, p, String.valueOf(newValue), new XSDDatatype("float"));
+        return true;
+    }
+
+    @Override
+    public boolean updateEResource(ISCB_Resource resource) throws IndividualNotExistException {
+        if (!(containEResource(resource.getRid()))) {
+            throw new IndividualNotExistException("EResource " + resource.getRid() + " does not exist");
+        }
+
+        Individual indi = ontModel.getIndividual(Constant.NS + resource.getRid());
+        Property p = ontModel.getProperty(Constant.NS + "name");
+        String name = indi.getRequiredProperty(p).getLiteral().getString();
+        if (!resource.getName().equals(name)) {
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, resource.getName(), new XSDDatatype("string"));
+        }
+        p = ontModel.getProperty(Constant.NS + "description");
+        String description = indi.getRequiredProperty(p).getLiteral().getString();
+        if (!resource.getResourceDescription().equals(description)) {
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, resource.getResourceDescription(), new XSDDatatype("string"));
+        }
+        p = ontModel.getProperty(Constant.NS + "resource_quality");
+        String resource_quality = indi.getRequiredProperty(p).getLiteral().getString();
+        if (!resource.getResourceQuality().equals(resource_quality)) {
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, resource.getResourceQuality(), new XSDDatatype("string"));
+        }
+        p = ontModel.getProperty(Constant.NS + "resource_type");
+        String resource_type = indi.getRequiredProperty(p).getLiteral().getString();
+        if (!resource.getResourceType().equals(resource_type)) {
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, resource.getResourceType(), new XSDDatatype("string"));
+        }
+        p = ontModel.getProperty(Constant.NS + "upload_time");
+        String upload_time = indi.getRequiredProperty(p).getLiteral().getString();
+        Date time = StringExchanger.parseStringToDate(upload_time);
+        if (!resource.getUploadTime().equals(time)) {
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, StringExchanger.parseDateToString(resource.getUploadTime()), new XSDDatatype("date"));
+        }
+        p = ontModel.getProperty(Constant.NS + "file_location");
+        String fileLocation = indi.getRequiredProperty(p).getLiteral().getString();
+        if (!resource.getFileLocation().equals(fileLocation)) {
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, resource.getFileLocation(), new XSDDatatype("string"));
+        }
+
+        p = ontModel.getProperty(Constant.NS + "difficulty");
+        String difficulty = indi.getRequiredProperty(p).getLiteral().getString();
+        if (!resource.getDifficulty().equals(difficulty)) {
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, resource.getDifficulty(), new XSDDatatype("string"));
+        }
+        p = ontModel.getProperty(Constant.NS + "has_postfix");
+        Resource r = indi.getPropertyResourceValue(p);
+        String postfix = r.getRequiredProperty(ontModel.getProperty(Constant.NS + "file_postfix")).getLiteral().getString();
+        String newPostfixString = resource.getPostfix();
+        Individual newPostfix = getFileFormat(newPostfixString);
+        if (newPostfix != null) {
+            if (!newPostfixString.equals(postfix)) {
+                ontModel.remove(indi, p, indi.getPropertyResourceValue(p));
+                ontModel.add(ontModel.createStatement(indi, p, newPostfix));
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public String getPostFix(Resource fileFormat) {
+        Property p = ontModel.getProperty(Constant.NS + "file_postfix");
+        return fileFormat.getRequiredProperty(p).getLiteral().getString();
+    }
 }

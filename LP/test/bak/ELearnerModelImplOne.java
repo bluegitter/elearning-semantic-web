@@ -12,7 +12,7 @@ import ontology.EInterest;
 import ontology.EPerformance;
 import ontology.EPortfolio;
 import ontology.people.ELearner;
-import ontology.resources.EResource;
+import ontology.resources.ISCB_Resource;
 import util.Constant;
 import util.QuerySolutionParser;
 import util.StringExchanger;
@@ -64,7 +64,7 @@ public class ELearnerModelImplOne extends ELearnerModel  {
     }
 
     @Override
-    public boolean addEResource(EResource resource) {
+    public boolean addEResource(ISCB_Resource resource) {
         if (containEResource(resource.getRid())) {
             return false;
         }
@@ -79,7 +79,7 @@ public class ELearnerModelImplOne extends ELearnerModel  {
     @Override
     public boolean addEPortfolio(EPortfolio portfolio) {
         ELearner el = portfolio.getElearner();
-        EResource res = portfolio.getEResource();
+        ISCB_Resource res = portfolio.getEResource();
         if (!containELearner(el.getId())) {
             return false;
         }
@@ -151,7 +151,7 @@ public class ELearnerModelImplOne extends ELearnerModel  {
     }
 
     @Override
-    public boolean addPropertyIsResourceOfC(EResource resource, EConcept concept) {
+    public boolean addPropertyIsResourceOfC(ISCB_Resource resource, EConcept concept) {
         Individual res = ontModel.getIndividual(Constant.NS + resource.getRid());
         Individual con = ontModel.getIndividual(Constant.NS + concept.getCid());
         ontModel.add(res, ontModel.getProperty(Constant.NS + "is_resource_of_C"), con);
@@ -377,7 +377,7 @@ public class ELearnerModelImplOne extends ELearnerModel  {
         return el;
     }
 
-    public EResource getEResource(String rid) {
+    public ISCB_Resource getEResource(String rid) {
         String queryString =
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
                 + "PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> "
@@ -393,7 +393,7 @@ public class ELearnerModelImplOne extends ELearnerModel  {
         QueryExecution qe = QueryExecutionFactory.create(query, ontModel);
         ResultSet results = qe.execSelect();
         // Output query results
-        EResource res = null;
+        ISCB_Resource res = null;
         if (results.hasNext()) {
             QuerySolution qs = results.next();
             String uri = QuerySolutionParser.getURI(qs, "?resource");
@@ -444,7 +444,7 @@ public class ELearnerModelImplOne extends ELearnerModel  {
         return ps;
     }
 
-    public EPortfolio getEPortfolio(ELearner elearner, EResource resource) {
+    public EPortfolio getEPortfolio(ELearner elearner, ISCB_Resource resource) {
         String queryString =
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
                 + "PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> "
@@ -515,7 +515,7 @@ public class ELearnerModelImplOne extends ELearnerModel  {
             String dateString = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "datetime")).asLiteral().getString();
             Date datetime = StringExchanger.parseStringToDate(dateString);
 
-            EResource resource = QuerySolutionParser.getEResource(resURI, ontModel);
+            ISCB_Resource resource = QuerySolutionParser.getEResource(resURI, ontModel);
             EPortfolio port = new EPortfolio();
             port.setId(pid);
             port.setEResource(resource);
@@ -548,7 +548,7 @@ public class ELearnerModelImplOne extends ELearnerModel  {
             Date datetime = StringExchanger.parseStringToDate(dateString);
             SimpleSelector res_selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS + "is_resource_of_P"), portResource);
             StmtIterator res_iter = ontModel.listStatements(res_selector);
-            EResource resource = null;
+            ISCB_Resource resource = null;
             while (res_iter.hasNext()) {
                 Statement res_statement = res_iter.nextStatement();
                 Resource resResource = res_statement.getSubject();
@@ -566,8 +566,8 @@ public class ELearnerModelImplOne extends ELearnerModel  {
         return portfolios;
     }
 
-    public ArrayList<EResource> getEResourcesByEConcept(EConcept concept) {
-        ArrayList<EResource> resources = new ArrayList<EResource>();
+    public ArrayList<ISCB_Resource> getEResourcesByEConcept(EConcept concept) {
+        ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
         String queryString =
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
                 + "PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> "
@@ -586,15 +586,15 @@ public class ELearnerModelImplOne extends ELearnerModel  {
         while (results.hasNext()) {
             QuerySolution qs = results.next();
             String uri = QuerySolutionParser.getURI(qs, "?resource");
-            EResource res = QuerySolutionParser.getEResource(uri, ontModel);
+            ISCB_Resource res = QuerySolutionParser.getEResource(uri, ontModel);
             resources.add(res);
         }
         qe.close();
         return resources;
     }
 
-    public ArrayList<EResource> getAllEResources() {
-        ArrayList<EResource> resources = new ArrayList<EResource>();
+    public ArrayList<ISCB_Resource> getAllEResources() {
+        ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
         String queryString =
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
                 + "PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> "
@@ -610,7 +610,7 @@ public class ELearnerModelImplOne extends ELearnerModel  {
         while (results.hasNext()) {
             QuerySolution qs = results.next();
             String resURI = QuerySolutionParser.getURI(qs, "?resource");
-            EResource res = QuerySolutionParser.getEResource(resURI, ontModel);
+            ISCB_Resource res = QuerySolutionParser.getEResource(resURI, ontModel);
             resources.add(res);
         }
         qe.close();
@@ -760,9 +760,9 @@ public class ELearnerModelImplOne extends ELearnerModel  {
         return elearners;
     }
 
-    public ArrayList<EResource> getRecommendEResources(ELearner elearner,
+    public ArrayList<ISCB_Resource> getRecommendEResources(ELearner elearner,
             int rule) {
-        ArrayList<EResource> resources = new ArrayList<EResource>();
+        ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
         String i = "is_recommend_of_r_" + rule;
         String queryString =
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
@@ -783,16 +783,16 @@ public class ELearnerModelImplOne extends ELearnerModel  {
         while (results.hasNext()) {
             QuerySolution qs = results.next();
             String uri = QuerySolutionParser.getURI(qs, "?resource");
-            EResource res = QuerySolutionParser.getEResource(uri, ontModel);
+            ISCB_Resource res = QuerySolutionParser.getEResource(uri, ontModel);
             resources.add(res);
         }
         qe.close();
         return resources;
     }
 
-    public ArrayList<EResource> getEResourcesByInterestEConcepts(
+    public ArrayList<ISCB_Resource> getEResourcesByInterestEConcepts(
             ELearner elearner) {
-        ArrayList<EResource> resources = new ArrayList<EResource>();
+        ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
         String queryString =
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
                 + "PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> "
@@ -814,7 +814,7 @@ public class ELearnerModelImplOne extends ELearnerModel  {
         while (results.hasNext()) {
             QuerySolution qs = results.next();
             String uri = QuerySolutionParser.getURI(qs, "?resource");
-            EResource res = QuerySolutionParser.getEResource(uri, ontModel);
+            ISCB_Resource res = QuerySolutionParser.getEResource(uri, ontModel);
             resources.add(res);
         }
         qe.close();
@@ -840,5 +840,9 @@ public class ELearnerModelImplOne extends ELearnerModel  {
 
     public ArrayList<EConcept> getUnInterestConcepts(ELearner elearner) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    private InfModel getInfModel() {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 }

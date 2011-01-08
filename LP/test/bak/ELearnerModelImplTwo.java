@@ -7,7 +7,7 @@ import ontology.EInterest;
 import ontology.EPerformance;
 import ontology.EPortfolio;
 import ontology.people.ELearner;
-import ontology.resources.EResource;
+import ontology.resources.ISCB_Resource;
 import util.Constant;
 import util.QuerySolutionParserTwo;
 import util.StringExchanger;
@@ -60,7 +60,7 @@ public class ELearnerModelImplTwo {
 		model.add(el,model.getProperty(Constant.NS+"email"), elearner.getEmail(),new XSDDatatype("string"));
 		return true;
 	}
-	public boolean addEResource(EResource resource){
+	public boolean addEResource(ISCB_Resource resource){
 		Resource re = model.createResource(Constant.NS+resource.getRid(),model.getResource(Constant.NS+"E_Resource"));
 		model.add(re,model.getProperty(Constant.NS+"id"), resource.getRid());
 		model.add(re,model.getProperty(Constant.NS+"name"), resource.getName(),new XSDDatatype("string"));
@@ -70,7 +70,7 @@ public class ELearnerModelImplTwo {
 	}
 	public boolean addEPortfolio(EPortfolio portfolio) {
 		ELearner el = portfolio.getElearner();
-		EResource res = portfolio.getEResource();
+		ISCB_Resource res = portfolio.getEResource();
 		if(!containELearner(el.getId())){
 			return false;
 		}
@@ -349,9 +349,9 @@ public class ELearnerModelImplTwo {
 		return elearners;
 	}
 	 
-	public ArrayList<EResource> getRecommendEResources(ELearner elearner,
+	public ArrayList<ISCB_Resource> getRecommendEResources(ELearner elearner,
 			int rule) {
-		ArrayList<EResource> resources = new ArrayList<EResource>();
+		ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
 		String i = "is_recommend_of_r_"+rule;
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
@@ -373,7 +373,7 @@ public class ELearnerModelImplTwo {
 		
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
-			EResource res = QuerySolutionParserTwo.getEResource(qs, model);
+			ISCB_Resource res = QuerySolutionParserTwo.getEResource(qs, model);
 			resources.add(res);
 		}
 		qe.close();
@@ -441,7 +441,7 @@ public class ELearnerModelImplTwo {
 	}
 
 	 
-	public EResource getEResource(String rid) {
+	public ISCB_Resource getEResource(String rid) {
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
 			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
@@ -460,7 +460,7 @@ public class ELearnerModelImplTwo {
 		QueryExecution qe = QueryExecutionFactory.create(query, model);
 		ResultSet results = qe.execSelect();
 		// Output query results	
-		EResource res = null;
+		ISCB_Resource res = null;
 		if(results.hasNext()){
 			QuerySolution qs = results.next();
 			res = QuerySolutionParserTwo.getEResource(qs, model);
@@ -562,7 +562,7 @@ public class ELearnerModelImplTwo {
 		ResultSet results = qe.execSelect();
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
-			EResource resource = QuerySolutionParserTwo.getEResource(qs, model);
+			ISCB_Resource resource = QuerySolutionParserTwo.getEResource(qs, model);
 			EPortfolio port = new EPortfolio();
 			String pid = QuerySolutionParserTwo.getIdByURI(qs, model, "?portfolio");
 			String valueString = StringExchanger.getCommonString(qs.get("?portfolio_value").toString().trim());
@@ -579,8 +579,8 @@ public class ELearnerModelImplTwo {
 	}
 	
 	 
-	public ArrayList<EResource> getEResourcesByEConcept(EConcept concept) {
-		ArrayList<EResource> resources = new ArrayList<EResource>();
+	public ArrayList<ISCB_Resource> getEResourcesByEConcept(EConcept concept) {
+		ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
 			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
@@ -601,15 +601,15 @@ public class ELearnerModelImplTwo {
 		
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
-			EResource res = QuerySolutionParserTwo.getEResource(qs, model);
+			ISCB_Resource res = QuerySolutionParserTwo.getEResource(qs, model);
 			resources.add(res);
 		}
 		qe.close();
 		return resources;
 	}
 	 
-	public ArrayList<EResource> getAllEResources() {
-		ArrayList<EResource> resources = new ArrayList<EResource>();
+	public ArrayList<ISCB_Resource> getAllEResources() {
+		ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
 			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
@@ -627,7 +627,7 @@ public class ELearnerModelImplTwo {
 		ResultSet results = qe.execSelect();
 		while(results.hasNext()){
 			QuerySolution qs = results.next();
-			EResource res = QuerySolutionParserTwo.getEResource(qs, model);
+			ISCB_Resource res = QuerySolutionParserTwo.getEResource(qs, model);
 			resources.add(res);
 		}
 		qe.close();
@@ -679,7 +679,7 @@ public class ELearnerModelImplTwo {
 	}
 	
 	 
-	public EPortfolio getEPortfolio(ELearner elearner, EResource resource) {
+	public EPortfolio getEPortfolio(ELearner elearner, ISCB_Resource resource) {
 		String queryString = 
 			"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "+
 			"PREFIX base: <http://www.owl-ontologies.com/e-learning.owl#> " +
@@ -714,7 +714,7 @@ public class ELearnerModelImplTwo {
 		return portfolio;
 	}
 	 
-	public boolean addPropertyIsResourceOfC(EResource resource, EConcept concept) {
+	public boolean addPropertyIsResourceOfC(ISCB_Resource resource, EConcept concept) {
 		Resource res = model.getResource(Constant.NS+resource.getRid());
 		Resource con = model.getResource(Constant.NS+concept.getCid());
 		model.add(res, model.getProperty(Constant.NS+"is_resource_of_C"), con);

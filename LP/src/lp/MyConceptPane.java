@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 import ontology.EPerformance;
 import ontology.EPortfolio;
 import ontology.people.ELearner;
-import ontology.resources.EResource;
+import ontology.resources.ISCB_Resource;
 
 /**
  *
@@ -52,11 +52,11 @@ public class MyConceptPane extends javax.swing.JPanel {
 
         ArrayList<EPortfolio> eps = LPApp.lpModel.getEPortfolios(LPApp.getApplication().user.learner);
 
-        ArrayList<EResource> erl = new ArrayList<EResource>();
+        ArrayList<ISCB_Resource> erl = new ArrayList<ISCB_Resource>();
         for(EPortfolio ep:eps){
           erl.add(ep.getEResource());
         }
-        for (EResource er : erl) {
+        for (ISCB_Resource er : erl) {
             Object[] oa = {er.getName(), er.getDifficulty(), new javax.swing.JLabel(util.Constant.SERVERTESTURL + "/resources/" + er.getRid())};
             model.addRow(oa);
         }

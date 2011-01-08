@@ -9,7 +9,7 @@ import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import ontology.EConcept;
-import ontology.resources.EResource;
+import ontology.resources.ISCB_Resource;
 import prefuse.Constants;
 import prefuse.Display;
 import prefuse.Visualization;
@@ -300,13 +300,13 @@ public class AllConceptDisplay extends Display {
 
                 cd.updateData();
 
-                ArrayList<EResource> ra = LPApp.lpModel.getEResourcesByEConcept(ec);
+                ArrayList<ISCB_Resource> ra = LPApp.lpModel.getEResourcesByEConcept(ec);
                 JTable table = cd.resouceTable;
                 DefaultTableModel model = (DefaultTableModel) table.getModel();
                 for (int index = model.getRowCount() - 1; index >= 0; index--) {
                     model.removeRow(index);
                 }
-                for (EResource er : ra) {
+                for (ISCB_Resource er : ra) {
                     Object[] oa = {er.getName(), er.getDifficulty(), new javax.swing.JLabel(util.Constant.SERVERTESTURL + "/resources/" + er.getRid())};
                     model.addRow(oa);
                 }

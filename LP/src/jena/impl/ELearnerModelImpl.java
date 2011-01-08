@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
-
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
@@ -15,14 +14,13 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
-
 import exception.jena.IndividualNotExistException;
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.EPerformance;
 import ontology.EPortfolio;
 import ontology.people.ELearner;
-import ontology.resources.EResource;
+import ontology.resources.ISCB_Resource;
 import util.Constant;
 import util.StringExchanger;
 import jena.interfaces.ELearnerModelQueryInterface;
@@ -33,8 +31,7 @@ import jena.interfaces.ELearnerUserOperationInterface;
  * @author william
  *
  **************************************************************************/
-public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQueryInterface,ELearnerUserOperationInterface
-         {
+public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQueryInterface, ELearnerUserOperationInterface {
 
     public ELearnerModelImpl() {
         super();
@@ -54,10 +51,15 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         ELearnerModelImpl emi = new ELearnerModelImpl(file);
         System.out.println("intitime:" + (System.currentTimeMillis() - init) + "ms");
         ELearner el = emi.getELearner("el001");
-        EConcept con = emi.getEConcept("cid38");
+        EConcept con = emi.getEConcept("Computer_Science");
+
         long t1 = System.currentTimeMillis();
-        ArrayList<EConcept> inte = emi.getInterestConcepts(el);
+        ArrayList<EConcept> inte = emi.getSonConcepts(con);
         System.out.println("time:" + (System.currentTimeMillis() - t1) + "ms\tintests: " + inte.size());
+        System.out.println(inte);
+        for(int i = 0;i<inte.size();i++){
+             System.out.println( inte.get(i).getName());
+        }
         long t2 = System.currentTimeMillis();
         ArrayList<EConcept> all = emi.getAllEConcepts();
         System.out.println("time:" + (System.currentTimeMillis() - t2) + "ms\talls: " + all.size());
@@ -74,43 +76,22 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         Iterator<Individual> iter = ontModel.listIndividuals(concept);
         while (iter.hasNext()) {
             Individual indi = (Individual) iter.next();
-            String id = indi.getLocalName();
-            String name = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "name")).asLiteral().getString();
-            EConcept con = new EConcept(id, name);
-            concepts.add(con);
-        }
-        return concepts;
-    }
-
-    public ArrayList<EConcept> getAllEConceptsTwo() {
-        ArrayList<EConcept> concepts = new ArrayList<EConcept>();
-        OntClass concept = ontModel.getOntClass(Constant.NS + "E_Concept");
-        Iterator<Individual> iter = ontModel.listIndividuals(concept);
-        while (iter.hasNext()) {
-            Individual indi = (Individual) iter.next();
-            String id = indi.getLocalName();
-            concepts.add(getEConcept(id));
+            concepts.add(getEConcept(indi.getLocalName()));
         }
         return concepts;
     }
 
     @Override
-    public ArrayList<EResource> getAllEResources() {
-        Resource resourceClass = ontModel.getResource(Constant.NS + "E_Resource");
+    public ArrayList<ISCB_Resource> getAllEResources() {
+        Resource resourceClass = ontModel.getResource(Constant.NS + "ISCB_Resource");
         SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NSRDF + "type"), resourceClass);
         StmtIterator iter = ontModel.listStatements(selector);
 
-        ArrayList<EResource> resources = new ArrayList<EResource>();
+        ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
         while (iter.hasNext()) {
             Statement s = iter.nextStatement();
             Resource r = s.getSubject();
-            EResource er = new EResource(r.getLocalName());
-            String name = r.getRequiredProperty(ontModel.getProperty(Constant.NS + "name")).toString();
-            String difficulty = r.getRequiredProperty(ontModel.getProperty(Constant.NS + "difficulty")).toString();
-            String fileLocation = r.getRequiredProperty(ontModel.getProperty(Constant.NS + "fileLocation")).toString();
-            er.setName(name);
-            er.setDifficulty(difficulty);
-            er.setFileLocation(fileLocation);
+            ISCB_Resource er = getEResource(r.getLocalName());
             resources.add(er);
         }
         return resources;
@@ -118,10 +99,9 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 
     @Override
     public EConcept getEConcept(String cid) {
-        EConcept concept = new EConcept(cid);
         Individual indi = ontModel.getIndividual(Constant.NS + cid);
-        concept.setName(indi.getPropertyValue(ontModel.getProperty(Constant.NS + "name")).asLiteral().getString());
-        return concept;
+        String name = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "name")).getLiteral().getString();
+        return new EConcept(cid, name);
     }
 
     @Override
@@ -134,6 +114,12 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
             elearner.setEmail(" ");
         } else {
             elearner.setEmail(email.asLiteral().getString());
+        }
+        RDFNode gender = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "gender"));
+        if (gender == null) {
+            elearner.setGender("secret");
+        } else {
+            elearner.setGender(gender.asLiteral().getString());
         }
         RDFNode address = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "address"));
         if (address == null) {
@@ -163,7 +149,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
             StmtIterator iter_con = ontModel.listStatements(selector_con);
             while (iter_con.hasNext()) {
                 float value = (Float) r.getRequiredProperty(ontModel.getProperty(Constant.NS + "value")).getLiteral().getFloat();
-                String dateString = r.getRequiredProperty(ontModel.getProperty(Constant.NS + "datetime")).getLiteral().getString();
+                String dateString = r.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time")).getLiteral().getString();
                 Date datetime = StringExchanger.parseStringToDate(dateString);
                 EPerformance performance = new EPerformance();
                 performance.setElearner(elearner);
@@ -191,7 +177,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
                 Resource conResource = iter_con.nextStatement().getSubject();
                 EConcept concept = getEConcept(conResource.getLocalName());
                 float value = (Float) r.getRequiredProperty(ontModel.getProperty(Constant.NS + "value")).getLiteral().getFloat();
-                String dateString = r.getRequiredProperty(ontModel.getProperty(Constant.NS + "datetime")).getLiteral().getString();
+                String dateString = r.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time")).getLiteral().getString();
                 Date datetime = StringExchanger.parseStringToDate(dateString);
 
                 EPerformance performance = new EPerformance();
@@ -207,7 +193,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
     }
 
     @Override
-    public EPortfolio getEPortfolio(ELearner elearner, EResource resource) {
+    public EPortfolio getEPortfolio(ELearner elearner, ISCB_Resource resource) {
         Resource res = ontModel.getResource(Constant.NS + resource.getRid());
         Resource el = ontModel.getResource(Constant.NS + elearner.getId());
         SimpleSelector selector_con = new SimpleSelector(res, ontModel.getProperty(Constant.NS + "is_resource_of_P"), (RDFNode) null);
@@ -218,7 +204,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
             while (iter_el.hasNext()) {
                 Resource port = (Resource) iter_el.nextStatement().getObject();
                 float value = (Float) port.getRequiredProperty(ontModel.getProperty(Constant.NS + "value")).getLiteral().getFloat();
-                String dateString = port.getRequiredProperty(ontModel.getProperty(Constant.NS + "datetime")).getLiteral().getString();
+                String dateString = port.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time")).getLiteral().getString();
                 Date datetime = StringExchanger.parseStringToDate(dateString);
 
                 EPortfolio portfolio = new EPortfolio();
@@ -243,11 +229,11 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
             Statement s = port_iter.nextStatement();
             Resource portResource = s.getSubject();
             float value = (Float) portResource.getRequiredProperty(ontModel.getProperty(Constant.NS + "value")).asTriple().getObject().getLiteralValue();
-            String dateString = portResource.getRequiredProperty(ontModel.getProperty(Constant.NS + "datetime")).asTriple().getObject().getLiteralValue().toString();
+            String dateString = portResource.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time")).asTriple().getObject().getLiteralValue().toString();
             Date datetime = StringExchanger.parseStringToDate(dateString);
             SimpleSelector res_selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS + "is_resource_of_P"), portResource);
             StmtIterator res_iter = ontModel.listStatements(res_selector);
-            EResource resource = null;
+            ISCB_Resource resource = null;
             while (res_iter.hasNext()) {
                 Statement res_statement = res_iter.nextStatement();
                 Resource resResource = res_statement.getSubject();
@@ -266,37 +252,63 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
     }
 
     @Override
-    public EResource getEResource(String rid) {
-        EResource resource = new EResource(rid);
+    public ISCB_Resource getEResource(String rid) {
+        ISCB_Resource resource = new ISCB_Resource(rid);
         Individual indi = ontModel.getIndividual(Constant.NS + rid);
         resource.setName(indi.getPropertyValue(ontModel.getProperty(Constant.NS + "name")).asLiteral().getString());
-        resource.setFileLocation(indi.getPropertyValue(ontModel.getProperty(Constant.NS + "fileLocation")).asLiteral().getString());
+        resource.setFileLocation(indi.getPropertyValue(ontModel.getProperty(Constant.NS + "file_location")).asLiteral().getString());
         resource.setDifficulty(indi.getPropertyValue(ontModel.getProperty(Constant.NS + "difficulty")).asLiteral().getString());
+        RDFNode rd = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "description"));
+        if (rd != null) {
+            resource.setResourceDescription(rd.asLiteral().getString());
+        } else {
+            resource.setResourceDescription("");
+        }
+        RDFNode rq = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "resource_quality"));
+        if (rq != null) {
+            resource.setResourceQuality(rq.asLiteral().getString());
+        } else {
+            resource.setResourceQuality("");
+        }
+        RDFNode rt = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "resource_type"));
+        if (rt != null) {
+            resource.setResourceType(rt.asLiteral().getString());
+        } else {
+            resource.setResourceType("");
+        }
+        RDFNode rdt = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "upload_time"));
+        if (rdt != null) {
+            resource.setUploadTime(StringExchanger.parseStringToDate(rdt.asLiteral().getString()));
+        } else {
+            resource.setUploadTime(new Date(System.currentTimeMillis()));
+        }
+        Resource fileFormat = indi.getPropertyResourceValue(ontModel.getProperty(Constant.NS + "has_postfix"));
+        if (fileFormat != null) {
+            resource.setPostfix(getPostFix(fileFormat));
+        } else {
+            resource.setPostfix("");
+        }
+
         return resource;
     }
 
     @Override
-    public ArrayList<EResource> getEResourcesByEConcept(EConcept concept) {
-        ArrayList<EResource> resources = new ArrayList<EResource>();
+    public ArrayList<ISCB_Resource> getEResourcesByEConcept(EConcept concept) {
+        ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
         Resource con = ontModel.getResource(Constant.NS + concept.getCid());
         SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS + "is_resource_of_C"), con);
         StmtIterator iter = ontModel.listStatements(selector);
         while (iter.hasNext()) {
             Resource indi = iter.nextStatement().getSubject();
-            EResource resource = new EResource(indi.getLocalName());
-            resource.setName(indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "name")).getLiteral().getString());
-            resource.setFileLocation(indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "fileLocation")).getLiteral().getString());
-            resource.setDifficulty(indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "difficulty")).getLiteral().getString());
-            resources.add(resource);
-            //resources.add(getEResource(indi.getLocalName()));
+            resources.add(getEResource(indi.getLocalName()));
         }
         return resources;
     }
 
     @Override
-    public ArrayList<EResource> getEResourcesByInterestEConcepts(
+    public ArrayList<ISCB_Resource> getEResourcesByInterestEConcepts(
             ELearner elearner) {
-        ArrayList<EResource> resources = new ArrayList<EResource>();
+        ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
         Resource el = ontModel.getResource(Constant.NS + elearner.getId());
         SimpleSelector selector_interest = new SimpleSelector(el, ontModel.getProperty(Constant.NS + "has_interest"), (RDFNode) null);
         StmtIterator iter_interest = ontModel.listStatements(selector_interest);
@@ -310,12 +322,8 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
                 StmtIterator iter = ontModel.listStatements(selector);
                 while (iter.hasNext()) {
                     Resource indi = iter.nextStatement().getSubject();
-                    EResource resource = new EResource(indi.getLocalName());
-                    resource.setName(indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "name")).getLiteral().getString());
-                    resource.setFileLocation(indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "fileLocation")).getLiteral().getString());
-                    resource.setDifficulty(indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "difficulty")).getLiteral().getString());
+                    ISCB_Resource resource = getEResource(indi.getLocalName());
                     resources.add(resource);
-                    //resources.add(getEResource(indi.getLocalName()));
                 }
             }
         }
@@ -350,9 +358,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         while (iter.hasNext()) {
             Statement s = iter.nextStatement();
             Resource r = s.getSubject();
-            String nameString = r.getRequiredProperty(ontModel.getProperty(Constant.NS + "name")).asTriple().getObject().toString();
-            String name = StringExchanger.getCommonString(nameString);
-            concepts.add(new EConcept(s.getSubject().getLocalName(), name));
+            concepts.add(getEConcept(r.getLocalName()));
         }
         return concepts;
     }
@@ -366,30 +372,15 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         while (iter.hasNext()) {
             Statement s = iter.nextStatement();
             Resource r = s.getSubject();
-            EConcept newCon = getEConcept(r.getLocalName());
-            concepts.add(newCon);
+            concepts.add(getEConcept(r.getLocalName()));
         }
         return concepts;
     }
-
-
 
     /*******************************************************************************************************
      * Update Data in model 
      * @throws IndividualNotExistException 
      *******************************************************************************************************/
-    @Override
-    public boolean updateEConcept(EConcept concept) throws IndividualNotExistException {
-        if (!containEConcept(concept.getCid())) {
-            throw new IndividualNotExistException("EConcept " + concept.getCid() + "  does not exist");
-        }
-        Individual indi = ontModel.getIndividual(Constant.NS + concept.getCid());
-        Property p = ontModel.getProperty(Constant.NS + "name");
-        ontModel.remove(indi, p, indi.getPropertyValue(p));
-        ontModel.add(indi, p, concept.getName(), new XSDDatatype("string"));
-        return false;
-    }
-
     @Override
     public boolean updateELearner(ELearner elearner) throws IndividualNotExistException {
         if (!(containELearner(elearner.getId()))) {
@@ -423,64 +414,6 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         return true;
     }
 
-    /*******************************************************************************************
-     * update the value of the EPerformance
-     *****************************************************************************************/
-    @Override
-    public boolean updateEPerfomance(EPerformance performance) throws IndividualNotExistException {
-        if (!containEPerformance(performance.getId())) {
-            throw new IndividualNotExistException("EPerformance " + performance.getId() + " does not exist");
-        }
-        Individual indi = ontModel.getIndividual(Constant.NS + performance.getId());
-        float newValue = performance.getValue();
-        Property p = ontModel.getProperty(Constant.NS + "value");
-        ontModel.remove(indi, p, indi.getPropertyValue(p));
-        ontModel.add(indi, p, String.valueOf(newValue), new XSDDatatype("float"));
-        return true;
-    }
-
-    /*******************************************************************************************
-     * update the value of the EPortfolio
-     *****************************************************************************************/
-    @Override
-    public boolean updateEPortfolio(EPortfolio portfolio) throws IndividualNotExistException {
-        if (!containEPortfolio(portfolio.getId())) {
-            throw new IndividualNotExistException("EPortfolio " + portfolio.getId() + " does not exist");
-        }
-        Individual indi = ontModel.getIndividual(Constant.NS + portfolio.getId());
-        float newValue = portfolio.getValue();
-        Property p = ontModel.getProperty(Constant.NS + "value");
-        ontModel.remove(indi, p, indi.getPropertyValue(p));
-        ontModel.add(indi, p, String.valueOf(newValue), new XSDDatatype("float"));
-        return true;
-    }
-
-    @Override
-    public boolean updateEResource(EResource resource) throws IndividualNotExistException {
-        if (!(containEResource(resource.getRid()))) {
-            throw new IndividualNotExistException("EResource " + resource.getRid() + " does not exist");
-        }
-        EResource res = getEResource(resource.getRid());
-        Individual indi = ontModel.getIndividual(Constant.NS + resource.getRid());
-        if (!resource.getName().equals(res.getName())) {
-            Property p = ontModel.getProperty(Constant.NS + "name");
-            ontModel.remove(indi, p, indi.getPropertyValue(p));
-            ontModel.add(indi, p, resource.getName(), new XSDDatatype("string"));
-        }
-        if (!resource.getFileLocation().equals(res.getFileLocation())) {
-            Property p = ontModel.getProperty(Constant.NS + "fileLocation");
-            ontModel.remove(indi, p, indi.getPropertyValue(p));
-            ontModel.add(indi, p, resource.getFileLocation(), new XSDDatatype("string"));
-        }
-        if (!resource.getDifficulty().equals(res.getDifficulty())) {
-            Property p = ontModel.getProperty(Constant.NS + "difficulty");
-            ontModel.remove(indi, p, indi.getPropertyValue(p));
-            ontModel.add(indi, p, resource.getDifficulty(), new XSDDatatype("string"));
-        }
-        return true;
-    }
-
-    
     @Override
     public EInterest getEInterest(ELearner elearner, EConcept concept) {
         Individual el = ontModel.getIndividual(Constant.NS + elearner.getId());
@@ -543,10 +476,10 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         }
         return uninterest;
     }
+
     /***************************************************************************************
      * 
      */
-
     @Override
     public boolean addEInterest(EInterest interest) {
         ELearner el = interest.getELearner();
@@ -557,7 +490,8 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         in.addProperty(ontModel.getProperty(Constant.NS + "value"), String.valueOf(interest.getValue()), new XSDDatatype("string"));
         return true;
     }
-	@Override
+
+    @Override
     public boolean removeEInterest(EInterest interest)
             throws IndividualNotExistException {
         if (!containEInterest(interest.getId())) {
@@ -580,5 +514,8 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         return true;
     }
 
-
+    @Override
+    public boolean updateEInterest(EInterest interest) throws IndividualNotExistException {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

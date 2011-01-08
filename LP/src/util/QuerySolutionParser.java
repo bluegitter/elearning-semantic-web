@@ -4,7 +4,7 @@ import ontology.EConcept;
 import ontology.EPerformance;
 import ontology.EPortfolio;
 import ontology.people.ELearner;
-import ontology.resources.EResource;
+import ontology.resources.ISCB_Resource;
 
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntModel;
@@ -20,8 +20,8 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
  *
  ****************************************************************************************/
 public class QuerySolutionParser {
-	public static EResource getEResource(String uri,InfModel model){
-		EResource res = new EResource();
+	public static ISCB_Resource getEResource(String uri,InfModel model){
+		ISCB_Resource res = new ISCB_Resource();
 		OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, model);
 		Individual indi = ontModel.getIndividual(uri);
 		String id  = indi.getPropertyValue(model.getProperty(Constant.NS+"id")).asLiteral().getString();
@@ -73,7 +73,7 @@ public class QuerySolutionParser {
 		String elURI = getURI(qs,"?elearner");
 		String resURI  = getURI(qs,"?resource");
 		ELearner elearner = getELearner(elURI,model);
-		EResource resource = getEResource(resURI,model);
+		ISCB_Resource resource = getEResource(resURI,model);
 		float value = indi.getPropertyValue(model.getProperty("value")).asLiteral().getFloat();
 		EPortfolio portfolio = new EPortfolio();
 		portfolio.setId(id);

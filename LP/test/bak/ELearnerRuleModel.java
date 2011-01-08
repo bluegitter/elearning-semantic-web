@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import ontology.EConcept;
 import ontology.people.ELearner;
-import ontology.resources.EResource;
+import ontology.resources.ISCB_Resource;
 
 public interface ELearnerRuleModel {
 	ArrayList<EConcept> getMemberConcept(EConcept concept);
@@ -18,6 +18,6 @@ public interface ELearnerRuleModel {
 	 ****************************************************************************/
 	
 	ArrayList<EConcept> getRecommendEConcepts(ELearner elearner,int rule);
-	ArrayList<EResource> getRecommendEResources(ELearner elearner,int rule);
+	ArrayList<ISCB_Resource> getRecommendEResources(ELearner elearner,int rule);
 	ArrayList<ELearner> getRecommendELearners(ELearner elearner,int rule);
 }
