@@ -32,6 +32,8 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
 
         this.balloons = new ArrayList<EBalloon>();
 
+        this.setDoubleBuffered(true);
+
         addMouseListener(this);
         addMouseMotionListener(this);
     }
@@ -164,7 +166,7 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
             EBalloon newb = new EBalloon(x[i], y[i], d[i], nec.toString(), new Color(nec.r[0], nec.r[1], nec.r[2]));
             this.balloons.add(newb);
         }
-        rpstart(22);
+        rpstart(24);
     }
 
     @Override
