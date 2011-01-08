@@ -47,44 +47,13 @@ public class NavigatorPane extends javax.swing.JPanel {
    // public ELearnerModelImpl lpModel = new ELearnerModelImpl(new java.io.File("test\\owl\\elearning.owl"));
     //public CheckNode[] nodes = new CheckNode[5];
     private CheckNode root = null;
-
     private NavigatorDialog parent;
+    public ArrayList<EInterest>  EInterests = new ArrayList<EInterest>();
     /** Creates new form NavigatorPane */
     public NavigatorPane(NavigatorDialog parent) {
         this.parent = parent;
        initComponents();
-//         EConcept cn = this.getRootConcept();
-//        root = addNodes(new CheckNode(cn), cn);
-//        JTree tree = new JTree(root);
-//        //use our CheckRenderer
-//        tree.setCellRenderer(new CheckRenderer());
-//        tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-//        tree.addMouseListener(new NodeSelectionListener(tree));
-//      jScrollPane1 = new JScrollPane(tree);
-
-       /*  JScrollPane sp = new JScrollPane(tree);
-        sp.setVisible(true);
-        ModePanel mp = new ModePanel(nodes);
-        mp.setVisible(true);
-        JTextArea textArea = new JTextArea(3, 10);
-        JScrollPane textPanel = new JScrollPane(textArea);
-        JButton button = new JButton("print");
-
-        button.addActionListener(new ButtonActionListener(nodes[0], textArea));
-
-        JPanel panel = new JPanel(new BorderLayout());
-        panel.add(mp, BorderLayout.CENTER);
-        panel.add(button, BorderLayout.SOUTH);
-        jInternalFrame1.getContentPane().add(sp, BorderLayout.CENTER);
-        jInternalFrame1.getContentPane().add(panel, BorderLayout.EAST);
-        jInternalFrame1.getContentPane().add(textPanel, BorderLayout.SOUTH);
-
-        this.jInternalFrame1.setSize(300, 200);
-        this.jInternalFrame1.setBounds(200, 200, 300, 200);
-        this.jInternalFrame1.setVisible(true);
-        jInternalFrame1.getContentPane().setVisible(true);
-      */
-        
+       
     }
 
 
@@ -244,11 +213,14 @@ public class NavigatorPane extends javax.swing.JPanel {
     //存储用户选择的节点
     public void getUserSelect(CheckNode node){
         //ArrayList result = new ArrayList();
-        if (node.getChildCount() == 0&&node.isSelected()) {
-            selectedNodes.add(node.toString());
+        EConcept ec = (EConcept)node.getUserObject();
+       // LPApp.lpModel.getInterestConcepts(LPApp.getApplication().user.learner).remove(ec);
+        selectedNodes.remove(ec.getCid());
+        if (node.getChildCount() == 0&&node.isSelected()) {           
+            selectedNodes.add(ec.getCid());
         } else if (node.getChildCount() > 0) {
             if(node.isSelected())
-                selectedNodes.add(node.toString());
+                selectedNodes.add(ec.getCid());
             for (int i = 0; i < node.getChildCount(); i++) {
                 getUserSelect((CheckNode) node.getChildAt(i));
             }
@@ -302,6 +274,11 @@ public class NavigatorPane extends javax.swing.JPanel {
 
         jButton3.setLabel(resourceMap.getString("jButton3.label")); // NOI18N
         jButton3.setName("jButton3"); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
         jButton4.setName("jButton4"); // NOI18N
@@ -361,14 +338,22 @@ public class NavigatorPane extends javax.swing.JPanel {
             String cid = selectedNodes.get(i).toString();
             ei.setEConcept(LPApp.lpModel.getEConcept(cid));
             ei.setELearner(LPApp.getApplication().user.learner);
-            ei.setId("newinterest"+i);
+            ei.setId("newinterest"+LPApp.getApplication().user.learner.getId()+i);
             ei.setValue(0.5f);
             LPApp.lpModel.addEInterest(ei);
+            EInterests.add(ei);
         }
 
+       // parent.nodes = this.selectedNodes;
 
+        parent.setNext(EInterests);
 
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        parent.setPrevious();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
