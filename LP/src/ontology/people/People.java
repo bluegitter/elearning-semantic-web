@@ -3,6 +3,9 @@ package ontology.people;
 public class People {
 
     public People() {
+    	gender = "male";
+    	name = "name";
+    	
     }
 
     public String getId() {
@@ -68,6 +71,6 @@ public class People {
     protected String id;
     protected String name;
     protected String gender;
-    protected String email = "";
-    protected String address = "";
+    protected String email;
+    protected String address;
 }
