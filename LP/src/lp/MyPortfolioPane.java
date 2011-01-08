@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import ontology.EPortfolio;
 import ontology.people.ELearner;
-import ontology.resources.EResource;
+import ontology.resources.ISCB_Resource;
 
 /**
  *
@@ -36,7 +36,7 @@ public class MyPortfolioPane extends javax.swing.JPanel {
         ArrayList<EPortfolio> resourceList = LPApp.lpModel.getEPortfolios(el);
        for (int i=0;i<resourceList.size();i++) {
             EPortfolio f = resourceList.get(i);
-            EResource c = f.getEResource();
+            ISCB_Resource c = f.getEResource();
             Object[] oa = {c.getName(), f.getValue()};
             model.addRow(oa);
         }

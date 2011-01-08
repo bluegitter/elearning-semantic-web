@@ -2,7 +2,7 @@ package ontology.resources;
 
 import ontology.people.People;
 
-public class Book extends EResource{
+public class Book extends ISCB_Resource{
 	private String bookName;
 	private String bookIsbn;
 	private People bookAuthor;

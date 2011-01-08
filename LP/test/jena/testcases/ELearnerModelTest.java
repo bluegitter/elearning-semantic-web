@@ -10,7 +10,7 @@ import ontology.EConcept;
 import ontology.EPerformance;
 import ontology.EPortfolio;
 import ontology.people.ELearner;
-import ontology.resources.EResource;
+import ontology.resources.ISCB_Resource;
 
 public class ELearnerModelTest extends TestCase{
 	
@@ -35,13 +35,13 @@ public class ELearnerModelTest extends TestCase{
 	}
 	public void testAddEResource() throws IndividualNotExistException{
 		ELearnerModelImpl emi = new ELearnerModelImpl();
-		EResource res = new EResource();
+		ISCB_Resource res = new ISCB_Resource();
 		res.setRid("res_ID");
 		res.setName("res_Name");
 		res.setFileLocation("res_FileLocation");
 		res.setDifficulty("res_difficult");
 		emi.addEResource(res);
-		EResource newRes = emi.getEResource(res.getRid());
+		ISCB_Resource newRes = emi.getEResource(res.getRid());
 		assertTrue(newRes.getRid().equals(res.getRid()));
 	}
 	public void testAddPerformance(){
@@ -68,14 +68,14 @@ public class ELearnerModelTest extends TestCase{
 		assertTrue(size==size2-1);
 	}
 	public void testAddPortfolio(){
-		EResource r = emi.getEResource("rid00003");
+		ISCB_Resource r = emi.getEResource("rid00003");
 		EPortfolio p = new EPortfolio("new_portfolio",el,r,0,new Date(System.currentTimeMillis()));
 		emi.addEPortfolio(p);
 		EPortfolio newP = emi.getEPortfolio(el,r);
 		assertTrue(p.getId().equals(newP.getId()));
 	}
 	public void testGetAllAfterAddPortfolio(){
-		EResource r = emi.getEResource("rid00003");
+		ISCB_Resource r = emi.getEResource("rid00003");
 		EPortfolio p = new EPortfolio("new_portfolio",el,r,0,new Date(System.currentTimeMillis()));
 		int size =  emi.getEPortfolios(el).size();
 		emi.addEPortfolio(p);

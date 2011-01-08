@@ -3,18 +3,18 @@ package ontology;
 import java.util.Date;
 
 import ontology.people.ELearner;
-import ontology.resources.EResource;
+import ontology.resources.ISCB_Resource;
 
 public class EPortfolio {
 	private ELearner elearner;
-	private EResource resource;
+	private ISCB_Resource resource;
 	private float value;
 	private String id;
 	private Date datetime;
 	public EPortfolio(){
 		
 	}
-	public EPortfolio(String id,ELearner elearner,EResource resource,float value,Date datetime){
+	public EPortfolio(String id,ELearner elearner,ISCB_Resource resource,float value,Date datetime){
 		this.id = id;
 		this.elearner = elearner;
 		this.resource = resource;
@@ -27,10 +27,10 @@ public class EPortfolio {
 	public void setElearner(ELearner elearner) {
 		this.elearner = elearner;
 	}
-	public EResource getEResource() {
+	public ISCB_Resource getEResource() {
 		return resource;
 	}
-	public void setEResource(EResource resource) {
+	public void setEResource(ISCB_Resource resource) {
 		this.resource = resource;
 	}
 	public float getValue() {

@@ -11,7 +11,7 @@ import java.util.HashMap;
 import jena.OwlFactory;
 import jena.impl.ELearnerModelImpl;
 import ontology.EConcept;
-import ontology.resources.EResource;
+import ontology.resources.ISCB_Resource;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.mysql.jdbc.Connection;
 
@@ -39,10 +39,10 @@ public class ResourceParser {
 			String sql = "select course_resource_id,资源标题,文件路径,所属知识点1,所属知识点2 from courseresourceinfo";
 			ResultSet rs =  st.executeQuery(sql);
 			String idprefix = "cid";
-			ArrayList<EResource> resources = new ArrayList<EResource>();
+			ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
 			EConcept rootConcept = emi.getEConcept("CMP.cf.2");
 			while(rs.next()){
-				EResource resource = new EResource();
+				ISCB_Resource resource = new ISCB_Resource();
 				resource.setDifficulty("easy");
 				resource.setRid(rs.getString("course_resource_id"));
 				resource.setName(rs.getString("资源标题"));

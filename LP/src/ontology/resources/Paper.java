@@ -1,6 +1,6 @@
 package ontology.resources;
 
-public class Paper extends EResource{
+public class Paper extends ISCB_Resource{
 	private String paperName;
 	private String authorName;
 	public Paper(){

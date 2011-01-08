@@ -7,7 +7,7 @@ import ontology.EConcept;
 import ontology.EPerformance;
 import ontology.EPortfolio;
 import ontology.people.ELearner;
-import ontology.resources.EResource;
+import ontology.resources.ISCB_Resource;
 import util.StringExchanger;
 
 import jena.impl.ELearnerModelImpl;
@@ -19,7 +19,7 @@ public class ELearnerModelImplThreeTest extends TestCase {
 		assertTrue(concept.getName().equals("计算基础"));
 	}
 	public void testGetEResource(){
-		EResource resource = emi.getEResource("rid000001");
+		ISCB_Resource resource = emi.getEResource("rid000001");
 		assertTrue(resource.getDifficulty().equals("easy"));
 		assertTrue(resource.getFileLocation().equals("74\\page\\chap01\\010101.asp"));
 		assertTrue(resource.getName().equals("数据结构绪论"));
@@ -29,7 +29,7 @@ public class ELearnerModelImplThreeTest extends TestCase {
 		assertTrue(elearner.getName().equals("Ma Sheng"));
 	}
 	public void testGetAllEResources(){
-		ArrayList<EResource>resources = emi.getAllEResources();
+		ArrayList<ISCB_Resource>resources = emi.getAllEResources();
 		assertTrue(resources.size()==639);
 	}
 	public void testGetEPortfolios(){
@@ -47,7 +47,7 @@ public class ELearnerModelImplThreeTest extends TestCase {
 	}
 	public void testGetEPortfolio(){
 		ELearner el = emi.getELearner("el001");
-		EResource resource = emi.getEResource("rid000622");
+		ISCB_Resource resource = emi.getEResource("rid000622");
 		EPortfolio port = emi.getEPortfolio(el, resource);
 		assertTrue(port.getId().equals("E_Portfolio_el001-1"));
 		assertTrue(port.getDatetime().equals(StringExchanger.parseStringToDate("2010-12-19T22:31:40")));

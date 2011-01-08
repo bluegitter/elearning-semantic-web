@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import jena.impl.ELearnerModelImpl;
 import ontology.EConcept;
 import ontology.people.ELearner;
-import ontology.resources.EResource;
+import ontology.resources.ISCB_Resource;
 import util.Constant;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntModel;
@@ -191,8 +191,8 @@ public class ELearnerReasoner {
      * @param elearner
      * @return
      */
-    public static ArrayList<EResource> getRecommendEResource_5(OntModel ontModel, ELearner elearner) {
-        ArrayList<EResource> resources = new ArrayList<EResource>();
+    public static ArrayList<ISCB_Resource> getRecommendEResource_5(OntModel ontModel, ELearner elearner) {
+        ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
         Resource el = ontModel.getResource(Constant.NS + elearner.getId());
         SimpleSelector selector = new SimpleSelector(el, ontModel.getProperty(Constant.NS + "has_performance"), (RDFNode) null);
         StmtIterator iter = ontModel.listStatements(selector);
@@ -209,7 +209,7 @@ public class ELearnerReasoner {
                     StmtIterator iter_res = ontModel.listStatements(selector_res);
                     while (iter_res.hasNext()) {
                         Resource indi = iter_res.nextStatement().getSubject();
-                        EResource resource = new EResource(indi.getLocalName());
+                        ISCB_Resource resource = new ISCB_Resource(indi.getLocalName());
                         resource.setName(indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "name")).getLiteral().getString());
                         resource.setFileLocation(indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "fileLocation")).getLiteral().getString());
                         resource.setDifficulty(indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "difficulty")).getLiteral().getString());
@@ -230,8 +230,8 @@ public class ELearnerReasoner {
      * @param elearner
      * @return
      */
-    public static ArrayList<EResource> getRecommendEResource_6(OntModel ontModel, ELearner elearner) {
-        ArrayList<EResource> resources = new ArrayList<EResource>();
+    public static ArrayList<ISCB_Resource> getRecommendEResource_6(OntModel ontModel, ELearner elearner) {
+        ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
         Resource el = ontModel.getResource(Constant.NS + elearner.getId());
         SimpleSelector selector = new SimpleSelector(el, ontModel.getProperty(Constant.NS + "has_portfolio"), (RDFNode) null);
         StmtIterator iter = ontModel.listStatements(selector);
@@ -245,7 +245,7 @@ public class ELearnerReasoner {
                 StmtIterator iter_result = ontModel.listStatements(selector_result);
                 while (iter_result.hasNext()) {
                     Resource result = iter_result.nextStatement().getSubject();
-                    EResource newRes = new EResource(result.getLocalName());
+                    ISCB_Resource newRes = new ISCB_Resource(result.getLocalName());
                     newRes.setName(result.getRequiredProperty(ontModel.getProperty(Constant.NS + "name")).getLiteral().getString());
                     newRes.setFileLocation(result.getRequiredProperty(ontModel.getProperty(Constant.NS + "fileLocation")).getLiteral().getString());
                     newRes.setDifficulty(result.getRequiredProperty(ontModel.getProperty(Constant.NS + "difficulty")).getLiteral().getString());
