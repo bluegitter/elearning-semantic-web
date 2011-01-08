@@ -45,5 +45,9 @@ public interface ELearnerModelQueryInterface {
 
     EPerformance getEPerformance(ELearner elearner, EConcept concept);
 
+    EPerformance getEPerformance(String pid);
+
+    EPortfolio getEPortfolio(String pid);
+
     ArrayList<EPerformance> getEPerformances(ELearner elearner);
 }

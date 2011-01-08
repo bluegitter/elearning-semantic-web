@@ -50,23 +50,24 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         long init = System.currentTimeMillis();
         ELearnerModelImpl emi = new ELearnerModelImpl(file);
         System.out.println("intitime:" + (System.currentTimeMillis() - init) + "ms");
-        ELearner el = emi.getELearner("el001");
+        EPerformance p = emi.getEPerformance("E_Performance_1_1");
+        System.out.println(p.getDatetime());
+       ELearner el = emi.getELearner("el001");
         EConcept con = emi.getEConcept("Computer_Science");
-
-        long t1 = System.currentTimeMillis();
-        ArrayList<EConcept> inte = emi.getSonConcepts(con);
-        System.out.println("time:" + (System.currentTimeMillis() - t1) + "ms\tintests: " + inte.size());
-        System.out.println(inte);
-        for(int i = 0;i<inte.size();i++){
-             System.out.println( inte.get(i).getName());
+        EConcept con2 = emi.getEConcept("CMP.cf.3");
+        EPerformance ep = new EPerformance();
+        ep.setId("newId");
+        ep.setValue(1f);
+        ep.setConcept(con2);
+        ep.setElearner(el);
+        ep.setDatetime(new Date(System.currentTimeMillis()));
+        emi.addEPerfomance(ep);
+        EPerformance ep2 = emi.getEPerformance(el, con2);
+        if (ep2 != null) {
+            System.out.println("ep2" + ep2);
+             System.out.println("ep2" + ep2.getDatetime());
         }
-        long t2 = System.currentTimeMillis();
-        ArrayList<EConcept> all = emi.getAllEConcepts();
-        System.out.println("time:" + (System.currentTimeMillis() - t2) + "ms\talls: " + all.size());
-        long t3 = System.currentTimeMillis();
-        ArrayList<EConcept> unin = emi.getUnInterestConcepts(el);
-        System.out.println("time:" + (System.currentTimeMillis() - t2) + "ms\tunins: " + unin.size());
-
+        System.out.println("end");
     }
 
     @Override
@@ -148,15 +149,9 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
             SimpleSelector selector_con = new SimpleSelector(r, ontModel.getProperty(Constant.NS + "inverse_of_is_concept_of_P"), con);
             StmtIterator iter_con = ontModel.listStatements(selector_con);
             while (iter_con.hasNext()) {
-                float value = (Float) r.getRequiredProperty(ontModel.getProperty(Constant.NS + "value")).getLiteral().getFloat();
-                String dateString = r.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time")).getLiteral().getString();
-                Date datetime = StringExchanger.parseStringToDate(dateString);
-                EPerformance performance = new EPerformance();
+                EPerformance performance = getEPerformance(r.getLocalName());
                 performance.setElearner(elearner);
                 performance.setConcept(concept);
-                performance.setDatetime(datetime);
-                performance.setId(r.getLocalName());
-                performance.setValue(value);
                 return performance;
             }
         }
@@ -176,16 +171,9 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
             while (iter_con.hasNext()) {
                 Resource conResource = iter_con.nextStatement().getSubject();
                 EConcept concept = getEConcept(conResource.getLocalName());
-                float value = (Float) r.getRequiredProperty(ontModel.getProperty(Constant.NS + "value")).getLiteral().getFloat();
-                String dateString = r.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time")).getLiteral().getString();
-                Date datetime = StringExchanger.parseStringToDate(dateString);
-
-                EPerformance performance = new EPerformance();
+                EPerformance performance = getEPerformance(r.getLocalName());
                 performance.setElearner(elearner);
                 performance.setConcept(concept);
-                performance.setDatetime(datetime);
-                performance.setId(r.getLocalName());
-                performance.setValue(value);
                 performances.add(performance);
             }
         }
@@ -203,16 +191,9 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
             StmtIterator iter_el = ontModel.listStatements(selector_el);
             while (iter_el.hasNext()) {
                 Resource port = (Resource) iter_el.nextStatement().getObject();
-                float value = (Float) port.getRequiredProperty(ontModel.getProperty(Constant.NS + "value")).getLiteral().getFloat();
-                String dateString = port.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time")).getLiteral().getString();
-                Date datetime = StringExchanger.parseStringToDate(dateString);
-
-                EPortfolio portfolio = new EPortfolio();
-                portfolio.setId(port.getLocalName());
+                EPortfolio portfolio = getEPortfolio(port.getLocalName());
                 portfolio.setElearner(elearner);
                 portfolio.setEResource(resource);
-                portfolio.setValue(value);
-                portfolio.setDatetime(datetime);
                 return portfolio;
             }
         }
@@ -240,12 +221,9 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
                 String resId = resResource.getLocalName();
                 resource = getEResource(resId);
             }
-            EPortfolio port = new EPortfolio();
-            port.setId(portResource.getLocalName());
+            EPortfolio port = getEPortfolio(portResource.getLocalName());
             port.setEResource(resource);
             port.setElearner(elearner);
-            port.setValue(value);
-            port.setDatetime(datetime);
             portfolios.add(port);
         }
         return portfolios;
@@ -288,7 +266,6 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         } else {
             resource.setPostfix("");
         }
-
         return resource;
     }
 
@@ -517,5 +494,43 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
     @Override
     public boolean updateEInterest(EInterest interest) throws IndividualNotExistException {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public EPerformance getEPerformance(String pid) {
+        Individual indi = ontModel.getIndividual(Constant.NS + pid);
+        EPerformance performance = new EPerformance();
+        performance.setId(indi.getLocalName());
+        Statement valueNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "value"));
+        if (valueNode != null) {
+            float value = (Float) valueNode.getLiteral().getFloat();
+            performance.setValue(value);
+        }
+        Statement dateNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time"));
+        if (dateNode != null) {
+            String dateString = dateNode.getLiteral().getString();
+            Date datetime = StringExchanger.parseStringToDate(dateString);
+            performance.setDatetime(datetime);
+        }
+        return performance;
+
+    }
+
+    @Override
+    public EPortfolio getEPortfolio(String pid) {
+        Individual indi = ontModel.getIndividual(Constant.NS + pid);
+        EPortfolio port = new EPortfolio();
+        Statement valueNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "value"));
+        if (valueNode != null) {
+            float value = (Float) valueNode.getLiteral().getFloat();
+            port.setValue(value);
+        }
+        Statement dateNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time"));
+        if (dateNode != null) {
+            String dateString = dateNode.getLiteral().getString();
+            Date datetime = StringExchanger.parseStringToDate(dateString);
+            port.setDatetime(datetime);
+        }
+        return port;
     }
 }

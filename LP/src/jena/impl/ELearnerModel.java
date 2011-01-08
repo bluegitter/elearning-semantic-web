@@ -156,7 +156,9 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         ontModel.add(port, ontModel.getProperty(Constant.NS + "inverse_of_has_portfolio"), ontModel.getResource(Constant.NS + el.getId()));
         ontModel.add(port, ontModel.getProperty(Constant.NS + "inverse_of_is_resource_of_P"), ontModel.getResource(Constant.NS + res.getRid()));
         ontModel.addLiteral(port, ontModel.getProperty(Constant.NS + "value"), portfolio.getValue());
-        ontModel.add(port, ontModel.getProperty(Constant.NS + "date_time"), StringExchanger.parseDateToString(portfolio.getDatetime()), new XSDDatatype("dateTime"));
+        if(portfolio.getDatetime()!=null){
+            ontModel.add(port, ontModel.getProperty(Constant.NS + "date_time"), StringExchanger.parseDateToString(portfolio.getDatetime()), new XSDDatatype("dateTime"));
+        }
         return true;
     }
 
@@ -175,14 +177,16 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
     public boolean addEPerfomance(EPerformance performance) {
         ELearner el = performance.getElearner();
         EConcept con = performance.getConcept();
+        System.out.println("add"+performance);
         Resource perf = ontModel.createResource(Constant.NS + performance.getId(), ontModel.getResource(Constant.NS + "E_Performance"));
         ontModel.add(perf, ontModel.getProperty(Constant.NS + "inverse_of_has_performance"), ontModel.getResource(Constant.NS + el.getId()));
         ontModel.add(perf, ontModel.getProperty(Constant.NS + "inverse_of_is_concept_of_P"), ontModel.getResource(Constant.NS + con.getCid()));
         ontModel.addLiteral(perf, ontModel.getProperty(Constant.NS + "value"), performance.getValue());
-        ontModel.add(perf, ontModel.getProperty(Constant.NS + "date_time"), StringExchanger.parseDateToString(performance.getDatetime()), new XSDDatatype("dateTime"));
-        return true;
+        if(performance.getDatetime()!=null){
+             ontModel.add(perf, ontModel.getProperty(Constant.NS + "date_time"), StringExchanger.parseDateToString(performance.getDatetime()), new XSDDatatype("dateTime"));
+        }
+         return true;
     }
-
     @Override
     public boolean addPropertyIsSonOf(EConcept fatherConcept, EConcept sonConcept) {
         Resource son = ontModel.getResource(Constant.NS + sonConcept.getCid());
@@ -248,7 +252,6 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         if (!(containEResource(resource.getRid()))) {
             throw new IndividualNotExistException("EResource " + resource.getRid() + " does not exist");
         }
-
         Individual indi = ontModel.getIndividual(Constant.NS + resource.getRid());
         Property p = ontModel.getProperty(Constant.NS + "name");
         String name = indi.getRequiredProperty(p).getLiteral().getString();
@@ -305,7 +308,6 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
                 ontModel.add(ontModel.createStatement(indi, p, newPostfix));
             }
         }
-
         return true;
     }
 
