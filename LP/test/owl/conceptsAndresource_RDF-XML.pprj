@@ -1,4 +1,4 @@
-; Sat Jan 08 17:45:07 CST 2011
+; Sat Jan 08 17:55:24 CST 2011
 ; 
 ;+ (version "3.4.4")
 ;+ (build "Build 579")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[conceptsAndresource_RDF-XML_ProjectKB_Class40258]
-		[conceptsAndresource_RDF-XML_ProjectKB_Class40259]
-		[conceptsAndresource_RDF-XML_ProjectKB_Class40260]
-		[conceptsAndresource_RDF-XML_ProjectKB_Class40261]
-		[conceptsAndresource_RDF-XML_ProjectKB_Class40262]))
+		[conceptsAndresource_RDF-XML_ProjectKB_Class40297]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class40298]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class40299]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class40300]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class40301]))
 
 ([CLSES_TAB] of  Widget
 
@@ -1711,46 +1711,46 @@
 ([conceptsAndresource_RDF-XML_ProjectKB_Class40] of  Property_List
 )
 
-([conceptsAndresource_RDF-XML_ProjectKB_Class40258] of  String
+([conceptsAndresource_RDF-XML_ProjectKB_Class40297] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Class")
 	(string_value "%3ANAME"))
 
-([conceptsAndresource_RDF-XML_ProjectKB_Class40259] of  String
+([conceptsAndresource_RDF-XML_ProjectKB_Class40298] of  String
 
 	(name ":INSTANCE-ANNOTATION")
 	(string_value "%3AANNOTATION-TEXT"))
 
-([conceptsAndresource_RDF-XML_ProjectKB_Class40260] of  String
+([conceptsAndresource_RDF-XML_ProjectKB_Class40299] of  String
 
 	(name ":META-CLASS")
 	(string_value "%3ANAME"))
 
-([conceptsAndresource_RDF-XML_ProjectKB_Class40261] of  String
+([conceptsAndresource_RDF-XML_ProjectKB_Class40300] of  String
 
 	(name ":PAL-CONSTRAINT")
 	(string_value "%3APAL-NAME"))
 
-([conceptsAndresource_RDF-XML_ProjectKB_Class40262] of  String
+([conceptsAndresource_RDF-XML_ProjectKB_Class40301] of  String
 
 	(name "http://www.w3.org/2002/07/owl#Thing")
 	(string_value "%3ANAME"))
 
-([conceptsAndresource_RDF-XML_ProjectKB_Class40263] of  Map_Entry
+([conceptsAndresource_RDF-XML_ProjectKB_Class40302] of  Map_Entry
 
 	(key "add_name_on_instance_form")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([conceptsAndresource_RDF-XML_ProjectKB_Class40264] of  Map_Entry
+([conceptsAndresource_RDF-XML_ProjectKB_Class40303] of  Map_Entry
 
 	(key "change_tracking_active")
 	(key_class "java.lang.String")
 	(value "false")
 	(value_class "java.lang.String"))
 
-([conceptsAndresource_RDF-XML_ProjectKB_Class40265] of  Map_Entry
+([conceptsAndresource_RDF-XML_ProjectKB_Class40304] of  Map_Entry
 
 	(key "suppress_instance_counting")
 	(key_class "java.lang.String")
@@ -2800,9 +2800,9 @@
 ([KB_325529_Class0] of  Map
 
 	(entries
-		[conceptsAndresource_RDF-XML_ProjectKB_Class40263]
-		[conceptsAndresource_RDF-XML_ProjectKB_Class40264]
-		[conceptsAndresource_RDF-XML_ProjectKB_Class40265]))
+		[conceptsAndresource_RDF-XML_ProjectKB_Class40302]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class40303]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class40304]))
 
 ([KB_325529_Class4] of  String
 
