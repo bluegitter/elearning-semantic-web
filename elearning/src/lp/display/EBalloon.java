@@ -16,15 +16,15 @@ import java.awt.geom.Point2D;
  */
 public class EBalloon implements Runnable {
 
-    private float diameter;
+    public float diameter;
     private float x, y;
-    private Color color;
+    private Color color, aColor, rColor;
     private String label;
     private RadialGradientPaint brush;
     private Ellipse2D.Float shape;
-    private float rd;
+    public float rd;
     public Thread thread;
-    private boolean ison;
+    public boolean ison, shown;
 
     public EBalloon(float x, float y, float d, String label, Color color) {
         this.diameter = d;
@@ -32,30 +32,37 @@ public class EBalloon implements Runnable {
         this.y = y;
         this.label = label;
         this.color = color;
+        this.aColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), 222);
+        this.rColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), 111);
 
         shape = new Ellipse2D.Float(x - diameter / 2f, y - diameter / 2f, diameter, diameter);
 
         thread = null;
-        ison = false;
-        rd = diameter;
+        ison = shown = false;
+        rd = 0;
     }
 
     public void paint(Graphics2D g) {
-        Point2D c = new Point2D.Float(x, y);
-        float radius = rd / 2f;
-        Point2D f = new Point2D.Float(x - rd / 4f, y - rd / 4f);
-        float[] dist = {0.0f, 1f};
-        Color[] colors = {Color.WHITE, color};
-        brush = new RadialGradientPaint(c, radius, f, dist, colors, CycleMethod.NO_CYCLE);
-        g.setPaint(brush);
+        if (shown) {
+            Point2D c = new Point2D.Float(x, y);
+            float radius = rd / 2f;
+            Point2D f = new Point2D.Float(x - rd / 4f, y - rd / 4f);
+            float[] dist = {0.0f, 1f};
+            Color[] colors = {Color.WHITE, ison ? aColor : color};
+            brush = new RadialGradientPaint(c, radius, f, dist, colors, CycleMethod.NO_CYCLE);
+            g.setPaint(brush);
 
-        g.fill(new Ellipse2D.Float(x - rd / 2f, y - rd / 2f, rd, rd));
+            g.fill(new Ellipse2D.Float(x - rd / 2f, y - rd / 2f, rd, rd));
 
-        g.setColor(new Color(97, 97, 97));
-        g.setFont(new Font("微软雅黑", Font.BOLD, 14));
-        FontMetrics fm = g.getFontMetrics();
-        int ch = fm.getAscent() + fm.getDescent();
-        g.drawString(label, x - fm.stringWidth(label) / 2f, y - ch * 1.2f);
+            g.setColor(new Color(97, 97, 97));
+            g.setFont(new Font("微软雅黑", Font.BOLD, 14));
+            FontMetrics fm = g.getFontMetrics();
+            int ch = fm.getAscent() + fm.getDescent();
+            g.drawString(label, x - fm.stringWidth(label) / 2f, y - ch * 1.2f);
+        } else {
+            g.setColor(rColor);
+            g.fill(new Ellipse2D.Float(x - rd / 2f, y - rd / 2f, rd, rd));
+        }
     }
 
     public boolean contains(Point p) {
@@ -63,6 +70,9 @@ public class EBalloon implements Runnable {
     }
 
     public void mouseon() {
+        if(!shown)
+            return;
+        
         if (thread == null) {
             thread = new Thread(this);
             thread.setPriority(Thread.MAX_PRIORITY);
@@ -72,6 +82,9 @@ public class EBalloon implements Runnable {
     }
 
     public void mouseout() {
+        if(!shown)
+            return;
+        
         if (thread == null) {
             thread = new Thread(this);
             thread.setPriority(Thread.MAX_PRIORITY);
@@ -85,20 +98,22 @@ public class EBalloon implements Runnable {
         Thread me = Thread.currentThread();
 
         while (thread == me) {
-            if (ison) {
-                rd += 6;
-                if (this.rd >= this.diameter + 20) {
-                    break;
+            if(shown) {
+                if (ison) {
+                    rd += 6;
+                    if (this.rd >= this.diameter + 20) {
+                        break;
+                    }
+                } else {
+                    rd -= 6;
+                    if (this.rd <= this.diameter) {
+                        break;
+                    }
                 }
-            } else {
-                rd -= 6;
-                if (this.rd <= this.diameter) {
-                    break;
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
                 }
-            }
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
             }
         }
         thread = null;
