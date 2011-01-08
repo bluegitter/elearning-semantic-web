@@ -1,4 +1,4 @@
-package jena.interfaces;
+package bak;
 
 import ontology.EConcept;
 import ontology.EInterest;

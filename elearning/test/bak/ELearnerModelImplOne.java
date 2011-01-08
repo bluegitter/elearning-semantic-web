@@ -5,9 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import jena.impl.ELearnerModel;
-import jena.interfaces.ELearnerModelAddOperationInterface;
+import jena.interfaces.ELearnerModelOperationInterface;
 import jena.interfaces.ELearnerModelQueryInterface;
-import jena.interfaces.ELearnerRuleModel;
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.EPerformance;
@@ -36,7 +35,7 @@ import com.hp.hpl.jena.rdf.model.StmtIterator;
  * @author william
  *
  */
-public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModelAddOperationInterface, ELearnerModelQueryInterface, ELearnerRuleModel {
+public class ELearnerModelImplOne extends ELearnerModel  {
 
     public ELearnerModelImplOne(File file) {
         super(file);
@@ -106,7 +105,6 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
         return true;
     }
 
-    @Override
     public boolean addEInterest(EInterest interest) {
         ELearner el = interest.getELearner();
         EConcept con = interest.getEConcept();
@@ -229,7 +227,6 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
         return false;
     }
 
-    @Override
     public ArrayList<EConcept> getAllEConcepts() {
         ArrayList<EConcept> concepts = new ArrayList<EConcept>();
         String queryString =
@@ -255,7 +252,6 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
         return concepts;
     }
 
-    @Override
     public ArrayList<EConcept> getSonConcepts(EConcept concept) {
         ArrayList<EConcept> concepts = new ArrayList<EConcept>();
         String queryString =
@@ -299,7 +295,6 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
         return concepts;
     }
 
-    @Override
     public ArrayList<EConcept> getInterestConcepts(ELearner elearner) {
         ArrayList<EConcept> concepts = new ArrayList<EConcept>();
         String queryString =
@@ -382,7 +377,6 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
         return el;
     }
 
-    @Override
     public EResource getEResource(String rid) {
         String queryString =
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
@@ -409,7 +403,6 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
         return res;
     }
 
-    @Override
     public ArrayList<EPerformance> getEPerformances(ELearner elearner) {
         ArrayList<EPerformance> ps = new ArrayList<EPerformance>();
         String queryString =
@@ -451,7 +444,6 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
         return ps;
     }
 
-    @Override
     public EPortfolio getEPortfolio(ELearner elearner, EResource resource) {
         String queryString =
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
@@ -491,7 +483,6 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
         return portfolio;
     }
 
-    @Override
     public ArrayList<EPortfolio> getEPortfolios(ELearner elearner) {
         long all = System.currentTimeMillis();
         long qt = all;
@@ -575,7 +566,6 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
         return portfolios;
     }
 
-    @Override
     public ArrayList<EResource> getEResourcesByEConcept(EConcept concept) {
         ArrayList<EResource> resources = new ArrayList<EResource>();
         String queryString =
@@ -603,7 +593,6 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
         return resources;
     }
 
-    @Override
     public ArrayList<EResource> getAllEResources() {
         ArrayList<EResource> resources = new ArrayList<EResource>();
         String queryString =
@@ -628,7 +617,6 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
         return resources;
     }
 
-    @Override
     public EPerformance getEPerformance(ELearner elearner, EConcept concept) {
         String queryString =
                 "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
@@ -671,7 +659,6 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
     /*********************************************************************************
      * Methods which need rules
      ********************************************************************************/
-    @Override
     public ArrayList<EConcept> getMemberConcept(EConcept concept) {
         ArrayList<EConcept> concepts = new ArrayList<EConcept>();
         String queryString =
@@ -700,7 +687,6 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
         return concepts;
     }
 
-    @Override
     public ArrayList<EConcept> getRecommendEConcepts(ELearner elearner, int rule) {
         ArrayList<EConcept> concepts = new ArrayList<EConcept>();
         Individual el = ontModel.getIndividual(Constant.NS + elearner.getId());
@@ -746,7 +732,6 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
         return concepts;
     }
 
-    @Override
     public ArrayList<ELearner> getRecommendELearners(ELearner elearner, int rule) {
         ArrayList<ELearner> elearners = new ArrayList<ELearner>();
         String i = "is_recommend_of_L_" + rule + "";
@@ -775,7 +760,6 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
         return elearners;
     }
 
-    @Override
     public ArrayList<EResource> getRecommendEResources(ELearner elearner,
             int rule) {
         ArrayList<EResource> resources = new ArrayList<EResource>();
@@ -806,7 +790,6 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
         return resources;
     }
 
-    @Override
     public ArrayList<EResource> getEResourcesByInterestEConcepts(
             ELearner elearner) {
         ArrayList<EResource> resources = new ArrayList<EResource>();
@@ -853,13 +836,8 @@ public class ELearnerModelImplOne extends ELearnerModel implements ELearnerModel
         //System.out.println(rs.size());
     }
 
-    @Override
-    public EInterest getEInterest(ELearner elearner, EConcept concept) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+   
 
-    @Override
     public ArrayList<EConcept> getUnInterestConcepts(ELearner elearner) {
         throw new UnsupportedOperationException("Not supported yet.");
     }

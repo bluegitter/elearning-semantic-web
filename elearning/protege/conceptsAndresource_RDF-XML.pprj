@@ -1,4 +1,4 @@
-; Thu Dec 30 21:37:39 CST 2010
+; Sat Jan 08 14:00:34 CST 2011
 ; 
 ;+ (version "3.4.4")
 ;+ (build "Build 579")
@@ -6,11 +6,11 @@
 ([BROWSER_SLOT_NAMES] of  Property_List
 
 	(properties
-		[conceptsAndresource_RDF-XML_ProjectKB_Class20061]
-		[conceptsAndresource_RDF-XML_ProjectKB_Class20062]
-		[conceptsAndresource_RDF-XML_ProjectKB_Class20063]
-		[conceptsAndresource_RDF-XML_ProjectKB_Class20064]
-		[conceptsAndresource_RDF-XML_ProjectKB_Class20065]))
+		[conceptsAndresource_RDF-XML_ProjectKB_Class10028]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class10029]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class10030]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class10031]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class10032]))
 
 ([CLSES_TAB] of  Widget
 
@@ -27,6 +27,52 @@
 
 ([conceptsAndresource_RDF-XML_ProjectKB_Class10] of  Property_List
 )
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class10028] of  String
+
+	(name "http://www.w3.org/2002/07/owl#Class")
+	(string_value "%3ANAME"))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class10029] of  String
+
+	(name ":INSTANCE-ANNOTATION")
+	(string_value "%3AANNOTATION-TEXT"))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class10030] of  String
+
+	(name ":META-CLASS")
+	(string_value "%3ANAME"))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class10031] of  String
+
+	(name ":PAL-CONSTRAINT")
+	(string_value "%3APAL-NAME"))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class10032] of  String
+
+	(name "http://www.w3.org/2002/07/owl#Thing")
+	(string_value "%3ANAME"))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class10033] of  Map_Entry
+
+	(key "add_name_on_instance_form")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class10034] of  Map_Entry
+
+	(key "change_tracking_active")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class10035] of  Map_Entry
+
+	(key "suppress_instance_counting")
+	(key_class "java.lang.String")
+	(value "false")
+	(value_class "java.lang.String"))
 
 ([conceptsAndresource_RDF-XML_ProjectKB_Class10061] of  Widget
 
@@ -78,7 +124,9 @@
 		[conceptsAndresource_RDF-XML_ProjectKB_Class20142]
 		[conceptsAndresource_RDF-XML_ProjectKB_Class20144]
 		[conceptsAndresource_RDF-XML_ProjectKB_Class20146]
-		[conceptsAndresource_RDF-XML_ProjectKB_Class20148]))
+		[conceptsAndresource_RDF-XML_ProjectKB_Class20148]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class20066]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class20083]))
 
 ([conceptsAndresource_RDF-XML_ProjectKB_Class10065] of  Widget
 
@@ -345,7 +393,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 0)
-	(y 660))
+	(y 670))
 
 ([conceptsAndresource_RDF-XML_ProjectKB_Class10107] of  Property_List
 )
@@ -372,8 +420,8 @@
 	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class10111])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiLiteralWidget")
 	(width 200)
-	(x 200)
-	(y 180))
+	(x 560)
+	(y 60))
 
 ([conceptsAndresource_RDF-XML_ProjectKB_Class10111] of  Property_List
 )
@@ -428,8 +476,8 @@
 	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class10119])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
-	(x 820)
-	(y 300))
+	(x 0)
+	(y 180))
 
 ([conceptsAndresource_RDF-XML_ProjectKB_Class10119] of  Property_List
 )
@@ -442,8 +490,8 @@
 	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class10121])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.SingleLiteralWidget")
 	(width 200)
-	(x 0)
-	(y 180))
+	(x 560)
+	(y 0))
 
 ([conceptsAndresource_RDF-XML_ProjectKB_Class10121] of  Property_List
 
@@ -500,7 +548,7 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
 	(width 200)
 	(x 200)
-	(y 420))
+	(y 180))
 
 ([conceptsAndresource_RDF-XML_ProjectKB_Class10129] of  Property_List
 )
@@ -572,30 +620,33 @@
 ([conceptsAndresource_RDF-XML_ProjectKB_Class20] of  Property_List
 )
 
-([conceptsAndresource_RDF-XML_ProjectKB_Class20061] of  String
+([conceptsAndresource_RDF-XML_ProjectKB_Class20066] of  Widget
 
-	(name "http://www.w3.org/2002/07/owl#Class")
-	(string_value "%3ANAME"))
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#gender")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class20067])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiLiteralWidget")
+	(width 200)
+	(x 0)
+	(y 1040))
 
-([conceptsAndresource_RDF-XML_ProjectKB_Class20062] of  String
+([conceptsAndresource_RDF-XML_ProjectKB_Class20067] of  Property_List
+)
 
-	(name ":INSTANCE-ANNOTATION")
-	(string_value "%3AANNOTATION-TEXT"))
+([conceptsAndresource_RDF-XML_ProjectKB_Class20083] of  Widget
 
-([conceptsAndresource_RDF-XML_ProjectKB_Class20063] of  String
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#上传资源")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class20084])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 0)
+	(y 1160))
 
-	(name ":META-CLASS")
-	(string_value "%3ANAME"))
-
-([conceptsAndresource_RDF-XML_ProjectKB_Class20064] of  String
-
-	(name ":PAL-CONSTRAINT")
-	(string_value "%3APAL-NAME"))
-
-([conceptsAndresource_RDF-XML_ProjectKB_Class20065] of  String
-
-	(name "http://www.w3.org/2002/07/owl#Thing")
-	(string_value "%3ANAME"))
+([conceptsAndresource_RDF-XML_ProjectKB_Class20084] of  Property_List
+)
 
 ([conceptsAndresource_RDF-XML_ProjectKB_Class20092] of  Widget
 
@@ -1267,7 +1318,7 @@
 
 ([conceptsAndresource_RDF-XML_ProjectKB_Class23] of  Widget
 
-	(is_hidden TRUE)
+	(is_hidden FALSE)
 	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class24])
 	(widget_class_name "edu.stanford.smi.protege.query.LuceneQueryPlugin"))
 
@@ -1306,6 +1357,388 @@
 
 ([conceptsAndresource_RDF-XML_ProjectKB_Class30] of  Property_List
 )
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30134] of  Widget
+
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#E_Resource")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30137])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormWidget"))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30137] of  Property_List
+
+	(properties
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30138]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30141]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30144]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30147]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30149]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30151]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30153]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30155]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30157]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30159]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30161]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30163]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30165]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30167]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30169]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30171]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30173]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30175]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30177]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30179]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30181]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30183]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30185]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30187]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30189]))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30138] of  Widget
+
+	(height 0)
+	(is_hidden FALSE)
+	(label "Name")
+	(name ":NAME")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30139])
+	(width 0)
+	(x 0)
+	(y 0))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30139] of  Property_List
+
+	(properties [conceptsAndresource_RDF-XML_ProjectKB_Class30140]))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30140] of  Boolean
+
+	(boolean_value TRUE)
+	(name "DisabledByUser"))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30141] of  Property_List
+
+	(name "layout properties")
+	(properties
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30142]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30143]))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30142] of  String
+
+	(name "horizontal_stretcher")
+	(string_value "<<all>>"))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30143] of  String
+
+	(name "vertical_stretcher")
+	(string_value "<<none>>"))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30144] of  Widget
+
+	(height 180)
+	(is_hidden FALSE)
+	(name "http://protege.stanford.edu/plugins/owl/protege#inferredType")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30145])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.HeaderWidget")
+	(width 550)
+	(x 0)
+	(y 0))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30145] of  Property_List
+
+	(properties [conceptsAndresource_RDF-XML_ProjectKB_Class30146]))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30146] of  Boolean
+
+	(boolean_value FALSE)
+	(name "DisabledByUser"))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30147] of  Widget
+
+	(is_hidden FALSE)
+	(name "http://www.w3.org/2002/07/owl#versionInfo")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30148]))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30148] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30149] of  Widget
+
+	(is_hidden FALSE)
+	(name "http://www.w3.org/2000/01/rdf-schema#isDefinedBy")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30150]))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30150] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30151] of  Widget
+
+	(is_hidden FALSE)
+	(name "http://www.w3.org/2000/01/rdf-schema#comment")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30152]))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30152] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30153] of  Widget
+
+	(is_hidden FALSE)
+	(name "http://www.w3.org/2000/01/rdf-schema#seeAlso")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30154]))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30154] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30155] of  Widget
+
+	(is_hidden FALSE)
+	(name "http://www.w3.org/2000/01/rdf-schema#label")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30156]))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30156] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30157] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_0")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30158])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 200)
+	(y 540))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30158] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30159] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#description")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30160])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiLiteralWidget")
+	(width 200)
+	(x 0)
+	(y 180))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30160] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30161] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_3")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30162])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 0)
+	(y 420))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30162] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30163] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_2")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30164])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 0)
+	(y 540))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30164] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30165] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#uploadtime")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30166])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiLiteralWidget")
+	(width 200)
+	(x 610)
+	(y 180))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30166] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30167] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_1")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30168])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 400)
+	(y 420))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30168] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30169] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#fileLocation")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30170])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiLiteralWidget")
+	(width 200)
+	(x 200)
+	(y 180))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30170] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30171] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#difficulty")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30172])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiLiteralWidget")
+	(width 200)
+	(x 0)
+	(y 300))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30172] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30173] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_resource_of")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30174])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 400)
+	(y 300))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30174] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30175] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#resource_type")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30176])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiLiteralWidget")
+	(width 200)
+	(x 400)
+	(y 180))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30176] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30177] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#name")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30178])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiLiteralWidget")
+	(width 200)
+	(x 560)
+	(y 60))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30178] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30179] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_resource_of_P")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30180])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 400)
+	(y 540))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30180] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30181] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_pre_of_R")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30182])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 200)
+	(y 420))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30182] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30183] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_application_type_of")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30184])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 610)
+	(y 420))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30184] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30185] of  Widget
+
+	(height 60)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#id")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30186])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.SingleLiteralWidget")
+	(width 200)
+	(x 560)
+	(y 0))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30186] of  Property_List
+
+	(properties [conceptsAndresource_RDF-XML_ProjectKB_Class30191]))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30187] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_post_of_R")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30188])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 200)
+	(y 300))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30188] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30189] of  Widget
+
+	(height 120)
+	(is_hidden FALSE)
+	(name "http://www.owl-ontologies.com/e-learning.owl#is_resource_of_C")
+	(property_list [conceptsAndresource_RDF-XML_ProjectKB_Class30190])
+	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.MultiResourceWidget")
+	(width 200)
+	(x 610)
+	(y 300))
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30190] of  Property_List
+)
+
+([conceptsAndresource_RDF-XML_ProjectKB_Class30191] of  Boolean
+
+	(boolean_value FALSE)
+	(name "DisabledByUser"))
 
 ([conceptsAndresource_RDF-XML_ProjectKB_Class31] of  Widget
 
@@ -1483,7 +1916,6 @@
 		[conceptsAndresource_RDF-XML_ProjectKB_Class10100]
 		[conceptsAndresource_RDF-XML_ProjectKB_Class10102]
 		[conceptsAndresource_RDF-XML_ProjectKB_Class10104]
-		[conceptsAndresource_RDF-XML_ProjectKB_Class10106]
 		[conceptsAndresource_RDF-XML_ProjectKB_Class10108]
 		[conceptsAndresource_RDF-XML_ProjectKB_Class10110]
 		[conceptsAndresource_RDF-XML_ProjectKB_Class10112]
@@ -1814,6 +2246,7 @@
 	(display_multi_parent_class_icon FALSE)
 	(is_readonly FALSE)
 	(tabbed_instance_form_layout TRUE)
+	(undo_enabled TRUE)
 	(update_modification_slots FALSE))
 
 ([Instance_581] of  Widget
@@ -2396,20 +2829,21 @@
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormWidget"))
 
 ([KB_325529_Class0] of  Map
-)
+
+	(entries
+		[conceptsAndresource_RDF-XML_ProjectKB_Class10033]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class10034]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class10035]))
 
 ([KB_325529_Class4] of  String
 
 	(name "owl_file_name")
 	(string_value "conceptsAndresource_RDF-XML.owl"))
 
-([KB_384794_Class0] of  Map
-)
-
 ([KB_444675_Instance_0] of  String
 
 	(name "SwitchableClassDefinitionType")
-	(string_value "edu.stanford.smi.protegex.owl.ui.cls.PropertiesClassDefinitionWidgetType"))
+	(string_value "edu.stanford.smi.protegex.owl.ui.cls.PropertiesClassDefinitionWidget"))
 
 ([KB_465546_Instance_567] of  Widget
 
@@ -2417,6 +2851,9 @@
 	(name "http://protege.stanford.edu/plugins/owl/protege#ExternalResource")
 	(property_list [XY_Instance_890])
 	(widget_class_name "edu.stanford.smi.protegex.owl.ui.widget.OWLFormWidget"))
+
+([KB_530187_Class3] of  Map
+)
 
 ([KB_632156_Instance_0] of  String
 
@@ -7011,6 +7448,7 @@
 		[KB_938545_Instance_661]
 		[KB_713803_Instance_648]
 		[KB_301165_Instance_856]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class30134]
 		[KB_691299_Instance_537]
 		[KB_303942_Instance_68]
 		[conceptsAndresource_RDF-XML_ProjectKB_Class10061]
@@ -7069,6 +7507,7 @@
 		":STANDARD-SLOT"
 		":OWL-ANONYMOUS-ROOT"
 		":MAXIMUM-CARDINALITY"
+		"http://protege.stanford.edu/plugins/owl/protege#ExternalResource"
 		"http://www.w3.org/1999/02/22-rdf-syntax-ns#Alt"
 		"http://www.w3.org/2001/XMLSchema#NMTOKEN"
 		"http://www.w3.org/2002/07/owl#UnionClass"
@@ -7236,18 +7675,48 @@
 		[Instance_2534]
 		[Instance_86]
 		[Instance_2600]
-		[FORMS_TAB]
 		[Instance_3234]
+		[KB_865583_Instance_8]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class31]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class41]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class27]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class47]
 		[Instance_43]
 		[CLSES_TAB]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class53]
 		[KB_865583_Instance_6]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class49]
+		[FORMS_TAB]
 		[INSTANCES_TAB]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class11]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class9]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class1]
 		[Instance_45]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class51]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class23]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class21]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class17]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class55]
 		[KB_865583_Instance_12]
-		[KB_865583_Instance_8]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class19]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class13]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class59]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class3]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class45]
 		[KB_865583_Instance_4]
 		[SLOTS_TAB]
-		[KB_865583_Instance_10]))
+		[conceptsAndresource_RDF-XML_ProjectKB_Class43]
+		[KB_865583_Instance_10]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class29]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class25]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class35]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class33]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class57]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class39]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class5]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class37]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class7]
+		[conceptsAndresource_RDF-XML_ProjectKB_Class15]))
 
 ([SLOTS_TAB] of  Widget
 
@@ -8890,7 +9359,6 @@
 	(properties
 		[XY_Instance_893]
 		[XY_Instance_897]
-		[XY_Instance_900]
 		[XY_Instance_906]
 		[XY_Instance_910]
 		[XY_Instance_912]
@@ -8939,20 +9407,6 @@
 	(width 0)
 	(x 0)
 	(y 0))
-
-([XY_Instance_900] of  Widget
-
-	(height 0)
-	(is_hidden FALSE)
-	(label "Resource URI")
-	(name ":OWL-RESOURCE-URI")
-	(property_list [XY_Instance_901])
-	(width 0)
-	(x 0)
-	(y 0))
-
-([XY_Instance_901] of  Property_List
-)
 
 ([XY_Instance_906] of  Widget
 
