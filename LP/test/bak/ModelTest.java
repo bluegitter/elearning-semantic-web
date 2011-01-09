@@ -1,5 +1,6 @@
 package bak;
 
+import exception.jena.IndividualExistException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class ModelTest {
 		System.out.println("time1"+(time1-time));
 		System.out.println("time2"+(time2-time1));
 	}
-	public static void fileWritingPerformanceTest() throws IOException, IndividualNotExistException{
+	public static void fileWritingPerformanceTest() throws IOException, IndividualNotExistException, IndividualExistException{
 		ResourceParser rp = new ResourceParser();
 		rp.getBasicEConcepts();
 		rp.getDataStructureResrouces();

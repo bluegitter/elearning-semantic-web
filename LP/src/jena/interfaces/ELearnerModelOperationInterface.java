@@ -25,9 +25,9 @@ public interface ELearnerModelOperationInterface {
 
     boolean addEResource(ISCB_Resource resource) throws IndividualExistException;
 
-    boolean addPropertyIsSonOf(EConcept fatherConcept, EConcept sonConcept)throws IndividualExistException;
+    boolean addPropertyIsSonOf(EConcept fatherConcept, EConcept sonConcept)throws IndividualNotExistException;
 
-    boolean addPropertyIsResourceOfC(ISCB_Resource resource, EConcept concept)throws IndividualExistException;
+    boolean addPropertyIsResourceOfC(ISCB_Resource resource, EConcept concept)throws IndividualNotExistException;
 
     /*****************************************************
      * UPDATE

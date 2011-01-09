@@ -46,30 +46,31 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         super(file, lang);
     }
 
-    public static void main(String[] args) throws IndividualNotExistException, IOException {
+    public static void main(String[] args) throws IndividualNotExistException, IOException, IndividualExistException {
         File file = new File("test\\owl\\conceptsAndresource_RDF-XML.owl");
         long init = System.currentTimeMillis();
+
         ELearnerModelImpl emi = new ELearnerModelImpl(file);
         System.out.println("intitime:" + (System.currentTimeMillis() - init) + "ms");
         ELearner el = emi.getELearner("el001");
         EConcept con = emi.getEConcept("Computer_Science");
         EConcept con2 = emi.getEConcept("CMP.cf.3");
-//        ArrayList<EPerformance> ps = emi.getEPerformances(el);
-//        System.out.println("size" + ps.size());
-//        EPerformance ep = new EPerformance();
-//        ep.setId("newId");
-//        ep.setValue(1f);
-//        ep.setConcept(con2);
-//        ep.setElearner(el);
-//        ep.setDatetime(new Date(System.currentTimeMillis()));
-//        emi.addEPerfomance(ep);
-//
-//        EPerformance ep2 = emi.getEPerformance(el, con2);
-//        System.out.println(ep2);
-//        ArrayList<EPerformance> ps2 = emi.getEPerformances(el);
-//        //    emi.writeToFile(new File("test\\owl\\ms.owl"));
-//        System.out.println("size2:" + ps2.size());
-//        System.out.println("end");
+
+        ArrayList<EPerformance> ps = emi.getEPerformances(el);
+        System.out.println("size" + ps.size());
+        EPerformance ep = new EPerformance();
+        ep.setId("newId");
+        ep.setValue(3f);
+        ep.setConcept(con2);
+        ep.setElearner(el);
+        ep.setDatetime(new Date(System.currentTimeMillis()));
+        emi.addEPerfomance(ep);
+
+        EPerformance ep2 = emi.getEPerformance(el, con2);
+        System.out.println(ep2);
+        ArrayList<EPerformance> ps2 = emi.getEPerformances(el);
+        System.out.println("size2:" + ps2.size());
+        System.out.println("end");
     }
 
     @Override
@@ -147,14 +148,17 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         while (iter_el.hasNext()) {
             Statement s = iter_el.nextStatement();
             Resource r = s.getSubject();
-            SimpleSelector selector_con = new SimpleSelector(r, ontModel.getProperty(Constant.NS + "inverse_of_is_concept_of_P"), con);
-            StmtIterator iter_con = ontModel.listStatements(selector_con);
-            while (iter_con.hasNext()) {
-                EPerformance performance = getEPerformance(r.getLocalName());
-                performance.setElearner(elearner);
-                performance.setConcept(concept);
-                return performance;
+            if (r != null) {
+                SimpleSelector selector_con = new SimpleSelector(r, ontModel.getProperty(Constant.NS + "inverse_of_is_concept_of_P"), con);
+                StmtIterator iter_con = ontModel.listStatements(selector_con);
+                while (iter_con.hasNext()) {
+                    EPerformance performance = getEPerformance(r.getLocalName());
+                    performance.setElearner(elearner);
+                    performance.setConcept(concept);
+                    return performance;
+                }
             }
+
         }
         return null;
     }

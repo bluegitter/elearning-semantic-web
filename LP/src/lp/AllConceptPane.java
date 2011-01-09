@@ -13,6 +13,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import prefuse.Visualization;
@@ -46,6 +47,7 @@ public class AllConceptPane extends javax.swing.JPanel {
         search.setFont(FontLib.getFont("微软雅黑", Font.PLAIN, 11));
         search.setForeground(Color.BLACK);
         search.setBackground(bg);
+        
 
         final JFastLabel title = new JFastLabel("                 ");
         title.setPreferredSize(new Dimension(350, 20));
@@ -79,9 +81,11 @@ public class AllConceptPane extends javax.swing.JPanel {
         JPanel leftPane = new JPanel(new BorderLayout());
         leftPane.add(d, BorderLayout.CENTER);
         leftPane.add(box, BorderLayout.PAGE_END);
-
-        JPanel conceptPane = new ConceptPane();
+        ConceptPane conceptPane =LPView.getCP();
+//        new ConceptPane();
         add(leftPane);
         add(conceptPane);
+        this.validate();
     }
+    
 }
