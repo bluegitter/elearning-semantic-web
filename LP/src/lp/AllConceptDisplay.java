@@ -293,15 +293,19 @@ public class AllConceptDisplay extends Display {
                 m_end.setLocation(vi.getX() + xbias, vi.getY() + ybias);
 
                 EConcept ec = (EConcept) vi.getSourceTuple().get(m_label);
-                ConceptDialog cd = LPApp.getApplication().view.cd;
-                cd.conceptName.setText(ec.getName());
-                cd.uriLabel.setText(util.Constant.NS + ec.getCid());
-                cd.cdec = ec;
-
-                cd.updateData();
-
+//                ConceptDialog cd = LPApp.getApplication().view.cd;
+//                cd.conceptName.setText(ec.getName());
+//                cd.uriLabel.setText(util.Constant.NS + ec.getCid());
+//                cd.cdec = ec;
+//                cd.updateData();
+//                JTable table = cd.resouceTable;
+                ConceptPane cp = LPApp.getApplication().view.cp;
+                cp.conceptName.setText(ec.getName());
+                cp.uriLabel.setText(util.Constant.NS + ec.getCid());
+                cp.cdec = ec;
+                cp.updateData();
+                JTable table = cp.resouceTable;
                 ArrayList<ISCB_Resource> ra = LPApp.lpModel.getEResourcesByEConcept(ec);
-                JTable table = cd.resouceTable;
                 DefaultTableModel model = (DefaultTableModel) table.getModel();
                 for (int index = model.getRowCount() - 1; index >= 0; index--) {
                     model.removeRow(index);
@@ -310,7 +314,7 @@ public class AllConceptDisplay extends Display {
                     Object[] oa = {er.getName(), er.getDifficulty(), new javax.swing.JLabel(util.Constant.SERVERTESTURL + "/resources/" + er.getRid())};
                     model.addRow(oa);
                 }
-                table.updateUI();
+                cp.updateUI();
             } else {
                 m_cur.setLocation(m_start.getX() + frac * (m_end.getX() - m_start.getX()),
                         m_start.getY() + frac * (m_end.getY() - m_start.getY()));

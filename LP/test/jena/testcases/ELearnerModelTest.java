@@ -1,5 +1,6 @@
 package jena.testcases;
 
+import exception.jena.IndividualExistException;
 import java.io.IOException;
 import java.util.Date;
 
@@ -14,7 +15,7 @@ import ontology.resources.ISCB_Resource;
 
 public class ELearnerModelTest extends TestCase{
 	
-	public void testAddEConcept() throws IndividualNotExistException{
+	public void testAddEConcept() throws IndividualNotExistException, IndividualExistException{
 		ELearnerModelImpl emi = new ELearnerModelImpl();
 		EConcept con = new EConcept();
 		con.setCid("testAddConcept");
@@ -23,7 +24,7 @@ public class ELearnerModelTest extends TestCase{
 		EConcept newC = emi.getEConcept(con.getCid());
 		assertTrue(newC.getCid().equals(con.getCid()));
 	}
-	public void testAddElearner()throws IOException, IndividualNotExistException{
+	public void testAddElearner()throws IOException, IndividualNotExistException, IndividualExistException{
 		ELearnerModelImpl emi = new ELearnerModelImpl();
 		ELearner el = new ELearner();
 		el.setId("eltest");
@@ -36,7 +37,7 @@ public class ELearnerModelTest extends TestCase{
 		ELearner newE = emi.getELearner(el.getId());
 		assertTrue(newE.getId().equals(el.getId()));
 	}
-	public void testAddEResource() throws IndividualNotExistException{
+	public void testAddEResource() throws IndividualNotExistException, IndividualExistException{
 		ELearnerModelImpl emi = new ELearnerModelImpl();
 		ISCB_Resource res = new ISCB_Resource();
 		res.setRid("res_ID");
@@ -52,7 +53,7 @@ public class ELearnerModelTest extends TestCase{
 		ISCB_Resource newRes = emi.getEResource(res.getRid());
 		assertTrue(newRes.getRid().equals(res.getRid()));
 	}
-	public void testAddPerformance() throws IndividualNotExistException{
+	public void testAddPerformance() throws IndividualNotExistException, IndividualExistException{
 		ELearnerModelImpl emi = new ELearnerModelImpl();
 		EConcept concept = new EConcept("testPreCnp");
 		ELearner elearner = new ELearner("el002");
@@ -64,7 +65,7 @@ public class ELearnerModelTest extends TestCase{
 		assertTrue(performance.getValue()==perf.getValue());
 		assertTrue(perf.getDatetime().toString().equals(performance.getDatetime().toString()));
 	}
-	public void testGetAllAfterAddPerformance()throws IndividualNotExistException{
+	public void testGetAllAfterAddPerformance()throws IndividualNotExistException, IndividualExistException{
 		ELearnerModelImpl emi = new ELearnerModelImpl();
 		EConcept concept = new EConcept("testPreCnp");
 		ELearner elearner = new ELearner("el002");
@@ -74,14 +75,14 @@ public class ELearnerModelTest extends TestCase{
 		int size2 = emi.getEPerformances(elearner).size();
 		assertTrue(size==size2-1);
 	}
-	public void testAddPortfolio()throws IndividualNotExistException{
+	public void testAddPortfolio()throws IndividualNotExistException, IndividualExistException{
 		ISCB_Resource r = emi.getEResource("rid00003");
 		EPortfolio p = new EPortfolio("new_portfolio",el,r,0,new Date(System.currentTimeMillis()));
 		emi.addEPortfolio(p);
 		EPortfolio newP = emi.getEPortfolio(el,r);
 		assertTrue(p.getId().equals(newP.getId()));
 	}
-	public void testGetAllAfterAddPortfolio()throws IndividualNotExistException{
+	public void testGetAllAfterAddPortfolio()throws IndividualNotExistException, IndividualExistException{
 		ISCB_Resource r = emi.getEResource("rid00003");
 		EPortfolio p = new EPortfolio("new_portfolio",el,r,0,new Date(System.currentTimeMillis()));
 		int size =  emi.getEPortfolios(el).size();
