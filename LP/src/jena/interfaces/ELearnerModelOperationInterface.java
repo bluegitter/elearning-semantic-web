@@ -2,6 +2,7 @@ package jena.interfaces;
 
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.rdf.model.Resource;
+import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
 import ontology.EConcept;
 import ontology.EPerformance;
@@ -14,19 +15,19 @@ public interface ELearnerModelOperationInterface {
     /*****************************************************
      * ADD
      *****************************************************/
-    boolean addEConcept(EConcept concept) throws IndividualNotExistException;
+    boolean addEConcept(EConcept concept) throws IndividualExistException;
 
-    boolean addEPerfomance(EPerformance performance);
+    boolean addEPerfomance(EPerformance performance)throws IndividualExistException;
 
-    boolean addEPortfolio(EPortfolio portfolio);
+    boolean addEPortfolio(EPortfolio portfolio)throws IndividualExistException;
 
-    boolean addELearner(ELearner elearner) throws IndividualNotExistException;
+    boolean addELearner(ELearner elearner) throws IndividualExistException;
 
-    boolean addEResource(ISCB_Resource resource) throws IndividualNotExistException;
+    boolean addEResource(ISCB_Resource resource) throws IndividualExistException;
 
-    boolean addPropertyIsSonOf(EConcept fatherConcept, EConcept sonConcept);
+    boolean addPropertyIsSonOf(EConcept fatherConcept, EConcept sonConcept)throws IndividualExistException;
 
-    boolean addPropertyIsResourceOfC(ISCB_Resource resource, EConcept concept);
+    boolean addPropertyIsResourceOfC(ISCB_Resource resource, EConcept concept)throws IndividualExistException;
 
     /*****************************************************
      * UPDATE

@@ -29,6 +29,9 @@ public class ELearnerModelTest extends TestCase{
 		el.setId("eltest");
 		el.setName("testName");
 		el.setAddress("testAddress");
+                el.setGender("male");
+                el.setEmail("testEmail");
+                el.setGender("testgrade");
 		emi.addELearner(el);
 		ELearner newE = emi.getELearner(el.getId());
 		assertTrue(newE.getId().equals(el.getId()));
@@ -40,11 +43,16 @@ public class ELearnerModelTest extends TestCase{
 		res.setName("res_Name");
 		res.setFileLocation("res_FileLocation");
 		res.setDifficulty("res_difficult");
+                res.setPostfix("doc");
+                res.setResourceDescription("res_description");
+                res.setUploadTime(new Date(System.currentTimeMillis()));
+                res.setResourceType("audio");
+                res.setResourceQuality("优");
 		emi.addEResource(res);
 		ISCB_Resource newRes = emi.getEResource(res.getRid());
 		assertTrue(newRes.getRid().equals(res.getRid()));
 	}
-	public void testAddPerformance(){
+	public void testAddPerformance() throws IndividualNotExistException{
 		ELearnerModelImpl emi = new ELearnerModelImpl();
 		EConcept concept = new EConcept("testPreCnp");
 		ELearner elearner = new ELearner("el002");
@@ -56,7 +64,7 @@ public class ELearnerModelTest extends TestCase{
 		assertTrue(performance.getValue()==perf.getValue());
 		assertTrue(perf.getDatetime().toString().equals(performance.getDatetime().toString()));
 	}
-	public void testGetAllAfterAddPerformance(){
+	public void testGetAllAfterAddPerformance()throws IndividualNotExistException{
 		ELearnerModelImpl emi = new ELearnerModelImpl();
 		EConcept concept = new EConcept("testPreCnp");
 		ELearner elearner = new ELearner("el002");
@@ -64,17 +72,16 @@ public class ELearnerModelTest extends TestCase{
 		int size = emi.getEPerformances(elearner).size();
 		emi.addEPerfomance(performance);
 		int size2 = emi.getEPerformances(elearner).size();
-		
 		assertTrue(size==size2-1);
 	}
-	public void testAddPortfolio(){
+	public void testAddPortfolio()throws IndividualNotExistException{
 		ISCB_Resource r = emi.getEResource("rid00003");
 		EPortfolio p = new EPortfolio("new_portfolio",el,r,0,new Date(System.currentTimeMillis()));
 		emi.addEPortfolio(p);
 		EPortfolio newP = emi.getEPortfolio(el,r);
 		assertTrue(p.getId().equals(newP.getId()));
 	}
-	public void testGetAllAfterAddPortfolio(){
+	public void testGetAllAfterAddPortfolio()throws IndividualNotExistException{
 		ISCB_Resource r = emi.getEResource("rid00003");
 		EPortfolio p = new EPortfolio("new_portfolio",el,r,0,new Date(System.currentTimeMillis()));
 		int size =  emi.getEPortfolios(el).size();

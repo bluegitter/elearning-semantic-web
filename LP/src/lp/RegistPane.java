@@ -8,9 +8,9 @@
  *
  * Created on 2011-1-3, 17:43:00
  */
-
 package lp;
 
+import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +23,7 @@ import ontology.people.ELearner;
 public class RegistPane extends javax.swing.JPanel {
 
     private NavigatorDialog parent;
+
     /** Creates new form RegistPane */
     public RegistPane(NavigatorDialog parent) {
         initComponents();
@@ -168,29 +169,26 @@ public class RegistPane extends javax.swing.JPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-         LPApp.getApplication().user = new EUser(jTextField2.getText());
-         ELearner el = new ELearner(jTextField1.getText());
-         el.setId(jTextField2.getText());
-         el.setName(jTextField1.getText());
-         el.setPassword(new String(password.getPassword()));
-         el.setAddress(jTextField3.getText());
-         el.setEmail(jTextField4.getText());
+        LPApp.getApplication().user = new EUser(jTextField2.getText());
+        ELearner el = new ELearner(jTextField1.getText());
+        el.setId(jTextField2.getText());
+        el.setName(jTextField1.getText());
+        el.setPassword(new String(password.getPassword()));
+        el.setAddress(jTextField3.getText());
+        el.setEmail(jTextField4.getText());
         try {
             LPApp.lpModel.addELearner(el);
-        } catch (IndividualNotExistException ex) {
+        } catch (IndividualExistException ex) {
             Logger.getLogger(RegistPane.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-         parent.setNext();
-
-         
+        parent.setNext();
 
 
 
-         
+
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
@@ -205,5 +203,4 @@ public class RegistPane extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JPasswordField password;
     // End of variables declaration//GEN-END:variables
-
 }

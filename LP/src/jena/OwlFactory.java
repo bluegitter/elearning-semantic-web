@@ -20,101 +20,107 @@ import com.hp.hpl.jena.util.FileManager;
 import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 
 public class OwlFactory {
-	public static Model getDefaultOWLModel(){
-		Model model = ModelFactory.createDefaultModel();
-		InputStream in = FileManager.get().open(Constant.OWLFile);
-		if(in ==null){
-			throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
-		}
-		model.read(in,Constant.NS);
-		return model;
-	}
-	public static Model getDefaultOWLModel(String fileURL){
-		Model model = ModelFactory.createDefaultModel();
-		InputStream in = FileManager.get().open(fileURL);
-		if(in ==null){
-			throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
-		}
-		model.read(in,Constant.NS);
-		return model;
-	}
-	public static OntModel getOntModel(){
-		OntModel model = ModelFactory.createOntologyModel();
-		InputStream in = FileManager.get().open(Constant.OWLFile);
-		if(in ==null){
-			throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
-		}
-		model.read(in,Constant.NS);
-		Resource configuration = model.createResource();
-		configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
-		return model;
-	}
-	public static OntModel getOntModel(String fileURL){
-		OntModel model = ModelFactory.createOntologyModel();
-		InputStream in = FileManager.get().open(fileURL);
-		if(in ==null){
-			throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
-		}
-		model.read(in,Constant.NS);
-		Resource configuration = model.createResource();
-		configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
-		return model;
-	}
-	public static OntModel getOntModel(File file){
-		OntModel model = ModelFactory.createOntologyModel();
-		InputStream in = null;
-		try {
-			in = new FileInputStream(file);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		if(in ==null){
-			throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
-		}
-		model.read(in,Constant.NS);
-		Resource configuration = model.createResource();
-		configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
-		return model;
-	}
-	public static OntModel getOntModel(File file,String lang){
-		OntModel model = ModelFactory.createOntologyModel();
-		InputStream in = null;
-		try {
-			in = new FileInputStream(file);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		if(in ==null){
-			throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
-		}
-		model.read(in,Constant.NS,lang);
-		Resource configuration = model.createResource();
-		configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
-		return model;
-	}
 
-	/**************************************************************
-	 * Get a inf model with some kind of reasoner
-	 * @return kind of reason
-	 *************************************************************/
-	public static Reasoner getGenericRuleReasoner(){
-		List<Rule> rules = Rule.rulesFromURL(Constant.RulesFile);
-		GenericRuleReasoner reasoner = new GenericRuleReasoner(rules);
-		reasoner.setOWLTranslation(true);
-		reasoner.setDerivationLogging(true);
-		reasoner.setTransitiveClosureCaching(true);
-		return reasoner;
-	}
-	public static Reasoner getPelletReasonerModel(){
-		Reasoner reasoner = PelletReasonerFactory.theInstance().create();
-		return reasoner;
-	}
-	public static InfModel getInfoModel(Reasoner reasoner,Model model){
-		OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM,model);
-		InfModel infModel = ModelFactory.createInfModel(reasoner, ontModel);
-		return infModel;
-	}
-	
-	
+    public static Model getDefaultOWLModel() {
+        Model model = ModelFactory.createDefaultModel();
+        InputStream in = FileManager.get().open(Constant.OWLFile);
+        if (in == null) {
+            throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
+        }
+        model.read(in, Constant.NS);
+        return model;
+    }
+
+    public static Model getDefaultOWLModel(String fileURL) {
+        Model model = ModelFactory.createDefaultModel();
+        InputStream in = FileManager.get().open(fileURL);
+        if (in == null) {
+            throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
+        }
+        model.read(in, Constant.NS);
+        return model;
+    }
+
+    public static OntModel getOntModel() {
+        OntModel model = ModelFactory.createOntologyModel();
+        InputStream in = FileManager.get().open(Constant.OWLFile);
+        if (in == null) {
+            throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
+        }
+        model.read(in, Constant.NS);
+        Resource configuration = model.createResource();
+        configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
+        return model;
+    }
+
+    public static OntModel getOntModel(String fileURL) {
+        OntModel model = ModelFactory.createOntologyModel();
+        InputStream in = FileManager.get().open(fileURL);
+        if (in == null) {
+            throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
+        }
+        model.read(in, Constant.NS);
+        Resource configuration = model.createResource();
+        configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
+        return model;
+    }
+
+    public static OntModel getOntModel(File file) {
+        OntModel model = ModelFactory.createOntologyModel();
+        InputStream in = null;
+        try {
+            in = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (in == null) {
+            throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
+        }
+        model.read(in, Constant.NS);
+        Resource configuration = model.createResource();
+        configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
+        OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, model);
+        return ontModel;
+    }
+
+    public static OntModel getOntModel(File file, String lang) {
+        OntModel model = ModelFactory.createOntologyModel();
+        InputStream in = null;
+        try {
+            in = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        if (in == null) {
+            throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
+        }
+        model.read(in, Constant.NS, lang);
+        Resource configuration = model.createResource();
+        configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
+        return model;
+    }
+
+    /**************************************************************
+     * Get a inf model with some kind of reasoner
+     * @return kind of reason
+     *************************************************************/
+    public static Reasoner getGenericRuleReasoner() {
+        List<Rule> rules = Rule.rulesFromURL(Constant.RulesFile);
+        GenericRuleReasoner reasoner = new GenericRuleReasoner(rules);
+        reasoner.setOWLTranslation(true);
+        reasoner.setDerivationLogging(true);
+        reasoner.setTransitiveClosureCaching(true);
+        return reasoner;
+    }
+
+    public static Reasoner getPelletReasonerModel() {
+        Reasoner reasoner = PelletReasonerFactory.theInstance().create();
+        return reasoner;
+    }
+
+    public static InfModel getInfoModel(Reasoner reasoner, Model model) {
+        OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, model);
+        InfModel infModel = ModelFactory.createInfModel(reasoner, ontModel);
+        return infModel;
+    }
 }
-

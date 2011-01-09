@@ -14,6 +14,7 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
+import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
 import ontology.EConcept;
 import ontology.EInterest;
@@ -50,24 +51,25 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         long init = System.currentTimeMillis();
         ELearnerModelImpl emi = new ELearnerModelImpl(file);
         System.out.println("intitime:" + (System.currentTimeMillis() - init) + "ms");
-        EPerformance p = emi.getEPerformance("E_Performance_1_1");
-        System.out.println(p.getDatetime());
-       ELearner el = emi.getELearner("el001");
+        ELearner el = emi.getELearner("el001");
         EConcept con = emi.getEConcept("Computer_Science");
         EConcept con2 = emi.getEConcept("CMP.cf.3");
-        EPerformance ep = new EPerformance();
-        ep.setId("newId");
-        ep.setValue(1f);
-        ep.setConcept(con2);
-        ep.setElearner(el);
-        ep.setDatetime(new Date(System.currentTimeMillis()));
-        emi.addEPerfomance(ep);
-        EPerformance ep2 = emi.getEPerformance(el, con2);
-        if (ep2 != null) {
-            System.out.println("ep2" + ep2);
-             System.out.println("ep2" + ep2.getDatetime());
-        }
-        System.out.println("end");
+//        ArrayList<EPerformance> ps = emi.getEPerformances(el);
+//        System.out.println("size" + ps.size());
+//        EPerformance ep = new EPerformance();
+//        ep.setId("newId");
+//        ep.setValue(1f);
+//        ep.setConcept(con2);
+//        ep.setElearner(el);
+//        ep.setDatetime(new Date(System.currentTimeMillis()));
+//        emi.addEPerfomance(ep);
+//
+//        EPerformance ep2 = emi.getEPerformance(el, con2);
+//        System.out.println(ep2);
+//        ArrayList<EPerformance> ps2 = emi.getEPerformances(el);
+//        //    emi.writeToFile(new File("test\\owl\\ms.owl"));
+//        System.out.println("size2:" + ps2.size());
+//        System.out.println("end");
     }
 
     @Override
@@ -87,7 +89,6 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         Resource resourceClass = ontModel.getResource(Constant.NS + "ISCB_Resource");
         SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NSRDF + "type"), resourceClass);
         StmtIterator iter = ontModel.listStatements(selector);
-
         ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
         while (iter.hasNext()) {
             Statement s = iter.nextStatement();
@@ -139,8 +140,8 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 
     @Override
     public EPerformance getEPerformance(ELearner elearner, EConcept concept) {
-        Resource con = ontModel.getResource(Constant.NS + concept.getCid());
-        Resource el = ontModel.getResource(Constant.NS + elearner.getId());
+        Individual con = ontModel.getIndividual(Constant.NS + concept.getCid());
+        Individual el = ontModel.getIndividual(Constant.NS + elearner.getId());
         SimpleSelector selector_el = new SimpleSelector(null, ontModel.getProperty(Constant.NS + "inverse_of_has_performance"), el);
         StmtIterator iter_el = ontModel.listStatements(selector_el);
         while (iter_el.hasNext()) {
@@ -458,7 +459,10 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
      * 
      */
     @Override
-    public boolean addEInterest(EInterest interest) {
+    public boolean addEInterest(EInterest interest) throws IndividualExistException {
+        if (containEInterest(interest.getId())) {
+            throw new IndividualExistException("EInterest " + interest.getId() + " already exist in the model");
+        }
         ELearner el = interest.getELearner();
         EConcept con = interest.getEConcept();
         Resource in = ontModel.createResource(Constant.NS + interest.getId(), ontModel.getResource(Constant.NS + "E_Interest"));
@@ -493,12 +497,21 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 
     @Override
     public boolean updateEInterest(EInterest interest) throws IndividualNotExistException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Individual indi = ontModel.getIndividual(Constant.NS + interest.getId());
+        if (indi == null) {
+            throw new IndividualNotExistException("EInterest " + interest.getId() + " does not exist in the model");
+        }
+        Property p = ontModel.getProperty(Constant.NS + "value");
+        indi.setPropertyValue(p, ontModel.createTypedLiteral(interest.getValue(), new XSDDatatype("float")));
+        return true;
     }
 
     @Override
     public EPerformance getEPerformance(String pid) {
         Individual indi = ontModel.getIndividual(Constant.NS + pid);
+        if (indi == null) {
+            return null;
+        }
         EPerformance performance = new EPerformance();
         performance.setId(indi.getLocalName());
         Statement valueNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "value"));
@@ -513,12 +526,14 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
             performance.setDatetime(datetime);
         }
         return performance;
-
     }
 
     @Override
     public EPortfolio getEPortfolio(String pid) {
         Individual indi = ontModel.getIndividual(Constant.NS + pid);
+        if (indi == null) {
+            return null;
+        }
         EPortfolio port = new EPortfolio();
         Statement valueNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "value"));
         if (valueNode != null) {

@@ -11,6 +11,7 @@
 
 package lp;
 
+import exception.jena.IndividualExistException;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -19,6 +20,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -340,7 +343,11 @@ public class NavigatorPane extends javax.swing.JPanel {
             ei.setELearner(LPApp.getApplication().user.learner);
             ei.setId("newinterest"+LPApp.getApplication().user.learner.getId()+i);
             ei.setValue(0.5f);
-            LPApp.lpModel.addEInterest(ei);
+            try {
+                LPApp.lpModel.addEInterest(ei);
+            } catch (IndividualExistException ex) {
+                Logger.getLogger(NavigatorPane.class.getName()).log(Level.SEVERE, null, ex);
+            }
             EInterests.add(ei);
         }
 
