@@ -107,6 +107,9 @@ public class LPView extends FrameView {
             cd = new ConceptDialog(this.getFrame(), false);
             cd.setLocation(850, 50);
         }
+        if(cp == null){
+            cp = new ConceptPane();
+        }
         if(i == LPApp.ALL_CONCEPT)
             cd.setVisible(true);
         else
@@ -438,6 +441,7 @@ public class LPView extends FrameView {
     private int busyIconIndex = 0;
     private JDialog aboutBox;
     public ConceptDialog cd = null;
+    public ConceptPane cp = null;
     public NavigatorPane np = null;
     public RegistPane rp = null;
 }
