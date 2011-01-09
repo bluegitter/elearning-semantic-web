@@ -10,7 +10,10 @@
  */
 package lp;
 
+import exception.jena.IndividualExistException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import ontology.EConcept;
 import ontology.EPerformance;
 import ontology.people.ELearner;
@@ -177,7 +180,11 @@ public class ConceptDialog extends javax.swing.JDialog {
             ep.setElearner(LPApp.getApplication().user.learner);
             ep.setId(LPApp.getApplication().user.learner.getId() + cdec.getCid() + "_p");
             ep.setDatetime(new Date(System.currentTimeMillis()));
-            LPApp.lpModel.addEPerfomance(ep);
+            try {
+                LPApp.lpModel.addEPerfomance(ep);
+            } catch (IndividualExistException ex) {
+                Logger.getLogger(ConceptDialog.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         this.updateData();
     }//GEN-LAST:event_learnBtnActionPerformed

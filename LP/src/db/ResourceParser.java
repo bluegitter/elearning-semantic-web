@@ -1,5 +1,6 @@
 package db;
 
+import exception.jena.IndividualExistException;
 import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -30,7 +31,7 @@ public class ResourceParser {
 	public OntModel getOntModel(){
 		return emi.getOntModel();
 	}
-	public HashMap<String,EConcept> getDataStructureResrouces() throws IndividualNotExistException{
+	public HashMap<String,EConcept> getDataStructureResrouces() throws IndividualNotExistException, IndividualExistException{
 		Connection con = DataFactory.getConnection();
 		HashMap<String,EConcept> concepts = new HashMap<String,EConcept>();
 		try{
@@ -91,7 +92,7 @@ public class ResourceParser {
 		}
 		return concepts;
 	}
-	public ArrayList<EConcept> getBasicEConcepts() throws IndividualNotExistException {
+	public ArrayList<EConcept> getBasicEConcepts() throws IndividualNotExistException, IndividualExistException {
 		Connection con = DataFactory.getConnection();
 		ArrayList<EConcept> concepts = new ArrayList<EConcept>();
 		try{
@@ -137,7 +138,7 @@ public class ResourceParser {
 		}
 		return i;
 	}
-	public static void main(String [] args) throws IOException, IndividualNotExistException{
+	public static void main(String [] args) throws IOException, IndividualNotExistException, IndividualExistException{
 		File file = new File("test\\owl\\conceptsAndresource_RDF-XML.owl");
 		ResourceParser rp = new ResourceParser();
 		rp.getBasicEConcepts();
