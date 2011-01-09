@@ -141,12 +141,13 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         if (containEPortfolio(portfolio.getId())) {
             throw new IndividualExistException("EPortfolio " + portfolio.getId() + " has already existed in the model");
         }
-        ELearner el = portfolio.getElearner();
-        ISCB_Resource res = portfolio.getEResource();
-        Resource port = ontModel.createResource(Constant.NS + portfolio.getId(), ontModel.getResource(Constant.NS + "E_Portfolio"));
-        ontModel.add(port, ontModel.getProperty(Constant.NS + "inverse_of_has_portfolio"), ontModel.getResource(Constant.NS + el.getId()));
-        ontModel.add(port, ontModel.getProperty(Constant.NS + "inverse_of_is_resource_of_P"), ontModel.getResource(Constant.NS + res.getRid()));
-        ontModel.addLiteral(port, ontModel.getProperty(Constant.NS + "value"), portfolio.getValue());
+        Individual el = ontModel.getIndividual(Constant.NS + portfolio.getElearner().getId());
+        Individual res = ontModel.getIndividual(Constant.NS + portfolio.getEResource().getRid());
+        Individual port = ontModel.createIndividual(Constant.NS + portfolio.getId(), ontModel.getResource(Constant.NS + "E_Portfolio"));
+        ontModel.add(el, ontModel.getProperty(Constant.NS + "has_portfolio"), port);
+        ontModel.add(res, ontModel.getProperty(Constant.NS + "inverse_of_is_resource_of_P"), port);
+//        ontModel.addLiteral(port, ontModel.getProperty(Constant.NS + "value"), portfolio.getValue());
+        port.addLiteral(ontModel.getProperty(Constant.NS + "value"), portfolio.getValue());
         if (portfolio.getDatetime() != null) {
             ontModel.add(port, ontModel.getProperty(Constant.NS + "date_time"), StringExchanger.parseDateToString(portfolio.getDatetime()), new XSDDatatype("dateTime"));
         }
@@ -158,7 +159,7 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         if (containEConcept(concept.getCid())) {
             throw new IndividualExistException("EConcept " + concept.getCid() + "  has already existed in the model");
         }
-        Resource con = ontModel.createResource(Constant.NS + concept.getCid(), ontModel.getResource(Constant.NS + "E_Concept"));
+        Individual con = ontModel.createIndividual(Constant.NS + concept.getCid(), ontModel.getResource(Constant.NS + "E_Concept"));
         ontModel.add(con, ontModel.getProperty(Constant.NS + "id"), concept.getCid());
         ontModel.add(con, ontModel.getProperty(Constant.NS + "name"), concept.getName(), new XSDDatatype("string"));
         return true;
@@ -171,14 +172,12 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         }
         Individual el = ontModel.getIndividual(Constant.NS + performance.getElearner().getId());
         Individual con = ontModel.getIndividual(Constant.NS + performance.getConcept().getCid());
-        Resource perf = ontModel.createResource(Constant.NS + performance.getId(), ontModel.getResource(Constant.NS + "E_Performance"));
-        ontModel.add(ontModel.createStatement(perf, ontModel.getProperty(Constant.NS + "inverse_of_has_performance"), el));
-        ontModel.add(ontModel.createStatement(perf, ontModel.getProperty(Constant.NS + "inverse_of_is_concept_of_P"), con));
-//        ontModel.add(perf, ontModel.getProperty(Constant.NS + "inverse_of_has_performance"), el);
-//        ontModel.add(perf, ontModel.getProperty(Constant.NS + "inverse_of_is_concept_of_P"),con);
-        //    ontModel.add(el,ontModel.getProperty(Constant.NS + "has_performance"),perf);
-        //   ontModel.add(con,ontModel.getProperty(Constant.NS + "is_concept_of_P"),perf);
-        ontModel.addLiteral(perf, ontModel.getProperty(Constant.NS + "value"), performance.getValue());
+        Individual perf = ontModel.createIndividual(Constant.NS + performance.getId(), ontModel.getOntClass(Constant.NS + "E_Performance"));
+        perf.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_has_performance"), el);
+        perf.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_is_concept_of_P"), con);
+        perf.addLiteral(ontModel.getProperty(Constant.NS + "value"), performance.getValue());
+        ontModel.add(el, ontModel.getProperty(Constant.NS + "has_performance"), perf);
+        ontModel.add(con, ontModel.getProperty(Constant.NS + "is_concept_of_P"), perf);
         if (performance.getDatetime() != null) {
             ontModel.add(perf, ontModel.getProperty(Constant.NS + "date_time"), StringExchanger.parseDateToString(performance.getDatetime()), new XSDDatatype("dateTime"));
         }
@@ -186,7 +185,13 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
     }
 
     @Override
-    public boolean addPropertyIsSonOf(EConcept fatherConcept, EConcept sonConcept) {
+    public boolean addPropertyIsSonOf(EConcept fatherConcept, EConcept sonConcept) throws IndividualNotExistException {
+        if (!containEConcept(fatherConcept.getCid())) {
+            throw new IndividualNotExistException("father EConcept " + fatherConcept.getCid() + " does not exist in the model");
+        }
+        if (!containEConcept(sonConcept.getCid())) {
+            throw new IndividualNotExistException("son EConcept " + sonConcept.getCid() + " does not exist in the model");
+        }
         Resource son = ontModel.getResource(Constant.NS + sonConcept.getCid());
         Resource father = ontModel.getResource(Constant.NS + fatherConcept.getCid());
         ontModel.add(son, ontModel.getProperty(Constant.NS + "is_son_of"), father);
@@ -194,10 +199,17 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
     }
 
     @Override
-    public boolean addPropertyIsResourceOfC(ISCB_Resource resource, EConcept concept) {
+    public boolean addPropertyIsResourceOfC(ISCB_Resource resource, EConcept concept) throws IndividualNotExistException {
+        if (!containEResource(resource.getRid())) {
+            throw new IndividualNotExistException("ISCB_Resource " + resource.getRid() + " does not exist in the model");
+        }
+        if (!containEConcept(concept.getCid())) {
+            throw new IndividualNotExistException("EConcept " + concept.getCid() + " does not exist in the model");
+        }
         Individual res = ontModel.getIndividual(Constant.NS + resource.getRid());
         Individual con = ontModel.getIndividual(Constant.NS + concept.getCid());
         ontModel.add(res, ontModel.getProperty(Constant.NS + "is_resource_of_C"), con);
+        ontModel.add(con, ontModel.getProperty(Constant.NS + "inverse_of_is_resource_of_C"), res);
         return true;
     }
 

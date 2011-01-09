@@ -88,6 +88,13 @@ public class LPView extends FrameView {
         });
     }
 
+    public static ConceptPane getCP() {
+        if (cp == null) {
+            cp = new ConceptPane();
+        }
+        return cp;
+    }
+
     @Action
     public void showAboutBox() {
         if (aboutBox == null) {
@@ -103,35 +110,38 @@ public class LPView extends FrameView {
         mainPanel.removeAll();
         mainPanel.add(panes[i]);
         this.mainPanel.updateUI();
-        if(cd == null) {
-            cd = new ConceptDialog(this.getFrame(), false);
-            cd.setLocation(850, 50);
-        }
-        if(cp == null){
-            cp = new ConceptPane();
-        }
-        if(i == LPApp.ALL_CONCEPT)
-            cd.setVisible(true);
-        else
-            cd.setVisible(false);
+//        if(cd == null) {
+//            cd = new ConceptDialog(this.getFrame(), false);
+//            cd.setLocation(850, 50);
+//        }
+//        if (cp == null) {
+//            cp = new ConceptPane();
+//            cp.setLocation(850, 50);
+//        }
+//        if (i == LPApp.ALL_CONCEPT) {
+////             cd.setVisible(true);
+//            cp.setVisible(true);
+//        } else {
+////             cd.setVisible(false);
+//            cp.setVisible(false);
+//        }
 
-        if(i == LPApp.MY_CONCEPT) {
-            ((MyConceptPane)this.panes[i]).updateTable();
+        if (i == LPApp.MY_CONCEPT) {
+            ((MyConceptPane) this.panes[i]).updateTable();
         } else if (i == LPApp.RECOMMEND) {
-            ((RecommendContainer)this.panes[i]).renew();
+            ((RecommendContainer) this.panes[i]).renew();
         }
 
-        if( i == LPApp.PROFILE)
-        {
+        if (i == LPApp.PROFILE) {
             System.out.println("hahahahaha");
-            JDialog jd  = new JDialog();
+            JDialog jd = new JDialog();
             jd.setContentPane(new UserProfilePane());
             jd.pack();
             jd.setTitle("个人资料");
-          //  jd.setLocation(850, 50);
+            //  jd.setLocation(850, 50);
             jd.setVisible(true);
-           // jd.setSize(800, 800);
-            
+            // jd.setSize(800, 800);
+
         }
     }
 
@@ -405,7 +415,6 @@ public class LPView extends FrameView {
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
         setMainTool(LPApp.PROFILE);
     }//GEN-LAST:event_jToggleButton5ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -440,8 +449,8 @@ public class LPView extends FrameView {
     private final Icon[] busyIcons = new Icon[15];
     private int busyIconIndex = 0;
     private JDialog aboutBox;
-    public ConceptDialog cd = null;
-    public ConceptPane cp = null;
+    //  public ConceptDialog cd = null;
+    public static ConceptPane cp = null;
     public NavigatorPane np = null;
     public RegistPane rp = null;
 }

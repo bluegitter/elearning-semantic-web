@@ -66,7 +66,7 @@ public class OwlFactory {
     }
 
     public static OntModel getOntModel(File file) {
-        OntModel model = ModelFactory.createOntologyModel();
+        OntModel model =ModelFactory.createOntologyModel(OntModelSpec.RDFS_MEM_TRANS_INF );
         InputStream in = null;
         try {
             in = new FileInputStream(file);
@@ -79,8 +79,8 @@ public class OwlFactory {
         model.read(in, Constant.NS);
         Resource configuration = model.createResource();
         configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
-        OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, model);
-        return ontModel;
+        
+        return model;
     }
 
     public static OntModel getOntModel(File file, String lang) {

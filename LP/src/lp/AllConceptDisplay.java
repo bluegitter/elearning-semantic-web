@@ -299,22 +299,24 @@ public class AllConceptDisplay extends Display {
 //                cd.cdec = ec;
 //                cd.updateData();
 //                JTable table = cd.resouceTable;
-                ConceptPane cp = LPApp.getApplication().view.cp;
-                cp.conceptName.setText(ec.getName());
-                cp.uriLabel.setText(util.Constant.NS + ec.getCid());
-                cp.cdec = ec;
-                cp.updateData();
-                JTable table = cp.resouceTable;
-                ArrayList<ISCB_Resource> ra = LPApp.lpModel.getEResourcesByEConcept(ec);
-                DefaultTableModel model = (DefaultTableModel) table.getModel();
-                for (int index = model.getRowCount() - 1; index >= 0; index--) {
-                    model.removeRow(index);
-                }
-                for (ISCB_Resource er : ra) {
-                    Object[] oa = {er.getName(), er.getDifficulty(), new javax.swing.JLabel(util.Constant.SERVERTESTURL + "/resources/" + er.getRid())};
-                    model.addRow(oa);
-                }
-                cp.updateUI();
+//                ConceptPane ms = LPApp.getApplication().view.cp;
+//                ms.conceptName.setText(ec.getName());
+//                ms.uriLabel.setText(util.Constant.NS + ec.getCid());
+//                ms.cdec = ec;
+//                ms.updateData();
+
+//                ms.setConceptName(ec.getName());
+//                ms.setURIName(util.Constant.NS + ec.getCid());
+//                ms.cdec = ec;
+//                ms.updateData();
+//                ms.validate();
+
+                LPView.cp.setConceptName(ec.getName());
+                LPView.cp.setURIName(util.Constant.NS + ec.getCid());
+                LPView.cp.cdec = ec;
+                LPView.cp.updateData();
+                LPView.cp.updateResouceTable(ec);
+                
             } else {
                 m_cur.setLocation(m_start.getX() + frac * (m_end.getX() - m_start.getX()),
                         m_start.getY() + frac * (m_end.getY() - m_start.getY()));
