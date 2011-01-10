@@ -44,4 +44,7 @@ public class URILabel extends JLabel implements java.awt.event.MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
     }
+    public String toString(){
+        return this.getText();
+    }
 }

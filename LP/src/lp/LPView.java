@@ -88,13 +88,6 @@ public class LPView extends FrameView {
         });
     }
 
-    public static ConceptPane getCP() {
-        if (cp == null) {
-            cp = new ConceptPane();
-        }
-        return cp;
-    }
-
     @Action
     public void showAboutBox() {
         if (aboutBox == null) {
@@ -110,21 +103,6 @@ public class LPView extends FrameView {
         mainPanel.removeAll();
         mainPanel.add(panes[i]);
         this.mainPanel.updateUI();
-//        if(cd == null) {
-//            cd = new ConceptDialog(this.getFrame(), false);
-//            cd.setLocation(850, 50);
-//        }
-//        if (cp == null) {
-//            cp = new ConceptPane();
-//            cp.setLocation(850, 50);
-//        }
-//        if (i == LPApp.ALL_CONCEPT) {
-////             cd.setVisible(true);
-//            cp.setVisible(true);
-//        } else {
-////             cd.setVisible(false);
-//            cp.setVisible(false);
-//        }
 
         if (i == LPApp.MY_CONCEPT) {
             ((MyConceptPane) this.panes[i]).updateTable();
@@ -449,8 +427,6 @@ public class LPView extends FrameView {
     private final Icon[] busyIcons = new Icon[15];
     private int busyIconIndex = 0;
     private JDialog aboutBox;
-    //  public ConceptDialog cd = null;
-    public static ConceptPane cp = null;
     public NavigatorPane np = null;
     public RegistPane rp = null;
 }

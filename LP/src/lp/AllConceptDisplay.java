@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import javax.swing.AbstractAction;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
@@ -59,8 +60,12 @@ public class AllConceptDisplay extends Display {
     public String m_label = "concept";
     private int m_orientation = Constants.ORIENT_LEFT_RIGHT;
 
-    public AllConceptDisplay() {
+    private AllConceptPane parent;
+
+    public AllConceptDisplay(AllConceptPane parent) {
         super(new Visualization());
+
+        this.parent = parent;
 
         EConcept root = LPApp.lpModel.getRootConcept();
         Tree t = new Tree();
@@ -311,11 +316,11 @@ public class AllConceptDisplay extends Display {
 //                ms.updateData();
 //                ms.validate();
 
-                LPView.cp.setConceptName(ec.getName());
-                LPView.cp.setURIName(util.Constant.NS + ec.getCid());
-                LPView.cp.cdec = ec;
-                LPView.cp.updateData();
-                LPView.cp.updateResouceTable(ec);
+                parent.conceptPane.setConceptName(ec.getName());
+                parent.conceptPane.setURIName(util.Constant.NS + ec.getCid());
+                parent.conceptPane.cdec = ec;
+                parent.conceptPane.updateData();
+                parent.conceptPane.updateResouceTable(ec);
                 
             } else {
                 m_cur.setLocation(m_start.getX() + frac * (m_end.getX() - m_start.getX()),
