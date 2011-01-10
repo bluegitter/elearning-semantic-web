@@ -50,7 +50,7 @@ public class AllConceptPane extends javax.swing.JPanel {
         
 
         final JFastLabel title = new JFastLabel("                 ");
-        title.setPreferredSize(new Dimension(350, 20));
+        title.setPreferredSize(new Dimension(250, 20));
         title.setVerticalAlignment(SwingConstants.BOTTOM);
         title.setBorder(BorderFactory.createEmptyBorder(3, 0, 0, 0));
         title.setFont(FontLib.getFont("微软雅黑", Font.PLAIN, 16));
@@ -83,6 +83,8 @@ public class AllConceptPane extends javax.swing.JPanel {
         leftPane.add(box, BorderLayout.PAGE_END);
         ConceptPane conceptPane =LPView.getCP();
 //        new ConceptPane();
+        leftPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         add(leftPane);
         add(conceptPane);
         this.validate();
