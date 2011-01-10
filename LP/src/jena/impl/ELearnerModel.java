@@ -197,6 +197,18 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         ontModel.add(son, ontModel.getProperty(Constant.NS + "is_son_of"), father);
         return true;
     }
+    public boolean addPropertyIsPartOf(EConcept fatherConcept,EConcept sonConcept)throws IndividualNotExistException {
+         if (!containEConcept(fatherConcept.getCid())) {
+            throw new IndividualNotExistException("father EConcept " + fatherConcept.getCid() + " does not exist in the model");
+        }
+        if (!containEConcept(sonConcept.getCid())) {
+            throw new IndividualNotExistException("son EConcept " + sonConcept.getCid() + " does not exist in the model");
+        }
+        Resource son = ontModel.getResource(Constant.NS + sonConcept.getCid());
+        Resource father = ontModel.getResource(Constant.NS + fatherConcept.getCid());
+        ontModel.add(son, ontModel.getProperty(Constant.NS + "is_part_of"), father);
+        return true;
+    }
 
     @Override
     public boolean addPropertyIsResourceOfC(ISCB_Resource resource, EConcept concept) throws IndividualNotExistException {

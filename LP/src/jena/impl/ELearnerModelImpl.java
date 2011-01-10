@@ -53,23 +53,49 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         ELearnerModelImpl emi = new ELearnerModelImpl(file);
         System.out.println("intitime:" + (System.currentTimeMillis() - init) + "ms");
         ELearner el = emi.getELearner("el001");
-        EConcept con = emi.getEConcept("Computer_Science");
-        EConcept con2 = emi.getEConcept("CMP.cf.3");
+        EConcept root = emi.getEConcept("Computer_Science");
+//        EConcept con2 = emi.getEConcept("CMP.cf.3");
 
-        ArrayList<EPerformance> ps = emi.getEPerformances(el);
-        System.out.println("size" + ps.size());
-        EPerformance ep = new EPerformance();
-        ep.setId("newId");
-        ep.setValue(3f);
-        ep.setConcept(con2);
-        ep.setElearner(el);
-        ep.setDatetime(new Date(System.currentTimeMillis()));
-        emi.addEPerfomance(ep);
+        System.out.println("1" + emi.getMemberConcepts(root).size());
 
-        EPerformance ep2 = emi.getEPerformance(el, con2);
-        System.out.println(ep2);
-        ArrayList<EPerformance> ps2 = emi.getEPerformances(el);
-        System.out.println("size2:" + ps2.size());
+        ArrayList<EConcept> cons = emi.getAllEConcepts();
+        for (EConcept con : cons) {
+            ArrayList<EConcept> sons = emi.getSonConcepts(con);
+            for (EConcept c : sons) {
+                emi.addPropertyIsPartOf(con, c);
+            }
+        }
+        System.out.println("2" + emi.getMemberConcepts(root).size());
+        for (EConcept con : cons) {
+            ArrayList<EConcept> sons = emi.getMemberConcepts(con);
+            System.out.println("sons size:" + sons.size());
+            ArrayList<ISCB_Resource> ress = emi.getEResourcesByEConcept(con);
+            for (EConcept c : sons) {
+                ArrayList<ISCB_Resource> r = emi.getEResourcesByEConcept(c);
+                for (ISCB_Resource resource : r) {
+                    if (!ress.contains(resource)) {
+                        System.out.println("add  new resource" + resource);
+                        emi.addPropertyIsResourceOfC(resource, con);
+                    }
+                }
+            }
+        }
+        ArrayList<ISCB_Resource> all = emi.getEResourcesByEConcept(root);
+        System.out.println("size:" + all.size());
+//        ArrayList<EPerformance> ps = emi.getEPerformances(el);
+//        System.out.println("size" + ps.size());
+//        EPerformance ep = new EPerformance();
+//        ep.setId("newId");
+//        ep.setValue(3f);
+//        ep.setConcept(con2);
+//        ep.setElearner(el);
+//        ep.setDatetime(new Date(System.currentTimeMillis()));
+//        emi.addEPerfomance(ep);
+//
+//        EPerformance ep2 = emi.getEPerformance(el, con2);
+//        System.out.println(ep2);
+//        ArrayList<EPerformance> ps2 = emi.getEPerformances(el);
+//        System.out.println("size2:" + ps2.size());
         System.out.println("end");
     }
 
@@ -158,7 +184,6 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
                     return performance;
                 }
             }
-
         }
         return null;
     }
@@ -345,9 +370,9 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         return concepts;
     }
 
-    public ArrayList<EConcept> getMemberConcept(EConcept concept) {
+    @Override
+    public ArrayList<EConcept> getMemberConcepts(EConcept concept) {
         ArrayList<EConcept> concepts = new ArrayList<EConcept>();
-
         Resource con = ontModel.getResource(Constant.NS + concept.getCid());
         SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS + "is_part_of"), con);
         StmtIterator iter = ontModel.listStatements(selector);
