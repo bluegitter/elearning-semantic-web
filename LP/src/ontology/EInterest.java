@@ -47,6 +47,9 @@ public class EInterest {
 	public void setId(String id) {
 		this.id = id;
 	}
+        public String toString(){
+            return id+"\t"+value+"\t"+elearner.getId()+"\t"+econcept.getName();
+        }
 
 	private String id;
 	private float value;

@@ -8,14 +8,13 @@
  *
  * Created on 2011-1-6, 10:43:19
  */
-package lp.display;
+package lp.interest;
 
-import java.awt.event.MouseEvent;
 /**
  *
  * @author william
  */
-public class AddLPInterestItemPane extends javax.swing.JPanel implements java.awt.event.MouseListener {
+public class AddLPInterestItemPane extends javax.swing.JPanel {
 
     public static void main(String[] args) {
         jena.impl.ELearnerModelImpl emi = new jena.impl.ELearnerModelImpl(new java.io.File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
@@ -58,8 +57,10 @@ public class AddLPInterestItemPane extends javax.swing.JPanel implements java.aw
         jLabel3.setIcon(null);
         jLabel1.setText(concept.getCid());
         jLabel2.setText(concept.getName());
-        addMouseListener(this);
     }
+    public ontology.EConcept concept;
+    public java.awt.Color color;
+    public javax.swing.Icon icon;
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -76,6 +77,14 @@ public class AddLPInterestItemPane extends javax.swing.JPanel implements java.aw
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(321, 32));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addItemMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addItemMouseExited(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("jLabel1");
@@ -83,12 +92,22 @@ public class AddLPInterestItemPane extends javax.swing.JPanel implements java.aw
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("jLabel2");
+        jLabel2.setMinimumSize(null);
         jLabel2.setName("jLabel2"); // NOI18N
+        jLabel2.setPreferredSize(null);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/display/resources/+.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/interest/resources/+.png"))); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
-        icon = new javax.swing.ImageIcon(getClass().getResource("/lp/display/resources/+.png"));
+        icon =new javax.swing.ImageIcon(getClass().getResource("/lp/interest/resources/+.png"));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel3MouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -96,8 +115,8 @@ public class AddLPInterestItemPane extends javax.swing.JPanel implements java.aw
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -105,49 +124,38 @@ public class AddLPInterestItemPane extends javax.swing.JPanel implements java.aw
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    // End of variables declaration//GEN-END:variables
-    public ontology.EConcept concept;
-    public java.awt.Color color;
-    public javax.swing.Icon icon;
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        System.out.println("add Interest " + concept);
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
+    private void addItemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addItemMouseEntered
         jLabel3.setIcon(icon);
         this.setBackground(color);
         jLabel1.setBackground(color);
         jLabel2.setBackground(color);
         jLabel3.setBackground(color);
+    }//GEN-LAST:event_addItemMouseEntered
 
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
+    private void addItemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addItemMouseExited
         jLabel3.setIcon(null);
         this.setBackground(java.awt.Color.WHITE);
         jLabel1.setBackground(java.awt.Color.WHITE);
         jLabel2.setBackground(java.awt.Color.WHITE);
         jLabel3.setBackground(java.awt.Color.WHITE);
-    }
+    }//GEN-LAST:event_addItemMouseExited
+
+    private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
+        addItemMouseEntered(evt);
+    }//GEN-LAST:event_jLabel3MouseEntered
+
+    private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
+        addItemMouseExited(evt);
+    }//GEN-LAST:event_jLabel3MouseExited
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    // End of variables declaration//GEN-END:variables
 }
