@@ -29,12 +29,14 @@ import prefuse.visual.VisualItem;
  */
 public class AllConceptPane extends javax.swing.JPanel {
 
+    public ConceptPane conceptPane;
+
     public AllConceptPane() {
         super(new FlowLayout());
 
         Color bg = new Color(240, 240, 240);
 
-        final AllConceptDisplay d = new AllConceptDisplay();
+        final AllConceptDisplay d = new AllConceptDisplay(this);
         d.setBackground(bg);
         d.setForeground(Color.BLACK);
         setForeground(Color.BLACK);
@@ -47,7 +49,7 @@ public class AllConceptPane extends javax.swing.JPanel {
         search.setFont(FontLib.getFont("微软雅黑", Font.PLAIN, 11));
         search.setForeground(Color.BLACK);
         search.setBackground(bg);
-        
+
 
         final JFastLabel title = new JFastLabel("                 ");
         title.setPreferredSize(new Dimension(250, 20));
@@ -81,7 +83,7 @@ public class AllConceptPane extends javax.swing.JPanel {
         JPanel leftPane = new JPanel(new BorderLayout());
         leftPane.add(d, BorderLayout.CENTER);
         leftPane.add(box, BorderLayout.PAGE_END);
-        ConceptPane conceptPane =LPView.getCP();
+        conceptPane = new ConceptPane();
 //        new ConceptPane();
         leftPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -89,5 +91,4 @@ public class AllConceptPane extends javax.swing.JPanel {
         add(conceptPane);
         this.validate();
     }
-    
 }

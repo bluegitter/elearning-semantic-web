@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import lp.display.ResourceTable;
 import lp.display.URILabel;
 import ontology.EConcept;
 import ontology.EPerformance;
@@ -34,6 +35,8 @@ public class ConceptPane extends javax.swing.JPanel {
     /** Creates new form ConceptPane */
     public ConceptPane() {
         initComponents();
+        resourceTable = new ResourceTable();
+        jScrollPane1.setViewportView(resourceTable);
         this.validate();
     }
 
@@ -54,7 +57,6 @@ public class ConceptPane extends javax.swing.JPanel {
         examBtn = new javax.swing.JButton();
         examScore = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        resourceTable = new javax.swing.JTable();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setDoubleBuffered(false);
@@ -94,32 +96,6 @@ public class ConceptPane extends javax.swing.JPanel {
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(160, 160, 160), 1, true), "相关资源", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("微软雅黑", 0, 14))); // NOI18N
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        resourceTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "资源名", "难易度", "下载"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        resourceTable.setName("resourceTable"); // NOI18N
-        jScrollPane1.setViewportView(resourceTable);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -131,18 +107,18 @@ public class ConceptPane extends javax.swing.JPanel {
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(conceptName, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                    .addComponent(uriLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
+                    .addComponent(conceptName, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+                    .addComponent(uriLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE))
                 .addGap(116, 116, 116)
                 .addComponent(examScore, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addContainerGap(309, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(learnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(examBtn)
-                .addGap(227, 227, 227))
+                .addGap(554, 554, 554))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +144,7 @@ public class ConceptPane extends javax.swing.JPanel {
                     .addComponent(examBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(410, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -195,16 +171,18 @@ public class ConceptPane extends javax.swing.JPanel {
 
     public void updateResouceTable(EConcept ec) {
         ArrayList<ISCB_Resource> ra = LPApp.lpModel.getEResourcesByEConcept(ec);
-        System.out.println("rasize:"+ra);
-        DefaultTableModel model = (DefaultTableModel) resourceTable.getModel();
-        for (int index = model.getRowCount() - 1; index >= 0; index--) {
-            model.removeRow(index);
-        }
-        for (ISCB_Resource er : ra) {
-//            Object[] oa = {er.getName(), er.getDifficulty(), new javax.swing.JLabel(util.Constant.SERVERTESTURL + "/resources/" + er.getRid())};
-            Object[] oa = {er.getName(), er.getDifficulty(), new URILabel(util.Constant.SERVERTESTURL + "/resources/" + er.getRid())};
-          model.addRow(oa);
-        }
+       resourceTable.clearModel();
+        resourceTable.updateRes(ra);
+
+//        DefaultTableModel model = (DefaultTableModel) resourceTable.getModel();
+//        for (int index = model.getRowCount() - 1; index >= 0; index--) {
+//            model.removeRow(index);
+//        }
+//        for (ISCB_Resource er : ra) {
+////            Object[] oa = {er.getName(), er.getDifficulty(), new javax.swing.JLabel(util.Constant.SERVERTESTURL + "/resources/" + er.getRid())};
+//            Object[] oa = {er.getName(), er.getDifficulty(), new URILabel(util.Constant.SERVERTESTURL + "/resources/" + er.getRid())};
+//            model.addRow(oa);
+//        }
     }
 
     public void setConceptName(String name) {
@@ -257,7 +235,7 @@ public class ConceptPane extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton learnBtn;
-    public javax.swing.JTable resourceTable;
     public javax.swing.JLabel uriLabel;
     // End of variables declaration//GEN-END:variables
+public ResourceTable resourceTable;
 }
