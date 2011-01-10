@@ -4,6 +4,7 @@
  */
 package lp.display;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import javax.swing.JLabel;
 
@@ -19,6 +20,7 @@ public class URILabel extends JLabel implements java.awt.event.MouseListener {
 
     public URILabel(String string) {
         super(string);
+        this.setForeground(new Color(0,0,255));
     }
     public void updateURILabel(){
         System.out.println("update uri label");

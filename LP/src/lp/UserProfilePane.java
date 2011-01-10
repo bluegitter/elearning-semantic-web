@@ -13,8 +13,7 @@ package lp;
 import java.util.ArrayList;
 import javax.swing.JDialog;
 import javax.swing.table.DefaultTableModel;
-import lp.display.AddLPInterestItemPane;
-import lp.display.RemoveLPInterestItemPane;
+import lp.interest.UserInterestPane;
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.EPerformance;
@@ -28,17 +27,27 @@ import ontology.resources.ISCB_Resource;
  */
 public class UserProfilePane extends javax.swing.JPanel {
 
-    ArrayList<EInterest> interests;
-    ArrayList<EConcept> concepts;
+    public UserInterestPane userInterestPane;
 
     /** Creates new form UserProfilePane */
     public UserProfilePane() {
         ELearner el = LPApp.getApplication().user.learner;
-        interests = LPApp.lpModel.getEInterests(el);
-        concepts = jena.ELearnerReasoner.getRecommendEConcepts_1(LPApp.lpModel.getOntModel(), el);
+        ArrayList<EInterest> interests = LPApp.lpModel.getEInterests(el);
+        ArrayList<EConcept> concepts = jena.ELearnerReasoner.getRecommendEConcepts_1(LPApp.lpModel.getOntModel(), el);
         initComponents();
-        initInterestPane(interests, concepts);
         initUserPane(el);
+        initInterests(interests, concepts);
+    }
+
+    public void updateInterests(ArrayList<EInterest> interests, ArrayList<EConcept> concepts) {
+        userInterestPane.updateInterests(interests, concepts);
+    }
+
+    private void initInterests(ArrayList<EInterest> interests, ArrayList<EConcept> concepts) {
+        userInterestPane = new UserInterestPane(interests, concepts);
+        jPanel1.setLayout(new java.awt.BorderLayout());
+        jPanel1.add(userInterestPane);
+
     }
 
     private void initUserPane(ELearner el) {
@@ -81,19 +90,6 @@ public class UserProfilePane extends javax.swing.JPanel {
         System.out.println("hhhhhh");
     }
 
-    private void initInterestPane(ArrayList<ontology.EInterest> interests, ArrayList<ontology.EConcept> concepts) {
-        interestPane.setLayout(new javax.swing.BoxLayout(interestPane, javax.swing.BoxLayout.Y_AXIS));
-        for (int i = 0; i < interests.size(); i++) {
-            RemoveLPInterestItemPane p = new RemoveLPInterestItemPane(interests.get(i));
-            interestPane.add(p);
-        }
-        unInterestPane.setLayout(new javax.swing.BoxLayout(unInterestPane, javax.swing.BoxLayout.Y_AXIS));
-        for (int i = 0; i < concepts.size(); i++) {
-            AddLPInterestItemPane p = new AddLPInterestItemPane(concepts.get(i));
-            unInterestPane.add(p);
-        }
-    }
-
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -126,12 +122,6 @@ public class UserProfilePane extends javax.swing.JPanel {
         resourcesTable = new javax.swing.JTable();
         moreResources = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        interestLabel = new javax.swing.JLabel();
-        interestPane = new javax.swing.JPanel();
-        unInterestLabel = new javax.swing.JLabel();
-        unInterestPane = new javax.swing.JPanel();
-        addInterestText = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
         setName("Form"); // NOI18N
@@ -376,81 +366,17 @@ public class UserProfilePane extends javax.swing.JPanel {
                 .addContainerGap(7, Short.MAX_VALUE))
         );
 
-        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.setName("jPanel1"); // NOI18N
-        jPanel1.setPreferredSize(new java.awt.Dimension(372, 600));
-
-        interestLabel.setText(resourceMap.getString("interestLabel.text")); // NOI18N
-        interestLabel.setName("interestLabel"); // NOI18N
-
-        interestPane.setName("interestPane"); // NOI18N
-
-        javax.swing.GroupLayout interestPaneLayout = new javax.swing.GroupLayout(interestPane);
-        interestPane.setLayout(interestPaneLayout);
-        interestPaneLayout.setHorizontalGroup(
-            interestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
-        );
-        interestPaneLayout.setVerticalGroup(
-            interestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 276, Short.MAX_VALUE)
-        );
-
-        unInterestLabel.setText(resourceMap.getString("unInterestLabel.text")); // NOI18N
-        unInterestLabel.setName("unInterestLabel"); // NOI18N
-
-        unInterestPane.setName("unInterestPane"); // NOI18N
-
-        javax.swing.GroupLayout unInterestPaneLayout = new javax.swing.GroupLayout(unInterestPane);
-        unInterestPane.setLayout(unInterestPaneLayout);
-        unInterestPaneLayout.setHorizontalGroup(
-            unInterestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
-        );
-        unInterestPaneLayout.setVerticalGroup(
-            unInterestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
-        );
-
-        addInterestText.setText(resourceMap.getString("addInterestText.text")); // NOI18N
-        addInterestText.setName("addInterestText"); // NOI18N
-
-        jButton3.setText(resourceMap.getString("jButton3.text")); // NOI18N
-        jButton3.setName("jButton3"); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(unInterestLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                    .addComponent(interestPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(addInterestText, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3))
-                    .addComponent(unInterestPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(interestLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE))
-                .addContainerGap())
+            .addGap(0, 405, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(interestLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(interestPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(unInterestLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(unInterestPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addInterestText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addContainerGap(15, Short.MAX_VALUE))
+            .addGap(0, 692, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -465,8 +391,8 @@ public class UserProfilePane extends javax.swing.JPanel {
                     .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -474,7 +400,7 @@ public class UserProfilePane extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -528,15 +454,11 @@ public class UserProfilePane extends javax.swing.JPanel {
         jd.setVisible(true);
     }//GEN-LAST:event_moreResourcesActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField addInterestText;
     private javax.swing.JTextField address;
     private javax.swing.JTable conceptsTable;
     private javax.swing.JTextField email;
-    private javax.swing.JLabel interestLabel;
-    private javax.swing.JPanel interestPane;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -554,8 +476,6 @@ public class UserProfilePane extends javax.swing.JPanel {
     private javax.swing.JButton moreResources;
     private javax.swing.JPasswordField password;
     private javax.swing.JTable resourcesTable;
-    private javax.swing.JLabel unInterestLabel;
-    private javax.swing.JPanel unInterestPane;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

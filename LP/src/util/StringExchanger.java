@@ -113,6 +113,14 @@ public class StringExchanger {
 		c[10]='T';
 		return new String(c);
 	}
+        public static String parseDateToFileNameString(Date date){
+            DateFormat dateFormat =new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
+            String s = dateFormat.format(date);
+            char c[] = s.toCharArray();
+		c[10]='T';
+            return new String(c);
+
+        }
 	public static DateFormat getDateFormat(){
 		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	}

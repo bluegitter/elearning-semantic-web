@@ -3,9 +3,17 @@
  */
 package lp;
 
+import db.OwlOperation;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import jena.OwlFactory;
 import jena.impl.ELearnerModelImpl;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
+import util.StringExchanger;
 
 /**
  * The main class of the application.
@@ -29,12 +37,6 @@ public class LPApp extends SingleFrameApplication {
      */
     @Override
     protected void startup() {
-//        ResourceParser rp = null;
-//        try {
-//            rp = new ResourceParser();
-//        } catch (Exception ex) {
-//            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
-//        }
 
         lpModel = new ELearnerModelImpl(new java.io.File("test/owl/conceptsAndresource_RDF-XML.owl"));
 
@@ -49,8 +51,22 @@ public class LPApp extends SingleFrameApplication {
 
     @Override
     protected void shutdown() {
-//        File f = new File(Constant.userOwlFile);
-//        lpModel.writeToFile(f);
+        Date date = new Date(System.currentTimeMillis());
+        String fileName = "savedFile_" + StringExchanger.parseDateToFileNameString(date);
+        File file = new File("test\\owl\\" + fileName + ".owl");
+
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException ex) {
+            }
+        }
+        try {
+            OwlOperation.writeOwlFile(LPApp.lpModel.getOntModel(), file);
+            System.out.println("Complete saving the file before exiting the program.");
+        } catch (IOException ex) {
+            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         super.shutdown();
     }
