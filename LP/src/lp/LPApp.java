@@ -3,14 +3,9 @@
  */
 package lp;
 
-import db.ResourceParser;
-import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import jena.impl.ELearnerModelImpl;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
-import util.Constant;
 
 /**
  * The main class of the application.

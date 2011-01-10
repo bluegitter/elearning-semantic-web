@@ -22,8 +22,7 @@ import javax.swing.JFrame;
  */
 public class LPView extends FrameView {
 
-    private javax.swing.JPanel[] panes = {new MyConceptPane(),
-        new AllConceptPane(), new RecommendContainer(), new SearchPane(), new lp.display.MyConceptDemo()};
+    private javax.swing.JPanel[] panes;
 
     public LPView(SingleFrameApplication app) {
         super(app);
@@ -35,6 +34,7 @@ public class LPView extends FrameView {
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
         messageTimer = new Timer(messageTimeout, new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent e) {
                 statusMessageLabel.setText("");
             }
@@ -96,6 +96,15 @@ public class LPView extends FrameView {
             aboutBox.setLocationRelativeTo(mainFrame);
         }
         LPApp.getApplication().show(aboutBox);
+    }
+
+    public void initTools() {
+        javax.swing.JPanel[] pa = {new lp.display.MyConceptDemo(), new AllConceptPane(), new RecommendContainer(), new SearchPane(), new MyConceptPane()};
+        panes = pa;
+        
+        setMainTool(LPApp.MY_CONCEPT);
+        lpToolBar.setVisible(true);
+        jToggleButton1.setEnabled(true);
     }
 
     public void setMainTool(int i) {

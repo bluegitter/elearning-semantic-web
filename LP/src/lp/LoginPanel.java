@@ -114,8 +114,7 @@ public class LoginPanel extends javax.swing.JPanel {
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         LPApp.getApplication().user = new EUser(username.getText());
         if (LPApp.getApplication().user.login(new String(password.getPassword()))) {
-            LPApp.getApplication().view.setMainTool(LPApp.MY_CONCEPT);
-            LPApp.getApplication().view.lpToolBar.setVisible(true);
+            LPApp.getApplication().view.initTools();
         } else {
             this.tipLabel.setText("登录失败");
             username.grabFocus();
