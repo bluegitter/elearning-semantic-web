@@ -89,6 +89,25 @@ public class LPView extends FrameView {
         });
     }
 
+    public void setBusy(String status) {
+        if (!busyIconTimer.isRunning()) {
+            statusAnimationLabel.setIcon(busyIcons[0]);
+            busyIconIndex = 0;
+            busyIconTimer.start();
+        }
+        progressBar.setVisible(true);
+        progressBar.setIndeterminate(true);
+        statusMessageLabel.setText(status);
+    }
+
+    public void setIdle() {
+        statusMessageLabel.setText("");
+        busyIconTimer.stop();
+        statusAnimationLabel.setIcon(idleIcon);
+        progressBar.setVisible(false);
+        progressBar.setValue(0);
+    }
+
     @Action
     public void showAboutBox() {
         if (aboutBox == null) {
@@ -102,10 +121,10 @@ public class LPView extends FrameView {
     public void initTools() {
         javax.swing.JPanel[] pa = {new lp.display.MyConceptDemo(), new AllConceptPane(), new RecommendContainer(), new SearchPane(), new MyConceptPane()};
         panes = pa;
-        
+
         setMainTool(LPApp.MY_CONCEPT);
         lpToolBar.setVisible(true);
-        jToggleButton1.setEnabled(true);
+        jToggleButton1.setSelected(true);
     }
 
     public void setMainTool(int i) {
