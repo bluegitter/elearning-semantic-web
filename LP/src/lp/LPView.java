@@ -46,6 +46,7 @@ public class LPView extends FrameView {
         }
         busyIconTimer = new Timer(busyAnimationRate, new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent e) {
                 busyIconIndex = (busyIconIndex + 1) % busyIcons.length;
                 statusAnimationLabel.setIcon(busyIcons[busyIconIndex]);
@@ -113,14 +114,11 @@ public class LPView extends FrameView {
         mainPanel.add(panes[i]);
         this.mainPanel.updateUI();
 
-        if (i == LPApp.MY_CONCEPT) {
-            ((MyConceptPane) this.panes[i]).updateTable();
-        } else if (i == LPApp.RECOMMEND) {
+        if (i == LPApp.RECOMMEND) {
             ((RecommendContainer) this.panes[i]).renew();
         }
 
         if (i == LPApp.PROFILE) {
-            System.out.println("hahahahaha");
             JDialog jd = new JDialog();
             jd.setContentPane(new UserProfilePane());
             jd.pack();
