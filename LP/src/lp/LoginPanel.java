@@ -1,7 +1,6 @@
 package lp;
 
 import javax.swing.JDialog;
-import javax.swing.UIManager;
 
 /**
  *
@@ -112,23 +111,34 @@ public class LoginPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+        final LPView view = LPApp.getApplication().view;
         LPApp.getApplication().user = new EUser(username.getText());
-        if (LPApp.getApplication().user.login(new String(password.getPassword()))) {
-            LPApp.getApplication().view.initTools();
-        } else {
-            this.tipLabel.setText("登录失败");
-            username.grabFocus();
-        }
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                view.setBusy("正在验证密码...");
+                boolean loginAuth = LPApp.getApplication().user.login(new String(password.getPassword()));
+                if (loginAuth) {
+                    view.setBusy("正在加载数据...");
+                    LPApp.getApplication().view.initTools();
+                } else {
+                    tipLabel.setText("登录失败");
+                    username.grabFocus();
+                }
+                view.setIdle();
+            }
+        });
 }//GEN-LAST:event_loginBtnActionPerformed
 
     private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
 
 //            LPApp.getApplication().view.setMainTool(LPApp.REGIST);
-            JDialog d = new NavigatorDialog(LPApp.getApplication().getMainFrame());
-            d.setTitle("注册向导");
-            d.setModal(true);
-            d.pack();
-            d.setVisible(true);
+        JDialog d = new NavigatorDialog(LPApp.getApplication().getMainFrame());
+        d.setTitle("注册向导");
+        d.setModal(true);
+        d.pack();
+        d.setVisible(true);
     }//GEN-LAST:event_regBtnActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
