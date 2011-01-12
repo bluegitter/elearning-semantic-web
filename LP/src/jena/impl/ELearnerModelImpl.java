@@ -55,33 +55,34 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         ELearner el = emi.getELearner("el001");
         EConcept root = emi.getEConcept("Computer_Science");
 //        EConcept con2 = emi.getEConcept("CMP.cf.3");
+        String s[] = emi.getIt();
+// add resourcess to the root concepts
+//        System.out.println("1" + emi.getMemberConcepts(root).size());
+//        ArrayList<EConcept> cons = emi.getAllEConcepts();
+//        for (EConcept con : cons) {
+//            ArrayList<EConcept> sons = emi.getSonConcepts(con);
+//            for (EConcept c : sons) {
+//                emi.addPropertyIsPartOf(con, c);
+//            }
+//        }
+//        System.out.println("2" + emi.getMemberConcepts(root).size());
+//        for (EConcept con : cons) {
+//            ArrayList<EConcept> sons = emi.getMemberConcepts(con);
+//            System.out.println("sons size:" + sons.size());
+//            ArrayList<ISCB_Resource> ress = emi.getEResourcesByEConcept(con);
+//            for (EConcept c : sons) {
+//                ArrayList<ISCB_Resource> r = emi.getEResourcesByEConcept(c);
+//                for (ISCB_Resource resource : r) {
+//                    if (!ress.contains(resource)) {
+//                        System.out.println("add  new resource" + resource);
+//                        emi.addPropertyIsResourceOfC(resource, con);
+//                    }
+//                }
+//            }
+//        }
+//        ArrayList<ISCB_Resource> all = emi.getEResourcesByEConcept(root);
+//        System.out.println("size:" + all.size());
 
-        System.out.println("1" + emi.getMemberConcepts(root).size());
-
-        ArrayList<EConcept> cons = emi.getAllEConcepts();
-        for (EConcept con : cons) {
-            ArrayList<EConcept> sons = emi.getSonConcepts(con);
-            for (EConcept c : sons) {
-                emi.addPropertyIsPartOf(con, c);
-            }
-        }
-        System.out.println("2" + emi.getMemberConcepts(root).size());
-        for (EConcept con : cons) {
-            ArrayList<EConcept> sons = emi.getMemberConcepts(con);
-            System.out.println("sons size:" + sons.size());
-            ArrayList<ISCB_Resource> ress = emi.getEResourcesByEConcept(con);
-            for (EConcept c : sons) {
-                ArrayList<ISCB_Resource> r = emi.getEResourcesByEConcept(c);
-                for (ISCB_Resource resource : r) {
-                    if (!ress.contains(resource)) {
-                        System.out.println("add  new resource" + resource);
-                        emi.addPropertyIsResourceOfC(resource, con);
-                    }
-                }
-            }
-        }
-        ArrayList<ISCB_Resource> all = emi.getEResourcesByEConcept(root);
-        System.out.println("size:" + all.size());
 //        ArrayList<EPerformance> ps = emi.getEPerformances(el);
 //        System.out.println("size" + ps.size());
 //        EPerformance ep = new EPerformance();
@@ -97,6 +98,13 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 //        ArrayList<EPerformance> ps2 = emi.getEPerformances(el);
 //        System.out.println("size2:" + ps2.size());
         System.out.println("end");
+    }
+
+    public String[] getIt() {
+        String[] s = new String[0];
+        Property p = ontModel.getProperty(Constant.NS + "gender");
+        ontModel.listDatatypeProperties();
+        return s;
     }
 
     @Override
