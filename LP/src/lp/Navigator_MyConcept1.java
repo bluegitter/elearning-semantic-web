@@ -16,10 +16,11 @@ package lp;
  * @author ghh
  */
 public class Navigator_MyConcept1 extends javax.swing.JPanel {
-
+private NavigatorDialog parent;
     /** Creates new form Navigator_MyConcept1 */
-    public Navigator_MyConcept1() {
+    public Navigator_MyConcept1(NavigatorDialog parent) {
         initComponents();
+          this.parent = parent;
     }
 
     /** This method is called from within the constructor to
@@ -118,7 +119,7 @@ public class Navigator_MyConcept1 extends javax.swing.JPanel {
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jLabel4.getAccessibleContext().setAccessibleName("向导：点击某知识点，试图将重新以该点为中心");
@@ -126,12 +127,13 @@ public class Navigator_MyConcept1 extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        this.parent.setPrevious();
 
 }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-
+       this.parent.setNext();
 
 
     }//GEN-LAST:event_jButton4ActionPerformed
