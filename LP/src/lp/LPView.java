@@ -119,7 +119,7 @@ public class LPView extends FrameView {
     }
 
     public void initTools() {
-        javax.swing.JPanel[] pa = {new lp.display.MyConceptDemo(), new AllConceptPane(), new RecommendContainer(), new SearchPane(), new MyConceptPane()};
+        javax.swing.JPanel[] pa = {new lp.display.MyConceptDemo(), new AllConceptPane(), new RecommendContainer(), new SearchPane(), new UserProfilePane(), new MyConceptPane()};
         panes = pa;
 
         setMainTool(LPApp.MY_CONCEPT);
@@ -136,7 +136,7 @@ public class LPView extends FrameView {
         if (i == LPApp.RECOMMEND) {
             ((RecommendContainer) this.panes[i]).renew();
         }
-
+/*
         if (i == LPApp.PROFILE) {
             JDialog jd = new JDialog();
             jd.setContentPane(new UserProfilePane());
@@ -147,6 +147,7 @@ public class LPView extends FrameView {
             // jd.setSize(800, 800);
 
         }
+ */
     }
 
     /** This method is called from within the constructor to
