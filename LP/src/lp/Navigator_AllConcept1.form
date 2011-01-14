@@ -16,8 +16,12 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel1" pref="598" max="32767" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -32,8 +36,8 @@
                   </Group>
                   <Component id="jLabel3" alignment="0" min="-2" pref="369" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" pref="301" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Component id="jLabel4" min="-2" pref="527" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="29" max="32767" attributes="0"/>
@@ -46,7 +50,9 @@
               <Component id="jLabel3" min="-2" pref="93" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" pref="33" max="-2" attributes="0"/>
-              <EmptySpace pref="289" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel1" pref="277" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="jButton4" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
@@ -92,14 +98,22 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/lp/resources/2.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#x6d4f;&#x89c8;&#x6240;&#x6709;&#x7684;&#x77e5;&#x8bc6;&#x70b9;&#x548c;&#x76f8;&#x5e94;&#x8d44;&#x6e90;"/>
+        <Property name="text" type="java.lang.String" value="&#x6d4f;&#x89c8;&#x6240;&#x6709;&#x7684;&#x77e5;&#x8bc6;&#x70b9;"/>
         <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x5411;&#x5bfc;&#xff1a;&#x70b9;&#x51fb;&#x67d0;&#x77e5;&#x8bc6;&#x70b9;&#xff0c;&#x5c06;&#x91cd;&#x65b0;&#x4ee5;&#x8be5;&#x70b9;&#x4e3a;&#x4e2d;&#x5fc3;&#x5c55;&#x5f00;&#x89c6;&#x56fe;"/>
+        <Property name="text" type="java.lang.String" value="&#x5411;&#x5bfc;&#xff1a;&#x4ece;&#x6839;&#x8282;&#x70b9;&#x5f00;&#x59cb;&#xff0c;&#x70b9;&#x51fb;&#x4ee5;&#x5c55;&#x5f00;&#x5b50;&#x6811;&#x81f3;&#x53f6;&#x8282;&#x70b9;&#xff1b;&#x53ef;&#x901a;&#x8fc7;&#x9f20;&#x6807;&#x6eda;&#x8f6e;&#x653e;&#x5927;&#x7f29;&#x5c0f;&#x89c6;&#x56fe;&#xff1b;&#x53ef;&#x62d6;&#x52a8;&#x6574;&#x4e2a;&#x89c6;&#x56fe;"/>
         <Property name="name" type="java.lang.String" value="jLabel4" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/lp/resources/concepts.jpg"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>
