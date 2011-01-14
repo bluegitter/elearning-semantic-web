@@ -35,12 +35,12 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="conceptName" pref="272" max="32767" attributes="0"/>
-                  <Component id="uriLabel" alignment="0" pref="272" max="32767" attributes="0"/>
+                  <Component id="conceptName" pref="533" max="32767" attributes="0"/>
+                  <Component id="uriLabel" alignment="0" pref="533" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
               <Component id="examScore" min="-2" pref="25" max="-2" attributes="0"/>
-              <EmptySpace pref="309" max="32767" attributes="0"/>
+              <EmptySpace pref="48" max="32767" attributes="0"/>
           </Group>
           <Component id="jScrollPane1" min="-2" pref="427" max="-2" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
@@ -83,7 +83,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="410" max="32767" attributes="0"/>
+              <EmptySpace pref="372" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

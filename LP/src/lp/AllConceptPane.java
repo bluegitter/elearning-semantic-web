@@ -13,7 +13,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import prefuse.Visualization;
@@ -89,6 +88,7 @@ public class AllConceptPane extends javax.swing.JPanel {
 
         add(leftPane);
         add(conceptPane);
+       
         this.validate();
     }
 }
