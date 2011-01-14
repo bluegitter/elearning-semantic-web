@@ -15,7 +15,7 @@ import ontology.EInterest;
  */
 public class NavigatorDialog extends JDialog{
     public ArrayList<EInterest> nodes = new ArrayList<EInterest>();
-    public javax.swing.JPanel[] panels = {new RegistPane(this), new NavigatorPane(this),new NavigatorFinishPane(nodes,this)};
+    public javax.swing.JPanel[] panels = {new RegistPane(this), new NavigatorPane(this),new NavigatorFinishPane(nodes,this),new Navigator_MyConcept1(this), new Navigator_AllConcept1(this),new Navigator_AllConcept2(this),new Navigator_Recommend(this)};
     private int panel_index = 0;
     public NavigatorDialog(javax.swing.JFrame f) {
         super(f);
