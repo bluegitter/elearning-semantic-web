@@ -47,8 +47,6 @@ import ontology.EInterest;
  */
 public class NavigatorPane extends javax.swing.JPanel {
     public ArrayList selectedNodes = new ArrayList();
-   // public ELearnerModelImpl lpModel = new ELearnerModelImpl(new java.io.File("test\\owl\\elearning.owl"));
-    //public CheckNode[] nodes = new CheckNode[5];
     private CheckNode root = null;
     private NavigatorDialog parent;
     public ArrayList<EInterest>  EInterests = new ArrayList<EInterest>();
@@ -62,8 +60,8 @@ public class NavigatorPane extends javax.swing.JPanel {
 
     public EConcept getRootConcept() {
         EConcept rootConcept = new EConcept();
-        rootConcept.setCid("Software_Engineer");
-        rootConcept.setName("software engineering");
+        rootConcept.setCid("Computer_Science");
+        rootConcept.setName("软件工程");
         return rootConcept;
     }
 
