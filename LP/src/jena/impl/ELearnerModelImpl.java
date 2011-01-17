@@ -55,7 +55,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         ELearner el = emi.getELearner("el001");
         EConcept root = emi.getEConcept("Computer_Science");
 //        EConcept con2 = emi.getEConcept("CMP.cf.3");
-        String s[] = emi.getIt();
+        emi.getEResourceByName("数据结构概念");
 // add resourcess to the root concepts
 //        System.out.println("1" + emi.getMemberConcepts(root).size());
 //        ArrayList<EConcept> cons = emi.getAllEConcepts();
@@ -265,6 +265,21 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
             portfolios.add(port);
         }
         return portfolios;
+    }
+
+    public ISCB_Resource getEResourceByName(String name) {
+        ISCB_Resource resource = new ISCB_Resource();
+//         elearner.getName(), new XSDDatatype("string")
+
+        OntClass classRes = ontModel.getOntClass(Constant.NS + "ISCB_Resource");
+        SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS + "name"), name);
+        StmtIterator iter = ontModel.listStatements(selector);
+        while (iter.hasNext()) {
+            Resource res = iter.nextStatement().getSubject();
+            String id = res.getLocalName();
+            System.out.println("id:" + id);
+        }
+        return resource;
     }
 
     @Override
@@ -584,5 +599,23 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
             port.setDatetime(datetime);
         }
         return port;
+    }
+
+    public boolean containEInterest(ELearner elearner, EConcept concept) throws IndividualNotExistException {
+        if (!containELearner(elearner.getId())) {
+            throw new IndividualNotExistException("the elearner " + elearner.getName() + " does not exist in the model");
+        }
+        if (containEConcept(concept.getCid())) {
+            throw new IndividualNotExistException("the concept " + concept.getName() + " does not exist in the model");
+        }
+        //TODO:
+        return false;
+    }
+    //return empty list if there is no concepts meet the need
+    //else return the list of concept ids whoes concept name is the given name.
+
+    public ArrayList<String> getConceptIds(String conceptName) {
+        ArrayList<String> cids = new ArrayList<String>();
+        return cids;
     }
 }
