@@ -171,7 +171,7 @@ public class MyConceptDisplay extends Display {
         // ------------------------------------------------
 
         // initialize the display
-        setSize(600,600);
+        setSize(1000,560);
         setItemSorter(new TreeDepthItemSorter());
         addControlListener(new DragControl());
         addControlListener(new ZoomToFitControl());

@@ -6,6 +6,7 @@
 package lp.display;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
@@ -35,6 +36,8 @@ public class MyConceptDemo  extends javax.swing.JPanel {
                 // create a new radial tree view
         final MyConceptDisplay gview = new MyConceptDisplay();
         Visualization vis = gview.getVisualization();
+
+        gview.setBackground(this.getBackground());
 
         // create a search panel for the tree map
         SearchQueryBinding sq = new SearchQueryBinding(
