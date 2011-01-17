@@ -118,8 +118,8 @@ public class MyConceptDisplay extends Display {
                 VisualItem.STROKECOLOR, ColorLib.rgb(200,200,200));
 
         FontAction fonts = new FontAction(treeNodes,
-                FontLib.getFont("微软雅黑", 10));
-        fonts.add("ingroup('_focus_')", FontLib.getFont("微软雅黑", 11));
+                FontLib.getFont("微软雅黑", 14));
+        fonts.add("ingroup('_focus_')", FontLib.getFont("微软雅黑", 15));
 
         // recolor
         ActionList recolor = new ActionList();
