@@ -5,17 +5,18 @@ import ontology.EPerformance;
 import ontology.people.ELearner;
 import ontology.resources.ISCB_Resource;
 
-
 /**
  *
  * @author David
  */
-public class EClass implements Comparable{
-    private enum CType {learner, concept, resource, performance};
+public class EClass implements Comparable {
 
+    private enum CType {
+
+        learner, concept, resource, performance
+    };
     private CType type;
     private Object object;
-
     public double rank = 0;
     public float[] r = new float[3];
 
@@ -39,25 +40,32 @@ public class EClass implements Comparable{
         object = p;
     }
 
+    public String getIconStr() {
+        String str = null;
+        switch (type) {
+            case learner:
+                str = "src/lp/resources/learner.png";
+                break;
+            case concept:
+                str = "src/lp/resources/concept.png";
+                break;
+            case resource:
+                str = "src/lp/resources/resource.png";
+                break;
+            case performance:
+                str = "src/lp/resources/performance.png";
+                break;
+        }
+        return str;
+    }
+
     @Override
     public String toString() {
-        String ts = "";
-        switch(type) {
-            case concept:
-                ts = "";
-            case learner:
-                ts = "学习者:";
-            case resource:
-                ts = "资源:";
-            case performance:
-                ts = "知识:";
-        }
-        return ts + object.toString();
+        return object.toString();
     }
 
     @Override
     public int compareTo(Object o) {
         return (int) (((EClass) o).rank * 1000 - this.rank * 1000);
     }
-
 }

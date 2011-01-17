@@ -47,6 +47,7 @@ public class MyConceptDemo  extends javax.swing.JPanel {
         search.setShowResultCount(true);
         search.setBorder(BorderFactory.createEmptyBorder(5,5,4,0));
         search.setFont(FontLib.getFont("微软雅黑", Font.PLAIN, 11));
+        search.setBackground(this.getBackground());
 
         final JFastLabel title = new JFastLabel("                 ");
         title.setPreferredSize(new Dimension(350, 20));

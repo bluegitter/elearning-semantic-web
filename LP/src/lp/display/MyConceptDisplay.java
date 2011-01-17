@@ -75,6 +75,7 @@ public class MyConceptDisplay extends Display {
     public LabelRenderer m_nodeRenderer;
     public EdgeRenderer m_edgeRenderer;
     public String m_label = "user_concept";
+    public String m_image_label = "icon";
 
     public MyConceptDisplay() {
         super(new Visualization());
@@ -84,10 +85,10 @@ public class MyConceptDisplay extends Display {
         Tree t = new Tree();
         Table nodes = t.getNodeTable();
         nodes.addColumn(m_label, EClass.class);
-        nodes.addColumn("icon", String.class);
+        nodes.addColumn(m_image_label, String.class);
         Node n = t.addRoot();
         n.set(m_label, root);
-        n.set("icon", "src/lp/resources/big.png");
+        n.set(m_image_label, root.getIconStr());
 
         addNodes(t, n);
 
@@ -217,7 +218,7 @@ public class MyConceptDisplay extends Display {
             Node cn = t.addChild(n);
             EClass tempclass = new EClass(p);
             cn.set(m_label, tempclass);
-            cn.set("icon", "src/lp/resources/big.png");
+            cn.set(m_image_label, tempclass.getIconStr());
         }
     }
 

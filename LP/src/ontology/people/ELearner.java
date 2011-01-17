@@ -66,10 +66,13 @@ public class ELearner extends People {
         this.password = password;
     }
 
+    @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer();
-        sb.append(id + "\t" + name + "\t" + grade + "\t" + password + "\n");
-        sb.append(grade + "\t" + email + "\t" + address);
-        return sb.toString();
+//        StringBuilder sb = new StringBuilder();
+//        sb.append(id).append("\t").append(name).append("\t").append(grade).append("\t").append(password).append("\n");
+//        sb.append(grade).append("\t").append(email).append("\t").append(address);
+//        return sb.toString();
+
+        return this.name + " (" + this.id + ")";
     }
 }
