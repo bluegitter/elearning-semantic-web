@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package lp.display;
+package lp.eresource;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -41,10 +41,12 @@ public class URILabel extends JLabel implements java.awt.event.MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-    }
+     this.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            }
 
     @Override
     public void mouseExited(MouseEvent e) {
+          this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     }
     public String toString(){
         return this.getText();

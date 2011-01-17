@@ -12,6 +12,7 @@ package lp.interest;
 
 import java.util.ArrayList;
 import jena.impl.ELearnerModelImpl;
+import lp.LPApp;
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.people.ELearner;
@@ -128,15 +129,24 @@ public class UserInterestPane extends javax.swing.JPanel {
 
         addInterestText.setText("输入感兴趣的概念");
         addInterestText.setName("addInterestText"); // NOI18N
+        addInterestText.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addInterestTextMouseClicked(evt);
+            }
+        });
 
         jButton3.setText("添加兴趣");
         jButton3.setName("jButton3"); // NOI18N
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 434, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +162,6 @@ public class UserInterestPane extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 687, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(interestLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -169,6 +178,29 @@ public class UserInterestPane extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addInterestTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addInterestTextMouseClicked
+if(evt.getClickCount()==2){
+    addInterestText.setText("");
+}
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addInterestTextMouseClicked
+
+    //add interest concept for the current elearner
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+        String name = addInterestText.getText();
+        if(name != null){
+            ArrayList<String>cids = LPApp.lpModel.getConceptIds(name);
+            if(cids.isEmpty()){
+                System.out.println("concept not exist");
+            }else{
+                System.out.println("get the name");
+            }
+
+        }
+    }//GEN-LAST:event_jButton3MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addInterestText;
     private javax.swing.JLabel interestLabel;
