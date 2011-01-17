@@ -58,9 +58,6 @@ import prefuse.render.EdgeRenderer;
 import prefuse.render.LabelRenderer;
 import prefuse.util.ColorLib;
 import prefuse.util.FontLib;
-import prefuse.util.ui.JFastLabel;
-import prefuse.util.ui.JSearchPanel;
-import prefuse.util.ui.UILib;
 import prefuse.visual.VisualItem;
 import prefuse.visual.expression.InGroupPredicate;
 import prefuse.visual.sort.TreeDepthItemSorter;
@@ -82,13 +79,15 @@ public class MyConceptDisplay extends Display {
     public MyConceptDisplay() {
         super(new Visualization());
 
-        EClass root = new EClass(new ontology.people.ELearner("el001"));
+        EClass root = new EClass(LPApp.getApplication().user.learner);
 
         Tree t = new Tree();
         Table nodes = t.getNodeTable();
         nodes.addColumn(m_label, EClass.class);
+        nodes.addColumn("icon", String.class);
         Node n = t.addRoot();
         n.set(m_label, root);
+        n.set("icon", "src/lp/resources/big.png");
 
         addNodes(t, n);
 
@@ -96,9 +95,10 @@ public class MyConceptDisplay extends Display {
         m_vis.setInteractive(treeEdges, null, false);
 
         // -- set up renderers --
-        m_nodeRenderer = new LabelRenderer(m_label);
+        m_nodeRenderer = new LabelRenderer(m_label, "icon");
         m_nodeRenderer.setRenderType(AbstractShapeRenderer.RENDER_TYPE_FILL);
         m_nodeRenderer.setHorizontalAlignment(Constants.CENTER);
+        m_nodeRenderer.setImagePosition(Constants.LEFT);
         m_nodeRenderer.setRoundedCorner(8,8);
         m_edgeRenderer = new EdgeRenderer();
 
@@ -217,6 +217,7 @@ public class MyConceptDisplay extends Display {
             Node cn = t.addChild(n);
             EClass tempclass = new EClass(p);
             cn.set(m_label, tempclass);
+            cn.set("icon", "src/lp/resources/big.png");
         }
     }
 
@@ -228,6 +229,7 @@ public class MyConceptDisplay extends Display {
         public TreeRootAction(String graphGroup) {
             super(graphGroup);
         }
+        @Override
         public void run(double frac) {
             TupleSet focus = m_vis.getGroup(Visualization.FOCUS_ITEMS);
             if ( focus==null || focus.getTupleCount() == 0 ) return;

@@ -91,6 +91,7 @@ public class LPView extends FrameView {
 
     public void setBusy(String status) {
         if (!busyIconTimer.isRunning()) {
+            System.out.println(1);
             statusAnimationLabel.setIcon(busyIcons[0]);
             busyIconIndex = 0;
             busyIconTimer.start();
