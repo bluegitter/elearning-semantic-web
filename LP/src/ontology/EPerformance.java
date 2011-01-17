@@ -52,8 +52,9 @@ public class EPerformance {
     @Override
     public String toString() {
 //        return id+"\t"+value+"\t"+elearner.getId()+"\t"+concept.getCid()+"\t"+datetime;
-        return concept.getName() + " " + valueString();
+        return concept.getName() + valueString();
     }
+    @Override
     public boolean equals(Object o ){
         if(o instanceof EPerformance){
 
@@ -77,9 +78,9 @@ public class EPerformance {
     }
     private String valueString() {
         if (value < 0) {
-            return "学习中";
+            return "(学习中)";
         } else {
-            return "成绩:" + value;
+            return "(成绩:" + value + ")";
         }
     }
     private ELearner elearner;
