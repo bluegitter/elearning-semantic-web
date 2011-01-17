@@ -63,11 +63,9 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
         this.parent = parent;
         jLabel1.setOpaque(true);
         jLabel2.setOpaque(true);
-        jTextField1.setOpaque(true);
         this.setBackground(Color.WHITE);
         jLabel1.setIcon(null);
         jLabel2.setText(interest.getEConcept().getName());
-        jTextField1.setText(String.valueOf(interest.getValue()));
         color = new Color(244, 244, 245);
     }
     public Color color;
@@ -85,7 +83,6 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(RemoveLPInterestItemPane.class);
         setBackground(resourceMap.getColor("Form.background")); // NOI18N
@@ -121,40 +118,20 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
 
-        jTextField1.setBackground(resourceMap.getColor("jTextField1.background")); // NOI18N
-        jTextField1.setEditable(false);
-        jTextField1.setText(resourceMap.getString("jTextField1.text")); // NOI18N
-        jTextField1.setBorder(null);
-        jTextField1.setName("jTextField1"); // NOI18N
-        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                updateInterestValueClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jTextField1MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jTextField1MouseExited(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -169,7 +146,6 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
         jLabel1.setIcon(null);
         this.setBackground(Color.WHITE);
         jLabel1.setBackground(Color.WHITE);
-        jTextField1.setBackground(Color.WHITE);
         jLabel2.setBackground(Color.WHITE);
         this.updateUI();
     }//GEN-LAST:event_removeItemPaneMouseExited
@@ -187,55 +163,11 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
         this.setBackground(color);
         jLabel2.setBackground(color);
         jLabel1.setBackground(color);
-        jTextField1.setBackground(color);
         this.updateUI();
     }//GEN-LAST:event_removeItemEntered
 
-    private void jTextField1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseEntered
-        removeItemEntered(evt);
-    }//GEN-LAST:event_jTextField1MouseEntered
-
-    private void jTextField1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseExited
-        removeItemPaneMouseExited(evt);
-    }//GEN-LAST:event_jTextField1MouseExited
-
-    private void updateInterestValueClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_updateInterestValueClicked
-        // TODO add your handling code here:
-        if (evt.getClickCount() == 2) {
-            if (valueEditable == false) {
-                jTextField1.setEditable(true);
-            } else {
-                float value = 0;
-                boolean b = false;
-                try {
-                    String s = jTextField1.getText();
-                    value = Float.parseFloat(s);
-                } catch (NumberFormatException nfe) {
-                    b = false;
-                    System.out.println("Input is not a float number");
-                }
-                if (b && (interest.getValue() != value)) {
-                    interest.setValue(value);
-                    try {
-                        LPApp.lpModel.updateEInterest(interest);
-                    } catch (IndividualNotExistException ex) {
-                        Logger.getLogger(RemoveLPInterestItemPane.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                jTextField1.setEditable(false);
-            }
-
-            if (valueEditable == false) {
-                valueEditable = true;
-            } else {
-                valueEditable = false;
-            }
-        }
-
-    }//GEN-LAST:event_updateInterestValueClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JLabel jLabel1;
     protected javax.swing.JLabel jLabel2;
-    protected javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

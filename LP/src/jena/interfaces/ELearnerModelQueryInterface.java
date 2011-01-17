@@ -50,6 +50,10 @@ public interface ELearnerModelQueryInterface {
 
     ArrayList<ISCB_Resource> getEResourcesByInterestEConcepts(ELearner elearner);
 
+    ArrayList<ISCB_Resource> getEResourcesByName(String name);
+
+    ArrayList<ISCB_Resource> getEResourcesByTypes(String applicationType, String fileFormat, String mediaType);
+
     ArrayList<ISCB_Resource> getAllEResources();
 
     EConcept getEConcept(String cid);

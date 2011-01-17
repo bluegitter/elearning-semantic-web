@@ -25,7 +25,7 @@ public class UserInterestPane extends javax.swing.JPanel {
 
     private ArrayList<EInterest> interests;
     private ArrayList<EConcept> concepts;
-
+private ELearner elearner = new ELearner("el001");
     public static void main(String[] args) {
         ELearnerModelImpl emi = new ELearnerModelImpl();
         ELearner el = emi.getELearner("el001");
@@ -52,15 +52,34 @@ public class UserInterestPane extends javax.swing.JPanel {
     public void updateInterests(ArrayList<EInterest> interests, ArrayList<EConcept> concepts) {
         System.out.println("to be implmented");
     }
-    public void addInterets(ArrayList<EConcept> concept){
-        
+
+    public void addInterets(ArrayList<EConcept> concept) {
+
     }
 
     public void removeInterest(RemoveLPInterestItemPane removeInterestItem) {
-        System.out.println("HH:"+removeInterestItem.interest);
-        System.out.println("size:"+interests.size());
+        System.out.println("HH:" + removeInterestItem.interest);
+        System.out.println("size:" + interests.size());
         interests.remove(removeInterestItem.interest);
         interestPane.remove(removeInterestItem);
+
+        concepts.add(removeInterestItem.interest.getEConcept());
+        unInterestPane.add(new AddLPInterestItemPane(this,removeInterestItem.interest.getEConcept()));
+        interestPane.updateUI();
+    }
+
+    public void addInterest(AddLPInterestItemPane addInterestItem) {
+        EConcept con = addInterestItem.concept;
+        EInterest interest = new EInterest();
+        interest.setValue(0.5f);
+        interest.setEConcept(con);
+        interest.setELearner(elearner);
+        interest.setId(elearner.getId()+con.getCid());
+        interestPane.add(new RemoveLPInterestItemPane(this,interest));
+        interests.add(interest);
+
+        concepts.remove(con);
+        unInterestPane.remove(addInterestItem);
         interestPane.updateUI();
     }
 
@@ -69,12 +88,12 @@ public class UserInterestPane extends javax.swing.JPanel {
         this.concepts = concepts;
         interestPane.setLayout(new javax.swing.BoxLayout(interestPane, javax.swing.BoxLayout.Y_AXIS));
         for (int i = 0; i < interests.size(); i++) {
-            RemoveLPInterestItemPane p = new RemoveLPInterestItemPane(this,interests.get(i));
+            RemoveLPInterestItemPane p = new RemoveLPInterestItemPane(this, interests.get(i));
             interestPane.add(p);
         }
         unInterestPane.setLayout(new javax.swing.BoxLayout(unInterestPane, javax.swing.BoxLayout.Y_AXIS));
         for (int i = 0; i < concepts.size(); i++) {
-            AddLPInterestItemPane p = new AddLPInterestItemPane(concepts.get(i));
+            AddLPInterestItemPane p = new AddLPInterestItemPane(this,concepts.get(i));
             unInterestPane.add(p);
         }
     }
@@ -180,9 +199,9 @@ public class UserInterestPane extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addInterestTextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addInterestTextMouseClicked
-if(evt.getClickCount()==2){
-    addInterestText.setText("");
-}
+        if (evt.getClickCount() == 2) {
+            addInterestText.setText("");
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_addInterestTextMouseClicked
 
@@ -190,17 +209,16 @@ if(evt.getClickCount()==2){
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
         String name = addInterestText.getText();
-        if(name != null){
-            ArrayList<String>cids = LPApp.lpModel.getConceptIds(name);
-            if(cids.isEmpty()){
+        if (name != null) {
+            ArrayList<String> cids = LPApp.lpModel.getConceptIds(name);
+            if (cids.isEmpty()) {
                 System.out.println("concept not exist");
-            }else{
+            } else {
                 System.out.println("get the name");
             }
 
         }
     }//GEN-LAST:event_jButton3MouseClicked
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addInterestText;
     private javax.swing.JLabel interestLabel;

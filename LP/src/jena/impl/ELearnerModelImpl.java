@@ -14,6 +14,7 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.vocabulary.RDF;
 import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
 import ontology.EConcept;
@@ -55,7 +56,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         ELearner el = emi.getELearner("el001");
         EConcept root = emi.getEConcept("Computer_Science");
 //        EConcept con2 = emi.getEConcept("CMP.cf.3");
-        emi.getEResourceByName("数据结构概念");
+        emi.getEResourcesByName("数据结构概念");
 // add resourcess to the root concepts
 //        System.out.println("1" + emi.getMemberConcepts(root).size());
 //        ArrayList<EConcept> cons = emi.getAllEConcepts();
@@ -267,19 +268,39 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         return portfolios;
     }
 
-    public ISCB_Resource getEResourceByName(String name) {
-        ISCB_Resource resource = new ISCB_Resource();
+    @Override
+    public ArrayList<ISCB_Resource> getEResourcesByName(String name) {
 //         elearner.getName(), new XSDDatatype("string")
-
+        ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
         OntClass classRes = ontModel.getOntClass(Constant.NS + "ISCB_Resource");
+
         SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS + "name"), name);
         StmtIterator iter = ontModel.listStatements(selector);
         while (iter.hasNext()) {
             Resource res = iter.nextStatement().getSubject();
             String id = res.getLocalName();
-            System.out.println("id:" + id);
+            if (ontModel.contains(ontModel.createStatement(res, RDF.type, classRes))) {
+                System.out.println("id2:" + id);
+                resources.add(getEResource(id));
+            }
+//            System.out.println("id1:" + id);
         }
-        return resource;
+        return resources;
+    }
+
+    @Override
+    public ArrayList<ISCB_Resource> getEResourcesByTypes(String applicationType, String fileFormat, String mediaType) {
+        ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
+        OntClass classRes = ontModel.getOntClass(Constant.NS + "ISCB_Resource");
+
+        SimpleSelector selector = new SimpleSelector(null, RDF.type, classRes);
+        StmtIterator iter = ontModel.listStatements(selector);
+        while (iter.hasNext()) {
+            Resource res = iter.nextStatement().getSubject();
+            String id = res.getLocalName();
+//            System.out.println("id1:" + id);
+        }
+        return resources;
     }
 
     @Override
