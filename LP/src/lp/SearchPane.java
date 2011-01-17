@@ -18,6 +18,7 @@ import lp.eresource.ResourceTable;
 import lp.eresource.ResourceTablePane;
 import ontology.resources.ISCB_Resource;
 import org.jdesktop.application.Action;
+import util.Constant;
 
 /**
  *
@@ -47,6 +48,10 @@ public class SearchPane extends javax.swing.JPanel {
         resourceTablePane = new ResourceTablePane();
         jPanel1.setLayout(new BorderLayout());
         jPanel1.add(resourceTablePane);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(Constant.ERESOURCE_APPLICATION_TYPES_CN));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(Constant.FILE_FORMAT));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(Constant.ERESOURCE_MEDIA_TYPES));
+
     }
 
     public void updateEResources(ArrayList<ISCB_Resource> res) {
@@ -82,7 +87,6 @@ public class SearchPane extends javax.swing.JPanel {
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "名词术语", "实验", "理论型知识元", "例题", "习题", "案例", "方法型知识元", "应用", "功能、性能", "结构、组成", "类别、分类", "试卷", "教学设计", "教学演示文稿", "常见问题", "重要人物", "教学课件", "文献资料", " " }));
         jComboBox1.setName("jComboBox1"); // NOI18N
 
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
@@ -125,13 +129,11 @@ public class SearchPane extends javax.swing.JPanel {
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "text/txt", "text/doc", "text/css", "text/rtf", "text/html", "text/xml", "audio/aiff", "audio/mid", "audio/mp3", "audio/wma", "audio/wav", "image/bmp", "image/gif", "image/jpg", "image/pict", "image/tif", "image/png", "video/asf", "video/avi", "video/wmv", "video/mpeg", "video/rm", "vrml/wrl", "application/Excel", "application/MS powerpoint", "application/Acrobat", "application/Authorware", "application/x-javascript", "application/x-shockwave-flash", "application/x-compressed", "application/zip", "application/系统软件", " " }));
         jComboBox2.setName("jComboBox2"); // NOI18N
 
         jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
         jLabel4.setName("jLabel4"); // NOI18N
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox3.setName("jComboBox3"); // NOI18N
 
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
@@ -228,10 +230,8 @@ public class SearchPane extends javax.swing.JPanel {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
         String name = jTextField1.getText().trim();
-        ISCB_Resource res = LPApp.lpModel.getEResourceByName(name);
-        ArrayList<ISCB_Resource> r = new ArrayList<ISCB_Resource>();
-        r.add(res);
-        updateEResources(r);
+        ArrayList<ISCB_Resource>  res = LPApp.lpModel.getEResourcesByName(name);
+        updateEResources(res);
     }//GEN-LAST:event_jButton1MouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

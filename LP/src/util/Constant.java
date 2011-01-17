@@ -39,6 +39,8 @@ public class Constant {
     public static String[] EDUCATION_TYPES = {};
     public static String[] COURSE_CLASSIFICATIONS={"马克思主义理论类","中文类", "历史类", "哲学类", "政治学类", "社会学类", "法律类", "经济类", "管理类", "旅游类", "新闻传播类", "艺术类", "教育类", "体育类", "外语类", "对外汉语类", "数学类", "物理类", "化学、化工与制药类", "地理、地学、地矿类", "环境类", "生物类", "心理学类", "医学类", "计算机类", "电子、电气信息类", "力学类", "土建、水利类", "机械、能源类", "轻工、纺织、食品类", "材料类", "农业、林业类", "服务类"};
     public static String[] ERESOURCE_APPLICATION_TYPES = {"Glossary", "Experiment", "TheoreticalMetaKnowledge", "Example", "Exercise", "Case", "MethodicalMetaKnowledge", "Application", "Feather", "Composition", "Classification", "ExaminationPaper", "TeachingDesign", "TeachingSlide", "FAQ", "VIP", "Courseware", "Reference"};
+    public static String[] ERESOURCE_APPLICATION_TYPES_CN= { "名词术语", "实验", "理论型知识元", "例题", "习题", "案例", "方法型知识元", "应用", "功能、性能", "结构、组成", "类别、分类", "试卷", "教学设计", "教学演示文稿", "常见问题", "重要人物", "教学课件", "文献资料"};
+    public static String[] ERESOURCE_MEDIA_TYPES = {"文本","图片","视频","音频","动画","程序"};
     public static String[] GENDER = {"male", "female", "secret"};
     public static String[] RECOMMANDRULES = {};
     public static String[] titles = {"professor"};

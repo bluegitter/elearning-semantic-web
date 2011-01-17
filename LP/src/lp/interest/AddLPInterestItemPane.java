@@ -15,47 +15,47 @@ package lp.interest;
  * @author william
  */
 public class AddLPInterestItemPane extends javax.swing.JPanel {
-
+public UserInterestPane parent;
+   
     public static void main(String[] args) {
-        jena.impl.ELearnerModelImpl emi = new jena.impl.ELearnerModelImpl(new java.io.File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
-        ontology.people.ELearner el = emi.getELearner("el001");
-        //java.util.ArrayList<ontology.EInterest> interests = emi.getEInterests(el);
-        java.util.ArrayList<ontology.EConcept> concepts = jena.ELearnerReasoner.getRecommendEConcepts_1(emi.getOntModel(), el);
-        // System.out.println(interests);
-        javax.swing.JFrame frame = new javax.swing.JFrame();
-        // LPListPane lppane = new LPListPane(interests);
-        javax.swing.JPanel pane = new javax.swing.JPanel();
-        frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        pane.setLayout(new javax.swing.BoxLayout(pane, javax.swing.BoxLayout.Y_AXIS));
-        for (int i = 0; i < concepts.size(); i++) {
-            AddLPInterestItemPane p = new AddLPInterestItemPane(concepts.get(i));
-            pane.add(p);
-        }
-        frame.add(pane);
-        frame.pack();
-        frame.setVisible(true);
+//        jena.impl.ELearnerModelImpl emi = new jena.impl.ELearnerModelImpl(new java.io.File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
+//        ontology.people.ELearner el = emi.getELearner("el001");
+//        //java.util.ArrayList<ontology.EInterest> interests = emi.getEInterests(el);
+//        java.util.ArrayList<ontology.EConcept> concepts = jena.ELearnerReasoner.getRecommendEConcepts_1(emi.getOntModel(), el);
+//        // System.out.println(interests);
+//        javax.swing.JFrame frame = new javax.swing.JFrame();
+//        // LPListPane lppane = new LPListPane(interests);
+//        javax.swing.JPanel pane = new javax.swing.JPanel();
+//        frame.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+//        pane.setLayout(new javax.swing.BoxLayout(pane, javax.swing.BoxLayout.Y_AXIS));
+//        for (int i = 0; i < concepts.size(); i++) {
+//            AddLPInterestItemPane p = new AddLPInterestItemPane(pane,concepts.get(i));
+//            pane.add(p);
+//        }
+//        frame.add(pane);
+//        frame.pack();
+//        frame.setVisible(true);
     }
 
     /** Creates new form AddLPInterestItemPane */
-    public AddLPInterestItemPane() {
+    public AddLPInterestItemPane(UserInterestPane parent) {
         initComponents();
-        myInit();
+        myInit(parent);
     }
 
-    public AddLPInterestItemPane(ontology.EConcept concept) {
+    public AddLPInterestItemPane(UserInterestPane parent,ontology.EConcept concept) {
         this.concept = concept;
         initComponents();
-        myInit();
+        myInit(parent);
     }
 
-    private void myInit() {
+    private void myInit(UserInterestPane parent) {
+        this.parent = parent;
         color = new java.awt.Color(244, 244, 245);
-        jLabel1.setOpaque(true);
         jLabel2.setOpaque(true);
         jLabel3.setOpaque(true);
         this.setBackground(java.awt.Color.WHITE);
         jLabel3.setIcon(null);
-        jLabel1.setText(concept.getCid());
         jLabel2.setText(concept.getName());
     }
     public ontology.EConcept concept;
@@ -71,7 +71,6 @@ public class AddLPInterestItemPane extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -86,10 +85,6 @@ public class AddLPInterestItemPane extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("jLabel1");
-        jLabel1.setName("jLabel1"); // NOI18N
-
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("jLabel2");
         jLabel2.setMinimumSize(null);
@@ -101,6 +96,9 @@ public class AddLPInterestItemPane extends javax.swing.JPanel {
         jLabel3.setName("jLabel3"); // NOI18N
         icon =new javax.swing.ImageIcon(getClass().getResource("/lp/interest/resources/+.png"));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel3MouseEntered(evt);
             }
@@ -114,18 +112,14 @@ public class AddLPInterestItemPane extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -133,7 +127,6 @@ public class AddLPInterestItemPane extends javax.swing.JPanel {
     private void addItemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addItemMouseEntered
         jLabel3.setIcon(icon);
         this.setBackground(color);
-        jLabel1.setBackground(color);
         jLabel2.setBackground(color);
         jLabel3.setBackground(color);
     }//GEN-LAST:event_addItemMouseEntered
@@ -141,7 +134,6 @@ public class AddLPInterestItemPane extends javax.swing.JPanel {
     private void addItemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addItemMouseExited
         jLabel3.setIcon(null);
         this.setBackground(java.awt.Color.WHITE);
-        jLabel1.setBackground(java.awt.Color.WHITE);
         jLabel2.setBackground(java.awt.Color.WHITE);
         jLabel3.setBackground(java.awt.Color.WHITE);
     }//GEN-LAST:event_addItemMouseExited
@@ -153,8 +145,13 @@ public class AddLPInterestItemPane extends javax.swing.JPanel {
     private void jLabel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseExited
         addItemMouseExited(evt);
     }//GEN-LAST:event_jLabel3MouseExited
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        System.out.println("add interest item clicked");
+        parent.addInterest(this);
+    }//GEN-LAST:event_jLabel3MouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
