@@ -33,13 +33,10 @@ public class AllConceptPane extends javax.swing.JPanel {
     public AllConceptPane() {
         super(new FlowLayout());
 
-        Color bg = new Color(240, 240, 240);
-
         final AllConceptDisplay d = new AllConceptDisplay(this);
-        d.setBackground(bg);
+        d.setBackground(this.getBackground());
         d.setForeground(Color.BLACK);
         setForeground(Color.BLACK);
-        setBackground(bg);
 
         JSearchPanel search = new JSearchPanel(d.getVisualization(),
                 AllConceptDisplay.treeNodes, Visualization.SEARCH_ITEMS, d.m_label, true, true);
@@ -47,7 +44,7 @@ public class AllConceptPane extends javax.swing.JPanel {
         search.setBorder(BorderFactory.createEmptyBorder(5, 5, 4, 0));
         search.setFont(FontLib.getFont("微软雅黑", Font.PLAIN, 11));
         search.setForeground(Color.BLACK);
-        search.setBackground(bg);
+        search.setBackground(this.getBackground());
 
 
         final JFastLabel title = new JFastLabel("                 ");
