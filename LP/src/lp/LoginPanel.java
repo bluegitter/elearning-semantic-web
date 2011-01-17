@@ -1,5 +1,7 @@
 package lp;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 
 /**
@@ -113,22 +115,23 @@ public class LoginPanel extends javax.swing.JPanel {
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         final LPView view = LPApp.getApplication().view;
         LPApp.getApplication().user = new EUser(username.getText());
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+        view.setBusy("正在验证密码...");
+        Thread authThread = new Thread() {
 
             @Override
             public void run() {
-                view.setBusy("正在验证密码...");
                 boolean loginAuth = LPApp.getApplication().user.login(new String(password.getPassword()));
                 if (loginAuth) {
                     view.setBusy("正在加载数据...");
-                    LPApp.getApplication().view.initTools();
+                    view.initTools();
                 } else {
                     tipLabel.setText("登录失败");
                     username.grabFocus();
                 }
                 view.setIdle();
             }
-        });
+        };
+        authThread.start();
 }//GEN-LAST:event_loginBtnActionPerformed
 
     private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
