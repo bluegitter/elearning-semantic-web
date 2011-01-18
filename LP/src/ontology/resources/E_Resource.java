@@ -32,6 +32,19 @@ public class E_Resource {
         this.resourceDescription = resourceDescription;
     }
 
+    public boolean equals(Object o) {
+        if (o instanceof E_Resource) {
+            E_Resource res = (E_Resource) o;
+            if (!res.getRid().equals(this.rid)) {
+                return false;
+            } else if (!this.name.equals(res.getName())) {
+                return false;
+            }
+            return true;
+        }
+        return false;
+    }
+
     public String toString() {
         return rid + "\t" + name + "\t" + resourceDescription;
     }

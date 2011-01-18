@@ -54,9 +54,15 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         ELearnerModelImpl emi = new ELearnerModelImpl(file);
         System.out.println("intitime:" + (System.currentTimeMillis() - init) + "ms");
         ELearner el = emi.getELearner("el001");
+        EConcept cid1 = emi.getEConcept("cid1");
         EConcept root = emi.getEConcept("Computer_Science");
+        ISCB_Resource res = emi.getEResource("rid000010");
+        ArrayList<EConcept> cons = emi.getEConcepts(res);
+        System.out.println("cons:" + cons);
 //        EConcept con2 = emi.getEConcept("CMP.cf.3");
-        emi.getEResourcesByName("数据结构概念");
+//        emi.getEResourcesByName("数据结构概念");
+//        emi.getEResourcesByMeidaType("文本");
+//        ArrayList<ISCB_Resource> r = emi.getEResourcesByTypes("全部", "all", "全部");
 // add resourcess to the root concepts
 //        System.out.println("1" + emi.getMemberConcepts(root).size());
 //        ArrayList<EConcept> cons = emi.getAllEConcepts();
@@ -101,11 +107,19 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         System.out.println("end");
     }
 
-    public String[] getIt() {
-        String[] s = new String[0];
-        Property p = ontModel.getProperty(Constant.NS + "gender");
-        ontModel.listDatatypeProperties();
-        return s;
+    @Override
+    public Individual getFileFormatIndividualByFullName(String name) {
+        Resource fileFormatClass = ontModel.getResource(Constant.NS + "File_Format");
+        SimpleSelector selector = new SimpleSelector(null, RDF.type, fileFormatClass);
+        StmtIterator iter = ontModel.listStatements(selector);
+        while (iter.hasNext()) {
+            Resource r = iter.nextStatement().getSubject();
+            String n = r.getProperty(ontModel.getProperty(Constant.NS + "name")).getLiteral().getString();
+            if (n.equals(name)) {
+                return ontModel.getIndividual(Constant.NS + r.getLocalName());
+            }
+        }
+        return null;
     }
 
     @Override
@@ -289,16 +303,116 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
     }
 
     @Override
+    public ArrayList<ISCB_Resource> getLearntEResources(ELearner elearner, EConcept concept) {
+        ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
+        Individual el = ontModel.getIndividual(Constant.NS + elearner.getId());
+        Individual con = ontModel.getIndividual(Constant.NS + concept.getCid());
+        Property p1 = ontModel.getProperty(Constant.NS + "has_portfolio");
+        Property p2 = ontModel.getProperty(Constant.NS + "is_resource_of_P");
+        Property p3 = ontModel.getProperty(Constant.NS + "is_resource_of_C");
+        SimpleSelector selector_port = new SimpleSelector(el, p1, (RDFNode) null);
+        StmtIterator iter_port = ontModel.listStatements(selector_port);
+        while (iter_port.hasNext()) {
+            Resource port = (Resource) iter_port.nextStatement().getObject();
+            SimpleSelector selector_res = new SimpleSelector(null, p2, port);
+            StmtIterator iter_res = ontModel.listStatements(selector_res);
+            while (iter_res.hasNext()) {
+                Resource res = iter_res.nextStatement().getSubject();
+                SimpleSelector selector_con = new SimpleSelector(res, p3, con);
+                StmtIterator iter_con = ontModel.listStatements(selector_con);
+                if (iter_con.hasNext()) {
+                    resources.add(getEResource(res.getLocalName()));
+                }
+            }
+        }
+        return resources;
+    }
+
+    @Override
     public ArrayList<ISCB_Resource> getEResourcesByTypes(String applicationType, String fileFormat, String mediaType) {
+        ArrayList<ISCB_Resource> r1 = new ArrayList<ISCB_Resource>();
+        ArrayList<ISCB_Resource> r2 = new ArrayList<ISCB_Resource>();
+        ArrayList<ISCB_Resource> r3 = new ArrayList<ISCB_Resource>();
+        if (applicationType == null) {
+            System.out.println("applicationType is null");
+        }
+        if (mediaType == null) {
+            System.out.println("mediaType is null");
+        }
+        r1 = getEResourcesByAppType(applicationType);
+        r3 = getEResourcesByMeidaType(mediaType);
+        System.out.println("r1:" + r1.size());
+        System.out.println("r3:" + r3.size());
+        if (r1.isEmpty()) {
+            return r3;
+        } else if (r3.isEmpty()) {
+            return r1;
+        } else {
+            ArrayList<ISCB_Resource> in = new ArrayList<ISCB_Resource>();
+            for (ISCB_Resource res : r1) {
+                if (r3.contains(res)) {
+                    in.add(res);
+                }
+            }
+            return in;
+        }
+    }
+
+    @Override
+    public ArrayList<ISCB_Resource> getEResourcesByAppType(String applicationType) {
         ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
         OntClass classRes = ontModel.getOntClass(Constant.NS + "ISCB_Resource");
-
         SimpleSelector selector = new SimpleSelector(null, RDF.type, classRes);
         StmtIterator iter = ontModel.listStatements(selector);
         while (iter.hasNext()) {
             Resource res = iter.nextStatement().getSubject();
-            String id = res.getLocalName();
-//            System.out.println("id1:" + id);
+            Statement s = res.getProperty(ontModel.getProperty(Constant.NS + "application_type"));
+            if (s != null) {
+                if (s.getLiteral().getString().equals(applicationType) || applicationType.equals("全部")) {
+                    String id = res.getLocalName();
+                    resources.add(getEResource(res.getLocalName()));
+                }
+            } else {
+                System.out.println("the resource application type is null\t" + res.getLocalName());
+            }
+        }
+        return resources;
+    }
+
+    @Override
+    public ArrayList<ISCB_Resource> getEResourcesByMeidaType(String mediaType) {
+        ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
+        OntClass classRes = ontModel.getOntClass(Constant.NS + "ISCB_Resource");
+        SimpleSelector selector = new SimpleSelector(null, RDF.type, classRes);
+        StmtIterator iter = ontModel.listStatements(selector);
+        while (iter.hasNext()) {
+            Resource res = iter.nextStatement().getSubject();
+            Statement s = res.getProperty(ontModel.getProperty(Constant.NS + "resource_type"));
+            if (s != null) {
+                if (s.getLiteral().getString().equals(mediaType) || mediaType.equals("全部")) {
+                    String id = res.getLocalName();
+                    resources.add(getEResource(res.getLocalName()));
+                }
+            } else {
+                System.out.println("the resource media type is null\t" + res.getLocalName());
+            }
+        }
+        return resources;
+    }
+
+    @Override
+    public ArrayList<ISCB_Resource> getEResourcesByFileFormat(String fileFormat) {
+        Individual fileFormatIndi = getFileFormatIndividualByFullName(fileFormat);
+        ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
+        SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS + "has_postfix"), fileFormatIndi);
+        StmtIterator iter = ontModel.listStatements(selector);
+        while (iter.hasNext()) {
+            Resource res = iter.nextStatement().getSubject();
+            if (res != null) {
+                resources.add(getEResource(res.getLocalName()));
+            } else {
+                System.out.println("the resource is null\t");
+            }
         }
         return resources;
     }
@@ -401,6 +515,19 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
     }
 
     @Override
+    public ArrayList<EConcept> getEConcepts(ISCB_Resource resource) {
+        ArrayList<EConcept> concepts = new ArrayList<EConcept>();
+        Individual res = ontModel.getIndividual(Constant.NS + resource.getRid());
+        SimpleSelector selector = new SimpleSelector(res, ontModel.getProperty(Constant.NS + "is_resource_of_C"), (RDFNode) null);
+        StmtIterator iter = ontModel.listStatements(selector);
+        while (iter.hasNext()) {
+            Resource con = (Resource) iter.nextStatement().getObject();
+            concepts.add(getEConcept(con.getLocalName()));
+        }
+        return concepts;
+    }
+
+    @Override
     public ArrayList<EConcept> getSonConcepts(EConcept econcept) {
         ArrayList<EConcept> concepts = new ArrayList<EConcept>();
         Resource concept = ontModel.getResource(Constant.NS + econcept.getCid());
@@ -490,6 +617,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         return null;
     }
 
+    @Override
     public ArrayList<EInterest> getEInterests(ELearner elearner) {
         Individual el = ontModel.getIndividual(Constant.NS + elearner.getId());
         Property p1 = ontModel.getProperty(Constant.NS + "inverse_of_has_interest");

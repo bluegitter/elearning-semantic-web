@@ -235,6 +235,9 @@
     </owl:inverseOf>
     <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
   </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#organization_properties">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_r_1">
     <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
     <rdfs:subPropertyOf>
@@ -262,6 +265,12 @@
         </owl:unionOf>
       </owl:Class>
     </rdfs:range>
+    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#people_properties"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#studying_at">
+    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
     <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#people_properties"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_L_0">
@@ -378,6 +387,13 @@
       <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_has_interest"/>
     </owl:inverseOf>
   </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_3">
+    <rdfs:subPropertyOf>
+      <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
+    </rdfs:subPropertyOf>
+    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+    <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_3"/>
+  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_concept_of_I">
     <owl:inverseOf>
       <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_concept_of_I"/>
@@ -387,13 +403,6 @@
     <rdfs:subPropertyOf>
       <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#people_character_properties"/>
     </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_3">
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
-    </rdfs:subPropertyOf>
-    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-    <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_3"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_published_by">
     <rdfs:domain>
@@ -405,21 +414,10 @@
       </owl:Class>
     </rdfs:domain>
     <owl:inverseOf>
-      <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#publish"/>
+      <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#publish"/>
     </owl:inverseOf>
-    <rdfs:subPropertyOf>
-      <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#organization_properties"/>
-    </rdfs:subPropertyOf>
+    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#organization_properties"/>
     <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Publisher"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#publish">
-    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Publisher"/>
-    <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_published_by"/>
-    <rdfs:subPropertyOf>
-      <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#organization_properties"/>
-    </rdfs:subPropertyOf>
-    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Book"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_7">
     <owl:inverseOf>
@@ -437,24 +435,6 @@
     <owl:inverseOf>
       <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_pre_of_R"/>
     </owl:inverseOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_pre">
-    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_pre"/>
-    </owl:inverseOf>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#optional_concept_properties"/>
-    </rdfs:subPropertyOf>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_pre">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#optional_concept_properties"/>
-    </rdfs:subPropertyOf>
-    <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_pre"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#has_performance">
     <owl:inverseOf>
@@ -494,16 +474,6 @@
     <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
     <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_has_portfolio"/>
     <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#people_properties"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_post">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <owl:inverseOf>
-      <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_post"/>
-    </owl:inverseOf>
-    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#optional_concept_properties"/>
-    </rdfs:subPropertyOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_resource_of_P">
     <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio"/>
@@ -551,6 +521,12 @@
       <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
     </rdfs:subPropertyOf>
   </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_member_of">
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#organization_properties"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
+  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_resource_of_C">
     <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
     <owl:inverseOf>
@@ -571,24 +547,15 @@
     <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#graduate_from">
-    <rdfs:subPropertyOf>
-      <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#organization_properties"/>
-    </rdfs:subPropertyOf>
+    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#organization_properties"/>
     <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
     <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_resource_of_C">
     <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
     <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#resouce_properties"/>
     <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_resource_of_C"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_post">
-    <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_post"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:subPropertyOf>
-      <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#optional_concept_properties"/>
-    </rdfs:subPropertyOf>
-    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_resource_of_P">
     <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_resource_of_P"/>
@@ -610,6 +577,15 @@
     </rdfs:subPropertyOf>
     <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
     <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_0"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_post_concept_of">
+    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#concept_properties"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_pre_concept_of"/>
+    </owl:inverseOf>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of">
     <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#people_properties"/>
@@ -638,12 +614,6 @@
       </owl:Class>
     </rdfs:range>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#has_postfix">
-    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#resouce_properties"/>
-    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_r_0">
     <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_0"/>
     <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
@@ -662,26 +632,19 @@
     <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
     <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
   </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_part_of">
-    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-    <owl:inverseOf>
-      <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_part_of"/>
-    </owl:inverseOf>
-    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#concept_properties"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#reasoning_brother">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
-    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-    <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#reasoning_brother"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#reasoning_properties"/>
-    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-  </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_5">
     <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
     <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_5"/>
     <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_part_of">
+    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#concept_properties"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_part_of"/>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </owl:ObjectProperty>
   <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_7">
     <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
@@ -722,15 +685,6 @@
     <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#resouce_properties"/>
     <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
     <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
-  </owl:ObjectProperty>
-  <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_pre_concept_of">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
-    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-    <owl:inverseOf>
-      <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_post_concept_of"/>
-    </owl:inverseOf>
-    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#concept_properties"/>
-    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </owl:ObjectProperty>
   <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#upload_time">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
@@ -812,17 +766,17 @@
     <rdfs:range>
       <owl:DataRange>
         <owl:oneOf rdf:parseType="Resource">
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >全部公开</rdf:first>
           <rdf:rest rdf:parseType="Resource">
-            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >注册公开</rdf:first>
             <rdf:rest rdf:parseType="Resource">
               <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
               <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
               >收费公开</rdf:first>
             </rdf:rest>
+            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >注册公开</rdf:first>
           </rdf:rest>
-          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-          >全部公开</rdf:first>
         </owl:oneOf>
       </owl:DataRange>
     </rdfs:range>
@@ -831,29 +785,29 @@
     <rdfs:range>
       <owl:DataRange>
         <owl:oneOf rdf:parseType="Resource">
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >文本</rdf:first>
           <rdf:rest rdf:parseType="Resource">
             <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
             >图片</rdf:first>
             <rdf:rest rdf:parseType="Resource">
               <rdf:rest rdf:parseType="Resource">
-                <rdf:rest rdf:parseType="Resource">
-                  <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                  >动画</rdf:first>
-                  <rdf:rest rdf:parseType="Resource">
-                    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                    >程序</rdf:first>
-                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                  </rdf:rest>
-                </rdf:rest>
                 <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                 >音频</rdf:first>
+                <rdf:rest rdf:parseType="Resource">
+                  <rdf:rest rdf:parseType="Resource">
+                    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >程序</rdf:first>
+                  </rdf:rest>
+                  <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                  >动画</rdf:first>
+                </rdf:rest>
               </rdf:rest>
               <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
               >视频</rdf:first>
             </rdf:rest>
           </rdf:rest>
-          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-          >文本</rdf:first>
         </owl:oneOf>
       </owl:DataRange>
     </rdfs:range>
@@ -884,11 +838,6 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Book"/>
   </owl:DatatypeProperty>
-  <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#application_type">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-  </owl:DatatypeProperty>
   <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#resource_quality">
     <rdfs:range>
       <owl:DataRange>
@@ -897,13 +846,13 @@
             <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
             >良</rdf:first>
             <rdf:rest rdf:parseType="Resource">
-              <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-              >中</rdf:first>
               <rdf:rest rdf:parseType="Resource">
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                 <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                 >差</rdf:first>
-                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
               </rdf:rest>
+              <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >中</rdf:first>
             </rdf:rest>
           </rdf:rest>
           <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -917,25 +866,25 @@
     <rdfs:range>
       <owl:DataRange>
         <owl:oneOf rdf:parseType="Resource">
-          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-          >教授</rdf:first>
           <rdf:rest rdf:parseType="Resource">
-            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >副教授</rdf:first>
             <rdf:rest rdf:parseType="Resource">
               <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
               >讲师</rdf:first>
               <rdf:rest rdf:parseType="Resource">
-                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                >研究员</rdf:first>
                 <rdf:rest rdf:parseType="Resource">
+                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                   <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                   >助理研究员</rdf:first>
-                  <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
                 </rdf:rest>
+                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                >研究员</rdf:first>
               </rdf:rest>
             </rdf:rest>
+            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >副教授</rdf:first>
           </rdf:rest>
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >教授</rdf:first>
         </owl:oneOf>
       </owl:DataRange>
     </rdfs:range>
@@ -944,65 +893,63 @@
     <rdfs:range>
       <owl:DataRange>
         <owl:oneOf rdf:parseType="Resource">
-          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-          >code</rdf:first>
           <rdf:rest rdf:parseType="Resource">
-            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-            >caj</rdf:first>
             <rdf:rest rdf:parseType="Resource">
+              <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+              >doc</rdf:first>
               <rdf:rest rdf:parseType="Resource">
                 <rdf:rest rdf:parseType="Resource">
                   <rdf:rest rdf:parseType="Resource">
+                    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                    >flash</rdf:first>
                     <rdf:rest rdf:parseType="Resource">
                       <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                       >image</rdf:first>
                       <rdf:rest rdf:parseType="Resource">
-                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                        >ppt</rdf:first>
                         <rdf:rest rdf:parseType="Resource">
+                          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                          >video</rdf:first>
                           <rdf:rest rdf:parseType="Resource">
-                            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                            >文本</rdf:first>
                             <rdf:rest rdf:parseType="Resource">
                               <rdf:rest rdf:parseType="Resource">
-                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                                >视频</rdf:first>
                                 <rdf:rest rdf:parseType="Resource">
+                                  <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                  >音频</rdf:first>
                                   <rdf:rest rdf:parseType="Resource">
-                                    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                                    >动画</rdf:first>
                                     <rdf:rest rdf:parseType="Resource">
-                                      <rdf:rest rdf:parseType="Resource">
-                                        <rdf:first rdf:datatype=
-                                        "http://www.w3.org/2001/XMLSchema#string"
-                                        >其他</rdf:first>
-                                        <rdf:rest rdf:parseType="Resource">
-                                          <rdf:first rdf:datatype=
-                                          "http://www.w3.org/2001/XMLSchema#string"
-                                          >audio</rdf:first>
-                                          <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-                                        </rdf:rest>
-                                      </rdf:rest>
                                       <rdf:first rdf:datatype=
                                       "http://www.w3.org/2001/XMLSchema#string"
                                       >程序</rdf:first>
+                                      <rdf:rest rdf:parseType="Resource">
+                                        <rdf:rest rdf:parseType="Resource">
+                                          <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                          <rdf:first rdf:datatype=
+                                          "http://www.w3.org/2001/XMLSchema#string"
+                                          >audio</rdf:first>
+                                        </rdf:rest>
+                                        <rdf:first rdf:datatype=
+                                        "http://www.w3.org/2001/XMLSchema#string"
+                                        >其他</rdf:first>
+                                      </rdf:rest>
                                     </rdf:rest>
+                                    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                    >动画</rdf:first>
                                   </rdf:rest>
-                                  <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                                  >音频</rdf:first>
                                 </rdf:rest>
+                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                                >视频</rdf:first>
                               </rdf:rest>
                               <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                               >图片</rdf:first>
                             </rdf:rest>
+                            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                            >文本</rdf:first>
                           </rdf:rest>
-                          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                          >video</rdf:first>
                         </rdf:rest>
+                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+                        >ppt</rdf:first>
                       </rdf:rest>
                     </rdf:rest>
-                    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-                    >flash</rdf:first>
                   </rdf:rest>
                   <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                   >txt</rdf:first>
@@ -1010,10 +957,12 @@
                 <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
                 >pdf</rdf:first>
               </rdf:rest>
-              <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-              >doc</rdf:first>
             </rdf:rest>
+            <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+            >caj</rdf:first>
           </rdf:rest>
+          <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+          >code</rdf:first>
         </owl:oneOf>
       </owl:DataRange>
     </rdfs:range>
@@ -1055,35 +1004,73 @@
       </owl:Class>
     </rdfs:domain>
   </owl:DatatypeProperty>
-  <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_part_of">
-    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#concept_properties"/>
-    <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_part_of"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-  </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#organization_properties">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_member_of">
-    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
+  <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#publish">
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Publisher"/>
+    <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_published_by"/>
     <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#organization_properties"/>
+    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Book"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
   </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_post_concept_of">
+  <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_post">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_post"/>
+    </owl:inverseOf>
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#optional_concept_properties"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_pre">
     <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#concept_properties"/>
+    <owl:inverseOf>
+      <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_pre"/>
+    </owl:inverseOf>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#optional_concept_properties"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_pre">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
     <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-    <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_pre_concept_of"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#optional_concept_properties"/>
+    <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_pre"/>
   </owl:TransitiveProperty>
-  <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#studying_at">
-    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
-    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
+  <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_post">
+    <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_post"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#people_properties"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#optional_concept_properties"/>
+    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_pre_concept_of">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+    <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_post_concept_of"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#concept_properties"/>
+    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </owl:TransitiveProperty>
+  <owl:TransitiveProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_part_of">
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+    <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_part_of"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#concept_properties"/>
+  </owl:TransitiveProperty>
+  <owl:SymmetricProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#reasoning_brother">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+    <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#reasoning_brother"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#reasoning_properties"/>
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </owl:SymmetricProperty>
+  <owl:FunctionalProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#application_type">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+  </owl:FunctionalProperty>
+  <owl:FunctionalProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#has_postfix">
+    <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#resouce_properties"/>
+    <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
+  </owl:FunctionalProperty>
   <E_Concept rdf:about="http://www.owl-ontologies.com/e-learning.owl#CMP.fm.8">
     <is_son_of>
       <E_Concept rdf:about="http://www.owl-ontologies.com/e-learning.owl#CMP.fm">
@@ -1225,7 +1212,6 @@
                                             <inverse_of_has_study_style rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el002"/>
                                           </E_Study_Style>
                                         </has_study_style>
-                                        <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance_2_1"/>
                                         <has_performance>
                                           <E_Performance rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Performance_2_2">
                                             <date_time rdf:datatype=
@@ -1268,6 +1254,7 @@
                                             <inverse_of_has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el002"/>
                                           </E_Performance>
                                         </has_performance>
+                                        <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance_2_1"/>
                                         <has_interest>
                                           <E_Interest rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el002-1">
                                             <value rdf:datatype=
@@ -4987,9 +4974,9 @@
     <file_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >application</file_type>
     <file_postfix rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >ppt</file_postfix>
-    <file_postfix rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >pptx</file_postfix>
+    <file_postfix rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >ppt</file_postfix>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >application/MS_powerpoint</name>
   </File_Format>
@@ -7552,8 +7539,8 @@
     >rid000073</id>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >类Calculator的定义</name>
-    <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid13"/>
+    <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >文本</resource_type>
     <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -8911,10 +8898,10 @@
         <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
         >Tsinghua University</name>
         <is_member_of>
-          <China_University rdf:about="http://www.owl-ontologies.com/e-learning.owl#Project_985_University"/>
+          <China_University rdf:about="http://www.owl-ontologies.com/e-learning.owl#Project_211_University"/>
         </is_member_of>
         <is_member_of>
-          <China_University rdf:about="http://www.owl-ontologies.com/e-learning.owl#Project_211_University"/>
+          <China_University rdf:about="http://www.owl-ontologies.com/e-learning.owl#Project_985_University"/>
         </is_member_of>
       </China_University>
     </studying_at>
@@ -11300,8 +11287,7 @@
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#DES.ar"/>
   </E_Concept>
   <ISCB_Resource rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000172">
-    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >搜索大儿子结点和兄弟结点的实现</name>
+    <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid18"/>
     <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >easy</difficulty>
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#html"/>
@@ -11314,9 +11300,10 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >rid000172</id>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid22"/>
-    <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid18"/>
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >文本</resource_type>
+    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >搜索大儿子结点和兄弟结点的实现</name>
   </ISCB_Resource>
   <ISCB_Resource rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000008">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid1"/>
@@ -11396,9 +11383,9 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >application/Excel</name>
     <file_postfix rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >xls</file_postfix>
-    <file_postfix rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >xlsx</file_postfix>
+    <file_postfix rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >xls</file_postfix>
   </File_Format>
   <E_Concept rdf:about="http://www.owl-ontologies.com/e-learning.owl#SAS.sur.4">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#SAS.sur"/>
@@ -12442,25 +12429,6 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >SAS.emb.4</id>
   </E_Concept>
-  <ISCB_Resource rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000432">
-    <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >74\animation\chap10\C10M44.swf</file_location>
-    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >rid000432</id>
-    <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >教学课件</application_type>
-    <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid48"/>
-    <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-shockwave-flash"/>
-    <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >动画</resource_type>
-    <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid49"/>
-    <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >easy</difficulty>
-    <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >基于二叉判定树的拆半查找算法动态演示</description>
-    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >基于二叉判定树的拆半查找算法动态演示</name>
-  </ISCB_Resource>
   <ISCB_Resource rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000621">
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >动画</resource_type>
@@ -12487,6 +12455,25 @@
         <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid1"/>
       </E_Concept>
     </is_resource_of_C>
+  </ISCB_Resource>
+  <ISCB_Resource rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000432">
+    <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >74\animation\chap10\C10M44.swf</file_location>
+    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >rid000432</id>
+    <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >教学课件</application_type>
+    <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid48"/>
+    <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-shockwave-flash"/>
+    <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >动画</resource_type>
+    <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid49"/>
+    <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >easy</difficulty>
+    <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >基于二叉判定树的拆半查找算法动态演示</description>
+    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >基于二叉判定树的拆半查找算法动态演示</name>
   </ISCB_Resource>
   <ISCB_Resource rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000376">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
@@ -13406,8 +13393,8 @@
   <China_University rdf:about="http://www.owl-ontologies.com/e-learning.owl#BeijingUniversity">
     <address rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Tsinghua University</address>
-    <is_member_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Project_211_University"/>
     <is_member_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Project_985_University"/>
+    <is_member_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Project_211_University"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >Tsinghua University</name>
   </China_University>
@@ -17489,6 +17476,14 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >VAV.tst.7</id>
   </E_Concept>
+  <File_Format rdf:about="http://www.owl-ontologies.com/e-learning.owl#x-xompressed">
+    <file_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >application</file_type>
+    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >application/x-xompressed</name>
+    <file_postfix rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
+    >x-xompressed</file_postfix>
+  </File_Format>
   <ISCB_Resource rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000424">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >rid000424</id>
@@ -17508,14 +17503,6 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid48"/>
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#gif"/>
   </ISCB_Resource>
-  <File_Format rdf:about="http://www.owl-ontologies.com/e-learning.owl#x-xompressed">
-    <file_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >application</file_type>
-    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >application/x-xompressed</name>
-    <file_postfix rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
-    >x-xompressed</file_postfix>
-  </File_Format>
   <E_Concept rdf:about="http://www.owl-ontologies.com/e-learning.owl#MAA.rfd.4.5">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string"
     >可理解性</name>
