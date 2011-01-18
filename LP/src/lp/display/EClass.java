@@ -4,7 +4,6 @@ import ontology.EConcept;
 import ontology.EPerformance;
 import ontology.people.ELearner;
 import ontology.resources.E_Resource;
-import ontology.resources.ISCB_Resource;
 
 /**
  *
@@ -54,7 +53,11 @@ public class EClass implements Comparable {
                 str = "src/lp/resources/resource.png";
                 break;
             case performance:
-                str = "src/lp/resources/performance.png";
+                if (((EPerformance) object).getValue() < 0) {
+                    str = "src/lp/resources/performance.png";
+                } else {
+                    str = "src/lp/resources/performance_done.png";
+                }
                 break;
         }
         return str;
