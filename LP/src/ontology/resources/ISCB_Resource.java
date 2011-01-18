@@ -2,10 +2,11 @@ package ontology.resources;
 
 import java.util.Date;
 
-public class ISCB_Resource extends E_Resource{
+public class ISCB_Resource extends E_Resource {
 
     protected String resourceType;
     protected String resourceQuality;
+    protected String appType;
     protected Date uploadTime;
     protected String difficulty;
     protected String fileLocation;
@@ -43,7 +44,16 @@ public class ISCB_Resource extends E_Resource{
     }
 
     public String getFileLocation() {
-        return fileLocation;
+        char cs[] = fileLocation.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        for (char c : cs) {
+            if (c == '\\') {
+                sb.append('/');
+            } else {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
     }
 
     public void setFileLocation(String fileLocation) {
@@ -64,6 +74,14 @@ public class ISCB_Resource extends E_Resource{
 
     public void setPostfix(String postfix) {
         this.postfix = postfix;
+    }
+
+    public String getAppType() {
+        return appType;
+    }
+
+    public void setAppType(String appType) {
+        this.appType = appType;
     }
 
     @Override

@@ -19,6 +19,7 @@ import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntResource;
 import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.Statement;
 import db.OwlOperation;
@@ -352,4 +353,134 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         }
         return null;
     }
+
+   @Override
+    public EConcept getEConcept(String cid) {
+        Individual indi = ontModel.getIndividual(Constant.NS + cid);
+        String name = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "name")).getLiteral().getString();
+        return new EConcept(cid, name);
+    }
+
+    @Override
+    public ELearner getELearner(String eid) {
+        ELearner elearner = new ELearner(eid);
+        Individual indi = ontModel.getIndividual(Constant.NS + eid);
+        elearner.setName(indi.getPropertyValue(ontModel.getProperty(Constant.NS + "name")).asLiteral().getString());
+        RDFNode email = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "email"));
+        if (email == null) {
+            elearner.setEmail(" ");
+        } else {
+            elearner.setEmail(email.asLiteral().getString());
+        }
+        RDFNode gender = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "gender"));
+        if (gender == null) {
+            elearner.setGender("secret");
+        } else {
+            elearner.setGender(gender.asLiteral().getString());
+        }
+        RDFNode address = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "address"));
+        if (address == null) {
+            elearner.setAddress(" ");
+        } else {
+            elearner.setAddress(address.asLiteral().getString());
+        }
+        RDFNode grade = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "grade"));
+        if (grade == null) {
+            elearner.setGrade(" ");
+        } else {
+            elearner.setGrade(grade.asLiteral().getString());
+        }
+        return elearner;
+    }
+
+     @Override
+    public ISCB_Resource getEResource(String rid) {
+        ISCB_Resource resource = new ISCB_Resource(rid);
+        Individual indi = ontModel.getIndividual(Constant.NS + rid);
+        resource.setName(indi.getPropertyValue(ontModel.getProperty(Constant.NS + "name")).asLiteral().getString());
+        resource.setFileLocation(indi.getPropertyValue(ontModel.getProperty(Constant.NS + "file_location")).asLiteral().getString());
+        resource.setDifficulty(indi.getPropertyValue(ontModel.getProperty(Constant.NS + "difficulty")).asLiteral().getString());
+
+        RDFNode rd = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "description"));
+        if (rd != null) {
+            resource.setResourceDescription(rd.asLiteral().getString());
+        } else {
+            resource.setResourceDescription("");
+        }
+        RDFNode rq = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "resource_quality"));
+        if (rq != null) {
+            resource.setResourceQuality(rq.asLiteral().getString());
+        } else {
+            resource.setResourceQuality("");
+        }
+        RDFNode rt = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "resource_type"));
+        if (rt != null) {
+            resource.setResourceType(rt.asLiteral().getString());
+        } else {
+            resource.setResourceType("");
+        }
+        RDFNode rdt = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "upload_time"));
+        if (rdt != null) {
+            resource.setUploadTime(StringExchanger.parseStringToDate(rdt.asLiteral().getString()));
+        } else {
+            resource.setUploadTime(new Date(System.currentTimeMillis()));
+        }
+        Resource fileFormat = indi.getPropertyResourceValue(ontModel.getProperty(Constant.NS + "has_postfix"));
+        if (fileFormat != null) {
+            resource.setPostfix(getPostFix(fileFormat));
+        } else {
+            resource.setPostfix("");
+        }
+
+        Resource appType = indi.getPropertyResourceValue(ontModel.getProperty(Constant.NS + "application_type"));
+        if (appType != null) {
+            resource.setAppType(appType.asLiteral().getString());
+        } else {
+            resource.setAppType("");
+        }
+        return resource;
+    }
+@Override
+    public EPerformance getEPerformance(String pid) {
+        Individual indi = ontModel.getIndividual(Constant.NS + pid);
+        if (indi == null) {
+            return null;
+        }
+        EPerformance performance = new EPerformance();
+        performance.setId(indi.getLocalName());
+        Statement valueNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "value"));
+        if (valueNode != null) {
+            float value = (Float) valueNode.getLiteral().getFloat();
+            performance.setValue(value);
+        }
+        Statement dateNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time"));
+        if (dateNode != null) {
+            String dateString = dateNode.getLiteral().getString();
+            Date datetime = StringExchanger.parseStringToDate(dateString);
+            performance.setDatetime(datetime);
+        }
+        return performance;
+    }
+
+    @Override
+    public EPortfolio getEPortfolio(String pid) {
+        Individual indi = ontModel.getIndividual(Constant.NS + pid);
+        if (indi == null) {
+            return null;
+        }
+        EPortfolio port = new EPortfolio();
+        Statement valueNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "value"));
+        if (valueNode != null) {
+            float value = (Float) valueNode.getLiteral().getFloat();
+            port.setValue(value);
+        }
+        Statement dateNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time"));
+        if (dateNode != null) {
+            String dateString = dateNode.getLiteral().getString();
+            Date datetime = StringExchanger.parseStringToDate(dateString);
+            port.setDatetime(datetime);
+        }
+        return port;
+    }
+
 }

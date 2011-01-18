@@ -69,21 +69,7 @@ public interface ELearnerModelQueryInterface {
 
     ArrayList<ISCB_Resource> getAllEResources();
 
-    /***************************************************************************
-     * Basic Methods for fetching the ontology by given id.
-     * @param id
-     * @return
-     */
-    EConcept getEConcept(String cid);
-
-    ELearner getELearner(String eid);
-
-    ISCB_Resource getEResource(String rid);
-
-    EPerformance getEPerformance(String pid);
-
-    EPortfolio getEPortfolio(String pid);
-
+   
     EInterest getEInterest(ELearner elearner, EConcept concept);
 
     /**************************************************************************
@@ -104,4 +90,5 @@ public interface ELearnerModelQueryInterface {
     EPerformance getEPerformance(ELearner elearner, EConcept concept);
 
     Individual getFileFormatIndividualByFullName(String name);
+    
 }

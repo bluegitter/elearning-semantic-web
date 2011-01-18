@@ -112,10 +112,6 @@
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">文本</resource_type>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A1">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</rdf:first>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#FND">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FND</id>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
@@ -212,10 +208,6 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
     <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">二叉树查找的定义和基本操作</description>
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</resource_type>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A2">
-    <owl:unionOf rdf:nodeID="A3"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#pid0002">
     <inverse_of_writen_by rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid00001"/>
@@ -350,10 +342,6 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pid0001</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A3">
-    <rdf:rest rdf:nodeID="A4"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#CMP.fm.7">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">提炼</name>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.fm"/>
@@ -427,6 +415,10 @@
     <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#resouce_properties"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A1">
+    <rdf:rest rdf:nodeID="A2"/>
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">flash</rdf:first>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000252">
     <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">名词术语</application_type>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
@@ -443,10 +435,6 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
     <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string">easy</difficulty>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A4">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000497">
     <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string">easy</difficulty>
@@ -547,9 +535,9 @@
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</resource_type>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A5">
-    <owl:oneOf rdf:nodeID="A6"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DataRange"/>
+  <rdf:Description rdf:nodeID="A3">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">txt</rdf:first>
+    <rdf:rest rdf:nodeID="A1"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-7">
     <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.5</value>
@@ -653,6 +641,10 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SAS.mm</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A4">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pdf</rdf:first>
+    <rdf:rest rdf:nodeID="A3"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#DES.str">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">设计策略 </name>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#DES"/>
@@ -670,10 +662,6 @@
     <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
     <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#has_interest"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A6">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">优</rdf:first>
-    <rdf:rest rdf:nodeID="A7"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-6">
     <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.5</value>
@@ -790,6 +778,10 @@
     <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">二叉查找树的分页</description>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid48"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A5">
+    <rdf:rest rdf:nodeID="A4"/>
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">doc</rdf:first>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#SAS.ind.2">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SAS.ind.2</id>
@@ -912,10 +904,6 @@
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">图片</resource_type>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid000417</id>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A8">
-    <owl:unionOf rdf:nodeID="A9"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#DES.con.4">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#DES.con"/>
@@ -1045,11 +1033,19 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">链表类LinkedList类声明的C++实现</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A6">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">caj</rdf:first>
+    <rdf:rest rdf:nodeID="A5"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#x-shockwave-flash">
     <file_postfix rdf:datatype="http://www.w3.org/2001/XMLSchema#string">x-shockwave-flash</file_postfix>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">application/x-shockwave-flash</name>
     <file_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">application</file_type>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A7">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">code</rdf:first>
+    <rdf:rest rdf:nodeID="A6"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000190">
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
@@ -1079,10 +1075,6 @@
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#DES.con"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">设计和需求之间的交互</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A9">
-    <rdf:rest rdf:nodeID="A10"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Publisher"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000524">
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">文本</resource_type>
@@ -1170,10 +1162,6 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">软件工程Baldridge奖的标准</name>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#QUA.pro"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A10">
-    <rdf:rest rdf:nodeID="A11"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000046">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid12"/>
@@ -1441,7 +1429,7 @@
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#resource_public_level">
-    <rdfs:range rdf:nodeID="A12"/>
+    <rdfs:range rdf:nodeID="A8"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#cid23">
@@ -1970,12 +1958,8 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#id">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">id of objects</rdfs:comment>
-    <rdfs:domain rdf:nodeID="A13"/>
+    <rdfs:domain rdf:nodeID="A9"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A14">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">注册公开</rdf:first>
-    <rdf:rest rdf:nodeID="A15"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#MAA.af.1">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MAA.af.1</id>
@@ -2087,10 +2071,6 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">软件工程经济学 </name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A16">
-    <rdf:rest rdf:nodeID="A14"/>
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">全部公开</rdf:first>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000249">
     <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">构造最小支撑树的普里姆算法的动画演示</description>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid24"/>
@@ -2137,8 +2117,8 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">人、过程、方法、工具和技术的角色</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A17">
-    <owl:oneOf rdf:nodeID="A18"/>
+  <rdf:Description rdf:nodeID="A10">
+    <owl:oneOf rdf:nodeID="A7"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DataRange"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#MAA.af.3">
@@ -2223,12 +2203,8 @@
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#QUA.cc"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A15">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">收费公开</rdf:first>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#writen_by">
-    <rdfs:domain rdf:nodeID="A19"/>
+    <rdfs:domain rdf:nodeID="A11"/>
     <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#resouce_properties"/>
     <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
     <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_writen_by"/>
@@ -2396,15 +2372,19 @@
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\page\chap13\130502d.asp</file_location>
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A12">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">研究员</rdf:first>
+    <rdf:rest rdf:nodeID="A13"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#MAA.af.5">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">可追踪性</name>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MAA.af.5</id>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#MAA.af"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A20">
-    <rdf:rest rdf:nodeID="A21"/>
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">图片</rdf:first>
+  <rdf:Description rdf:nodeID="A14">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Corporations"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000037">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
@@ -2504,6 +2484,10 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DES.hci.6</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A15">
+    <rdf:rest rdf:nodeID="A14"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#MAA.af.4">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MAA.af.4</id>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">优先级确定、折衷分析、风险分析和效果分析</name>
@@ -2527,9 +2511,9 @@
     <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">系统2000的倒排组织 </description>
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">文本</resource_type>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A18">
-    <rdf:rest rdf:nodeID="A20"/>
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">文本</rdf:first>
+  <rdf:Description rdf:nodeID="A13">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">助理研究员</rdf:first>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#Course">
     <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
@@ -2657,15 +2641,19 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid61"/>
     <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">方法型知识元</application_type>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A16">
+    <owl:unionOf rdf:nodeID="A15"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#DES.hci.5.3">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#DES.hci.5"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">问答</name>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DES.hci.5.3</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A22">
-    <rdf:rest rdf:nodeID="A23"/>
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">音频</rdf:first>
+  <rdf:Description rdf:nodeID="A17">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">副教授</rdf:first>
+    <rdf:rest rdf:nodeID="A18"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000359">
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
@@ -2811,15 +2799,15 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">形式化分析</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A18">
+    <rdf:rest rdf:nodeID="A12"/>
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">讲师</rdf:first>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#cid29">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cid29</id>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid24"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">关键路径</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A21">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">视频</rdf:first>
-    <rdf:rest rdf:nodeID="A22"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#Computer_Science">
     <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000318"/>
@@ -3547,6 +3535,10 @@
     <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.3</value>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A19">
+    <owl:oneOf rdf:nodeID="A20"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DataRange"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#DES.hci.3">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">编程技术与可视化设计</name>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DES.hci.3</id>
@@ -3616,6 +3608,10 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MAA.tm.7</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A21">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">差</rdf:first>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#Exercise">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">习题</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
@@ -3684,6 +3680,10 @@
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#MGT.con"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">企业／组织管理结构</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A20">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">教授</rdf:first>
+    <rdf:rest rdf:nodeID="A17"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-3">
     <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid64"/>
@@ -3952,6 +3952,10 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">人文</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A22">
+    <rdf:rest rdf:nodeID="A23"/>
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">良</rdf:first>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#MAA.er.3.2">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#MAA.er.3"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">知识获取</name>
@@ -4132,6 +4136,10 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">运行的配置和国际化</name>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CMP.ct.8</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A23">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">中</rdf:first>
+    <rdf:rest rdf:nodeID="A21"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#PRO.imp">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#PRO"/>
@@ -4453,10 +4461,6 @@
     <rdfs:range rdf:nodeID="A24"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A12">
-    <owl:oneOf rdf:nodeID="A16"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DataRange"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000351">
     <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">理论型知识元</application_type>
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
@@ -4725,7 +4729,7 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid000320</id>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#media_type">
-    <rdfs:range rdf:nodeID="A17"/>
+    <rdfs:range rdf:nodeID="A25"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000109">
@@ -4852,10 +4856,6 @@
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A11">
-    <rdf:rest rdf:nodeID="A25"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Paper"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000370">
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
@@ -5161,10 +5161,6 @@
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid24"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A26">
-    <rdf:rest rdf:nodeID="A27"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000105">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid15"/>
     <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">本节主要讨论对稀疏矩阵的压缩存储.</description>
@@ -5181,6 +5177,10 @@
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</resource_type>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A26">
+    <rdf:rest rdf:nodeID="A27"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Publisher"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#FND.mf.8">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">语法</name>
@@ -5348,10 +5348,6 @@
     <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">类Calculator的实现</description>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid000074</id>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A27">
-    <rdf:rest rdf:nodeID="A28"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000189">
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\animation\chap06\C6M7.swf</file_location>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
@@ -5368,6 +5364,10 @@
     <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string">easy</difficulty>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A28">
+    <owl:unionOf rdf:nodeID="A26"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000104">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
@@ -5523,10 +5523,6 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A25">
-    <rdf:rest rdf:nodeID="A29"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Organizations"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#PRF.com.2">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PRF.com.2</id>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#PRF.com"/>
@@ -5646,10 +5642,6 @@
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\page\chap05\050201.asp</file_location>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid000106</id>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A29">
-    <rdf:rest rdf:nodeID="A26"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_post_concept_of">
     <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_pre_concept_of"/>
@@ -5779,6 +5771,10 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid000592</id>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A29">
+    <rdf:rest rdf:nodeID="A30"/>
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">male</rdf:first>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#QUA.pca.3">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">过程保证的组织与报告</name>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#QUA.pca"/>
@@ -5819,10 +5815,6 @@
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">例子职工文件的辅关键词的索引表</name>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A30">
-    <rdf:rest rdf:nodeID="A31"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Paper"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio">
     <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People_Characters"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -5832,6 +5824,10 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">递归到非递归的转换</name>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid33"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A31">
+    <owl:unionOf rdf:nodeID="A32"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000101">
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">动画</resource_type>
@@ -5849,10 +5845,6 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
     <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">教学课件</application_type>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">单链表到循环链表的转化</name>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A31">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Book"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000031">
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
@@ -5929,7 +5921,7 @@
     <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">教学设计</application_type>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#address">
-    <rdfs:domain rdf:nodeID="A32"/>
+    <rdfs:domain rdf:nodeID="A28"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </rdf:Description>
@@ -5938,6 +5930,10 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">VAV.fnd</id>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">验证与确认的术语和基础</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A30">
+    <rdf:rest rdf:nodeID="A33"/>
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">female</rdf:first>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#QUA.pca.2">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#QUA.pca"/>
@@ -5993,9 +5989,9 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MAA.tm.8.3</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A24">
-    <owl:oneOf rdf:nodeID="A33"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DataRange"/>
+  <rdf:Description rdf:nodeID="A34">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">audio</rdf:first>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000032">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
@@ -6077,6 +6073,10 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">EVO.ac</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A33">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">secret</rdf:first>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#cid39">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">排序</name>
     <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid48"/>
@@ -6106,10 +6106,6 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DES.con.2.1</id>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#DES.con.2"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A34">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Paper"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000513">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
@@ -6150,6 +6146,10 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A35">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000103">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
@@ -6214,6 +6214,10 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PRO.con.1</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A0">
+    <owl:unionOf rdf:nodeID="A36"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#CMP.tl.4">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.tl"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">面向应用的语言（如脚本编程、可视化编程等）</name>
@@ -6244,15 +6248,11 @@
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_writen_by">
-    <rdfs:range rdf:nodeID="A35"/>
+    <rdfs:range rdf:nodeID="A37"/>
     <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#writen_by"/>
     <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
     <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#people_properties"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A19">
-    <owl:unionOf rdf:nodeID="A30"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#QUA.pca.4">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">QUA.pca.4</id>
@@ -6321,6 +6321,10 @@
     <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string">easy</difficulty>
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">动画</resource_type>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid000102</id>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A32">
+    <rdf:rest rdf:nodeID="A35"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#cid79">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">线性表</name>
@@ -6806,10 +6810,6 @@
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#MGT.pp"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A36">
-    <rdf:rest rdf:nodeID="A37"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Organizations"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000615">
     <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">理论型知识元</application_type>
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\animation\audio\24.swf</file_location>
@@ -6829,7 +6829,7 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#working_at">
     <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#people_properties"/>
-    <rdfs:range rdf:nodeID="A38"/>
+    <rdfs:range rdf:nodeID="A16"/>
     <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </rdf:Description>
@@ -6873,14 +6873,6 @@
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#MGT.cm"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">生成</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A39">
-    <rdf:rest rdf:nodeID="A40"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A37">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000027">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Node类的成员函数（算法）的ADL描述和C++描述</name>
@@ -6957,10 +6949,6 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">工具支持</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A13">
-    <owl:unionOf rdf:nodeID="A39"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000448">
     <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">理论型知识元</application_type>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
@@ -7035,10 +7023,6 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">用户测试方法</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A41">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#cid83">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid1"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">哈弗曼编码</name>
@@ -7056,10 +7040,6 @@
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#QUA.pda"/>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">QUA.pda.6</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A42">
-    <rdf:rest rdf:nodeID="A36"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#DES.con.6.1">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#DES.con.6"/>
@@ -7287,10 +7267,6 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid67"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">事件类和模拟类的声明</name>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A43">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Organizations"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#el002">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wang Shuaiguo</name>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">el002</id>
@@ -7305,6 +7281,10 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">存储管理</name>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DES.con.2.2</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A38">
+    <rdf:rest rdf:nodeID="A39"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000510">
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\page\chap13\130403b.htm</file_location>
@@ -7328,6 +7308,10 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">启发式评价</name>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#VAV.hct"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A40">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">动画</rdf:first>
+    <rdf:rest rdf:nodeID="A41"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000210">
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#html"/>
@@ -7456,10 +7440,6 @@
     <address rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></address>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A44">
-    <rdf:rest rdf:nodeID="A43"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#DES.con.2.3">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DES.con.2.3</id>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#DES.con.2"/>
@@ -7482,6 +7462,14 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A36">
+    <rdf:rest rdf:nodeID="A38"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A41">
+    <rdf:rest rdf:nodeID="A42"/>
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</rdf:first>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#TsinghuaUniversity">
     <is_member_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Project_985_University"/>
@@ -7525,9 +7513,6 @@
     <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">方法型知识元</application_type>
     <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string">easy</difficulty>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A45">
-    <j.0:ruleMode>hybrid</j.0:ruleMode>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000444">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid53"/>
@@ -7551,10 +7536,6 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SAS.sb</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A46">
-    <rdf:rest rdf:nodeID="A44"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#VIP">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">重要人物</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
@@ -7568,6 +7549,10 @@
     <grade rdf:datatype="http://www.w3.org/2001/XMLSchema#string">二年级</grade>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">马晟</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A42">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">其他</rdf:first>
+    <rdf:rest rdf:nodeID="A34"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000212">
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\page\chap07\070202d.htm</file_location>
@@ -7665,10 +7650,6 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">text/xml</name>
     <file_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">text</file_type>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A40">
-    <rdf:rest rdf:nodeID="A46"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#cid80">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">堆栈</name>
@@ -7829,6 +7810,10 @@
     <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string">easy</difficulty>
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</resource_type>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A43">
+    <rdf:rest rdf:nodeID="A44"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Book"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000253">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
@@ -7857,6 +7842,10 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">产品保证的本质</name>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#QUA.pda"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A45">
+    <rdf:rest rdf:nodeID="A46"/>
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">video</rdf:first>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000491">
     <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string">easy</difficulty>
@@ -7952,6 +7941,10 @@
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\page\chap10\100206.asp</file_location>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid48"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A47">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">图片</rdf:first>
+    <rdf:rest rdf:nodeID="A48"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000298">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid39"/>
@@ -8043,6 +8036,10 @@
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#SAS.mob"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A37">
+    <owl:unionOf rdf:nodeID="A43"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000254">
     <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">理论型知识元</application_type>
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</resource_type>
@@ -8072,6 +8069,10 @@
     <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_pre"/>
     <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A46">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">文本</rdf:first>
+    <rdf:rest rdf:nodeID="A47"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000490">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid61"/>
@@ -8140,6 +8141,10 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid61"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A48">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">视频</rdf:first>
+    <rdf:rest rdf:nodeID="A49"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000155">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">树的遍历算法</name>
@@ -8234,8 +8239,12 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#resource_type">
     <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-    <rdfs:range rdf:nodeID="A47"/>
+    <rdfs:range rdf:nodeID="A10"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A11">
+    <owl:unionOf rdf:nodeID="A50"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000553">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">模拟类声明</name>
@@ -8299,6 +8308,10 @@
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#MAA.md"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">建模语言的属性</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A49">
+    <rdf:rest rdf:nodeID="A40"/>
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">音频</rdf:first>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000493">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
@@ -8369,7 +8382,7 @@
     <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">二叉树结点输出算法C++实现</description>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#name">
-    <rdfs:domain rdf:nodeID="A8"/>
+    <rdfs:domain rdf:nodeID="A51"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </rdf:Description>
@@ -8410,6 +8423,10 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">离散概率学</name>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#FND.mf"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A44">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Paper"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000256">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
@@ -8461,10 +8478,6 @@
     <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">理论型知识元</application_type>
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</resource_type>
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A28">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000492">
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\page\chap13\130201.asp</file_location>
@@ -8613,6 +8626,10 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">模型类型 </name>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#MAA"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A52">
+    <owl:unionOf rdf:nodeID="A53"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000217">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
@@ -8878,6 +8895,14 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">文本</resource_type>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A2">
+    <rdf:rest rdf:nodeID="A54"/>
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">image</rdf:first>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A55">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Book"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000219">
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\page\chap07\070501a.htm</file_location>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
@@ -8966,6 +8991,10 @@
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\page\chap14\140201.asp</file_location>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A54">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ppt</rdf:first>
+    <rdf:rest rdf:nodeID="A45"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000618">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid48"/>
@@ -9000,10 +9029,20 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid65"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A53">
+    <rdf:rest rdf:nodeID="A55"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Paper"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#FND.mf.2">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FND.mf.2</id>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#FND.mf"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">基本逻辑（命题和谓词）</name>
+    <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#PRO.imp.2.5">
+    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">迭代</name>
+    <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#PRO.imp.2"/>
+    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PRO.imp.2.5</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_has_study_style">
@@ -9012,12 +9051,6 @@
     <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#has_study_style"/>
     <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#PRO.imp.2.5">
-    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">迭代</name>
-    <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#PRO.imp.2"/>
-    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">PRO.imp.2.5</id>
-    <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000110">
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
@@ -9041,10 +9074,6 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DES.hci.3.4</id>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#DES.hci.3"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A48">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">audio</rdf:first>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000473">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
@@ -9109,6 +9138,10 @@
     <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
     <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A24">
+    <owl:oneOf rdf:nodeID="A29"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DataRange"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#China_University">
     <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
@@ -9239,10 +9272,6 @@
     <file_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">image</file_type>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A33">
-    <rdf:rest rdf:nodeID="A49"/>
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">male</rdf:first>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000471">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
@@ -9272,10 +9301,6 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DES.hci.3.2</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A50">
-    <rdf:rest rdf:nodeID="A51"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000274">
     <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">在迷宫中寻找路径的回溯算法</description>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid000274</id>
@@ -9293,6 +9318,10 @@
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</resource_type>
     <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">应用</application_type>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A50">
+    <rdf:rest rdf:nodeID="A56"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Paper"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000176">
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\page\chap06\0604042c.htm</file_location>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid000176</id>
@@ -9309,10 +9338,6 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A49">
-    <rdf:rest rdf:nodeID="A52"/>
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">female</rdf:first>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000470">
     <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">本章主要介绍两种典型的复杂数据结构（相对基本数据结构而言）—优先级队列和不相交集合类。</description>
@@ -9353,10 +9378,6 @@
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\page\chap12\120103.asp</file_location>
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</resource_type>
     <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string">easy</difficulty>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A53">
-    <owl:unionOf rdf:nodeID="A50"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000272">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
@@ -9415,6 +9436,10 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">森林的层次次序遍历算法的C++实现</name>
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#html"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A56">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Book"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#DES.hci.3.1">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DES.hci.3.1</id>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">颜色</name>
@@ -9423,10 +9448,6 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#people_properties">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A52">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">secret</rdf:first>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000271">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
@@ -10622,6 +10643,10 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">vrml/wrl</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A57">
+    <rdf:rest rdf:nodeID="A58"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Paper"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000005">
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
@@ -10737,6 +10762,10 @@
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">应用</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A58">
+    <rdf:rest rdf:nodeID="A59"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Organizations"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000006">
     <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">理论型知识元</application_type>
@@ -10880,7 +10909,7 @@
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#teacher_title">
-    <rdfs:range rdf:nodeID="A54"/>
+    <rdfs:range rdf:nodeID="A19"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000062">
@@ -11134,10 +11163,6 @@
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">建立事件驱动模型</name>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A32">
-    <owl:unionOf rdf:nodeID="A55"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000001">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
@@ -11154,6 +11179,10 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid000001</id>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A60">
+    <rdf:rest rdf:nodeID="A61"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#MAA.rv.2">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MAA.rv.2</id>
@@ -11197,10 +11226,6 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid50"/>
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</resource_type>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A51">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000548">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid000548</id>
@@ -11217,6 +11242,10 @@
     <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">本章主要介绍基本数据结构和典型算法的一些应用实例，包括：事件驱动模拟、在线等价类、残缺棋盘和图像压缩 等问题</description>
     <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string">easy</difficulty>
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A61">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#MAA.rv.3">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">确认测试设计</name>
@@ -11351,6 +11380,10 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cid49</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A59">
+    <rdf:rest rdf:nodeID="A62"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#EVO.ac.7">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#EVO.ac"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序转换</name>
@@ -11433,10 +11466,6 @@
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A55">
-    <rdf:rest rdf:nodeID="A42"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Publisher"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rtf">
     <file_postfix rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rtf</file_postfix>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">text/rtf</name>
@@ -11459,6 +11488,10 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
     <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">红黑树插入后的旋转和删除操作</description>
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</resource_type>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A62">
+    <rdf:rest rdf:nodeID="A60"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#MAA.rv.1">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">评审和检查</name>
@@ -11528,10 +11561,6 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid2"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid1"/>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid000010</id>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A56">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Book"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000337">
     <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">教学课件</application_type>
@@ -11641,10 +11670,6 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
     <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string">easy</difficulty>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A57">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ppt</rdf:first>
-    <rdf:rest rdf:nodeID="A58"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#Project_211_University">
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#China_University"/>
   </rdf:Description>
@@ -11694,10 +11719,6 @@
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">文本</resource_type>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A59">
-    <rdf:rest rdf:nodeID="A56"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Paper"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000336">
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-shockwave-flash"/>
@@ -11796,10 +11817,6 @@
     <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string">easy</difficulty>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">高度平衡树的查找与插入算法</name>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A58">
-    <rdf:rest rdf:nodeID="A60"/>
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">video</rdf:first>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#EVO.pro.4">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#EVO.pro"/>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">EVO.pro.4</id>
@@ -11870,10 +11887,6 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MAA.af.3.4</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A61">
-    <rdf:rest rdf:nodeID="A34"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Book"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000546">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid61"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">控制链表长度的多重链表文件组织</name>
@@ -11907,10 +11920,6 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">动画</resource_type>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A60">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">文本</rdf:first>
-    <rdf:rest rdf:nodeID="A62"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#EVO.pro.3">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">软件演化模型</name>
@@ -12071,10 +12080,6 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid61"/>
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\images\chap13\c13p20.gif</file_location>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A35">
-    <owl:unionOf rdf:nodeID="A61"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#EVO.pro.2">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">EVO.pro.2</id>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#EVO.pro"/>
@@ -12160,10 +12165,6 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cid13</id>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">堆栈和队列</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A62">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">图片</rdf:first>
-    <rdf:rest rdf:nodeID="A63"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000624">
     <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">理论型知识元</application_type>
@@ -12443,10 +12444,6 @@
     <file_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">image</file_type>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A64">
-    <owl:unionOf rdf:nodeID="A59"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000542">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
     <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">教学课件</application_type>
@@ -12626,10 +12623,6 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">动画</resource_type>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A65">
-    <rdf:rest rdf:nodeID="A57"/>
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">image</rdf:first>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000379">
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\page\chap10\100215.asp</file_location>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid50"/>
@@ -12664,6 +12657,10 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid67"/>
     <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">链表的应用：凸包</description>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A63">
+    <rdf:rest rdf:nodeID="A64"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000629">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
@@ -12681,9 +12678,9 @@
     <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">计算机中文件的含义</description>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A66">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">其他</rdf:first>
-    <rdf:rest rdf:nodeID="A48"/>
+  <rdf:Description rdf:nodeID="A65">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#DES.str.3">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#DES.str"/>
@@ -12703,6 +12700,13 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">采购</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A66">
+    <rdf:rest rdf:nodeID="A63"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A67">
+    <j.0:ruleMode>hybrid</j.0:ruleMode>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#DES.str.2">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DES.str.2</id>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">面向对象的设计</name>
@@ -12713,7 +12717,7 @@
     <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Publisher"/>
     <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#organization_properties"/>
     <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#publish"/>
-    <rdfs:domain rdf:nodeID="A64"/>
+    <rdfs:domain rdf:nodeID="A52"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#EVO.pro">
@@ -12751,12 +12755,20 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">软件质量标准 </name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A68">
+    <rdf:rest rdf:nodeID="A66"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid00005">
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">C://</file_location>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">c</name>
     <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string">hard</difficulty>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid00005</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A27">
+    <rdf:rest rdf:nodeID="A69"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#html">
     <file_postfix rdf:datatype="http://www.w3.org/2001/XMLSchema#string">html</file_postfix>
@@ -12789,6 +12801,10 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">并发元素（信号量、监视器等）</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A9">
+    <owl:unionOf rdf:nodeID="A68"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#MGT.con.5.4">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#MGT.con.5"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">开发</name>
@@ -12802,10 +12818,18 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">c</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A69">
+    <rdf:rest rdf:nodeID="A65"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Organizations"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#resource_quality">
     <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-    <rdfs:range rdf:nodeID="A5"/>
+    <rdfs:range rdf:nodeID="A70"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A39">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#MAA.tm.9.1">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">问题框架</name>
@@ -12829,10 +12853,6 @@
     <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">最小支撑树的MST性质，和构造最小支撑树的普里姆(Prim)算法</description>
     <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string">easy</difficulty>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A63">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">视频</rdf:first>
-    <rdf:rest rdf:nodeID="A67"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000589">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
@@ -12874,10 +12894,6 @@
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#SAS.sfy"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A68">
-    <rdf:rest rdf:nodeID="A69"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#MGT.con.5.5">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">维护</name>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#MGT.con.5"/>
@@ -12889,6 +12905,10 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">EVO.pro.1</id>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#EVO.pro"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A71">
+    <rdf:rest rdf:nodeID="A72"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Publisher"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#CMP.ct.11">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">中间件（组件和容器）</name>
@@ -12983,10 +13003,6 @@
     <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string">easy</difficulty>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid43"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A67">
-    <rdf:rest rdf:nodeID="A70"/>
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">音频</rdf:first>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000480">
     <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">理论型知识元</application_type>
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
@@ -13009,10 +13025,6 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">形式化方法、正确性证明</name>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#SAS.sfy"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A0">
-    <owl:unionOf rdf:nodeID="A68"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid00004">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid00004</id>
@@ -13078,6 +13090,10 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A51">
+    <owl:unionOf rdf:nodeID="A71"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000227">
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
@@ -13123,10 +13139,6 @@
     <inverse_of_has_study_style rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Study_Style"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A70">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">动画</rdf:first>
-    <rdf:rest rdf:nodeID="A71"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Security">
     <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People_Characters"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
@@ -13136,6 +13148,10 @@
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序设计语言基础</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A73">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Organizations"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#CMP.ct.13">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.ct"/>
@@ -13252,10 +13268,6 @@
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">动画</resource_type>
     <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string">easy</difficulty>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A69">
-    <rdf:rest rdf:nodeID="A41"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#SAS.sfy.3">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#SAS.sfy"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">失效模式、影响分析和故障树分析</name>
@@ -13267,10 +13279,6 @@
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#DES.str"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">面向方面的设计</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A71">
-    <rdf:rest rdf:nodeID="A66"/>
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</rdf:first>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Study_Style_2">
     <inverse_of_has_study_style rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el002"/>
@@ -13293,6 +13301,10 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">改进和优化的Hanoi塔非递归过程</name>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A64">
+    <rdf:rest rdf:nodeID="A73"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#VAV.par">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#VAV"/>
@@ -13422,14 +13434,14 @@
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#html"/>
     <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string">easy</difficulty>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A72">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">code</rdf:first>
-    <rdf:rest rdf:nodeID="A73"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#Composition">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">结构、组成</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A72">
+    <rdf:rest rdf:nodeID="A57"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#MAA.rfd.1.5">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#MAA.rfd.1"/>
@@ -15421,7 +15433,7 @@
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#description">
-    <rdfs:domain rdf:nodeID="A53"/>
+    <rdfs:domain rdf:nodeID="A31"/>
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </rdf:Description>
@@ -15528,10 +15540,6 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISO／IEEE12207</name>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#QUA.std"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A23">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">动画</rdf:first>
-    <rdf:rest rdf:nodeID="A1"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#css">
     <file_postfix rdf:datatype="http://www.w3.org/2001/XMLSchema#string">css</file_postfix>
@@ -15699,6 +15707,10 @@
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\page\chap02\020201.asp</file_location>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid6"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A74">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</rdf:first>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#MAA.rfd.2">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#MAA.rfd"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">需求过程</name>
@@ -15854,6 +15866,10 @@
     <file_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">image</file_type>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A75">
+    <owl:unionOf rdf:nodeID="A76"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000016">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">算法时间复杂性分析方法例题</name>
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\page\chap02\020202.asp</file_location>
@@ -15883,12 +15899,6 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">需求的层／级</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#MAA.er.2.4">
-    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">用例</name>
-    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MAA.er.2.4</id>
-    <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#MAA.er.2"/>
-    <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000427">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">分拆二叉树的例子</name>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid000427</id>
@@ -15905,6 +15915,12 @@
     <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">分拆二叉树的例子</description>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#MAA.er.2.4">
+    <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">用例</name>
+    <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MAA.er.2.4</id>
+    <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#MAA.er.2"/>
+    <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000093">
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">动画</resource_type>
@@ -16033,6 +16049,10 @@
     <date_time rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2010-12-03T18:14:10</date_time>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A76">
+    <rdf:rest rdf:nodeID="A77"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000428">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\animation\chap10\C10M0.swf</file_location>
@@ -16128,10 +16148,6 @@
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\page\chap10\100301.asp</file_location>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid48"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A74">
-    <rdf:rest rdf:nodeID="A65"/>
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">flash</rdf:first>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000018">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid6"/>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid000018</id>
@@ -16167,6 +16183,10 @@
     <date_time rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2010-12-18T18:14:03</date_time>
     <inverse_of_is_concept_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid38"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A77">
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000240">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid24"/>
@@ -16282,6 +16302,10 @@
     <file_postfix rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wmv</file_postfix>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A70">
+    <owl:oneOf rdf:nodeID="A78"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DataRange"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000011">
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#html"/>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid000011</id>
@@ -16310,10 +16334,6 @@
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">访谈</name>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">MAA.er.2.1</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A75">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">txt</rdf:first>
-    <rdf:rest rdf:nodeID="A74"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#PRO.imp.2">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">生命周期模型</name>
@@ -16424,7 +16444,7 @@
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#date_time">
     <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
-    <rdfs:domain rdf:nodeID="A2"/>
+    <rdfs:domain rdf:nodeID="A75"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000305">
@@ -16468,9 +16488,9 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A76">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pdf</rdf:first>
-    <rdf:rest rdf:nodeID="A75"/>
+  <rdf:Description rdf:nodeID="A78">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">优</rdf:first>
+    <rdf:rest rdf:nodeID="A22"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#PRF.pr.5">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#PRF.pr"/>
@@ -16652,10 +16672,6 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid000537</id>
     <description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ISAM索引的溢出链</description>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A77">
-    <rdf:rest rdf:nodeID="A76"/>
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">doc</rdf:first>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000058">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid13"/>
     <difficulty rdf:datatype="http://www.w3.org/2001/XMLSchema#string">easy</difficulty>
@@ -16776,10 +16792,6 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">FND.ef.1</id>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#FND.ef"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A73">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">caj</rdf:first>
-    <rdf:rest rdf:nodeID="A77"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000536">
     <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">教学课件</application_type>
@@ -16933,10 +16945,6 @@
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#SAS.sec"/>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SAS.sec.2</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A78">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">中</rdf:first>
-    <rdf:rest rdf:nodeID="A79"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000575">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid71"/>
@@ -17185,10 +17193,6 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\page\chap14\140402a.asp</file_location>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid000574</id>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A79">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">差</rdf:first>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000047">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
@@ -17534,10 +17538,6 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid000049</id>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A7">
-    <rdf:rest rdf:nodeID="A78"/>
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">良</rdf:first>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000389">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
@@ -17778,11 +17778,19 @@
     <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A79">
+    <rdf:rest rdf:nodeID="A80"/>
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">全部公开</rdf:first>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#wma">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">audio/wma</name>
     <file_postfix rdf:datatype="http://www.w3.org/2001/XMLSchema#string">wma</file_postfix>
     <file_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">audio</file_type>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A80">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">注册公开</rdf:first>
+    <rdf:rest rdf:nodeID="A81"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#VAV.tst.7">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">VAV.tst.7</id>
@@ -17848,6 +17856,10 @@
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SAS.sb.3</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A8">
+    <owl:oneOf rdf:nodeID="A79"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DataRange"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_6">
     <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_6"/>
     <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
@@ -17901,15 +17913,15 @@
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#MAA.rfd.4"/>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A47">
-    <owl:oneOf rdf:nodeID="A72"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DataRange"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#cid4">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid1"/>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">面向对象程序设计OOP与抽象数据类型ADT</name>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cid4</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A25">
+    <owl:oneOf rdf:nodeID="A82"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DataRange"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#zip">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">application/zip</name>
@@ -17940,6 +17952,10 @@
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid1"/>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cid3</id>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A81">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">收费公开</rdf:first>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#QUA.std.1">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">QUA.std.1</id>
@@ -17991,14 +18007,14 @@
     <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_r_3"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A80">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">研究员</rdf:first>
-    <rdf:rest rdf:nodeID="A81"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#MethodicalMetaKnowledge">
     <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">方法型知识元</rdfs:comment>
     <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A83">
+    <rdf:rest rdf:nodeID="A84"/>
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">图片</rdf:first>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#cid2">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">cid2</id>
@@ -18050,9 +18066,9 @@
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-shockwave-flash"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid39"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A81">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">助理研究员</rdf:first>
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  <rdf:Description rdf:nodeID="A82">
+    <rdf:rest rdf:nodeID="A83"/>
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">文本</rdf:first>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#cid1">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">数据结构</name>
@@ -18096,15 +18112,15 @@
     <application_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">教学课件</application_type>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid46"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A82">
-    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Corporations"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#DES.con.4.1">
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#DES.con.4"/>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DES.con.4.1</id>
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">信息隐藏</name>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="A85">
+    <rdf:rest rdf:nodeID="A86"/>
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">音频</rdf:first>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000277">
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\images\chap08\C8P17.gif</file_location>
@@ -18140,10 +18156,6 @@
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\page\chap06\060203c.htm</file_location>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid18"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A83">
-    <rdf:rest rdf:nodeID="A82"/>
-    <rdf:first rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000579">
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-shockwave-flash"/>
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\animation\chap14\c14m8.swf</file_location>
@@ -18166,10 +18178,6 @@
     <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_r_1"/>
     <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A84">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">副教授</rdf:first>
-    <rdf:rest rdf:nodeID="A85"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000343">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">文件合并的动画演示</name>
@@ -18223,6 +18231,10 @@
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A84">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">视频</rdf:first>
+    <rdf:rest rdf:nodeID="A85"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000278">
     <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">图片举例说明了递归的定义</name>
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">rid000278</id>
@@ -18256,14 +18268,6 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid18"/>
     <file_location rdf:datatype="http://www.w3.org/2001/XMLSchema#string">74\page\chap06\060203b.htm</file_location>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A38">
-    <owl:unionOf rdf:nodeID="A83"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A85">
-    <rdf:rest rdf:nodeID="A80"/>
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">讲师</rdf:first>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000578">
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid67"/>
@@ -18409,10 +18413,6 @@
     <file_postfix rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Authorware</file_postfix>
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
   </rdf:Description>
-  <rdf:Description rdf:nodeID="A54">
-    <owl:oneOf rdf:nodeID="A86"/>
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DataRange"/>
-  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#SAS.sec.4">
     <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">SAS.sec.4</id>
     <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#SAS.sec"/>
@@ -18482,6 +18482,10 @@
     <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid18"/>
     <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#html"/>
   </rdf:Description>
+  <rdf:Description rdf:nodeID="A86">
+    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">动画</rdf:first>
+    <rdf:rest rdf:nodeID="A74"/>
+  </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000576">
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
     <resource_type rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</resource_type>
@@ -18515,10 +18519,6 @@
     <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
     <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="A86">
-    <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">教授</rdf:first>
-    <rdf:rest rdf:nodeID="A84"/>
   </rdf:Description>
   <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000130">
     <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
