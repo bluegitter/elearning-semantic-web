@@ -78,7 +78,7 @@ public class EPerformance {
     }
     private String valueString() {
         if (value < 0) {
-            return "(学习中)";
+            return "";
         } else {
             return "(成绩:" + value + ")";
         }
