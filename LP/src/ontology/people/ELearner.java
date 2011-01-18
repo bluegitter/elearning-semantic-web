@@ -73,6 +73,6 @@ public class ELearner extends People {
 //        sb.append(grade).append("\t").append(email).append("\t").append(address);
 //        return sb.toString();
 
-        return this.name + " (" + this.id + ")";
+        return this.name + "(" + this.id + ")";
     }
 }
