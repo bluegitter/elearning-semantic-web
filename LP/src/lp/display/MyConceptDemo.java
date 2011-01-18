@@ -34,7 +34,9 @@ import prefuse.visual.VisualItem;
  */
 public class MyConceptDemo extends javax.swing.JPanel {
 
-    private int[] last = new int[5];
+    private int[] last = new int[6];
+    private int last_count = 0;
+
     public MyConceptDemo() {
         super(new BorderLayout());
 
@@ -76,18 +78,27 @@ public class MyConceptDemo extends javax.swing.JPanel {
 
             @Override
             public void itemClicked(VisualItem item, MouseEvent e) {
-                EPerformance ep = (EPerformance) ((EClass) item.get(MyConceptDisplay.m_label)).object;
-                ArrayList<ISCB_Resource> ra = LPApp.lpModel.getEResourcesByEConcept(ep.getConcept());
-                Node n = MyConceptDisplay.t.getNode(item.getRow());
-                int count = 0;
-                for (E_Resource r : ra) {
-                    Node cn = MyConceptDisplay.t.addChild(n);
-                    EClass tempclass = new EClass(r);
-                    cn.set(MyConceptDisplay.m_label, tempclass);
-                    cn.set(MyConceptDisplay.m_image_label, tempclass.getIconStr());
-                    System.out.println(cn.getRow());
-                    if(++count > 5)
-                        break;
+                EClass ec = (EClass) item.get(MyConceptDisplay.m_label);
+                if (ec.isPerformance()) {
+                    EPerformance ep = (EPerformance) ec.object;
+                    ArrayList<ISCB_Resource> ra = LPApp.lpModel.getEResourcesByEConcept(ep.getConcept());
+                    Node n = MyConceptDisplay.t.getNode(item.getRow());
+                    for (int i = 0; i < last_count; i++) {
+                        MyConceptDisplay.t.removeNode(last[i]);
+                    }
+                    int count = 0;
+                    for (E_Resource r : ra) {
+                        Node cn = MyConceptDisplay.t.addChild(n);
+                        EClass tempclass = new EClass(r);
+                        cn.set(MyConceptDisplay.m_label, tempclass);
+                        cn.set(MyConceptDisplay.m_image_label, tempclass.getIconStr());
+                        System.out.println(cn.getRow());
+                        last[count] = cn.getRow();
+                        if (++count > 5) {
+                            break;
+                        }
+                    }
+                    last_count = count;
                 }
             }
         });
