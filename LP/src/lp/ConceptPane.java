@@ -165,13 +165,14 @@ public class ConceptPane extends javax.swing.JPanel {
         }
         this.updateData();
 }//GEN-LAST:event_learnBtnActionPerformed
+    @Override
     public String toString() {
         return conceptName.getText() + "\t" + uriLabel.getText();
     }
 
     public void updateResouceTable(EConcept ec) {
         ArrayList<ISCB_Resource> ra = LPApp.lpModel.getEResourcesByEConcept(ec);
-       resourceTable.clearModel();
+        resourceTable.clearModel();
         resourceTable.updateRes(ra);
 
 //        DefaultTableModel model = (DefaultTableModel) resourceTable.getModel();
@@ -237,5 +238,5 @@ public class ConceptPane extends javax.swing.JPanel {
     private javax.swing.JButton learnBtn;
     public javax.swing.JLabel uriLabel;
     // End of variables declaration//GEN-END:variables
-public ResourceTable resourceTable;
+    public ResourceTable resourceTable;
 }
