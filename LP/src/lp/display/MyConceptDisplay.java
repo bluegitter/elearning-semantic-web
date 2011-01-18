@@ -1,21 +1,13 @@
 package lp.display;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 import lp.LPApp;
 import ontology.EPerformance;
+import ontology.people.ELearner;
+import ontology.resources.E_Resource;
+import ontology.resources.ISCB_Resource;
 
 import prefuse.Constants;
 import prefuse.Display;
@@ -33,21 +25,17 @@ import prefuse.action.assignment.FontAction;
 import prefuse.action.layout.CollapsedSubtreeLayout;
 import prefuse.action.layout.graph.RadialTreeLayout;
 import prefuse.activity.SlowInSlowOutPacer;
-import prefuse.controls.ControlAdapter;
 import prefuse.controls.DragControl;
 import prefuse.controls.FocusControl;
 import prefuse.controls.HoverActionControl;
 import prefuse.controls.PanControl;
 import prefuse.controls.ZoomControl;
 import prefuse.controls.ZoomToFitControl;
-import prefuse.data.Graph;
 import prefuse.data.Node;
 import prefuse.data.Table;
 import prefuse.data.Tree;
 import prefuse.data.Tuple;
 import prefuse.data.event.TupleSetListener;
-import prefuse.data.io.GraphMLReader;
-import prefuse.data.query.SearchQueryBinding;
 import prefuse.data.search.PrefixSearchTupleSet;
 import prefuse.data.search.SearchTupleSet;
 import prefuse.data.tuple.DefaultTupleSet;
@@ -74,19 +62,20 @@ public class MyConceptDisplay extends Display {
     public static final String linear = "linear";
     public LabelRenderer m_nodeRenderer;
     public EdgeRenderer m_edgeRenderer;
-    public String m_label = "user_concept";
-    public String m_image_label = "icon";
+    public static final String m_label = "user_concept";
+    public static final String m_image_label = "icon";
+    private static final Tree t = new Tree();
+    private static final Node n = t.addRoot();
 
     public MyConceptDisplay() {
         super(new Visualization());
 
+        //Tree t = new Tree();
         EClass root = new EClass(LPApp.getApplication().user.learner);
 
-        Tree t = new Tree();
         Table nodes = t.getNodeTable();
         nodes.addColumn(m_label, EClass.class);
         nodes.addColumn(m_image_label, String.class);
-        Node n = t.addRoot();
         n.set(m_label, root);
         n.set(m_image_label, root.getIconStr());
 
@@ -96,7 +85,7 @@ public class MyConceptDisplay extends Display {
         m_vis.setInteractive(treeEdges, null, false);
 
         // -- set up renderers --
-        m_nodeRenderer = new LabelRenderer(m_label, "icon");
+        m_nodeRenderer = new LabelRenderer(m_label, m_image_label);
         m_nodeRenderer.setRenderType(AbstractShapeRenderer.RENDER_TYPE_FILL);
         m_nodeRenderer.setHorizontalAlignment(Constants.CENTER);
         m_nodeRenderer.setImagePosition(Constants.LEFT);
@@ -192,6 +181,7 @@ public class MyConceptDisplay extends Display {
         m_vis.addFocusGroup(linear, new DefaultTupleSet());
         m_vis.getGroup(Visualization.FOCUS_ITEMS).addTupleSetListener(
             new TupleSetListener() {
+            @Override
                 public void tupleSetChanged(TupleSet t, Tuple[] add, Tuple[] rem) {
                     TupleSet linearInterp = m_vis.getGroup(linear);
                     if ( add.length < 1 ) return; linearInterp.clear();
@@ -204,6 +194,7 @@ public class MyConceptDisplay extends Display {
         SearchTupleSet search = new PrefixSearchTupleSet();
         m_vis.addFocusGroup(Visualization.SEARCH_ITEMS, search);
         search.addTupleSetListener(new TupleSetListener() {
+            @Override
             public void tupleSetChanged(TupleSet t, Tuple[] add, Tuple[] rem) {
                 m_vis.cancel("animatePaint");
                 m_vis.run("recolor");
@@ -213,10 +204,23 @@ public class MyConceptDisplay extends Display {
     }
 
     private void addNodes(Tree t, Node n) {
-        ArrayList<EPerformance> el = LPApp.lpModel.getEPerformances(new ontology.people.ELearner("el001"));
+        ArrayList<EPerformance> el = LPApp.lpModel.getEPerformances((ELearner)((EClass)n.get(m_label)).object);
         for (EPerformance p : el) {
             Node cn = t.addChild(n);
             EClass tempclass = new EClass(p);
+            cn.set(m_label, tempclass);
+            cn.set(m_image_label, tempclass.getIconStr());
+        }
+    }
+
+    private static void addResNodes(Tree t, Node n, Node f) {
+        EPerformance ep = (EPerformance)((EClass)f.get(m_label)).object;
+        System.out.println((EClass)n.get(m_label));
+        ArrayList<ISCB_Resource> ra = LPApp.lpModel.getEResourcesByEConcept(ep.getConcept());
+
+        for(E_Resource r: ra) {
+            Node cn = t.addChild(n);
+            EClass tempclass = new EClass(r);
             cn.set(m_label, tempclass);
             cn.set(m_image_label, tempclass.getIconStr());
         }
@@ -235,7 +239,8 @@ public class MyConceptDisplay extends Display {
             TupleSet focus = m_vis.getGroup(Visualization.FOCUS_ITEMS);
             if ( focus==null || focus.getTupleCount() == 0 ) return;
 
-            Graph g = (Graph)m_vis.getGroup(m_group);
+            Tree g = (Tree)m_vis.getGroup(m_group);
+
             Node f = null;
             Iterator tuples = focus.tuples();
             while (tuples.hasNext() && !g.containsTuple(f=(Node)tuples.next()))
@@ -243,6 +248,11 @@ public class MyConceptDisplay extends Display {
                 f = null;
             }
             if ( f == null ) return;
+
+            //addResNodes(g, f);
+            Node newn = t.addChild(n);
+            addResNodes(t, n, f);
+            System.out.println(g == t);
             g.getSpanningTree(f);
         }
     }

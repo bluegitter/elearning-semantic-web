@@ -3,6 +3,7 @@ package lp.display;
 import ontology.EConcept;
 import ontology.EPerformance;
 import ontology.people.ELearner;
+import ontology.resources.E_Resource;
 import ontology.resources.ISCB_Resource;
 
 /**
@@ -16,7 +17,7 @@ public class EClass implements Comparable {
         learner, concept, resource, performance
     };
     private CType type;
-    private Object object;
+    public Object object;
     public double rank = 0;
     public float[] r = new float[3];
 
@@ -30,7 +31,7 @@ public class EClass implements Comparable {
         object = c;
     }
 
-    public EClass(ISCB_Resource r) {
+    public EClass(E_Resource r) {
         type = CType.resource;
         object = r;
     }
