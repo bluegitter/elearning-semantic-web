@@ -40,6 +40,10 @@ public class EClass implements Comparable {
         object = p;
     }
 
+    public boolean isPerformance() {
+        return type == CType.performance;
+    }
+
     public String getIconStr() {
         String str = null;
         switch (type) {
