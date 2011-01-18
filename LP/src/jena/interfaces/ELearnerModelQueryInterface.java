@@ -1,5 +1,6 @@
 package jena.interfaces;
 
+import com.hp.hpl.jena.ontology.Individual;
 import java.util.ArrayList;
 
 import ontology.EConcept;
@@ -32,6 +33,8 @@ public interface ELearnerModelQueryInterface {
 
     ArrayList<EConcept> getUnInterestConcepts(ELearner elearner);
 
+    ArrayList<EConcept> getEConcepts(ISCB_Resource resource);
+
     /***************************************************************************
      * return a list of EPortfolios which are the portfolios of the given elearner
      * @param elearner
@@ -50,12 +53,27 @@ public interface ELearnerModelQueryInterface {
 
     ArrayList<ISCB_Resource> getEResourcesByInterestEConcepts(ELearner elearner);
 
+    ArrayList<ISCB_Resource> getLearntEResources(ELearner elearner, EConcept concept);
+
     ArrayList<ISCB_Resource> getEResourcesByName(String name);
+
+    ArrayList<EInterest> getEInterests(ELearner elearner);
 
     ArrayList<ISCB_Resource> getEResourcesByTypes(String applicationType, String fileFormat, String mediaType);
 
+    ArrayList<ISCB_Resource> getEResourcesByAppType(String applicationType);
+
+    ArrayList<ISCB_Resource> getEResourcesByMeidaType(String mediaType);
+
+    ArrayList<ISCB_Resource> getEResourcesByFileFormat(String fileFormat);
+
     ArrayList<ISCB_Resource> getAllEResources();
 
+    /***************************************************************************
+     * Basic Methods for fetching the ontology by given id.
+     * @param id
+     * @return
+     */
     EConcept getEConcept(String cid);
 
     ELearner getELearner(String eid);
@@ -84,4 +102,6 @@ public interface ELearnerModelQueryInterface {
      *          null if such performance does not exist in the model
      ***********************************************************************/
     EPerformance getEPerformance(ELearner elearner, EConcept concept);
+
+    Individual getFileFormatIndividualByFullName(String name);
 }

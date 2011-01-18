@@ -1,6 +1,7 @@
 package db;
 
 import com.hp.hpl.jena.ontology.Individual;
+import com.hp.hpl.jena.ontology.OntClass;
 import exception.jena.IndividualExistException;
 import java.io.File;
 import java.io.IOException;
@@ -9,14 +10,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import jena.OwlFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jena.impl.ELearnerModelImpl;
 import ontology.EConcept;
 import ontology.resources.ISCB_Resource;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.mysql.jdbc.Connection;
-
 import exception.jena.IndividualNotExistException;
 import util.Constant;
 
@@ -42,22 +42,50 @@ public class ResourceParser {
         Connection con = DataFactory.getConnection();
         try {
             Statement st = con.createStatement();
-            String sql = "select course_resource_id,course_resource_description,course_resource_media_type,course_application_type,course_resource_file_format from courseresourceinfo";
+            String sql = "select course_resource_id,资源描述,媒体类型,资源应用类型,文件格式 from courseresourceinfo";
             ResultSet rs = st.executeQuery(sql);
             int i = 0;
+            OntModel ontModel = emi.getOntModel();
+
             while (rs.next()) {
                 i++;
                 String id = rs.getString("course_resource_id");
-              Individual res = emi.getOntModel().getIndividual(Constant.NS + id);
-              System.out.println("资源描述" + rs.getString("course_resource_description"));
-                System.out.println("媒体类型" + rs.getString("course_resource_media_type"));
-                System.out.println("资源应用类型" + rs.getString("course_application_type"));
-                System.out.println("文件格式" + rs.getString("course_resource_file_format"));
+                Individual res = ontModel.getIndividual(Constant.NS + id);
+                String descrip = rs.getString("资源描述");
+                if (descrip == null) {
+                    descrip = "";
+                }
+                String mediaType = rs.getString("媒体类型");
+                String applicationType = rs.getString("资源应用类型");
+                if (applicationType == null) {
+                    applicationType = "";
+                }
+                String fileFormat = rs.getString("文件格式");
+                System.out.print("资源描述:" + descrip + "\t");
+                System.out.print("媒体类型:" + mediaType + "\t");
+                System.out.print("资源应用类型:" + applicationType + "\t");
+                System.out.println("文件格式:" + fileFormat + "\t");
+                ontModel.add(ontModel.createStatement(res, ontModel.getProperty(Constant.NS + "description"), descrip));
+                ontModel.add(ontModel.createStatement(res, ontModel.getProperty(Constant.NS + "resource_type"), mediaType));
+                ontModel.add(ontModel.createStatement(res, ontModel.getProperty(Constant.NS + "application_type"), applicationType));
+                Individual fileFormatIndi = emi.getFileFormatIndividualByFullName(fileFormat);
+                if (fileFormatIndi != null) {
+                    ontModel.add(ontModel.createStatement(res, ontModel.getProperty(Constant.NS + "has_postfix"), fileFormatIndi));
+                } else {
+                    System.out.println("fileFormat is " + fileFormat);
+                    System.out.println("fileFormatIndi is null");
+                }
+
             }
             System.out.println("all:" + i);
             rs.close();
             st.close();
             con.close();
+            try {
+                OwlOperation.writeOwlFile(ontModel, new File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
+            } catch (IOException ex) {
+                Logger.getLogger(ResourceParser.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         }
