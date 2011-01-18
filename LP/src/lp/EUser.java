@@ -13,7 +13,6 @@ public class EUser {
 
     public EUser(String username) {
         this.username = username;
-        learner = new ELearner(username);
     }
 
     public boolean login(String passwd) {
