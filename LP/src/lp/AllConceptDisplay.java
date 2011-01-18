@@ -191,6 +191,7 @@ public class AllConceptDisplay extends Display {
         m_vis.addFocusGroup(Visualization.SEARCH_ITEMS, search);
         search.addTupleSetListener(new TupleSetListener() {
 
+            @Override
             public void tupleSetChanged(TupleSet t, Tuple[] add, Tuple[] rem) {
                 m_vis.cancel("animatePaint");
                 m_vis.run("fullPaint");
@@ -253,6 +254,7 @@ public class AllConceptDisplay extends Display {
             this.orientation = orientation;
         }
 
+        @Override
         public void actionPerformed(ActionEvent evt) {
             setOrientation(orientation);
             getVisualization().cancel("orient");
@@ -268,6 +270,7 @@ public class AllConceptDisplay extends Display {
         private Point2D m_cur = new Point2D.Double();
         private int m_bias = 150;
 
+        @Override
         public void run(double frac) {
             TupleSet ts = m_vis.getFocusGroup(Visualization.FOCUS_ITEMS);
             if (ts.getTupleCount() == 0) {
