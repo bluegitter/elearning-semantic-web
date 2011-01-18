@@ -13,6 +13,8 @@ package lp.eresource;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import jena.impl.ELearnerModelImpl;
 import ontology.resources.ISCB_Resource;
 
@@ -21,6 +23,9 @@ import ontology.resources.ISCB_Resource;
  * @author william
  */
 public class ResourceTablePane extends javax.swing.JPanel {
+
+    public ResourceTable resourceTable;
+    public JPanel panelBak;
 
     public static void main(String[] args) {
         ELearnerModelImpl emi = new ELearnerModelImpl();
@@ -45,15 +50,27 @@ public class ResourceTablePane extends javax.swing.JPanel {
     }
 
     private void myInit(ArrayList<ISCB_Resource> res) {
-        resourceTable = new ResourceTable(res);
+        resourceTable = new ResourceTable(this, res);
         jScrollPane1.setViewportView(resourceTable);
         jButton1.setEnabled(false);
+        jLabel2.setText(res.size() + "个");
     }
 
     public void updateResources(ArrayList<ISCB_Resource> res) {
         resourceTable.updateRes(res);
+        jLabel2.setText(res.size() + "个");
     }
-    public ResourceTable resourceTable;
+
+    public void goToEResourceDetailPane(ISCB_Resource res) {
+        ResourceDetailPane rdp = new ResourceDetailPane(this, res);
+        rdp.setResourceLink(util.Constant.ISCBSERVER48+res.getFileLocation());
+        jScrollPane2.setViewportView(rdp);
+        System.out.println("goToEResourceDetailPane:" + res);
+    }
+
+    public void goBackToTablePane() {
+        jScrollPane2.setViewportView(jPanel1);
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -64,17 +81,21 @@ public class ResourceTablePane extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
-        jButton1.setText("上一页");
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lastPageClicked(evt);
-            }
-        });
+        setPreferredSize(new java.awt.Dimension(320, 370));
+
+        jScrollPane2.setName("jScrollPane2"); // NOI18N
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(314, 374));
+
+        jPanel1.setName("jPanel1"); // NOI18N
+        jPanel1.setPreferredSize(new java.awt.Dimension(300, 350));
 
         jButton2.setText("下一页");
         jButton2.setName("jButton2"); // NOI18N
@@ -84,29 +105,62 @@ public class ResourceTablePane extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("上一页");
+        jButton1.setName("jButton1"); // NOI18N
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lastPageClicked(evt);
+            }
+        });
+
         jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        jLabel1.setText("资源总数：");
+        jLabel1.setName("jLabel1"); // NOI18N
+
+        jLabel2.setText("jLabel2");
+        jLabel2.setName("jLabel2"); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addContainerGap())
+        );
+
+        jScrollPane2.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addComponent(jButton1)
-                .addGap(37, 37, 37)
-                .addComponent(jButton2)
-                .addContainerGap(56, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap())
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -132,6 +186,10 @@ public class ResourceTablePane extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

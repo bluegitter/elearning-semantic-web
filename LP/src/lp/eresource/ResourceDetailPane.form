@@ -1,6 +1,11 @@
 <?xml version="1.1" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[300, 350]"/>
+    </Property>
+  </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="true"/>
@@ -43,42 +48,43 @@
                           <Component id="mediatype" alignment="0" pref="169" max="32767" attributes="1"/>
                           <Component id="difficulty" alignment="0" pref="169" max="32767" attributes="1"/>
                           <Component id="resourcelink" alignment="0" pref="169" max="32767" attributes="1"/>
-                          <Component id="backbutton" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
+                  <Component id="backbutton" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="31" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <Component id="backbutton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel1" pref="28" max="32767" attributes="1"/>
-                  <Component id="resourcename" pref="28" max="32767" attributes="1"/>
+                  <Component id="jLabel1" pref="31" max="32767" attributes="1"/>
+                  <Component id="resourcename" pref="31" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jLabel2" min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="apptype" pref="28" max="32767" attributes="1"/>
+                  <Component id="apptype" pref="31" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jLabel3" min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="mediatype" pref="28" max="32767" attributes="1"/>
+                  <Component id="mediatype" pref="31" max="32767" attributes="1"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel5" min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="difficulty" pref="28" max="32767" attributes="1"/>
+                  <Component id="difficulty" pref="33" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jLabel4" min="-2" pref="28" max="-2" attributes="0"/>
-                  <Component id="resourcelink" pref="32" max="32767" attributes="1"/>
+                  <Component id="resourcelink" pref="35" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -88,9 +94,7 @@
                       <Component id="jLabel6" min="-2" pref="28" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="backbutton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -158,9 +162,9 @@
         <Property name="text" type="java.lang.String" value="&#x8fd4;&#x56de;"/>
         <Property name="name" type="java.lang.String" value="backbutton" noResource="true"/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="&#x8fd4;&#x56de;"/>
-      </AccessibilityProperties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="backbuttonMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
@@ -211,13 +215,25 @@
     </Component>
     <Component class="javax.swing.JLabel" name="resourcelink">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="0" red="0" type="rgb"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
             <EtchetBorder/>
           </Border>
         </Property>
         <Property name="name" type="java.lang.String" value="resourcelink" noResource="true"/>
+        <Property name="opaque" type="boolean" value="true"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="resourcelinkMouseClicked"/>
+        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="resourcelinkMouseEntered"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="resourcelinkMouseExited"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

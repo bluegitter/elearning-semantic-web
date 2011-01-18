@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,34 +23,37 @@ import ontology.resources.ISCB_Resource;
  *
  * @author william
  */
-public class ResourceTable extends JTable implements MouseListener {
+public class ResourceTable extends JTable implements MouseListener, MouseMotionListener {
 
     private ArrayList<ISCB_Resource> res;
     public int pages;
     public int currentPage;
     private DefaultTableModel model;
     private int num;
+    public ResourceTablePane parent;
 
     public static void main(String[] args) {
         ELearnerModelImpl emi = new ELearnerModelImpl();
         ArrayList<ISCB_Resource> res = emi.getEResourcesByEConcept(emi.getEConcept("cid1"));
         System.out.println("res size" + res.size());
         JFrame f = new JFrame();
-        ResourceTable rt = new ResourceTable(res);
+        ResourceTable rt = new ResourceTable(new ResourceTablePane(), res);
         f.add(rt);
         f.pack();
         f.setVisible(true);
     }
 
-    public ResourceTable() {
+    public ResourceTable(ResourceTablePane parent) {
         super();
         this.res = new ArrayList<ISCB_Resource>();
+        this.parent = parent;
         myInit();
     }
 
-    public ResourceTable(ArrayList<ISCB_Resource> res) {
+    public ResourceTable(ResourceTablePane parent, ArrayList<ISCB_Resource> res) {
         super();
         this.res = res;
+        this.parent = parent;
         myInit();
 //        this.updateRes(res);
         this.updatePage();
@@ -57,6 +61,7 @@ public class ResourceTable extends JTable implements MouseListener {
 
     private void myInit() {
         addMouseListener(this);
+        addMouseMotionListener(this);
         num = 15;
         initPages();
         this.setModel(new javax.swing.table.DefaultTableModel(
@@ -98,6 +103,13 @@ public class ResourceTable extends JTable implements MouseListener {
             }
         };
         uriColumn.setCellRenderer(fontColor);
+    }
+
+    public void setNumPerPage(int num) {
+        this.num = num;
+        if (res != null) {
+            updatePage();
+        }
     }
 
     private void initPages() {
@@ -154,7 +166,7 @@ public class ResourceTable extends JTable implements MouseListener {
     }
 
     private void addEResourceToTableModel(ISCB_Resource er) {
-        Object[] oa = {er.getName(), new URILabel(util.Constant.SERVERTESTURL + "/resources/" + er.getRid()), er.getDifficulty()};
+        Object[] oa = {er.getName(), (util.Constant.ISCBSERVER48 + er.getFileLocation()), er.getDifficulty()};
         model.addRow(oa);
     }
 
@@ -181,11 +193,20 @@ public class ResourceTable extends JTable implements MouseListener {
             int row = this.rowAtPoint(p);
             int column = this.columnAtPoint(p);
             if (column == 1) {
-                JLabel label = (JLabel) this.getModel().getValueAt(row, column);
-                label.setBackground(Color.BLUE);
-                System.out.println("uri label:" + label.getText());
+                String url = (String) this.getModel().getValueAt(row, column);
+                System.out.println("url:" + url);
+                WebOperation.runBroswer(url);
             }
-
+        }
+        if (e.getComponent().isEnabled() && e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 1) {
+            Point p = e.getPoint();
+            int row = this.rowAtPoint(p);
+            int column = this.columnAtPoint(p);
+            if (column != 1) {
+                ISCB_Resource resource = res.get(currentPage * num + row);
+                parent.goToEResourceDetailPane(resource);
+                System.out.println(row + "\tres:" + resource);
+            }
         }
     }
 
@@ -201,23 +222,32 @@ public class ResourceTable extends JTable implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-//         if (e.getComponent().isEnabled()) {
-        Point p = e.getPoint();
-        int row = this.rowAtPoint(p);
-        int column = this.columnAtPoint(p);
-        System.out.println("column" + column);
-        System.out.println("row" + row);
-        if (column == 1) {
-            this.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        } else {
-            this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        }
-        repaint();
-//        }
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
         this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+//        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        if (e.getComponent().isEnabled()) {
+            Point p = e.getPoint();
+            int row = this.rowAtPoint(p);
+            int column = this.columnAtPoint(p);
+            System.out.println("column" + column);
+            System.out.println("row" + row);
+            if (column == 1) {
+                this.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+            } else {
+                this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+            }
+            repaint();
+        }
     }
 }

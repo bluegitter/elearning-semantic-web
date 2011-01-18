@@ -17,17 +17,17 @@ public interface ELearnerModelOperationInterface {
      *****************************************************/
     boolean addEConcept(EConcept concept) throws IndividualExistException;
 
-    boolean addEPerfomance(EPerformance performance)throws IndividualExistException;
+    boolean addEPerfomance(EPerformance performance) throws IndividualExistException;
 
-    boolean addEPortfolio(EPortfolio portfolio)throws IndividualExistException;
+    boolean addEPortfolio(EPortfolio portfolio) throws IndividualExistException;
 
     boolean addELearner(ELearner elearner) throws IndividualExistException;
 
     boolean addEResource(ISCB_Resource resource) throws IndividualExistException;
 
-    boolean addPropertyIsSonOf(EConcept fatherConcept, EConcept sonConcept)throws IndividualNotExistException;
+    boolean addPropertyIsSonOf(EConcept fatherConcept, EConcept sonConcept) throws IndividualNotExistException;
 
-    boolean addPropertyIsResourceOfC(ISCB_Resource resource, EConcept concept)throws IndividualNotExistException;
+    boolean addPropertyIsResourceOfC(ISCB_Resource resource, EConcept concept) throws IndividualNotExistException;
 
     /*****************************************************
      * UPDATE
@@ -40,7 +40,22 @@ public interface ELearnerModelOperationInterface {
 
     boolean updateEResource(ISCB_Resource resource) throws IndividualNotExistException;
 
-    public Individual getFileFormat(String postfix);
+    Individual getFileFormat(String postfix);
 
-    public String getPostFix(Resource fileFormat);
+    String getPostFix(Resource fileFormat);
+
+    /***************************************************************************
+     * Basic Methods for fetching the ontology by given id.
+     * @param id
+     * @return
+     ****************************************************************************/
+    EConcept getEConcept(String cid);
+
+    ELearner getELearner(String eid);
+
+    ISCB_Resource getEResource(String rid);
+
+    EPerformance getEPerformance(String pid);
+
+    EPortfolio getEPortfolio(String pid);
 }

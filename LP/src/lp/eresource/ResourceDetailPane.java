@@ -8,8 +8,11 @@
  *
  * Created on 2011-1-18, 15:39:42
  */
-
 package lp.eresource;
+
+import javax.swing.JLabel;
+import jena.impl.ELearnerModelImpl;
+import ontology.resources.ISCB_Resource;
 
 /**
  *
@@ -17,9 +20,43 @@ package lp.eresource;
  */
 public class ResourceDetailPane extends javax.swing.JPanel {
 
+    public ISCB_Resource res;
+    public ResourceTablePane parent;
+
+    public static void main(String[] args) {
+        ELearnerModelImpl emi = new ELearnerModelImpl();
+        ISCB_Resource resource = emi.getEResource("rid000010");
+        javax.swing.JFrame f = new javax.swing.JFrame();
+        ResourceDetailPane rt = new ResourceDetailPane(new ResourceTablePane(), resource);
+        f.add(rt);
+        f.pack();
+        f.setVisible(true);
+    }
+
     /** Creates new form ResourceDetailPane */
-    public ResourceDetailPane() {
+    public ResourceDetailPane(ResourceTablePane parent, ISCB_Resource res) {
+        this.res = res;
+        this.parent = parent;
         initComponents();
+        resourcename.setText(res.getName());
+        resourcelink.setText(res.getFileLocation());
+        mediatype.setText(res.getResourceType());
+        String des = res.getResourceDescription();
+        char[] c = des.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < c.length; i++) {
+            if ((i / 12 * 12 - i) == 0 && i != 0) {
+                sb.append("\n");
+            }
+            sb.append(c[i]);
+        }
+        description.setText(sb.toString());
+        difficulty.setText(res.getDifficulty());
+        apptype.setText(res.getAppType());
+    }
+
+    public void setResourceLink(String label) {
+        resourcelink.setText(label);
     }
 
     /** This method is called from within the constructor to
@@ -45,6 +82,8 @@ public class ResourceDetailPane extends javax.swing.JPanel {
         mediatype = new javax.swing.JLabel();
         difficulty = new javax.swing.JLabel();
         resourcelink = new javax.swing.JLabel();
+
+        setPreferredSize(new java.awt.Dimension(300, 350));
 
         jLabel1.setText("资源名称：");
         jLabel1.setName("jLabel1"); // NOI18N
@@ -75,6 +114,11 @@ public class ResourceDetailPane extends javax.swing.JPanel {
 
         backbutton.setText("返回");
         backbutton.setName("backbutton"); // NOI18N
+        backbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backbuttonMouseClicked(evt);
+            }
+        });
 
         jLabel6.setText("资源描述：");
         jLabel6.setName("jLabel6"); // NOI18N
@@ -92,8 +136,22 @@ public class ResourceDetailPane extends javax.swing.JPanel {
         difficulty.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         difficulty.setName("difficulty"); // NOI18N
 
+        resourcelink.setBackground(new java.awt.Color(255, 255, 255));
+        resourcelink.setForeground(new java.awt.Color(0, 0, 255));
         resourcelink.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         resourcelink.setName("resourcelink"); // NOI18N
+        resourcelink.setOpaque(true);
+        resourcelink.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                resourcelinkMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                resourcelinkMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                resourcelinkMouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -121,50 +179,70 @@ public class ResourceDetailPane extends javax.swing.JPanel {
                             .addComponent(jScrollPane1)
                             .addComponent(mediatype, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                             .addComponent(difficulty, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                            .addComponent(resourcelink, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                            .addComponent(backbutton, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(resourcelink, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)))
+                    .addComponent(backbutton))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addGap(10, 10, 10)
+                .addComponent(backbutton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
-                    .addComponent(resourcename, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                    .addComponent(resourcename, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(apptype, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                    .addComponent(apptype, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mediatype, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                    .addComponent(mediatype, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(difficulty, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
+                    .addComponent(difficulty, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(resourcelink, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                    .addComponent(resourcelink, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(backbutton)
-                .addGap(10, 10, 10))
+                .addContainerGap())
         );
 
         jLabel1.getAccessibleContext().setAccessibleName("资源名称:");
-        backbutton.getAccessibleContext().setAccessibleName("返回");
     }// </editor-fold>//GEN-END:initComponents
 
+    private void backbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backbuttonMouseClicked
+        // TODO add your handling code here:
+        parent.goBackToTablePane();
+    }//GEN-LAST:event_backbuttonMouseClicked
 
+    private void resourcelinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resourcelinkMouseClicked
+        // TODO add your handling code here:
+        if (resourcelink != null && evt.getClickCount() == 2) {
+            String url = resourcelink.getText();
+            System.out.println("url:" + url);
+            WebOperation.runBroswer(url);
+        }
+    }//GEN-LAST:event_resourcelinkMouseClicked
+
+    private void resourcelinkMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resourcelinkMouseEntered
+        // TODO add your handling code here:
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_resourcelinkMouseEntered
+
+    private void resourcelinkMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resourcelinkMouseExited
+        // TODO add your handling code here:
+        this.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_resourcelinkMouseExited
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel apptype;
     private javax.swing.JButton backbutton;
@@ -181,5 +259,4 @@ public class ResourceDetailPane extends javax.swing.JPanel {
     private javax.swing.JLabel resourcelink;
     private javax.swing.JLabel resourcename;
     // End of variables declaration//GEN-END:variables
-
 }
