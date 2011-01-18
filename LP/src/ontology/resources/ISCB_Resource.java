@@ -68,6 +68,6 @@ public class ISCB_Resource extends E_Resource{
 
     @Override
     public String toString() {
-        return rid + "\t" + name + "\t" + difficulty + "\t" + fileLocation;
+        return name;
     }
 }
