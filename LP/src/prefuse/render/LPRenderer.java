@@ -19,7 +19,6 @@ import prefuse.util.GraphicsLib;
 import prefuse.util.StringLib;
 import prefuse.visual.VisualItem;
 
-
 /**
  * Renderer that draws a label, which consists of a text string,
  * an image, or both.
@@ -57,10 +56,8 @@ public class LPRenderer extends AbstractShapeRenderer {
 
     protected ImageFactory m_images = null;
     protected String m_delim = "\n";
-
     protected String m_labelName = "label";
     protected String m_imageName = null;
-
     protected int m_xAlign = Constants.CENTER;
     protected int m_yAlign = Constants.CENTER;
     protected int m_hTextAlign = Constants.CENTER;
@@ -68,23 +65,19 @@ public class LPRenderer extends AbstractShapeRenderer {
     protected int m_hImageAlign = Constants.CENTER;
     protected int m_vImageAlign = Constants.CENTER;
     protected int m_imagePos = Constants.LEFT;
-
     protected int m_horizBorder = 2;
-    protected int m_vertBorder  = 0;
+    protected int m_vertBorder = 0;
     protected int m_imageMargin = 2;
-    protected int m_arcWidth    = 0;
-    protected int m_arcHeight   = 0;
-
+    protected int m_arcWidth = 0;
+    protected int m_arcHeight = 0;
     protected int m_maxTextWidth = -1;
-
     /** Transform used to scale and position images */
     AffineTransform m_transform = new AffineTransform();
-
     /** The holder for the currently computed bounding box */
-    protected RectangularShape m_bbox  = new Rectangle2D.Double();
+    protected RectangularShape m_bbox = new Rectangle2D.Double();
     protected Point2D m_pt = new Point2D.Double(); // temp point
-    protected Font    m_font; // temp font holder
-    protected String    m_text; // label text
+    protected Font m_font; // temp font holder
+    protected String m_text; // label text
     protected Dimension m_textDim = new Dimension(); // text width / height
 
     /**
@@ -120,7 +113,6 @@ public class LPRenderer extends AbstractShapeRenderer {
     }
 
     // ------------------------------------------------------------------------
-
     /**
      * Rounds the corners of the bounding rectangle in which the text
      * string is rendered. This will only be seen if either the stroke
@@ -129,14 +121,14 @@ public class LPRenderer extends AbstractShapeRenderer {
      * @param arcHeight the height of the curved corner
      */
     public void setRoundedCorner(int arcWidth, int arcHeight) {
-        if ( (arcWidth == 0 || arcHeight == 0) &&
-            !(m_bbox instanceof Rectangle2D) ) {
+        if ((arcWidth == 0 || arcHeight == 0)
+                && !(m_bbox instanceof Rectangle2D)) {
             m_bbox = new Rectangle2D.Double();
         } else {
-            if ( !(m_bbox instanceof RoundRectangle2D) )
+            if (!(m_bbox instanceof RoundRectangle2D)) {
                 m_bbox = new RoundRectangle2D.Double();
-            ((RoundRectangle2D)m_bbox)
-                .setRoundRect(0,0,10,10,arcWidth,arcHeight);
+            }
+            ((RoundRectangle2D) m_bbox).setRoundRect(0, 0, 10, 10, arcWidth, arcHeight);
             m_arcWidth = arcWidth;
             m_arcHeight = arcHeight;
         }
@@ -175,7 +167,7 @@ public class LPRenderer extends AbstractShapeRenderer {
      */
     protected String getText(VisualItem item) {
         String s = null;
-        if ( item.canGetString(m_labelName) ) {
+        if (item.canGetString(m_labelName)) {
             return item.getString(m_labelName);
         }
         return s;
@@ -183,7 +175,6 @@ public class LPRenderer extends AbstractShapeRenderer {
 
     // ------------------------------------------------------------------------
     // Image Handling
-
     /**
      * Get the data field for image locations. The value stored
      * in the data field should be a URL, a file within the current classpath,
@@ -204,7 +195,9 @@ public class LPRenderer extends AbstractShapeRenderer {
      * no images
      */
     public void setImageField(String imageField) {
-        if ( imageField != null ) m_images = new ImageFactory();
+        if (imageField != null) {
+            m_images = new ImageFactory();
+        }
         m_imageName = imageField;
     }
 
@@ -215,7 +208,9 @@ public class LPRenderer extends AbstractShapeRenderer {
      * @param height the maximum height of images (-1 for no limit)
      */
     public void setMaxImageDimensions(int width, int height) {
-        if ( m_images == null ) m_images = new ImageFactory();
+        if (m_images == null) {
+            m_images = new ImageFactory();
+        }
         m_images.setMaxImageDimensions(width, height);
     }
 
@@ -239,26 +234,19 @@ public class LPRenderer extends AbstractShapeRenderer {
      */
     protected Image getImage(VisualItem item) {
         String imageLoc = getImageLocation(item);
-        return ( imageLoc == null ? null : m_images.getImage(imageLoc) );
+        return (imageLoc == null ? null : m_images.getImage(imageLoc));
     }
-
 
     // ------------------------------------------------------------------------
     // Rendering
-
-    private String computeTextDimensions(VisualItem item, String s,
-                                         double size)
-    {
-        String text = s;
-        if(text.length() > 5)
-            text = text.substring(0, 5) + "...";
-
+    private String computeTextDimensions(VisualItem item, String text,
+            double size) {
         // put item font in temp member variable
         m_font = item.getFont();
         // scale the font as needed
-        if ( size != 1 ) {
+        if (size != 1) {
             m_font = FontLib.getFont(m_font.getName(), m_font.getStyle(),
-                                     size*m_font.getSize());
+                    size * m_font.getSize());
         }
 
         FontMetrics fm = DEFAULT_GRAPHICS.getFontMetrics(m_font);
@@ -268,31 +256,33 @@ public class LPRenderer extends AbstractShapeRenderer {
         int nlines = 1, w = 0, start = 0, end = text.indexOf(m_delim);
         m_textDim.width = 0;
         String line;
-        for ( ; end >= 0; ++nlines ) {
-            w = fm.stringWidth(line=text.substring(start,end));
+        for (; end >= 0; ++nlines) {
+            w = fm.stringWidth(line = text.substring(start, end));
             // abbreviate line as needed
-            if ( m_maxTextWidth > -1 && w > m_maxTextWidth ) {
-                if ( str == null )
-                    str = new StringBuffer(text.substring(0,start));
+            if (m_maxTextWidth > -1 && w > m_maxTextWidth) {
+                if (str == null) {
+                    str = new StringBuffer(text.substring(0, start));
+                }
                 str.append(StringLib.abbreviate(line, fm, m_maxTextWidth));
                 str.append(m_delim);
                 w = m_maxTextWidth;
-            } else if ( str != null ) {
+            } else if (str != null) {
                 str.append(line).append(m_delim);
             }
             // update maximum width and substring indices
             m_textDim.width = Math.max(m_textDim.width, w);
-            start = end+1;
+            start = end + 1;
             end = text.indexOf(m_delim, start);
         }
-        w = fm.stringWidth(line=text.substring(start));
+        w = fm.stringWidth(line = text.substring(start));
         // abbreviate line as needed
-        if ( m_maxTextWidth > -1 && w > m_maxTextWidth ) {
-            if ( str == null )
-                str = new StringBuffer(text.substring(0,start));
+        if (m_maxTextWidth > -1 && w > m_maxTextWidth) {
+            if (str == null) {
+                str = new StringBuffer(text.substring(0, start));
+            }
             str.append(StringLib.abbreviate(line, fm, m_maxTextWidth));
             w = m_maxTextWidth;
-        } else if ( str != null ) {
+        } else if (str != null) {
             str.append(line);
         }
         // update maximum width
@@ -301,7 +291,7 @@ public class LPRenderer extends AbstractShapeRenderer {
         // compute the text height
         m_textDim.height = fm.getHeight() * nlines;
 
-        return s;
+        return str == null ? text : str.toString();
     }
 
     /**
@@ -310,51 +300,54 @@ public class LPRenderer extends AbstractShapeRenderer {
     @Override
     protected Shape getRawShape(VisualItem item) {
         m_text = getText(item);
-        Image  img  = getImage(item);
+        Image img = getImage(item);
         double size = item.getSize();
 
         // get image dimensions
-        double iw=0, ih=0;
-        if ( img != null ) {
+        double iw = 0, ih = 0;
+        if (img != null) {
             ih = img.getHeight(null);
             iw = img.getWidth(null);
         }
 
         // get text dimensions
-        int tw=0, th=0;
-        if ( m_text != null ) {
+        int tw = 0, th = 0;
+        if (m_text != null) {
+            if(m_text.length() > 10)
+                m_text = m_text.substring(0, 10) + "...";
+            
             m_text = computeTextDimensions(item, m_text, size);
             th = m_textDim.height;
             tw = m_textDim.width;
         }
 
         // get bounding box dimensions
-        double w=0, h=0;
-        switch ( m_imagePos ) {
-        case Constants.LEFT:
-        case Constants.RIGHT:
-            w = tw + size*(iw +2*m_horizBorder
-                   + (tw>0 && iw>0 ? m_imageMargin : 0));
-            h = Math.max(th, size*ih) + size*2*m_vertBorder;
-            break;
-        case Constants.TOP:
-        case Constants.BOTTOM:
-            w = Math.max(tw, size*iw) + size*2*m_horizBorder;
-            h = th + size*(ih + 2*m_vertBorder
-                   + (th>0 && ih>0 ? m_imageMargin : 0));
-            break;
-        default:
-            throw new IllegalStateException(
-                "Unrecognized image alignment setting.");
+        double w = 0, h = 0;
+        switch (m_imagePos) {
+            case Constants.LEFT:
+            case Constants.RIGHT:
+                w = tw + size * (iw + 2 * m_horizBorder
+                        + (tw > 0 && iw > 0 ? m_imageMargin : 0));
+                h = Math.max(th, size * ih) + size * 2 * m_vertBorder;
+                break;
+            case Constants.TOP:
+            case Constants.BOTTOM:
+                w = Math.max(tw, size * iw) + size * 2 * m_horizBorder;
+                h = th + size * (ih + 2 * m_vertBorder
+                        + (th > 0 && ih > 0 ? m_imageMargin : 0));
+                break;
+            default:
+                throw new IllegalStateException(
+                        "Unrecognized image alignment setting.");
         }
 
         // get the top-left point, using the current alignment settings
         getAlignedPoint(m_pt, item, w, h, m_xAlign, m_yAlign);
 
-        if ( m_bbox instanceof RoundRectangle2D ) {
-            RoundRectangle2D rr = (RoundRectangle2D)m_bbox;
+        if (m_bbox instanceof RoundRectangle2D) {
+            RoundRectangle2D rr = (RoundRectangle2D) m_bbox;
             rr.setRoundRect(m_pt.getX(), m_pt.getY(), w, h,
-                            size*m_arcWidth, size*m_arcHeight);
+                    size * m_arcWidth, size * m_arcHeight);
         } else {
             m_bbox.setFrame(m_pt.getX(), m_pt.getY(), w, h);
         }
@@ -366,25 +359,25 @@ public class LPRenderer extends AbstractShapeRenderer {
      * given the item's alignment.
      */
     protected static void getAlignedPoint(Point2D p, VisualItem item,
-            double w, double h, int xAlign, int yAlign)
-    {
+            double w, double h, int xAlign, int yAlign) {
         double x = item.getX(), y = item.getY();
-        if ( Double.isNaN(x) || Double.isInfinite(x) )
+        if (Double.isNaN(x) || Double.isInfinite(x)) {
             x = 0; // safety check
-        if ( Double.isNaN(y) || Double.isInfinite(y) )
+        }
+        if (Double.isNaN(y) || Double.isInfinite(y)) {
             y = 0; // safety check
-
-        if ( xAlign == Constants.CENTER ) {
-            x = x-(w/2);
-        } else if ( xAlign == Constants.RIGHT ) {
-            x = x-w;
         }
-        if ( yAlign == Constants.CENTER ) {
-            y = y-(h/2);
-        } else if ( yAlign == Constants.BOTTOM ) {
-            y = y-h;
+        if (xAlign == Constants.CENTER) {
+            x = x - (w / 2);
+        } else if (xAlign == Constants.RIGHT) {
+            x = x - w;
         }
-        p.setLocation(x,y);
+        if (yAlign == Constants.CENTER) {
+            y = y - (h / 2);
+        } else if (yAlign == Constants.BOTTOM) {
+            y = y - h;
+        }
+        p.setLocation(x, y);
     }
 
     /**
@@ -392,177 +385,180 @@ public class LPRenderer extends AbstractShapeRenderer {
      */
     @Override
     public void render(Graphics2D g, VisualItem item) {
-        RectangularShape shape = (RectangularShape)getShape(item);
-        if ( shape == null ) return;
+        RectangularShape shape = (RectangularShape) getShape(item);
+        if (shape == null) {
+            return;
+        }
 
         // fill the shape, if requested
         int type = getRenderType(item);
-        if ( type==RENDER_TYPE_FILL || type==RENDER_TYPE_DRAW_AND_FILL )
+        if (type == RENDER_TYPE_FILL || type == RENDER_TYPE_DRAW_AND_FILL) {
             GraphicsLib.paint(g, item, shape, getStroke(item), RENDER_TYPE_FILL);
+        }
 
         // now render the image and text
         String text = m_text;
-        Image  img  = getImage(item);
+        Image img = getImage(item);
 
-        if ( text == null && img == null )
+        if (text == null && img == null) {
             return;
+        }
 
         double size = item.getSize();
         boolean useInt = 1.5 > Math.max(g.getTransform().getScaleX(),
-                                        g.getTransform().getScaleY());
-        double x = shape.getMinX() + size*m_horizBorder;
-        double y = shape.getMinY() + size*m_vertBorder;
+                g.getTransform().getScaleY());
+        double x = shape.getMinX() + size * m_horizBorder;
+        double y = shape.getMinY() + size * m_vertBorder;
 
         // render image
-        if ( img != null ) {
+        if (img != null) {
             double w = size * img.getWidth(null);
             double h = size * img.getHeight(null);
-            double ix=x, iy=y;
+            double ix = x, iy = y;
 
             // determine one co-ordinate based on the image position
-            switch ( m_imagePos ) {
-            case Constants.LEFT:
-                x += w + size*m_imageMargin;
-                break;
-            case Constants.RIGHT:
-                ix = shape.getMaxX() - size*m_horizBorder - w;
-                break;
-            case Constants.TOP:
-                y += h + size*m_imageMargin;
-                break;
-            case Constants.BOTTOM:
-                iy = shape.getMaxY() - size*m_vertBorder - h;
-                break;
-            default:
-                throw new IllegalStateException(
-                        "Unrecognized image alignment setting.");
+            switch (m_imagePos) {
+                case Constants.LEFT:
+                    x += w + size * m_imageMargin;
+                    break;
+                case Constants.RIGHT:
+                    ix = shape.getMaxX() - size * m_horizBorder - w;
+                    break;
+                case Constants.TOP:
+                    y += h + size * m_imageMargin;
+                    break;
+                case Constants.BOTTOM:
+                    iy = shape.getMaxY() - size * m_vertBorder - h;
+                    break;
+                default:
+                    throw new IllegalStateException(
+                            "Unrecognized image alignment setting.");
             }
 
             // determine the other coordinate based on image alignment
-            switch ( m_imagePos ) {
-            case Constants.LEFT:
-            case Constants.RIGHT:
-                // need to set image y-coordinate
-                switch ( m_vImageAlign ) {
-                case Constants.TOP:
-                    break;
-                case Constants.BOTTOM:
-                    iy = shape.getMaxY() - size*m_vertBorder - h;
-                    break;
-                case Constants.CENTER:
-                    iy = shape.getCenterY() - h/2;
-                    break;
-                }
-                break;
-            case Constants.TOP:
-            case Constants.BOTTOM:
-                // need to set image x-coordinate
-                switch ( m_hImageAlign ) {
+            switch (m_imagePos) {
                 case Constants.LEFT:
-                    break;
                 case Constants.RIGHT:
-                    ix = shape.getMaxX() - size*m_horizBorder - w;
+                    // need to set image y-coordinate
+                    switch (m_vImageAlign) {
+                        case Constants.TOP:
+                            break;
+                        case Constants.BOTTOM:
+                            iy = shape.getMaxY() - size * m_vertBorder - h;
+                            break;
+                        case Constants.CENTER:
+                            iy = shape.getCenterY() - h / 2;
+                            break;
+                    }
                     break;
-                case Constants.CENTER:
-                    ix = shape.getCenterX() - w/2;
+                case Constants.TOP:
+                case Constants.BOTTOM:
+                    // need to set image x-coordinate
+                    switch (m_hImageAlign) {
+                        case Constants.LEFT:
+                            break;
+                        case Constants.RIGHT:
+                            ix = shape.getMaxX() - size * m_horizBorder - w;
+                            break;
+                        case Constants.CENTER:
+                            ix = shape.getCenterX() - w / 2;
+                            break;
+                    }
                     break;
-                }
-                break;
             }
 
-            if ( useInt && size == 1.0 ) {
+            if (useInt && size == 1.0) {
                 // if possible, use integer precision
                 // results in faster, flicker-free image rendering
-                g.drawImage(img, (int)ix, (int)iy, null);
+                g.drawImage(img, (int) ix, (int) iy, null);
             } else {
-                m_transform.setTransform(size,0,0,size,ix,iy);
+                m_transform.setTransform(size, 0, 0, size, ix, iy);
                 g.drawImage(img, m_transform, null);
             }
         }
 
         // render text
         int textColor = item.getTextColor();
-        if ( text != null && ColorLib.alpha(textColor) > 0 ) {
+        if (text != null && ColorLib.alpha(textColor) > 0) {
             g.setPaint(ColorLib.getColor(textColor));
             g.setFont(m_font);
             FontMetrics fm = DEFAULT_GRAPHICS.getFontMetrics(m_font);
 
             // compute available width
             double tw;
-            switch ( m_imagePos ) {
-            case Constants.TOP:
-            case Constants.BOTTOM:
-                tw = shape.getWidth() - 2*size*m_horizBorder;
-                break;
-            default:
-                tw = m_textDim.width;
+            switch (m_imagePos) {
+                case Constants.TOP:
+                case Constants.BOTTOM:
+                    tw = shape.getWidth() - 2 * size * m_horizBorder;
+                    break;
+                default:
+                    tw = m_textDim.width;
             }
 
             // compute available height
             double th;
-            switch ( m_imagePos ) {
-            case Constants.LEFT:
-            case Constants.RIGHT:
-                th = shape.getHeight() - 2*size*m_vertBorder;
-                break;
-            default:
-                th = m_textDim.height;
+            switch (m_imagePos) {
+                case Constants.LEFT:
+                case Constants.RIGHT:
+                    th = shape.getHeight() - 2 * size * m_vertBorder;
+                    break;
+                default:
+                    th = m_textDim.height;
             }
 
             // compute starting y-coordinate
             y += fm.getAscent();
-            switch ( m_vTextAlign ) {
-            case Constants.TOP:
-                break;
-            case Constants.BOTTOM:
-                y += th - m_textDim.height;
-                break;
-            case Constants.CENTER:
-                y += (th - m_textDim.height)/2;
+            switch (m_vTextAlign) {
+                case Constants.TOP:
+                    break;
+                case Constants.BOTTOM:
+                    y += th - m_textDim.height;
+                    break;
+                case Constants.CENTER:
+                    y += (th - m_textDim.height) / 2;
             }
 
             // render each line of text
             int lh = fm.getHeight(); // the line height
             int start = 0, end = text.indexOf(m_delim);
-            for ( ; end >= 0; y += lh ) {
+            for (; end >= 0; y += lh) {
                 drawString(g, fm, text.substring(start, end), useInt, x, y, tw);
-                start = end+1;
+                start = end + 1;
                 end = text.indexOf(m_delim, start);
             }
             drawString(g, fm, text.substring(start), useInt, x, y, tw);
         }
 
         // draw border
-        if (type==RENDER_TYPE_DRAW || type==RENDER_TYPE_DRAW_AND_FILL) {
-            GraphicsLib.paint(g,item,shape,getStroke(item),RENDER_TYPE_DRAW);
+        if (type == RENDER_TYPE_DRAW || type == RENDER_TYPE_DRAW_AND_FILL) {
+            GraphicsLib.paint(g, item, shape, getStroke(item), RENDER_TYPE_DRAW);
         }
     }
 
     private final void drawString(Graphics2D g, FontMetrics fm, String text,
-            boolean useInt, double x, double y, double w)
-    {
+            boolean useInt, double x, double y, double w) {
         // compute the x-coordinate
         double tx;
-        switch ( m_hTextAlign ) {
-        case Constants.LEFT:
-            tx = x;
-            break;
-        case Constants.RIGHT:
-            tx = x + w - fm.stringWidth(text);
-            break;
-        case Constants.CENTER:
-            tx = x + (w - fm.stringWidth(text)) / 2;
-            break;
-        default:
-            throw new IllegalStateException(
-                    "Unrecognized text alignment setting.");
+        switch (m_hTextAlign) {
+            case Constants.LEFT:
+                tx = x;
+                break;
+            case Constants.RIGHT:
+                tx = x + w - fm.stringWidth(text);
+                break;
+            case Constants.CENTER:
+                tx = x + (w - fm.stringWidth(text)) / 2;
+                break;
+            default:
+                throw new IllegalStateException(
+                        "Unrecognized text alignment setting.");
         }
         // use integer precision unless zoomed-in
         // results in more stable drawing
-        if ( useInt ) {
-            g.drawString(text, (int)tx, (int)y);
+        if (useInt) {
+            g.drawString(text, (int) tx, (int) y);
         } else {
-            g.drawString(text, (float)tx, (float)y);
+            g.drawString(text, (float) tx, (float) y);
         }
     }
 
@@ -571,7 +567,9 @@ public class LPRenderer extends AbstractShapeRenderer {
      * @return the image factory
      */
     public ImageFactory getImageFactory() {
-        if ( m_images == null ) m_images = new ImageFactory();
+        if (m_images == null) {
+            m_images = new ImageFactory();
+        }
         return m_images;
     }
 
@@ -584,7 +582,6 @@ public class LPRenderer extends AbstractShapeRenderer {
     }
 
     // ------------------------------------------------------------------------
-
     /**
      * Get the horizontal text alignment within the layout. One of
      * {@link prefuse.Constants#LEFT}, {@link prefuse.Constants#RIGHT}, or
@@ -602,11 +599,12 @@ public class LPRenderer extends AbstractShapeRenderer {
      * @param halign the desired horizontal text alignment
      */
     public void setHorizontalTextAlignment(int halign) {
-        if ( halign != Constants.LEFT &&
-             halign != Constants.RIGHT &&
-             halign != Constants.CENTER )
-           throw new IllegalArgumentException(
-                   "Illegal horizontal text alignment value.");
+        if (halign != Constants.LEFT
+                && halign != Constants.RIGHT
+                && halign != Constants.CENTER) {
+            throw new IllegalArgumentException(
+                    "Illegal horizontal text alignment value.");
+        }
         m_hTextAlign = halign;
     }
 
@@ -627,11 +625,12 @@ public class LPRenderer extends AbstractShapeRenderer {
      * @param valign the desired vertical text alignment
      */
     public void setVerticalTextAlignment(int valign) {
-        if ( valign != Constants.TOP &&
-             valign != Constants.BOTTOM &&
-             valign != Constants.CENTER )
+        if (valign != Constants.TOP
+                && valign != Constants.BOTTOM
+                && valign != Constants.CENTER) {
             throw new IllegalArgumentException(
                     "Illegal vertical text alignment value.");
+        }
         m_vTextAlign = valign;
     }
 
@@ -652,11 +651,12 @@ public class LPRenderer extends AbstractShapeRenderer {
      * @param halign the desired horizontal image alignment
      */
     public void setHorizontalImageAlignment(int halign) {
-        if ( halign != Constants.LEFT &&
-             halign != Constants.RIGHT &&
-             halign != Constants.CENTER )
-           throw new IllegalArgumentException(
-                   "Illegal horizontal text alignment value.");
+        if (halign != Constants.LEFT
+                && halign != Constants.RIGHT
+                && halign != Constants.CENTER) {
+            throw new IllegalArgumentException(
+                    "Illegal horizontal text alignment value.");
+        }
         m_hImageAlign = halign;
     }
 
@@ -677,11 +677,12 @@ public class LPRenderer extends AbstractShapeRenderer {
      * @param valign the desired vertical image alignment
      */
     public void setVerticalImageAlignment(int valign) {
-        if ( valign != Constants.TOP &&
-             valign != Constants.BOTTOM &&
-             valign != Constants.CENTER )
+        if (valign != Constants.TOP
+                && valign != Constants.BOTTOM
+                && valign != Constants.CENTER) {
             throw new IllegalArgumentException(
                     "Illegal vertical text alignment value.");
+        }
         m_vImageAlign = valign;
     }
 
@@ -704,18 +705,18 @@ public class LPRenderer extends AbstractShapeRenderer {
      * @param pos the desired image position
      */
     public void setImagePosition(int pos) {
-        if ( pos != Constants.TOP &&
-             pos != Constants.BOTTOM &&
-             pos != Constants.LEFT &&
-             pos != Constants.RIGHT &&
-             pos != Constants.CENTER )
-           throw new IllegalArgumentException(
-                   "Illegal image position value.");
+        if (pos != Constants.TOP
+                && pos != Constants.BOTTOM
+                && pos != Constants.LEFT
+                && pos != Constants.RIGHT
+                && pos != Constants.CENTER) {
+            throw new IllegalArgumentException(
+                    "Illegal image position value.");
+        }
         m_imagePos = pos;
     }
 
     // ------------------------------------------------------------------------
-
     /**
      * Get the horizontal alignment of this node with respect to its
      * x, y coordinates.
@@ -811,5 +812,5 @@ public class LPRenderer extends AbstractShapeRenderer {
     public void setImageTextPadding(int pad) {
         m_imageMargin = pad;
     }
-
 } // end of class LabelRenderer
+

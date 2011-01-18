@@ -43,7 +43,7 @@ import prefuse.data.tuple.TupleSet;
 import prefuse.render.AbstractShapeRenderer;
 import prefuse.render.DefaultRendererFactory;
 import prefuse.render.EdgeRenderer;
-import prefuse.render.LabelRenderer;
+import prefuse.render.LPRenderer;
 import prefuse.util.ColorLib;
 import prefuse.util.FontLib;
 import prefuse.visual.VisualItem;
@@ -60,12 +60,12 @@ public class MyConceptDisplay extends Display {
     public static final String treeNodes = "tree.nodes";
     public static final String treeEdges = "tree.edges";
     public static final String linear = "linear";
-    public LabelRenderer m_nodeRenderer;
+    public LPRenderer m_nodeRenderer;
     public EdgeRenderer m_edgeRenderer;
     public static final String m_label = "user_concept";
     public static final String m_image_label = "icon";
-    private static final Tree t = new Tree();
-    private static final Node n = t.addRoot();
+    public static final Tree t = new Tree();
+    public static final Node n = t.addRoot();
 
     public MyConceptDisplay() {
         super(new Visualization());
@@ -85,7 +85,7 @@ public class MyConceptDisplay extends Display {
         m_vis.setInteractive(treeEdges, null, false);
 
         // -- set up renderers --
-        m_nodeRenderer = new LabelRenderer(m_label, m_image_label);
+        m_nodeRenderer = new LPRenderer(m_label, m_image_label);
         m_nodeRenderer.setRenderType(AbstractShapeRenderer.RENDER_TYPE_FILL);
         m_nodeRenderer.setHorizontalAlignment(Constants.CENTER);
         m_nodeRenderer.setImagePosition(Constants.LEFT);
@@ -213,19 +213,6 @@ public class MyConceptDisplay extends Display {
         }
     }
 
-    private static void addResNodes(Tree t, Node n, Node f) {
-        EPerformance ep = (EPerformance)((EClass)f.get(m_label)).object;
-        System.out.println((EClass)n.get(m_label));
-        ArrayList<ISCB_Resource> ra = LPApp.lpModel.getEResourcesByEConcept(ep.getConcept());
-
-        for(E_Resource r: ra) {
-            Node cn = t.addChild(n);
-            EClass tempclass = new EClass(r);
-            cn.set(m_label, tempclass);
-            cn.set(m_image_label, tempclass.getIconStr());
-        }
-    }
-
         /**
      * Switch the root of the tree by requesting a new spanning tree
      * at the desired root
@@ -249,10 +236,6 @@ public class MyConceptDisplay extends Display {
             }
             if ( f == null ) return;
 
-            //addResNodes(g, f);
-            Node newn = t.addChild(n);
-            addResNodes(t, n, f);
-            System.out.println(g == t);
             g.getSpanningTree(f);
         }
     }
