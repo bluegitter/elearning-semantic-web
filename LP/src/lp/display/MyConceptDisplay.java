@@ -208,45 +208,53 @@ public class MyConceptDisplay extends Display {
 
     private void addNodes(Tree t, Node n) {
         ArrayList<EPerformance> el = LPApp.lpModel.getEPerformances(LPApp.getApplication().user.learner);
-        java.util.HashMap<EConcept, Integer> root = new java.util.HashMap<EConcept, Integer>();
+//        java.util.HashMap<EConcept, Integer> root = new java.util.HashMap<EConcept, Integer>();
         for (EPerformance p : el) {
-            Node child, father, cn;
-            child = father = null;
-            for (EConcept c : root.keySet()) {
-                if (LPApp.lpModel.isSonOfEConcept(c, p.getConcept())) {
-                    father = t.getNode(root.get(c));
-                } else if (LPApp.lpModel.isSonOfEConcept(p.getConcept(), c)) {
-                    child = t.getNode(root.get(c));
-                }
-            }
-
-            if (father != null) {
-                cn = t.addChild(father);
-            } else {
-                cn = t.addChild(n);
-                root.put(p.getConcept(), cn.getRow());
-            }
-
+            Node cn = t.addChild(n);
             EClass tempclass = new EClass(p);
             cn.set(m_label, tempclass);
             cn.set(m_image_label, tempclass.getIconStr());
-
-            if (child != null) {
-                insertNode(t, cn, child);
-                t.removeChild(child);
-                root.remove((EConcept)((EClass)child.get(m_label)).object);
-            }
+//            Node child, father, cn;
+//            child = father = null;
+//            EConcept cc = null;
+//            for (EConcept c : root.keySet()) {
+//                if (LPApp.lpModel.isSonOfEConcept(c, p.getConcept())) {
+//                    father = t.getNode(root.get(c));
+//                } else if (LPApp.lpModel.isSonOfEConcept(p.getConcept(), c)) {
+//                    child = t.getNode(root.get(c));
+//                    cc = c;
+//                }
+//            }
+//
+//            if(cc != null)
+//                root.remove(cc);
+//
+//            if (father != null) {
+//                cn = t.addChild(father);
+//            } else {
+//                cn = t.addChild(n);
+//                root.put(p.getConcept(), cn.getRow());
+//            }
+//
+//            EClass tempclass = new EClass(p);
+//            cn.set(m_label, tempclass);
+//            cn.set(m_image_label, tempclass.getIconStr());
+//
+//            if (child != null) {
+//                insertNode(t, cn, child);
+//            }
         }
     }
 
-    private void insertNode(Tree t, Node n, Node l) {
-        Node cn = t.addChild(n);
-        cn.set(m_label, l.get(m_label));
-        cn.set(m_image_label, l.get(m_image_label));
-        for (int i = 0; i < l.getChildCount(); i++) {
-            insertNode(t, l, l.getChild(i));
-        }
-    }
+//    private void insertNode(Tree t, Node n, Node l) {
+//        Node cn = t.addChild(n);
+//        cn.set(m_label, l.get(m_label));
+//        cn.set(m_image_label, l.get(m_image_label));
+//        for (int i = 0; i < l.getChildCount(); i++) {
+//            insertNode(t, l, l.getChild(i));
+//        }
+//        t.removeChild(l);
+//    }
 
     /**
      * Switch the root of the tree by requesting a new spanning tree

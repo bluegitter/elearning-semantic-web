@@ -75,6 +75,20 @@ public class EClass implements Comparable {
         return str;
     }
 
+    public int getColorIndex() {
+        if(r[0] > r[1]) {
+            if(r[0] > r[2])
+                return 0;
+            else
+                return 2;
+        } else {
+            if(r[1] > r[2])
+                return 1;
+            else
+                return 2;
+        }
+    }
+
     @Override
     public String toString() {
         return object.toString();
