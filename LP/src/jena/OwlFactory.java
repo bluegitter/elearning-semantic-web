@@ -66,7 +66,7 @@ public class OwlFactory {
     }
 
     public static OntModel getOntModel(File file) {
-        OntModel model =ModelFactory.createOntologyModel(OntModelSpec.RDFS_MEM_TRANS_INF );
+        OntModel model =ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_TRANS_INF);
 //        OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
         InputStream in = null;
         try {

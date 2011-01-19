@@ -8,6 +8,7 @@ import java.util.Iterator;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
+import com.hp.hpl.jena.ontology.TransitiveProperty;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -15,6 +16,7 @@ import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.vocabulary.RDF;
+import db.OwlOperation;
 import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
 import ontology.EConcept;
@@ -58,14 +60,21 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         EConcept root = emi.getEConcept("Computer_Science");
         EConcept cid2 = emi.getEConcept("CMP.cf");
         EConcept cid3 = emi.getEConcept("CMP");
-        ArrayList<ISCB_Resource> r = emi.getEResourcesByTypes("全部", "all", "全部");
-        for (ISCB_Resource res : r) {
-            emi.addPropertyIsResourceOfC(res, cid1);
-            emi.addPropertyIsResourceOfC(res, cid2);
-            emi.addPropertyIsResourceOfC(res, cid3);
-            emi.addPropertyIsResourceOfC(res, root);
-        }
-        emi.writeToFile(new File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
+        emi.isSonOfEConcept(root, cid3);
+
+        boolean b = emi.isPartOfEConcept(root, cid1);
+        boolean b2 = emi.isPartOfEConcept(root, cid3);
+        boolean b3 = emi.isPartOfEConcept(cid1, cid3);
+        boolean b4 = emi.isPartOfEConcept(cid2, cid1);
+        System.out.println(b + " " + b2 + " " + b3 + " " + b4);
+        OwlOperation.writeOwlFile(emi.getOntModel(), new File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
+//        ArrayList<ISCB_Resource> r = emi.getEResourcesByTypes("全部", "all", "全部");
+//        for (ISCB_Resource res : r) {
+//            emi.addPropertyIsResourceOfC(res, cid1);
+//            emi.addPropertyIsResourceOfC(res, cid2);
+//            emi.addPropertyIsResourceOfC(res, cid3);
+//            emi.addPropertyIsResourceOfC(res, root);
+//        }
 //        EConcept con2 = emi.getEConcept("CMP.cf.3");
 //        emi.getEResourcesByName("数据结构概念");
 //        emi.getEResourcesByMeidaType("文本");
@@ -112,6 +121,39 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 //        ArrayList<EPerformance> ps2 = emi.getEPerformances(el);
 //        System.out.println("size2:" + ps2.size());
         System.out.println("end");
+    }
+
+    public boolean isSonOfEConcept(EConcept father, EConcept son) {
+        TransitiveProperty p = ontModel.getTransitiveProperty(Constant.NS + "is_son_of");
+        Individual f = ontModel.getIndividual(Constant.NS + father.getCid());
+        Individual s = ontModel.getIndividual(Constant.NS + son.getCid());
+        SimpleSelector selector = new SimpleSelector(s, p, f);
+        StmtIterator iter = ontModel.listStatements(selector);
+        if (iter.hasNext()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isPartOfEConcept(EConcept father, EConcept son) {
+        Property p = ontModel.getProperty(Constant.NS + "is_son_of");
+        TransitiveProperty p2 = ontModel.getTransitiveProperty(Constant.NS + "is_part_of");
+        TransitiveProperty p3 = ontModel.getTransitiveProperty(Constant.NS + "inverse_of_is_part_of");
+        Individual f = ontModel.getIndividual(Constant.NS + father.getCid());
+        Individual s = ontModel.getIndividual(Constant.NS + son.getCid());
+        SimpleSelector selector = new SimpleSelector(null, p, (RDFNode) null);
+        StmtIterator iter = ontModel.listStatements(selector);
+        int i = 0;
+        while (iter.hasNext()) {
+            Statement stat = iter.nextStatement();
+            Resource fa = stat.getSubject();
+            Resource so = (Resource) stat.getObject();
+            ontModel.add(ontModel.createStatement(fa, p2, so));
+            ontModel.add(ontModel.createStatement(so, p3, fa));
+            i++;
+        }
+        System.out.println("i:" + i);
+        return false;
     }
 
     @Override

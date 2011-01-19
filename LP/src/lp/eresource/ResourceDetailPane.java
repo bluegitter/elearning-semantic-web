@@ -24,7 +24,7 @@ public class ResourceDetailPane extends javax.swing.JPanel {
 
     public static void main(String[] args) {
         ELearnerModelImpl emi = new ELearnerModelImpl();
-        ISCB_Resource resource = emi.getEResource("rid000010");
+        ISCB_Resource resource = emi.getEResource("rid000511");
         javax.swing.JFrame f = new javax.swing.JFrame();
         ResourceDetailPane rt = new ResourceDetailPane(new ResourceTablePane(), resource);
         f.add(rt);
@@ -41,15 +41,17 @@ public class ResourceDetailPane extends javax.swing.JPanel {
         resourcelink.setText(res.getFileLocation());
         mediatype.setText(res.getResourceType());
         String des = res.getResourceDescription();
-        char[] c = des.toCharArray();
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < c.length; i++) {
-            if ((i / 12 * 12 - i) == 0 && i != 0) {
-                sb.append("\n");
-            }
-            sb.append(c[i]);
-        }
-        description.setText(sb.toString());
+//        char[] c = des.toCharArray();
+//        StringBuilder sb = new StringBuilder();
+//        for (int i = 0; i < c.length; i++) {
+//            if ((i / 12 * 12 - i) == 0 && i != 0) {
+//                sb.append("\n");
+//            }
+//            sb.append(c[i]);
+//        }
+//        description.setText(sb.toString());
+        description.setText(des);
+        System.out.println("des:"+des);
         difficulty.setText(res.getDifficulty());
         apptype.setText(res.getAppType());
     }

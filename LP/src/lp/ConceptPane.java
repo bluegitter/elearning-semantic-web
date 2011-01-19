@@ -34,7 +34,6 @@ public class ConceptPane extends javax.swing.JPanel {
         initComponents();
         resourceTablePane = new ResourceTablePane(new ArrayList<ISCB_Resource>());
         jScrollPane1.setViewportView(resourceTablePane);
-        this.validate();
     }
 
     /** This method is called from within the constructor to
@@ -113,13 +112,13 @@ public class ConceptPane extends javax.swing.JPanel {
                         .addComponent(examBtn)
                         .addGap(51, 51, 51)
                         .addComponent(examScore, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(conceptName, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -133,9 +132,9 @@ public class ConceptPane extends javax.swing.JPanel {
                         .addComponent(learnBtn)
                         .addComponent(examBtn))
                     .addComponent(examScore, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -164,16 +163,6 @@ public class ConceptPane extends javax.swing.JPanel {
     public void updateResouceTable(EConcept ec) {
         ArrayList<ISCB_Resource> ra = LPApp.lpModel.getEResourcesByEConcept(ec);
         resourceTablePane.updateResources(ra);
-
-//        DefaultTableModel model = (DefaultTableModel) resourceTable.getModel();
-//        for (int index = model.getRowCount() - 1; index >= 0; index--) {
-//            model.removeRow(index);
-//        }
-//        for (ISCB_Resource er : ra) {
-////            Object[] oa = {er.getName(), er.getDifficulty(), new javax.swing.JLabel(util.Constant.SERVERTESTURL + "/resources/" + er.getRid())};
-//            Object[] oa = {er.getName(), er.getDifficulty(), new URILabel(util.Constant.SERVERTESTURL + "/resources/" + er.getRid())};
-//            model.addRow(oa);
-//        }
     }
 
     public void setConceptName(String name) {
