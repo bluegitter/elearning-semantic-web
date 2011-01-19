@@ -1,7 +1,5 @@
 package ontology.resources;
 
-import java.util.Date;
-
 public class E_Resource {
 
     protected String rid;
@@ -32,6 +30,7 @@ public class E_Resource {
         this.resourceDescription = resourceDescription;
     }
 
+    @Override
     public boolean equals(Object o) {
         if (o instanceof E_Resource) {
             E_Resource res = (E_Resource) o;
@@ -45,6 +44,7 @@ public class E_Resource {
         return false;
     }
 
+    @Override
     public String toString() {
         return rid + "\t" + name + "\t" + resourceDescription;
     }
