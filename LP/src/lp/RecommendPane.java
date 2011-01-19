@@ -20,13 +20,13 @@ import ontology.EConcept;
 public class RecommendPane extends javax.swing.JPanel implements MouseListener, MouseMotionListener, Runnable {
 
     private ArrayList<EBalloon> balloons;
-    private EBalloon on;
+    private EBalloon on, clicked;
     private int showTime;
     private boolean showing;
     public Thread thread;
 
     public RecommendPane() {
-        on = null;
+        on = clicked =null;
         thread = null;
         showTime = 0;
 
@@ -74,7 +74,14 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        ;
+        if(on != null && on != clicked) {
+            if(clicked != null)
+                clicked.isClicked = false;
+            clicked = on;
+            on.isClicked = true;
+
+            repaint();
+        }
     }
 
     @Override
@@ -136,7 +143,9 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
     public void reRecommend(double[] r) {
         showing = true;
         this.balloons.clear();
+        on = clicked = null;
         HashMap<String, EClass> map = new HashMap<String, EClass>();
+        Color[] ca = {new Color(220, 36, 36), new Color(141, 255, 48), new Color(127, 218, 255)};
         for (int i = 1; i <= 3; i++) {
             ArrayList<EConcept> l = jena.ELearnerReasoner.getRecommendEConcepts(LPApp.lpModel.getOntModel(), LPApp.getApplication().user.learner, i);
             for (EConcept c : l) {
@@ -163,7 +172,7 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
         for (int i = 0; i < len; i++) {
             EClass nec = list.get(i);
 
-            EBalloon newb = new EBalloon(x[i], y[i], d[i], nec.toString(), new Color(nec.r[0], nec.r[1], nec.r[2]));
+            EBalloon newb = new EBalloon(x[i], y[i], d[i], nec.toString(), ca[nec.getColorIndex()]);
             this.balloons.add(newb);
         }
         rpstart(24);

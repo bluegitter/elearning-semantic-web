@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.MultipleGradientPaint.CycleMethod;
 import java.awt.Point;
 import java.awt.RadialGradientPaint;
+import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 
@@ -24,7 +25,7 @@ public class EBalloon implements Runnable {
     private Ellipse2D.Float shape;
     public float rd;
     public Thread thread;
-    public boolean ison, shown;
+    public boolean ison, shown, isClicked;
 
     public EBalloon(float x, float y, float d, String label, Color color) {
         this.diameter = d;
@@ -38,7 +39,7 @@ public class EBalloon implements Runnable {
         shape = new Ellipse2D.Float(x - diameter / 2f, y - diameter / 2f, diameter, diameter);
 
         thread = null;
-        ison = shown = false;
+        ison = shown = isClicked = false;
         rd = 0;
     }
 
@@ -48,11 +49,12 @@ public class EBalloon implements Runnable {
             float radius = rd / 2f;
             Point2D f = new Point2D.Float(x - rd / 4f, y - rd / 4f);
             float[] dist = {0.0f, 1f};
-            Color[] colors = {Color.WHITE, ison ? aColor : color};
+            Color[] colors = {Color.WHITE, isClicked ? rColor : (ison ? aColor : color)};
             brush = new RadialGradientPaint(c, radius, f, dist, colors, CycleMethod.NO_CYCLE);
             g.setPaint(brush);
 
-            g.fill(new Ellipse2D.Float(x - rd / 2f, y - rd / 2f, rd, rd));
+            Shape se = new Ellipse2D.Float(x - rd / 2f, y - rd / 2f, rd, rd);
+            g.fill(se);
 
             g.setColor(new Color(97, 97, 97));
             g.setFont(new Font("微软雅黑", Font.BOLD, 14));
