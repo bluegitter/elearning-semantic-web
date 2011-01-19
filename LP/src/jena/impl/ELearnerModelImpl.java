@@ -8,17 +8,23 @@ import java.util.Iterator;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
+import com.hp.hpl.jena.ontology.OntModel;
+import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.ontology.TransitiveProperty;
+import com.hp.hpl.jena.rdf.model.InfModel;
+import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
+import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.vocabulary.RDF;
 import db.OwlOperation;
 import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
+import jena.OwlFactory;
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.EPerformance;
@@ -43,10 +49,16 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 
     public ELearnerModelImpl(File file) {
         super(file);
+        setInfModel(null, ontModel);
     }
 
     public ELearnerModelImpl(File file, String lang) {
         super(file, lang);
+    }
+    public InfModel infModel;
+
+    public void setInfModel(Reasoner reasoner, OntModel model) {
+        ontModel = ModelFactory.createOntologyModel(OntModelSpec.DAML_MEM_TRANS_INF, ontModel);
     }
 
     public static void main(String[] args) throws IndividualNotExistException, IOException, IndividualExistException {
@@ -60,14 +72,13 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         EConcept root = emi.getEConcept("Computer_Science");
         EConcept cid2 = emi.getEConcept("CMP.cf");
         EConcept cid3 = emi.getEConcept("CMP");
-        emi.isSonOfEConcept(root, cid3);
 
         boolean b = emi.isPartOfEConcept(root, cid1);
         boolean b2 = emi.isPartOfEConcept(root, cid3);
         boolean b3 = emi.isPartOfEConcept(cid1, cid3);
         boolean b4 = emi.isPartOfEConcept(cid2, cid1);
         System.out.println(b + " " + b2 + " " + b3 + " " + b4);
-        OwlOperation.writeOwlFile(emi.getOntModel(), new File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
+
 //        ArrayList<ISCB_Resource> r = emi.getEResourcesByTypes("全部", "all", "全部");
 //        for (ISCB_Resource res : r) {
 //            emi.addPropertyIsResourceOfC(res, cid1);
@@ -124,7 +135,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
     }
 
     public boolean isSonOfEConcept(EConcept father, EConcept son) {
-        TransitiveProperty p = ontModel.getTransitiveProperty(Constant.NS + "is_son_of");
+        Property p = ontModel.getProperty(Constant.NS + "is_son_of");
         Individual f = ontModel.getIndividual(Constant.NS + father.getCid());
         Individual s = ontModel.getIndividual(Constant.NS + son.getCid());
         SimpleSelector selector = new SimpleSelector(s, p, f);
@@ -136,23 +147,24 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
     }
 
     public boolean isPartOfEConcept(EConcept father, EConcept son) {
-        Property p = ontModel.getProperty(Constant.NS + "is_son_of");
-        TransitiveProperty p2 = ontModel.getTransitiveProperty(Constant.NS + "is_part_of");
-        TransitiveProperty p3 = ontModel.getTransitiveProperty(Constant.NS + "inverse_of_is_part_of");
+        Property p = ontModel.getProperty(Constant.NS + "inverse_of_is_part_of");
         Individual f = ontModel.getIndividual(Constant.NS + father.getCid());
-        Individual s = ontModel.getIndividual(Constant.NS + son.getCid());
-        SimpleSelector selector = new SimpleSelector(null, p, (RDFNode) null);
-        StmtIterator iter = ontModel.listStatements(selector);
-        int i = 0;
-        while (iter.hasNext()) {
-            Statement stat = iter.nextStatement();
-            Resource fa = stat.getSubject();
-            Resource so = (Resource) stat.getObject();
-            ontModel.add(ontModel.createStatement(fa, p2, so));
-            ontModel.add(ontModel.createStatement(so, p3, fa));
-            i++;
+        Resource s = ontModel.getIndividual(Constant.NS + son.getCid());
+        while (true) {
+            SimpleSelector selector = new SimpleSelector(null, p, s);
+            StmtIterator iter = ontModel.listStatements(selector);
+            if (iter.hasNext()) {
+               Resource r =  iter.nextStatement().getSubject();
+               if(r.getLocalName().equals(f.getLocalName())){
+                    return true;
+               }else{
+                   if(r.getLocalName().equals(getRootConcept().getCid())){
+                       break;
+                   }
+               }
+               s = r;
+            }
         }
-        System.out.println("i:" + i);
         return false;
     }
 
