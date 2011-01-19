@@ -80,9 +80,6 @@ public class AllConceptPane extends javax.swing.JPanel {
         leftPane.add(d, BorderLayout.CENTER);
         leftPane.add(box, BorderLayout.PAGE_END);
         conceptPane = new ConceptPane();
-//        new ConceptPane();
-        leftPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
         add(leftPane);
         add(conceptPane);
        
