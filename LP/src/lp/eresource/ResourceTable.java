@@ -11,7 +11,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -188,7 +187,7 @@ public class ResourceTable extends JTable implements MouseListener, MouseMotionL
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getComponent().isEnabled() && e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2) {
+        if (e.getComponent().isEnabled() && e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 1) {
             Point p = e.getPoint();
             int row = this.rowAtPoint(p);
             int column = this.columnAtPoint(p);
@@ -196,13 +195,7 @@ public class ResourceTable extends JTable implements MouseListener, MouseMotionL
                 String url = (String) this.getModel().getValueAt(row, column);
                 System.out.println("url:" + url);
                 WebOperation.runBroswer(url);
-            }
-        }
-        if (e.getComponent().isEnabled() && e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 1) {
-            Point p = e.getPoint();
-            int row = this.rowAtPoint(p);
-            int column = this.columnAtPoint(p);
-            if (column != 1) {
+            }if(column != 1){
                 ISCB_Resource resource = res.get(currentPage * num + row);
                 parent.goToEResourceDetailPane(resource);
                 System.out.println(row + "\tres:" + resource);

@@ -107,39 +107,35 @@ private ELearner elearner = new ELearner("el001");
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        interestLabel = new javax.swing.JLabel();
         interestPane = new javax.swing.JPanel();
-        unInterestLabel = new javax.swing.JLabel();
         unInterestPane = new javax.swing.JPanel();
         addInterestText = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
 
-        interestLabel.setText("有兴趣的概念");
-        interestLabel.setName("interestLabel"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(430, 625));
 
+        interestPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "有兴趣的概念", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("宋体", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         interestPane.setName("interestPane"); // NOI18N
 
         javax.swing.GroupLayout interestPaneLayout = new javax.swing.GroupLayout(interestPane);
         interestPane.setLayout(interestPaneLayout);
         interestPaneLayout.setHorizontalGroup(
             interestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 414, Short.MAX_VALUE)
+            .addGap(0, 398, Short.MAX_VALUE)
         );
         interestPaneLayout.setVerticalGroup(
             interestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 276, Short.MAX_VALUE)
+            .addGap(0, 228, Short.MAX_VALUE)
         );
 
-        unInterestLabel.setText("未感兴趣概念");
-        unInterestLabel.setName("unInterestLabel"); // NOI18N
-
+        unInterestPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "未感兴趣的概念", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("宋体", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         unInterestPane.setName("unInterestPane"); // NOI18N
 
         javax.swing.GroupLayout unInterestPaneLayout = new javax.swing.GroupLayout(unInterestPane);
         unInterestPane.setLayout(unInterestPaneLayout);
         unInterestPaneLayout.setHorizontalGroup(
             unInterestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 414, Short.MAX_VALUE)
+            .addGap(0, 398, Short.MAX_VALUE)
         );
         unInterestPaneLayout.setVerticalGroup(
             unInterestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,31 +165,26 @@ private ELearner elearner = new ELearner("el001");
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(unInterestLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
-                    .addComponent(interestPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(interestPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(unInterestPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
                         .addComponent(addInterestText, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3))
-                    .addComponent(unInterestPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(interestLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE))
+                        .addComponent(jButton3)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(interestLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
                 .addComponent(interestPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(unInterestLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(unInterestPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addInterestText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(addInterestText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -221,10 +212,8 @@ private ELearner elearner = new ELearner("el001");
     }//GEN-LAST:event_jButton3MouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addInterestText;
-    private javax.swing.JLabel interestLabel;
     private javax.swing.JPanel interestPane;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel unInterestLabel;
     private javax.swing.JPanel unInterestPane;
     // End of variables declaration//GEN-END:variables
 }

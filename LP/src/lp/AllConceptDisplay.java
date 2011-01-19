@@ -4,12 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import javax.swing.AbstractAction;
-import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.KeyStroke;
-import javax.swing.table.DefaultTableModel;
 import ontology.EConcept;
-import ontology.resources.ISCB_Resource;
 import prefuse.Constants;
 import prefuse.Display;
 import prefuse.Visualization;
@@ -160,7 +156,7 @@ public class AllConceptDisplay extends Display {
         // ------------------------------------------------
 
         // initialize the display
-        setSize(1200, 400);
+        setSize(900, 550);
         setItemSorter(new TreeDepthItemSorter());
         addControlListener(new ZoomToFitControl());
         addControlListener(new ZoomControl());
