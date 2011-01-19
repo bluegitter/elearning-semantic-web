@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import lp.LPApp;
+import ontology.EConcept;
 import ontology.EPerformance;
-import ontology.people.ELearner;
 
 import prefuse.Constants;
 import prefuse.Display;
@@ -87,7 +87,7 @@ public class MyConceptDisplay extends Display {
         m_nodeRenderer.setRenderType(AbstractShapeRenderer.RENDER_TYPE_FILL);
         m_nodeRenderer.setHorizontalAlignment(Constants.CENTER);
         m_nodeRenderer.setImagePosition(Constants.LEFT);
-        m_nodeRenderer.setRoundedCorner(8,8);
+        m_nodeRenderer.setRoundedCorner(8, 8);
         m_edgeRenderer = new EdgeRenderer();
 
         DefaultRendererFactory rf = new DefaultRendererFactory(m_nodeRenderer);
@@ -102,7 +102,7 @@ public class MyConceptDisplay extends Display {
         m_vis.putAction("textColor", textColor);
 
         ItemAction edgeColor = new ColorAction(treeEdges,
-                VisualItem.STROKECOLOR, ColorLib.rgb(200,200,200));
+                VisualItem.STROKECOLOR, ColorLib.rgb(200, 200, 200));
 
         FontAction fonts = new FontAction(treeNodes,
                 FontLib.getFont("微软雅黑", 14));
@@ -159,7 +159,7 @@ public class MyConceptDisplay extends Display {
         // ------------------------------------------------
 
         // initialize the display
-        setSize(1000,560);
+        setSize(1000, 560);
         setItemSorter(new TreeDepthItemSorter());
         addControlListener(new DragControl());
         addControlListener(new ZoomToFitControl());
@@ -178,20 +178,25 @@ public class MyConceptDisplay extends Display {
         // the PolarLocationAnimator should read this set and act accordingly
         m_vis.addFocusGroup(linear, new DefaultTupleSet());
         m_vis.getGroup(Visualization.FOCUS_ITEMS).addTupleSetListener(
-            new TupleSetListener() {
-            @Override
-                public void tupleSetChanged(TupleSet t, Tuple[] add, Tuple[] rem) {
-                    TupleSet linearInterp = m_vis.getGroup(linear);
-                    if ( add.length < 1 ) return; linearInterp.clear();
-                    for ( Node n = (Node)add[0]; n!=null; n=n.getParent() )
-                        linearInterp.addTuple(n);
-                }
-            }
-        );
+                new TupleSetListener() {
+
+                    @Override
+                    public void tupleSetChanged(TupleSet t, Tuple[] add, Tuple[] rem) {
+                        TupleSet linearInterp = m_vis.getGroup(linear);
+                        if (add.length < 1) {
+                            return;
+                        }
+                        linearInterp.clear();
+                        for (Node n = (Node) add[0]; n != null; n = n.getParent()) {
+                            linearInterp.addTuple(n);
+                        }
+                    }
+                });
 
         SearchTupleSet search = new PrefixSearchTupleSet();
         m_vis.addFocusGroup(Visualization.SEARCH_ITEMS, search);
         search.addTupleSetListener(new TupleSetListener() {
+
             @Override
             public void tupleSetChanged(TupleSet t, Tuple[] add, Tuple[] rem) {
                 m_vis.cancel("animatePaint");
@@ -202,37 +207,74 @@ public class MyConceptDisplay extends Display {
     }
 
     private void addNodes(Tree t, Node n) {
-        ArrayList<EPerformance> el = LPApp.lpModel.getEPerformances((ELearner)((EClass)n.get(m_label)).object);
+        ArrayList<EPerformance> el = LPApp.lpModel.getEPerformances(LPApp.getApplication().user.learner);
+        java.util.HashMap<EConcept, Integer> root = new java.util.HashMap<EConcept, Integer>();
         for (EPerformance p : el) {
-            Node cn = t.addChild(n);
+            Node child, father, cn;
+            child = father = null;
+            for (EConcept c : root.keySet()) {
+                if (LPApp.lpModel.isSonOfEConcept(c, p.getConcept())) {
+                    father = t.getNode(root.get(c));
+                } else if (LPApp.lpModel.isSonOfEConcept(p.getConcept(), c)) {
+                    child = t.getNode(root.get(c));
+                }
+            }
+
+            if (father != null) {
+                cn = t.addChild(father);
+            } else {
+                cn = t.addChild(n);
+                root.put(p.getConcept(), cn.getRow());
+            }
+
             EClass tempclass = new EClass(p);
             cn.set(m_label, tempclass);
             cn.set(m_image_label, tempclass.getIconStr());
+
+            if (child != null) {
+                insertNode(t, cn, child);
+                t.removeChild(child);
+                root.remove((EConcept)((EClass)child.get(m_label)).object);
+            }
         }
     }
 
-        /**
+    private void insertNode(Tree t, Node n, Node l) {
+        Node cn = t.addChild(n);
+        cn.set(m_label, l.get(m_label));
+        cn.set(m_image_label, l.get(m_image_label));
+        for (int i = 0; i < l.getChildCount(); i++) {
+            insertNode(t, l, l.getChild(i));
+        }
+    }
+
+    /**
      * Switch the root of the tree by requesting a new spanning tree
      * at the desired root
      */
     public static class TreeRootAction extends GroupAction {
+
         public TreeRootAction(String graphGroup) {
             super(graphGroup);
         }
+
         @Override
         public void run(double frac) {
             TupleSet focus = m_vis.getGroup(Visualization.FOCUS_ITEMS);
-            if ( focus==null || focus.getTupleCount() == 0 ) return;
+            if (focus == null || focus.getTupleCount() == 0) {
+                return;
+            }
 
-            Tree g = (Tree)m_vis.getGroup(m_group);
+            Tree g = (Tree) m_vis.getGroup(m_group);
 
             Node f = null;
             Iterator tuples = focus.tuples();
-            while (tuples.hasNext() && !g.containsTuple(f=(Node)tuples.next()))
-            {
+            while (tuples.hasNext() && !g.containsTuple(f = (Node) tuples.next())) {
                 f = null;
             }
-            if ( f == null ) return;
+            if (f == null) {
+                return;
+            }
 
             g.getSpanningTree(f);
         }
@@ -242,22 +284,23 @@ public class MyConceptDisplay extends Display {
      * Set node fill colors
      */
     public static class NodeColorAction extends ColorAction {
-        public NodeColorAction(String group) {
-            super(group, VisualItem.FILLCOLOR, ColorLib.rgba(255,255,255,0));
-            add("_hover", ColorLib.gray(220,230));
-            add("ingroup('_search_')", ColorLib.rgb(255,190,190));
-            add("ingroup('_focus_')", ColorLib.rgb(198,229,229));
-        }
 
+        public NodeColorAction(String group) {
+            super(group, VisualItem.FILLCOLOR, ColorLib.rgba(255, 255, 255, 0));
+            add("_hover", ColorLib.gray(220, 230));
+            add("ingroup('_search_')", ColorLib.rgb(255, 190, 190));
+            add("ingroup('_focus_')", ColorLib.rgb(198, 229, 229));
+        }
     } // end of inner class NodeColorAction
 
     /**
      * Set node text colors
      */
     public static class TextColorAction extends ColorAction {
+
         public TextColorAction(String group) {
             super(group, VisualItem.TEXTCOLOR, ColorLib.gray(0));
-            add("_hover", ColorLib.rgb(255,0,0));
+            add("_hover", ColorLib.rgb(255, 0, 0));
         }
     } // end of inner class TextColorAction
 }
