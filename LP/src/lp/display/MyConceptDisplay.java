@@ -6,8 +6,6 @@ import java.util.Iterator;
 import lp.LPApp;
 import ontology.EPerformance;
 import ontology.people.ELearner;
-import ontology.resources.E_Resource;
-import ontology.resources.ISCB_Resource;
 
 import prefuse.Constants;
 import prefuse.Display;

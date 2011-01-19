@@ -44,6 +44,14 @@ public class EClass implements Comparable {
         return type == CType.performance;
     }
 
+    public boolean isLearner() {
+        return type == CType.learner;
+    }
+
+    public boolean isResource() {
+        return type == CType.resource;
+    }
+
     public String getIconStr() {
         String str = null;
         switch (type) {

@@ -99,6 +99,8 @@ public class MyConceptDemo extends javax.swing.JPanel {
                         }
                     }
                     last_count = count;
+                } else if(ec.isResource()) {
+                    
                 }
             }
         });
