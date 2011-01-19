@@ -45,6 +45,13 @@ public class E_Resource {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + (this.rid != null ? this.rid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
     public String toString() {
         return rid + "\t" + name + "\t" + resourceDescription;
     }
