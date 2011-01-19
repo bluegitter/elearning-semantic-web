@@ -156,7 +156,7 @@ public class AllConceptDisplay extends Display {
         // ------------------------------------------------
 
         // initialize the display
-        setSize(900, 550);
+        setSize(850, 500);
         setItemSorter(new TreeDepthItemSorter());
         addControlListener(new ZoomToFitControl());
         addControlListener(new ZoomControl());
