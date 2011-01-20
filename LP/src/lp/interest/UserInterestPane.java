@@ -10,7 +10,11 @@
  */
 package lp.interest;
 
+import exception.jena.IndividualExistException;
+import java.awt.Component;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jena.impl.ELearnerModelImpl;
 import lp.LPApp;
 import ontology.EConcept;
@@ -25,7 +29,8 @@ public class UserInterestPane extends javax.swing.JPanel {
 
     private ArrayList<EInterest> interests;
     private ArrayList<EConcept> concepts;
-private ELearner elearner = new ELearner("el001");
+    private ELearner elearner = new ELearner("el001");
+
     public static void main(String[] args) {
         ELearnerModelImpl emi = new ELearnerModelImpl();
         ELearner el = emi.getELearner("el001");
@@ -49,12 +54,14 @@ private ELearner elearner = new ELearner("el001");
         initInterestPane(interests, concepts);
     }
 
-    public void updateInterests(ArrayList<EInterest> interests, ArrayList<EConcept> concepts) {
+    public void updateInterests(ArrayList<EInterest> interests,ArrayList<EConcept> concpets) {
         System.out.println("to be implmented");
     }
+    // update the uninterest pane
 
-    public void addInterets(ArrayList<EConcept> concept) {
-
+    public void updateUnInterets(ArrayList<EConcept> concept) {
+        concepts.removeAll(concept);
+        concepts = concept;
     }
 
     public void removeInterest(RemoveLPInterestItemPane removeInterestItem) {
@@ -64,7 +71,7 @@ private ELearner elearner = new ELearner("el001");
         interestPane.remove(removeInterestItem);
 
         concepts.add(removeInterestItem.interest.getEConcept());
-        unInterestPane.add(new AddLPInterestItemPane(this,removeInterestItem.interest.getEConcept()));
+        unInterestPane.add(new AddLPInterestItemPane(this, removeInterestItem.interest.getEConcept()));
         interestPane.updateUI();
     }
 
@@ -74,8 +81,8 @@ private ELearner elearner = new ELearner("el001");
         interest.setValue(0.5f);
         interest.setEConcept(con);
         interest.setELearner(elearner);
-        interest.setId(elearner.getId()+con.getCid());
-        interestPane.add(new RemoveLPInterestItemPane(this,interest));
+        interest.setId(elearner.getId() + con.getCid());
+        interestPane.add(new RemoveLPInterestItemPane(this, interest));
         interests.add(interest);
 
         concepts.remove(con);
@@ -93,7 +100,7 @@ private ELearner elearner = new ELearner("el001");
         }
         unInterestPane.setLayout(new javax.swing.BoxLayout(unInterestPane, javax.swing.BoxLayout.Y_AXIS));
         for (int i = 0; i < concepts.size(); i++) {
-            AddLPInterestItemPane p = new AddLPInterestItemPane(this,concepts.get(i));
+            AddLPInterestItemPane p = new AddLPInterestItemPane(this, concepts.get(i));
             unInterestPane.add(p);
         }
     }
@@ -206,8 +213,34 @@ private ELearner elearner = new ELearner("el001");
                 System.out.println("concept not exist");
             } else {
                 System.out.println("get the name");
+                for (int i = 0; i < cids.size(); i++) {
+                    String conceptId = cids.get(i);
+                    EConcept con = LPApp.lpModel.getEConcept(conceptId);
+                    EInterest in = new EInterest();
+                    in.setId(LPApp.getApplication().user.learner.getId() + "_" + conceptId);
+                    in.setEConcept(con);
+                    in.setELearner(LPApp.getApplication().user.learner);
+                    in.setValue(0.5f);
+                    try {
+                        LPApp.lpModel.addEInterest(in);
+                        interestPane.add(new RemoveLPInterestItemPane(this, in));
+                        interests.add(in);
+                        interestPane.updateUI();
+                        if (concepts.contains(con)) {
+                            concepts.remove(con);
+                            Component cs[] = unInterestPane.getComponents();
+                            for (Component c : cs) {
+                                AddLPInterestItemPane a = (AddLPInterestItemPane) c;
+                                if (a.concept.getCid().equals(conceptId)) {
+                                    unInterestPane.remove(a);
+                                }
+                            }
+                        }
+                    } catch (IndividualExistException ex) {
+                        Logger.getLogger(UserInterestPane.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             }
-
         }
     }//GEN-LAST:event_jButton3MouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
