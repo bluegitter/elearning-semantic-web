@@ -14,6 +14,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.SwingConstants;
 import lp.LPApp;
+import lp.eresource.WebOperation;
 import ontology.EPerformance;
 import ontology.resources.E_Resource;
 import ontology.resources.ISCB_Resource;
@@ -27,6 +28,7 @@ import prefuse.util.FontLib;
 import prefuse.util.ui.JFastLabel;
 import prefuse.util.ui.JSearchPanel;
 import prefuse.visual.VisualItem;
+import util.Constant;
 
 /**
  *
@@ -36,12 +38,11 @@ public class MyConceptDemo extends javax.swing.JPanel {
 
     private int[] last = new int[6];
     private int last_count = 0;
+    private final MyConceptDisplay gview = new MyConceptDisplay();
 
     public MyConceptDemo() {
         super(new BorderLayout());
 
-        // create a new radial tree view
-        final MyConceptDisplay gview = new MyConceptDisplay();
         Visualization vis = gview.getVisualization();
 
         gview.setBackground(this.getBackground());
@@ -99,8 +100,8 @@ public class MyConceptDemo extends javax.swing.JPanel {
                         }
                     }
                     last_count = count;
-                } else if(ec.isResource()) {
-                    
+                } else if (ec.isResource()) {
+                    WebOperation.runBroswer(Constant.ISCBSERVER48 + ((ISCB_Resource) ec.object).getFileLocation());
                 }
             }
         });
@@ -114,5 +115,8 @@ public class MyConceptDemo extends javax.swing.JPanel {
 
         add(gview, BorderLayout.CENTER);
         add(box, BorderLayout.SOUTH);
+    }
+
+    public void renew() {
     }
 }

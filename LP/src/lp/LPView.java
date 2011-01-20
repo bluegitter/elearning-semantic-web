@@ -136,6 +136,8 @@ public class LPView extends FrameView {
 
         if (i == LPApp.RECOMMEND) {
             ((RecommendContainer) this.panes[i]).renew();
+        } else if (i == LPApp.MY_CONCEPT) {
+            //((lp.display.MyConceptDemo) this.panes[i]).renew();
         }
 /*
         if (i == LPApp.PROFILE) {
