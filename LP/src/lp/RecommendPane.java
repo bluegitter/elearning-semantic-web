@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import lp.display.EBalloon;
 import lp.display.EClass;
+import lp.eresource.ResourceTablePane;
 import ontology.EConcept;
 
 /**
@@ -24,11 +25,14 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
     private int showTime;
     private boolean showing;
     public Thread thread;
+    public ResourceTablePane resPane;
 
     public RecommendPane() {
         on = clicked =null;
         thread = null;
         showTime = 0;
+
+        resPane = new ResourceTablePane();
 
         this.balloons = new ArrayList<EBalloon>();
 
@@ -79,6 +83,8 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
                 clicked.isClicked = false;
             clicked = on;
             on.isClicked = true;
+
+            resPane.updateResources(LPApp.lpModel.getEResourcesByEConcept(on.ec));
 
             repaint();
         }
@@ -172,7 +178,7 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
         for (int i = 0; i < len; i++) {
             EClass nec = list.get(i);
 
-            EBalloon newb = new EBalloon(x[i], y[i], d[i], nec.toString(), ca[nec.getColorIndex()]);
+            EBalloon newb = new EBalloon(x[i], y[i], d[i], (EConcept)nec.object, ca[nec.getColorIndex()]);
             this.balloons.add(newb);
         }
         rpstart(24);

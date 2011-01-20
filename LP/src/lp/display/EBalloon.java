@@ -10,6 +10,7 @@ import java.awt.RadialGradientPaint;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
+import ontology.EConcept;
 
 /**
  *
@@ -26,13 +27,15 @@ public class EBalloon implements Runnable {
     public float rd;
     public Thread thread;
     public boolean ison, shown, isClicked;
+    public EConcept ec;
 
-    public EBalloon(float x, float y, float d, String label, Color color) {
+    public EBalloon(float x, float y, float d, EConcept c, Color color) {
         this.diameter = d;
         this.x = x;
         this.y = y;
-        this.label = label;
+        this.label = c.toString();
         this.color = color;
+        this.ec = c;
         this.aColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), 222);
         this.rColor = new Color(color.getRed(), color.getGreen(), color.getBlue(), 111);
 
