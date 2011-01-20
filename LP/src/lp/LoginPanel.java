@@ -145,6 +145,22 @@ public class LoginPanel extends javax.swing.JPanel {
         aboutimage.paintIcon(this, g, 0, 0);
     }
 
+    public void prepareLogin() {
+        final LPView view = LPApp.getApplication().view;
+        view.setBusy("正在加载数据...");
+        Thread authThread = new Thread() {
+
+            @Override
+            public void run() {
+                LPApp.getApplication().user.learner = LPApp.lpModel.getELearner(LPApp.getApplication().user.username);
+                view.setBusy("正在加载数据...");
+                view.initTools();
+                view.setIdle();
+            }
+        };
+        authThread.start();
+    }
+
     private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
 
 //            LPApp.getApplication().view.setMainTool(LPApp.REGIST);
