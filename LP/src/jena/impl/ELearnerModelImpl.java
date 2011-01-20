@@ -154,15 +154,15 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
             SimpleSelector selector = new SimpleSelector(null, p, s);
             StmtIterator iter = ontModel.listStatements(selector);
             if (iter.hasNext()) {
-               Resource r =  iter.nextStatement().getSubject();
-               if(r.getLocalName().equals(f.getLocalName())){
+                Resource r = iter.nextStatement().getSubject();
+                if (r.getLocalName().equals(f.getLocalName())) {
                     return true;
-               }else{
-                   if(r.getLocalName().equals(getRootConcept().getCid())){
-                       break;
-                   }
-               }
-               s = r;
+                } else {
+                    if (r.getLocalName().equals(getRootConcept().getCid())) {
+                        break;
+                    }
+                }
+                s = r;
             }
         }
         return false;
@@ -651,7 +651,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         Resource in = ontModel.createResource(Constant.NS + interest.getId(), ontModel.getResource(Constant.NS + "E_Interest"));
         in.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_has_interest"), ontModel.getResource(Constant.NS + el.getId()));
         in.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_is_concept_of_I"), ontModel.getResource(Constant.NS + con.getCid()));
-        in.addProperty(ontModel.getProperty(Constant.NS + "value"), String.valueOf(interest.getValue()), new XSDDatatype("string"));
+        in.addLiteral(ontModel.getProperty(Constant.NS + "value"), interest.getValue());
         return true;
     }
 
