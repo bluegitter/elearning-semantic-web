@@ -181,6 +181,7 @@ public class RegistPane extends javax.swing.JPanel {
         } catch (IndividualExistException ex) {
             Logger.getLogger(RegistPane.class.getName()).log(Level.SEVERE, null, ex);
         }
+        LPApp.getApplication().user.learner = LPApp.lpModel.getELearner(LPApp.getApplication().user.username);
         parent.setNext();
 
 
