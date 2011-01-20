@@ -62,7 +62,7 @@ private NavigatorDialog parent;
             }
         });
 
-        jButton4.setText("下一步");
+        jButton4.setText("完成");
         jButton4.setName("jButton4"); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,17 +121,19 @@ private NavigatorDialog parent;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        parent.setVisible(false);
+        parent.dispose();
+        LPApp.getApplication().loginPane.prepareLogin();
 }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
         this.parent.setPrevious();
 }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        this.parent.setNext();
+        parent.setVisible(false);
+        parent.dispose();
+        LPApp.getApplication().loginPane.prepareLogin();
     }//GEN-LAST:event_jButton4ActionPerformed
 
 

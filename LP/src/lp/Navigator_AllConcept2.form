@@ -1,4 +1,4 @@
-<?xml version="1.1" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
@@ -23,10 +23,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -46,7 +43,6 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton3" min="-2" pref="120" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jButton4" min="-2" pref="120" max="-2" attributes="0"/>
@@ -96,9 +92,6 @@
         <Property name="text" type="java.lang.String" value="&#x6d4f;&#x89c8;&#x67d0;&#x77e5;&#x8bc6;&#x70b9;&#x7684;&#x76f8;&#x5e94;&#x8d44;&#x6e90;&#xff0c;&#x5b66;&#x4e60;&#x8d44;&#x6e90;&#x5e76;&#x8fdb;&#x884c;&#x8bc4;&#x4ef7;"/>
         <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
       </Properties>
-      <AccessibilityProperties>
-        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="&#x6d4f;&#x89c8;&#x67d0;&#x77e5;&#x8bc6;&#x70b9;&#x7684;&#x76f8;&#x5e94;&#x8d44;&#x6e90;&#xff0c;&#x5b66;&#x4e60;&#x8d44;&#x6e90;&#x5e76;&#x8fdb;&#x884c;&#x8bc4;&#x4ef7;"/>
-      </AccessibilityProperties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>

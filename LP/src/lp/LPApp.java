@@ -22,6 +22,7 @@ public class LPApp extends SingleFrameApplication {
 
     public EUser user;
     public LPView view;
+    public LoginPanel loginPane;
     public static ELearnerModelImpl lpModel;
     public static int TOOL_STATE = -1;
     public static final int MY_CONCEPT = 0;
@@ -43,7 +44,8 @@ public class LPApp extends SingleFrameApplication {
         user = null;
         view = new LPView(this);
         view.mainPanel.setLayout(new CentralLayout());
-        view.mainPanel.add(new LoginPanel());
+        loginPane = new LoginPanel();
+        view.mainPanel.add(loginPane);
         view.lpToolBar.setVisible(false);
         view.getFrame().setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         show(view);
