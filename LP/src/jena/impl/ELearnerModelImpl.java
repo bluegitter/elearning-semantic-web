@@ -704,6 +704,20 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 
     public ArrayList<String> getConceptIds(String conceptName) {
         ArrayList<String> cids = new ArrayList<String>();
+        Property p = ontModel.getDatatypeProperty(Constant.NS + "name");
+        SimpleSelector selector = new SimpleSelector(null, p, conceptName);
+        StmtIterator iter = ontModel.listStatements(selector);
+        OntClass conceptClass = ontModel.getOntClass(Constant.NS + "E_Concept");
+
+        while (iter.hasNext()) {
+            Resource con = iter.nextStatement().getSubject();
+            SimpleSelector selector_con = new SimpleSelector(con, RDF.type, conceptClass);
+            StmtIterator iter_con = ontModel.listStatements(selector_con);
+            if (iter_con.hasNext()) {
+                cids.add(con.getLocalName());
+                System.out.println("cids:" + cids);
+            }
+        }
         return cids;
     }
 }
