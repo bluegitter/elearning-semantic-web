@@ -17,6 +17,8 @@ public class RecommendContainer extends javax.swing.JPanel implements Runnable {
 
         thread = null;
         timeout = 5;
+        resPane.setLayout(new java.awt.BorderLayout());
+        resPane.add(((RecommendPane)rmPane).resPane);
     }
 
     /** This method is called from within the constructor to
@@ -35,7 +37,7 @@ public class RecommendContainer extends javax.swing.JPanel implements Runnable {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSlider3 = new javax.swing.JSlider();
-        resPane = new ResourceTablePane();
+        resPane = new javax.swing.JPanel();
 
         setName("Form"); // NOI18N
 
