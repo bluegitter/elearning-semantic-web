@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JDialog;
 import javax.swing.table.DefaultTableModel;
 import lp.interest.UserInterestPane;
+import lp.log.PopMesDialog;
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.EPerformance;
@@ -53,7 +54,7 @@ public class UserProfilePane extends javax.swing.JPanel {
     private void initUserPane(ELearner el) {
         // initial basic info for user
         username.setText(el.getName());
-        password.setText(el.getPassword());
+        gender.setText(el.getGender());
         email.setText(el.getEmail());
         address.setText(el.getAddress());
 
@@ -107,10 +108,10 @@ public class UserProfilePane extends javax.swing.JPanel {
         address = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
-        password = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        gender = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -152,9 +153,6 @@ public class UserProfilePane extends javax.swing.JPanel {
         email.setEditable(false);
         email.setName("email"); // NOI18N
 
-        password.setEditable(false);
-        password.setName("password"); // NOI18N
-
         jLabel5.setIcon(resourceMap.getIcon("jLabel5.icon")); // NOI18N
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
@@ -175,6 +173,10 @@ public class UserProfilePane extends javax.swing.JPanel {
             }
         });
 
+        gender.setBackground(resourceMap.getColor("gender.background")); // NOI18N
+        gender.setText(resourceMap.getString("gender.text")); // NOI18N
+        gender.setName("gender"); // NOI18N
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -193,7 +195,7 @@ public class UserProfilePane extends javax.swing.JPanel {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
+                                .addComponent(gender, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -218,9 +220,9 @@ public class UserProfilePane extends javax.swing.JPanel {
                             .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,6 +248,7 @@ public class UserProfilePane extends javax.swing.JPanel {
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
+        conceptsTable.setBackground(resourceMap.getColor("conceptsTable.background")); // NOI18N
         conceptsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -308,6 +311,7 @@ public class UserProfilePane extends javax.swing.JPanel {
 
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
+        resourcesTable.setBackground(resourceMap.getColor("resourcesTable.background")); // NOI18N
         resourcesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -419,7 +423,7 @@ public class UserProfilePane extends javax.swing.JPanel {
         // TODO add your handling code here:
         this.username.setEditable(true);
         this.email.setEditable(true);
-        this.password.setEditable(true);
+        this.gender.setEditable(true);
         this.address.setEditable(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -427,7 +431,7 @@ public class UserProfilePane extends javax.swing.JPanel {
         // TODO add your handling code here:
         ELearner el = LPApp.getApplication().user.learner;
         el.setName(username.getText());
-        el.setAddress(new String(password.getPassword()));
+        el.setGender(gender.getText());
         el.setAddress(address.getText());
         el.setEmail(email.getText());
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -440,7 +444,7 @@ public class UserProfilePane extends javax.swing.JPanel {
         jd.pack();
 
         jd.setVisible(true);
-
+        
     }//GEN-LAST:event_moreConceptsActionPerformed
 
     private void moreResourcesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreResourcesActionPerformed
@@ -455,6 +459,7 @@ public class UserProfilePane extends javax.swing.JPanel {
     private javax.swing.JTextField address;
     private javax.swing.JTable conceptsTable;
     private javax.swing.JTextField email;
+    private javax.swing.JTextField gender;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -472,7 +477,6 @@ public class UserProfilePane extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton moreConcepts;
     private javax.swing.JButton moreResources;
-    private javax.swing.JPasswordField password;
     private javax.swing.JTable resourcesTable;
     private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables

@@ -59,7 +59,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="&#x6709;&#x5174;&#x8da3;&#x7684;&#x6982;&#x5ff5;">
+            <TitledBorder title="&#x6709;&#x5174;&#x8da3;&#x7684;&#x77e5;&#x8bc6;&#x70b9;">
               <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
             </TitledBorder>
           </Border>
@@ -84,7 +84,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="&#x672a;&#x611f;&#x5174;&#x8da3;&#x7684;&#x6982;&#x5ff5;">
+            <TitledBorder title="&#x672a;&#x611f;&#x5174;&#x8da3;&#x7684;&#x77e5;&#x8bc6;&#x70b9;">
               <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
             </TitledBorder>
           </Border>

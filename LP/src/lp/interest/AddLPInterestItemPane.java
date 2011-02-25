@@ -10,13 +10,17 @@
  */
 package lp.interest;
 
+import java.awt.Color;
+
 /**
  *
  * @author william
  */
 public class AddLPInterestItemPane extends javax.swing.JPanel {
-public UserInterestPane parent;
-   
+
+    public UserInterestPane parent;
+    private Color backgroundColor;
+
     public static void main(String[] args) {
 //        jena.impl.ELearnerModelImpl emi = new jena.impl.ELearnerModelImpl(new java.io.File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
 //        ontology.people.ELearner el = emi.getELearner("el001");
@@ -43,7 +47,7 @@ public UserInterestPane parent;
         myInit(parent);
     }
 
-    public AddLPInterestItemPane(UserInterestPane parent,ontology.EConcept concept) {
+    public AddLPInterestItemPane(UserInterestPane parent, ontology.EConcept concept) {
         this.concept = concept;
         initComponents();
         myInit(parent);
@@ -51,12 +55,10 @@ public UserInterestPane parent;
 
     private void myInit(UserInterestPane parent) {
         this.parent = parent;
-        color = new java.awt.Color(244, 244, 245);
-        jLabel2.setOpaque(true);
-        jLabel3.setOpaque(true);
-        this.setBackground(java.awt.Color.WHITE);
+        color = new java.awt.Color(255, 255, 255);
         jLabel3.setIcon(null);
         jLabel2.setText(concept.getName());
+        backgroundColor = new Color(236, 233, 216);
     }
     public ontology.EConcept concept;
     public java.awt.Color color;
@@ -74,7 +76,6 @@ public UserInterestPane parent;
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(321, 32));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -85,13 +86,11 @@ public UserInterestPane parent;
             }
         });
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("jLabel2");
         jLabel2.setMinimumSize(null);
         jLabel2.setName("jLabel2"); // NOI18N
         jLabel2.setPreferredSize(null);
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/interest/resources/+.png"))); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
         icon =new javax.swing.ImageIcon(getClass().getResource("/lp/interest/resources/+.png"));
@@ -133,9 +132,9 @@ public UserInterestPane parent;
 
     private void addItemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addItemMouseExited
         jLabel3.setIcon(null);
-        this.setBackground(java.awt.Color.WHITE);
-        jLabel2.setBackground(java.awt.Color.WHITE);
-        jLabel3.setBackground(java.awt.Color.WHITE);
+        this.setBackground(backgroundColor);
+        jLabel2.setBackground(backgroundColor);
+        jLabel3.setBackground(backgroundColor);
     }//GEN-LAST:event_addItemMouseExited
 
     private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered
@@ -150,7 +149,6 @@ public UserInterestPane parent;
         System.out.println("add interest item clicked");
         parent.addInterest(this);
     }//GEN-LAST:event_jLabel3MouseClicked
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
