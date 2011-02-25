@@ -24,7 +24,7 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
 
     public UserInterestPane parent;
     public boolean valueEditable;
-
+    private Color backgroundColor;
     public static void main(String[] args) {
         jena.impl.ELearnerModelImpl emi = new jena.impl.ELearnerModelImpl(new java.io.File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
         ontology.people.ELearner el = emi.getELearner("el001");
@@ -61,12 +61,10 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
     private void myInit(UserInterestPane parent) {
         valueEditable = false;
         this.parent = parent;
-        jLabel1.setOpaque(true);
-        jLabel2.setOpaque(true);
-        this.setBackground(Color.WHITE);
         jLabel1.setIcon(null);
         jLabel2.setText(interest.getEConcept().getName());
-        color = new Color(244, 244, 245);
+        color = new Color(255, 255, 255);
+        backgroundColor = new  Color(236,233,216);
     }
     public Color color;
     public ontology.EInterest interest;
@@ -144,9 +142,9 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
 
     private void removeItemPaneMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeItemPaneMouseExited
         jLabel1.setIcon(null);
-        this.setBackground(Color.WHITE);
-        jLabel1.setBackground(Color.WHITE);
-        jLabel2.setBackground(Color.WHITE);
+        this.setBackground(backgroundColor);
+        jLabel1.setBackground(backgroundColor);
+        jLabel2.setBackground(backgroundColor);
         this.updateUI();
     }//GEN-LAST:event_removeItemPaneMouseExited
 

@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import jena.impl.ELearnerModelImpl;
 import lp.LPApp;
+import lp.log.PopMesDialog;
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.people.ELearner;
@@ -121,28 +122,28 @@ public class UserInterestPane extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(430, 625));
 
-        interestPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "有兴趣的概念", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("宋体", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        interestPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "有兴趣的知识点", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("宋体", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         interestPane.setName("interestPane"); // NOI18N
 
         javax.swing.GroupLayout interestPaneLayout = new javax.swing.GroupLayout(interestPane);
         interestPane.setLayout(interestPaneLayout);
         interestPaneLayout.setHorizontalGroup(
             interestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
+            .addGap(0, 394, Short.MAX_VALUE)
         );
         interestPaneLayout.setVerticalGroup(
             interestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 228, Short.MAX_VALUE)
         );
 
-        unInterestPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "未感兴趣的概念", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("宋体", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        unInterestPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "未感兴趣的知识点", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("宋体", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         unInterestPane.setName("unInterestPane"); // NOI18N
 
         javax.swing.GroupLayout unInterestPaneLayout = new javax.swing.GroupLayout(unInterestPane);
         unInterestPane.setLayout(unInterestPaneLayout);
         unInterestPaneLayout.setHorizontalGroup(
             unInterestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
+            .addGap(0, 394, Short.MAX_VALUE)
         );
         unInterestPaneLayout.setVerticalGroup(
             unInterestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,6 +211,9 @@ public class UserInterestPane extends javax.swing.JPanel {
         if (name != null) {
             ArrayList<String> cids = LPApp.lpModel.getConceptIds(name);
             if (cids.isEmpty()) {
+                PopMesDialog pop = new PopMesDialog();
+                pop.setTitle("查询不到");
+                pop.setMessage("知识点没找到，请重新输入");
                 System.out.println("concept not exist");
             } else {
                 System.out.println("get the name");

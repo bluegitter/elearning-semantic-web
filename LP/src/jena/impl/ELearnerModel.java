@@ -198,8 +198,9 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         ontModel.add(son, ontModel.getProperty(Constant.NS + "is_son_of"), father);
         return true;
     }
-    public boolean addPropertyIsPartOf(EConcept fatherConcept,EConcept sonConcept)throws IndividualNotExistException {
-         if (!containEConcept(fatherConcept.getCid())) {
+
+    public boolean addPropertyIsPartOf(EConcept fatherConcept, EConcept sonConcept) throws IndividualNotExistException {
+        if (!containEConcept(fatherConcept.getCid())) {
             throw new IndividualNotExistException("father EConcept " + fatherConcept.getCid() + " does not exist in the model");
         }
         if (!containEConcept(sonConcept.getCid())) {
@@ -354,7 +355,7 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         return null;
     }
 
-   @Override
+    @Override
     public EConcept getEConcept(String cid) {
         Individual indi = ontModel.getIndividual(Constant.NS + cid);
         String name = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "name")).getLiteral().getString();
@@ -393,14 +394,23 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         return elearner;
     }
 
-     @Override
+    @Override
     public ISCB_Resource getEResource(String rid) {
         ISCB_Resource resource = new ISCB_Resource(rid);
         Individual indi = ontModel.getIndividual(Constant.NS + rid);
         resource.setName(indi.getPropertyValue(ontModel.getProperty(Constant.NS + "name")).asLiteral().getString());
-        resource.setFileLocation(indi.getPropertyValue(ontModel.getProperty(Constant.NS + "file_location")).asLiteral().getString());
-        resource.setDifficulty(indi.getPropertyValue(ontModel.getProperty(Constant.NS + "difficulty")).asLiteral().getString());
-
+        RDFNode fl = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "file_location"));
+        if (fl != null) {
+            resource.setFileLocation(fl.asLiteral().getString());
+        } else {
+            resource.setFileLocation("");
+        }
+        RDFNode diff = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "difficulty"));
+        if (diff != null) {
+            resource.setDifficulty(diff.asLiteral().getString());
+        } else {
+            resource.setDifficulty("");
+        }
         RDFNode rd = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "description"));
         if (rd != null) {
             resource.setResourceDescription(rd.asLiteral().getString());
@@ -440,7 +450,8 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         }
         return resource;
     }
-@Override
+
+    @Override
     public EPerformance getEPerformance(String pid) {
         Individual indi = ontModel.getIndividual(Constant.NS + pid);
         if (indi == null) {
@@ -482,5 +493,4 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         }
         return port;
     }
-
 }
