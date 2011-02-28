@@ -23,12 +23,13 @@ import ontology.people.ELearner;
  */
 public class NavigatorFinishPane extends javax.swing.JPanel {
 
-    public static ArrayList<EInterest> interestNodes = new ArrayList<EInterest>();
+    public  ArrayList<EInterest> interestNodes = new ArrayList<EInterest>();
     private NavigatorDialog parent;
     /** Creates new form NavigatorFinishPane */
     public NavigatorFinishPane(ArrayList<EInterest> selectedNodes,NavigatorDialog parent) {
         this.parent = parent;
         this.interestNodes = selectedNodes;
+        //this.interestNodes = this.parent.nodes;
         initComponents();
         DefaultTableModel model;
         model = (DefaultTableModel) jTable1.getModel();
@@ -39,11 +40,12 @@ public class NavigatorFinishPane extends javax.swing.JPanel {
 
         for (int i=0;i<interestNodes.size();i++)
         {
-            String cid = interestNodes.get(i).getEConcept().getCid();
+            EInterest temp = interestNodes.get(i);
+            String cid = temp.getEConcept().getCid();
             EConcept ec = LPApp.lpModel.getEConcept(cid);
-            String interestId = interestNodes.get(i).getId();
+            //String interestId = this.interestNodes.get(i).getId();
             String cname = ec.getName();
-            float value = interestNodes.get(i).getValue();
+            float value = temp.getValue();
             Object[] oa = {cid,cname,value};
             model.addRow(oa);
         }
@@ -175,6 +177,15 @@ public class NavigatorFinishPane extends javax.swing.JPanel {
         // TODO add your handling code here:
         parent.setPrevious();
         parent.setTitle("注册向导");
+        interestNodes = new ArrayList<EInterest>();
+        DefaultTableModel model;
+        model = (DefaultTableModel) jTable1.getModel();
+        for (int index = model.getRowCount() - 1; index >= 0; index--) {
+            model.removeRow(index);
+        }
+        jTable1.updateUI();
+        
+       //parent.nodes = new ArrayList<EInterest>();
     }//GEN-LAST:event_jButton3ActionPerformed
 
 
