@@ -47,7 +47,7 @@ import ontology.EInterest;
  */
 public class NavigatorPane extends javax.swing.JPanel {
     public ArrayList selectedNodes = new ArrayList();
-    private CheckNode root = null;
+    public CheckNode root = null;
     private NavigatorDialog parent;
     public ArrayList<EInterest>  EInterests = new ArrayList<EInterest>();
     /** Creates new form NavigatorPane */
@@ -330,9 +330,7 @@ public class NavigatorPane extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
- 
-       
+        // TODO add your handling code here:       
         for (int i =0;i<this.selectedNodes.size();i++)
         {
             EInterest ei = new EInterest();
@@ -349,9 +347,9 @@ public class NavigatorPane extends javax.swing.JPanel {
             EInterests.add(ei);
         }
 
-       // parent.nodes = this.selectedNodes;
-
-        parent.setNext(EInterests);
+        parent.nodes = EInterests;
+        parent.setNext();
+       // parent.setNext(EInterests);
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
