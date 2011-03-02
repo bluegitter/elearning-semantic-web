@@ -15,6 +15,7 @@ import java.awt.Color;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lp.LPApp;
+import util.ColorConstant;
 
 /**
  *
@@ -25,6 +26,7 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
     public UserInterestPane parent;
     public boolean valueEditable;
     private Color backgroundColor;
+
     public static void main(String[] args) {
         jena.impl.ELearnerModelImpl emi = new jena.impl.ELearnerModelImpl(new java.io.File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
         ontology.people.ELearner el = emi.getELearner("el001");
@@ -63,10 +65,10 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
         this.parent = parent;
         jLabel1.setIcon(null);
         jLabel2.setText(interest.getEConcept().getName());
-        color = new Color(255, 255, 255);
-        backgroundColor = new  Color(236,233,216);
+        mouseEnteredColor = new Color(255, 255, 255);
+        backgroundColor = ColorConstant.backgroundGrayColor;
     }
-    public Color color;
+    public Color mouseEnteredColor;
     public ontology.EInterest interest;
     public javax.swing.Icon icon;
 
@@ -82,8 +84,6 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(RemoveLPInterestItemPane.class);
-        setBackground(resourceMap.getColor("Form.background")); // NOI18N
         setName("Form"); // NOI18N
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -94,6 +94,7 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
             }
         });
 
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(RemoveLPInterestItemPane.class);
         jLabel1.setBackground(resourceMap.getColor("jLabel1.background")); // NOI18N
         jLabel1.setIcon(resourceMap.getIcon("jLabel1.icon")); // NOI18N
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
@@ -138,6 +139,7 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
         System.out.println("delete interest " + interest);
         jLabel2.setBackground(Color.RED);
         parent.removeInterest(this);
+        LPApp.lpLog.writeMessage("用户移除了一个感兴趣:" + interest.getId() + ":" + interest.getEConcept().getCid() + "+" + interest.getELearner().getId()+"\n");
     }//GEN-LAST:event_removeInterestClicked
 
     private void removeItemPaneMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeItemPaneMouseExited
@@ -158,12 +160,11 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
 
     private void removeItemEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeItemEntered
         jLabel1.setIcon(icon);
-        this.setBackground(color);
-        jLabel2.setBackground(color);
-        jLabel1.setBackground(color);
+        this.setBackground(mouseEnteredColor);
+        jLabel2.setBackground(mouseEnteredColor);
+        jLabel1.setBackground(mouseEnteredColor);
         this.updateUI();
     }//GEN-LAST:event_removeItemEntered
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JLabel jLabel1;
     protected javax.swing.JLabel jLabel2;

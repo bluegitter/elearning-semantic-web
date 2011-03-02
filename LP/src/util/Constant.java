@@ -12,6 +12,7 @@ public class Constant {
     public static String RulesFile = "src\\jena\\elearning2.rules";
     public static String userOwlFile = "src\\db\\userOwlFile.owl";
     public static String LuceneTestFile = "test\\owl\\testlucene.txt";
+    public static String TestLogFile = "src\\lp\\log\\lplog.log";
     /*********************************************************************
      * SPARQL Prefix
      ********************************************************************/

@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import jena.OwlFactory;
 import jena.impl.ELearnerModelImpl;
+import lp.log.LPLogger;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 import util.StringExchanger;
@@ -24,6 +25,7 @@ public class LPApp extends SingleFrameApplication {
     public LPView view;
     public LoginPanel loginPane;
     public static ELearnerModelImpl lpModel;
+    public static LPLogger lpLog;
     public static int TOOL_STATE = -1;
     public static final int MY_CONCEPT = 0;
     public static final int ALL_CONCEPT = 1;
@@ -40,15 +42,17 @@ public class LPApp extends SingleFrameApplication {
     protected void startup() {
 
         lpModel = new ELearnerModelImpl(new java.io.File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
-
+        lpLog = new LPLogger();
         user = null;
         view = new LPView(this);
         view.mainPanel.setLayout(new CentralLayout());
         loginPane = new LoginPanel();
+
         view.mainPanel.add(loginPane);
         view.lpToolBar.setVisible(false);
         view.getFrame().setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         show(view);
+
     }
 
     @Override
@@ -62,13 +66,13 @@ public class LPApp extends SingleFrameApplication {
             } catch (IOException ex) {
             }
         }
-        try {
-            OwlOperation.writeOwlFile(LPApp.lpModel.getOntModel(), file);
-            System.out.println("Complete saving the file before exiting the program.");
-        } catch (IOException ex) {
-            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+//        try {
+////            OwlOperation.writeOwlFile(LPApp.lpModel.getOntModel(), file);
+//            System.out.println("Complete saving the file before exiting the program.");
+//        } catch (IOException ex) {
+//            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+        lpLog.close();
         super.shutdown();
     }
 

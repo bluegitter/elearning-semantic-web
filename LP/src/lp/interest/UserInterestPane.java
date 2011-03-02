@@ -214,9 +214,12 @@ public class UserInterestPane extends javax.swing.JPanel {
                 PopMesDialog pop = new PopMesDialog();
                 pop.setTitle("查询不到");
                 pop.setMessage("知识点没找到，请重新输入");
+                LPApp.lpLog.writeMessage("用户添加不存在感兴趣知识点:"+name+"\n");
                 System.out.println("concept not exist");
             } else {
                 System.out.println("get the name");
+                LPApp.lpLog.writeMessage("用户添加兴趣知识点:"+name+"\n");
+
                 for (int i = 0; i < cids.size(); i++) {
                     String conceptId = cids.get(i);
                     EConcept con = LPApp.lpModel.getEConcept(conceptId);
