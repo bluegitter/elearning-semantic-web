@@ -233,8 +233,8 @@ public class ResourceTable extends JTable implements MouseListener, MouseMotionL
             Point p = e.getPoint();
             int row = this.rowAtPoint(p);
             int column = this.columnAtPoint(p);
-            System.out.println("column" + column);
-            System.out.println("row" + row);
+//            System.out.println("column" + column);
+//            System.out.println("row" + row);
             if (column == 1) {
                 this.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
             } else {

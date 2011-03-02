@@ -117,6 +117,9 @@ public class LoginPanel extends javax.swing.JPanel {
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         final LPView view = LPApp.getApplication().view;
         LPApp.getApplication().user = new EUser(username.getText());
+        
+        LPApp.lpLog.setUserId(LPApp.getApplication().user.username);
+
         view.setBusy("正在验证密码...");
         Thread authThread = new Thread() {
 
@@ -127,9 +130,11 @@ public class LoginPanel extends javax.swing.JPanel {
                     LPApp.getApplication().user.learner = LPApp.lpModel.getELearner(LPApp.getApplication().user.username);
                     view.setBusy("正在加载数据...");
                     view.initTools();
+                    LPApp.lpLog.writeLoginSuccessful();
                 } else {
                     tipLabel.setText("登录失败");
                     username.grabFocus();
+                    LPApp.lpLog.writeLoginFailure();
                 }
                 view.setIdle();
             }

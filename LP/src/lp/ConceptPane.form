@@ -33,9 +33,9 @@
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="conceptName" max="32767" attributes="1"/>
-                          <Component id="uriLabel" alignment="0" pref="290" max="32767" attributes="1"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="uriLabel" pref="290" max="32767" attributes="1"/>
+                          <Component id="conceptName" alignment="0" min="-2" max="-2" attributes="1"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">

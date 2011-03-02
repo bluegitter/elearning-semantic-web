@@ -26,11 +26,13 @@ import util.Constant;
  * @author Shuaiguo
  */
 public class SearchPane extends javax.swing.JPanel {
+
     private OntModel ontModel;
+
     public void setOntModel(OntModel ontModel) {
         this.ontModel = ontModel;
     }
-    
+
     public static void main(String[] args) {
         ELearnerModelImpl emi = new ELearnerModelImpl();
         ArrayList<ISCB_Resource> res = emi.getEResourcesByEConcept(emi.getEConcept("cid1"));
@@ -176,7 +178,7 @@ public class SearchPane extends javax.swing.JPanel {
         jButton1.setName("jButton1"); // NOI18N
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                exactSearchAction(evt);
             }
         });
 
@@ -203,7 +205,7 @@ public class SearchPane extends javax.swing.JPanel {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -248,15 +250,21 @@ public class SearchPane extends javax.swing.JPanel {
         System.out.println(appType);
         System.out.println(mediaType);
         ArrayList<ISCB_Resource> res = LPApp.lpModel.getEResourcesByTypes(appType, "all", mediaType);
+        LPApp.lpLog.writeMessage("用户执行分类搜索:资源应用类型-" + appType + ";媒体类型-" + mediaType+"\n");
         updateEResources(res);
     }//GEN-LAST:event_searchAction
     //search the resource by the given name
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void exactSearchAction(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exactSearchAction
         // TODO add your handling code here:
         String name = jTextField1.getText().trim();
         ArrayList<ISCB_Resource> res = LPApp.lpModel.getEResourcesByName(name);
+        if (res.isEmpty()) {
+            LPApp.lpLog.writeMessage("用户执行精确搜索:资源标题-" + name + "-未查到\n");
+        }else{
+             LPApp.lpLog.writeMessage("用户执行精确搜索:资源标题-" + name + "-查到"+res.size()+"个结果\n");
+        }
         updateEResources(res);
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_exactSearchAction
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;

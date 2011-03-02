@@ -11,6 +11,8 @@
 package lp.interest;
 
 import java.awt.Color;
+import lp.LPApp;
+import util.ColorConstant;
 
 /**
  *
@@ -20,6 +22,9 @@ public class AddLPInterestItemPane extends javax.swing.JPanel {
 
     public UserInterestPane parent;
     private Color backgroundColor;
+    public ontology.EConcept concept;
+    public java.awt.Color mouseEnteredColor;
+    public javax.swing.Icon icon;
 
     public static void main(String[] args) {
 //        jena.impl.ELearnerModelImpl emi = new jena.impl.ELearnerModelImpl(new java.io.File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
@@ -55,15 +60,12 @@ public class AddLPInterestItemPane extends javax.swing.JPanel {
 
     private void myInit(UserInterestPane parent) {
         this.parent = parent;
-        color = new java.awt.Color(255, 255, 255);
+        mouseEnteredColor = new java.awt.Color(255, 255, 255);
         jLabel3.setIcon(null);
         jLabel2.setText(concept.getName());
-        backgroundColor = new Color(236, 233, 216);
+        backgroundColor = ColorConstant.backgroundGrayColor;
     }
-    public ontology.EConcept concept;
-    public java.awt.Color color;
-    public javax.swing.Icon icon;
-
+   
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -96,13 +98,7 @@ public class AddLPInterestItemPane extends javax.swing.JPanel {
         icon =new javax.swing.ImageIcon(getClass().getResource("/lp/interest/resources/+.png"));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel3MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel3MouseExited(evt);
+                addInterestItemMouseClicked(evt);
             }
         });
 
@@ -125,9 +121,9 @@ public class AddLPInterestItemPane extends javax.swing.JPanel {
 
     private void addItemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addItemMouseEntered
         jLabel3.setIcon(icon);
-        this.setBackground(color);
-        jLabel2.setBackground(color);
-        jLabel3.setBackground(color);
+        this.setBackground(mouseEnteredColor);
+        jLabel2.setBackground(mouseEnteredColor);
+        jLabel3.setBackground(mouseEnteredColor);
     }//GEN-LAST:event_addItemMouseEntered
 
     private void addItemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addItemMouseExited
@@ -145,10 +141,11 @@ public class AddLPInterestItemPane extends javax.swing.JPanel {
         addItemMouseExited(evt);
     }//GEN-LAST:event_jLabel3MouseExited
 
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void addInterestItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addInterestItemMouseClicked
         System.out.println("add interest item clicked");
         parent.addInterest(this);
-    }//GEN-LAST:event_jLabel3MouseClicked
+        LPApp.lpLog.writeMessage("用户增加了一个感兴趣:"+concept.getCid()+"\n");
+    }//GEN-LAST:event_addInterestItemMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

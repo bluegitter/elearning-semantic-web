@@ -103,9 +103,9 @@ public class ConceptPane extends javax.swing.JPanel {
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(conceptName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(uriLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(uriLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                            .addComponent(conceptName)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(learnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
@@ -154,6 +154,7 @@ public class ConceptPane extends javax.swing.JPanel {
             }
         }
         this.updateData();
+        LPApp.lpLog.writeMessage("学习了知识点:"+cdec.getCid()+","+cdec.getName()+"\n");
 }//GEN-LAST:event_learnBtnActionPerformed
     @Override
     public String toString() {
