@@ -7,12 +7,13 @@ public class Constant {
      *********************************************************************/
     public static String NS = "http://www.owl-ontologies.com/e-learning.owl#";
     public static String NSRDF = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
-    public static String OWLFile = "test\\owl\\conceptsAndresource_RDF-XML.owl";
-    //public static String OWLFile ="src\\db\\userOwlFile.owl";
-    public static String RulesFile = "src\\jena\\elearning2.rules";
-    public static String userOwlFile = "src\\db\\userOwlFile.owl";
-    public static String LuceneTestFile = "test\\owl\\testlucene.txt";
-    public static String TestLogFile = "src\\lp\\log\\lplog.log";
+    public static String OWLFile = "files\\owl\\conceptsAndresource_RDF-XML.owl";
+    public static String RulesFile = "files\\owl\\elearning2.rules";
+    public static String LuceneTestFile = "files\\lucene\\testlucene.txt";
+    public static String TestLogFile = "files\\log\\lplog.log";
+    public static String LoginRequest1 = "http://166.111.80.250/iscb/regUser.jsp?userName=";
+    public static String LoginRequest2 = "&password=";
+    public static String LoginRequest3 = "&login=false";
     /*********************************************************************
      * SPARQL Prefix
      ********************************************************************/

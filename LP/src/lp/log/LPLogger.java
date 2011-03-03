@@ -76,11 +76,11 @@ public class LPLogger {
     }
 
     public void writeLoginSuccessful() {
-        writeMessage("用户登录成功:");
+        writeMessage("用户登录成功!!\n");
     }
 
     public void writeLoginFailure() {
-        writeMessage("用户登录失败,错误ID:" + userId);
+        writeMessage("用户登录失败,错误ID:" + userId+"\n");
     }
 
     public String getSysDate() {
