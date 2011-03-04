@@ -205,7 +205,6 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="icon" type="javax.swing.Icon" resourceKey="jLabel5.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="jLabel5.text"/>
             <Property name="name" type="java.lang.String" value="jLabel5" noResource="true"/>
           </Properties>

@@ -10,7 +10,10 @@
  */
 package lp;
 
+import java.awt.Image;
 import java.util.ArrayList;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.table.DefaultTableModel;
 import lp.interest.UserInterestPane;
@@ -53,6 +56,16 @@ public class UserProfilePane extends javax.swing.JPanel {
 
     private void initUserPane(ELearner el) {
         // initial basic info for user
+         ImageIcon pic1 = null;
+        if(el.getGender() == "女")
+        {
+           pic1 = new ImageIcon("src/lp/resources/femalehead.png"); //创建一个图片对象.
+        }
+        else
+        {
+            pic1 = new ImageIcon("src/lp/resources/malehead.png"); //创建一个图片对象.
+        }
+        jLabel5.setIcon(pic1) ;
         username.setText(el.getName());
         gender.setText(el.getGender());
         email.setText(el.getEmail());
@@ -153,7 +166,6 @@ public class UserProfilePane extends javax.swing.JPanel {
         email.setEditable(false);
         email.setName("email"); // NOI18N
 
-        jLabel5.setIcon(resourceMap.getIcon("jLabel5.icon")); // NOI18N
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
 
