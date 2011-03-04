@@ -41,7 +41,8 @@ public class LPApp extends SingleFrameApplication {
     @Override
     protected void startup() {
 
-        lpModel = new ELearnerModelImpl(new java.io.File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
+        String sepstr = File.pathSeparator;
+        lpModel = new ELearnerModelImpl(new java.io.File("test" + sepstr + "owl" + sepstr + "conceptsAndresource_RDF-XML.owl"));
         lpLog = new LPLogger();
         user = null;
         view = new LPView(this);
