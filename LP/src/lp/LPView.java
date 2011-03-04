@@ -10,8 +10,6 @@ import org.jdesktop.application.FrameView;
 import org.jdesktop.application.TaskMonitor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Vector;
 import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
@@ -99,6 +97,7 @@ public class LPView extends FrameView {
         progressBar.setVisible(true);
         progressBar.setIndeterminate(true);
         statusMessageLabel.setText(status);
+        this.mainPanel.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
     }
 
     public void setIdle() {
@@ -107,6 +106,7 @@ public class LPView extends FrameView {
         statusAnimationLabel.setIcon(idleIcon);
         progressBar.setVisible(false);
         progressBar.setValue(0);
+        this.mainPanel.setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.DEFAULT_CURSOR));
     }
 
     @Action
