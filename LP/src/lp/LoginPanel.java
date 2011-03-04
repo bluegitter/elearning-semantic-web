@@ -133,7 +133,7 @@ public class LoginPanel extends javax.swing.JPanel {
                     view.initTools();
                     LPApp.lpLog.writeLoginSuccessful();
                 } else {
-                    tipLabel.setText("登录失败");
+                    tipLabel.setText("登录失败！");
                     tipLabel.setForeground(Color.red);
                     username.grabFocus();
                     LPApp.lpLog.writeLoginFailure();
