@@ -1,5 +1,6 @@
 package lp;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -133,6 +134,7 @@ public class LoginPanel extends javax.swing.JPanel {
                     LPApp.lpLog.writeLoginSuccessful();
                 } else {
                     tipLabel.setText("登录失败");
+                    tipLabel.setForeground(Color.red);
                     username.grabFocus();
                     LPApp.lpLog.writeLoginFailure();
                 }
