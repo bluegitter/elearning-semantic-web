@@ -268,6 +268,15 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         Property p = ontModel.getProperty(Constant.NS + "value");
         ontModel.remove(indi, p, indi.getPropertyValue(p));
         ontModel.add(indi, p, String.valueOf(newValue), new XSDDatatype("float"));
+
+        Property p2 = ontModel.getProperty(Constant.NS + "rate");
+        ontModel.remove(indi, p2, indi.getPropertyValue(p2));
+        ontModel.add(indi, p2, String.valueOf(portfolio.getRate()), new XSDDatatype("int"));
+        
+        Property p3 = ontModel.getProperty(Constant.NS + "rateString");
+        ontModel.remove(indi, p3, indi.getPropertyValue(p3));
+        ontModel.add(indi, p3, String.valueOf(portfolio.getRateString()), new XSDDatatype("string"));
+        System.out.println(portfolio.getId()+"has been updated\t"+portfolio);
         return true;
     }
 
@@ -472,7 +481,6 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         }
         return performance;
     }
-
     @Override
     public EPortfolio getEPortfolio(String pid) {
         Individual indi = ontModel.getIndividual(Constant.NS + pid);
@@ -480,9 +488,10 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
             return null;
         }
         EPortfolio port = new EPortfolio();
+        port.setId(pid);
         Statement valueNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "value"));
         if (valueNode != null) {
-            float value = (Float) valueNode.getLiteral().getFloat();
+            float value =Float.valueOf(valueNode.getLiteral().getString());
             port.setValue(value);
         }
         Statement dateNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time"));
@@ -491,6 +500,28 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
             Date datetime = StringExchanger.parseStringToDate(dateString);
             port.setDatetime(datetime);
         }
+        Statement rateNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS+"rate"));
+        if(rateNode !=null){
+            int rateNodeInt = rateNode.getLiteral().getInt();
+            port.setRate(rateNodeInt);
+        }else{
+             port.setRate(0);
+        }
+        Statement rateStringNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS+"rateString"));
+        if(rateStringNode != null){
+            String rateStringNodeString = rateStringNode.getLiteral().getString();
+            port.setRateString(rateStringNodeString);
+        }else{
+            port.setRateString("");
+        }
+
         return port;
+    }
+
+    public static void main(String[] args) {
+        ELearnerModel emi = new ELearnerModel();
+
+        EPortfolio port = emi.getEPortfolio("E_Portfolio_el001-2");
+        
     }
 }

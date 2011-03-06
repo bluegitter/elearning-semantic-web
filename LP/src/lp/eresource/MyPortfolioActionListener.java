@@ -29,6 +29,10 @@ public class MyPortfolioActionListener implements MouseListener {
     private ArrayList<EPortfolio> resourceList;
     private JTable table;
     private MyPortfolioPane portfolioPane;
+    private EPortfolio portfolio;
+    private static ResourceRatingDialog resRate;
+    int c = 0;
+
     public MyPortfolioActionListener(MyPortfolioPane portfolioPane, ArrayList<EPortfolio> resourceList) {
         this.portfolioPane = portfolioPane;
         this.table = portfolioPane.resources;
@@ -37,23 +41,23 @@ public class MyPortfolioActionListener implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getClickCount() == 2) {
+        if (e.getClickCount() == 1 && e.getComponent().isEnabled()) {
             Point p = e.getPoint();
             int row = table.rowAtPoint(p);
             int column = table.columnAtPoint(p);
             if (column == 2) {
-                EPortfolio f = resourceList.get(row);
-                ISCB_Resource res = f.getEResource();
-                if (f.getRate() == 0) {
-                    ResourceRatingDialog resRate = new ResourceRatingDialog(f);
-                    resRate.setTitle("资源评价");
+                portfolio = resourceList.get(row);
+                ISCB_Resource res = portfolio.getEResource();
+                c++;
+                if (portfolio.getRate() == 0) {
+                    resRate = new ResourceRatingDialog(portfolio, portfolioPane);
+                    resRate.setTitle("资源评价" + c);
                     resRate.pack();
                 } else {
-                    ResourceRatingDialog resRate = new ResourceRatingDialog(f);
-                    resRate.setTitle("资源评价内容");
+                    resRate = new ResourceRatingDialog(portfolio, portfolioPane);
+                    resRate.setTitle("资源评价内容" + c);
                     resRate.pack();
                 }
-
             }
             if (column == 3) {
                 PopMesDialog conDisplay = new PopMesDialog();

@@ -15,6 +15,8 @@ public class EPortfolio {
     private int rate;
     private String rateString;
     public EPortfolio() {
+        elearner = new ELearner();
+        resource = new ISCB_Resource();
         rate = 0;
     }
 
@@ -84,6 +86,10 @@ public class EPortfolio {
     }
 
     public String toString() {
-        return id + "\t" + elearner.getId() + "\t" + resource.getRid() + "\t" + rate + "\t" + datetime;
+        return id + "\t" 
+                + elearner.getId() + "\t"
+                + resource.getRid() + "\t"
+                + rate + "\t"
+                + datetime;
     }
 }

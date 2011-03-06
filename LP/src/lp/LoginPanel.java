@@ -127,8 +127,9 @@ public class LoginPanel extends javax.swing.JPanel {
 
             @Override
             public void run() {
-                boolean loginAuth = LPApp.getApplication().user.login(new String(password.getPassword()));
-                if (loginAuth) {
+//                boolean loginAuth = LPApp.getApplication().user.login(new String(password.WgetPassword()));
+                boolean loginAuth = true;
+               if (loginAuth) {
                     LPApp.getApplication().user.learner = LPApp.lpModel.getELearner(LPApp.getApplication().user.username);
                     view.setBusy("正在加载数据...");
                     view.initTools();

@@ -24,6 +24,8 @@ import com.hp.hpl.jena.vocabulary.RDF;
 import db.OwlOperation;
 import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jena.OwlFactory;
 import ontology.EConcept;
 import ontology.EInterest;
@@ -61,23 +63,33 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         ontModel = ModelFactory.createOntologyModel(OntModelSpec.DAML_MEM_TRANS_INF, ontModel);
     }
 
-    public static void main(String[] args) throws IndividualNotExistException, IOException, IndividualExistException {
-        File file = new File("test\\owl\\conceptsAndresource_RDF-XML.owl");
+    public static void main(String[] args) {
+//        throws IndividualNotExistException, IOException, IndividualExistException {
+        File file = new File(Constant.OWLFile);
         long init = System.currentTimeMillis();
 
         ELearnerModelImpl emi = new ELearnerModelImpl(file);
-        System.out.println("intitime:" + (System.currentTimeMillis() - init) + "ms");
-        ELearner el = emi.getELearner("el001");
-        EConcept cid1 = emi.getEConcept("CMP.cf.2");
-        EConcept root = emi.getEConcept("Computer_Science");
-        EConcept cid2 = emi.getEConcept("CMP.cf");
-        EConcept cid3 = emi.getEConcept("CMP");
-
-        boolean b = emi.isPartOfEConcept(root, cid1);
-        boolean b2 = emi.isPartOfEConcept(root, cid3);
-        boolean b3 = emi.isPartOfEConcept(cid1, cid3);
-        boolean b4 = emi.isPartOfEConcept(cid2, cid1);
-        System.out.println(b + " " + b2 + " " + b3 + " " + b4);
+        EPortfolio port = emi.getEPortfolio("E_Portfolio_el001-2");
+        port.setRate(2);
+        try {
+            emi.updateEPortfolio(port);
+        } catch (IndividualNotExistException ex) {
+            Logger.getLogger(ELearnerModelImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        port = emi.getEPortfolio("E_Portfolio_el001-2");
+        System.out.println("port:" + port);
+//        System.out.println("intitime:" + (System.currentTimeMillis() - init) + "ms");
+//        ELearner el = emi.getELearner("el001");
+//        EConcept cid1 = emi.getEConcept("CMP.cf.2");
+//        EConcept root = emi.getEConcept("Computer_Science");
+//        EConcept cid2 = emi.getEConcept("CMP.cf");
+//        EConcept cid3 = emi.getEConcept("CMP");
+//
+//        boolean b = emi.isPartOfEConcept(root, cid1);
+//        boolean b2 = emi.isPartOfEConcept(root, cid3);
+//        boolean b3 = emi.isPartOfEConcept(cid1, cid3);
+//        boolean b4 = emi.isPartOfEConcept(cid2, cid1);
+//        System.out.println(b + " " + b2 + " " + b3 + " " + b4);
 
 //        ArrayList<ISCB_Resource> r = emi.getEResourcesByTypes("全部", "all", "全部");
 //        for (ISCB_Resource res : r) {
@@ -284,9 +296,6 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         while (port_iter.hasNext()) {
             Statement s = port_iter.nextStatement();
             Resource portResource = s.getSubject();
-            float value = (Float) portResource.getRequiredProperty(ontModel.getProperty(Constant.NS + "value")).asTriple().getObject().getLiteralValue();
-            String dateString = portResource.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time")).asTriple().getObject().getLiteralValue().toString();
-            Date datetime = StringExchanger.parseStringToDate(dateString);
             SimpleSelector res_selector = new SimpleSelector(null, ontModel.getProperty(Constant.NS + "is_resource_of_P"), portResource);
             StmtIterator res_iter = ontModel.listStatements(res_selector);
             ISCB_Resource resource = null;

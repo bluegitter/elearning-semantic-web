@@ -17,10 +17,6 @@ import ontology.EConcept;
 import ontology.EPerformance;
 import ontology.people.ELearner;
 
-/**
- *
- * @author ghh
- */
 public class MyPerformancePane extends javax.swing.JPanel {
 
     /** Creates new form MyPerformancePane */
@@ -42,8 +38,6 @@ public class MyPerformancePane extends javax.swing.JPanel {
             model.addRow(oa);
         }
         concepts.updateUI();
-
-
     }
 
     /** This method is called from within the constructor to
