@@ -122,7 +122,7 @@ public class UserInterestPane extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(430, 625));
 
-        interestPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "有兴趣的知识点", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("宋体", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        interestPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "有兴趣的知识点", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         interestPane.setName("interestPane"); // NOI18N
 
         javax.swing.GroupLayout interestPaneLayout = new javax.swing.GroupLayout(interestPane);
@@ -136,7 +136,7 @@ public class UserInterestPane extends javax.swing.JPanel {
             .addGap(0, 228, Short.MAX_VALUE)
         );
 
-        unInterestPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "未感兴趣的知识点", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("宋体", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        unInterestPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "您可能感兴趣的知识点", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         unInterestPane.setName("unInterestPane"); // NOI18N
 
         javax.swing.GroupLayout unInterestPaneLayout = new javax.swing.GroupLayout(unInterestPane);

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import lp.eresource.WebOperation;
 
 /**
  *
@@ -169,13 +170,14 @@ public class LoginPanel extends javax.swing.JPanel {
     }
 
     private void regBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regBtnActionPerformed
-
-//            LPApp.getApplication().view.setMainTool(LPApp.REGIST);
-        JDialog d = new NavigatorDialog(LPApp.getApplication().getMainFrame());
-        d.setTitle("注册向导");
-        d.setModal(true);
-        d.pack();
-        d.setVisible(true);
+//
+////            LPApp.getApplication().view.setMainTool(LPApp.REGIST);
+//        JDialog d = new NavigatorDialog(LPApp.getApplication().getMainFrame());
+//        d.setTitle("注册向导");
+//        d.setModal(true);
+//        d.pack();
+//        d.setVisible(true);
+        WebOperation.runBroswer("http://166.111.80.250/iscb/registerPage.jsp?roleId=0");
     }//GEN-LAST:event_regBtnActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

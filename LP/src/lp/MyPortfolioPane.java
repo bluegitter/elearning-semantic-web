@@ -8,11 +8,14 @@
  *
  * Created on 2011-1-5, 19:33:00
  */
-
 package lp;
 
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
+import jena.impl.ELearnerModelImpl;
+import lp.eresource.MyPortfolioActionListener;
+import ontology.EConcept;
 import ontology.EPortfolio;
 import ontology.people.ELearner;
 import ontology.resources.ISCB_Resource;
@@ -23,23 +26,54 @@ import ontology.resources.ISCB_Resource;
  */
 public class MyPortfolioPane extends javax.swing.JPanel {
 
+    private ELearnerModelImpl lpModel;
+    public ArrayList<EPortfolio> resourceList;
+
+    public static void main(String[] args) {
+        javax.swing.JFrame f = new javax.swing.JFrame();
+        MyPortfolioPane uip = new MyPortfolioPane();
+        f.add(uip);
+        f.pack();
+        f.setVisible(true);
+    }
+
     /** Creates new form MyPortfolioPane */
     public MyPortfolioPane() {
         initComponents();
-         ELearner el = LPApp.getApplication().user.learner;
+        myInit();
+
+    }
+
+    private void myInit() {
+        ELearnerModelImpl emi = new ELearnerModelImpl();
+        ELearner el = emi.getELearner("el001");
+        lpModel = emi;
+//        ELearner el = LPApp.getApplication().user.learner;
+        updateResourceTable(el);
+    }
+
+    private void updateResourceTable(ELearner el) {
         //initial concepts in performance for user
-        DefaultTableModel model;
-        model = (DefaultTableModel) resources.getModel();
+        DefaultTableModel model = (DefaultTableModel) resources.getModel();
         for (int index = model.getRowCount() - 1; index >= 0; index--) {
             model.removeRow(index);
         }
-        ArrayList<EPortfolio> resourceList = LPApp.lpModel.getEPortfolios(el);
-       for (int i=0;i<resourceList.size();i++) {
+//        resourceList = LPApp.lpModel.getEPortfolios(el);
+        resourceList = lpModel.getEPortfolios(el);
+        for (int i = 0; i < resourceList.size(); i++) {
             EPortfolio f = resourceList.get(i);
-            ISCB_Resource c = f.getEResource();
-            Object[] oa = {c.getName(), f.getValue()};
+            ISCB_Resource res = f.getEResource();
+//            ArrayList<EConcept> con = LPApp.lpModel.getEConcepts(res);
+            ArrayList<EConcept> con = lpModel.getEConcepts(res);
+            String s = con.size() + "个知识点";
+            String userRate = "点击评价";
+            if(f.getRate() !=0){
+                userRate=f.getRate()+"";
+            }
+            Object[] oa = {res.getName(), res.getDifficulty(), userRate, s};
             model.addRow(oa);
         }
+        resources.addMouseListener(new MyPortfolioActionListener(this, resourceList));
         resources.updateUI();
     }
 
@@ -65,14 +99,14 @@ public class MyPortfolioPane extends javax.swing.JPanel {
 
             },
             new String [] {
-                "资源名", "难易度", "学习效果"
+                "资源名称", "资源难度", "资源评价", "关联知识点数"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Float.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -113,12 +147,9 @@ public class MyPortfolioPane extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable resources;
+    public javax.swing.JTable resources;
     // End of variables declaration//GEN-END:variables
-
 }
