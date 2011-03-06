@@ -10,7 +10,9 @@
  */
 package lp;
 
+import java.awt.Image;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.table.DefaultTableModel;
 import lp.interest.UserInterestPane;
@@ -56,6 +58,16 @@ public class UserProfilePane extends javax.swing.JPanel {
         gender.setText(el.getGender());
         email.setText(el.getEmail());
         address.setText(el.getAddress());
+        //Image thead = new Image("/lp/src/resource.malehead.png");
+        ImageIcon icon = new ImageIcon("src/lp/resources/malehead.png");
+        if(el.getGender() == "male")
+            jLabel5.setIcon(icon);
+        else
+        {
+            icon = new ImageIcon("src/lp/resources/femalehead.png");
+            jLabel5.setIcon(icon);
+        }
+
 
         //initial concepts in performance for user
         DefaultTableModel model;

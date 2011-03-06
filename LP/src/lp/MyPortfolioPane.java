@@ -26,9 +26,8 @@ import ontology.resources.ISCB_Resource;
  */
 public class MyPortfolioPane extends javax.swing.JPanel {
 
-    private ELearnerModelImpl lpModel;
     public ArrayList<EPortfolio> resourceList;
-
+    private ELearner el;
     public static void main(String[] args) {
         javax.swing.JFrame f = new javax.swing.JFrame();
         MyPortfolioPane uip = new MyPortfolioPane();
@@ -46,29 +45,26 @@ public class MyPortfolioPane extends javax.swing.JPanel {
 
     private void myInit() {
         ELearnerModelImpl emi = new ELearnerModelImpl();
-        ELearner el = emi.getELearner("el001");
-        lpModel = emi;
-//        ELearner el = LPApp.getApplication().user.learner;
-        updateResourceTable(el);
+        el = emi.getELearner("el001");
+        updateResourceTable();
     }
 
-    private void updateResourceTable(ELearner el) {
+    public void updateResourceTable() {
         //initial concepts in performance for user
         DefaultTableModel model = (DefaultTableModel) resources.getModel();
         for (int index = model.getRowCount() - 1; index >= 0; index--) {
             model.removeRow(index);
         }
-//        resourceList = LPApp.lpModel.getEPortfolios(el);
-        resourceList = lpModel.getEPortfolios(el);
+        resourceList = LPApp.lpModel.getEPortfolios(el);
         for (int i = 0; i < resourceList.size(); i++) {
             EPortfolio f = resourceList.get(i);
+            System.out.println("ff:"+f);
             ISCB_Resource res = f.getEResource();
-//            ArrayList<EConcept> con = LPApp.lpModel.getEConcepts(res);
-            ArrayList<EConcept> con = lpModel.getEConcepts(res);
+            ArrayList<EConcept> con = LPApp.lpModel.getEConcepts(res);
             String s = con.size() + "个知识点";
             String userRate = "点击评价";
             if(f.getRate() !=0){
-                userRate=f.getRate()+"";
+                userRate="资源评分："+f.getRate();
             }
             Object[] oa = {res.getName(), res.getDifficulty(), userRate, s};
             model.addRow(oa);
