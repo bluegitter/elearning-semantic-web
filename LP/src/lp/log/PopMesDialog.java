@@ -18,7 +18,7 @@ public class PopMesDialog extends JDialog {
 
     public PopMesDialog() {
         centerScreen();
-        
+        this.setVisible(true);
     }
     public void setMessage(String message){
         JLabel content = new JLabel(message);

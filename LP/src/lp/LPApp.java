@@ -14,6 +14,7 @@ import jena.impl.ELearnerModelImpl;
 import lp.log.LPLogger;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
+import util.Constant;
 import util.StringExchanger;
 
 /**
@@ -42,7 +43,7 @@ public class LPApp extends SingleFrameApplication {
     protected void startup() {
 
         String sepstr = File.separator;
-        lpModel = new ELearnerModelImpl(new java.io.File("test" + sepstr + "owl" + sepstr + "conceptsAndresource_RDF-XML.owl"));
+        lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFile));
         lpLog = new LPLogger();
         user = null;
         view = new LPView(this);
@@ -68,7 +69,7 @@ public class LPApp extends SingleFrameApplication {
             }
         }
 //        try {
-////            OwlOperation.writeOwlFile(LPApp.lpModel.getOntModel(), file);
+//            OwlOperation.writeOwlFile(LPApp.lpModel.getOntModel(), file);
 //            System.out.println("Complete saving the file before exiting the program.");
 //        } catch (IOException ex) {
 //            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);

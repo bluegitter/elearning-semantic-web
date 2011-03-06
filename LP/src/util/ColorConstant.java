@@ -12,5 +12,5 @@ import java.awt.Color;
  * @author t
  */
 public class ColorConstant {
-    public static Color backgroundGrayColor = new Color(240,240,240);
+    public static Color backgroundGrayColor = new Color(236,233,216);
 }
