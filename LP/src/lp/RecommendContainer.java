@@ -1,22 +1,18 @@
 package lp;
 
+import lp.display.LPBar;
 import lp.eresource.ResourceTablePane;
 
 /**
  *
  * @author David
  */
-public class RecommendContainer extends javax.swing.JPanel implements Runnable {
-
-    public Thread thread;
-    private int timeout;
+public class RecommendContainer extends javax.swing.JPanel {
 
     /** Creates new form RecommendContainer */
     public RecommendContainer() {
         initComponents();
 
-        thread = null;
-        timeout = 5;
         resPane.setLayout(new java.awt.BorderLayout());
         resPane.add(((RecommendPane)rmPane).resPane);
     }
@@ -31,13 +27,14 @@ public class RecommendContainer extends javax.swing.JPanel implements Runnable {
     private void initComponents() {
 
         rmPane = new RecommendPane();
-        jSlider1 = new javax.swing.JSlider();
         jLabel1 = new javax.swing.JLabel();
-        jSlider2 = new javax.swing.JSlider();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jSlider3 = new javax.swing.JSlider();
         resPane = new javax.swing.JPanel();
+        barGreen = new lp.display.LPBar(lp.display.LPBar.GREEN);
+        barBlue = new lp.display.LPBar(lp.display.LPBar.BLUE);
+        barRed = new lp.display.LPBar(lp.display.LPBar.RED);
+        jButton1 = new javax.swing.JButton();
 
         setName("Form"); // NOI18N
 
@@ -54,24 +51,10 @@ public class RecommendContainer extends javax.swing.JPanel implements Runnable {
             .addGap(0, 530, Short.MAX_VALUE)
         );
 
-        jSlider1.setName("jSlider1"); // NOI18N
-        jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                elementChanged(evt);
-            }
-        });
-
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(RecommendContainer.class);
         jLabel1.setFont(resourceMap.getFont("jLabel1.font")); // NOI18N
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
-
-        jSlider2.setName("jSlider2"); // NOI18N
-        jSlider2.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                elementChanged(evt);
-            }
-        });
 
         jLabel2.setFont(resourceMap.getFont("jLabel1.font")); // NOI18N
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
@@ -81,25 +64,69 @@ public class RecommendContainer extends javax.swing.JPanel implements Runnable {
         jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
         jLabel3.setName("jLabel3"); // NOI18N
 
-        jSlider3.setName("jSlider3"); // NOI18N
-        jSlider3.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                elementChanged(evt);
-            }
-        });
-
         resPane.setName("resPane"); // NOI18N
 
         javax.swing.GroupLayout resPaneLayout = new javax.swing.GroupLayout(resPane);
         resPane.setLayout(resPaneLayout);
         resPaneLayout.setHorizontalGroup(
             resPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 232, Short.MAX_VALUE)
+            .addGap(0, 262, Short.MAX_VALUE)
         );
         resPaneLayout.setVerticalGroup(
             resPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
+            .addGap(0, 252, Short.MAX_VALUE)
         );
+
+        barGreen.setName("barGreen"); // NOI18N
+        barGreen.setPreferredSize(new java.awt.Dimension(227, 32));
+
+        javax.swing.GroupLayout barGreenLayout = new javax.swing.GroupLayout(barGreen);
+        barGreen.setLayout(barGreenLayout);
+        barGreenLayout.setHorizontalGroup(
+            barGreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 228, Short.MAX_VALUE)
+        );
+        barGreenLayout.setVerticalGroup(
+            barGreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 32, Short.MAX_VALUE)
+        );
+
+        barBlue.setName("barBlue"); // NOI18N
+        barBlue.setPreferredSize(new java.awt.Dimension(227, 32));
+
+        javax.swing.GroupLayout barBlueLayout = new javax.swing.GroupLayout(barBlue);
+        barBlue.setLayout(barBlueLayout);
+        barBlueLayout.setHorizontalGroup(
+            barBlueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 228, Short.MAX_VALUE)
+        );
+        barBlueLayout.setVerticalGroup(
+            barBlueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 32, Short.MAX_VALUE)
+        );
+
+        barRed.setName("barRed"); // NOI18N
+        barRed.setPreferredSize(new java.awt.Dimension(227, 32));
+
+        javax.swing.GroupLayout barRedLayout = new javax.swing.GroupLayout(barRed);
+        barRed.setLayout(barRedLayout);
+        barRedLayout.setHorizontalGroup(
+            barRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 228, Short.MAX_VALUE)
+        );
+        barRedLayout.setVerticalGroup(
+            barRedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 32, Short.MAX_VALUE)
+        );
+
+        jButton1.setFont(resourceMap.getFont("jButton1.font")); // NOI18N
+        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
+        jButton1.setName("jButton1"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -108,15 +135,21 @@ public class RecommendContainer extends javax.swing.JPanel implements Runnable {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(rmPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSlider1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSlider2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSlider3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(resPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(barBlue, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                                .addComponent(barGreen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                                .addComponent(barRed, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
+                            .addComponent(resPane, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -126,18 +159,20 @@ public class RecommendContainer extends javax.swing.JPanel implements Runnable {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(barRed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSlider2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(barGreen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSlider3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(resPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(2, 2, 2)
+                        .addComponent(barBlue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                        .addComponent(resPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(rmPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -145,49 +180,29 @@ public class RecommendContainer extends javax.swing.JPanel implements Runnable {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void elementChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_elementChanged
-        if (thread == null) {
-            thread = new Thread(this);
-            thread.setPriority(Thread.MAX_PRIORITY);
-            thread.setName("Recommend Changing");
-            thread.start();
-        }
-        timeout = 8;
-    }//GEN-LAST:event_elementChanged
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        renew();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel barBlue;
+    private javax.swing.JPanel barBlue1;
+    private javax.swing.JPanel barGreen;
+    private javax.swing.JPanel barRed;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JSlider jSlider1;
-    private javax.swing.JSlider jSlider2;
-    private javax.swing.JSlider jSlider3;
     private javax.swing.JPanel resPane;
     public javax.swing.JPanel rmPane;
     // End of variables declaration//GEN-END:variables
 
     public void renew() {
         double[] a = new double[3];
-        a[0] = jSlider1.getValue() / 100.0;
-        a[1] = jSlider2.getValue() / 100.0;
-        a[2] = jSlider3.getValue() / 100.0;
+        a[0] = ((LPBar)barRed).getValue() / 100.0;
+        a[1] = ((LPBar)barGreen).getValue() / 100.0;
+        a[2] = ((LPBar)barBlue).getValue() / 100.0;
         ((RecommendPane) rmPane).reRecommend(a);
     }
 
-    @Override
-    public void run() {
-        Thread me = Thread.currentThread();
-
-        while (thread == me && this.timeout > 0) {
-            timeout--;
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-            }
-        }
-        
-        renew();
-
-        thread = null;
-    }
 }
