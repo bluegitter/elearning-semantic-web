@@ -31,7 +31,7 @@ public class EUser {
     }
 
     public boolean login(String passwd) {
-        try {
+       /*  try {
             //        try {
             //            return db.DbOperation.login(username, passwd);
             //        } catch(Exception ex) {
@@ -39,6 +39,7 @@ public class EUser {
             //        }
             //http://166.111.80.250/iscb/regUser.jsp?userName=masheng&password=masheng&login=false
             StringBuilder sb = new StringBuilder();
+
             sb.append(Constant.LoginRequest1);
             sb.append(username);
             sb.append(Constant.LoginRequest2);
@@ -60,6 +61,8 @@ public class EUser {
         } catch (MalformedURLException ex) {
             Logger.getLogger(EUser.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+           */
         return true;
     }
     public String sendRequest(URL url) throws IOException{
