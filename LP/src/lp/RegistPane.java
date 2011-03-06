@@ -28,6 +28,7 @@ public class RegistPane extends javax.swing.JPanel {
     public RegistPane(NavigatorDialog parent) {
         initComponents();
         this.parent = parent;
+        parent.setTitle("注册向导");
     }
 
     /** This method is called from within the constructor to
@@ -181,6 +182,7 @@ public class RegistPane extends javax.swing.JPanel {
         }
         LPApp.getApplication().user.learner = LPApp.lpModel.getELearner(LPApp.getApplication().user.username);
         parent.setNext();
+        parent.setTitle("初始化向导：选择感兴趣的知识点");
 
     }//GEN-LAST:event_jButton4ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables

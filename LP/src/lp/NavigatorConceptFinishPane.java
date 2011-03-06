@@ -4,9 +4,9 @@
  */
 
 /*
- * NavigatorFinishPane.java
+ * NavigatorConceptFinishPane.java
  *
- * Created on 2011-1-4, 16:27:54
+ * Created on 2011-3-5, 15:29:46
  */
 
 package lp;
@@ -18,23 +18,24 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import ontology.EConcept;
 import ontology.EInterest;
+import ontology.EPerformance;
 import ontology.people.ELearner;
 
 /**
  *
  * @author ghh
  */
-public class NavigatorFinishPane extends javax.swing.JPanel {
-
-    public  ArrayList<EInterest> interestNodes = new ArrayList<EInterest>();
+public class NavigatorConceptFinishPane extends javax.swing.JPanel {
+    public  ArrayList<EPerformance> performanceNodes = new ArrayList<EPerformance>();
     private NavigatorDialog parent;
-    /** Creates new form NavigatorFinishPane */
-    public NavigatorFinishPane(ArrayList<EInterest> selectedNodes,NavigatorDialog parent) {
+
+    /** Creates new form NavigatorConceptFinishPane */
+    public NavigatorConceptFinishPane(ArrayList<EPerformance> selectedNodes,NavigatorDialog parent) {
         this.parent = parent;
-        parent.setTitle("初始化向导：确认感兴趣的知识点");
-        this.interestNodes = selectedNodes;
-        //this.interestNodes = this.parent.nodes;
+        parent.setTitle("初始化向导：确认正在学习的知识点");
+        this.performanceNodes = selectedNodes;
         initComponents();
+
         DefaultTableModel model;
         model = (DefaultTableModel) jTable1.getModel();
 
@@ -42,15 +43,16 @@ public class NavigatorFinishPane extends javax.swing.JPanel {
             model.removeRow(index);
         }
 
-        for (int i=0;i<interestNodes.size();i++)
+        for (int i=0;i<performanceNodes.size();i++)
         {
-            EInterest temp = interestNodes.get(i);
-            String cid = temp.getEConcept().getCid();
+            EPerformance temp = performanceNodes.get(i);
+            String cid = temp.getConcept().getCid();
             EConcept ec = LPApp.lpModel.getEConcept(cid);
             //String interestId = this.interestNodes.get(i).getId();
             String cname = ec.getName();
-            float value = temp.getValue();
-            Object[] oa = {cid,cname,value};
+          //  float value = temp.getValue();
+          //  Object[] oa = {cid,cname,value};
+            Object[] oa = {cid,cname};
             model.addRow(oa);
         }
         jTable1.updateUI();
@@ -70,13 +72,8 @@ public class NavigatorFinishPane extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
-        setName("Form"); // NOI18N
-
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(NavigatorFinishPane.class);
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setText("您添加了学习中的知识点：");
         jLabel1.setName("jLabel1"); // NOI18N
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
@@ -86,14 +83,14 @@ public class NavigatorFinishPane extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "知识点", "兴趣值"
+                "ID", "知识点"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Float.class
+                java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -107,7 +104,7 @@ public class NavigatorFinishPane extends javax.swing.JPanel {
         jTable1.setName("jTable1"); // NOI18N
         jScrollPane1.setViewportView(jTable1);
 
-        jButton3.setLabel(resourceMap.getString("jButton3.label")); // NOI18N
+        jButton3.setLabel("上一步");
         jButton3.setName("jButton3"); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,27 +112,11 @@ public class NavigatorFinishPane extends javax.swing.JPanel {
             }
         });
 
-        jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
+        jButton4.setText("完成");
         jButton4.setName("jButton4"); // NOI18N
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                finishActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setLabel(resourceMap.getString("jButton2.label")); // NOI18N
-        jButton2.setName("jButton2"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton4finishActionPerformed(evt);
             }
         });
 
@@ -143,6 +124,7 @@ public class NavigatorFinishPane extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 637, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -151,10 +133,6 @@ public class NavigatorFinishPane extends javax.swing.JPanel {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -168,66 +146,75 @@ public class NavigatorFinishPane extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void finishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishActionPerformed
-      /*
-        DefaultTableModel model;
-        model = (DefaultTableModel) jTable1.getModel();
-        int row = model.getRowCount();
-       
-        for (int i =0;i<row;i++)
-        {
-            String cid = model.getValueAt(i, 0).toString();
-            EConcept ec = LPApp.lpModel.getEConcept(cid);            
-            float value = Float.parseFloat(model.getValueAt(i, 2).toString());
-            ELearner el = LPApp.getApplication().user.learner;
-            EInterest ei = LPApp.lpModel.getEInterest(el, ec);          
-            ei.setValue(value);         
-
-        }
-       */
-         parent.nodes = interestNodes;
-         parent.setNext();
-         parent.setTitle("初始化向导：选择正在学习的知识点");
-            
-    }//GEN-LAST:event_finishActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         parent.setPrevious();
-       // parent.setTitle("注册向导");
-        interestNodes = new ArrayList<EInterest>();
+       
+        performanceNodes = new ArrayList<EPerformance>();
         DefaultTableModel model;
         model = (DefaultTableModel) jTable1.getModel();
         for (int index = model.getRowCount() - 1; index >= 0; index--) {
             model.removeRow(index);
         }
         jTable1.updateUI();
-        
-       //parent.nodes = new ArrayList<EInterest>();
-    }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_jButton1ActionPerformed
+        //parent.nodes = new ArrayList<EInterest>();
+}//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_jButton2ActionPerformed
+    private void jButton4finishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4finishActionPerformed
+     /*   DefaultTableModel model;
+        model = (DefaultTableModel) jTable1.getModel();
+        int row = model.getRowCount();
+        System.out.println(row);
+        for (int i =0;i<row;i++) {
+            String cid = model.getValueAt(i, 0).toString();
+            EConcept ec = LPApp.lpModel.getEConcept(cid);
+            //float value = Float.parseFloat(model.getValueAt(i, 2).toString());
+            ELearner el = LPApp.getApplication().user.learner;
+            EPerformance ep = LPApp.lpModel.getEPerformance(el, ec);
+            //ep.setValue(value);
+        }
+        */
+        // parent.setVisible(false);
+        // parent.dispose();
+         parent.nodesP = performanceNodes;
+         parent.setNext();
+         parent.setTitle("用户使用向导");
+
+         //将感兴趣的知识点和学习中的知识点写入model
+         for(int i = 0; i <parent.nodes.size();i++)
+         {
+             EInterest ei = parent.nodes.get(i);
+            try {
+                LPApp.lpModel.addEInterest(ei);
+            } catch (IndividualExistException ex) {
+                Logger.getLogger(NavigatorConceptFinishPane.class.getName()).log(Level.SEVERE, null, ex);
+            }
+         }
+
+          for(int i = 0; i <parent.nodesP.size();i++)
+         {
+             EPerformance ep = parent.nodesP.get(i);
+            try {
+                LPApp.lpModel.addEPerfomance(ep);
+            } catch (IndividualExistException ex) {
+                Logger.getLogger(NavigatorConceptFinishPane.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           
+         }
+         
+    }//GEN-LAST:event_jButton4finishActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;

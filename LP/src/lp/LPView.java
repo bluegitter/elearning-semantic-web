@@ -180,6 +180,7 @@ public class LPView extends FrameView {
         jMenuItem7 = new javax.swing.JMenuItem();
         javax.swing.JMenu helpMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
+        Navigator = new javax.swing.JMenuItem();
         statusPanel = new javax.swing.JPanel();
         javax.swing.JSeparator statusPanelSeparator = new javax.swing.JSeparator();
         statusMessageLabel = new javax.swing.JLabel();
@@ -209,11 +210,11 @@ public class LPView extends FrameView {
 
         menuBar.setName("menuBar"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(lp.LPApp.class).getContext().getResourceMap(LPView.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(LPView.class);
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(lp.LPApp.class).getContext().getActionMap(LPView.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance().getContext().getActionMap(LPView.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         fileMenu.add(exitMenuItem);
@@ -278,6 +279,15 @@ public class LPView extends FrameView {
         aboutMenuItem.setAction(actionMap.get("showAboutBox")); // NOI18N
         aboutMenuItem.setName("aboutMenuItem"); // NOI18N
         helpMenu.add(aboutMenuItem);
+
+        Navigator.setText(resourceMap.getString("Navigator.text")); // NOI18N
+        Navigator.setName("Navigator"); // NOI18N
+        Navigator.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NavigatorActionPerformed(evt);
+            }
+        });
+        helpMenu.add(Navigator);
 
         menuBar.add(helpMenu);
 
@@ -423,7 +433,18 @@ public class LPView extends FrameView {
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
         setMainTool(LPApp.PROFILE);
     }//GEN-LAST:event_jToggleButton5ActionPerformed
+
+    private void NavigatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NavigatorActionPerformed
+        // TODO add your handling code here:
+          JDialog d = new NavigatorDialog(LPApp.getApplication().getMainFrame());
+        d.setTitle("向导");
+        d.setModal(true);
+        d.pack();
+        d.setVisible(true);
+    }//GEN-LAST:event_NavigatorActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Navigator;
     javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenu jMenu1;
