@@ -4,15 +4,13 @@
  */
 
 /*
- * ResourceRatingDialog.java
+ * ResourceRatingPane.java
  *
- * Created on 2011-3-6, 12:33:51
+ * Created on 2011-3-8, 0:11:36
  */
 package lp.eresource;
 
 import exception.jena.IndividualNotExistException;
-import java.awt.Dimension;
-import java.awt.Rectangle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -21,48 +19,25 @@ import ontology.EPortfolio;
 
 /**
  *
- * @author student
+ * @author t
  */
-public class ResourceRatingDialog extends javax.swing.JDialog {
+public class ResourceRatingPane extends javax.swing.JPanel {
 
     private MyPortfolioPane portPane;
     private EPortfolio port;
-
-    public ResourceRatingDialog(EPortfolio port, MyPortfolioPane portPane) {
+private JDialog parent;
+    public ResourceRatingPane(EPortfolio port, MyPortfolioPane portPane,JDialog parent) {
         super();
         initComponents();
         this.portPane = portPane;
         this.port = port;
+        this.parent = parent;
         init();
-    }
-
-    /** Creates new form ResourceRatingDialog */
-    public ResourceRatingDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-        init();
-
     }
 
     private void init() {
-        centerScreen();
         jComboBox1.setSelectedIndex(port.getRate());
         jTextArea1.setText(port.getRateString());
-        setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-    }
-
-    private void closeDialog() {
-        this.setVisible(false);
-        this.dispose();
-    }
-
-    private void centerScreen() {
-        Dimension dim = getToolkit().getScreenSize();
-        Rectangle abounds = getBounds();
-        setLocation((dim.width - abounds.width) / 2,
-                (dim.height - abounds.height) / 2);
-        requestFocus();
-        this.setVisible(true);
     }
 
     /** This method is called from within the constructor to
@@ -74,14 +49,27 @@ public class ResourceRatingDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jComboBox1 = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
-        jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        jComboBox1.setName("jComboBox1"); // NOI18N
+
+        jButton1.setText("提交");
+        jButton1.setName("jButton1"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1submitRate(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("宋体", 1, 14));
+        jLabel1.setText("评分");
+        jLabel1.setName("jLabel1"); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "资源评价内容", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         jPanel1.setName("jPanel1"); // NOI18N
@@ -104,25 +92,11 @@ public class ResourceRatingDialog extends javax.swing.JDialog {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
         );
 
-        jButton1.setText("提交");
-        jButton1.setName("jButton1"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                submitRate(evt);
-            }
-        });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
-        jComboBox1.setName("jComboBox1"); // NOI18N
-
-        jLabel1.setFont(new java.awt.Font("宋体", 1, 14)); // NOI18N
-        jLabel1.setText("评分");
-        jLabel1.setName("jLabel1"); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 313, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -135,10 +109,11 @@ public class ResourceRatingDialog extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 264, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -149,41 +124,21 @@ public class ResourceRatingDialog extends javax.swing.JDialog {
                     .addComponent(jLabel1))
                 .addContainerGap())
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void submitRate(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitRate
+    private void jButton1submitRate(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1submitRate
         // TODO add your handling code here:
         port.setRate(Integer.valueOf((String) jComboBox1.getSelectedItem()));
         port.setRateString(jTextArea1.getText());
         try {
             LPApp.lpModel.updateEPortfolio(port);
-            portPane.updateResourceTable();
-            closeDialog();
+             portPane.updateResourceTable();
+             parent.dispose();
         } catch (IndividualNotExistException ex) {
-            Logger.getLogger(ResourceRatingDialog.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ResourceRatingPane.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_submitRate
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                ResourceRatingDialog dialog = new ResourceRatingDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+       
+}//GEN-LAST:event_jButton1submitRate
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;

@@ -4,17 +4,15 @@
  */
 package lp.eresource;
 
-import java.awt.Frame;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import lp.LPApp;
-import lp.MyPortfolioPane;
+import lp.log.PopCenterDialog;
 import lp.log.PopMesDialog;
 import ontology.EConcept;
 import ontology.EPortfolio;
@@ -26,55 +24,54 @@ import ontology.resources.ISCB_Resource;
  */
 public class MyPortfolioActionListener implements MouseListener {
 
-    private ArrayList<EPortfolio> resourceList;
     private JTable table;
     private MyPortfolioPane portfolioPane;
-    private EPortfolio portfolio;
-    private static ResourceRatingDialog resRate;
-    int c = 0;
 
-    public MyPortfolioActionListener(MyPortfolioPane portfolioPane, ArrayList<EPortfolio> resourceList) {
+    public MyPortfolioActionListener(MyPortfolioPane portfolioPane) {
         this.portfolioPane = portfolioPane;
         this.table = portfolioPane.resources;
-        this.resourceList = resourceList;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getClickCount() == 1 && e.getComponent().isEnabled()) {
+        if (e.getClickCount() == 2 && e.getComponent().isEnabled()) {
             Point p = e.getPoint();
             int row = table.rowAtPoint(p);
             int column = table.columnAtPoint(p);
             if (column == 2) {
-                portfolio = resourceList.get(row);
+                EPortfolio portfolio = portfolioPane.resourceList.get(row);
                 ISCB_Resource res = portfolio.getEResource();
-                c++;
                 if (portfolio.getRate() == 0) {
-                    resRate = new ResourceRatingDialog(portfolio, portfolioPane);
-                    resRate.setTitle("资源评价" + c);
-                    resRate.pack();
+                    PopCenterDialog pcd = new PopCenterDialog();
+                    pcd.setContentPane(new ResourceRatingPane(portfolio, portfolioPane, pcd));
+                    pcd.setTitle("资源评价");
+                    pcd.pack();
+                    pcd.centerScreen();
                 } else {
-                    resRate = new ResourceRatingDialog(portfolio, portfolioPane);
-                    resRate.setTitle("资源评价内容" + c);
-                    resRate.pack();
+                    PopCenterDialog pcd = new PopCenterDialog();
+                    pcd.setContentPane(new ResourceRatingPane(portfolio, portfolioPane, pcd));
+                    pcd.setTitle("资源评价内容");
+                    pcd.pack();
+                    pcd.centerScreen();
                 }
             }
             if (column == 3) {
-                PopMesDialog conDisplay = new PopMesDialog();
-                EPortfolio f = resourceList.get(row);
+                PopCenterDialog conDisplay = new PopCenterDialog();
+                EPortfolio f = portfolioPane.resourceList.get(row);
                 ISCB_Resource res = f.getEResource();
                 ArrayList<EConcept> con = LPApp.lpModel.getEConcepts(res);
                 StringBuilder sb = new StringBuilder();
                 for (EConcept c : con) {
                     sb.append(c.getName());
-                    sb.append(" | ");
+                    sb.append("\n");
                 }
-                sb.deleteCharAt(sb.length() - 1);
-                JTextField text = new JTextField(sb.toString());
+                JTextArea text = new JTextArea(sb.toString());
                 text.setVisible(true);
                 conDisplay.setContentPane(text);
                 conDisplay.setTitle("与资源关联的知识点");
                 conDisplay.pack();
+                conDisplay.centerScreen();
+
             }
 //            System.out.println("row" + row + "\tcolumn" + column);
         }

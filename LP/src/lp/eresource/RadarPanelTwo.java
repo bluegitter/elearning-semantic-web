@@ -4,11 +4,12 @@
  */
 
 /*
- * RadarPanel.java
+ * RadarPanelTwo.java
  *
- * Created on 2010-12-20, 14:38:01
+ * Created on 2011-3-7, 10:20:52
  */
-package lp;
+
+package lp.eresource;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -19,15 +20,14 @@ import java.awt.geom.Line2D;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JSlider;
-
 /**
  *
- * @author David
+ * @author t
  */
-public class RadarPanel extends javax.swing.JPanel {
+public class RadarPanelTwo extends javax.swing.JPanel {
 
-    /** Creates new form RadarPanel */
-    public RadarPanel() {
+    /** Creates new form RadarPanelTwo */
+     public RadarPanelTwo() {
         initComponents();
         for (int i = 0; i < 6; i++) {
                 mx1[i] = cx - 0.25 * (cx - x[i]);
@@ -120,106 +120,120 @@ public class RadarPanel extends javax.swing.JPanel {
         jSlider4 = new javax.swing.JSlider();
         jSlider5 = new javax.swing.JSlider();
         jSlider6 = new javax.swing.JSlider();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
-        setMaximumSize(new java.awt.Dimension(411, 500));
-        setMinimumSize(new java.awt.Dimension(411, 500));
-        setName("Form"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(411, 500));
-
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(lp.LPApp.class).getContext().getResourceMap(RadarPanel.class);
-        jLabel1.setFont(resourceMap.getFont("jLabel1.font")); // NOI18N
-        jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
+        jLabel1.setFont(new java.awt.Font("微软雅黑", 0, 14));
+        jLabel1.setText("概念掌握");
         jLabel1.setName("jLabel1"); // NOI18N
 
-        jLabel2.setFont(resourceMap.getFont("jLabel2.font")); // NOI18N
-        jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
+        jLabel2.setFont(new java.awt.Font("微软雅黑", 0, 14));
+        jLabel2.setText("难点理解");
         jLabel2.setName("jLabel2"); // NOI18N
 
-        jLabel3.setFont(resourceMap.getFont("jLabel4.font")); // NOI18N
-        jLabel3.setText(resourceMap.getString("jLabel3.text")); // NOI18N
+        jLabel3.setFont(new java.awt.Font("微软雅黑", 0, 14));
+        jLabel3.setText("实践能力");
         jLabel3.setName("jLabel3"); // NOI18N
 
-        jLabel4.setFont(resourceMap.getFont("jLabel4.font")); // NOI18N
-        jLabel4.setText(resourceMap.getString("jLabel4.text")); // NOI18N
+        jLabel4.setFont(new java.awt.Font("微软雅黑", 0, 14));
+        jLabel4.setText("扩展学习");
         jLabel4.setName("jLabel4"); // NOI18N
 
-        jLabel5.setFont(resourceMap.getFont("jLabel4.font")); // NOI18N
-        jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
+        jLabel5.setFont(new java.awt.Font("微软雅黑", 0, 14));
+        jLabel5.setText("作业评估");
         jLabel5.setName("jLabel5"); // NOI18N
 
-        jLabel6.setFont(resourceMap.getFont("jLabel4.font")); // NOI18N
-        jLabel6.setText(resourceMap.getString("jLabel6.text")); // NOI18N
+        jLabel6.setFont(new java.awt.Font("微软雅黑", 0, 14));
+        jLabel6.setText("创新培养");
         jLabel6.setName("jLabel6"); // NOI18N
 
         jSlider1.setName("jSlider1"); // NOI18N
         jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                repaintRadar(evt);
+                jSlider1repaintRadar(evt);
             }
         });
 
         jSlider2.setName("jSlider2"); // NOI18N
         jSlider2.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                repaintRadar(evt);
+                jSlider2repaintRadar(evt);
             }
         });
 
         jSlider3.setName("jSlider3"); // NOI18N
         jSlider3.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                repaintRadar(evt);
+                jSlider3repaintRadar(evt);
             }
         });
 
         jSlider4.setName("jSlider4"); // NOI18N
         jSlider4.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                repaintRadar(evt);
+                jSlider4repaintRadar(evt);
             }
         });
 
         jSlider5.setName("jSlider5"); // NOI18N
         jSlider5.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                repaintRadar(evt);
+                jSlider5repaintRadar(evt);
             }
         });
 
         jSlider6.setName("jSlider6"); // NOI18N
         jSlider6.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                repaintRadar(evt);
+                jSlider6repaintRadar(evt);
             }
         });
+
+        jButton1.setText("返回");
+        jButton1.setName("jButton1"); // NOI18N
+
+        jButton2.setText("提交");
+        jButton2.setName("jButton2"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 454, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSlider6, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                    .addComponent(jSlider5, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                    .addComponent(jSlider4, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                    .addComponent(jSlider3, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                    .addComponent(jSlider2, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
-                    .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSlider6, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                            .addComponent(jSlider5, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                            .addComponent(jSlider4, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                            .addComponent(jSlider3, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                            .addComponent(jSlider2, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                            .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(27, 27, 27)
+                        .addComponent(jButton2)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 526, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -245,14 +259,38 @@ public class RadarPanel extends javax.swing.JPanel {
                         .addComponent(jSlider5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSlider6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(305, Short.MAX_VALUE))
+                .addContainerGap(310, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void repaintRadar(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_repaintRadar
+    private void jSlider1repaintRadar(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1repaintRadar
         this.repaint();
-    }//GEN-LAST:event_repaintRadar
+}//GEN-LAST:event_jSlider1repaintRadar
+
+    private void jSlider2repaintRadar(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider2repaintRadar
+        this.repaint();
+}//GEN-LAST:event_jSlider2repaintRadar
+
+    private void jSlider3repaintRadar(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider3repaintRadar
+        this.repaint();
+}//GEN-LAST:event_jSlider3repaintRadar
+
+    private void jSlider4repaintRadar(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider4repaintRadar
+        this.repaint();
+}//GEN-LAST:event_jSlider4repaintRadar
+
+    private void jSlider5repaintRadar(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider5repaintRadar
+        this.repaint();
+}//GEN-LAST:event_jSlider5repaintRadar
+
+    private void jSlider6repaintRadar(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider6repaintRadar
+        this.repaint();
+}//GEN-LAST:event_jSlider6repaintRadar
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -266,4 +304,5 @@ public class RadarPanel extends javax.swing.JPanel {
     private javax.swing.JSlider jSlider5;
     private javax.swing.JSlider jSlider6;
     // End of variables declaration//GEN-END:variables
+
 }

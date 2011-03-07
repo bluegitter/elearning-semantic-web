@@ -10,12 +10,15 @@
  */
 package lp;
 
+import lp.eresource.MyPerformancePane;
+import lp.eresource.MyPortfolioPane;
 import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.table.DefaultTableModel;
 import lp.interest.UserInterestPane;
+import lp.log.PopCenterDialog;
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.EPerformance;
@@ -55,17 +58,19 @@ public class UserProfilePane extends javax.swing.JPanel {
     private void initUserPane(ELearner el) {
         // initial basic info for user
         username.setText(el.getName());
-        gender.setText(el.getGender());
+        gender.setText("保密");
         email.setText(el.getEmail());
         address.setText(el.getAddress());
         //Image thead = new Image("/lp/src/resource.malehead.png");
         ImageIcon icon = new ImageIcon("src/lp/resources/malehead.png");
-        if(el.getGender() == "male")
+        System.out.println("|" + el.getGender() + "|");
+        if (el.getGender().trim().equals("male")) {
             jLabel5.setIcon(icon);
-        else
-        {
+            gender.setText("男");
+        } else {
             icon = new ImageIcon("src/lp/resources/femalehead.png");
             jLabel5.setIcon(icon);
+            gender.setText("女");
         }
 
 
@@ -183,7 +188,7 @@ public class UserProfilePane extends javax.swing.JPanel {
             }
         });
 
-        gender.setBackground(resourceMap.getColor("gender.background")); // NOI18N
+        gender.setBackground(new java.awt.Color(240, 240, 240));
         gender.setText(resourceMap.getString("gender.text")); // NOI18N
         gender.setName("gender"); // NOI18N
 
@@ -450,22 +455,33 @@ public class UserProfilePane extends javax.swing.JPanel {
 
     private void moreConceptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreConceptsActionPerformed
         // TODO add your handling code here:
-        JDialog jd = new JDialog();
-        jd.setContentPane(new MyPerformancePane());
-        jd.setTitle("已学过的知识点");
-        jd.pack();
+        PopCenterDialog pcd = new PopCenterDialog();
+        pcd.setContentPane(new MyPerformancePane());
+        pcd.setTitle("已学过的知识点");
+        pcd.pack();
+        pcd.centerScreen();
+//
+//        JDialog jd = new JDialog();
+//        jd.setContentPane(new MyPerformancePane());
+//        jd.setTitle("已学过的知识点");
+//        jd.pack();
+//
+//        jd.setVisible(true);
 
-        jd.setVisible(true);
-        
     }//GEN-LAST:event_moreConceptsActionPerformed
 
     private void moreResourcesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreResourcesActionPerformed
         // TODO add your handling code here:
-        JDialog jd = new JDialog();
-        jd.setContentPane(new MyPortfolioPane());
-        jd.setTitle("已学过的资源");
-        jd.pack();
-        jd.setVisible(true);
+        PopCenterDialog pcd = new PopCenterDialog();
+        pcd.setContentPane(new MyPortfolioPane());
+        pcd.setTitle("已学过的资源");
+        pcd.pack();
+        pcd.centerScreen();
+//        JDialog jd = new JDialog();
+//        jd.setContentPane(new MyPortfolioPane());
+//        jd.setTitle("已学过的资源");
+//        jd.pack();
+//        jd.setVisible(true);
     }//GEN-LAST:event_moreResourcesActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField address;
