@@ -3,6 +3,9 @@
  */
 package lp;
 
+import lp.navigator.RegistPane;
+import lp.navigator.NavigatorDialog;
+import lp.navigator.NavigatorPane;
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
 import org.jdesktop.application.SingleFrameApplication;
@@ -441,6 +444,7 @@ public class LPView extends FrameView {
         d.setModal(true);
         d.pack();
         d.setVisible(true);
+
     }//GEN-LAST:event_NavigatorActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
