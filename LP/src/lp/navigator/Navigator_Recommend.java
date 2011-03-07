@@ -9,7 +9,9 @@
  * Created on 2011-1-15, 3:54:41
  */
 
-package lp;
+package lp.navigator;
+
+import lp.LPApp;
 
 /**
  *

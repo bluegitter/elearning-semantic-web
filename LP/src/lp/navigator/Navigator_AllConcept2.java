@@ -9,7 +9,9 @@
  * Created on 2011-1-15, 2:56:00
  */
 
-package lp;
+package lp.navigator;
+
+import lp.LPApp;
 
 /**
  *
@@ -99,9 +101,7 @@ private NavigatorDialog parent;
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addGap(54, 54, 54))
+                                    .addComponent(jLabel1)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(33, 33, 33)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +115,6 @@ private NavigatorDialog parent;
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -145,7 +144,6 @@ private NavigatorDialog parent;
                 .addGap(15, 15, 15))
         );
 
-        jLabel3.getAccessibleContext().setAccessibleName("浏览某知识点的相应资源，学习资源并进行评价");
         jLabel4.getAccessibleContext().setAccessibleName("向导：点击某知识点，查看资源列表；选择要学习的资源进行学习；完成后进行学习效果评估");
         jLabel5.getAccessibleContext().setAccessibleName("完成后进行学习效果评估");
     }// </editor-fold>//GEN-END:initComponents

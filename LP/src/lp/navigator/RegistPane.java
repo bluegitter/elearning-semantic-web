@@ -8,12 +8,15 @@
  *
  * Created on 2011-1-3, 17:43:00
  */
-package lp;
+package lp.navigator;
 
+import lp.navigator.NavigatorDialog;
 import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import lp.EUser;
+import lp.LPApp;
 import ontology.people.ELearner;
 
 /**

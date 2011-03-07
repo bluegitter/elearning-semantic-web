@@ -9,7 +9,7 @@
  * Created on 2011-3-5, 15:27:44
  */
 
-package lp;
+package lp.navigator;
 
 import java.util.ArrayList;
 import exception.jena.IndividualExistException;
@@ -37,6 +37,7 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 import jena.impl.ELearnerModelImpl;
+import lp.LPApp;
 import lp.display.mytree.CheckNode;
 import lp.display.mytree.CheckRenderer;
 import ontology.EConcept;

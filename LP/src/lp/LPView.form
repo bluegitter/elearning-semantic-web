@@ -47,11 +47,18 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
           </AuxValues>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="logoutItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="logoutItem.text"/>
+                <Property name="name" type="java.lang.String" value="logoutItem" noResource="true"/>
+              </Properties>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="exitMenuItem">
               <Properties>
                 <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
                   <action class="org.jdesktop.application.Application" id="quit" methodName="quit"/>
                 </Property>
+                <Property name="text" type="java.lang.String" resourceKey="exitMenuItem.text"/>
                 <Property name="name" type="java.lang.String" value="exitMenuItem" noResource="true"/>
               </Properties>
               <AuxValues>
@@ -151,18 +158,6 @@
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
           </AuxValues>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="aboutMenuItem">
-              <Properties>
-                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
-                  <action class="lp.LPView" id="showAboutBox" methodName="showAboutBox"/>
-                </Property>
-                <Property name="name" type="java.lang.String" value="aboutMenuItem" noResource="true"/>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="&quot; type=&quot;boolean&quot; value=&quot;false&quot;/" type="java.lang.Boolean" value="true"/>
-                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
-              </AuxValues>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="Navigator">
               <Properties>
                 <Property name="text" type="java.lang.String" resourceKey="Navigator.text"/>
@@ -171,6 +166,19 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NavigatorActionPerformed"/>
               </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="aboutMenuItem">
+              <Properties>
+                <Property name="action" type="javax.swing.Action" editor="org.netbeans.modules.swingapp.ActionEditor">
+                  <action class="lp.LPView" id="showAboutBox" methodName="showAboutBox"/>
+                </Property>
+                <Property name="text" type="java.lang.String" resourceKey="aboutMenuItem.text"/>
+                <Property name="name" type="java.lang.String" value="aboutMenuItem" noResource="true"/>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="&quot; type=&quot;boolean&quot; value=&quot;false&quot;/" type="java.lang.Boolean" value="true"/>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="0"/>
+              </AuxValues>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -276,6 +284,8 @@
             <Property name="font" type="java.awt.Font" resourceKey="jToggleButton1.font"/>
             <Property name="icon" type="javax.swing.Icon" resourceKey="jToggleButton1.icon"/>
             <Property name="text" type="java.lang.String" resourceKey="jToggleButton1.text"/>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="jToggleButton1.toolTipText"/>
+            <Property name="actionCommand" type="java.lang.String" resourceKey="jToggleButton1.actionCommand"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="name" type="java.lang.String" value="jToggleButton1" noResource="true"/>
@@ -343,14 +353,32 @@
             </Property>
             <Property name="font" type="java.awt.Font" resourceKey="jToggleButton5.font"/>
             <Property name="icon" type="javax.swing.Icon" resourceKey="jToggleButton5.icon"/>
-            <Property name="text" type="java.lang.String" resourceKey="jToggleButton5.text"/>
+            <Property name="actionCommand" type="java.lang.String" resourceKey="jToggleButton5.actionCommand"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="label" type="java.lang.String" resourceKey="jToggleButton5.label"/>
             <Property name="name" type="java.lang.String" value="jToggleButton5" noResource="true"/>
             <Property name="verticalTextPosition" type="int" value="3"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton5ActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JToggleButton" name="jToggleButton6">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="buttonGroup1"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" resourceKey="jToggleButton6.font"/>
+            <Property name="icon" type="javax.swing.Icon" resourceKey="jToggleButton6.icon"/>
+            <Property name="text" type="java.lang.String" resourceKey="jToggleButton6.text"/>
+            <Property name="focusable" type="boolean" value="false"/>
+            <Property name="horizontalTextPosition" type="int" value="0"/>
+            <Property name="name" type="java.lang.String" value="jToggleButton6" noResource="true"/>
+            <Property name="verticalTextPosition" type="int" value="3"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jToggleButton6ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
