@@ -50,8 +50,6 @@ public class ConceptPane extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         uriLabel = new javax.swing.JLabel();
         learnBtn = new javax.swing.JButton();
-        examBtn = new javax.swing.JButton();
-        examScore = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "概念", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -77,17 +75,6 @@ public class ConceptPane extends javax.swing.JPanel {
             }
         });
 
-        examBtn.setText("学习效果评估");
-        examBtn.setEnabled(false);
-        examBtn.setName("examBtn"); // NOI18N
-        examBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                examBtnActionPerformed(evt);
-            }
-        });
-
-        examScore.setName("examScore"); // NOI18N
-
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(160, 160, 160), 1, true), "相关资源", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("微软雅黑", 0, 14))); // NOI18N
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -106,12 +93,7 @@ public class ConceptPane extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(uriLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
                             .addComponent(conceptName)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(learnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(examBtn)
-                        .addGap(51, 51, 51)
-                        .addComponent(examScore, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(learnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -127,12 +109,8 @@ public class ConceptPane extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(uriLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(learnBtn)
-                        .addComponent(examBtn))
-                    .addComponent(examScore, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(learnBtn)
+                .addGap(11, 11, 11)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -177,23 +155,23 @@ public class ConceptPane extends javax.swing.JPanel {
     public void updateData() {
         if (cdec != null) {
             EPerformance ep = LPApp.lpModel.getEPerformance(new ELearner(LPApp.getApplication().user.username), cdec);
-            this.examScore.setText("");
+//            this.examScore.setText("");
             if (ep != null) {
                 if (ep.getValue() > -0.5) {
                     this.learnBtn.setText("已学过");
-                    examScore.setVisible(true);
-                    examScore.setText("成绩为" + ep.getValue());
+//                    examScore.setVisible(true);
+//                    examScore.setText("成绩为" + ep.getValue());
                 } else {
                     this.learnBtn.setText("正在学习");
-                    examScore.setVisible(false);
+//                    examScore.setVisible(false);
                 }
                 this.learnBtn.setEnabled(false);
-                this.examBtn.setEnabled(true);
+//                this.examBtn.setEnabled(true);
             } else {
                 learnBtn.setText("学习它");
                 learnBtn.setEnabled(true);
-                examBtn.setEnabled(false);
-                examScore.setVisible(false);
+//                examBtn.setEnabled(false);
+//                examScore.setVisible(false);
             }
         }
     }
@@ -205,13 +183,8 @@ public class ConceptPane extends javax.swing.JPanel {
         }
         super.setVisible(b);
     }
-    private void examBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examBtnActionPerformed
-        this.jScrollPane1.setViewportView(new RadarPanel());
-}//GEN-LAST:event_examBtnActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel conceptName;
-    private javax.swing.JButton examBtn;
-    private javax.swing.JLabel examScore;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

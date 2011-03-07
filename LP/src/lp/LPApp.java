@@ -14,6 +14,7 @@ import jena.impl.ELearnerModelImpl;
 import lp.log.LPLogger;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
+import util.ColorConstant;
 import util.Constant;
 import util.StringExchanger;
 
@@ -51,7 +52,9 @@ public class LPApp extends SingleFrameApplication {
         view.mainPanel.setLayout(new CentralLayout());
         loginPane = new LoginPanel();
 
+
         view.mainPanel.add(loginPane);
+        ColorConstant.backgroundGrayColor = view.mainPanel.getBackground();
         view.lpToolBar.setVisible(false);
         view.getFrame().setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         show(view);

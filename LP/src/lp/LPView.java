@@ -169,6 +169,7 @@ public class LPView extends FrameView {
         mainPanel = new javax.swing.JPanel();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
+        loginItem = new javax.swing.JMenuItem();
         logoutItem = new javax.swing.JMenuItem();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -211,7 +212,7 @@ public class LPView extends FrameView {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 493, Short.MAX_VALUE)
+            .addGap(0, 495, Short.MAX_VALUE)
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -219,6 +220,11 @@ public class LPView extends FrameView {
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(LPView.class);
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
+
+        loginItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, 0));
+        loginItem.setText(resourceMap.getString("loginItem.text")); // NOI18N
+        loginItem.setName("loginItem"); // NOI18N
+        fileMenu.add(loginItem);
 
         logoutItem.setText(resourceMap.getString("logoutItem.text")); // NOI18N
         logoutItem.setName("logoutItem"); // NOI18N
@@ -502,6 +508,7 @@ public class LPView extends FrameView {
     private javax.swing.JToggleButton jToggleButton4;
     private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JToggleButton jToggleButton6;
+    private javax.swing.JMenuItem loginItem;
     private javax.swing.JMenuItem logoutItem;
     public javax.swing.JToolBar lpToolBar;
     public javax.swing.JPanel mainPanel;

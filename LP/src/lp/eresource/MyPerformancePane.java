@@ -4,73 +4,49 @@
  */
 
 /*
- * MyPortfolioPane.java
+ * MyPerformancePane.java
  *
- * Created on 2011-1-5, 19:33:00
+ * Created on 2011-1-5, 19:32:47
  */
-package lp;
+package lp.eresource;
 
 import java.util.ArrayList;
-import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
-import jena.impl.ELearnerModelImpl;
-import lp.eresource.MyPortfolioActionListener;
+import lp.LPApp;
+import lp.eresource.MyPerformanceActionListener;
 import ontology.EConcept;
-import ontology.EPortfolio;
+import ontology.EPerformance;
 import ontology.people.ELearner;
-import ontology.resources.ISCB_Resource;
 
-/**
- *
- * @author ghh
- */
-public class MyPortfolioPane extends javax.swing.JPanel {
+public class MyPerformancePane extends javax.swing.JPanel {
 
-    public ArrayList<EPortfolio> resourceList;
     private ELearner el;
-    public static void main(String[] args) {
-        javax.swing.JFrame f = new javax.swing.JFrame();
-        MyPortfolioPane uip = new MyPortfolioPane();
-        f.add(uip);
-        f.pack();
-        f.setVisible(true);
-    }
+    public ArrayList<EPerformance> perList;
 
-    /** Creates new form MyPortfolioPane */
-    public MyPortfolioPane() {
+    /** Creates new form MyPerformancePane */
+    public MyPerformancePane() {
         initComponents();
-        myInit();
-
-    }
-
-    private void myInit() {
-        ELearnerModelImpl emi = new ELearnerModelImpl();
-        el = emi.getELearner("el001");
-        updateResourceTable();
-    }
-
-    public void updateResourceTable() {
         //initial concepts in performance for user
-        DefaultTableModel model = (DefaultTableModel) resources.getModel();
+        el = LPApp.getApplication().user.learner;
+        updatePerformanceTable();
+        concepts.addMouseListener(new MyPerformanceActionListener(this));
+    }
+
+    public void updatePerformanceTable() {
+        DefaultTableModel model;
+        model = (DefaultTableModel) concepts.getModel();
         for (int index = model.getRowCount() - 1; index >= 0; index--) {
             model.removeRow(index);
         }
-        resourceList = LPApp.lpModel.getEPortfolios(el);
-        for (int i = 0; i < resourceList.size(); i++) {
-            EPortfolio f = resourceList.get(i);
-            System.out.println("ff:"+f);
-            ISCB_Resource res = f.getEResource();
-            ArrayList<EConcept> con = LPApp.lpModel.getEConcepts(res);
-            String s = con.size() + "个知识点";
-            String userRate = "点击评价";
-            if(f.getRate() !=0){
-                userRate="资源评分："+f.getRate();
-            }
-            Object[] oa = {res.getName(), res.getDifficulty(), userRate, s};
+
+        perList = LPApp.lpModel.getEPerformances(el);
+        for (int i = 0; i < perList.size(); i++) {
+            EPerformance p = perList.get(i);
+            EConcept c = p.getConcept();
+            Object[] oa = {c.getName(), p.getValue(), "双击评估"};
             model.addRow(oa);
         }
-        resources.addMouseListener(new MyPortfolioActionListener(this, resourceList));
-        resources.updateUI();
+        concepts.updateUI();
     }
 
     /** This method is called from within the constructor to
@@ -83,26 +59,26 @@ public class MyPortfolioPane extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        resources = new javax.swing.JTable();
+        concepts = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setName("Form"); // NOI18N
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        resources.setModel(new javax.swing.table.DefaultTableModel(
+        concepts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "资源名称", "资源难度", "资源评价", "关联知识点数"
+                "知识点", "学习效果", "学习评估"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Float.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -113,10 +89,10 @@ public class MyPortfolioPane extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        resources.setName("resources"); // NOI18N
-        jScrollPane1.setViewportView(resources);
+        concepts.setName("concepts"); // NOI18N
+        jScrollPane1.setViewportView(concepts);
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(MyPortfolioPane.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(MyPerformancePane.class);
         jLabel1.setFont(resourceMap.getFont("jLabel1.font")); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
@@ -131,7 +107,7 @@ public class MyPortfolioPane extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,8 +120,8 @@ public class MyPortfolioPane extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JTable concepts;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable resources;
     // End of variables declaration//GEN-END:variables
 }

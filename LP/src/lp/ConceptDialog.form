@@ -41,9 +41,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="learnBtn" min="-2" pref="101" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="examBtn" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="200" max="-2" attributes="0"/>
                       <Component id="examScore" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane1" alignment="0" min="-2" pref="505" max="-2" attributes="0"/>
@@ -67,10 +65,7 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="learnBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="examBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="learnBtn" alignment="1" min="-2" max="-2" attributes="0"/>
                   <Component id="examScore" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -118,16 +113,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="learnBtnActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="examBtn">
-      <Properties>
-        <Property name="text" type="java.lang.String" resourceKey="examBtn.text"/>
-        <Property name="enabled" type="boolean" value="false"/>
-        <Property name="name" type="java.lang.String" value="examBtn" noResource="true"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="examBtnActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

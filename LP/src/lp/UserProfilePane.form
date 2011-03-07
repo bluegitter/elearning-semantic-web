@@ -226,7 +226,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="gender">
           <Properties>
-            <Property name="background" type="java.awt.Color" resourceKey="gender.background"/>
+            <Property name="background" type="java.awt.Color" noResource="true" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="f0" green="f0" red="f0" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" resourceKey="gender.text"/>
             <Property name="name" type="java.lang.String" value="gender" noResource="true"/>
           </Properties>

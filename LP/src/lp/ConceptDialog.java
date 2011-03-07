@@ -46,7 +46,6 @@ public class ConceptDialog extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         uriLabel = new javax.swing.JLabel();
         learnBtn = new javax.swing.JButton();
-        examBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         resouceTable = new javax.swing.JTable();
         examScore = new javax.swing.JLabel();
@@ -73,15 +72,6 @@ public class ConceptDialog extends javax.swing.JDialog {
         learnBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 learnBtnActionPerformed(evt);
-            }
-        });
-
-        examBtn.setText(resourceMap.getString("examBtn.text")); // NOI18N
-        examBtn.setEnabled(false);
-        examBtn.setName("examBtn"); // NOI18N
-        examBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                examBtnActionPerformed(evt);
             }
         });
 
@@ -139,9 +129,7 @@ public class ConceptDialog extends javax.swing.JDialog {
                         .addGap(104, 104, 104))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(learnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(examBtn)
-                        .addGap(77, 77, 77)
+                        .addGap(200, 200, 200)
                         .addComponent(examScore))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -159,9 +147,7 @@ public class ConceptDialog extends javax.swing.JDialog {
                     .addComponent(uriLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(learnBtn)
-                        .addComponent(examBtn))
+                    .addComponent(learnBtn)
                     .addComponent(examScore))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
@@ -189,10 +175,6 @@ public class ConceptDialog extends javax.swing.JDialog {
         this.updateData();
     }//GEN-LAST:event_learnBtnActionPerformed
 
-    private void examBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examBtnActionPerformed
-        this.jScrollPane1.setViewportView(new RadarPanel());
-    }//GEN-LAST:event_examBtnActionPerformed
-
     public void updateData() {
         if (cdec != null) {
             EPerformance ep = LPApp.lpModel.getEPerformance(new ELearner(LPApp.getApplication().user.username), cdec);
@@ -207,11 +189,9 @@ public class ConceptDialog extends javax.swing.JDialog {
                     examScore.setVisible(false);
                 }
                 this.learnBtn.setEnabled(false);
-                this.examBtn.setEnabled(true);
             } else {
                 learnBtn.setText("学习它");
                 learnBtn.setEnabled(true);
-                examBtn.setEnabled(false);
                 examScore.setVisible(false);
             }
         }
@@ -246,7 +226,6 @@ public class ConceptDialog extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel conceptName;
-    private javax.swing.JButton examBtn;
     private javax.swing.JLabel examScore;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
