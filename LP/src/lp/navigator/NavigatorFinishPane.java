@@ -9,13 +9,14 @@
  * Created on 2011-1-4, 16:27:54
  */
 
-package lp;
+package lp.navigator;
 
 import exception.jena.IndividualExistException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import lp.LPApp;
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.people.ELearner;

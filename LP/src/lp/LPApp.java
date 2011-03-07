@@ -33,9 +33,10 @@ public class LPApp extends SingleFrameApplication {
     public static final int RECOMMEND = 2;
     public static final int SEARCH = 3;
     public static final int PROFILE = 4;
-    public static final int NAVIGATOR = 5;
-    public static final int REGIST = 6;
+    public static final int ASSESSMENT = 5;
 
+//    public static final int NAVIGATOR = 5;
+//    public static final int REGIST = 6;
     /**
      * At startup create and show the main frame of the application.
      */
