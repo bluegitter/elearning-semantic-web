@@ -151,7 +151,7 @@ private NavigatorDialog parent;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         parent.setVisible(false);
         parent.dispose();
-        LPApp.getApplication().loginPane.prepareLogin();
+    //    LPApp.getApplication().loginPane.prepareLogin();
 }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
