@@ -12,7 +12,7 @@ import javax.swing.JDialog;
  *
  * @author t
  */
-public class PopCenterDialog extends JDialog {
+public final class PopCenterDialog extends JDialog {
 
     public PopCenterDialog() {
         this.setVisible(true);
