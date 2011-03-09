@@ -42,11 +42,7 @@
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder justification="2" title="&#x5b66; &#x4e60; &#x4e2d; &#x7684; &#x77e5; &#x8bc6; &#x70b9;">
-              <Font PropertyName="font" name="&#x5b8b;&#x4f53;" size="14" style="1"/>
-            </TitledBorder>
-          </Border>
+          <Border info="null"/>
         </Property>
         <Property name="name" type="java.lang.String" value="jScrollPane1" noResource="true"/>
       </Properties>
@@ -56,11 +52,7 @@
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder justification="2" title="&#x5b66; &#x4e60; &#x4e2d; &#x7684; &#x8d44; &#x6e90;">
-              <Font PropertyName="font" name="&#x5b8b;&#x4f53;" size="14" style="1"/>
-            </TitledBorder>
-          </Border>
+          <Border info="null"/>
         </Property>
         <Property name="name" type="java.lang.String" value="jScrollPane2" noResource="true"/>
       </Properties>

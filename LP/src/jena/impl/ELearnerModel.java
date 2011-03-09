@@ -26,6 +26,7 @@ import db.OwlOperation;
 import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
 import java.util.Date;
+import ontology.EPerformanceAssessment;
 
 public class ELearnerModel implements ELearnerModelOperationInterface {
 
@@ -255,6 +256,28 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         return true;
     }
 
+    public boolean updateEPerformanceAssessment(EPerformance performance, EPerformanceAssessment assessment) throws IndividualNotExistException {
+        if (!containEPerformance(performance.getId())) {
+            throw new IndividualNotExistException("EPerformance " + performance.getId() + " does not exist");
+        }
+        Individual indi = ontModel.getIndividual(Constant.NS + performance.getId());
+        Property p;
+        p = ontModel.getProperty(Constant.NS + "a1");
+        indi.setPropertyValue(p, ontModel.createTypedLiteral(assessment.a1, new XSDDatatype("string")));
+        p = ontModel.getProperty(Constant.NS + "a2");
+        indi.setPropertyValue(p, ontModel.createTypedLiteral(assessment.a2, new XSDDatatype("string")));
+        p = ontModel.getProperty(Constant.NS + "a3");
+        indi.setPropertyValue(p, ontModel.createTypedLiteral(assessment.a3, new XSDDatatype("string")));
+        p = ontModel.getProperty(Constant.NS + "a4");
+        indi.setPropertyValue(p, ontModel.createTypedLiteral(assessment.a4, new XSDDatatype("string")));
+        p = ontModel.getProperty(Constant.NS + "a5");
+        indi.setPropertyValue(p, ontModel.createTypedLiteral(assessment.a5, new XSDDatatype("string")));
+        p = ontModel.getProperty(Constant.NS + "a6");
+        indi.setPropertyValue(p, ontModel.createTypedLiteral(assessment.a6, new XSDDatatype("string")));
+       
+        return true;
+    }
+
     /*******************************************************************************************
      * update the value of the EPortfolio
      *****************************************************************************************/
@@ -272,11 +295,11 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         Property p2 = ontModel.getProperty(Constant.NS + "rate");
         ontModel.remove(indi, p2, indi.getPropertyValue(p2));
         ontModel.add(indi, p2, String.valueOf(portfolio.getRate()), new XSDDatatype("int"));
-        
+
         Property p3 = ontModel.getProperty(Constant.NS + "rateString");
         ontModel.remove(indi, p3, indi.getPropertyValue(p3));
         ontModel.add(indi, p3, String.valueOf(portfolio.getRateString()), new XSDDatatype("string"));
-        System.out.println(portfolio.getId()+"has been updated\t"+portfolio);
+        System.out.println(portfolio.getId() + "has been updated\t" + portfolio);
         return true;
     }
 
@@ -479,8 +502,36 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
             Date datetime = StringExchanger.parseStringToDate(dateString);
             performance.setDatetime(datetime);
         }
+        EPerformanceAssessment ass = new EPerformanceAssessment();
+        Statement a1Node = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "a1"));
+        if (a1Node != null) {
+            ass.a1 = a1Node.getLiteral().getString();
+        }
+        Statement a2Node = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "a2"));
+        if (a2Node != null) {
+            ass.a2 = a2Node.getLiteral().getString();
+        }
+        Statement a3Node = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "a3"));
+        if (a3Node != null) {
+            ass.a3 = a3Node.getLiteral().getString();
+        }
+        Statement a4Node = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "a4"));
+        if (a4Node != null) {
+            ass.a4 = a4Node.getLiteral().getString();
+        }
+        Statement a5Node = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "a5"));
+        if (a5Node != null) {
+            ass.a5 = a5Node.getLiteral().getString();
+        }
+        Statement a6Node = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "a6"));
+        if (a6Node != null) {
+            ass.a6 = a6Node.getLiteral().getString();
+        }
+        performance.assessment = ass;
+        System.out.println("assessment:" + ass);
         return performance;
     }
+
     @Override
     public EPortfolio getEPortfolio(String pid) {
         Individual indi = ontModel.getIndividual(Constant.NS + pid);
@@ -491,7 +542,7 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         port.setId(pid);
         Statement valueNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "value"));
         if (valueNode != null) {
-            float value =Float.valueOf(valueNode.getLiteral().getString());
+            float value = Float.valueOf(valueNode.getLiteral().getString());
             port.setValue(value);
         }
         Statement dateNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time"));
@@ -500,18 +551,18 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
             Date datetime = StringExchanger.parseStringToDate(dateString);
             port.setDatetime(datetime);
         }
-        Statement rateNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS+"rate"));
-        if(rateNode !=null){
+        Statement rateNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "rate"));
+        if (rateNode != null) {
             int rateNodeInt = rateNode.getLiteral().getInt();
             port.setRate(rateNodeInt);
-        }else{
-             port.setRate(0);
+        } else {
+            port.setRate(0);
         }
-        Statement rateStringNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS+"rateString"));
-        if(rateStringNode != null){
+        Statement rateStringNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "rateString"));
+        if (rateStringNode != null) {
             String rateStringNodeString = rateStringNode.getLiteral().getString();
             port.setRateString(rateStringNodeString);
-        }else{
+        } else {
             port.setRateString("");
         }
 
@@ -522,6 +573,6 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         ELearnerModel emi = new ELearnerModel();
 
         EPortfolio port = emi.getEPortfolio("E_Portfolio_el001-2");
-        
+
     }
 }

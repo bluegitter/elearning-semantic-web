@@ -1,16 +1,13 @@
 package jena.impl;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.ontology.TransitiveProperty;
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
@@ -21,12 +18,10 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.vocabulary.RDF;
-import db.OwlOperation;
 import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jena.OwlFactory;
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.EPerformance;
@@ -34,9 +29,9 @@ import ontology.EPortfolio;
 import ontology.people.ELearner;
 import ontology.resources.ISCB_Resource;
 import util.Constant;
-import util.StringExchanger;
 import jena.interfaces.ELearnerModelQueryInterface;
 import jena.interfaces.ELearnerUserOperationInterface;
+import ontology.EPerformanceAssessment;
 
 /**************************************************************************
  * Model Query with ontology Model
@@ -65,19 +60,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 
     public static void main(String[] args) {
 //        throws IndividualNotExistException, IOException, IndividualExistException {
-        File file = new File(Constant.OWLFile);
-        long init = System.currentTimeMillis();
-
-        ELearnerModelImpl emi = new ELearnerModelImpl(file);
-        EPortfolio port = emi.getEPortfolio("E_Portfolio_el001-2");
-        port.setRate(2);
-        try {
-            emi.updateEPortfolio(port);
-        } catch (IndividualNotExistException ex) {
-            Logger.getLogger(ELearnerModelImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        port = emi.getEPortfolio("E_Portfolio_el001-2");
-        System.out.println("port:" + port);
+       
 //        System.out.println("intitime:" + (System.currentTimeMillis() - init) + "ms");
 //        ELearner el = emi.getELearner("el001");
 //        EConcept cid1 = emi.getEConcept("CMP.cf.2");

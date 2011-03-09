@@ -10,6 +10,7 @@
  */
 package lp.eresource;
 
+import exception.jena.IndividualNotExistException;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -19,6 +20,9 @@ import java.awt.geom.Line2D;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JSlider;
+import lp.LPApp;
+import ontology.EPerformance;
+import ontology.EPerformanceAssessment;
 
 /**
  *
@@ -26,8 +30,11 @@ import javax.swing.JSlider;
  */
 public class RadarPanel extends javax.swing.JPanel {
 
+    private EPerformance perform;
+
     /** Creates new form RadarPanel */
-    public RadarPanel() {
+    public RadarPanel(EPerformance perform) {
+        this.perform = perform;
         initComponents();
         for (int i = 0; i < 6; i++) {
             mx1[i] = cx - 0.25 * (cx - x[i]);
@@ -37,6 +44,12 @@ public class RadarPanel extends javax.swing.JPanel {
             mx3[i] = cx - 0.75 * (cx - x[i]);
             my3[i] = cy - 0.75 * (cy - y[i]);
         }
+        jSlider1.setValue(Integer.parseInt(perform.assessment.a1));
+        jSlider2.setValue(Integer.parseInt(perform.assessment.a2));
+        jSlider3.setValue(Integer.parseInt(perform.assessment.a3));
+        jSlider4.setValue(Integer.parseInt(perform.assessment.a4));
+        jSlider5.setValue(Integer.parseInt(perform.assessment.a5));
+        jSlider6.setValue(Integer.parseInt(perform.assessment.a6));
         jSlide1Value.setText(jSlider1.getValue() + "");
         jSlide2Value.setText(jSlider2.getValue() + "");
         jSlide3Value.setText(jSlider3.getValue() + "");
@@ -326,6 +339,18 @@ public class RadarPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         System.out.println(" submit");
+        String a1 = jSlide1Value.getText();
+        String a2 = jSlide2Value.getText();
+        String a3 = jSlide3Value.getText();
+        String a4 = jSlide4Value.getText();
+        String a5 = jSlide5Value.getText();
+        String a6 = jSlide6Value.getText();
+        EPerformanceAssessment assessment = new EPerformanceAssessment(a1, a2, a3, a4, a5, a6);
+        try {
+            LPApp.lpModel.updateEPerformanceAssessment(perform, assessment);
+        } catch (IndividualNotExistException ex) {
+            Logger.getLogger(RadarPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

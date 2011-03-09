@@ -36,7 +36,7 @@ public class MyPerformanceActionListener implements MouseListener {
                 EPerformance perform = performPane.perList.get(row);
 
                 PopCenterDialog pcd = new PopCenterDialog();
-                pcd.setContentPane(new RadarPanel());
+                pcd.setContentPane(new RadarPanel(perform));
                 pcd.setTitle("知识点自我评估");
                 pcd.pack();
                 pcd.centerScreen();
