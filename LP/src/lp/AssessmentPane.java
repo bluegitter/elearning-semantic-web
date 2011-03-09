@@ -42,10 +42,10 @@ public class AssessmentPane extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane2 = new javax.swing.JScrollPane();
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "学 习 中 的 知 识 点", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("宋体", 1, 14))); // NOI18N
+        jScrollPane1.setBorder(null);
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
-        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "学 习 中 的 资 源", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("宋体", 1, 14))); // NOI18N
+        jScrollPane2.setBorder(null);
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

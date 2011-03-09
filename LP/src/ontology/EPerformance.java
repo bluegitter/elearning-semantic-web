@@ -7,6 +7,7 @@ import ontology.people.ELearner;
 public class EPerformance {
 
     public EPerformance() {
+        assessment = new EPerformanceAssessment();
     }
 
     public ELearner getElearner() {
@@ -88,4 +89,5 @@ public class EPerformance {
     private float value;
     private String id;
     private Date datetime;
+    public EPerformanceAssessment assessment;
 }
