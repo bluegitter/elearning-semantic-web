@@ -20,6 +20,7 @@ import lp.eresource.ResourceTablePane;
 import ontology.resources.ISCB_Resource;
 import org.jdesktop.application.Action;
 import util.Constant;
+import util.LogConstant;
 
 /**
  *
@@ -250,7 +251,7 @@ public class SearchPane extends javax.swing.JPanel {
         System.out.println(appType);
         System.out.println(mediaType);
         ArrayList<ISCB_Resource> res = LPApp.lpModel.getEResourcesByTypes(appType, "all", mediaType);
-        LPApp.lpLog.writeMessage("用户执行分类搜索:资源应用类型-" + appType + ";媒体类型-" + mediaType+"\n");
+        LPApp.lpLogs.writeLog(107, appType+" "+mediaType, LogConstant.RESULT107, LogConstant.STATUS107);
         updateEResources(res);
     }//GEN-LAST:event_searchAction
     //search the resource by the given name
@@ -259,9 +260,9 @@ public class SearchPane extends javax.swing.JPanel {
         String name = jTextField1.getText().trim();
         ArrayList<ISCB_Resource> res = LPApp.lpModel.getEResourcesByName(name);
         if (res.isEmpty()) {
-            LPApp.lpLog.writeMessage("用户执行精确搜索:资源标题-" + name + "-未查到\n");
+            LPApp.lpLogs.writeLog(108, name, "未查到", LogConstant.STATUS108);
         }else{
-             LPApp.lpLog.writeMessage("用户执行精确搜索:资源标题-" + name + "-查到"+res.size()+"个结果\n");
+             LPApp.lpLogs.writeLog(108, name, "查到"+res.size()+"个结果", LogConstant.STATUS108);
         }
         updateEResources(res);
     }//GEN-LAST:event_exactSearchAction

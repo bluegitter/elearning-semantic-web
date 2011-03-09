@@ -13,6 +13,7 @@ package lp.interest;
 import java.awt.Color;
 import lp.LPApp;
 import util.ColorConstant;
+import util.LogConstant;
 
 /**
  *
@@ -144,7 +145,7 @@ public class AddLPInterestItemPane extends javax.swing.JPanel {
     private void addInterestItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addInterestItemMouseClicked
         System.out.println("add interest item clicked");
         parent.addInterest(this);
-        LPApp.lpLog.writeMessage("用户增加了一个感兴趣:"+concept.getCid()+"\n");
+        LPApp.lpLogs.writeLog(109, concept.getCid()+" "+concept.getName(), "添加", LogConstant.STATUS109);
     }//GEN-LAST:event_addInterestItemMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;

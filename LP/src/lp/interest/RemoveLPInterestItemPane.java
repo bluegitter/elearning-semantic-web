@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import lp.LPApp;
 import util.ColorConstant;
+import util.LogConstant;
 
 /**
  *
@@ -139,7 +140,7 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
         System.out.println("delete interest " + interest);
         jLabel2.setBackground(Color.RED);
         parent.removeInterest(this);
-        LPApp.lpLog.writeMessage("用户移除了一个感兴趣:" + interest.getId() + ":" + interest.getEConcept().getCid() + "+" + interest.getELearner().getId()+"\n");
+        LPApp.lpLogs.writeLog(109, interest.getEConcept().getCid()+" "+interest.getEConcept().getName(),"移除",  LogConstant.STATUS109);
     }//GEN-LAST:event_removeInterestClicked
 
     private void removeItemPaneMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeItemPaneMouseExited

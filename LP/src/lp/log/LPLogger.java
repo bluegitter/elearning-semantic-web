@@ -10,8 +10,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import lp.eresource.WebOperation;
 import util.Constant;
 
 /**
@@ -46,6 +50,29 @@ public class LPLogger {
         }
     }
 
+    public void writeLog(int action, String data, String result, String status) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("time");
+        sb.append(",");
+        sb.append(userId);
+        sb.append(",");
+        sb.append(ip);
+        sb.append(",");
+        sb.append(action);
+        sb.append(",");
+        sb.append(data);
+        sb.append(",");
+        sb.append(result);
+        sb.append(",");
+        sb.append("status");
+        sb.append(";");
+        try {
+            output.write(sb.toString());
+        } catch (IOException ex) {
+            Logger.getLogger(LPLogger.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public void writeMessage(String mes) {
         try {
             output.write(userId + ":" + getSysDate() + ":");
@@ -54,17 +81,18 @@ public class LPLogger {
             Logger.getLogger(LPLogger.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    public void sendLog(){
+        String url = Constant.ISCBSERVER250+"uploadLogs.jsp?logs=";
+    }
     public void close() {
         try {
             output.flush();
             output.close();
+
+
         } catch (IOException ex) {
             Logger.getLogger(LPLogger.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-
-    public void makeLog(String message) {
     }
 
     public String getLog() {
@@ -75,12 +103,8 @@ public class LPLogger {
         mesList.add(message);
     }
 
-    public void writeLoginSuccessful() {
-        writeMessage("用户登录成功!!\n");
-    }
-
     public void writeLoginFailure() {
-        writeMessage("用户登录失败,错误ID:" + userId+"\n");
+        writeMessage("用户登录失败,错误ID:" + userId + "\n");
     }
 
     public String getSysDate() {
@@ -89,10 +113,11 @@ public class LPLogger {
     }
 
     public static void main(String[] args) {
-        LPLogger lpl = new LPLogger();
-        lpl.setUserId("el001");
-        lpl.addMessage(lpl.getSysDate());
-        System.out.println(lpl.getLog());
+//        LPLogger lpl = new LPLogger();
+//        lpl.setUserId("el001");
+//       // lpl.addMessage(lpl.getSysDate());
+//        lpl.writeLog("hello");
+//        System.out.println(lpl.getLog());
     }
 
     /***************************************************
@@ -104,6 +129,23 @@ public class LPLogger {
     }
 
     public void setIp(String ip) {
+        Enumeration<NetworkInterface> netInterfaces = null;
+        try {
+            netInterfaces = NetworkInterface.getNetworkInterfaces();
+            while (netInterfaces.hasMoreElements()) {
+                NetworkInterface ni = netInterfaces.nextElement();
+                System.out.println("DisplayName:" + ni.getDisplayName());
+                System.out.println("Name:" + ni.getName());
+                Enumeration<InetAddress> ips = ni.getInetAddresses();
+                while (ips.hasMoreElements()) {
+                    System.out.println("IP:"
+                            + ips.nextElement().getHostAddress());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         this.ip = ip;
     }
 

@@ -17,6 +17,7 @@ import javax.swing.Timer;
 import javax.swing.Icon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  * The application's main frame.
@@ -24,7 +25,9 @@ import javax.swing.JFrame;
 public class LPView extends FrameView {
 
     private javax.swing.JPanel[] panes;
-
+    public JPanel[] getPanes(){
+        return panes;
+    }
     public LPView(SingleFrameApplication app) {
         super(app);
 

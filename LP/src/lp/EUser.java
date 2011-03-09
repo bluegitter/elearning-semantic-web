@@ -31,7 +31,7 @@ public class EUser {
     }
 
     public boolean login(String passwd) {
-       /*  try {
+      try {
             //        try {
             //            return db.DbOperation.login(username, passwd);
             //        } catch(Exception ex) {
@@ -61,8 +61,6 @@ public class EUser {
         } catch (MalformedURLException ex) {
             Logger.getLogger(EUser.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-           */
         return true;
     }
     public String sendRequest(URL url) throws IOException{

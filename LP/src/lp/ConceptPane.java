@@ -20,6 +20,7 @@ import ontology.EConcept;
 import ontology.EPerformance;
 import ontology.people.ELearner;
 import ontology.resources.ISCB_Resource;
+import util.LogConstant;
 
 /**
  *
@@ -132,7 +133,7 @@ public class ConceptPane extends javax.swing.JPanel {
             }
         }
         this.updateData();
-        LPApp.lpLog.writeMessage("学习了知识点:"+cdec.getCid()+","+cdec.getName()+"\n");
+        LPApp.lpLogs.writeLog(105,cdec.getCid()+" "+cdec.getName(),LogConstant.RESULT105,LogConstant.STATUS105);
 }//GEN-LAST:event_learnBtnActionPerformed
     @Override
     public String toString() {
