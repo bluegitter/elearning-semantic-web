@@ -27,7 +27,7 @@ public class LPApp extends SingleFrameApplication {
     public LPView view;
     public LoginPanel loginPane;
     public static ELearnerModelImpl lpModel;
-    public static LPLogger lpLog;
+    public static LPLogger lpLogs;
     public static int TOOL_STATE = -1;
     public static final int MY_CONCEPT = 0;
     public static final int ALL_CONCEPT = 1;
@@ -46,7 +46,7 @@ public class LPApp extends SingleFrameApplication {
 
         String sepstr = File.separator;
         lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFile));
-        lpLog = new LPLogger();
+        lpLogs = new LPLogger();
         user = null;
         view = new LPView(this);
         view.mainPanel.setLayout(new CentralLayout());
@@ -78,7 +78,7 @@ public class LPApp extends SingleFrameApplication {
 //        } catch (IOException ex) {
 //            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-        lpLog.close();
+        lpLogs.close();
         super.shutdown();
     }
 

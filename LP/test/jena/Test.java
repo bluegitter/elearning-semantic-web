@@ -2,11 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package jena;
 
 import exception.jena.IndividualNotExistException;
 import java.io.File;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jena.impl.ELearnerModelImpl;
@@ -20,8 +21,19 @@ import util.Constant;
  * @author william
  */
 public class Test {
-    public static void main(String[] args) {
 
+    public static void main(String[] args) throws UnknownHostException {
+        InetAddress me = InetAddress.getByName("localhost");
+        System.out.println("localhost by name =" + me);
+        InetAddress me2 = InetAddress.getLocalHost();
+        System.out.println("localhost by getLocalHost =" + me2);
+        InetAddress[] many = InetAddress.getAllByName("microsoft.com");
+        for (int i = 0; i < many.length; i++) {
+            System.out.println(many[i]);
+        }
+    }
+
+    public static void testPerformance() {
         File file = new File(Constant.OWLFile);
 
         ELearnerModelImpl emi = new ELearnerModelImpl(file);
@@ -34,8 +46,9 @@ public class Test {
         perform = emi.getEPerformance("E_Performance_1_1");
 
     }
-    public static void testPortfolio(){
-          File file = new File(Constant.OWLFile);
+
+    public static void testPortfolio() {
+        File file = new File(Constant.OWLFile);
         long init = System.currentTimeMillis();
 
         ELearnerModelImpl emi = new ELearnerModelImpl(file);

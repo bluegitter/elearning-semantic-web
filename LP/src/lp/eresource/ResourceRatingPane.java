@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import lp.LPApp;
+import lp.UserProfilePane;
 import ontology.EPortfolio;
 
 /**
@@ -25,8 +26,9 @@ public class ResourceRatingPane extends javax.swing.JPanel {
 
     private MyPortfolioPane portPane;
     private EPortfolio port;
-private JDialog parent;
-    public ResourceRatingPane(EPortfolio port, MyPortfolioPane portPane,JDialog parent) {
+    private JDialog parent;
+
+    public ResourceRatingPane(EPortfolio port, MyPortfolioPane portPane, JDialog parent) {
         super();
         initComponents();
         this.portPane = portPane;
@@ -132,12 +134,15 @@ private JDialog parent;
         port.setRateString(jTextArea1.getText());
         try {
             LPApp.lpModel.updateEPortfolio(port);
-             portPane.updateResourceTable();
-             parent.dispose();
+            portPane.updateResourceTable();
+            UserProfilePane userProfilePane = (UserProfilePane) LPApp.getApplication().view.getPanes()[LPApp.PROFILE];
+            userProfilePane.updateUserProfilePane();
+
+            parent.dispose();
         } catch (IndividualNotExistException ex) {
             Logger.getLogger(ResourceRatingPane.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
 }//GEN-LAST:event_jButton1submitRate
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -19,8 +19,8 @@ import lp.eresource.MyPortfolioPane;
  * @author ghh
  */
 public class AssessmentPane extends javax.swing.JPanel {
-    private MyPerformancePane perform;
-    private MyPortfolioPane port;
+    public MyPerformancePane perform;
+    public MyPortfolioPane port;
     /** Creates new form AssessmentPane */
     public AssessmentPane() {
         initComponents();

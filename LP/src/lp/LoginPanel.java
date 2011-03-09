@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import lp.eresource.WebOperation;
+import util.LogConstant;
 
 /**
  *
@@ -120,25 +121,25 @@ public class LoginPanel extends javax.swing.JPanel {
         final LPView view = LPApp.getApplication().view;
         LPApp.getApplication().user = new EUser(username.getText());
         
-        LPApp.lpLog.setUserId(LPApp.getApplication().user.username);
+        LPApp.lpLogs.setUserId(LPApp.getApplication().user.username);
 
         view.setBusy("正在验证密码...");
         Thread authThread = new Thread() {
 
             @Override
             public void run() {
-//                boolean loginAuth = LPApp.getApplication().user.login(new String(password.WgetPassword()));
-                boolean loginAuth = true;
+                boolean loginAuth = LPApp.getApplication().user.login(new String(password.getPassword()));
+//                boolean loginAuth = true;
                if (loginAuth) {
                     LPApp.getApplication().user.learner = LPApp.lpModel.getELearner(LPApp.getApplication().user.username);
                     view.setBusy("正在加载数据...");
                     view.initTools();
-                    LPApp.lpLog.writeLoginSuccessful();
+                    LPApp.lpLogs.writeLog(101,LPApp.getApplication().user.username , "登入", LogConstant.STATUS101);
                 } else {
                     tipLabel.setText("登录失败！");
                     tipLabel.setForeground(Color.red);
                     username.grabFocus();
-                    LPApp.lpLog.writeLoginFailure();
+                    LPApp.lpLogs.writeLog(101, LPApp.getApplication().user.username , "登出", LogConstant.STATUS101);
                 }
                 view.setIdle();
             }

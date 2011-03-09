@@ -10,6 +10,7 @@
  */
 package lp;
 
+import java.awt.Color;
 import lp.eresource.MyPerformancePane;
 import lp.eresource.MyPortfolioPane;
 import java.awt.Image;
@@ -25,6 +26,7 @@ import ontology.EPerformance;
 import ontology.EPortfolio;
 import ontology.people.ELearner;
 import ontology.resources.ISCB_Resource;
+import util.ColorConstant;
 
 /**
  *
@@ -33,14 +35,14 @@ import ontology.resources.ISCB_Resource;
 public class UserProfilePane extends javax.swing.JPanel {
 
     public UserInterestPane userInterestPane;
-
+    private ELearner el;
     /** Creates new form UserProfilePane */
     public UserProfilePane() {
-        ELearner el = LPApp.getApplication().user.learner;
+        el = LPApp.getApplication().user.learner;
         ArrayList<EInterest> interests = LPApp.lpModel.getEInterests(el);
         ArrayList<EConcept> concepts = jena.ELearnerReasoner.getRecommendEConcepts_1(LPApp.lpModel.getOntModel(), el);
         initComponents();
-        initUserPane(el);
+        initUserPane();
         initInterests(interests, concepts);
     }
 
@@ -55,7 +57,9 @@ public class UserProfilePane extends javax.swing.JPanel {
 
     }
 
-    private void initUserPane(ELearner el) {
+    private void initUserPane() {
+        conceptsTable.setBackground(ColorConstant.backgroundGrayColor);
+        resourcesTable.setBackground(ColorConstant.backgroundGrayColor);
         // initial basic info for user
         username.setText(el.getName());
         gender.setText("保密");
@@ -72,9 +76,10 @@ public class UserProfilePane extends javax.swing.JPanel {
             jLabel5.setIcon(icon);
             gender.setText("女");
         }
-
-
-        //initial concepts in performance for user
+        updateUserProfilePane();
+    }
+    public void updateUserProfilePane(){
+         //initial concepts in performance for user
         DefaultTableModel model;
         model = (DefaultTableModel) conceptsTable.getModel();
         for (int index = model.getRowCount() - 1; index >= 0; index--) {
@@ -104,7 +109,6 @@ public class UserProfilePane extends javax.swing.JPanel {
         resourcesTable.updateUI();
         this.setVisible(true);
         this.updateUI();
-        System.out.println("hhhhhh");
     }
 
     /** This method is called from within the constructor to
@@ -188,7 +192,7 @@ public class UserProfilePane extends javax.swing.JPanel {
             }
         });
 
-        gender.setBackground(new java.awt.Color(240, 240, 240));
+        gender.setEditable(false);
         gender.setText(resourceMap.getString("gender.text")); // NOI18N
         gender.setName("gender"); // NOI18N
 
