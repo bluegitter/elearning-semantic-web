@@ -491,11 +491,7 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         }
         EPerformance performance = new EPerformance();
         performance.setId(indi.getLocalName());
-        Statement valueNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "value"));
-        if (valueNode != null) {
-            float value = (Float) valueNode.getLiteral().getFloat();
-            performance.setValue(value);
-        }
+      
         Statement dateNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time"));
         if (dateNode != null) {
             String dateString = dateNode.getLiteral().getString();
@@ -529,6 +525,12 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         }
         performance.assessment = ass;
         System.out.println("assessment:" + ass);
+
+        Statement valueNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "value"));
+        if (valueNode != null) {
+            performance.setValue(ass.getValue());
+        }
+        
         return performance;
     }
 

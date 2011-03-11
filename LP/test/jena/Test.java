@@ -23,6 +23,9 @@ import util.Constant;
 public class Test {
 
     public static void main(String[] args) throws UnknownHostException {
+        testPerformance();
+    }
+    public static void testNet() throws UnknownHostException{
         InetAddress me = InetAddress.getByName("localhost");
         System.out.println("localhost by name =" + me);
         InetAddress me2 = InetAddress.getLocalHost();
@@ -32,7 +35,6 @@ public class Test {
             System.out.println(many[i]);
         }
     }
-
     public static void testPerformance() {
         File file = new File(Constant.OWLFile);
 

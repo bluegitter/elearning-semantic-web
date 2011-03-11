@@ -37,14 +37,14 @@ public class EUser {
             //        } catch(Exception ex) {
             //            return false;
             //        }
-            //http://166.111.80.250/iscb/regUser.jsp?userName=masheng&password=masheng&login=false
+            //http://166.111.80.250/iscb/regUser.jsp?userName=masheng&password=masheng&login=true
             StringBuilder sb = new StringBuilder();
-
-            sb.append(Constant.LoginRequest1);
+            sb.append(Constant.ISCBSERVER250);
+            sb.append("/iscb/regUser.jsp?userName=");
             sb.append(username);
-            sb.append(Constant.LoginRequest2);
+            sb.append("&password=");
             sb.append(passwd);
-            sb.append(Constant.LoginRequest3);
+            sb.append("&login=true");
             System.out.println(sb.toString());
             URL url = new URL(sb.toString());
             try {
@@ -68,25 +68,25 @@ public class EUser {
         connection.setDoOutput(true);
 
         String sCurrentLine = "";
-//        String sTotalString = "";
         InputStream l_urlStream = connection.getInputStream();
         // 传说中的三层包装阿！
         BufferedReader l_reader = new BufferedReader(new InputStreamReader(l_urlStream));
         String result = "";
         boolean getResult =false;
+        String sTotalString = "";
         while ((sCurrentLine = l_reader.readLine()) != null) {
-//            sTotalString += sCurrentLine + "\r\n";
-            if(sCurrentLine.trim().equals("<body>")){
-                getResult = true;
-            }
-            if(getResult && !sCurrentLine.trim().equals("</body>")){
-               result =  sCurrentLine.trim();
-            }
-            if(getResult && sCurrentLine.trim().equals("</body>")){
-                getResult = false;
-            }
+            sTotalString += sCurrentLine + "\r\n";
+//            if(sCurrentLine.trim().equals("<body>")){
+//                getResult = true;
+//            }
+//            if(getResult && !sCurrentLine.trim().equals("</body>")){
+//               result =  sCurrentLine.trim();
+//            }
+//            if(getResult && sCurrentLine.trim().equals("</body>")){
+//                getResult = false;
+//            }
         }
-//        System.out.println(sTotalString);
+        System.out.println(sTotalString);
         System.out.println("result:"+result);
         return result;
     }
