@@ -165,7 +165,16 @@ public class ResourceTable extends JTable implements MouseListener, MouseMotionL
     }
 
     private void addEResourceToTableModel(ISCB_Resource er) {
-        Object[] oa = {er.getName(), (util.Constant.ISCBSERVER48 + er.getFileLocation()), er.getDifficulty()};
+        String difficulty = er.getDifficulty();
+        String dif;
+        if(difficulty.equals("easy")){
+            dif = "容易";
+        }else if(difficulty.equals("difficult")){
+            dif = "困难";
+        }else{
+            dif="未知";
+        }
+        Object[] oa = {er.getName(), (util.Constant.ISCBSERVER48 + er.getFileLocation()), dif};
         model.addRow(oa);
     }
 
