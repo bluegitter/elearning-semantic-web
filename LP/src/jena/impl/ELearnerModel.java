@@ -503,29 +503,29 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
             performance.setDatetime(datetime);
         }
         EPerformanceAssessment ass = new EPerformanceAssessment();
-        Statement a1Node = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "a1"));
+        RDFNode a1Node = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "a1"));
         if (a1Node != null) {
-            ass.a1 = a1Node.getLiteral().getString();
+            ass.a1 = a1Node.asLiteral().getString();
         }
-        Statement a2Node = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "a2"));
+        RDFNode a2Node = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "a2"));
         if (a2Node != null) {
-            ass.a2 = a2Node.getLiteral().getString();
+            ass.a2 = a2Node.asLiteral().getString();
         }
-        Statement a3Node = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "a3"));
+        RDFNode a3Node = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "a3"));
         if (a3Node != null) {
-            ass.a3 = a3Node.getLiteral().getString();
+            ass.a3 = a3Node.asLiteral().getString();
         }
-        Statement a4Node = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "a4"));
+        RDFNode a4Node = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "a4"));
         if (a4Node != null) {
-            ass.a4 = a4Node.getLiteral().getString();
+            ass.a4 = a4Node.asLiteral().getString();
         }
-        Statement a5Node = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "a5"));
+        RDFNode a5Node = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "a5"));
         if (a5Node != null) {
-            ass.a5 = a5Node.getLiteral().getString();
+            ass.a5 = a5Node.asLiteral().getString();
         }
-        Statement a6Node = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "a6"));
+        RDFNode a6Node = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "a6"));
         if (a6Node != null) {
-            ass.a6 = a6Node.getLiteral().getString();
+            ass.a6 = a6Node.asLiteral().getString();
         }
         performance.assessment = ass;
         System.out.println("assessment:" + ass);
