@@ -72,7 +72,7 @@ private NavigatorDialog parent;
             }
         });
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/recommend.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/recommend.png"))); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
