@@ -34,16 +34,9 @@ public class MyPerformanceActionListener implements MouseListener {
             System.out.println("row" + row + "\tcolumn" + column);
             if (column == 2) {
                 EPerformance perform = performPane.perList.get(row);
-
-                PopCenterDialog pcd = new PopCenterDialog();
                 RadarPanel radar = new RadarPanel(perform);
-                radar.setDParent(pcd);
-                pcd.setContentPane(radar);
-                pcd.setTitle("知识点自我评估");
-                pcd.pack();
-                pcd.centerScreen();
+                PopCenterDialog pcd = new PopCenterDialog("知识点自我评估", radar);
             }
-
         }
     }
 
