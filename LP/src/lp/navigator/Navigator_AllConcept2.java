@@ -44,7 +44,7 @@ private NavigatorDialog parent;
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/2.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/6.png"))); // NOI18N
         jLabel3.setText("浏览某知识点的相应资源，学习资源并进行评价");
         jLabel3.setName("jLabel3"); // NOI18N
 
