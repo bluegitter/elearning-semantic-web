@@ -48,34 +48,34 @@ public class MyConceptDemo extends javax.swing.JPanel {
         gview.setBackground(this.getBackground());
 
         // create a search panel for the tree map
-        SearchQueryBinding sq = new SearchQueryBinding(
-                (Table) vis.getGroup(MyConceptDisplay.treeNodes), MyConceptDisplay.m_label,
-                (SearchTupleSet) vis.getGroup(Visualization.SEARCH_ITEMS));
-        JSearchPanel search = sq.createSearchPanel();
-        search.setShowResultCount(true);
-        search.setBorder(BorderFactory.createEmptyBorder(5, 5, 4, 0));
-        search.setFont(FontLib.getFont("微软雅黑", Font.PLAIN, 11));
-        search.setBackground(this.getBackground());
+//        SearchQueryBinding sq = new SearchQueryBinding(
+//                (Table) vis.getGroup(MyConceptDisplay.treeNodes), MyConceptDisplay.m_label,
+//                (SearchTupleSet) vis.getGroup(Visualization.SEARCH_ITEMS));
+//        JSearchPanel search = sq.createSearchPanel();
+//        search.setShowResultCount(true);
+//        search.setBorder(BorderFactory.createEmptyBorder(5, 5, 4, 0));
+//        search.setFont(FontLib.getFont("微软雅黑", Font.PLAIN, 11));
+//        search.setBackground(this.getBackground());
 
-        final JFastLabel title = new JFastLabel("                 ");
-        title.setPreferredSize(new Dimension(350, 20));
-        title.setVerticalAlignment(SwingConstants.BOTTOM);
-        title.setBorder(BorderFactory.createEmptyBorder(3, 0, 0, 0));
-        title.setFont(FontLib.getFont("微软雅黑", Font.PLAIN, 16));
+//        final JFastLabel title = new JFastLabel("                 ");
+//        title.setPreferredSize(new Dimension(800, 600));
+//        title.setVerticalAlignment(SwingConstants.BOTTOM);
+//        title.setBorder(BorderFactory.createEmptyBorder(3, 0, 0, 0));
+//        title.setFont(FontLib.getFont("微软雅黑", Font.PLAIN, 16));
 
         gview.addControlListener(new ControlAdapter() {
 
-            @Override
-            public void itemEntered(VisualItem item, MouseEvent e) {
-                if (item.canGetString(MyConceptDisplay.m_label)) {
-                    title.setText(item.getString(MyConceptDisplay.m_label));
-                }
-            }
-
-            @Override
-            public void itemExited(VisualItem item, MouseEvent e) {
-                title.setText(null);
-            }
+//            @Override
+//            public void itemEntered(VisualItem item, MouseEvent e) {
+//                if (item.canGetString(MyConceptDisplay.m_label)) {
+//                    title.setText(item.getString(MyConceptDisplay.m_label));
+//                }
+//            }
+//
+//            @Override
+//            public void itemExited(VisualItem item, MouseEvent e) {
+//                title.setText(null);
+//            }
 
             @Override
             public void itemClicked(VisualItem item, MouseEvent e) {
@@ -106,15 +106,15 @@ public class MyConceptDemo extends javax.swing.JPanel {
             }
         });
 
-        Box box = new Box(BoxLayout.X_AXIS);
-        box.add(Box.createHorizontalStrut(10));
-        box.add(title);
-        box.add(Box.createHorizontalGlue());
-        box.add(search);
-        box.add(Box.createHorizontalStrut(3));
-
+//        Box box = new Box(BoxLayout.X_AXIS);
+//        box.add(Box.createHorizontalStrut(10));
+//        box.add(title);
+//        box.add(Box.createHorizontalGlue());
+////        box.add(search);
+//        box.add(Box.createHorizontalStrut(3));
+//
         add(gview, BorderLayout.CENTER);
-        add(box, BorderLayout.SOUTH);
+//        add(box, BorderLayout.SOUTH);
     }
 
     public void renew() {
