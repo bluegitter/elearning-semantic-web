@@ -17,6 +17,7 @@ import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import lp.interest.UserInterestPane;
 import lp.log.PopCenterDialog;
@@ -139,7 +140,6 @@ public class UserProfilePane extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         conceptsTable = new javax.swing.JTable();
-        moreConcepts = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -299,34 +299,18 @@ public class UserProfilePane extends javax.swing.JPanel {
         conceptsTable.setName("conceptsTable"); // NOI18N
         jScrollPane1.setViewportView(conceptsTable);
 
-        moreConcepts.setText(resourceMap.getString("moreConcepts.text")); // NOI18N
-        moreConcepts.setName("moreConcepts"); // NOI18N
-        moreConcepts.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                moreConceptsActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(299, Short.MAX_VALUE)
-                .addComponent(moreConcepts)
-                .addGap(19, 19, 19))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(moreConcepts)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
-
-        moreConcepts.getAccessibleContext().setAccessibleName(resourceMap.getString("moreConcepts.AccessibleContext.accessibleName")); // NOI18N
 
         jLabel9.setFont(resourceMap.getFont("jLabel9.font")); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -460,39 +444,17 @@ public class UserProfilePane extends javax.swing.JPanel {
         el.setEmail(email.getText());
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void moreConceptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreConceptsActionPerformed
-        // TODO add your handling code here:
-        PopCenterDialog pcd = new PopCenterDialog();
-        assessmentPane = (AssessmentPane) LPApp.getApplication().view.getPanes()[LPApp.ASSESSMENT];
-        pcd.setContentPane(assessmentPane.perform);
-//        pcd.setContentPane(new MyPerformancePane());
-        pcd.setTitle("已学过的知识点");
-        pcd.pack();
-        pcd.centerScreen();
-//
-//        JDialog jd = new JDialog();
-//        jd.setContentPane(new MyPerformancePane());
-//        jd.setTitle("已学过的知识点");
-//        jd.pack();
-//
-//        jd.setVisible(true);
-
-    }//GEN-LAST:event_moreConceptsActionPerformed
-
     private void moreResourcesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreResourcesActionPerformed
         // TODO add your handling code here:
-        PopCenterDialog pcd = new PopCenterDialog();
-        assessmentPane = (AssessmentPane) LPApp.getApplication().view.getPanes()[LPApp.ASSESSMENT];
-        pcd.setContentPane(assessmentPane.port);
-//        pcd.setContentPane(new MyPortfolioPane());
-        pcd.setTitle("已学过的资源");
-        pcd.pack();
-        pcd.centerScreen();
-//        JDialog jd = new JDialog();
-//        jd.setContentPane(new MyPortfolioPane());
-//        jd.setTitle("已学过的资源");
-//        jd.pack();
-//        jd.setVisible(true);
+         LPApp.getApplication().view.setMainTool(LPApp.ASSESSMENT);
+//        PopCenterDialog pcd = new PopCenterDialog();
+//        assessmentPane = (AssessmentPane) LPApp.getApplication().view.getPanes()[LPApp.ASSESSMENT];
+//        pcd.setContentPane(assessmentPane.port);
+////        pcd.setContentPane(new MyPortfolioPane());
+//        pcd.setTitle("已学过的资源");
+//        pcd.pack();
+//        pcd.centerScreen();
+//       
     }//GEN-LAST:event_moreResourcesActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField address;
@@ -514,7 +476,6 @@ public class UserProfilePane extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton moreConcepts;
     private javax.swing.JButton moreResources;
     private javax.swing.JTable resourcesTable;
     private javax.swing.JTextField username;

@@ -19,12 +19,12 @@ public class EPerformanceAssessment {
     public String a6;
 
     public EPerformanceAssessment() {
-        this.a1 = "";
-        this.a2 = "";
-        this.a3 = "";
-        this.a4 = "";
-        this.a5 = "";
-        this.a6 = "";
+        this.a1 = "-1";
+        this.a2 = "-1";
+        this.a3 = "-1";
+        this.a4 = "-1";
+        this.a5 = "-1";
+        this.a6 = "-1";
     }
 
     public EPerformanceAssessment(String a1, String a2, String a3, String a4, String a5, String a6) {

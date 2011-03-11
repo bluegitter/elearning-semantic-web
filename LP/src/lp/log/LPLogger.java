@@ -4,18 +4,24 @@
  */
 package lp.log;
 
+import java.io.BufferedReader;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lp.eresource.WebOperation;
+import java.net.URL;
+import java.net.URLConnection;
 import util.Constant;
 
 /**
@@ -29,6 +35,7 @@ public class LPLogger {
     private String ip;
     private File logFile;
     private BufferedWriter output;
+    private StringBuilder sb ;
 
     public LPLogger() {
         logFile = new File(Constant.TestLogFile);
@@ -44,6 +51,7 @@ public class LPLogger {
         mesList = new ArrayList<String>();
         userId = "userId";
         ip = "ip";
+        sb = new StringBuilder();
         try {
             output = new BufferedWriter(new FileWriter(logFile));
         } catch (IOException ioe) {
@@ -51,7 +59,6 @@ public class LPLogger {
     }
 
     public void writeLog(int action, String data, String result, String status) {
-        StringBuilder sb = new StringBuilder();
         sb.append("time");
         sb.append(",");
         sb.append(userId);
@@ -64,7 +71,7 @@ public class LPLogger {
         sb.append(",");
         sb.append(result);
         sb.append(",");
-        sb.append("status");
+        sb.append(status);
         sb.append(";");
         try {
             output.write(sb.toString());
@@ -81,9 +88,37 @@ public class LPLogger {
             Logger.getLogger(LPLogger.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void sendLog(){
-        String url = Constant.ISCBSERVER250+"uploadLogs.jsp?logs=";
+
+    public void sendLog() throws MalformedURLException, IOException {
+        String u1 = Constant.ISCBSERVER250 + "uploadLogs.jsp?logs=";
+        URL url = new URL(u1 + sb.toString());
+        System.out.println("URL:"+url);
+        URLConnection connection = (URLConnection) url.openConnection();
+        connection.setDoOutput(true);
+
+        String sCurrentLine = "";
+        InputStream l_urlStream = connection.getInputStream();
+        // 传说中的三层包装阿！
+        BufferedReader l_reader = new BufferedReader(new InputStreamReader(l_urlStream));
+        String result = "";
+        boolean getResult = false;
+        String sTotalString = "";
+        while ((sCurrentLine = l_reader.readLine()) != null) {
+            sTotalString += sCurrentLine + "\r\n";
+//            if(sCurrentLine.trim().equals("<body>")){
+//                getResult = true;
+//            }
+//            if(getResult && !sCurrentLine.trim().equals("</body>")){
+//               result =  sCurrentLine.trim();
+//            }
+//            if(getResult && sCurrentLine.trim().equals("</body>")){
+//                getResult = false;
+//            }
+        }
+        System.out.println(sTotalString);
+        System.out.println("result:" + result);
     }
+
     public void close() {
         try {
             output.flush();
@@ -112,9 +147,10 @@ public class LPLogger {
         return date.toString();
     }
 
-    public static void main(String[] args) {
-//        LPLogger lpl = new LPLogger();
-//        lpl.setUserId("el001");
+    public static void main(String[] args) throws MalformedURLException, IOException {
+        LPLogger lpl = new LPLogger();
+        lpl.setUserId("el001");
+        lpl.sendLog();
 //       // lpl.addMessage(lpl.getSysDate());
 //        lpl.writeLog("hello");
 //        System.out.println(lpl.getLog());
