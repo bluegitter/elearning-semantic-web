@@ -11,9 +11,7 @@ public class Constant {
     public static String RulesFile = "files\\owl\\elearning2.rules";
     public static String LuceneTestFile = "files\\lucene\\testlucene.txt";
     public static String TestLogFile = "files\\log\\lplog.log";
-    public static String LoginRequest1 = "http://166.111.80.250/iscb/regUser.jsp?userName=";
-    public static String LoginRequest2 = "&password=";
-    public static String LoginRequest3 = "&login=false";
+    
     /*********************************************************************
      * SPARQL Prefix
      ********************************************************************/

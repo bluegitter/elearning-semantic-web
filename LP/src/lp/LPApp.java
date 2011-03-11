@@ -64,7 +64,7 @@ public class LPApp extends SingleFrameApplication {
     @Override
     protected void shutdown() {
         Date date = new Date(System.currentTimeMillis());
-        File file = new File("test\\owl\\conceptsAndresource_RDF-XML.owl");
+        File file = new File("write1.owl");
 
         if (!file.exists()) {
             try {
@@ -72,14 +72,17 @@ public class LPApp extends SingleFrameApplication {
             } catch (IOException ex) {
             }
         }
-//        try {
-//            OwlOperation.writeOwlFile(LPApp.lpModel.getOntModel(), file);
-//            System.out.println("Complete saving the file before exiting the program.");
-//        } catch (IOException ex) {
-//            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        saveToFile(file);
         lpLogs.close();
         super.shutdown();
+    }
+    private void saveToFile(File file){
+        try {
+            OwlOperation.writeOwlFile(LPApp.lpModel.getOntModel(), file);
+            System.out.println("Complete saving the file before exiting the program.");
+        } catch (IOException ex) {
+            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

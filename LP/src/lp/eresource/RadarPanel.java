@@ -19,6 +19,7 @@ import java.awt.RenderingHints;
 import java.awt.geom.Line2D;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import lp.AssessmentPane;
@@ -34,6 +35,15 @@ import ontology.EPerformanceAssessment;
 public class RadarPanel extends javax.swing.JPanel {
 
     private EPerformance perform;
+    private JDialog parent;
+
+    public JDialog getParent() {
+        return parent;
+    }
+
+    public void setParent(JDialog parent) {
+        this.parent = parent;
+    }
 
     /** Creates new form RadarPanel */
     public RadarPanel(EPerformance perform) {
@@ -349,8 +359,9 @@ public class RadarPanel extends javax.swing.JPanel {
             LPApp.lpModel.updateEPerformanceAssessment(perform, assessment);
             UserProfilePane userProfilePane = (UserProfilePane) LPApp.getApplication().view.getPanes()[LPApp.PROFILE];
             userProfilePane.updateUserProfilePane();
-            AssessmentPane assessmentPane =(AssessmentPane) LPApp.getApplication().view.getPanes()[LPApp.ASSESSMENT];
+            AssessmentPane assessmentPane = (AssessmentPane) LPApp.getApplication().view.getPanes()[LPApp.ASSESSMENT];
             assessmentPane.perform.updatePerformanceTable();
+            this.getParent().dispose();
         } catch (IndividualNotExistException ex) {
             Logger.getLogger(RadarPanel.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -36,6 +36,8 @@ public class UserProfilePane extends javax.swing.JPanel {
 
     public UserInterestPane userInterestPane;
     private ELearner el;
+    private AssessmentPane assessmentPane;
+
     /** Creates new form UserProfilePane */
     public UserProfilePane() {
         el = LPApp.getApplication().user.learner;
@@ -78,8 +80,9 @@ public class UserProfilePane extends javax.swing.JPanel {
         }
         updateUserProfilePane();
     }
-    public void updateUserProfilePane(){
-         //initial concepts in performance for user
+
+    public void updateUserProfilePane() {
+        //initial concepts in performance for user
         DefaultTableModel model;
         model = (DefaultTableModel) conceptsTable.getModel();
         for (int index = model.getRowCount() - 1; index >= 0; index--) {
@@ -460,7 +463,9 @@ public class UserProfilePane extends javax.swing.JPanel {
     private void moreConceptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreConceptsActionPerformed
         // TODO add your handling code here:
         PopCenterDialog pcd = new PopCenterDialog();
-        pcd.setContentPane(new MyPerformancePane());
+        assessmentPane = (AssessmentPane) LPApp.getApplication().view.getPanes()[LPApp.ASSESSMENT];
+        pcd.setContentPane(assessmentPane.perform);
+//        pcd.setContentPane(new MyPerformancePane());
         pcd.setTitle("已学过的知识点");
         pcd.pack();
         pcd.centerScreen();
@@ -477,7 +482,9 @@ public class UserProfilePane extends javax.swing.JPanel {
     private void moreResourcesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreResourcesActionPerformed
         // TODO add your handling code here:
         PopCenterDialog pcd = new PopCenterDialog();
-        pcd.setContentPane(new MyPortfolioPane());
+        assessmentPane = (AssessmentPane) LPApp.getApplication().view.getPanes()[LPApp.ASSESSMENT];
+        pcd.setContentPane(assessmentPane.port);
+//        pcd.setContentPane(new MyPortfolioPane());
         pcd.setTitle("已学过的资源");
         pcd.pack();
         pcd.centerScreen();

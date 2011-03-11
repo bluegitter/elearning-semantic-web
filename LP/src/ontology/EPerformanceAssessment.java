@@ -36,6 +36,16 @@ public class EPerformanceAssessment {
         this.a6 = a6;
     }
 
+    public int getValue() {
+        int a = Integer.parseInt(a1);
+        int b = Integer.parseInt(a2);
+        int c = Integer.parseInt(a3);
+        int d = Integer.parseInt(a4);
+        int e = Integer.parseInt(a5);
+        int f = Integer.parseInt(a6);
+        return (a + b + c + d + e + f) / 6;
+    }
+
     public String toString() {
         return a1 + "\t" + a2 + "\t" + a3 + "\t" + a4 + "\t" + a5 + "\t" + a6;
     }
