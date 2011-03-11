@@ -188,7 +188,7 @@ public class NavigatorConceptPane extends javax.swing.JPanel {
         for (EConcept c : a) {
             //System.out.println(c.getCid() + c.getName() + "hahahahahaha");
             rList = LPApp.getApplication().lpModel.getEResourcesByEConcept(c);
-             CheckNode child = null;
+            CheckNode child = null;
             if(rList.size() > 0)
             {
             child = new CheckNode(c);
