@@ -32,12 +32,7 @@ public class EUser {
 
     public boolean login(String passwd) {
       try {
-            //        try {
-            //            return db.DbOperation.login(username, passwd);
-            //        } catch(Exception ex) {
-            //            return false;
-            //        }
-            //http://166.111.80.250/iscb/regUser.jsp?userName=masheng&password=masheng&login=true
+              //http://166.111.80.250/iscb/regUser.jsp?userName=masheng&password=masheng&login=true
             StringBuilder sb = new StringBuilder();
             sb.append(Constant.ISCBSERVER250);
             sb.append("/iscb/regUser.jsp?userName=");
@@ -71,20 +66,27 @@ public class EUser {
         InputStream l_urlStream = connection.getInputStream();
         // 传说中的三层包装阿！
         BufferedReader l_reader = new BufferedReader(new InputStreamReader(l_urlStream));
-        String result = "";
+        String temp = "";
+        String result="";
         boolean getResult =false;
         String sTotalString = "";
         while ((sCurrentLine = l_reader.readLine()) != null) {
             sTotalString += sCurrentLine + "\r\n";
-//            if(sCurrentLine.trim().equals("<body>")){
-//                getResult = true;
-//            }
-//            if(getResult && !sCurrentLine.trim().equals("</body>")){
-//               result =  sCurrentLine.trim();
-//            }
-//            if(getResult && sCurrentLine.trim().equals("</body>")){
-//                getResult = false;
-//            }
+            if(sCurrentLine.trim().equals("<body>")){
+                getResult = true;
+            }
+            if(getResult && !sCurrentLine.trim().equals("</body>")){
+               temp =  sCurrentLine.trim();
+               if(temp.equals("false")){
+                   result = "false";
+                   break;
+               }else{
+                   result = "true";
+               }
+            }
+            if(getResult && sCurrentLine.trim().equals("</body>")){
+                getResult = false;
+            }
         }
         System.out.println(sTotalString);
         System.out.println("result:"+result);

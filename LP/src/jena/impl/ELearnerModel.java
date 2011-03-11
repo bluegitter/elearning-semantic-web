@@ -524,7 +524,7 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
             ass.a6 = a6Node.asLiteral().getString();
         }
         performance.assessment = ass;
-        System.out.println("assessment:" + ass);
+//        System.out.println("assessment:" + ass);
 
         Statement valueNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "value"));
         if (valueNode != null) {

@@ -59,6 +59,14 @@ public class ResourceTablePane extends javax.swing.JPanel {
     public void updateResources(ArrayList<ISCB_Resource> res) {
         resourceTable.updateRes(res);
         jLabel2.setText(res.size() + "个");
+        jButton1.setEnabled(false);
+        resourceTable.currentPage = 0;
+        if(resourceTable.currentPage<resourceTable.pages - 1){
+             jButton2.setEnabled(true);
+        }else{
+             jButton2.setEnabled(false);
+        }
+       
     }
 
     public void goToEResourceDetailPane(ISCB_Resource res) {
