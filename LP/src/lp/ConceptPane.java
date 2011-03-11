@@ -155,7 +155,7 @@ public class ConceptPane extends javax.swing.JPanel {
 
     public void updateData() {
         if (cdec != null) {
-            EPerformance ep = LPApp.lpModel.getEPerformance(new ELearner(LPApp.getApplication().user.username), cdec);
+            EPerformance ep = LPApp.lpModel.getEPerformance(LPApp.getApplication().user.learner, cdec);
 //            this.examScore.setText("");
             if (ep != null) {
                 if (ep.getValue() > -0.5) {
