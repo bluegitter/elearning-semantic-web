@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 import ontology.EConcept;
+import ontology.resources.ISCB_Resource;
 import prefuse.Constants;
 import prefuse.Display;
 import prefuse.Visualization;
@@ -54,7 +55,6 @@ public class AllConceptDisplay extends Display {
     private EdgeRenderer m_edgeRenderer;
     public String m_label = "concept";
     private int m_orientation = Constants.ORIENT_LEFT_RIGHT;
-
     private AllConceptPane parent;
 
     public AllConceptDisplay(AllConceptPane parent) {
@@ -319,7 +319,7 @@ public class AllConceptDisplay extends Display {
                 parent.conceptPane.cdec = ec;
                 parent.conceptPane.updateData();
                 parent.conceptPane.updateResouceTable(ec);
-                
+
             } else {
                 m_cur.setLocation(m_start.getX() + frac * (m_end.getX() - m_start.getX()),
                         m_start.getY() + frac * (m_end.getY() - m_start.getY()));
@@ -351,9 +351,12 @@ public class AllConceptDisplay extends Display {
     private void addNodes(Tree t, Node n, EConcept r) {
         ArrayList<EConcept> a = LPApp.lpModel.getSonConcepts(r);
         for (EConcept c : a) {
-            Node cn = t.addChild(n);
-            cn.set(m_label, c);
-            addNodes(t, cn, c);
+            ArrayList<ISCB_Resource> eResourcesByEConcept = LPApp.lpModel.getEResourcesByEConcept(c);
+            if (eResourcesByEConcept.size() > 0) {
+                Node cn = t.addChild(n);
+                cn.set(m_label, c);
+                addNodes(t, cn, c);
+            }
         }
     }
 }
