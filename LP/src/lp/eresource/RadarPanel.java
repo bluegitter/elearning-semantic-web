@@ -37,11 +37,11 @@ public class RadarPanel extends javax.swing.JPanel {
     private EPerformance perform;
     private JDialog parent;
 
-    public JDialog getParent() {
+    public JDialog getDParent() {
         return parent;
     }
 
-    public void setParent(JDialog parent) {
+    public void setDParent(JDialog parent) {
         this.parent = parent;
     }
 
@@ -361,7 +361,7 @@ public class RadarPanel extends javax.swing.JPanel {
             userProfilePane.updateUserProfilePane();
             AssessmentPane assessmentPane = (AssessmentPane) LPApp.getApplication().view.getPanes()[LPApp.ASSESSMENT];
             assessmentPane.perform.updatePerformanceTable();
-            this.getParent().dispose();
+            this.getDParent().dispose();
         } catch (IndividualNotExistException ex) {
             Logger.getLogger(RadarPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
