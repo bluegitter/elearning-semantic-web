@@ -41,6 +41,7 @@ import lp.display.mytree.CheckNode;
 import lp.display.mytree.CheckRenderer;
 import ontology.EConcept;
 import ontology.EInterest;
+import ontology.resources.ISCB_Resource;
 
 /**
  *
@@ -70,11 +71,18 @@ public class NavigatorPane extends javax.swing.JPanel {
     private CheckNode addNodes(CheckNode n, EConcept r) {
 
         ArrayList<EConcept> a = LPApp.getApplication().lpModel.getSonConcepts(r);
+        ArrayList<ISCB_Resource> rList = new  ArrayList<ISCB_Resource>();//LPApp.getApplication().lpModel.getEResourcesByEConcept(r)
         for (EConcept c : a) {
             //System.out.println(c.getCid() + c.getName() + "hahahahahaha");
-            CheckNode child = new CheckNode(c);
-            n.add(child);
-            addNodes(child, c);
+            rList = LPApp.getApplication().lpModel.getEResourcesByEConcept(c);
+            CheckNode child = null;
+            if(rList.size() > 0)
+            {
+             child = new CheckNode(c);
+             n.add(child);
+             addNodes(child, c);
+            }
+           
         }
         return n;
     }
