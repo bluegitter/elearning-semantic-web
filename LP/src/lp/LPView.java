@@ -3,7 +3,7 @@
  */
 package lp;
 
-import lp.navigator.RegistPane;
+import lp.navigator.Navi_InterestPane;
 import lp.navigator.NavigatorDialog;
 import lp.navigator.NavigatorPane;
 import org.jdesktop.application.Action;
@@ -215,7 +215,7 @@ public class LPView extends FrameView {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 495, Short.MAX_VALUE)
+            .addGap(0, 534, Short.MAX_VALUE)
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -351,8 +351,10 @@ public class LPView extends FrameView {
 
         lpToolBar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         lpToolBar.setFloatable(false);
-        lpToolBar.setRollover(true);
+        lpToolBar.setMaximumSize(new java.awt.Dimension(624, 90));
+        lpToolBar.setMinimumSize(new java.awt.Dimension(624, 90));
         lpToolBar.setName("lpToolBar"); // NOI18N
+        lpToolBar.setPreferredSize(new java.awt.Dimension(624, 90));
 
         buttonGroup1.add(jToggleButton1);
         jToggleButton1.setFont(resourceMap.getFont("jToggleButton1.font")); // NOI18N
@@ -362,7 +364,11 @@ public class LPView extends FrameView {
         jToggleButton1.setActionCommand(resourceMap.getString("jToggleButton1.actionCommand")); // NOI18N
         jToggleButton1.setFocusable(false);
         jToggleButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jToggleButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jToggleButton1.setMaximumSize(new java.awt.Dimension(103, 90));
+        jToggleButton1.setMinimumSize(new java.awt.Dimension(103, 90));
         jToggleButton1.setName("jToggleButton1"); // NOI18N
+        jToggleButton1.setPreferredSize(new java.awt.Dimension(103, 90));
         jToggleButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -377,7 +383,11 @@ public class LPView extends FrameView {
         jToggleButton2.setText(resourceMap.getString("jToggleButton2.text")); // NOI18N
         jToggleButton2.setFocusable(false);
         jToggleButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jToggleButton2.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jToggleButton2.setMaximumSize(new java.awt.Dimension(103, 90));
+        jToggleButton2.setMinimumSize(new java.awt.Dimension(103, 90));
         jToggleButton2.setName("jToggleButton2"); // NOI18N
+        jToggleButton2.setPreferredSize(new java.awt.Dimension(103, 90));
         jToggleButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -392,7 +402,11 @@ public class LPView extends FrameView {
         jToggleButton3.setText(resourceMap.getString("jToggleButton3.text")); // NOI18N
         jToggleButton3.setFocusable(false);
         jToggleButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jToggleButton3.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jToggleButton3.setMaximumSize(new java.awt.Dimension(103, 90));
+        jToggleButton3.setMinimumSize(new java.awt.Dimension(103, 90));
         jToggleButton3.setName("jToggleButton3"); // NOI18N
+        jToggleButton3.setPreferredSize(new java.awt.Dimension(103, 90));
         jToggleButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -407,7 +421,11 @@ public class LPView extends FrameView {
         jToggleButton4.setText(resourceMap.getString("jToggleButton4.text")); // NOI18N
         jToggleButton4.setFocusable(false);
         jToggleButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jToggleButton4.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jToggleButton4.setMaximumSize(new java.awt.Dimension(103, 90));
+        jToggleButton4.setMinimumSize(new java.awt.Dimension(103, 90));
         jToggleButton4.setName("jToggleButton4"); // NOI18N
+        jToggleButton4.setPreferredSize(new java.awt.Dimension(103, 90));
         jToggleButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -423,7 +441,11 @@ public class LPView extends FrameView {
         jToggleButton5.setFocusable(false);
         jToggleButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jToggleButton5.setLabel(resourceMap.getString("jToggleButton5.label")); // NOI18N
+        jToggleButton5.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jToggleButton5.setMaximumSize(new java.awt.Dimension(103, 90));
+        jToggleButton5.setMinimumSize(new java.awt.Dimension(103, 90));
         jToggleButton5.setName("jToggleButton5"); // NOI18N
+        jToggleButton5.setPreferredSize(new java.awt.Dimension(103, 90));
         jToggleButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -438,7 +460,11 @@ public class LPView extends FrameView {
         jToggleButton6.setText(resourceMap.getString("jToggleButton6.text")); // NOI18N
         jToggleButton6.setFocusable(false);
         jToggleButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jToggleButton6.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jToggleButton6.setMaximumSize(new java.awt.Dimension(103, 90));
+        jToggleButton6.setMinimumSize(new java.awt.Dimension(103, 90));
         jToggleButton6.setName("jToggleButton6"); // NOI18N
+        jToggleButton6.setPreferredSize(new java.awt.Dimension(103, 90));
         jToggleButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToggleButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -528,5 +554,5 @@ public class LPView extends FrameView {
     private int busyIconIndex = 0;
     private JDialog aboutBox;
     public NavigatorPane np = null;
-    public RegistPane rp = null;
+    public Navi_InterestPane rp = null;
 }
