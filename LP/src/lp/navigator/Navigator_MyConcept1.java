@@ -47,7 +47,7 @@ private NavigatorDialog parent;
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/c2.png"))); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/1.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/2.png"))); // NOI18N
         jLabel3.setText("查看用户学过的知识");
         jLabel3.setName("jLabel3"); // NOI18N
 

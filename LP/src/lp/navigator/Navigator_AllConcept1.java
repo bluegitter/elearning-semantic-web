@@ -40,7 +40,7 @@ private NavigatorDialog parent;
         jButton2 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/2.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/1.png"))); // NOI18N
         jLabel3.setText("浏览所有的知识点");
         jLabel3.setName("jLabel3"); // NOI18N
 
