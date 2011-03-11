@@ -22,7 +22,10 @@ import java.util.logging.Logger;
 import lp.eresource.WebOperation;
 import java.net.URL;
 import java.net.URLConnection;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import util.Constant;
+import util.MethodConstant;
 
 /**
  *
@@ -35,10 +38,20 @@ public class LPLogger {
     private String ip;
     private File logFile;
     private BufferedWriter output;
-    private StringBuilder sb ;
+    private StringBuilder sb;
 
     public LPLogger() {
-        logFile = new File(Constant.TestLogFile);
+        Date date = MethodConstant.getSysDate();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        String s = dateFormat.format(date);
+        logFile = new File(Constant.TestLogFile + s);
+
+        if (!logFile.exists()) {
+            try {
+                logFile.createNewFile();
+            } catch (IOException ex) {
+            }
+        }
         init();
     }
 
@@ -92,7 +105,7 @@ public class LPLogger {
     public void sendLog() throws MalformedURLException, IOException {
         String u1 = Constant.ISCBSERVER250 + "uploadLogs.jsp?logs=";
         URL url = new URL(u1 + sb.toString());
-        System.out.println("URL:"+url);
+        System.out.println("URL:" + url);
         URLConnection connection = (URLConnection) url.openConnection();
         connection.setDoOutput(true);
 
