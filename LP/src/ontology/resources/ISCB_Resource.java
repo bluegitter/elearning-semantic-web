@@ -12,7 +12,12 @@ public class ISCB_Resource extends E_Resource {
     protected String fileLocation;
     protected String postfix;
 
+    public String getIsLearntResult() {
+        return "未学过";
+    }
+
     public ISCB_Resource() {
+        this.rid = "newRID";
     }
 
     public ISCB_Resource(String rid) {
