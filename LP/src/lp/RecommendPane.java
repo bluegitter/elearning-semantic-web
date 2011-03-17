@@ -13,6 +13,7 @@ import lp.display.EBalloon;
 import lp.display.EClass;
 import lp.eresource.ResourceTablePane;
 import ontology.EConcept;
+import util.LogConstant;
 
 /**
  *
@@ -28,7 +29,7 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
     public ResourceTablePane resPane;
 
     public RecommendPane() {
-        on = clicked =null;
+        on = clicked = null;
         thread = null;
         showTime = 0;
 
@@ -78,12 +79,14 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(on != null && on != clicked) {
-            if(clicked != null)
+        if (on != null && on != clicked) {
+            if (clicked != null) {
                 clicked.isClicked = false;
+            }
             clicked = on;
             on.isClicked = true;
 
+            LPApp.lpLogs.writeLog(104, "浏览知识点：" + on.ec.getCid(), "泡泡推荐", LogConstant.STATUS104);
             resPane.updateResources(LPApp.lpModel.getEResourcesByEConcept(on.ec));
 
             repaint();
@@ -158,12 +161,12 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
                 if (map.containsKey(c.getCid())) {
                     EClass ec = map.get(c.getCid());
                     ec.rank += r[i - 1];
-                    ec.r[i - 1] = (float)r[i - 1];
+                    ec.r[i - 1] = (float) r[i - 1];
                 } else {
                     EClass ec = new EClass(c);
                     map.put(c.getCid(), ec);
                     ec.rank += r[i - 1];
-                    ec.r[i - 1] = (float)r[i - 1];
+                    ec.r[i - 1] = (float) r[i - 1];
                 }
             }
         }
@@ -178,7 +181,7 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
         for (int i = 0; i < len; i++) {
             EClass nec = list.get(i);
 
-            EBalloon newb = new EBalloon(x[i], y[i], d[i], (EConcept)nec.object, ca[nec.getColorIndex()]);
+            EBalloon newb = new EBalloon(x[i], y[i], d[i], (EConcept) nec.object, ca[nec.getColorIndex()]);
             this.balloons.add(newb);
         }
         rpstart(24);
@@ -191,10 +194,11 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
         while (thread == me && this.showTime >= 0) {
             if (showing) {
                 for (EBalloon b : balloons) {
-                    if(!b.shown) {
+                    if (!b.shown) {
                         b.rd += b.diameter / 20f;
-                        if(b.rd >= b.diameter)
+                        if (b.rd >= b.diameter) {
                             b.shown = true;
+                        }
                     }
                 }
             }
@@ -207,7 +211,7 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
             }
         }
 
-        showing= false;
+        showing = false;
         thread = null;
     }
 }

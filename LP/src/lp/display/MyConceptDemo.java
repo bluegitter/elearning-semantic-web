@@ -29,6 +29,7 @@ import prefuse.util.ui.JFastLabel;
 import prefuse.util.ui.JSearchPanel;
 import prefuse.visual.VisualItem;
 import util.Constant;
+import util.LogConstant;
 
 /**
  *
@@ -76,12 +77,12 @@ public class MyConceptDemo extends javax.swing.JPanel {
 //            public void itemExited(VisualItem item, MouseEvent e) {
 //                title.setText(null);
 //            }
-
             @Override
             public void itemClicked(VisualItem item, MouseEvent e) {
                 EClass ec = (EClass) item.get(MyConceptDisplay.m_label);
                 if (ec.isPerformance()) {
                     EPerformance ep = (EPerformance) ec.object;
+                    LPApp.lpLogs.writeLog(104, "浏览知识点：" + ep.getId(), "已学过", LogConstant.STATUS104);
                     ArrayList<ISCB_Resource> ra = LPApp.lpModel.getEResourcesByEConcept(ep.getConcept());
                     Node n = MyConceptDisplay.t.getNode(item.getRow());
                     for (int i = 0; i < last_count; i++) {
@@ -102,7 +103,7 @@ public class MyConceptDemo extends javax.swing.JPanel {
                     last_count = count;
                 } else if (ec.isResource()) {
                     ISCB_Resource res = (ISCB_Resource) ec.object;
-                    WebOperation.viewResourceBroswer(Constant.ISCBSERVER48 + res.getFileLocation(),res.getRid(),res.getIsLearntResult());
+                    WebOperation.viewResourceBroswer(Constant.ISCBSERVER48 + res.getFileLocation(), res.getRid(), "已学过");
                 }
             }
         });
