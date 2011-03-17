@@ -69,13 +69,13 @@ public class UserProfilePane extends javax.swing.JPanel {
         email.setText(el.getEmail());
         address.setText(el.getAddress());
         //Image thead = new Image("/lp/src/resource.malehead.png");
-        ImageIcon icon = new ImageIcon("src/lp/resources/malehead.png");
+        ImageIcon icon = new ImageIcon(UserProfilePane.class.getResource("/lp/resources/malehead.png"));
         System.out.println("|" + el.getGender() + "|");
         if (el.getGender().trim().equals("male")) {
             jLabel5.setIcon(icon);
             gender.setText("男");
         } else {
-            icon = new ImageIcon("src/lp/resources/femalehead.png");
+            icon = new ImageIcon(UserProfilePane.class.getResource("/lp/resources/femalehead.png"));
             jLabel5.setIcon(icon);
             gender.setText("女");
         }
