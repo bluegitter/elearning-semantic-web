@@ -3,7 +3,6 @@ package lp;
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
 import db.WebOperation;
 import util.LogConstant;
 
@@ -151,7 +150,7 @@ public class LoginPanel extends javax.swing.JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        ImageIcon aboutimage = new ImageIcon("src/lp/resources/bg.png");
+        ImageIcon aboutimage = new ImageIcon(LoginPanel.class.getResource("/lp/resources/bg.png"));
         aboutimage.paintIcon(this, g, 0, 0);
     }
 

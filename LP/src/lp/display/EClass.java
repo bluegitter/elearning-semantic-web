@@ -56,19 +56,19 @@ public class EClass implements Comparable {
         String str = null;
         switch (type) {
             case learner:
-                str = "src/lp/resources/learner.png";
+                str = "/lp/resources/learner.png";
                 break;
             case concept:
-                str = "src/lp/resources/concept.png";
+                str = "/lp/resources/concept.png";
                 break;
             case resource:
-                str = "src/lp/resources/resource.png";
+                str = "/lp/resources/resource.png";
                 break;
             case performance:
                 if (((EPerformance) object).getValue() < 0) {
-                    str = "src/lp/resources/performance.png";
+                    str = "/lp/resources/performance.png";
                 } else {
-                    str = "src/lp/resources/performance_done.png";
+                    str = "/lp/resources/performance_done.png";
                 }
                 break;
         }

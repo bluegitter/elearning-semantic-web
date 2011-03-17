@@ -21,8 +21,8 @@ import javax.swing.JPanel;
  */
 public class LPBar extends JPanel implements MouseListener, MouseMotionListener {
 
-    private ImageIcon timage = new ImageIcon("src/lp/resources/tiaotiao.png");
-    private ImageIcon yimage = new ImageIcon("src/lp/resources/yuanyuan.png");
+    private ImageIcon timage = new ImageIcon(LPBar.class.getResource("/lp/resources/tiaotiao.png"));
+    private ImageIcon yimage = new ImageIcon(LPBar.class.getResource("/lp/resources/yuanyuan.png"));
     private double value;
     private boolean pressed;
     private int color;
