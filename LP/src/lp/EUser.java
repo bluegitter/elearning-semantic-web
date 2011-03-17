@@ -30,12 +30,12 @@ public class EUser {
         this.username = username;
     }
 
-    public boolean login(String passwd) {
+    public String login(String passwd) {
       try {
               //http://166.111.80.250/iscb/regUser.jsp?userName=masheng&password=masheng&login=true
             StringBuilder sb = new StringBuilder();
             sb.append(Constant.ISCBSERVER250);
-            sb.append("/iscb/regUser.jsp?userName=");
+            sb.append("iscb/regUser.jsp?userName=");
             sb.append(username);
             sb.append("&password=");
             sb.append(passwd);
@@ -45,9 +45,9 @@ public class EUser {
             try {
                 String isChecked = sendRequest(url);
                 if(isChecked.equals("true")){
-                    return true;
+                    return null;
                 }else{
-                    return false;
+                    return "登录失败！";
                 }
             } catch (IOException ex) {
                 Logger.getLogger(EUser.class.getName()).log(Level.SEVERE, null, ex);
@@ -56,7 +56,7 @@ public class EUser {
         } catch (MalformedURLException ex) {
             Logger.getLogger(EUser.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return true;
+        return "网络连接异常！";
     }
     public String sendRequest(URL url) throws IOException{
         URLConnection connection = url.openConnection();

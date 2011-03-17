@@ -45,8 +45,6 @@ public class LPApp extends SingleFrameApplication {
     protected void startup() {
 
         String sepstr = File.separator;
-        lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFile));
-        lpLogs = new LPLogger();
         user = null;
         view = new LPView(this);
         view.mainPanel.setLayout(new CentralLayout());
@@ -76,6 +74,14 @@ public class LPApp extends SingleFrameApplication {
         lpLogs.close();
         super.shutdown();
     }
+
+    public void initModel()
+    {
+        lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFile));
+        lpLogs = new LPLogger();
+        lpLogs.setUserId(user.username);
+    }
+
     private void saveToFile(File file){
         try {
             OwlOperation.writeOwlFile(LPApp.lpModel.getOntModel(), file);

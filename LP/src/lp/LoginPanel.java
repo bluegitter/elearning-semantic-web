@@ -119,23 +119,21 @@ public class LoginPanel extends javax.swing.JPanel {
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         final LPView view = LPApp.getApplication().view;
         LPApp.getApplication().user = new EUser(username.getText());
-        
-        LPApp.lpLogs.setUserId(LPApp.getApplication().user.username);
 
         view.setBusy("正在验证密码...");
         Thread authThread = new Thread() {
 
             @Override
             public void run() {
-                boolean loginAuth = LPApp.getApplication().user.login(new String(password.getPassword()));
+                String rtvMsg = LPApp.getApplication().user.login(new String(password.getPassword()));
 //                boolean loginAuth = true;
-               if (loginAuth) {
+               if (rtvMsg == null) {
                     LPApp.getApplication().user.learner = LPApp.lpModel.getELearner(LPApp.getApplication().user.username);
                     view.setBusy("正在加载数据...");
                     view.initTools();
                     LPApp.lpLogs.writeLog(101,LPApp.getApplication().user.username , "登入", LogConstant.STATUS101);
                 } else {
-                    tipLabel.setText("登录失败！");
+                    tipLabel.setText(rtvMsg);
                     tipLabel.setForeground(Color.red);
                     username.grabFocus();
                     LPApp.lpLogs.writeLog(101, LPApp.getApplication().user.username , "登出", LogConstant.STATUS101);
