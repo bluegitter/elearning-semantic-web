@@ -126,6 +126,8 @@ public class LPView extends FrameView {
     }
 
     public void initTools() {
+        LPApp.getApplication().initModel();
+
         javax.swing.JPanel[] pa = {new lp.display.MyConceptDemo(), new AllConceptPane(), new RecommendContainer(),
         new SearchPane(), new UserProfilePane(), new AssessmentPane()};
         panes = pa;
