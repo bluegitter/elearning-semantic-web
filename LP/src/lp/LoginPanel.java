@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
-import lp.eresource.WebOperation;
+import db.WebOperation;
 import util.LogConstant;
 
 /**
@@ -179,7 +179,7 @@ public class LoginPanel extends javax.swing.JPanel {
 //        d.setModal(true);
 //        d.pack();
 //        d.setVisible(true);
-        WebOperation.runBroswer("http://166.111.80.250/iscb/registerPage.jsp?roleId=0");
+        WebOperation.registBroswer("http://166.111.80.250/iscb/registerPage.jsp?roleId=0");
     }//GEN-LAST:event_regBtnActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

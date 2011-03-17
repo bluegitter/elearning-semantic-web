@@ -17,6 +17,7 @@ public class MethodConstant {
     }
     public static String getSysDateString(){
          Date date = new Date(System.currentTimeMillis());
-        return date.toString();
+        String ds =  StringExchanger.parseDateToFileNameString(date);
+        return ds;
     }
 }

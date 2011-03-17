@@ -10,6 +10,7 @@
  */
 package lp.eresource;
 
+import db.WebOperation;
 import jena.impl.ELearnerModelImpl;
 import ontology.resources.ISCB_Resource;
 
@@ -51,7 +52,7 @@ public class ResourceDetailPane extends javax.swing.JPanel {
 //        }
 //        description.setText(sb.toString());
         description.setText(des);
-        System.out.println("des:"+des);
+        System.out.println("des:" + des);
         difficulty.setText(res.getDifficulty());
         apptype.setText(res.getAppType());
     }
@@ -230,7 +231,7 @@ public class ResourceDetailPane extends javax.swing.JPanel {
         if (resourcelink != null && evt.getClickCount() == 1) {
             String url = resourcelink.getText();
             System.out.println("url:" + url);
-            WebOperation.runBroswer(url);
+            WebOperation.viewResourceBroswer(url, res.getRid(), res.getIsLearntResult());
         }
     }//GEN-LAST:event_resourcelinkMouseClicked
 

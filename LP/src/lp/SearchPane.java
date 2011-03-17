@@ -17,7 +17,7 @@ import javax.swing.JFrame;
 import jena.impl.ELearnerModelImpl;
 import lp.eresource.ResourceTable;
 import lp.eresource.ResourceTablePane;
-import lp.eresource.WebOperation;
+import db.WebOperation;
 import ontology.resources.ISCB_Resource;
 import org.jdesktop.application.Action;
 import util.Constant;
@@ -291,7 +291,7 @@ public class SearchPane extends javax.swing.JPanel {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
         if(evt.getClickCount()==2){
-             WebOperation.runBroswer("http://e6.thss.tsinghua.edu.cn/");
+             WebOperation.searchMoreBrowser("http://e6.thss.tsinghua.edu.cn/");
         }
     }//GEN-LAST:event_jLabel1MouseClicked
 

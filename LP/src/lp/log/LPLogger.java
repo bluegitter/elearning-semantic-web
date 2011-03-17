@@ -19,13 +19,14 @@ import java.net.NetworkInterface;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import lp.eresource.WebOperation;
+import db.WebOperation;
 import java.net.URL;
 import java.net.URLConnection;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import util.Constant;
 import util.MethodConstant;
+import util.StringExchanger;
 
 /**
  *
@@ -72,7 +73,8 @@ public class LPLogger {
     }
 
     public void writeLog(int action, String data, String result, String status) {
-        sb.append("time");
+        String time = MethodConstant.getSysDateString();
+        sb.append(time);
         sb.append(",");
         sb.append(userId);
         sb.append(",");
@@ -93,14 +95,14 @@ public class LPLogger {
         }
     }
 
-    public void writeMessage(String mes) {
-        try {
-            output.write(userId + ":" + getSysDate() + ":");
-            output.write(mes);
-        } catch (IOException ex) {
-            Logger.getLogger(LPLogger.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    public void writeMessage(String mes) {
+//        try {
+//            output.write(userId + ":" + getSysDate() + ":");
+//            output.write(mes);
+//        } catch (IOException ex) {
+//            Logger.getLogger(LPLogger.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     public void sendLog() throws MalformedURLException, IOException {
         String u1 = Constant.ISCBSERVER250 + "uploadLogs.jsp?logs=";
@@ -150,20 +152,16 @@ public class LPLogger {
     public void addMessage(String message) {
         mesList.add(message);
     }
-
-    public void writeLoginFailure() {
-        writeMessage("用户登录失败,错误ID:" + userId + "\n");
-    }
-
-    public String getSysDate() {
-        Date date = new Date(System.currentTimeMillis());
-        return date.toString();
-    }
+//
+//    public void writeLoginFailure() {
+//        writeMessage("用户登录失败,错误ID:" + userId + "\n");
+//    }
 
     public static void main(String[] args) throws MalformedURLException, IOException {
         LPLogger lpl = new LPLogger();
-        lpl.setUserId("el001");
-        lpl.sendLog();
+        System.out.println(StringExchanger.parseDateToFileNameString( new Date(System.currentTimeMillis())));
+//        lpl.setUserId("el001");
+//        lpl.sendLog();
 //       // lpl.addMessage(lpl.getSysDate());
 //        lpl.writeLog("hello");
 //        System.out.println(lpl.getLog());

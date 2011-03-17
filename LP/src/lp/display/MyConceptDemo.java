@@ -14,7 +14,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.SwingConstants;
 import lp.LPApp;
-import lp.eresource.WebOperation;
+import db.WebOperation;
 import ontology.EPerformance;
 import ontology.resources.E_Resource;
 import ontology.resources.ISCB_Resource;
@@ -101,7 +101,8 @@ public class MyConceptDemo extends javax.swing.JPanel {
                     }
                     last_count = count;
                 } else if (ec.isResource()) {
-                    WebOperation.runBroswer(Constant.ISCBSERVER48 + ((ISCB_Resource) ec.object).getFileLocation());
+                    ISCB_Resource res = (ISCB_Resource) ec.object;
+                    WebOperation.viewResourceBroswer(Constant.ISCBSERVER48 + res.getFileLocation(),res.getRid(),res.getIsLearntResult());
                 }
             }
         });

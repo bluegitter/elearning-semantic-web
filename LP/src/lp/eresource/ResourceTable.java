@@ -4,6 +4,7 @@
  */
 package lp.eresource;
 
+import db.WebOperation;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -70,7 +71,7 @@ public class ResourceTable extends JTable implements MouseListener, MouseMotionL
                 }) {
 
             Class[] types = new Class[]{
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                ontology.resources.ISCB_Resource.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean[]{
                 false, false, false
@@ -167,14 +168,14 @@ public class ResourceTable extends JTable implements MouseListener, MouseMotionL
     private void addEResourceToTableModel(ISCB_Resource er) {
         String difficulty = er.getDifficulty();
         String dif;
-        if(difficulty.equals("easy")){
+        if (difficulty.equals("easy")) {
             dif = "容易";
-        }else if(difficulty.equals("difficult")){
+        } else if (difficulty.equals("difficult")) {
             dif = "困难";
-        }else{
-            dif="未知";
+        } else {
+            dif = "未知";
         }
-        Object[] oa = {er.getName(), (util.Constant.ISCBSERVER48 + er.getFileLocation()), dif};
+        Object[] oa = {er, (util.Constant.ISCBSERVER48 + er.getFileLocation()), dif};
         model.addRow(oa);
     }
 
@@ -203,8 +204,12 @@ public class ResourceTable extends JTable implements MouseListener, MouseMotionL
             if (column == 1) {
                 String url = (String) this.getModel().getValueAt(row, column);
                 System.out.println("url:" + url);
-                WebOperation.runBroswer(url);
-            }if(column != 1){
+                System.out.println(this.getModel().getValueAt(row, 0));
+                ISCB_Resource temp = (ISCB_Resource) this.getModel().getValueAt(row, 0);
+                System.out.println("temp:"+temp.getRid());
+                WebOperation.viewResourceBroswer(url, temp.getRid(), temp.getIsLearntResult());
+            }
+            if (column != 1) {
                 ISCB_Resource resource = res.get(currentPage * num + row);
                 parent.goToEResourceDetailPane(resource);
                 System.out.println(row + "\tres:" + resource);
