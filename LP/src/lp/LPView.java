@@ -95,7 +95,7 @@ public class LPView extends FrameView {
 
     public void setBusy(String status) {
         if (!busyIconTimer.isRunning()) {
-            System.out.println(1);
+//            System.out.println(1);
             statusAnimationLabel.setIcon(busyIcons[0]);
             busyIconIndex = 0;
             busyIconTimer.start();
@@ -126,8 +126,7 @@ public class LPView extends FrameView {
     }
 
     public void initTools() {
-        LPApp.getApplication().initModel();
-
+        
         javax.swing.JPanel[] pa = {new lp.display.MyConceptDemo(), new AllConceptPane(), new RecommendContainer(),
         new SearchPane(), new UserProfilePane(), new AssessmentPane()};
         panes = pa;

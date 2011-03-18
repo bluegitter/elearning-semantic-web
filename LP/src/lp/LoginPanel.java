@@ -125,18 +125,19 @@ public class LoginPanel extends javax.swing.JPanel {
 
             @Override
             public void run() {
+                LPApp.getApplication().initModel();
                 String rtvMsg = LPApp.getApplication().user.login(new String(password.getPassword()));
+
 //                boolean loginAuth = true;
-               if (rtvMsg == null) {
-                    LPApp.getApplication().user.learner = LPApp.lpModel.getELearner(LPApp.getApplication().user.username);
+                if (rtvMsg == null) {
                     view.setBusy("正在加载数据...");
                     view.initTools();
-                    LPApp.lpLogs.writeLog(101,LPApp.getApplication().user.username , "登入", LogConstant.STATUS101);
+                    LPApp.lpLogs.writeLog(101, LPApp.getApplication().user.username, "登入", LogConstant.STATUS101);
                 } else {
                     tipLabel.setText(rtvMsg);
                     tipLabel.setForeground(Color.red);
                     username.grabFocus();
-                    LPApp.lpLogs.writeLog(101, LPApp.getApplication().user.username , "登出", LogConstant.STATUS101);
+//                    LPApp.lpLogs.writeLog(101, LPApp.getApplication().user.username , "登出", LogConstant.STATUS101);
                 }
                 view.setIdle();
             }
