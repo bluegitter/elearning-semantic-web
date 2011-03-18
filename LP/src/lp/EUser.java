@@ -18,6 +18,7 @@ import util.Constant;
  * @author Shuaiguo
  */
 public class EUser {
+
     public static void main(String[] args) {
         EUser us = new EUser("masheng");
         us.login("ma");
@@ -31,80 +32,103 @@ public class EUser {
     }
 
     public String login(String passwd) {
-      try {
-              //http://166.111.80.250/iscb/regUser.jsp?userName=masheng&password=masheng&login=true
+        try {
+            //http://166.111.80.250/iscb/regUser.jsp?userName=el001&password=el&login=false
             StringBuilder sb = new StringBuilder();
             sb.append(Constant.ISCBSERVER250);
             sb.append("iscb/regUser.jsp?userName=");
             sb.append(username);
             sb.append("&password=");
             sb.append(passwd);
-            sb.append("&login=true");
+            sb.append("&login=false");
             System.out.println(sb.toString());
             URL url = new URL(sb.toString());
             try {
                 String isChecked = sendRequest(url);
-                if(isChecked.equals("true")){
+                if (isChecked.equals("true")) {
                     return null;
-                }else{
+                } else {
                     return "登录失败！";
                 }
             } catch (IOException ex) {
                 Logger.getLogger(EUser.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         } catch (MalformedURLException ex) {
             Logger.getLogger(EUser.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "网络连接异常！";
     }
-    public String sendRequest(URL url) throws IOException{
+
+    public String sendRequest(URL url) throws IOException {
         URLConnection connection = url.openConnection();
         connection.setDoOutput(true);
 
         String sCurrentLine = "";
         InputStream l_urlStream = connection.getInputStream();
-        // 传说中的三层包装阿！
-        BufferedReader l_reader = new BufferedReader(new InputStreamReader(l_urlStream));
+        BufferedReader l_reader = new BufferedReader(new InputStreamReader(l_urlStream, "gbk"));
         String temp = "";
-        String result="";
-        boolean getResult =false;
+        String result = "false";
+        boolean getResult = false;
         String sTotalString = "";
+        boolean flag = false;
         while ((sCurrentLine = l_reader.readLine()) != null) {
             sTotalString += sCurrentLine + "\r\n";
-            if(sCurrentLine.trim().equals("<body>")){
+            if (sCurrentLine.trim().equals("<body>")) {
                 getResult = true;
+                continue;
             }
-            if(getResult && !sCurrentLine.trim().equals("</body>")){
-               temp =  sCurrentLine.trim();
-               if(temp.equals("false")){
-                   result = "false";
-                   break;
-               }else{
-                   result = "true";
-               }
-            }
-            if(getResult && sCurrentLine.trim().equals("</body>")){
-                getResult = false;
+            if (getResult) {
+                if (!sCurrentLine.trim().equals("</body>")) {
+                    if (!flag) {
+                        temp = sCurrentLine.trim();
+                        if (temp.equals("false")) {
+                            result = "false";
+                            return result;
+                        } else {
+                            result = "true";
+                            flag = true;
+                        }
+                    }
+                    String s = sCurrentLine.trim();
+                    if (s.contains("name:")) {
+                        String name = s.substring(5);
+                        LPApp.getApplication().user.learner.setName(name);
+//                        System.out.println("name:" + name);
+                    }
+                    if (s.contains("email:")) {
+                        String email = s.substring(6);
+                        LPApp.getApplication().user.learner.setEmail(email);
+                        System.out.println("email:" + email);
+                    }
+                    if (s.contains("company:")) {
+                        String company = s.substring(8);
+                        LPApp.getApplication().user.learner.setAddress(company);
+                        System.out.println("company:" + company);
+                    }
+                }
+                if (sCurrentLine.trim().equals("</body>")) {
+                    getResult = false;
+                }
             }
         }
-        System.out.println(sTotalString);
-        System.out.println("result:"+result);
+//        System.out.println(sTotalString);
+        System.out.println("result:" + result);
         return result;
     }
 
     public boolean reg(String passwd) {
         try {
             return db.DbOperation.addELearner(new ELearner(username, passwd));
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             return false;
         }
     }
 
-     public boolean regist(String passwd,String email,String address) {
+    public boolean regist(String passwd, String email, String address) {
         try {
-            return db.DbOperation.addELearner(new ELearner(username, passwd , email,address));
-        } catch(Exception ex) {
+            return db.DbOperation.addELearner(new ELearner(username, passwd, email, address));
+        } catch (Exception ex) {
             return false;
         }
     }

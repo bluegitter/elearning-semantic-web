@@ -6,6 +6,7 @@ package lp;
 import db.OwlOperation;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -71,24 +72,38 @@ public class LPApp extends SingleFrameApplication {
             }
         }
         saveToFile(file);
-        lpLogs.close();
+        sendLogs();
+
         super.shutdown();
     }
 
-    public void initModel()
-    {
+    public void initModel() {
         lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFile));
+        LPApp.getApplication().user.learner = LPApp.lpModel.getELearner(LPApp.getApplication().user.username);
         lpLogs = new LPLogger();
         lpLogs.setUserId(user.username);
     }
 
-    private void saveToFile(File file){
+    private void saveToFile(File file) {
         try {
             OwlOperation.writeOwlFile(LPApp.lpModel.getOntModel(), file);
             System.out.println("Complete saving the file before exiting the program.");
         } catch (IOException ex) {
             Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void sendLogs() {
+        try {
+            lpLogs.sendLogs();
+            System.out.println("Logs Sent..");
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        lpLogs.close();
+
     }
 
     /**
