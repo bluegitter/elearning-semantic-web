@@ -196,10 +196,9 @@ public class NavigatorConceptFinishPane extends javax.swing.JPanel {
             //ep.setValue(value);
         }
         */
-        // parent.setVisible(false);
-        // parent.dispose();
+     
          parent.nodesP = performanceNodes;
-         parent.setNext();
+        // parent.setNext();
          parent.setTitle("用户使用向导");
 
          //将感兴趣的知识点和学习中的知识点写入model
@@ -223,6 +222,9 @@ public class NavigatorConceptFinishPane extends javax.swing.JPanel {
             }
            
          }
+
+        parent.setVisible(false);
+        parent.dispose();
          
     }//GEN-LAST:event_jButton4finishActionPerformed
 

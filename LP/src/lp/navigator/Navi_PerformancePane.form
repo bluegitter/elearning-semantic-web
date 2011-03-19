@@ -29,9 +29,9 @@
               <EmptySpace pref="131" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" pref="489" max="-2" attributes="0"/>
-              <EmptySpace pref="88" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="48" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -66,7 +66,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="&#x5b8b;&#x4f53;" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="&#x7b2c;&#x4e8c;&#x6b65;&#xff1a;&#x9009;&#x62e9;&#x5c06;&#x8981;&#x5b66;&#x4e60;&#x7684;&#x77e5;&#x8bc6;&#x70b9;"/>
+        <Property name="text" type="java.lang.String" value="&#x3010;&#x4e2a;&#x6027;&#x63a8;&#x8350;&#x3011;&#x521d;&#x59cb;&#x5316;&#x7b2c;&#x4e8c;&#x6b65;&#xff1a;&#x9009;&#x62e9;&#x5c06;&#x8981;&#x5b66;&#x4e60;&#x7684;&#x77e5;&#x8bc6;&#x70b9;"/>
         <Property name="name" type="java.lang.String" value="jLabel2" noResource="true"/>
       </Properties>
       <AccessibilityProperties>
