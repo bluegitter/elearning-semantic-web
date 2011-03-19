@@ -35,19 +35,24 @@
               <Component id="jLabel2" min="-2" pref="490" max="-2" attributes="0"/>
               <EmptySpace pref="80" max="32767" attributes="0"/>
           </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" pref="437" max="-2" attributes="0"/>
-                  <EmptySpace pref="187" max="32767" attributes="0"/>
-              </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="25" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jLabel13" alignment="1" pref="64" max="32767" attributes="1"/>
+                  <Component id="jLabel14" alignment="1" pref="64" max="32767" attributes="1"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="29" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel2" pref="274" max="32767" attributes="0"/>
@@ -59,26 +64,10 @@
               </Group>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" pref="84" max="-2" attributes="0"/>
-                  <EmptySpace pref="387" max="32767" attributes="0"/>
-              </Group>
-          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel3">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/lp/resources/3.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="&#x6839;&#x636e;&#x4e0d;&#x540c;&#x63a8;&#x8350;&#x89c4;&#x5219;&#x63a8;&#x8350;&#x77e5;&#x8bc6;&#x70b9;"/>
-        <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#x5411;&#x5bfc;&#xff1a;&#x7528;&#x6237;&#x53ef;&#x4ee5;&#x901a;&#x8fc7;&#x8c03;&#x8282;&#x5f71;&#x54cd;&#x56e0;&#x5b50;&#x83b7;&#x5f97;&#x4e0d;&#x540c;&#x7684;&#x63a8;&#x8350;&#x7ed3;&#x679c;"/>
@@ -105,7 +94,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x5b8c;&#x6210;"/>
+        <Property name="text" type="java.lang.String" value="&#x4e2a;&#x6027;&#x63a8;&#x8350;&#x521d;&#x59cb;&#x5316;"/>
         <Property name="name" type="java.lang.String" value="jButton4" noResource="true"/>
       </Properties>
       <Events>
@@ -118,6 +107,20 @@
           <Image iconType="3" name="/lp/resources/recommend.png"/>
         </Property>
         <Property name="name" type="java.lang.String" value="jLabel2" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel13">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/lp/resources/3.png"/>
+        </Property>
+        <Property name="name" type="java.lang.String" value="jLabel13" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel14">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x3010;&#x4e2a;&#x6027;&#x63a8;&#x8350;&#x3011;&#xff1a;&#x8f6f;&#x4ef6;&#x8bb0;&#x5f55;&#x60a8;&#x7684;&#x5b66;&#x4e60;&#x5386;&#x53f2;&#x3001;&#x7528;&#x6237;&#x5174;&#x8da3;&#x3001;&#x8fc7;&#x5f80;&#x6210;&#x7ee9;&#x7b49;&#xff0c;&#x4e3a;&#x60a8;&#x91cf;&#x8eab;&#x5b9a;&#x505a;&#x63a8;&#x8350;&#x77e5;&#x8bc6;&#x70b9;&#x548c;&#x8d44;&#x6e90;&#xff1b;"/>
+        <Property name="name" type="java.lang.String" value="jLabel14" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>

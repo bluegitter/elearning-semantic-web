@@ -43,7 +43,7 @@ public class Navi_PerformancePane extends javax.swing.JPanel {
         jLabel1.setName("jLabel1"); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("宋体", 0, 24)); // NOI18N
-        jLabel2.setText("第二步：选择将要学习的知识点");
+        jLabel2.setText("【个性推荐】初始化第二步：选择将要学习的知识点");
         jLabel2.setName("jLabel2"); // NOI18N
 
         jButton2.setLabel("跳过向导");
@@ -77,9 +77,9 @@ public class Navi_PerformancePane extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addContainerGap(131, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addComponent(jLabel2)
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

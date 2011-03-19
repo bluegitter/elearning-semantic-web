@@ -18,7 +18,7 @@ import ontology.EPerformance;
 public class NavigatorDialog extends JDialog{
     public ArrayList<EPerformance> nodesP = new ArrayList<EPerformance>();
     public ArrayList<EInterest> nodes = new ArrayList<EInterest>();
-    public javax.swing.JPanel[] panels = {new Navi_InterestPane(this), new NavigatorPane(this),new NavigatorFinishPane(nodes,this), new Navi_PerformancePane(this),new NavigatorConceptPane(this),new NavigatorConceptFinishPane(nodesP,this),new Navigator_MyConcept1(this), new Navigator_AllConcept1(this),new Navigator_AllConcept2(this),new Navigator_Recommend(this)};
+    public javax.swing.JPanel[] panels = {new UserManual0(this),new Navigator_MyConcept1(this), new Navigator_AllConcept1(this),new Navigator_AllConcept2(this),new Navigator_Recommend(this),new Navi_InterestPane(this), new NavigatorPane(this),new NavigatorFinishPane(nodes,this), new Navi_PerformancePane(this),new NavigatorConceptPane(this),new NavigatorConceptFinishPane(nodesP,this)};
     private int panel_index = 0;
 
     public NavigatorDialog(javax.swing.JFrame f) {
@@ -29,13 +29,13 @@ public class NavigatorDialog extends JDialog{
 
     public void setNext() {
         this.panel_index++;
-        if(panel_index == 2)
+        if(panel_index == 7)
         {
-            panels[2] = new NavigatorFinishPane(nodes,this);
+            panels[7] = new NavigatorFinishPane(nodes,this);
         }
-        if(panel_index == 5)
+        if(panel_index == 10)
         {
-            panels[5] = new NavigatorConceptFinishPane(nodesP,this);
+            panels[10] = new NavigatorConceptFinishPane(nodesP,this);
         }
         this.setContentPane(panels[panel_index]);
         this.pack();
@@ -45,13 +45,13 @@ public class NavigatorDialog extends JDialog{
     {
         //this.nodes = nodes2;
         this.panel_index++;
-        if(panel_index == 2)
+        if(panel_index == 7)
         {
-            panels[2] = new NavigatorFinishPane(nodes2,this);
+            panels[7] = new NavigatorFinishPane(nodes2,this);
         }
-        if(panel_index == 5)
+        if(panel_index ==10)
           {
-            panels[5] = new NavigatorConceptFinishPane(nodes2,this);
+            panels[10] = new NavigatorConceptFinishPane(nodes2,this);
         }
         this.setContentPane(panels[panel_index]);
         this.pack();
@@ -62,14 +62,14 @@ public class NavigatorDialog extends JDialog{
     public void setPrevious() {
         this.panel_index--;
         
-        if(panel_index == 1)
+        if(panel_index == 5)
         {
-            panels[1] = new NavigatorPane(this);
+            panels[5] = new NavigatorPane(this);
           // ((NavigatorPane)this.getContentPane()).selectedNodes = new ArrayList();
         }
-        if(panel_index == 4)
+        if(panel_index == 8)
         {
-            panels[4] = new NavigatorConceptPane(this);
+            panels[8] = new NavigatorConceptPane(this);
           // ((NavigatorPane)this.getContentPane()).selectedNodes = new ArrayList();
         }
         this.setContentPane(panels[panel_index]);
