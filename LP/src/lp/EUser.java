@@ -72,6 +72,9 @@ public class EUser {
         boolean getResult = false;
         String sTotalString = "";
         boolean flag = false;
+        String name = "name";
+        String email = "email";
+        String company = "company";
         while ((sCurrentLine = l_reader.readLine()) != null) {
             sTotalString += sCurrentLine + "\r\n";
             if (sCurrentLine.trim().equals("<body>")) {
@@ -92,17 +95,17 @@ public class EUser {
                     }
                     String s = sCurrentLine.trim();
                     if (s.contains("name:")) {
-                        String name = s.substring(5);
+                        name = s.substring(5);
                         LPApp.getApplication().user.learner.setName(name);
 //                        System.out.println("name:" + name);
                     }
                     if (s.contains("email:")) {
-                        String email = s.substring(6);
+                        email = s.substring(6);
                         LPApp.getApplication().user.learner.setEmail(email);
                         System.out.println("email:" + email);
                     }
                     if (s.contains("company:")) {
-                        String company = s.substring(8);
+                        company = s.substring(8);
                         LPApp.getApplication().user.learner.setAddress(company);
                         System.out.println("company:" + company);
                     }
