@@ -46,6 +46,7 @@ public class LPApp extends SingleFrameApplication {
     protected void startup() {
 
         String sepstr = File.separator;
+        lpModel = null;
         user = null;
         view = new LPView(this);
         view.mainPanel.setLayout(new CentralLayout());
@@ -72,9 +73,12 @@ public class LPApp extends SingleFrameApplication {
             } catch (IOException ex) {
             }
         }
-        saveToFile(file);
-        sendLogs();
 
+        if (LPApp.lpModel != null) {
+            saveToFile(file);
+            sendLogs();
+        }
+        
         super.shutdown();
     }
 
