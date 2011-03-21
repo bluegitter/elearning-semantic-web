@@ -73,7 +73,7 @@ public class LPApp extends SingleFrameApplication {
             }
         }
         saveToFile(file);
-//        sendLogs();
+        sendLogs();
 
         super.shutdown();
     }
