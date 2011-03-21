@@ -15,6 +15,7 @@ import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import lp.EUser;
 import lp.LPApp;
 import ontology.people.ELearner;
@@ -34,6 +35,21 @@ public class Navi_InterestPane extends javax.swing.JPanel {
         initComponents();
     }
 
+     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        this.parent.setNext();
+}
+     private void ignorButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+         parent.setVisible(false);
+         parent.dispose();
+}
+
+          private void previousButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        this.parent.setPrevious();
+}
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -44,8 +60,6 @@ public class Navi_InterestPane extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(102, 33));
@@ -56,22 +70,39 @@ public class Navi_InterestPane extends javax.swing.JPanel {
         jLabel1.setText(resourceMap.getString("jLabel1.text")); // NOI18N
         jLabel1.setName("jLabel1"); // NOI18N
 
-        jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
-        jButton4.setName("jButton4"); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        JButton nextButton = new JButton();
+        nextButton.setBounds(507, 435,120,33); 
+        nextButton.setText("下一步");
+        this.add(nextButton);
+        nextButton.grabFocus();
+        nextButton.setVisible(true);
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                nextButtonActionPerformed(evt);
             }
         });
 
-        jButton2.setLabel(resourceMap.getString("jButton2.label")); // NOI18N
-        jButton2.setName("jButton2"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        JButton ignorButton = new JButton();
+        ignorButton.setBounds(10, 435,120,33); 
+        ignorButton.setText("跳过向导");
+        this.add(ignorButton);
+        ignorButton.setVisible(true);
+        ignorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                ignorButtonActionPerformed(evt);
             }
         });
 
+        JButton previousButton = new JButton();
+        previousButton.setBounds(377, 435,120,33); 
+        previousButton.setText("上一步");
+        this.add(previousButton);
+        previousButton.setVisible(true);
+        previousButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                previousButtonActionPerformed(evt);
+            }
+        });
         jLabel2.setFont(resourceMap.getFont("jLabel2.font")); // NOI18N
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
@@ -80,12 +111,6 @@ public class Navi_InterestPane extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 356, Short.MAX_VALUE)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
             .addGroup(layout.createSequentialGroup()
                 .addGap(88, 88, 88)
                 .addComponent(jLabel1)
@@ -102,30 +127,13 @@ public class Navi_InterestPane extends javax.swing.JPanel {
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
         jLabel2.getAccessibleContext().setAccessibleName(resourceMap.getString("jLabel2.AccessibleContext.accessibleName")); // NOI18N
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-      parent.setNext();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        parent.setVisible(false);
-        parent.dispose();
-}//GEN-LAST:event_jButton2ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

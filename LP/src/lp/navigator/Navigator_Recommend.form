@@ -17,29 +17,22 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="289" max="-2" attributes="0"/>
-              <EmptySpace pref="206" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" pref="120" max="-2" attributes="0"/>
-              <EmptySpace pref="222" max="32767" attributes="0"/>
-              <Component id="jButton3" min="-2" pref="120" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton4" min="-2" pref="120" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" pref="490" max="-2" attributes="0"/>
-              <EmptySpace pref="80" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" pref="289" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" pref="490" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
               <EmptySpace pref="25" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -56,13 +49,7 @@
               <Component id="jLabel1" min="-2" pref="29" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel2" pref="274" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton3" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="jButton4" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -73,33 +60,6 @@
         <Property name="text" type="java.lang.String" value="&#x5411;&#x5bfc;&#xff1a;&#x7528;&#x6237;&#x53ef;&#x4ee5;&#x901a;&#x8fc7;&#x8c03;&#x8282;&#x5f71;&#x54cd;&#x56e0;&#x5b50;&#x83b7;&#x5f97;&#x4e0d;&#x540c;&#x7684;&#x63a8;&#x8350;&#x7ed3;&#x679c;"/>
         <Property name="name" type="java.lang.String" value="jLabel1" noResource="true"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
-      <Properties>
-        <Property name="label" type="java.lang.String" value="&#x8df3;&#x8fc7;&#x5411;&#x5bfc;"/>
-        <Property name="name" type="java.lang.String" value="jButton2" noResource="true"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
-      <Properties>
-        <Property name="label" type="java.lang.String" value="&#x4e0a;&#x4e00;&#x6b65;"/>
-        <Property name="name" type="java.lang.String" value="jButton3" noResource="true"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="&#x4e2a;&#x6027;&#x63a8;&#x8350;&#x521d;&#x59cb;&#x5316;"/>
-        <Property name="name" type="java.lang.String" value="jButton4" noResource="true"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -116,6 +76,9 @@
         </Property>
         <Property name="name" type="java.lang.String" value="jLabel13" noResource="true"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="JButton nextButton = new JButton();&#xd;&#xa;        nextButton.setBounds(507, 435,120,33); &#xd;&#xa;        nextButton.setText(&quot;&#x4e2a;&#x6027;&#x63a8;&#x8350;&#x521d;&#x59cb;&#x5316;&quot;);&#xd;&#xa;        this.add(nextButton);&#xd;&#xa;        nextButton.grabFocus();&#xd;&#xa;        nextButton.setVisible(true);&#xd;&#xa;        nextButton.addActionListener(new java.awt.event.ActionListener() {&#xd;&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xd;&#xa;                nextButtonActionPerformed(evt);&#xd;&#xa;            }&#xd;&#xa;        });&#xd;&#xa;&#xd;&#xa;        JButton ignorButton = new JButton();&#xd;&#xa;        ignorButton.setBounds(10, 435,120,33); &#xd;&#xa;        ignorButton.setText(&quot;&#x8df3;&#x8fc7;&#x5411;&#x5bfc;&quot;);&#xd;&#xa;        this.add(ignorButton);&#xd;&#xa;        ignorButton.setVisible(true);&#xd;&#xa;        ignorButton.addActionListener(new java.awt.event.ActionListener() {&#xd;&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xd;&#xa;                ignorButtonActionPerformed(evt);&#xd;&#xa;            }&#xd;&#xa;        });&#xd;&#xa;&#xd;&#xa;        JButton previousButton = new JButton();&#xd;&#xa;        previousButton.setBounds(377, 435,120,33); &#xd;&#xa;        previousButton.setText(&quot;&#x4e0a;&#x4e00;&#x6b65;&quot;);&#xd;&#xa;        this.add(previousButton);&#xd;&#xa;        previousButton.setVisible(true);&#xd;&#xa;        previousButton.addActionListener(new java.awt.event.ActionListener() {&#xd;&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xd;&#xa;                previousButtonActionPerformed(evt);&#xd;&#xa;            }&#xd;&#xa;        });"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel14">
       <Properties>

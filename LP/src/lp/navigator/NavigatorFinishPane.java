@@ -15,6 +15,7 @@ import exception.jena.IndividualExistException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import lp.LPApp;
 import ontology.EConcept;
@@ -56,7 +57,28 @@ public class NavigatorFinishPane extends javax.swing.JPanel {
         }
         jTable1.updateUI();
     }
+private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {
+         parent.nodes = interestNodes;
+         parent.setNext();
+         parent.setTitle("初始化向导：选择正在学习的知识点");
+}
 
+private void ignorButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+         parent.setVisible(false);
+         parent.dispose();
+}
+
+private void previousButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        parent.setPrevious();
+        interestNodes = new ArrayList<EInterest>();
+        DefaultTableModel model;
+        model = (DefaultTableModel) jTable1.getModel();
+        for (int index = model.getRowCount() - 1; index >= 0; index--) {
+            model.removeRow(index);
+        }
+        jTable1.updateUI();
+}
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -69,9 +91,6 @@ public class NavigatorFinishPane extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         setName("Form"); // NOI18N
 
@@ -81,6 +100,39 @@ public class NavigatorFinishPane extends javax.swing.JPanel {
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
+        JButton nextButton = new JButton();
+        nextButton.setBounds(507, 435,120,33); 
+        nextButton.setText("下一步");
+        this.add(nextButton);
+        nextButton.grabFocus();
+        nextButton.setVisible(true);
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextButtonActionPerformed(evt);
+            }
+        });
+
+        JButton ignorButton = new JButton();
+        ignorButton.setBounds(10, 435,120,33); 
+        ignorButton.setText("跳过向导");
+        this.add(ignorButton);
+        ignorButton.setVisible(true);
+        ignorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ignorButtonActionPerformed(evt);
+            }
+        });
+
+        JButton previousButton = new JButton();
+        previousButton.setBounds(377, 435,120,33); 
+        previousButton.setText("上一步");
+        this.add(previousButton);
+        previousButton.setVisible(true);
+        previousButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                previousButtonActionPerformed(evt);
+            }
+        });
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -107,30 +159,6 @@ public class NavigatorFinishPane extends javax.swing.JPanel {
         jTable1.setName("jTable1"); // NOI18N
         jScrollPane1.setViewportView(jTable1);
 
-        jButton3.setLabel(resourceMap.getString("jButton3.label")); // NOI18N
-        jButton3.setName("jButton3"); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
-        jButton4.setName("jButton4"); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                finishActionPerformed(evt);
-            }
-        });
-
-        jButton2.setLabel(resourceMap.getString("jButton2.label")); // NOI18N
-        jButton2.setName("jButton2"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -141,82 +169,23 @@ public class NavigatorFinishPane extends javax.swing.JPanel {
                         .addGap(39, 39, 39)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(95, 95, 95)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void finishActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishActionPerformed
-      /*
-        DefaultTableModel model;
-        model = (DefaultTableModel) jTable1.getModel();
-        int row = model.getRowCount();
-       
-        for (int i =0;i<row;i++)
-        {
-            String cid = model.getValueAt(i, 0).toString();
-            EConcept ec = LPApp.lpModel.getEConcept(cid);            
-            float value = Float.parseFloat(model.getValueAt(i, 2).toString());
-            ELearner el = LPApp.getApplication().user.learner;
-            EInterest ei = LPApp.lpModel.getEInterest(el, ec);          
-            ei.setValue(value);         
-
-        }
-       */
-         parent.nodes = interestNodes;
-         parent.setNext();
-         parent.setTitle("初始化向导：选择正在学习的知识点");
-            
-    }//GEN-LAST:event_finishActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        parent.setPrevious();
-       // parent.setTitle("注册向导");
-        interestNodes = new ArrayList<EInterest>();
-        DefaultTableModel model;
-        model = (DefaultTableModel) jTable1.getModel();
-        for (int index = model.getRowCount() - 1; index >= 0; index--) {
-            model.removeRow(index);
-        }
-        jTable1.updateUI();
-        
-       //parent.nodes = new ArrayList<EInterest>();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        parent.setVisible(false);
-        parent.dispose();
-}//GEN-LAST:event_jButton2ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
