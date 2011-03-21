@@ -25,9 +25,11 @@ import javax.swing.JPanel;
 public class LPView extends FrameView {
 
     private javax.swing.JPanel[] panes;
-    public JPanel[] getPanes(){
+
+    public JPanel[] getPanes() {
         return panes;
     }
+
     public LPView(SingleFrameApplication app) {
         super(app);
 
@@ -126,9 +128,9 @@ public class LPView extends FrameView {
     }
 
     public void initTools() {
-        
+
         javax.swing.JPanel[] pa = {new lp.display.MyConceptDemo(), new AllConceptPane(), new RecommendContainer(),
-        new SearchPane(), new UserProfilePane(), new AssessmentPane()};
+            new SearchPane(), new UserProfilePane(), new AssessmentPane()};
         panes = pa;
 
         setMainTool(LPApp.MY_CONCEPT);
@@ -147,18 +149,18 @@ public class LPView extends FrameView {
         } else if (i == LPApp.MY_CONCEPT) {
             //((lp.display.MyConceptDemo) this.panes[i]).renew();
         }
-/*
+        /*
         if (i == LPApp.PROFILE) {
-            JDialog jd = new JDialog();
-            jd.setContentPane(new UserProfilePane());
-            jd.pack();
-            jd.setTitle("个人资料");
-            //  jd.setLocation(850, 50);
-            jd.setVisible(true);
-            // jd.setSize(800, 800);
+        JDialog jd = new JDialog();
+        jd.setContentPane(new UserProfilePane());
+        jd.pack();
+        jd.setTitle("个人资料");
+        //  jd.setLocation(850, 50);
+        jd.setVisible(true);
+        // jd.setSize(800, 800);
 
         }
- */
+         */
     }
 
     /** This method is called from within the constructor to
@@ -216,16 +218,13 @@ public class LPView extends FrameView {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 534, Short.MAX_VALUE)
+            .addGap(0, 531, Short.MAX_VALUE)
         );
 
         menuBar.setName("menuBar"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(LPView.class);
-        fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
-        fileMenu.setName("fileMenu"); // NOI18N
-
         loginItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, 0));
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(LPView.class);
         loginItem.setText(resourceMap.getString("loginItem.text")); // NOI18N
         loginItem.setName("loginItem"); // NOI18N
         fileMenu.add(loginItem);
@@ -243,6 +242,7 @@ public class LPView extends FrameView {
         menuBar.add(fileMenu);
 
         jMenu1.setText(resourceMap.getString("jMenu1.text")); // NOI18N
+        jMenu1.setName("jMenu1"); // NOI18N
         jMenu1.setName("jMenu1"); // NOI18N
 
         jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
@@ -502,7 +502,7 @@ public class LPView extends FrameView {
 
     private void NavigatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NavigatorActionPerformed
         // TODO add your handling code here:
-          JDialog d = new NavigatorDialog(LPApp.getApplication().getMainFrame());
+        JDialog d = new NavigatorDialog(LPApp.getApplication().getMainFrame());
         d.setTitle("向导");
         d.setModal(true);
         d.pack();
@@ -512,10 +512,9 @@ public class LPView extends FrameView {
 
     private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
         // TODO add your handling code here:
-         setMainTool(LPApp.ASSESSMENT);
+        setMainTool(LPApp.ASSESSMENT);
 
     }//GEN-LAST:event_jToggleButton6ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Navigator;
     javax.swing.JMenuItem aboutMenuItem;

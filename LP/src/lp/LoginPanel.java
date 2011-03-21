@@ -1,9 +1,14 @@
 package lp;
 
+import exception.jena.IndividualExistException;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import db.WebOperation;
+import lp.navigator.NavigatorDialog;
+import ontology.people.ELearner;
 import util.LogConstant;
 
 /**
@@ -130,9 +135,27 @@ public class LoginPanel extends javax.swing.JPanel {
 
 //                boolean loginAuth = true;
                 if (rtvMsg == null) {
-                    view.setBusy("正在加载数据...");
-                    view.initTools();
-                    LPApp.lpLogs.writeLog(101, LPApp.getApplication().user.username, "登入", LogConstant.STATUS101);
+                    //if the elearner is in the model, then init its data
+                    //else create a new elearner and show him the usage navigator.
+                    if (LPApp.lpModel.containELearner(LPApp.getApplication().user.learner.getId())) {
+                        view.setBusy("正在加载数据...");
+                        view.initTools();
+                        LPApp.lpLogs.writeLog(101, LPApp.getApplication().user.username, "登入", LogConstant.STATUS101);
+                    } else {
+                        ELearner el = LPApp.getApplication().user.learner;
+                        try {
+                            LPApp.lpModel.addELearner(el);
+                        } catch (IndividualExistException ex) {
+                            Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        //pop the navigator dialogs
+                        NavigatorDialog d = new NavigatorDialog(LPApp.getApplication().getMainFrame());
+                        d.setTitle("向导");
+                        d.setModal(true);
+                        d.pack();
+                        d.setVisible(true);
+                    }
+
                 } else {
                     tipLabel.setText(rtvMsg);
                     tipLabel.setForeground(Color.red);

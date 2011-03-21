@@ -63,7 +63,8 @@ public class LPApp extends SingleFrameApplication {
     @Override
     protected void shutdown() {
         Date date = new Date(System.currentTimeMillis());
-        File file = new File("write1.owl");
+        File file = new File(Constant.OWLFile);
+// File file = new File("write1.owl");
 
         if (!file.exists()) {
             try {
@@ -72,7 +73,7 @@ public class LPApp extends SingleFrameApplication {
             }
         }
         saveToFile(file);
-        sendLogs();
+//        sendLogs();
 
         super.shutdown();
     }
