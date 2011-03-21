@@ -128,42 +128,7 @@ public class NavigatorPane extends javax.swing.JPanel {
             this.tree.repaint();
         }
     }
-/*
-    class ModePanel extends JPanel implements ActionListener {
 
-        CheckNode nodes2[];
-        JRadioButton b_single, b_dig_in;
-
-        ModePanel(CheckNode[] nodes2) {
-            System.arraycopy(nodes, 0, nodes2, 0, nodes.length);
-
-            setLayout(new GridLayout(2, 1));
-            setBorder(new TitledBorder("Check Mode"));
-            ButtonGroup group = new ButtonGroup();
-            add(b_dig_in = new JRadioButton("DIG_IN  "));
-            add(b_single = new JRadioButton("SINGLE  "));
-            group.add(b_dig_in);
-            group.add(b_single);
-            b_dig_in.addActionListener(this);
-            b_single.addActionListener(this);
-            b_dig_in.setSelected(true);
-        }
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            int mode;
-            if (b_single == e.getSource()) {
-                mode = CheckNode.SINGLE_SELECTION;
-            } else {
-                mode = CheckNode.DIG_IN_SELECTION;
-            }
-            for (int i = 0; i < nodes.length; i++) {
-                //   nodes.setSelectionMode(mode);
-                nodes[i].setSelected(Boolean.parseBoolean(mode + ""));
-            }
-        }
-    }
-*/
     class ButtonActionListener implements ActionListener {
 
         CheckNode root;
@@ -238,6 +203,36 @@ public class NavigatorPane extends javax.swing.JPanel {
         }
         //return result;
     }
+    
+      private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {
+
+        for (int i =0;i<this.selectedNodes.size();i++) {
+            EInterest ei = new EInterest();
+            String cid = selectedNodes.get(i).toString();
+            ei.setEConcept(LPApp.lpModel.getEConcept(cid));
+            ei.setELearner(LPApp.getApplication().user.learner);
+            ei.setId("interest_"+LPApp.getApplication().user.learner.getId()+"_"+cid);
+            ei.setValue(0.5f);
+            EInterests.add(ei);
+        }
+        parent.setNext(EInterests);
+}
+
+     private void ignorButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+         parent.setVisible(false);
+         parent.dispose();
+}
+
+          private void previousButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+       // selectedNodes = new ArrayList();
+        this.parent.setPrevious();
+
+}
+
+
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -248,8 +243,6 @@ public class NavigatorPane extends javax.swing.JPanel {
     private void initComponents() {
 
         jDialog1 = new javax.swing.JDialog();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         EConcept cn = this.getRootConcept();
         root = addNodes(new CheckNode(cn), cn);
         JTree tree = new JTree(root);
@@ -274,23 +267,40 @@ public class NavigatorPane extends javax.swing.JPanel {
 
         setName("Form"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(NavigatorPane.class);
-        jButton2.setLabel(resourceMap.getString("jButton2.label")); // NOI18N
-        jButton2.setName("jButton2"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        JButton nextButton = new JButton();
+        nextButton.setBounds(507, 435,120,33); 
+        nextButton.setText("下一步");
+        this.add(nextButton);
+        nextButton.grabFocus();
+        nextButton.setVisible(true);
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                nextButtonActionPerformed(evt);
             }
         });
 
-        jButton4.setText(resourceMap.getString("jButton4.text")); // NOI18N
-        jButton4.setName("jButton4"); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        JButton ignorButton = new JButton();
+        ignorButton.setBounds(10, 435,120,33); 
+        ignorButton.setText("跳过向导");
+        this.add(ignorButton);
+        ignorButton.setVisible(true);
+        ignorButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                ignorButtonActionPerformed(evt);
             }
         });
 
+        JButton previousButton = new JButton();
+        previousButton.setBounds(377, 435,120,33); 
+        previousButton.setText("上一步");
+        this.add(previousButton);
+        previousButton.setVisible(true);
+        previousButton.setEnabled(false);
+        previousButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                previousButtonActionPerformed(evt);
+            }
+        });
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -299,13 +309,7 @@ public class NavigatorPane extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 356, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
                 .addGap(13, 13, 13))
         );
         layout.setVerticalGroup(
@@ -313,53 +317,12 @@ public class NavigatorPane extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
-
-        jButton4.getAccessibleContext().setAccessibleName(resourceMap.getString("jButton4.AccessibleContext.accessibleName")); // NOI18N
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:       
-        for (int i =0;i<this.selectedNodes.size();i++)
-        {
-            EInterest ei = new EInterest();
-            String cid = selectedNodes.get(i).toString();
-            ei.setEConcept(LPApp.lpModel.getEConcept(cid));
-            ei.setELearner(LPApp.getApplication().user.learner);
-            ei.setId("newinterest"+LPApp.getApplication().user.learner.getId()+i);
-            ei.setValue(0.5f);
-
-       /*
-        try {
-                LPApp.lpModel.addEInterest(ei);
-            } catch (IndividualExistException ex) {
-                Logger.getLogger(NavigatorPane.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        */
-            EInterests.add(ei);
-        }
-
-       
-      //  parent.setNext();
-        parent.setNext(EInterests);
-
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        parent.setVisible(false);
-        parent.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

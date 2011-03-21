@@ -11,6 +11,7 @@
 
 package lp.navigator;
 
+import javax.swing.JButton;
 import lp.LPApp;
 
 /**
@@ -20,10 +21,25 @@ import lp.LPApp;
 public class Navigator_Recommend extends javax.swing.JPanel {
 private NavigatorDialog parent;
     /** Creates new form Navigator_Recommend */
-    public Navigator_Recommend(NavigatorDialog parent) {
+    public Navigator_Recommend(NavigatorDialog parent1) {
         initComponents();
-        this.parent = parent;
+        this.parent = parent1;
     }
+
+     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        this.parent.setNext();
+}
+     private void ignorButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+         parent.setVisible(false);
+         parent.dispose();
+}
+
+          private void previousButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        this.parent.setPrevious();
+}
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -35,9 +51,6 @@ private NavigatorDialog parent;
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -45,33 +58,42 @@ private NavigatorDialog parent;
         jLabel1.setText("向导：用户可以通过调节影响因子获得不同的推荐结果");
         jLabel1.setName("jLabel1"); // NOI18N
 
-        jButton2.setLabel("跳过向导");
-        jButton2.setName("jButton2"); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setLabel("上一步");
-        jButton3.setName("jButton3"); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-
-        jButton4.setText("个性推荐初始化");
-        jButton4.setName("jButton4"); // NOI18N
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/recommend.png"))); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
 
+        JButton nextButton = new JButton();
+        nextButton.setBounds(507, 435,120,33); 
+        nextButton.setText("个性推荐初始化");
+        this.add(nextButton);
+        nextButton.grabFocus();
+        nextButton.setVisible(true);
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextButtonActionPerformed(evt);
+            }
+        });
+
+        JButton ignorButton = new JButton();
+        ignorButton.setBounds(10, 435,120,33); 
+        ignorButton.setText("跳过向导");
+        this.add(ignorButton);
+        ignorButton.setVisible(true);
+        ignorButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ignorButtonActionPerformed(evt);
+            }
+        });
+
+        JButton previousButton = new JButton();
+        previousButton.setBounds(377, 435,120,33); 
+        previousButton.setText("上一步");
+        this.add(previousButton);
+        previousButton.setVisible(true);
+        previousButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                previousButtonActionPerformed(evt);
+            }
+        });
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/3.png"))); // NOI18N
         jLabel13.setName("jLabel13"); // NOI18N
 
@@ -86,14 +108,6 @@ private NavigatorDialog parent;
                 .addGap(142, 142, 142)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(206, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 222, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
             .addGroup(layout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -116,37 +130,12 @@ private NavigatorDialog parent;
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                .addGap(75, 75, 75))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        parent.setVisible(false);
-        parent.dispose();
-     //   LPApp.getApplication().loginPane.prepareLogin();
-}//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.parent.setPrevious();
-}//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-/*        parent.setVisible(false);
-        parent.dispose();
-        LPApp.getApplication().loginPane.prepareLogin();*/
-        parent.setNext();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;

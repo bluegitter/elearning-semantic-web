@@ -4,27 +4,25 @@
  */
 
 /*
- * Navigator_AllConcept1.java
+ * Navigator_Search.java
  *
- * Created on 2011-1-15, 1:55:09
+ * Created on 2011-3-21, 20:43:17
  */
 
 package lp.navigator;
 
 import javax.swing.JButton;
-import lp.LPApp;
 
 /**
  *
  * @author ghh
  */
-public class Navigator_AllConcept1 extends javax.swing.JPanel {
-private NavigatorDialog parent;
-    /** Creates new form Navigator_AllConcept1 */
-    public Navigator_AllConcept1(NavigatorDialog parent1) {
+public class Navigator_Search extends javax.swing.JPanel {
+public NavigatorDialog parent;
+    /** Creates new form Navigator_Search */
+    public Navigator_Search(NavigatorDialog parent1) {
         initComponents();
-        this.parent = parent1;
-
+        parent = parent1;
     }
 
      private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,6 +52,8 @@ private NavigatorDialog parent;
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+
+        setPreferredSize(new java.awt.Dimension(637, 478));
 
         JButton nextButton = new JButton();
         nextButton.setBounds(507, 435,120,33);
@@ -88,14 +88,14 @@ private NavigatorDialog parent;
                 previousButtonActionPerformed(evt);
             }
         });
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/1.png"))); // NOI18N
-        jLabel3.setText("浏览所有的知识点");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/4.png"))); // NOI18N
+        jLabel3.setText("搜索知识点和资源");
         jLabel3.setName("jLabel3"); // NOI18N
 
-        jLabel4.setText("向导：从根节点开始，点击以展开子树至叶节点；可通过鼠标滚轮放大缩小视图；可拖动整个视图");
+        jLabel4.setText("向导：您可以设置搜索条件进行分类搜索；也可以通过资源标题精确搜索");
         jLabel4.setName("jLabel4"); // NOI18N
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/concepts.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/search.png"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel1.setName("jLabel1"); // NOI18N
 
@@ -103,6 +103,7 @@ private NavigatorDialog parent;
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 637, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(268, Short.MAX_VALUE))
@@ -110,7 +111,7 @@ private NavigatorDialog parent;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -118,13 +119,14 @@ private NavigatorDialog parent;
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 490, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 269, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(71, 71, 71))
         );
     }// </editor-fold>//GEN-END:initComponents
