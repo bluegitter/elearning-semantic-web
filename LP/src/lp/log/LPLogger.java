@@ -76,28 +76,24 @@ public class LPLogger {
     }
 
     public void writeLog(int action, String data, String result, String status) {
+        String time = MethodConstant.getSysDateString();
+        sb.append(time);
+        sb.append(",");
+        sb.append(userId);
+        sb.append(",");
+        sb.append(ip);
+        sb.append(",");
+        sb.append(action);
+        sb.append(",");
+        sb.append(data);
+        sb.append(",");
+        sb.append(result);
+        sb.append(",");
+        sb.append(1);
+        sb.append(";");
         try {
-            String time = MethodConstant.getSysDateString();
-            sb.append(time);
-            sb.append(",");
-            sb.append(URLEncoder.encode(userId, "UTF-8"));
-            sb.append(",");
-            sb.append(ip);
-            sb.append(",");
-            sb.append(action);
-            sb.append(",");
-            sb.append(URLEncoder.encode(data, "UTF-8"));
-            sb.append(",");
-            sb.append(URLEncoder.encode(result, "UTF-8"));
-            sb.append(",");
-            sb.append(1);
-            sb.append(";");
-            try {
-                output.write(sb.toString());
-            } catch (IOException ex) {
-                Logger.getLogger(LPLogger.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (UnsupportedEncodingException ex) {
+            output.write(sb.toString());
+        } catch (IOException ex) {
             Logger.getLogger(LPLogger.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -113,7 +109,7 @@ public class LPLogger {
     public void sendLogs() throws MalformedURLException, IOException {
         //http://e6.thss.tsinghua.edu.cn/iscb/uploadLogs.jsp?logs=2010-03-18%2016:51:13,el001,192.168.1.1,120,data,result,1
         String u1 = Constant.ISCBSERVER250 + "iscb/uploadLogs.jsp?logs=";
-        String urlString = u1 + sb.toString();
+        String urlString = u1 + URLEncoder.encode(sb.toString(), "UTF-8");
         URL url = new URL(urlString);
         System.out.println("URL:" + url);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -156,7 +152,7 @@ public class LPLogger {
 
     public static void main(String[] args) throws MalformedURLException, IOException {
         String u1 = Constant.ISCBSERVER250 + "iscb/uploadLogs.jsp?logs=";
-        String urlString = "http://e6.thss.tsinghua.edu.cn/iscb/uploadLogs.jsp?logs=2011-03-18 19:30:37,el001,ip,101,el001,%E7%99%BB%E5%85%A5,1;";
+        String urlString = "http://e6.thss.tsinghua.edu.cn/iscb/uploadLogs.jsp?logs=2010-03-18+16%3A51%3A13%2Cel001%2C192.168.1.1%2C120%2Cdata%2Cresult%2C1";
         URL url = new URL(urlString);
         System.out.println("URL:" + url);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
