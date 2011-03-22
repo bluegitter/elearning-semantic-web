@@ -218,13 +218,15 @@ public class LPView extends FrameView {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 531, Short.MAX_VALUE)
+            .addGap(0, 534, Short.MAX_VALUE)
         );
 
         menuBar.setName("menuBar"); // NOI18N
 
-        loginItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, 0));
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(LPView.class);
+        fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
+
+        loginItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, 0));
         loginItem.setText(resourceMap.getString("loginItem.text")); // NOI18N
         loginItem.setName("loginItem"); // NOI18N
         fileMenu.add(loginItem);
@@ -242,8 +244,6 @@ public class LPView extends FrameView {
         menuBar.add(fileMenu);
 
         jMenu1.setText(resourceMap.getString("jMenu1.text")); // NOI18N
-        jMenu1.setName("jMenu1"); // NOI18N
-        jMenu1.setName("jMenu1"); // NOI18N
 
         jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
         jMenuItem1.setName("jMenuItem1"); // NOI18N
