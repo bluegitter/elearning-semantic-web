@@ -26,13 +26,21 @@ import com.hp.hpl.jena.rdf.model.StmtIterator;
 public class ELearnerReasoner {
 
     public static void main(String[] args) {
-        File file = new File("test\\owl\\conceptsAndresource_RDF-XML.owl");
+        File file = new File("files\\owl\\conceptsAndresource_RDF-XML.owl");
         long init = System.currentTimeMillis();
         ELearnerModelImpl emi = new ELearnerModelImpl(file);
         System.out.println("intitime:" + (System.currentTimeMillis() - init) + "ms");
         OntModel ontModel = emi.getOntModel();
         ELearner el = emi.getELearner("el001");
-
+        ELearnerReasoner er = new ELearnerReasoner();
+        ArrayList<EConcept> con1 = er.getRecommendEConcepts_1(ontModel, el);
+        System.out.println("1:" + con1.size());
+        con1 = er.getRecommendEConcepts_2(ontModel, el);
+        System.out.println("2:" + con1.size());
+        con1 = er.getRecommendEConcepts_3(ontModel, el);
+        System.out.println("3:" + con1.size());
+        con1 = er.getRecommendEConcepts_4(ontModel, el);
+        System.out.println("4:" + con1.size());
     }
 
     public static EConcept getEConcept(OntModel ontModel, String cid) {
@@ -57,7 +65,7 @@ public class ELearnerReasoner {
         }
     }
 
-    /**********************************************
+    /*****************************************************
      * [rule_c_1: (?learner_c_1 el:has_performance ?performance_c_1)
     (?concept_c_1_1 el:is_concept_of_P ?performance_c_1)
     (?concept_c_1_2 el:is_post_concept_of ?concept_c_1_1)
@@ -129,6 +137,7 @@ public class ELearnerReasoner {
      * @param ontModel
      * @param elearner
      * @return
+     * 给用户推荐他感兴趣的知识点
      */
     public static ArrayList<EConcept> getRecommendEConcepts_3(OntModel ontModel, ELearner elearner) {
         ArrayList<EConcept> concepts = new ArrayList<EConcept>();
@@ -343,4 +352,3 @@ public class ELearnerReasoner {
     }
      */
 }
-

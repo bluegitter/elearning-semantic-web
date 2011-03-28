@@ -59,7 +59,6 @@ public class MyPortfolioPane extends javax.swing.JPanel {
         resourceList = LPApp.lpModel.getEPortfolios(el);
         for (int i = 0; i < resourceList.size(); i++) {
             EPortfolio f = resourceList.get(i);
-            System.out.println("ff:" + f);
             ISCB_Resource res = f.getEResource();
             ArrayList<EConcept> con = LPApp.lpModel.getEConcepts(res);
             String s = con.size() + "个知识点";
