@@ -14,6 +14,7 @@ import com.hp.hpl.jena.ontology.OntModel;
 import exception.jena.IndividualExistException;
 import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jena.impl.ELearnerModelImpl;
@@ -33,17 +34,24 @@ public class UserInterestPane extends javax.swing.JPanel {
     private ArrayList<EInterest> interests;
     private ArrayList<EConcept> concepts;
     private ELearner elearner ;
-
+private int randomInt;
     public static void main(String[] args) {
-        ELearnerModelImpl emi = new ELearnerModelImpl();
-        ELearner el = emi.getELearner("el001");
-        ArrayList<EInterest> interests = emi.getEInterests(el);
-        ArrayList<EConcept> concepts = jena.ELearnerReasoner.getRecommendEConcepts_1(emi.getOntModel(), el);
-        javax.swing.JFrame f = new javax.swing.JFrame();
-        UserInterestPane uip = new UserInterestPane(interests, concepts);
-        f.add(uip);
-        f.pack();
-        f.setVisible(true);
+//        ELearnerModelImpl emi = new ELearnerModelImpl();
+//        ELearner el = emi.getELearner("el001");
+//        ArrayList<EInterest> interests = emi.getEInterests(el);
+//        ArrayList<EConcept> concepts = jena.ELearnerReasoner.getRecommendEConcepts_1(emi.getOntModel(), el);
+//        javax.swing.JFrame f = new javax.swing.JFrame();
+//        UserInterestPane uip = new UserInterestPane(interests, concepts);
+//        f.add(uip);
+//        f.pack();
+//        f.setVisible(true);
+      Random ran = new Random();
+      for(int i =0;i<10;i++){
+           int ranInt = ran.nextInt(4);
+           System.out.println("ran\t"+ranInt);
+      }
+       
+
     }
 
     /** Creates new form UserInterestPane */
@@ -96,6 +104,7 @@ public class UserInterestPane extends javax.swing.JPanel {
     private void initInterestPane(ArrayList<ontology.EInterest> interests, ArrayList<ontology.EConcept> concepts) {
         this.interests = interests;
         this.concepts = concepts;
+        randomInt = 0;
         elearner = LPApp.getApplication().user.learner;
         interestPane.setLayout(new javax.swing.BoxLayout(interestPane, javax.swing.BoxLayout.Y_AXIS));
         for (int i = 0; i < interests.size(); i++) {
@@ -121,7 +130,6 @@ public class UserInterestPane extends javax.swing.JPanel {
         interestPane = new javax.swing.JPanel();
         unInterestPane = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
         addInterestText = new javax.swing.JTextField();
 
@@ -134,7 +142,7 @@ public class UserInterestPane extends javax.swing.JPanel {
         interestPane.setLayout(interestPaneLayout);
         interestPaneLayout.setHorizontalGroup(
             interestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 429, Short.MAX_VALUE)
+            .addGap(0, 439, Short.MAX_VALUE)
         );
         interestPaneLayout.setVerticalGroup(
             interestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,7 +156,7 @@ public class UserInterestPane extends javax.swing.JPanel {
         unInterestPane.setLayout(unInterestPaneLayout);
         unInterestPaneLayout.setHorizontalGroup(
             unInterestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 429, Short.MAX_VALUE)
+            .addGap(0, 439, Short.MAX_VALUE)
         );
         unInterestPaneLayout.setVerticalGroup(
             unInterestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,10 +171,8 @@ public class UserInterestPane extends javax.swing.JPanel {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "c_1 根据学习效果，向您推荐未学过的子知识点", "c_2 根据学习效果，向您推荐学习过的某个知识点的兄弟知识点", "c_4 根据学习效果，重修该知识点", " " }));
-        jComboBox1.setName("jComboBox1"); // NOI18N
-
-        jButton1.setText("推荐知识");
+        jButton1.setFont(new java.awt.Font("宋体", 1, 14)); // NOI18N
+        jButton1.setText("换 一 换 兴 趣");
         jButton1.setName("jButton1"); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,14 +196,13 @@ public class UserInterestPane extends javax.swing.JPanel {
                 .addComponent(addInterestText, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
             .addComponent(interestPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(unInterestPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
-                .addComponent(jButton1)
-                .addContainerGap())
+                .addGap(86, 86, 86)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(114, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,11 +215,9 @@ public class UserInterestPane extends javax.swing.JPanel {
                     .addComponent(addInterestText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(unInterestPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addGap(14, 14, 14))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -277,9 +280,14 @@ public class UserInterestPane extends javax.swing.JPanel {
         ArrayList<EConcept> unInterestsConcept = new ArrayList<EConcept>();
         ELearner el = LPApp.getApplication().user.learner;
         OntModel model = LPApp.lpModel.getOntModel();
-        int z = jComboBox1.getSelectedIndex();
-        System.out.println("z:" + z);
-        switch (jComboBox1.getSelectedIndex()) {
+        Random ran = new Random();
+         int ranInt = 0;
+         while(randomInt == ranInt){
+            ranInt =  ran.nextInt(3);
+        }
+        randomInt = ranInt;
+       
+        switch (ranInt) {
             case 0:
                 unInterestsConcept = jena.ELearnerReasoner.getRecommendEConcepts_1(model, el);
                 break;
@@ -314,7 +322,6 @@ public class UserInterestPane extends javax.swing.JPanel {
     private javax.swing.JPanel interestPane;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JPanel unInterestPane;
     // End of variables declaration//GEN-END:variables
 }
