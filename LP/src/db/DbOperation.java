@@ -12,7 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import exception.IllegallPersonException;
+import exception.IllegalPersonException;
 
 import ontology.EConcept;
 import ontology.people.ELearner;
@@ -105,7 +105,7 @@ public class DbOperation {
 				rs.close();
 				st.close();
 				con.close();
-				throw new IllegallPersonException("user is not a register user");
+				throw new IllegalPersonException("user is not a register user");
 			}
 		}
 		rs.close();

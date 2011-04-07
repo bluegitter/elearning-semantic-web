@@ -4,13 +4,13 @@ package exception;
  * @author william
  *
  */
-public class IllegallPersonException extends Exception{
+public class IllegalPersonException extends Exception{
 	
 	private static final long serialVersionUID = 1L;
-	public IllegallPersonException(){
+	public IllegalPersonException(){
 		super();
 	}
-	public IllegallPersonException(String message){
+	public IllegalPersonException(String message){
 		super(message);
 	}
 }

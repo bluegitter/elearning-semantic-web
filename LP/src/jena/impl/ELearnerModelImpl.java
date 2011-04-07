@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
+import com.hp.hpl.jena.ontology.DatatypeProperty;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
@@ -18,6 +19,7 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.vocabulary.RDF;
+import exception.IllegalPersonException;
 import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
 import java.util.logging.Level;
@@ -31,6 +33,7 @@ import ontology.resources.ISCB_Resource;
 import util.Constant;
 import jena.interfaces.ELearnerModelQueryInterface;
 import jena.interfaces.ELearnerUserOperationInterface;
+import ontology.EGoal;
 import ontology.EPerformanceAssessment;
 
 /**************************************************************************
@@ -56,77 +59,6 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 
     public void setInfModel(Reasoner reasoner, OntModel model) {
         ontModel = ModelFactory.createOntologyModel(OntModelSpec.DAML_MEM_TRANS_INF, ontModel);
-    }
-
-    public static void main(String[] args) {
-//        throws IndividualNotExistException, IOException, IndividualExistException {
-       
-//        System.out.println("intitime:" + (System.currentTimeMillis() - init) + "ms");
-//        ELearner el = emi.getELearner("el001");
-//        EConcept cid1 = emi.getEConcept("CMP.cf.2");
-//        EConcept root = emi.getEConcept("Computer_Science");
-//        EConcept cid2 = emi.getEConcept("CMP.cf");
-//        EConcept cid3 = emi.getEConcept("CMP");
-//
-//        boolean b = emi.isPartOfEConcept(root, cid1);
-//        boolean b2 = emi.isPartOfEConcept(root, cid3);
-//        boolean b3 = emi.isPartOfEConcept(cid1, cid3);
-//        boolean b4 = emi.isPartOfEConcept(cid2, cid1);
-//        System.out.println(b + " " + b2 + " " + b3 + " " + b4);
-
-//        ArrayList<ISCB_Resource> r = emi.getEResourcesByTypes("全部", "all", "全部");
-//        for (ISCB_Resource res : r) {
-//            emi.addPropertyIsResourceOfC(res, cid1);
-//            emi.addPropertyIsResourceOfC(res, cid2);
-//            emi.addPropertyIsResourceOfC(res, cid3);
-//            emi.addPropertyIsResourceOfC(res, root);
-//        }
-//        EConcept con2 = emi.getEConcept("CMP.cf.3");
-//        emi.getEResourcesByName("数据结构概念");
-//        emi.getEResourcesByMeidaType("文本");
-//        ArrayList<ISCB_Resource> r = emi.getEResourcesByTypes("全部", "all", "全部");
-// add resourcess to the root concepts
-//        System.out.println("1" + emi.getMemberConcepts(root).size());
-//        ArrayList<EConcept> cons = emi.getAllEConcepts();
-//        for (EConcept con : cons) {
-//            ArrayList<EConcept> sons = emi.getSonConcepts(con);
-//            for (EConcept c : sons) {
-//                emi.addPropertyIsPartOf(con, c);
-//            }
-//        }
-//        System.out.println("2" + emi.getMemberConcepts(root).size());
-//        for (EConcept con : cons) {
-//            ArrayList<EConcept> sons = emi.getMemberConcepts(con);
-//            System.out.println("sons size:" + sons.size());
-//            ArrayList<ISCB_Resource> ress = emi.getEResourcesByEConcept(con);
-//            for (EConcept c : sons) {
-//                ArrayList<ISCB_Resource> r = emi.getEResourcesByEConcept(c);
-//                for (ISCB_Resource resource : r) {
-//                    if (!ress.contains(resource)) {
-//                        System.out.println("add  new resource" + resource);
-//                        emi.addPropertyIsResourceOfC(resource, con);
-//                    }
-//                }
-//            }
-//        }
-//        ArrayList<ISCB_Resource> all = emi.getEResourcesByEConcept(root);
-//        System.out.println("size:" + all.size());
-
-//        ArrayList<EPerformance> ps = emi.getEPerformances(el);
-//        System.out.println("size" + ps.size());
-//        EPerformance ep = new EPerformance();
-//        ep.setId("newId");
-//        ep.setValue(3f);
-//        ep.setConcept(con2);
-//        ep.setElearner(el);
-//        ep.setDatetime(new Date(System.currentTimeMillis()));
-//        emi.addEPerfomance(ep);
-//
-//        EPerformance ep2 = emi.getEPerformance(el, con2);
-//        System.out.println(ep2);
-//        ArrayList<EPerformance> ps2 = emi.getEPerformances(el);
-//        System.out.println("size2:" + ps2.size());
-        System.out.println("end");
     }
 
     public boolean isSonOfEConcept(EConcept father, EConcept son) {
@@ -382,7 +314,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
             Resource res = iter.nextStatement().getSubject();
             Statement s = res.getProperty(ontModel.getProperty(Constant.NS + "application_type"));
             if (s != null) {
-                if (s.getLiteral().getString().equals(applicationType) || applicationType.equals("全部")) {
+                if (s.getLiteral().getString().equals(applicationType) || applicationType.equals("鍏ㄩ儴")) {
                     String id = res.getLocalName();
                     resources.add(getEResource(res.getLocalName()));
                 }
@@ -403,7 +335,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
             Resource res = iter.nextStatement().getSubject();
             Statement s = res.getProperty(ontModel.getProperty(Constant.NS + "resource_type"));
             if (s != null) {
-                if (s.getLiteral().getString().equals(mediaType) || mediaType.equals("全部")) {
+                if (s.getLiteral().getString().equals(mediaType) || mediaType.equals("鍏ㄩ儴")) {
                     String id = res.getLocalName();
                     resources.add(getEResource(res.getLocalName()));
                 }
@@ -530,8 +462,8 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
     }
 
     /*******************************************************************************************************
-     * Update Data in model 
-     * @throws IndividualNotExistException 
+     * Update Data in model
+     * @throws IndividualNotExistException
      *******************************************************************************************************/
     @Override
     public boolean updateELearner(ELearner elearner) throws IndividualNotExistException {
@@ -631,7 +563,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
     }
 
     /***************************************************************************************
-     * 
+     *
      */
     @Override
     public boolean addEInterest(EInterest interest) throws IndividualExistException {
@@ -711,5 +643,153 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
             }
         }
         return cids;
+    }
+
+    public EGoal getGoalById(String id) {
+        EGoal goal = new EGoal();
+        goal.setGid(id);
+        Individual g = ontModel.getIndividual(Constant.NS + id);
+        if (g == null) {
+            //the id doesn't exist
+            return null;
+        }
+        DatatypeProperty nameProperty = ontModel.getDatatypeProperty(Constant.NS + "name");
+        RDFNode nameRDFNode = g.getPropertyValue(nameProperty);
+        String name = "";
+        if (nameRDFNode == null) {
+            //the name doesn't exist
+            return null;
+        } else {
+            name = nameRDFNode.asLiteral().getString();
+        }
+        goal.setName(name);
+        Property p = ontModel.getObjectProperty(Constant.NS + "contain_concepts");
+        SimpleSelector selector = new SimpleSelector(g, p, (RDFNode) null);
+        StmtIterator iter = ontModel.listStatements(selector);
+        ArrayList<EConcept> cons = new ArrayList();
+        while (iter.hasNext()) {
+            Resource con = (Resource) iter.nextStatement().getObject();
+            EConcept c = getEConcept(con.getLocalName());
+            cons.add(c);
+        }
+        goal.setCons(cons);
+        return goal;
+    }
+
+    public ArrayList<EGoal> getGoalsByELearner(ELearner el)  {
+        Individual elIndi = ontModel.getIndividual(Constant.NS + el.getId());
+        if (elIndi == null) {
+            return null;
+        }
+        Property hasGoalProperty = ontModel.getObjectProperty(Constant.NS + "has_goal");
+        SimpleSelector selector = new SimpleSelector(elIndi, hasGoalProperty, (RDFNode) null);
+        StmtIterator iter = ontModel.listStatements(selector);
+        ArrayList<EGoal> goals = new ArrayList();
+        while (iter.hasNext()) {
+            Resource r = (Resource) iter.nextStatement().getObject();
+            EGoal g = getGoalById(r.getLocalName());
+            goals.add(g);
+        }
+        return goals;
+    }
+    public ArrayList<EConcept> getRecommendConceptByGoals(ELearner el){
+        return null;
+    }
+    public ArrayList<EConcept> getRecommendConceptsByGoal(ELearner el,EGoal goals) {
+        ArrayList<EPerformance> performs = getEPerformances(el);
+        ArrayList<EConcept>gCons = goals.getCons();
+        for(EConcept t:gCons){
+            System.out.println(t);
+        }
+        System.out.println("initL:"+gCons.size());
+        for(EPerformance p:performs){
+            EConcept con = p.getConcept();
+            System.out.println("con:"+con);
+            if(gCons.contains(con)){
+                System.out.println("delete:"+con);
+                gCons.remove(con);
+            }
+        }
+        System.out.println("gCons:"+gCons.size());
+        return gCons;
+    }
+
+    public static void main(String[] args) {
+        ELearnerModelImpl emi = new ELearnerModelImpl();
+        ELearner el = emi.getELearner("el005");
+        EGoal goal = emi.getGoalById("goal_0001");
+            emi.getRecommendConceptsByGoal(el,goal);
+//        EGoal goal = emi.getGoalById("goal_0004");
+//        System.out.println(goal.getGid());
+//        System.out.println(goal.getName());
+//        System.out.println(goal.getCons().size());
+//        throws IndividualNotExistException, IOException, IndividualExistException {
+
+//        System.out.println("intitime:" + (System.currentTimeMillis() - init) + "ms");
+//        ELearner el = emi.getELearner("el001");
+//        EConcept cid1 = emi.getEConcept("CMP.cf.2");
+//        EConcept root = emi.getEConcept("Computer_Science");
+//        EConcept cid2 = emi.getEConcept("CMP.cf");
+//        EConcept cid3 = emi.getEConcept("CMP");
+//
+//        boolean b = emi.isPartOfEConcept(root, cid1);
+//        boolean b2 = emi.isPartOfEConcept(root, cid3);
+//        boolean b3 = emi.isPartOfEConcept(cid1, cid3);
+//        boolean b4 = emi.isPartOfEConcept(cid2, cid1);
+//        System.out.println(b + " " + b2 + " " + b3 + " " + b4);
+
+//        ArrayList<ISCB_Resource> r = emi.getEResourcesByTypes("鍏ㄩ儴", "all", "鍏ㄩ儴");
+//        for (ISCB_Resource res : r) {
+//            emi.addPropertyIsResourceOfC(res, cid1);
+//            emi.addPropertyIsResourceOfC(res, cid2);
+//            emi.addPropertyIsResourceOfC(res, cid3);
+//            emi.addPropertyIsResourceOfC(res, root);
+//        }
+//        EConcept con2 = emi.getEConcept("CMP.cf.3");
+//        emi.getEResourcesByName("鏁版嵁缁撴瀯姒傚康");
+//        emi.getEResourcesByMeidaType("鏂囨湰");
+//        ArrayList<ISCB_Resource> r = emi.getEResourcesByTypes("鍏ㄩ儴", "all", "鍏ㄩ儴");
+// add resourcess to the root concepts
+//        System.out.println("1" + emi.getMemberConcepts(root).size());
+//        ArrayList<EConcept> cons = emi.getAllEConcepts();
+//        for (EConcept con : cons) {
+//            ArrayList<EConcept> sons = emi.getSonConcepts(con);
+//            for (EConcept c : sons) {
+//                emi.addPropertyIsPartOf(con, c);
+//            }
+//        }
+//        System.out.println("2" + emi.getMemberConcepts(root).size());
+//        for (EConcept con : cons) {
+//            ArrayList<EConcept> sons = emi.getMemberConcepts(con);
+//            System.out.println("sons size:" + sons.size());
+//            ArrayList<ISCB_Resource> ress = emi.getEResourcesByEConcept(con);
+//            for (EConcept c : sons) {
+//                ArrayList<ISCB_Resource> r = emi.getEResourcesByEConcept(c);
+//                for (ISCB_Resource resource : r) {
+//                    if (!ress.contains(resource)) {
+//                        System.out.println("add  new resource" + resource);
+//                        emi.addPropertyIsResourceOfC(resource, con);
+//                    }
+//                }
+//            }
+//        }
+//        ArrayList<ISCB_Resource> all = emi.getEResourcesByEConcept(root);
+//        System.out.println("size:" + all.size());
+
+//        ArrayList<EPerformance> ps = emi.getEPerformances(el);
+//        System.out.println("size" + ps.size());
+//        EPerformance ep = new EPerformance();
+//        ep.setId("newId");
+//        ep.setValue(3f);
+//        ep.setConcept(con2);
+//        ep.setElearner(el);
+//        ep.setDatetime(new Date(System.currentTimeMillis()));
+//        emi.addEPerfomance(ep);
+//
+//        EPerformance ep2 = emi.getEPerformance(el, con2);
+//        System.out.println(ep2);
+//        ArrayList<EPerformance> ps2 = emi.getEPerformances(el);
+//        System.out.println("size2:" + ps2.size());
+        System.out.println("end");
     }
 }
