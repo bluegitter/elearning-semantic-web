@@ -131,8 +131,9 @@ public class LoginPanel extends javax.swing.JPanel {
             @Override
             public void run() {
                 LPApp.getApplication().initModel();
-                String rtvMsg = LPApp.getApplication().user.login(new String(password.getPassword()));
-
+//                String rtvMsg = LPApp.getApplication().user.login(new String(password.getPassword()));
+                //跳过身份验证
+                String rtvMsg = null;
 //                boolean loginAuth = true;
                 if (rtvMsg == null) {
                     //if the elearner is in the model, then init its data

@@ -75,10 +75,11 @@ public class LPApp extends SingleFrameApplication {
         }
 
         if (LPApp.lpModel != null) {
-            saveToFile(file);
-            sendLogs();
+            //保存文件,发送日志
+//            saveToFile(file);
+//            sendLogs();
         }
-        
+
         super.shutdown();
     }
 
