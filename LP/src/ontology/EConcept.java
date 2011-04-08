@@ -5,16 +5,27 @@ public class EConcept {
     public EConcept() {
         cid = "tempCID";
         name = "name";
+        difficulty = "diff";
     }
 
     public EConcept(String cid) {
         this.cid = cid;
         this.name = "name";
+        difficulty = "diff";
     }
 
     public EConcept(String cid, String cname) {
         this.cid = cid;
         this.name = cname;
+        difficulty = "diff";
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
     }
 
     public String getCid() {
@@ -62,4 +73,5 @@ public class EConcept {
     }
     private String cid;
     private String name;
+    private String difficulty;
 }

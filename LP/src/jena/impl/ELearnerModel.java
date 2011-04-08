@@ -274,7 +274,7 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         indi.setPropertyValue(p, ontModel.createTypedLiteral(assessment.a5, new XSDDatatype("string")));
         p = ontModel.getProperty(Constant.NS + "a6");
         indi.setPropertyValue(p, ontModel.createTypedLiteral(assessment.a6, new XSDDatatype("string")));
-       
+
         return true;
     }
 
@@ -391,7 +391,14 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
     public EConcept getEConcept(String cid) {
         Individual indi = ontModel.getIndividual(Constant.NS + cid);
         String name = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "name")).getLiteral().getString();
-        return new EConcept(cid, name);
+        EConcept con = new EConcept(cid, name);
+        RDFNode difficulty = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "difficulty"));
+        if (difficulty == null) {
+            con.setDifficulty("diff");
+        } else {
+            con.setDifficulty(difficulty.asLiteral().getString());
+        }
+        return con;
     }
 
     @Override
@@ -491,7 +498,7 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         }
         EPerformance performance = new EPerformance();
         performance.setId(indi.getLocalName());
-      
+
         Statement dateNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time"));
         if (dateNode != null) {
             String dateString = dateNode.getLiteral().getString();
@@ -530,7 +537,7 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
         if (valueNode != null) {
             performance.setValue(ass.getValue());
         }
-        
+
         return performance;
     }
 
