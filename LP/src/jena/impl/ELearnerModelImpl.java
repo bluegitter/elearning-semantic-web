@@ -33,6 +33,7 @@ import ontology.resources.ISCB_Resource;
 import util.Constant;
 import jena.interfaces.ELearnerModelQueryInterface;
 import jena.interfaces.ELearnerUserOperationInterface;
+import jena.interfaces.ELearnerUserQueryInterface;
 import ontology.EGoal;
 import ontology.EPerformanceAssessment;
 
@@ -41,7 +42,7 @@ import ontology.EPerformanceAssessment;
  * @author william
  *
  **************************************************************************/
-public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQueryInterface, ELearnerUserOperationInterface {
+public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQueryInterface, ELearnerUserOperationInterface, ELearnerUserQueryInterface {
 
     public ELearnerModelImpl() {
         super();
@@ -676,7 +677,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         return goal;
     }
 
-    public ArrayList<EGoal> getGoalsByELearner(ELearner el)  {
+    public ArrayList<EGoal> getGoalsByELearner(ELearner el) {
         Individual elIndi = ontModel.getIndividual(Constant.NS + el.getId());
         if (elIndi == null) {
             return null;
@@ -692,33 +693,60 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         }
         return goals;
     }
-    public ArrayList<EConcept> getRecommendConceptByGoals(ELearner el){
+
+    public ArrayList<EConcept> getIgnoreConceptsByELearner(ELearner el) {
+        ArrayList<EConcept> cons = new ArrayList<EConcept>();
+        Individual elIndi = ontModel.getIndividual(Constant.NS + el.getId());
+        if (elIndi == null) {
+            return null;
+        }
+        Property p = ontModel.getObjectProperty(Constant.NS + "ignore_concepts");
+        SimpleSelector selector = new SimpleSelector(elIndi, p, (RDFNode) null);
+        StmtIterator iter = ontModel.listStatements(selector);
+        while (iter.hasNext()) {
+            Resource c = (Resource) iter.nextStatement().getObject();
+            EConcept con = getEConcept(c.getLocalName());
+            cons.add(con);
+        }
+        return cons;
+    }
+
+    public ArrayList<EConcept> getRecommendConceptByGoals(ELearner el) {
         return null;
     }
-    public ArrayList<EConcept> getRecommendConceptsByGoal(ELearner el,EGoal goals) {
+
+    public ArrayList<EConcept> getRecommendConceptsByGoal(ELearner el, EGoal goal) {
+        //学过的知识点
         ArrayList<EPerformance> performs = getEPerformances(el);
-        ArrayList<EConcept>gCons = goals.getCons();
-        for(EConcept t:gCons){
-            System.out.println(t);
-        }
-        System.out.println("initL:"+gCons.size());
-        for(EPerformance p:performs){
+        //目标的知识点
+        ArrayList<EConcept> gCons = goal.getCons();
+        //用户忽略的知识点
+        ArrayList<EConcept> ignoreCons = getIgnoreConceptsByELearner(el);
+        //去除目标知识点中已经学习过的
+        for (EPerformance p : performs) {
             EConcept con = p.getConcept();
-            System.out.println("con:"+con);
-            if(gCons.contains(con)){
-                System.out.println("delete:"+con);
+            if (gCons.contains(con)) {
                 gCons.remove(con);
             }
         }
-        System.out.println("gCons:"+gCons.size());
+        //去除目标知识点中用户忽略的
+        for (EConcept c : ignoreCons) {
+            if (gCons.contains(c)) {
+                gCons.remove(c);
+            }
+        }
+        System.out.println("gCons:" + gCons.size());
         return gCons;
     }
 
     public static void main(String[] args) {
         ELearnerModelImpl emi = new ELearnerModelImpl();
         ELearner el = emi.getELearner("el005");
-        EGoal goal = emi.getGoalById("goal_0001");
-            emi.getRecommendConceptsByGoal(el,goal);
+        ArrayList<EConcept> cons = emi.getIgnoreConceptsByELearner(el);
+        for (EConcept c : cons) {
+            System.out.println(c);
+        }
+        System.out.println("cons size:" + cons.size());
 //        EGoal goal = emi.getGoalById("goal_0004");
 //        System.out.println(goal.getGid());
 //        System.out.println(goal.getName());
