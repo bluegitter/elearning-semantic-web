@@ -1,5 +1,6 @@
 package jena.impl;
 
+import algorithm.datastructure.LinkedEConcept;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -24,6 +25,7 @@ import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jena.ELearnerModelUtilMethod;
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.EPerformance;
@@ -710,9 +712,50 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         }
         return cons;
     }
+    //返回某个知识点的前后继知识点，并为每个知识点标识是否为用户所学过。
+    public LinkedEConcept getLinkedConceptsByEConcept(ELearner el, EConcept con) {
+        ArrayList<EConcept> cons = new ArrayList<EConcept>();
+        LinkedEConcept lcon = new LinkedEConcept(con);
+        Individual elIndi = ontModel.getIndividual(Constant.NS + el.getId());
+        if (elIndi == null) {
+            return null;
+        }
+        //学过的知识点
+        ArrayList<EPerformance> performs = getEPerformances(el);
 
-    public ArrayList<EConcept> getRecommendConceptByGoals(ELearner el) {
-        return null;
+        if (ELearnerModelUtilMethod.isInPerformance(performs, con)) {
+            lcon.setIsLearnt(true);
+        }
+
+        Individual conIndi = ontModel.getIndividual(Constant.NS + con.getCid());
+
+        Property p = ontModel.getObjectProperty(Constant.NS + "is_pre_concept_of");
+        SimpleSelector selector = new SimpleSelector(null, p, conIndi);
+        StmtIterator iter = ontModel.listStatements(selector);
+        while (iter.hasNext()) {
+            Resource c = iter.nextStatement().getSubject();
+            EConcept cc = getEConcept(c.getLocalName());
+            LinkedEConcept preC = new LinkedEConcept(cc);
+            if (ELearnerModelUtilMethod.isInPerformance(performs, cc)) {
+                preC.setIsLearnt(true);
+            }
+            lcon.addPre(preC);
+            cons.add(cc);
+        }
+        p = ontModel.getObjectProperty(Constant.NS + "is_post_concept_of");
+        selector = new SimpleSelector(null, p, conIndi);
+        iter = ontModel.listStatements(selector);
+        while (iter.hasNext()) {
+            Resource c = iter.nextStatement().getSubject();
+            EConcept cc = getEConcept(c.getLocalName());
+            LinkedEConcept postC = new LinkedEConcept(cc);
+            if (ELearnerModelUtilMethod.isInPerformance(performs, cc)) {
+                postC.setIsLearnt(true);
+            }
+            lcon.addPost(postC);
+            cons.add(cc);
+        }
+        return lcon;
     }
 
     public ArrayList<EConcept> getRecommendConceptsByGoal(ELearner el, EGoal goal) {
@@ -735,19 +778,20 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
                 gCons.remove(c);
             }
         }
-        System.out.println("gCons:" + gCons.size());
+//        System.out.println("gCons:" + gCons.size());
         return gCons;
     }
 
     public static void main(String[] args) {
         ELearnerModelImpl emi = new ELearnerModelImpl();
         ELearner el = emi.getELearner("el005");
-        ArrayList<EConcept> cons = emi.getIgnoreConceptsByELearner(el);
-        for (EConcept c : cons) {
-            System.out.println(c);
-        }
-        System.out.println("cons size:" + cons.size());
-//        EGoal goal = emi.getGoalById("goal_0004");
+        EConcept con = emi.getEConcept("A_cid_1_4");
+        OntModel model = emi.getOntModel();
+        Individual elIndi = model.getIndividual(Constant.NS + "el005");
+        Individual conIndi = model.getIndividual(Constant.NS + con.getCid());
+        LinkedEConcept lcon = emi.getLinkedConceptsByEConcept(el, con);
+        System.out.println(lcon);
+        //        EGoal goal = emi.getGoalById("goal_0004");
 //        System.out.println(goal.getGid());
 //        System.out.println(goal.getName());
 //        System.out.println(goal.getCons().size());
