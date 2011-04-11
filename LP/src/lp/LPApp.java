@@ -36,6 +36,7 @@ public class LPApp extends SingleFrameApplication {
     public static final int SEARCH = 3;
     public static final int PROFILE = 4;
     public static final int ASSESSMENT = 5;
+    public static final int NEW_MAP = 6;
 
 //    public static final int NAVIGATOR = 5;
 //    public static final int REGIST = 6;
