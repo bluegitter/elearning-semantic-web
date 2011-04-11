@@ -679,6 +679,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         return goal;
     }
 
+    //获得用户的多个目标（此方法暂时无用，因为目标只允许有一个）
     public ArrayList<EGoal> getGoalsByELearner(ELearner el) {
         Individual elIndi = ontModel.getIndividual(Constant.NS + el.getId());
         if (elIndi == null) {
@@ -712,7 +713,34 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         }
         return cons;
     }
+    //不考虑has_goal这个ObjectProperty
+
+    public String getCurrentGoal(ELearner el) {
+        String goalId = null;
+        Individual elIndi = ontModel.getIndividual(Constant.NS + el.getId());
+        if (elIndi == null) {
+            return null;
+        }
+        RDFNode currentGoal = elIndi.getPropertyValue(ontModel.getDatatypeProperty(Constant.NS + "current_goal"));
+        //return null if the elearner has no goal
+        if (currentGoal == null) {
+            return null;
+        } else {
+            goalId = currentGoal.asLiteral().getString();
+        }
+        return goalId;
+    }
+
+    public boolean setCurrentGoal(ELearner el, String goal) {
+        Individual elIndi = ontModel.getIndividual(Constant.NS + el.getId());
+        if (elIndi == null) {
+            return false;
+        }
+        elIndi.setPropertyValue(ontModel.getDatatypeProperty(Constant.NS + "current_goal"), ontModel.createTypedLiteral(goal, new XSDDatatype("string")));
+        return true;
+    }
     //返回某个知识点的前后继知识点，并为每个知识点标识是否为用户所学过。
+
     public LinkedEConcept getLinkedConceptsByEConcept(ELearner el, EConcept con) {
         ArrayList<EConcept> cons = new ArrayList<EConcept>();
         LinkedEConcept lcon = new LinkedEConcept(con);
@@ -789,7 +817,10 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         OntModel model = emi.getOntModel();
         Individual elIndi = model.getIndividual(Constant.NS + "el005");
         Individual conIndi = model.getIndividual(Constant.NS + con.getCid());
-        LinkedEConcept lcon = emi.getLinkedConceptsByEConcept(el, con);
+        String lcon = emi.getCurrentGoal(el);
+        System.out.println(lcon);
+        emi.setCurrentGoal(el, "msmsmsms");
+        lcon = emi.getCurrentGoal(el);
         System.out.println(lcon);
         //        EGoal goal = emi.getGoalById("goal_0004");
 //        System.out.println(goal.getGid());

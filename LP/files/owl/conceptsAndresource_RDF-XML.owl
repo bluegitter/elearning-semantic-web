@@ -13292,6 +13292,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#el005">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <current_goal rdf:datatype="&xsd;string">goal_001</current_goal>
         <email rdf:datatype="&xsd;string">williamma.wm@gmail.com</email>
         <name rdf:datatype="&xsd;string">马晟</name>
         <ignore_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_7"/>
