@@ -52,7 +52,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 
     public ELearnerModelImpl(File file) {
         super(file);
-        setInfModel(null, ontModel);
+        //setInfModel(null, ontModel);
     }
 
     public ELearnerModelImpl(File file, String lang) {
@@ -62,6 +62,9 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
 
     public void setInfModel(Reasoner reasoner, OntModel model) {
         ontModel = ModelFactory.createOntologyModel(OntModelSpec.DAML_MEM_TRANS_INF, ontModel);
+    }
+    public void addOWLToModel(File file){
+      //  ontModel.read(null, null)
     }
 
     public boolean isSonOfEConcept(EConcept father, EConcept son) {
@@ -750,11 +753,9 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         }
         //学过的知识点
         ArrayList<EPerformance> performs = getEPerformances(el);
-
         if (ELearnerModelUtilMethod.isInPerformance(performs, con)) {
             lcon.setIsLearnt(true);
         }
-
         Individual conIndi = ontModel.getIndividual(Constant.NS + con.getCid());
 
         Property p = ontModel.getObjectProperty(Constant.NS + "is_pre_concept_of");
@@ -785,6 +786,36 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         }
         return lcon;
     }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    //有待改进~~
+    //
+    public ArrayList<LinkedEConcept> getConceptsByELearnerGoal(ELearner el, EGoal goal){
+        ArrayList <LinkedEConcept> lcons = new ArrayList<LinkedEConcept>();
+        Individual elIndi = ontModel.getIndividual(Constant.NS+el.getId());
+        if(elIndi == null){
+            return null;
+        }
+         //学过的知识点
+        ArrayList<EPerformance> performs = getEPerformances(el);
+        //目标的知识点
+        ArrayList<EConcept> gCons = goal.getCons();
+        //创建LinkedConcept,把目标中的知识点标识是否学习过.
+        for(EConcept con:gCons){
+            LinkedEConcept lcon = new LinkedEConcept(con);
+            if(ELearnerModelUtilMethod.isInPerformance(performs, con)){
+                lcon.setIsLearnt(true);
+            }else{
+                lcon.setIsLearnt(false);
+            }
+            lcons.add(lcon);
+        }
+        //标识知识点之间关系
+        for(LinkedEConcept lcon:lcons){
+            
+        }
+        return lcons;
+    }
 
     public ArrayList<EConcept> getRecommendConceptsByGoal(ELearner el, EGoal goal) {
         //学过的知识点
@@ -811,17 +842,11 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
     }
 
     public static void main(String[] args) {
-        ELearnerModelImpl emi = new ELearnerModelImpl();
-        ELearner el = emi.getELearner("el005");
+        ELearnerModelImpl emi = new ELearnerModelImpl(new File(Constant.OWLFile));
+        ELearner el = emi.getELearner("el006");
+        System.out.println("el:"+el);
         EConcept con = emi.getEConcept("A_cid_1_4");
-        OntModel model = emi.getOntModel();
-        Individual elIndi = model.getIndividual(Constant.NS + "el005");
-        Individual conIndi = model.getIndividual(Constant.NS + con.getCid());
-        String lcon = emi.getCurrentGoal(el);
-        System.out.println(lcon);
-        emi.setCurrentGoal(el, "msmsmsms");
-        lcon = emi.getCurrentGoal(el);
-        System.out.println(lcon);
+     
         //        EGoal goal = emi.getGoalById("goal_0004");
 //        System.out.println(goal.getGid());
 //        System.out.println(goal.getName());

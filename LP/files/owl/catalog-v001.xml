@@ -3,6 +3,7 @@
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=1" prefer="public" xml:base="">
         <uri id="Automatically generated entry, Timestamp=1302322395157" name="http://www.semanticweb.org/ontologies/2011/3/newConcepts.owl" uri="newConcepts.owl"/>
         <uri id="Automatically generated entry, Timestamp=1302322395157" name="http://www.owl-ontologies.com/e-learning.owl" uri="test.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1302410916975" name="http://www.owl-ontologies.com/e-learning.owl" uri="conceptsAndresource_RDF-XML.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1302505105756" name="http://www.owl-ontologies.com/e-learning.owl" uri="conceptsAndresource_RDF-XML.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1302506186683" name="http://www.owl-ontologies.com/e-learning.owl" uri="elearnerInfo.owl"/>
     </group>
 </catalog>
