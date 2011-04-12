@@ -58,17 +58,18 @@ public class LinkedEConcept {
     public void addPost(LinkedEConcept lcon) {
         this.post.add(lcon);
     }
+    @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("pre size:"+pre.size());
+        sb.append("pre size:").append(pre.size());
         for(LinkedEConcept c:pre){
-            sb.append(c.getConcept()+" "+c.getIsLearnt()+"\t");
+            sb.append(c.getConcept()).append(" ").append(c.getIsLearnt()).append("\t");
         }
-        sb.append("\npost size:"+post.size());
+        sb.append("\npost size:").append(post.size());
          for(LinkedEConcept c:post){
-            sb.append(c.getConcept()+" "+c.getIsLearnt()+"\t");
+            sb.append(c.getConcept()).append(" ").append(c.getIsLearnt()).append("\t");
         }
-        sb.append("\n"+concept+" "+isLearnt);
+        sb.append("\n").append(concept).append(" ").append(isLearnt);
         return sb.toString();
     }
 }
