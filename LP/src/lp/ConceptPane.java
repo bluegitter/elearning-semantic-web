@@ -53,13 +53,13 @@ public class ConceptPane extends javax.swing.JPanel {
         learnBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "概念", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "知识点-资源", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         setDoubleBuffered(false);
 
         jLabel1.setText("知识点：");
         jLabel1.setName("jLabel1"); // NOI18N
 
-        conceptName.setText("概念名");
+        conceptName.setText("知识点名称");
         conceptName.setName("conceptName"); // NOI18N
 
         jLabel2.setText("URI:");
@@ -92,10 +92,10 @@ public class ConceptPane extends javax.swing.JPanel {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(uriLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                            .addComponent(uriLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
                             .addComponent(conceptName)))
                     .addComponent(learnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
