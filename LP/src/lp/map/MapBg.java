@@ -1,12 +1,17 @@
 package lp.map;
 
+import algorithm.datastructure.LinkedEConcept;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import lp.LPApp;
+import ontology.EGoal;
 
 public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMotionListener {
 
@@ -15,7 +20,6 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
     private int w = 3000, h = 3000;
     private int cx, cy, vw, vh, bw, bh, ox, oy;
     private boolean init = false;
-
     private ArrayList<E_Castle> castle;
 
     public MapBg(javax.swing.JPanel p) {
@@ -27,16 +31,19 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
         castle = new ArrayList<E_Castle>();
 
-        addMouseListener(this);
-        addMouseMotionListener(this);
-
         initCastle();
     }
 
     private void initCastle() {
-        castle.add(new E_Castle(1400, 1200, E_Castle.HARD));
-        castle.add(new E_Castle(1500, 1600, E_Castle.MEDIUM));
-        castle.add(new E_Castle(1800, 1300, E_Castle.EASY));
+        addMouseListener(this);
+        addMouseMotionListener(this);
+
+        ArrayList<LinkedEConcept> list = LPApp.lpModel.getConceptsByELearnerGoal(LPApp.getApplication().user.learner, LPApp.lpModel.getGoalById("goal_0004"));
+        int offset = 200;
+        for (LinkedEConcept le : list) {
+            castle.add(new E_Castle(offset, offset, le));
+            offset += 300;
+        }
     }
 
     @Override
@@ -59,8 +66,10 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
             }
         }
 
-        for(E_Castle c : castle) {
-            c.getImage().paintIcon(this, g, c.x - cx, c.y - cy);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        for (E_Castle c : castle) {
+            c.paint(this, g2, c.x - cx, c.y - cy);
         }
     }
 
@@ -70,7 +79,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         int maxx = Math.min(x + w, cx + vw);
         int maxy = Math.min(y + h, cy + vh);
 
-        return ! (minx > maxx || miny > maxy);
+        return !(minx > maxx || miny > maxy);
     }
 
     @Override
@@ -80,8 +89,8 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        for(E_Castle c : castle) {
-            if(c.dian(e.getX() + cx, e.getY() + cy)) {
+        for (E_Castle c : castle) {
+            if (c.dian(e.getX() + cx, e.getY() + cy)) {
                 javax.swing.JOptionPane.showMessageDialog(this, "被点中了。。。");
                 break;
             }
@@ -113,15 +122,17 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
     public void mouseDragged(MouseEvent e) {
         cx -= e.getX() - ox;
         cy -= e.getY() - oy;
-        if(cx < 0)
+        if (cx < 0) {
             cx = 0;
-        else if (cx + vw > w)
+        } else if (cx + vw > w) {
             cx = w - vw;
+        }
 
-        if(cy < 0)
+        if (cy < 0) {
             cy = 0;
-        else if (cy + vh > h)
+        } else if (cy + vh > h) {
             cy = h - vh;
+        }
 
         ox = e.getX();
         oy = e.getY();
