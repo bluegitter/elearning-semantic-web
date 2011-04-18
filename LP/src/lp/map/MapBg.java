@@ -46,6 +46,10 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         }
     }
 
+    private void loadLocation() {
+        
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
