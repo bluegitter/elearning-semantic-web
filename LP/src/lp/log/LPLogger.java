@@ -20,16 +20,13 @@ import java.net.NetworkInterface;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import db.WebOperation;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import util.Constant;
 import util.MethodConstant;
-import util.StringExchanger;
 
 /**
  *
@@ -45,17 +42,6 @@ public class LPLogger {
     private StringBuilder sb;
 
     public LPLogger() {
-        Date date = MethodConstant.getSysDate();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-        String s = dateFormat.format(date);
-        logFile = new File(Constant.TestLogFile + s);
-
-        if (!logFile.exists()) {
-            try {
-                logFile.createNewFile();
-            } catch (IOException ex) {
-            }
-        }
         init();
     }
 
@@ -64,15 +50,27 @@ public class LPLogger {
         init();
     }
 
+    private void createNewLogFileOnDisk() {
+        try {
+            Date date = MethodConstant.getSysDate();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+            String s = dateFormat.format(date);
+            logFile = new File(Constant.TestLogFile + s);
+            if (!logFile.exists()) {
+                logFile.createNewFile();
+            }
+            output = new BufferedWriter(new FileWriter(logFile));
+        } catch (IOException ioe) {
+        }
+    }
+
     private void init() {
         mesList = new ArrayList<String>();
         userId = "userId";
         ip = "ip";
         sb = new StringBuilder();
-        try {
-            output = new BufferedWriter(new FileWriter(logFile));
-        } catch (IOException ioe) {
-        }
+        output = null;
+        // createNewLogFileOnDisk();
     }
 
     public void writeLog(int action, String data, String result, String status) {
@@ -92,7 +90,10 @@ public class LPLogger {
         sb.append(1);
         sb.append(";");
         try {
-            output.write(sb.toString());
+            if (output != null) {
+                output.write(sb.toString());
+            }
+
         } catch (IOException ex) {
             Logger.getLogger(LPLogger.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -129,10 +130,10 @@ public class LPLogger {
 
     public void close() {
         try {
-            output.flush();
-            output.close();
-
-
+            if (output != null) {
+                output.flush();
+                output.close();
+            }
         } catch (IOException ex) {
             Logger.getLogger(LPLogger.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -197,7 +198,6 @@ public class LPLogger {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         this.ip = ip;
     }
 

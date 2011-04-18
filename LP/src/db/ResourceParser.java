@@ -82,7 +82,7 @@ public class ResourceParser {
             st.close();
             con.close();
             try {
-                OwlOperation.writeOwlFile(ontModel, new File("test\\owl\\conceptsAndresource_RDF-XML.owl"));
+                OwlOperation.writeOwlFile(ontModel, new File("test\\owl\\conceptsAndresource_RDF-XML.owl"),null);
             } catch (IOException ex) {
                 Logger.getLogger(ResourceParser.class.getName()).log(Level.SEVERE, null, ex);
             }
