@@ -50,7 +50,7 @@ public class ModelTest {
 		if(!file.exists()){
 			file.createNewFile();
 		}
-		OwlOperation.writeOwlFile(rp.getOntModel(), file);
+		OwlOperation.writeOwlFile(rp.getOntModel(), file,null);
 
 		long time2 = System.currentTimeMillis();
 		File file2 = new File( ConstantForTest.TestOwlFileLocation+head+"N3.owl");

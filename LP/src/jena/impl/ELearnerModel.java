@@ -49,7 +49,7 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
 
     public boolean writeToFile(File file) {
         try {
-            OwlOperation.writeOwlFile(ontModel, file);
+            OwlOperation.writeOwlFile(ontModel, file, null);
             return true;
         } catch (IOException ex) {
             Logger.getLogger(ELearnerModel.class.getName()).log(Level.SEVERE, null, ex);

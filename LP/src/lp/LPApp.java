@@ -10,14 +10,14 @@ import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jena.OwlFactory;
 import jena.impl.ELearnerModelImpl;
 import lp.log.LPLogger;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
+import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import util.ColorConstant;
 import util.Constant;
-import util.StringExchanger;
 
 /**
  * The main class of the application.
@@ -77,7 +77,7 @@ public class LPApp extends SingleFrameApplication {
 
         if (LPApp.lpModel != null) {
             //保存文件,发送日志
-//            saveToFile(file);
+            //         saveToFile(file);
 //            sendLogs();
         }
 
@@ -93,11 +93,23 @@ public class LPApp extends SingleFrameApplication {
 
     private void saveToFile(File file) {
         try {
-            OwlOperation.writeOwlFile(LPApp.lpModel.getOntModel(), file);
+            File owlapifile = new File(Constant.RDF_BAK_File);
+            OwlOperation.writeOwlFile(LPApp.lpModel.getOntModel(), owlapifile, null);
             System.out.println("Complete saving the file before exiting the program.");
+            
+            org.semanticweb.owlapi.model.OWLOntologyManager manager = org.semanticweb.owlapi.apibinding.OWLManager.createOWLOntologyManager();
+            org.semanticweb.owlapi.model.OWLOntology ontology = manager.loadOntologyFromOntologyDocument(file);
+            manager.setOntologyDocumentIRI(ontology, org.semanticweb.owlapi.model.IRI.create(file));
+            manager.saveOntology(ontology);
+            System.out.println("Complete saving the backup model file in type of RDF before exiting the program.");
+        } catch (OWLOntologyCreationException ex) {
+            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (OWLOntologyStorageException ex) {
+            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     private void sendLogs() {
