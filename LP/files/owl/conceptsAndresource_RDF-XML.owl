@@ -1948,35 +1948,35 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_1 -->
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_1">
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <difficulty rdf:datatype="&xsd;string">初级</difficulty>
         <name rdf:datatype="&xsd;string">线性表</name>
-        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_1"/>
-        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_2"/>
-        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_3"/>
+        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_1"/>
+        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_2"/>
+        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_3"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_2 -->
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_2 -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_2">
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_2">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <difficulty rdf:datatype="&xsd;string">初级</difficulty>
         <name rdf:datatype="&xsd;string">链表</name>
-        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_1"/>
-        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_2"/>
-        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_3"/>
+        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_1"/>
+        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_2"/>
+        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_3"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_3 -->
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_3 -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_3">
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_3">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <difficulty rdf:datatype="&xsd;string">初级</difficulty>
         <name rdf:datatype="&xsd;string">堆栈</name>
@@ -1984,9 +1984,9 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_4 -->
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_4 -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_4">
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_4">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <difficulty rdf:datatype="&xsd;string">初级</difficulty>
         <name rdf:datatype="&xsd;string">队列</name>
@@ -1994,9 +1994,9 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_5 -->
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_5 -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_5">
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_5">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <difficulty rdf:datatype="&xsd;string">初级</difficulty>
         <name rdf:datatype="&xsd;string">数组</name>
@@ -2004,29 +2004,9 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_6 -->
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_h_1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_6">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">广义表</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_7 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_7">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">递归</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_8 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_8">
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_h_1">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <name rdf:datatype="&xsd;string">动态存储管理</name>
         <difficulty rdf:datatype="&xsd;string">高级</difficulty>
@@ -2034,352 +2014,29 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_1_1 -->
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_1 -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_1">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">初级</difficulty>
-        <name rdf:datatype="&xsd;string">插入排序</name>
-        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_1"/>
-        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_2"/>
-        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_4"/>
-        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_5"/>
-        <is_concept_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el005_A_cid_1_1_p"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_1_2 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_2">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">初级</difficulty>
-        <name rdf:datatype="&xsd;string">快速排序</name>
-        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_1"/>
-        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_2"/>
-        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_4"/>
-        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_5"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_1_3 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_3">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">初级</difficulty>
-        <name rdf:datatype="&xsd;string">选择排序</name>
-        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_1"/>
-        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_2"/>
-        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_4"/>
-        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_5"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_1_4 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_4">
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_1">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">归并排序</name>
-        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_1"/>
-        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_2"/>
-        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_3"/>
-        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_2"/>
-        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_4"/>
+        <name rdf:datatype="&xsd;string">广义表</name>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_1_5 -->
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_2 -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_5">
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_2">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">基数排序</name>
-        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_1"/>
-        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_2"/>
-        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_3"/>
+        <name rdf:datatype="&xsd;string">递归</name>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_2_1 -->
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_3 -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_1">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">初级</difficulty>
-        <name rdf:datatype="&xsd;string">外部排序概述</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_2_2 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_2">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">多路平衡归并排序</name>
-        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_4"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_2_3 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_3">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">置换选择排序</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_2_4 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_4">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">最佳归并树</name>
-        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_4"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_3_1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_1">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">初级</difficulty>
-        <name rdf:datatype="&xsd;string">树与森林</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_3_2 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_2">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <name rdf:datatype="&xsd;string">二叉树</name>
-        <difficulty rdf:datatype="&xsd;string">初级</difficulty>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_3_3 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_3">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">红黑树</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_3_4 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_4">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">哈夫曼树</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_3_5 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_5">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <name rdf:datatype="&xsd;string">B树</name>
-        <difficulty rdf:datatype="&xsd;string">高级</difficulty>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_3_6 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_6">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <name rdf:datatype="&xsd;string">B+树</name>
-        <difficulty rdf:datatype="&xsd;string">高级</difficulty>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_4_1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_1">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">图的存储结构</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_4_2 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_2">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">图的遍历</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_4_3 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_3">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">最短路径</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_4_4 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_4">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">关键路径</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_4_5 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_5">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">最小支撑树</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_4_6 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_6">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">有向无环图的应用</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_4_7 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_7">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <name rdf:datatype="&xsd;string">图的连通性</name>
-        <difficulty rdf:datatype="&xsd;string">高级</difficulty>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_5_1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_5_1">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">静态查找表</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_5_2 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_5_2">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">动态查找表</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_5_3 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_5_3">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">哈希表</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_6_1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_6_1">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">初级</difficulty>
-        <name rdf:datatype="&xsd;string">文件基本概念</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_6_2 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_6_2">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">初级</difficulty>
-        <name rdf:datatype="&xsd;string">顺序文件</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_6_3 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_6_3">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">初级</difficulty>
-        <name rdf:datatype="&xsd;string">索引文件</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_6_4 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_6_4">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <name rdf:datatype="&xsd;string">ISAM文件</name>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_6_5 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_6_5">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <name rdf:datatype="&xsd;string">VSAM文件</name>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_6_6 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_6_6">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
-        <name rdf:datatype="&xsd;string">散列文件</name>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_6_7 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_6_7">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <name rdf:datatype="&xsd;string">多关键字文件</name>
-        <difficulty rdf:datatype="&xsd;string">高级</difficulty>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_7_1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_7_1">
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_3">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <difficulty rdf:datatype="&xsd;string">中级</difficulty>
         <name rdf:datatype="&xsd;string">串的基本概念</name>
@@ -2387,12 +2044,355 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_7_2 -->
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_4 -->
 
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_7_2">
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_4">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <difficulty rdf:datatype="&xsd;string">中级</difficulty>
         <name rdf:datatype="&xsd;string">串的模式匹配</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_1">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">初级</difficulty>
+        <name rdf:datatype="&xsd;string">插入排序</name>
+        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1"/>
+        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_2"/>
+        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_1"/>
+        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_2"/>
+        <is_concept_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el005_A_cid_1_1_p"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_2">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">初级</difficulty>
+        <name rdf:datatype="&xsd;string">快速排序</name>
+        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1"/>
+        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_2"/>
+        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_1"/>
+        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_3">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">初级</difficulty>
+        <name rdf:datatype="&xsd;string">选择排序</name>
+        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1"/>
+        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_2"/>
+        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_1"/>
+        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_4">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">初级</difficulty>
+        <name rdf:datatype="&xsd;string">外部排序概述</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_1">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+        <name rdf:datatype="&xsd;string">归并排序</name>
+        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_1"/>
+        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_2"/>
+        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_3"/>
+        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_3"/>
+        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_2">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+        <name rdf:datatype="&xsd;string">基数排序</name>
+        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_1"/>
+        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_2"/>
+        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_3">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+        <name rdf:datatype="&xsd;string">多路平衡归并排序</name>
+        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_4">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+        <name rdf:datatype="&xsd;string">置换选择排序</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_5">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+        <name rdf:datatype="&xsd;string">最佳归并树</name>
+        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_1"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_2_e_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_e_1">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">初级</difficulty>
+        <name rdf:datatype="&xsd;string">文件基本概念</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_2_e_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_e_2">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">初级</difficulty>
+        <name rdf:datatype="&xsd;string">顺序文件</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_2_e_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_e_3">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">初级</difficulty>
+        <name rdf:datatype="&xsd;string">索引文件</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_2_h_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_h_1">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <name rdf:datatype="&xsd;string">多关键字文件</name>
+        <difficulty rdf:datatype="&xsd;string">高级</difficulty>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_1">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <name rdf:datatype="&xsd;string">ISAM文件</name>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_2">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <name rdf:datatype="&xsd;string">VSAM文件</name>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_3">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+        <name rdf:datatype="&xsd;string">散列文件</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_4">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+        <name rdf:datatype="&xsd;string">静态查找表</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_5">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+        <name rdf:datatype="&xsd;string">动态查找表</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_6">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+        <name rdf:datatype="&xsd;string">哈希表</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_3_e_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_e_1">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">初级</difficulty>
+        <name rdf:datatype="&xsd;string">树与森林</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_3_e_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_e_2">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <name rdf:datatype="&xsd;string">二叉树</name>
+        <difficulty rdf:datatype="&xsd;string">初级</difficulty>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_3_h_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_h_1">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <name rdf:datatype="&xsd;string">B树</name>
+        <difficulty rdf:datatype="&xsd;string">高级</difficulty>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_3_h_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_h_2">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <name rdf:datatype="&xsd;string">B+树</name>
+        <difficulty rdf:datatype="&xsd;string">高级</difficulty>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_3_m_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_m_1">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+        <name rdf:datatype="&xsd;string">红黑树</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_3_m_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_m_2">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+        <name rdf:datatype="&xsd;string">哈夫曼树</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_4_h_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_h_1">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <name rdf:datatype="&xsd;string">图的连通性</name>
+        <difficulty rdf:datatype="&xsd;string">高级</difficulty>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_4_m_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_m_1">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+        <name rdf:datatype="&xsd;string">图的存储结构</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_4_m_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_m_2">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+        <name rdf:datatype="&xsd;string">图的遍历</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_4_m_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_m_3">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+        <name rdf:datatype="&xsd;string">最短路径</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_4_m_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_m_4">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+        <name rdf:datatype="&xsd;string">关键路径</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_4_m_5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_m_5">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+        <name rdf:datatype="&xsd;string">最小支撑树</name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_4_m_6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_m_6">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <difficulty rdf:datatype="&xsd;string">中级</difficulty>
+        <name rdf:datatype="&xsd;string">有向无环图的应用</name>
     </owl:NamedIndividual>
     
 
@@ -13485,8 +13485,8 @@
         <current_goal rdf:datatype="&xsd;string">goal_001</current_goal>
         <email rdf:datatype="&xsd;string">williamma.wm@gmail.com</email>
         <name rdf:datatype="&xsd;string">马晟</name>
-        <ignore_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_7"/>
-        <ignore_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_8"/>
+        <ignore_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_h_1"/>
+        <ignore_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_2"/>
         <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el005_A_cid_1_1_p"/>
         <has_goal rdf:resource="http://www.owl-ontologies.com/e-learning.owl#goal_0001"/>
     </owl:NamedIndividual>
@@ -13505,7 +13505,7 @@
         <a2 rdf:datatype="&xsd;string">35</a2>
         <a4 rdf:datatype="&xsd;string">45</a4>
         <a6 rdf:datatype="&xsd;string">85</a6>
-        <inverse_of_is_concept_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_1"/>
+        <inverse_of_is_concept_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_1"/>
         <inverse_of_has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el005"/>
     </owl:NamedIndividual>
     
@@ -13527,13 +13527,13 @@
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#goal_0000">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Goal"/>
         <name rdf:datatype="&xsd;string">数据结构基础内容</name>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_1"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_2"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_3"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_4"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_5"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_6"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_7"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_2"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_3"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_4"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_5"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_1"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_2"/>
     </owl:NamedIndividual>
     
 
@@ -13542,12 +13542,12 @@
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#goal_0001">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Goal"/>
-        <name rdf:datatype="&xsd;string">内部排序</name>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_1"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_2"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_3"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_4"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_5"/>
+        <name rdf:datatype="&xsd;string">排序</name>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_1"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_2"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_3"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_1"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_2"/>
     </owl:NamedIndividual>
     
 
@@ -13556,11 +13556,7 @@
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#goal_0002">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Goal"/>
-        <name rdf:datatype="&xsd;string">外部排序</name>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_1"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_2"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_3"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_4"/>
+        <name rdf:datatype="&xsd;string">文件和查找</name>
     </owl:NamedIndividual>
     
 
@@ -13570,12 +13566,12 @@
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#goal_0003">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Goal"/>
         <name rdf:datatype="&xsd;string">树</name>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_1"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_2"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_3"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_4"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_5"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_6"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_e_1"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_e_2"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_h_1"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_h_2"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_m_1"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_m_2"/>
     </owl:NamedIndividual>
     
 
@@ -13585,52 +13581,13 @@
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#goal_0004">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Goal"/>
         <name rdf:datatype="&xsd;string">图</name>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_1"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_2"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_3"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_4"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_5"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_6"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_7"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#goal_0005 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#goal_0005">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Goal"/>
-        <name rdf:datatype="&xsd;string">查找</name>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_5_1"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_5_2"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_5_3"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#goal_0006 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#goal_0006">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Goal"/>
-        <name rdf:datatype="&xsd;string">文件</name>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_6_1"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_6_2"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_6_3"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_6_4"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_6_5"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_6_6"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_6_7"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#goal_0007 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#goal_0007">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Goal"/>
-        <name rdf:datatype="&xsd;string">串</name>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_7_1"/>
-        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_7_2"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_h_1"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_m_1"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_m_2"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_m_3"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_m_4"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_m_5"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_4_m_6"/>
     </owl:NamedIndividual>
     
 
