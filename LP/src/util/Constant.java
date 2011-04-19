@@ -14,6 +14,7 @@ public class Constant {
     public static String LuceneTestFile = "files/lucene/testlucene.txt";
     public static String TestLogFile = "files/log/lplog.log";
     public static String newConceptFile = "files/owl/newConcepts.owl";
+    public static final String CITY_DATA = "files/data/location.txt";
     /*********************************************************************
      * SPARQL Prefix
      ********************************************************************/
