@@ -30,6 +30,8 @@ public class E_Castle {
     public static final int EASY = 0;
     public static final int MEDIUM = 1;
     public static final int HARD = 2;
+
+    public static Color[] colors = {Color.GREEN, Color.YELLOW, Color.RED};
     public static ImageIcon[] image = {new ImageIcon(MapBg.class.getResource("/lp/resources/easy.png")),
         new ImageIcon(MapBg.class.getResource("/lp/resources/middle.png")), new ImageIcon(MapBg.class.getResource("/lp/resources/hard.png"))};
 
@@ -57,6 +59,10 @@ public class E_Castle {
 
     private ImageIcon getImage() {
         return image[type];
+    }
+
+    public Color getColor() {
+        return colors[type];
     }
 
     public void paint(Component c, Graphics2D g, int x, int y) {

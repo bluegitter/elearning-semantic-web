@@ -1,26 +1,36 @@
 package lp.map;
 
 import algorithm.datastructure.LinkedEConcept;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.ImageIcon;
 import lp.LPApp;
 import ontology.EGoal;
+import util.Constant;
 
 public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMotionListener {
 
     public javax.swing.JPanel pp;
     public ImageIcon bgImage;
     private int w = 3000, h = 3000;
+    private int tw = 180, th = 180;
     private int cx, cy, vw, vh, bw, bh, ox, oy;
     private boolean init = false;
     private ArrayList<E_Castle> castle;
+    private BufferedImage tMap;
+    private HashMap<String, Point> cities;
 
     public MapBg(javax.swing.JPanel p) {
         pp = p;
@@ -30,6 +40,9 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         bh = bgImage.getIconHeight();
 
         castle = new ArrayList<E_Castle>();
+        cities = new HashMap<String, Point>();
+
+        tMap = new BufferedImage(tw, th, BufferedImage.TYPE_INT_ARGB);
 
         initCastle();
     }
@@ -38,16 +51,46 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         addMouseListener(this);
         addMouseMotionListener(this);
 
-        ArrayList<LinkedEConcept> list = LPApp.lpModel.getConceptsByELearnerGoal(LPApp.getApplication().user.learner, LPApp.lpModel.getGoalById("goal_0004"));
-        int offset = 200;
-        for (LinkedEConcept le : list) {
-            castle.add(new E_Castle(offset, offset, le));
-            offset += 300;
+        loadLocation();
+        ArrayList<EGoal> goals = LPApp.lpModel.getAllEGoals();
+
+        Graphics2D ig = tMap.createGraphics();
+        ig.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        ig.setColor(new Color(35, 63, 216, 160));
+        ig.fillRect(0, 0, tw, th);
+
+        ig.setColor(Color.LIGHT_GRAY);
+        ig.drawRect(0, 0, tw, th);
+
+        for (EGoal goal : goals) {
+            ArrayList<LinkedEConcept> list = LPApp.lpModel.getConceptsByELearnerGoal(LPApp.getApplication().user.learner, goal);
+            for (LinkedEConcept le : list) {
+                Point p = cities.get(le.getConcept().getCid());
+                E_Castle ecastle = new E_Castle(p.x, p.y, le);
+                castle.add(ecastle);
+
+                ig.setColor(ecastle.getColor());
+                ig.fillOval(p.x * tw / w, p.y * th / h, 5, 5);
+            }
         }
     }
 
     private void loadLocation() {
-        
+        try {
+            BufferedReader in = new BufferedReader(new FileReader(Constant.CITY_DATA));
+            String line;
+
+            while ((line = in.readLine()) != null) {
+                String[] data = line.split("\t");
+                if (data.length > 2) {
+                    cities.put(data[0], new Point(Integer.parseInt(data[1]), Integer.parseInt(data[2])));
+                }
+            }
+        } catch (Exception ex) {
+            System.err.println(ex.getLocalizedMessage());
+        }
+
     }
 
     @Override
@@ -75,6 +118,10 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         for (E_Castle c : castle) {
             c.paint(this, g2, c.x - cx, c.y - cy);
         }
+
+        g2.drawImage(tMap, vw - tw - 5, 5, null);
+        g2.setColor(Color.WHITE);
+        g2.drawRect(vw - tw - 5 + cx * tw / w, 5 + cy * th / h, vw * tw / w, vh * th / h);
     }
 
     private boolean insideShow(int x, int y, int w, int h) {
