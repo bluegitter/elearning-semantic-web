@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -15,22 +16,29 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import lp.LPApp;
 import ontology.EGoal;
 import util.Constant;
 
-public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMotionListener {
+public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMotionListener, Runnable {
 
     public javax.swing.JPanel pp;
     public ImageIcon bgImage;
     private int w = 3000, h = 3000;
     private int tw = 180, th = 180;
-    private int cx, cy, vw, vh, bw, bh, ox, oy;
+    private int cx, cy, vw, vh, bw, bh, ox, oy, dx, dy, vmx, vmy;
+    private boolean xdone, ydone;
     private boolean init = false;
     private ArrayList<E_Castle> castle;
     private BufferedImage tMap;
     private HashMap<String, Point> cities;
+    private Rectangle mapLite, viewLite;
+    private boolean mapDragged = false;
+    private int mapShow = 0;
+    private final Object showLock = new Object();
 
     public MapBg(javax.swing.JPanel p) {
         pp = p;
@@ -43,6 +51,9 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         cities = new HashMap<String, Point>();
 
         tMap = new BufferedImage(tw, th, BufferedImage.TYPE_INT_ARGB);
+
+        mapLite = new Rectangle();
+        viewLite = new Rectangle();
 
         initCastle();
     }
@@ -74,6 +85,11 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                 ig.fillOval(p.x * tw / w, p.y * th / h, 5, 5);
             }
         }
+
+        Thread rpt = new Thread(this);
+
+        rpt.setPriority(Thread.MAX_PRIORITY);
+        rpt.start();
     }
 
     private void loadLocation() {
@@ -120,8 +136,11 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         }
 
         g2.drawImage(tMap, vw - tw - 5, 5, null);
+        mapLite.setBounds(vw - tw - 5, 5, tw, th);
+
         g2.setColor(Color.WHITE);
         g2.drawRect(vw - tw - 5 + cx * tw / w, 5 + cy * th / h, vw * tw / w, vh * th / h);
+        viewLite.setBounds(vw - tw - 5 + cx * tw / w, 5 + cy * th / h, vw * tw / w, vh * th / h);
     }
 
     private boolean insideShow(int x, int y, int w, int h) {
@@ -133,6 +152,83 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         return !(minx > maxx || miny > maxy);
     }
 
+    public void viewMove() {
+        xdone = ydone = false;
+
+        if (dx < 0) {
+            dx = 0;
+        } else if (dx + vw > w) {
+            dx = w - vw;
+        }
+        if (dy < 0) {
+            dy = 0;
+        } else if (dy + vh > h) {
+            dy = h - vh;
+        }
+
+        vmx = (dx - cx) / 40;
+        vmy = (dy - cy) / 40;
+
+        if (vmx == 0) {
+            cx = dx;
+            xdone = true;
+        } else if (Math.abs(vmx) < 40) {
+            vmx = vmx > 0 ? 40 : -40;
+        }
+
+        if (vmy == 0) {
+            cy = dy;
+            ydone = true;
+        } else if (Math.abs(vmy) < 40) {
+            vmy = vmy > 0 ? 40 : -40;
+        }
+
+        synchronized (showLock) {
+            mapShow++;
+        }
+
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                while (!xdone || !ydone) {
+                    if (!xdone) {
+                        if (Math.abs(dx - cx) > Math.abs(vmx)) {
+                            cx += vmx;
+                        } else {
+                            cx = dx;
+                            xdone = true;
+                        }
+                    }
+
+                    if (!ydone) {
+                        if (Math.abs(dy - cy) > Math.abs(vmy)) {
+                            cy += vmy;
+                        } else {
+                            cy = dy;
+                            ydone = true;
+                        }
+                    }
+                    try {
+                        Thread.sleep(50);
+                    } catch (InterruptedException iex) {
+                        System.err.println(iex.getLocalizedMessage());
+                    }
+                }
+                try {
+                    Thread.sleep(100);
+                    synchronized (showLock) {
+                        mapShow--;
+                    }
+                } catch (Exception ex) {
+                    System.err.println(ex.getLocalizedMessage());
+                }
+            }
+        });
+
+        thread.start();
+    }
+
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(pp.getWidth(), pp.getHeight());
@@ -140,23 +236,39 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        for (E_Castle c : castle) {
-            if (c.dian(e.getX() + cx, e.getY() + cy)) {
-                javax.swing.JOptionPane.showMessageDialog(this, "被点中了。。。");
-                break;
+        if (mapShow <= 0) {
+            int x = e.getX(), y = e.getY();
+            if (mapLite.contains(x, y)) {
+                dx = (x - mapLite.x - viewLite.width / 2) * w / tw;
+                dy = (y - mapLite.y - viewLite.height / 2) * h / th;
+                viewMove();
+            } else {
+                for (E_Castle c : castle) {
+                    if (c.dian(x + cx, y + cy)) {
+                        javax.swing.JOptionPane.showMessageDialog(this, "被点中了。。。");
+                        break;
+                    }
+                }
             }
         }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        ox = e.getX();
-        oy = e.getY();
+        if (mapShow <= 0) {
+            if (!mapLite.contains(e.getX(), e.getY())) {
+                mapDragged = true;
+                ox = e.getX();
+                oy = e.getY();
+            } else {
+                mapDragged = false;
+            }
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        ;
+        mapDragged = false;
     }
 
     @Override
@@ -171,28 +283,52 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        cx -= e.getX() - ox;
-        cy -= e.getY() - oy;
-        if (cx < 0) {
-            cx = 0;
-        } else if (cx + vw > w) {
-            cx = w - vw;
+        if (mapShow <= 0) {
+            if (mapDragged) {
+                cx -= e.getX() - ox;
+                cy -= e.getY() - oy;
+                if (cx < 0) {
+                    cx = 0;
+                } else if (cx + vw > w) {
+                    cx = w - vw;
+                }
+
+                if (cy < 0) {
+                    cy = 0;
+                } else if (cy + vh > h) {
+                    cy = h - vh;
+                }
+
+                ox = e.getX();
+                oy = e.getY();
+
+                repaint();
+            }
         }
-
-        if (cy < 0) {
-            cy = 0;
-        } else if (cy + vh > h) {
-            cy = h - vh;
-        }
-
-        ox = e.getX();
-        oy = e.getY();
-
-        repaint();
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
         ;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                while (true) {
+                    repaint();
+                    Thread.sleep(50);
+
+                    if (mapShow <= 0) {
+                        repaint();
+                        break;
+                    }
+                }
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                System.err.println(ex.getMessage());
+            }
+        }
     }
 }
