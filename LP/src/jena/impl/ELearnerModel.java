@@ -14,6 +14,7 @@ import util.StringExchanger;
 import jena.OwlFactory;
 import jena.interfaces.ELearnerModelOperationInterface;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
+import com.hp.hpl.jena.ontology.DatatypeProperty;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
@@ -25,6 +26,7 @@ import db.OwlOperation;
 import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
 import java.util.Date;
+import java.util.Iterator;
 import ontology.EPerformanceAssessment;
 
 public class ELearnerModel implements ELearnerModelOperationInterface {
@@ -576,11 +578,37 @@ public class ELearnerModel implements ELearnerModelOperationInterface {
 
         return port;
     }
+//AdminOperation 管理员权限
+
+    public void changeConcept(ISCB_Resource res, EConcept from, EConcept to) {
+        Individual resIndi = ontModel.getIndividual(Constant.NS + res.getRid());
+        //    Individual fromI
+    }
+
+    public ISCB_Resource getEResourceByLocation(String location) {
+        Iterator<Individual> iter = ontModel.listIndividuals(ontModel.getOntClass(Constant.NS + "ISCB_Resource"));
+        DatatypeProperty dp = ontModel.getDatatypeProperty(Constant.NS + "file_location");
+        while (iter.hasNext()) {
+            Individual indi = (Individual) iter.next();
+            if (indi.hasProperty(dp)) {
+                Statement locationNode = indi.getRequiredProperty(dp);
+                if (locationNode != null) {
+                    String locationString = locationNode.getLiteral().getString();
+                    if (locationString.equals(location)) {
+                        ISCB_Resource res = getEResource(indi.getLocalName());
+                        return res;
+                    }
+                }
+            }
+
+        }
+        return null;
+    }
 
     public static void main(String[] args) {
         ELearnerModel emi = new ELearnerModel();
-
-        EPortfolio port = emi.getEPortfolio("E_Portfolio_el001-2");
+        ISCB_Resource res = emi.getEResourceByLocation("74\\page\\chap13\\130001.asp");
+        System.out.println("res:" + res);
 
     }
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=1" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1303196220468" name="http://www.owl-ontologies.com/e-learning.owl" uri="elearning_rdf_bak.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1303303043289" name="http://www.owl-ontologies.com/e-learning.owl" uri="elearning_owl.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1303303043289" name="http://www.owl-ontologies.com/e-learning.owl" uri="elearning_rdf_bak.owl"/>
     </group>
 </catalog>
