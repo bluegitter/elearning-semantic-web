@@ -1717,7 +1717,7 @@
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <difficulty rdf:datatype="&xsd;string">初级</difficulty>
-        <name rdf:datatype="&xsd;string">线性表</name>
+        <name rdf:datatype="&xsd;string">顺序表</name>
         <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_1"/>
         <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_2"/>
         <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_3"/>
@@ -2207,6 +2207,13 @@
         <inverse_of_is_part_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.tl"/>
         <is_part_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
         <is_son_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000024"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000025"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000026"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000027"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000028"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000029"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000030"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000001"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000002"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000003"/>
@@ -2230,13 +2237,6 @@
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000021"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000022"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000023"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000024"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000025"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000026"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000027"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000028"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000029"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000030"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000031"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000032"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000033"/>
@@ -2865,6 +2865,13 @@
         <inverse_of_is_part_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.7"/>
         <inverse_of_is_part_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.8"/>
         <inverse_of_is_part_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.9"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000024"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000025"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000026"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000027"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000028"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000029"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000030"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000001"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000002"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000003"/>
@@ -2888,13 +2895,6 @@
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000021"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000022"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000023"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000024"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000025"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000026"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000027"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000028"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000029"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000030"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000031"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000032"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000033"/>
@@ -3585,6 +3585,13 @@
         <inverse_of_is_part_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid61"/>
         <inverse_of_is_part_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid67"/>
         <inverse_of_is_part_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid75"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000024"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000025"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000026"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000027"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000028"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000029"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000030"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000001"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000002"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000003"/>
@@ -3608,13 +3615,6 @@
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000021"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000022"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000023"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000024"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000025"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000026"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000027"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000028"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000029"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000030"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000031"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000032"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000033"/>
@@ -4736,6 +4736,13 @@
         <inverse_of_is_part_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#QUA"/>
         <inverse_of_is_part_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#SAS"/>
         <inverse_of_is_part_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#VAV"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000024"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000025"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000026"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000027"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000028"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000029"/>
+        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#con_rid000030"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000001"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000002"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000003"/>
@@ -4759,13 +4766,6 @@
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000021"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000022"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000023"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000024"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000025"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000026"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000027"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000028"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000029"/>
-        <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000030"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000031"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000032"/>
         <inverse_of_is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000033"/>
@@ -13067,6 +13067,167 @@
     
 
 
+    <!-- http://www.owl-ontologies.com/e-learning.owl#con_rid000024 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#con_rid000024">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+        <file_location rdf:datatype="&xsd;string">74\page\chap04\040101.asp</file_location>
+        <difficulty rdf:datatype="&xsd;string">easy</difficulty>
+        <id rdf:datatype="&xsd;string">rid000024</id>
+        <application_type rdf:datatype="&xsd;string">名词术语</application_type>
+        <resource_type rdf:datatype="&xsd;string">程序</resource_type>
+        <description rdf:datatype="&xsd;string">线性表就是结点的有限序列。</description>
+        <name rdf:datatype="&xsd;string">线性表的定义和基本操作</name>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid11"/>
+        <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#con_rid000025 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#con_rid000025">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+        <file_location rdf:datatype="&xsd;string">74\page\chap04\040201.asp</file_location>
+        <difficulty rdf:datatype="&xsd;string">easy</difficulty>
+        <id rdf:datatype="&xsd;string">rid000025</id>
+        <application_type rdf:datatype="&xsd;string">理论型知识元</application_type>
+        <resource_type rdf:datatype="&xsd;string">程序</resource_type>
+        <name rdf:datatype="&xsd;string">线性表的存储结构</name>
+        <description rdf:datatype="&xsd;string">节介绍线性表的四种存储结构即顺序存储，单链表存储，循环链表存储和双向循环链表存储结构。</description>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid12"/>
+        <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#con_rid000026 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#con_rid000026">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+        <description rdf:datatype="&xsd;string"></description>
+        <file_location rdf:datatype="&xsd;string">74\page\chap04\040202.asp</file_location>
+        <difficulty rdf:datatype="&xsd;string">easy</difficulty>
+        <id rdf:datatype="&xsd;string">rid000026</id>
+        <application_type rdf:datatype="&xsd;string">方法型知识元</application_type>
+        <resource_type rdf:datatype="&xsd;string">程序</resource_type>
+        <name rdf:datatype="&xsd;string">链表结点类Node的ADT描述</name>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_2"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid12"/>
+        <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#con_rid000027 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#con_rid000027">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+        <file_location rdf:datatype="&xsd;string">74\page\chap04\040203.asp</file_location>
+        <name rdf:datatype="&xsd;string">Node类的成员函数（算法）的ADL描述和C++描述</name>
+        <difficulty rdf:datatype="&xsd;string">easy</difficulty>
+        <id rdf:datatype="&xsd;string">rid000027</id>
+        <description rdf:datatype="&xsd;string">同时给出Node类的成员函数（算法）的ADL描述和C++描述。</description>
+        <application_type rdf:datatype="&xsd;string">方法型知识元</application_type>
+        <resource_type rdf:datatype="&xsd;string">程序</resource_type>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_2"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid12"/>
+        <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#con_rid000028 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#con_rid000028">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+        <file_location rdf:datatype="&xsd;string">74\page\chap04\040204.asp</file_location>
+        <difficulty rdf:datatype="&xsd;string">easy</difficulty>
+        <id rdf:datatype="&xsd;string">rid000028</id>
+        <description rdf:datatype="&xsd;string">本小节介绍如何利用Node类构造链表。</description>
+        <name rdf:datatype="&xsd;string">构造链表</name>
+        <application_type rdf:datatype="&xsd;string">理论型知识元</application_type>
+        <resource_type rdf:datatype="&xsd;string">程序</resource_type>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_2"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid12"/>
+        <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#con_rid000029 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#con_rid000029">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+        <file_location rdf:datatype="&xsd;string">74\page\chap04\040205.asp</file_location>
+        <difficulty rdf:datatype="&xsd;string">easy</difficulty>
+        <id rdf:datatype="&xsd;string">rid000029</id>
+        <description rdf:datatype="&xsd;string">令表尾结点的next域存放指向表头结点的指针，而不是存放空指针NULL，这样的链表被称为循环链表。</description>
+        <name rdf:datatype="&xsd;string">循环链表</name>
+        <application_type rdf:datatype="&xsd;string">理论型知识元</application_type>
+        <resource_type rdf:datatype="&xsd;string">程序</resource_type>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_2"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid12"/>
+        <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#con_rid000030 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#con_rid000030">
+        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+        <file_location rdf:datatype="&xsd;string">74\page\chap04\040206.asp</file_location>
+        <difficulty rdf:datatype="&xsd;string">easy</difficulty>
+        <id rdf:datatype="&xsd;string">rid000030</id>
+        <name rdf:datatype="&xsd;string">双向循环链表</name>
+        <description rdf:datatype="&xsd;string">有两个不同方向的链的链表为双向循环链表。</description>
+        <application_type rdf:datatype="&xsd;string">理论型知识元</application_type>
+        <resource_type rdf:datatype="&xsd;string">程序</resource_type>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_2"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
+        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid12"/>
+        <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.owl-ontologies.com/e-learning.owl#css -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#css">
@@ -15324,18 +15485,6 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/e-learning.owl#rid00002 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid00002">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-        <difficulty rdf:datatype="&xsd;string">easy</difficulty>
-        <file_location rdf:datatype="&xsd;string">filelocation</file_location>
-        <name rdf:datatype="&xsd;string">pdf2</name>
-        <id rdf:datatype="&xsd;string">rid00002</id>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://www.owl-ontologies.com/e-learning.owl#rid000020 -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000020">
@@ -15419,172 +15568,6 @@
         <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
         <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid1"/>
         <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
-        <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#rid000024 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000024">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-        <file_location rdf:datatype="&xsd;string">74\page\chap04\040101.asp</file_location>
-        <difficulty rdf:datatype="&xsd;string">easy</difficulty>
-        <id rdf:datatype="&xsd;string">rid000024</id>
-        <application_type rdf:datatype="&xsd;string">名词术语</application_type>
-        <resource_type rdf:datatype="&xsd;string">程序</resource_type>
-        <description rdf:datatype="&xsd;string">线性表就是结点的有限序列。</description>
-        <name rdf:datatype="&xsd;string">线性表的定义和基本操作</name>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid11"/>
-        <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#rid000025 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000025">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-        <file_location rdf:datatype="&xsd;string">74\page\chap04\040201.asp</file_location>
-        <difficulty rdf:datatype="&xsd;string">easy</difficulty>
-        <id rdf:datatype="&xsd;string">rid000025</id>
-        <application_type rdf:datatype="&xsd;string">理论型知识元</application_type>
-        <resource_type rdf:datatype="&xsd;string">程序</resource_type>
-        <name rdf:datatype="&xsd;string">线性表的存储结构</name>
-        <description rdf:datatype="&xsd;string">节介绍线性表的四种存储结构即顺序存储，单链表存储，循环链表存储和双向循环链表存储结构。</description>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid12"/>
-        <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#rid000026 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000026">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-        <description rdf:datatype="&xsd;string"></description>
-        <file_location rdf:datatype="&xsd;string">74\page\chap04\040202.asp</file_location>
-        <difficulty rdf:datatype="&xsd;string">easy</difficulty>
-        <id rdf:datatype="&xsd;string">rid000026</id>
-        <application_type rdf:datatype="&xsd;string">方法型知识元</application_type>
-        <resource_type rdf:datatype="&xsd;string">程序</resource_type>
-        <name rdf:datatype="&xsd;string">链表结点类Node的ADT描述</name>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid12"/>
-        <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#rid000027 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000027">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-        <file_location rdf:datatype="&xsd;string">74\page\chap04\040203.asp</file_location>
-        <name rdf:datatype="&xsd;string">Node类的成员函数（算法）的ADL描述和C++描述</name>
-        <difficulty rdf:datatype="&xsd;string">easy</difficulty>
-        <id rdf:datatype="&xsd;string">rid000027</id>
-        <description rdf:datatype="&xsd;string">同时给出Node类的成员函数（算法）的ADL描述和C++描述。</description>
-        <application_type rdf:datatype="&xsd;string">方法型知识元</application_type>
-        <resource_type rdf:datatype="&xsd;string">程序</resource_type>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid12"/>
-        <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#rid000028 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000028">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-        <file_location rdf:datatype="&xsd;string">74\page\chap04\040204.asp</file_location>
-        <difficulty rdf:datatype="&xsd;string">easy</difficulty>
-        <id rdf:datatype="&xsd;string">rid000028</id>
-        <description rdf:datatype="&xsd;string">本小节介绍如何利用Node类构造链表。</description>
-        <name rdf:datatype="&xsd;string">构造链表</name>
-        <application_type rdf:datatype="&xsd;string">理论型知识元</application_type>
-        <resource_type rdf:datatype="&xsd;string">程序</resource_type>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid12"/>
-        <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#rid000029 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000029">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-        <file_location rdf:datatype="&xsd;string">74\page\chap04\040205.asp</file_location>
-        <difficulty rdf:datatype="&xsd;string">easy</difficulty>
-        <id rdf:datatype="&xsd;string">rid000029</id>
-        <description rdf:datatype="&xsd;string">令表尾结点的next域存放指向表头结点的指针，而不是存放空指针NULL，这样的链表被称为循环链表。</description>
-        <name rdf:datatype="&xsd;string">循环链表</name>
-        <application_type rdf:datatype="&xsd;string">理论型知识元</application_type>
-        <resource_type rdf:datatype="&xsd;string">程序</resource_type>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid12"/>
-        <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#rid00003 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid00003">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-        <name rdf:datatype="&xsd;string">doc1</name>
-        <difficulty rdf:datatype="&xsd;string">easy</difficulty>
-        <file_location rdf:datatype="&xsd;string">file</file_location>
-        <id rdf:datatype="&xsd;string">rid00003</id>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#rid000030 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000030">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-        <file_location rdf:datatype="&xsd;string">74\page\chap04\040206.asp</file_location>
-        <difficulty rdf:datatype="&xsd;string">easy</difficulty>
-        <id rdf:datatype="&xsd;string">rid000030</id>
-        <name rdf:datatype="&xsd;string">双向循环链表</name>
-        <description rdf:datatype="&xsd;string">有两个不同方向的链的链表为双向循环链表。</description>
-        <application_type rdf:datatype="&xsd;string">理论型知识元</application_type>
-        <resource_type rdf:datatype="&xsd;string">程序</resource_type>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#CMP.cf.2"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Computer_Science"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
-        <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid12"/>
         <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#x-javascript"/>
     </owl:NamedIndividual>
     
@@ -15784,18 +15767,6 @@
         <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
         <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid12"/>
         <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#html"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#rid00004 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid00004">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-        <file_location rdf:datatype="&xsd;string"></file_location>
-        <name rdf:datatype="&xsd;string">doc2</name>
-        <difficulty rdf:datatype="&xsd;string">hard</difficulty>
-        <id rdf:datatype="&xsd;string">rid00004</id>
     </owl:NamedIndividual>
     
 
@@ -16020,18 +15991,6 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/e-learning.owl#rid00005 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid00005">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-        <file_location rdf:datatype="&xsd;string">C://</file_location>
-        <name rdf:datatype="&xsd;string">c</name>
-        <difficulty rdf:datatype="&xsd;string">hard</difficulty>
-        <id rdf:datatype="&xsd;string">rid00005</id>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://www.owl-ontologies.com/e-learning.owl#rid000050 -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000050">
@@ -16248,18 +16207,6 @@
         <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid10"/>
         <is_resource_of_C rdf:resource="http://www.owl-ontologies.com/e-learning.owl#cid13"/>
         <has_postfix rdf:resource="http://www.owl-ontologies.com/e-learning.owl#html"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#rid00006 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid00006">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-        <name rdf:datatype="&xsd;string">c</name>
-        <file_location rdf:datatype="&xsd;string">file c</file_location>
-        <difficulty rdf:datatype="&xsd;string">hard</difficulty>
-        <id rdf:datatype="&xsd;string">rid00006</id>
     </owl:NamedIndividual>
     
 

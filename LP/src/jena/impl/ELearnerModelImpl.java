@@ -321,7 +321,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
             Resource res = iter.nextStatement().getSubject();
             Statement s = res.getProperty(ontModel.getProperty(Constant.NS + "application_type"));
             if (s != null) {
-                if (s.getLiteral().getString().equals(applicationType) || applicationType.equals("鍏ㄩ儴")) {
+                if (s.getLiteral().getString().equals(applicationType) || applicationType.equals("全部")) {
                     String id = res.getLocalName();
                     resources.add(getEResource(res.getLocalName()));
                 }
@@ -342,7 +342,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
             Resource res = iter.nextStatement().getSubject();
             Statement s = res.getProperty(ontModel.getProperty(Constant.NS + "resource_type"));
             if (s != null) {
-                if (s.getLiteral().getString().equals(mediaType) || mediaType.equals("鍏ㄩ儴")) {
+                if (s.getLiteral().getString().equals(mediaType) || mediaType.equals("全部")) {
                     String id = res.getLocalName();
                     resources.add(getEResource(res.getLocalName()));
                 }
