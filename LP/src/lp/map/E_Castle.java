@@ -49,7 +49,7 @@ public class E_Castle {
         g.setFont(new Font("微软雅黑", Font.BOLD, 12));
         FontMetrics fm = g.getFontMetrics();
         labelBase = fm.getAscent();
-        labelHeight = fm.getAscent() + fm.getDescent();
+        labelHeight = fm.getHeight();
         labelWidth = fm.stringWidth(c.getConcept().getName());
     }
 

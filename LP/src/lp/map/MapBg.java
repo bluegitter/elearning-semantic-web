@@ -16,8 +16,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.LinkedHashMap;
 import javax.swing.ImageIcon;
 import lp.LPApp;
 import ontology.EGoal;
@@ -36,9 +35,11 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
     private BufferedImage tMap;
     private HashMap<String, Point> cities;
     private Rectangle mapLite, viewLite;
-    private boolean mapDragged = false;
+    private boolean mapDragged = false, dialogShow = false;
     private int mapShow = 0;
     private final Object showLock = new Object();
+    private MapDialog dialog;
+    private ArrayList<EGoal> goals;
 
     public MapBg(javax.swing.JPanel p) {
         pp = p;
@@ -56,6 +57,17 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         viewLite = new Rectangle();
 
         initCastle();
+        checkGoal();
+    }
+
+    private void checkGoal() {
+        LinkedHashMap lhm = new LinkedHashMap<String, Object>();
+
+        for (EGoal goal : goals) {
+            lhm.put(goal.getName(), goal);
+        }
+
+        showMapDialog(new MapDialog(this, "请选择您的学习目标", lhm, "确　定"));
     }
 
     private void initCastle() {
@@ -63,7 +75,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         addMouseMotionListener(this);
 
         loadLocation();
-        ArrayList<EGoal> goals = LPApp.lpModel.getAllEGoals();
+        goals = LPApp.lpModel.getAllEGoals();
 
         Graphics2D ig = tMap.createGraphics();
         ig.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -141,6 +153,24 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         g2.setColor(Color.WHITE);
         g2.drawRect(vw - tw - 5 + cx * tw / w, 5 + cy * th / h, vw * tw / w, vh * th / h);
         viewLite.setBounds(vw - tw - 5 + cx * tw / w, 5 + cy * th / h, vw * tw / w, vh * th / h);
+
+        if (dialogShow) {
+            g2.setColor(new Color(0xaa, 0xaa, 0xaa, 160));
+            g2.fillRect(0, 0, vw, vh);
+            dialog.paint(g2, vw, vh);
+        }
+    }
+
+    public void showMapDialog(MapDialog d) {
+        dialog = d;
+        dialogShow = true;
+        repaint();
+    }
+
+    public void hideMapDialog() {
+        dialogShow = false;
+        dialog = null;
+        repaint();
     }
 
     private boolean insideShow(int x, int y, int w, int h) {
@@ -238,15 +268,23 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
     public void mouseClicked(MouseEvent e) {
         if (mapShow <= 0) {
             int x = e.getX(), y = e.getY();
-            if (mapLite.contains(x, y)) {
-                dx = (x - mapLite.x - viewLite.width / 2) * w / tw;
-                dy = (y - mapLite.y - viewLite.height / 2) * h / th;
-                viewMove();
+            if (dialogShow) {
+                if (dialog.bound.contains(x, y)) {
+                    if (dialog.mouseClick(x - dialog.bound.x, y - dialog.bound.y)) {
+                        this.repaint();
+                    }
+                }
             } else {
-                for (E_Castle c : castle) {
-                    if (c.dian(x + cx, y + cy)) {
-                        javax.swing.JOptionPane.showMessageDialog(this, "被点中了。。。");
-                        break;
+                if (mapLite.contains(x, y)) {
+                    dx = (x - mapLite.x - viewLite.width / 2) * w / tw;
+                    dy = (y - mapLite.y - viewLite.height / 2) * h / th;
+                    viewMove();
+                } else {
+                    for (E_Castle c : castle) {
+                        if (c.dian(x + cx, y + cy)) {
+                            javax.swing.JOptionPane.showMessageDialog(this, "被点中了。。。");
+                            break;
+                        }
                     }
                 }
             }
@@ -255,7 +293,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (mapShow <= 0) {
+        if (mapShow <= 0 && !dialogShow) {
             if (!mapLite.contains(e.getX(), e.getY())) {
                 mapDragged = true;
                 ox = e.getX();
@@ -283,7 +321,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        if (mapShow <= 0) {
+        if (mapShow <= 0 && !dialogShow) {
             if (mapDragged) {
                 cx -= e.getX() - ox;
                 cy -= e.getY() - oy;
@@ -309,7 +347,15 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        ;
+        int x = e.getX(), y = e.getY();
+
+        if (mapShow <= 0 && dialogShow) {
+            if (dialog.bound.contains(x, y)) {
+                dialog.mouseOn(x - dialog.bound.x, y - dialog.bound.y);
+
+                this.repaint();
+            }
+        }
     }
 
     @Override
