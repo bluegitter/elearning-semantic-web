@@ -4,12 +4,14 @@
  */
 package lp.map;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.Stroke;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import lp.LPApp;
@@ -29,6 +31,7 @@ public class MapDialog {
     private int optionHeight, optionBase, abLength;
     private String title, abt;
     private MapBg parent;
+    private Stroke rstroke = new BasicStroke(2.0f);
 
     public MapDialog(MapBg parent, String title, LinkedHashMap<String, Object> options, String action) {
         bound = new Rectangle();
@@ -74,15 +77,20 @@ public class MapDialog {
         g.drawString(title, bound.x + 10, cy + 5 + optionBase);
         g.drawLine(bound.x, cy + 10 + optionHeight, bound.x + bound.width, cy + 10 + optionHeight);
 
+        Stroke stroke = g.getStroke();
+
+        g.setStroke(rstroke);
         if(ron != null) {
             g.setColor(Color.YELLOW);
-            g.fill3DRect(ron.x + bound.x, ron.y + bound.y, ron.width, ron.height, true);
+            g.drawRect(ron.x + bound.x, ron.y + bound.y, ron.width, ron.height);
         }
 
         if(rselected != null) {
             g.setColor(Color.MAGENTA);
-            g.fill3DRect(rselected.x + bound.x, rselected.y + bound.y, rselected.width, rselected.height, true);
+            g.drawRect(rselected.x + bound.x, rselected.y + bound.y, rselected.width, rselected.height);
         }
+
+        g.setStroke(stroke);
 
         g.setColor(Color.BLACK);
         g.setFont(new Font("微软雅黑", Font.PLAIN, 16));
