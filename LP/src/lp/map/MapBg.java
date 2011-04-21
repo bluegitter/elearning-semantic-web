@@ -353,7 +353,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
             if (dialog.bound.contains(x, y)) {
                 dialog.mouseOn(x - dialog.bound.x, y - dialog.bound.y);
 
-                this.repaint();
+                repaint();
             }
         }
     }
