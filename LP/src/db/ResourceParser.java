@@ -30,8 +30,8 @@ public class ResourceParser {
         emi = new ELearnerModelImpl(file);
     }
 
-    public boolean writeToFile(File file) {
-        return emi.writeToFile(file);
+    public void writeToFile(File file) {
+        emi.writeToFile(file);
     }
 
     public OntModel getOntModel() {
@@ -82,7 +82,7 @@ public class ResourceParser {
             st.close();
             con.close();
             try {
-                OwlOperation.writeOwlFile(ontModel, new File("test\\owl\\conceptsAndresource_RDF-XML.owl"),null);
+                OwlOperation.writeRdfFile(ontModel, new File("test\\owl\\conceptsAndresource_RDF-XML.owl"),null);
             } catch (IOException ex) {
                 Logger.getLogger(ResourceParser.class.getName()).log(Level.SEVERE, null, ex);
             }
