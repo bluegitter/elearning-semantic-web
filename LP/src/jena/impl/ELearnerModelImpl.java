@@ -20,12 +20,17 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.vocabulary.RDF;
+import db.OwlOperation;
 import exception.IllegalPersonException;
 import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
+import java.io.IOException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jena.ELearnerModelUtilMethod;
+import jena.OwlFactory;
+import jena.interfaces.ELearnerModelOperationInterface;
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.EPerformance;
@@ -38,34 +43,673 @@ import jena.interfaces.ELearnerUserOperationInterface;
 import jena.interfaces.ELearnerUserQueryInterface;
 import ontology.EGoal;
 import ontology.EPerformanceAssessment;
+import util.StringExchanger;
 
 /**************************************************************************
  * Model Query with ontology Model
  * @author william
  *
  **************************************************************************/
-public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQueryInterface, ELearnerUserOperationInterface, ELearnerUserQueryInterface {
+public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerUserOperationInterface, ELearnerUserQueryInterface, ELearnerModelOperationInterface {
+
+    public OntModel ontModel;
 
     public ELearnerModelImpl() {
-        super();
+        ontModel = OwlFactory.getOntModel();
     }
 
     public ELearnerModelImpl(File file) {
-        super(file);
-        //setInfModel(null, ontModel);
+        this.ontModel = OwlFactory.getOntModel(file);
     }
 
     public ELearnerModelImpl(File file, String lang) {
-        super(file, lang);
-    }
-    public InfModel infModel;
-
-    public void setInfModel(Reasoner reasoner, OntModel model) {
-        ontModel = ModelFactory.createOntologyModel(OntModelSpec.DAML_MEM_TRANS_INF, ontModel);
+        this.ontModel = OwlFactory.getOntModel(file, lang);
     }
 
-    public void addOWLToModel(File file) {
-        //  ontModel.read(null, null)
+    public void writeToFile(File file) {
+        try {
+            OwlOperation.writeRdfFile(ontModel, file, null);
+        } catch (IOException ex) {
+            Logger.getLogger(ELearnerModelImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public EConcept getRootConcept() {
+        EConcept rootConcept = new EConcept();
+        rootConcept.setCid("Computer_Science");
+        rootConcept.setName("软件工程");
+        return rootConcept;
+    }
+
+    public OntModel getOntModel() {
+        return ontModel;
+    }
+
+    /**************************************************************************************************
+     * Check whether the individual exists in the model
+     ***************************************************************************************************/
+    public boolean containEConcept(String cid) {
+        return ontModel.containsResource(ontModel.getResource(Constant.NS + cid));
+    }
+
+    public boolean containEInterest(ELearner elearner, EConcept concept) throws IndividualNotExistException {
+        if (!containELearner(elearner.getId())) {
+            throw new IndividualNotExistException("the elearner " + elearner.getName() + " does not exist in the model");
+        }
+        if (containEConcept(concept.getCid())) {
+            throw new IndividualNotExistException("the concept " + concept.getName() + " does not exist in the model");
+        }
+        //TODO:
+        return false;
+    }
+
+    public boolean containELearner(String eid) {
+        return ontModel.containsResource(ontModel.getResource(Constant.NS + eid));
+    }
+
+    public boolean containEResource(String rid) {
+        return ontModel.containsResource(ontModel.getResource(Constant.NS + rid));
+    }
+
+    public boolean containEPortfolio(String portId) {
+        return ontModel.containsResource(ontModel.getResource(Constant.NS + portId));
+    }
+
+    public boolean containEPerformance(String performId) {
+        return ontModel.containsResource(ontModel.getResource(Constant.NS + performId));
+    }
+
+    public boolean containEInterest(String interestId) {
+        return ontModel.containsResource(ontModel.getResource(Constant.NS + interestId));
+    }
+
+    /*******************************************************************************************************
+     * Add new Data Operations
+     * @throws IndividualNotExistException
+     *******************************************************************************************************/
+    @Override
+    public boolean addELearner(ELearner elearner) throws IndividualExistException {
+        if (containELearner(elearner.getId())) {
+            throw new IndividualExistException("elearner " + elearner.getId() + " has already existed in the model");
+        }
+        Resource el = ontModel.createResource(Constant.NS + elearner.getId(), ontModel.getResource(Constant.NS + "E_Learner"));
+        ontModel.add(el, ontModel.getProperty(Constant.NS + "id"), elearner.getId());
+        ontModel.add(el, ontModel.getProperty(Constant.NS + "name"), elearner.getName(), new XSDDatatype("string"));
+        ontModel.add(el, ontModel.getProperty(Constant.NS + "gender"), elearner.getGender(), new XSDDatatype("string"));
+        ontModel.add(el, ontModel.getProperty(Constant.NS + "grade"), elearner.getGrade(), new XSDDatatype("string"));
+        ontModel.add(el, ontModel.getProperty(Constant.NS + "address"), elearner.getAddress(), new XSDDatatype("string"));
+        ontModel.add(el, ontModel.getProperty(Constant.NS + "email"), elearner.getEmail(), new XSDDatatype("string"));
+        return true;
+    }
+
+    @Override
+    public boolean addEResource(ISCB_Resource resource) throws IndividualExistException {
+        if (containEResource(resource.getRid())) {
+            throw new IndividualExistException("EResource " + resource.getRid() + " has already existed in the model");
+        }
+        Resource re = ontModel.createResource(Constant.NS + resource.getRid(), ontModel.getResource(Constant.NS + "ISCB_Resource"));
+        ontModel.add(re, ontModel.getProperty(Constant.NS + "id"), resource.getRid());
+        ontModel.add(re, ontModel.getProperty(Constant.NS + "name"), resource.getName(), new XSDDatatype("string"));
+        ontModel.add(re, ontModel.getProperty(Constant.NS + "description"), resource.getResourceDescription(), new XSDDatatype("string"));
+        ontModel.add(re, ontModel.getProperty(Constant.NS + "resource_quality"), resource.getResourceQuality(), new XSDDatatype("string"));
+        ontModel.add(re, ontModel.getProperty(Constant.NS + "resource_type"), resource.getResourceType(), new XSDDatatype("string"));
+        ontModel.add(re, ontModel.getProperty(Constant.NS + "upload_time"), StringExchanger.parseDateToString(resource.getUploadTime()), new XSDDatatype("date"));
+        ontModel.add(re, ontModel.getProperty(Constant.NS + "file_location"), resource.getFileLocation(), new XSDDatatype("string"));
+        ontModel.add(re, ontModel.getProperty(Constant.NS + "difficulty"), resource.getDifficulty(), new XSDDatatype("string"));
+        String postfix = resource.getPostfix();
+        Individual indi = getFileFormat(postfix);
+        if (indi != null) {
+            Statement s = ontModel.createStatement(re, ontModel.getProperty(Constant.NS + "has_postfix"), indi);
+            ontModel.add(s);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean addEPortfolio(EPortfolio portfolio) throws IndividualExistException {
+        if (containEPortfolio(portfolio.getId())) {
+            throw new IndividualExistException("EPortfolio " + portfolio.getId() + " has already existed in the model");
+        }
+        Individual el = ontModel.getIndividual(Constant.NS + portfolio.getElearner().getId());
+        Individual res = ontModel.getIndividual(Constant.NS + portfolio.getEResource().getRid());
+        Individual port = ontModel.createIndividual(Constant.NS + portfolio.getId(), ontModel.getResource(Constant.NS + "E_Portfolio"));
+        ontModel.add(el, ontModel.getProperty(Constant.NS + "has_portfolio"), port);
+        ontModel.add(res, ontModel.getProperty(Constant.NS + "inverse_of_is_resource_of_P"), port);
+//        ontModel.addLiteral(port, ontModel.getProperty(Constant.NS + "value"), portfolio.getValue());
+        port.addLiteral(ontModel.getProperty(Constant.NS + "value"), portfolio.getValue());
+        if (portfolio.getDatetime() != null) {
+            ontModel.add(port, ontModel.getProperty(Constant.NS + "date_time"), StringExchanger.parseDateToString(portfolio.getDatetime()), new XSDDatatype("dateTime"));
+        }
+        return true;
+    }
+
+    @Override
+    public boolean addEConcept(EConcept concept) throws IndividualExistException {
+        if (containEConcept(concept.getCid())) {
+            throw new IndividualExistException("EConcept " + concept.getCid() + "  has already existed in the model");
+        }
+        Individual con = ontModel.createIndividual(Constant.NS + concept.getCid(), ontModel.getResource(Constant.NS + "E_Concept"));
+        ontModel.add(con, ontModel.getProperty(Constant.NS + "id"), concept.getCid());
+        ontModel.add(con, ontModel.getProperty(Constant.NS + "name"), concept.getName(), new XSDDatatype("string"));
+        return true;
+    }
+
+    @Override
+    public boolean addEInterest(EInterest interest) throws IndividualExistException {
+        if (containEInterest(interest.getId())) {
+            throw new IndividualExistException("EInterest " + interest.getId() + " already exist in the model");
+        }
+        ELearner el = interest.getELearner();
+        EConcept con = interest.getEConcept();
+        Resource in = ontModel.createResource(Constant.NS + interest.getId(), ontModel.getResource(Constant.NS + "E_Interest"));
+        in.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_has_interest"), ontModel.getResource(Constant.NS + el.getId()));
+        in.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_is_concept_of_I"), ontModel.getResource(Constant.NS + con.getCid()));
+        in.addLiteral(ontModel.getProperty(Constant.NS + "value"), interest.getValue());
+        return true;
+    }
+
+    @Override
+    public boolean addEPerfomance(EPerformance performance) throws IndividualExistException {
+        if (containEPerformance(performance.getId())) {
+            throw new IndividualExistException("EPerformance " + performance.getId() + " has already existed in the model");
+        }
+        Individual el = ontModel.getIndividual(Constant.NS + performance.getElearner().getId());
+        Individual con = ontModel.getIndividual(Constant.NS + performance.getConcept().getCid());
+        Individual perf = ontModel.createIndividual(Constant.NS + performance.getId(), ontModel.getOntClass(Constant.NS + "E_Performance"));
+        perf.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_has_performance"), el);
+        perf.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_is_concept_of_P"), con);
+        perf.addLiteral(ontModel.getProperty(Constant.NS + "value"), performance.getValue());
+        ontModel.add(el, ontModel.getProperty(Constant.NS + "has_performance"), perf);
+        ontModel.add(con, ontModel.getProperty(Constant.NS + "is_concept_of_P"), perf);
+        if (performance.getDatetime() != null) {
+            ontModel.add(perf, ontModel.getProperty(Constant.NS + "date_time"), StringExchanger.parseDateToString(performance.getDatetime()), new XSDDatatype("dateTime"));
+        }
+        return true;
+    }
+
+    @Override
+    public boolean addPropertyIsSonOf(EConcept fatherConcept, EConcept sonConcept) throws IndividualNotExistException {
+        if (!containEConcept(fatherConcept.getCid())) {
+            throw new IndividualNotExistException("father EConcept " + fatherConcept.getCid() + " does not exist in the model");
+        }
+        if (!containEConcept(sonConcept.getCid())) {
+            throw new IndividualNotExistException("son EConcept " + sonConcept.getCid() + " does not exist in the model");
+        }
+        Resource son = ontModel.getResource(Constant.NS + sonConcept.getCid());
+        Resource father = ontModel.getResource(Constant.NS + fatherConcept.getCid());
+        ontModel.add(son, ontModel.getProperty(Constant.NS + "is_son_of"), father);
+        return true;
+    }
+
+    public boolean addPropertyIsPartOf(EConcept fatherConcept, EConcept sonConcept) throws IndividualNotExistException {
+        if (!containEConcept(fatherConcept.getCid())) {
+            throw new IndividualNotExistException("father EConcept " + fatherConcept.getCid() + " does not exist in the model");
+        }
+        if (!containEConcept(sonConcept.getCid())) {
+            throw new IndividualNotExistException("son EConcept " + sonConcept.getCid() + " does not exist in the model");
+        }
+        Resource son = ontModel.getResource(Constant.NS + sonConcept.getCid());
+        Resource father = ontModel.getResource(Constant.NS + fatherConcept.getCid());
+        ontModel.add(son, ontModel.getProperty(Constant.NS + "is_part_of"), father);
+        return true;
+    }
+
+    @Override
+    public boolean addPropertyIsResourceOfC(ISCB_Resource resource, EConcept concept) throws IndividualNotExistException {
+        if (!containEResource(resource.getRid())) {
+            throw new IndividualNotExistException("ISCB_Resource " + resource.getRid() + " does not exist in the model");
+        }
+        if (!containEConcept(concept.getCid())) {
+            throw new IndividualNotExistException("EConcept " + concept.getCid() + " does not exist in the model");
+        }
+        Individual res = ontModel.getIndividual(Constant.NS + resource.getRid());
+        Individual con = ontModel.getIndividual(Constant.NS + concept.getCid());
+        ontModel.add(res, ontModel.getProperty(Constant.NS + "is_resource_of_C"), con);
+        ontModel.add(con, ontModel.getProperty(Constant.NS + "inverse_of_is_resource_of_C"), res);
+        return true;
+    }
+
+    /*******************************************************************************************
+     * UPDATE operations
+     *****************************************************************************************/
+    @Override
+    public boolean updateEConcept(EConcept concept) throws IndividualNotExistException {
+        if (!containEConcept(concept.getCid())) {
+            throw new IndividualNotExistException("EConcept " + concept.getCid() + "  does not exist");
+        }
+        Individual indi = ontModel.getIndividual(Constant.NS + concept.getCid());
+        Property p = ontModel.getProperty(Constant.NS + "name");
+        ontModel.remove(indi, p, indi.getPropertyValue(p));
+        ontModel.add(indi, p, concept.getName(), new XSDDatatype("string"));
+        return false;
+    }
+
+    @Override
+    public boolean updateELearner(ELearner elearner) throws IndividualNotExistException {
+        if (!(containELearner(elearner.getId()))) {
+            throw new IndividualNotExistException("elearner " + elearner.getId() + " does not exist");
+        }
+        ELearner el = getELearner(elearner.getId());
+        Individual indi = ontModel.getIndividual(Constant.NS + elearner.getId());
+        if (!elearner.getName().equals(el.getName())) {
+            Property p = ontModel.getProperty(Constant.NS + "name");
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, elearner.getName(), new XSDDatatype("string"));
+        }
+        if (!elearner.getAddress().equals(el.getAddress())) {
+            Property p = ontModel.getProperty(Constant.NS + "address");
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, elearner.getAddress(), new XSDDatatype("string"));
+        }
+        if (!elearner.getEmail().equals(el.getEmail())) {
+            Property p = ontModel.getProperty(Constant.NS + "email");
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, elearner.getEmail(), new XSDDatatype("string"));
+        }
+        if (!elearner.getGrade().equals(el.getGrade())) {
+            Property p = ontModel.getProperty(Constant.NS + "grade");
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, elearner.getGrade(), new XSDDatatype("string"));
+        }
+        return true;
+    }
+
+    @Override
+    public boolean updateEInterest(EInterest interest) throws IndividualNotExistException {
+        Individual indi = ontModel.getIndividual(Constant.NS + interest.getId());
+        if (indi == null) {
+            throw new IndividualNotExistException("EInterest " + interest.getId() + " does not exist in the model");
+        }
+        Property p = ontModel.getProperty(Constant.NS + "value");
+        indi.setPropertyValue(p, ontModel.createTypedLiteral(interest.getValue(), new XSDDatatype("float")));
+        return true;
+    }
+
+    @Override
+    public boolean updateEPerfomance(EPerformance performance) throws IndividualNotExistException {
+        if (!containEPerformance(performance.getId())) {
+            throw new IndividualNotExistException("EPerformance " + performance.getId() + " does not exist");
+        }
+        Individual indi = ontModel.getIndividual(Constant.NS + performance.getId());
+
+        float newValue = performance.getValue();
+        Property p = ontModel.getProperty(Constant.NS + "value");
+        indi.setPropertyValue(p, ontModel.createTypedLiteral(newValue, new XSDDatatype("float")));
+        return true;
+    }
+
+    public boolean updateEPerformanceAssessment(EPerformance performance, EPerformanceAssessment assessment) throws IndividualNotExistException {
+        if (!containEPerformance(performance.getId())) {
+            throw new IndividualNotExistException("EPerformance " + performance.getId() + " does not exist");
+        }
+        Individual indi = ontModel.getIndividual(Constant.NS + performance.getId());
+        Property p;
+        p = ontModel.getProperty(Constant.NS + "a1");
+        indi.setPropertyValue(p, ontModel.createTypedLiteral(assessment.a1, new XSDDatatype("string")));
+        p = ontModel.getProperty(Constant.NS + "a2");
+        indi.setPropertyValue(p, ontModel.createTypedLiteral(assessment.a2, new XSDDatatype("string")));
+        p = ontModel.getProperty(Constant.NS + "a3");
+        indi.setPropertyValue(p, ontModel.createTypedLiteral(assessment.a3, new XSDDatatype("string")));
+        p = ontModel.getProperty(Constant.NS + "a4");
+        indi.setPropertyValue(p, ontModel.createTypedLiteral(assessment.a4, new XSDDatatype("string")));
+        p = ontModel.getProperty(Constant.NS + "a5");
+        indi.setPropertyValue(p, ontModel.createTypedLiteral(assessment.a5, new XSDDatatype("string")));
+        p = ontModel.getProperty(Constant.NS + "a6");
+        indi.setPropertyValue(p, ontModel.createTypedLiteral(assessment.a6, new XSDDatatype("string")));
+
+        return true;
+    }
+
+    @Override
+    public boolean updateEPortfolio(EPortfolio portfolio) throws IndividualNotExistException {
+        if (!containEPortfolio(portfolio.getId())) {
+            throw new IndividualNotExistException("EPortfolio " + portfolio.getId() + " does not exist");
+        }
+        Individual indi = ontModel.getIndividual(Constant.NS + portfolio.getId());
+        float newValue = portfolio.getValue();
+        Property p = ontModel.getProperty(Constant.NS + "value");
+        ontModel.remove(indi, p, indi.getPropertyValue(p));
+        ontModel.add(indi, p, String.valueOf(newValue), new XSDDatatype("float"));
+
+        Property p2 = ontModel.getProperty(Constant.NS + "rate");
+        ontModel.remove(indi, p2, indi.getPropertyValue(p2));
+        ontModel.add(indi, p2, String.valueOf(portfolio.getRate()), new XSDDatatype("int"));
+
+        Property p3 = ontModel.getProperty(Constant.NS + "rateString");
+        ontModel.remove(indi, p3, indi.getPropertyValue(p3));
+        ontModel.add(indi, p3, String.valueOf(portfolio.getRateString()), new XSDDatatype("string"));
+        System.out.println(portfolio.getId() + "has been updated\t" + portfolio);
+        return true;
+    }
+
+    @Override
+    public boolean updateEResource(ISCB_Resource resource) throws IndividualNotExistException {
+        if (!(containEResource(resource.getRid()))) {
+            throw new IndividualNotExistException("EResource " + resource.getRid() + " does not exist");
+        }
+        Individual indi = ontModel.getIndividual(Constant.NS + resource.getRid());
+        Property p = ontModel.getProperty(Constant.NS + "name");
+        String name = indi.getRequiredProperty(p).getLiteral().getString();
+        if (!resource.getName().equals(name)) {
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, resource.getName(), new XSDDatatype("string"));
+        }
+        p = ontModel.getProperty(Constant.NS + "description");
+        String description = indi.getRequiredProperty(p).getLiteral().getString();
+        if (!resource.getResourceDescription().equals(description)) {
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, resource.getResourceDescription(), new XSDDatatype("string"));
+        }
+        p = ontModel.getProperty(Constant.NS + "resource_quality");
+        String resource_quality = indi.getRequiredProperty(p).getLiteral().getString();
+        if (!resource.getResourceQuality().equals(resource_quality)) {
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, resource.getResourceQuality(), new XSDDatatype("string"));
+        }
+        p = ontModel.getProperty(Constant.NS + "resource_type");
+        String resource_type = indi.getRequiredProperty(p).getLiteral().getString();
+        if (!resource.getResourceType().equals(resource_type)) {
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, resource.getResourceType(), new XSDDatatype("string"));
+        }
+        p = ontModel.getProperty(Constant.NS + "upload_time");
+        String upload_time = indi.getRequiredProperty(p).getLiteral().getString();
+        Date time = StringExchanger.parseStringToDate(upload_time);
+        if (!resource.getUploadTime().equals(time)) {
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, StringExchanger.parseDateToString(resource.getUploadTime()), new XSDDatatype("date"));
+        }
+        p = ontModel.getProperty(Constant.NS + "file_location");
+        String fileLocation = indi.getRequiredProperty(p).getLiteral().getString();
+        if (!resource.getFileLocation().equals(fileLocation)) {
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, resource.getFileLocation(), new XSDDatatype("string"));
+        }
+
+        p = ontModel.getProperty(Constant.NS + "difficulty");
+        String difficulty = indi.getRequiredProperty(p).getLiteral().getString();
+        if (!resource.getDifficulty().equals(difficulty)) {
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, resource.getDifficulty(), new XSDDatatype("string"));
+        }
+        p = ontModel.getProperty(Constant.NS + "has_postfix");
+        Resource r = indi.getPropertyResourceValue(p);
+        String postfix = r.getRequiredProperty(ontModel.getProperty(Constant.NS + "file_postfix")).getLiteral().getString();
+        String newPostfixString = resource.getPostfix();
+        Individual newPostfix = getFileFormat(newPostfixString);
+        if (newPostfix != null) {
+            if (!newPostfixString.equals(postfix)) {
+                ontModel.remove(indi, p, indi.getPropertyResourceValue(p));
+                ontModel.add(ontModel.createStatement(indi, p, newPostfix));
+            }
+        }
+        return true;
+    }
+
+    /***************************************************************************************
+     * REMOVE operations
+     ***************************************************************************************/
+    @Override
+    public boolean removeEInterest(EInterest interest)
+            throws IndividualNotExistException {
+        if (!containEInterest(interest.getId())) {
+            throw new IndividualNotExistException("EInterest " + interest.getId() + " does not exist in the model");
+        }
+        Individual in = ontModel.getIndividual(Constant.NS + interest.getId());
+        in.remove();
+        return true;
+    }
+
+    @Override
+    public boolean removeEInterest(ELearner el, EConcept con)
+            throws IndividualNotExistException {
+        EInterest in = getEInterest(el, con);
+        if (in == null) {
+            throw new IndividualNotExistException("This EInterest does not exist in the model");
+        }
+        Individual interest = ontModel.getIndividual(Constant.NS + in.getId());
+        interest.remove();
+        return true;
+    }
+
+    /****************************************************************************************************************************************/
+    @Override
+    public String getPostFix(Resource fileFormat) {
+        Property p = ontModel.getProperty(Constant.NS + "file_postfix");
+        return fileFormat.getRequiredProperty(p).getLiteral().getString();
+    }
+
+    @Override
+    public Individual getFileFormat(String postfix) {
+        OntClass concept = ontModel.getOntClass(Constant.NS + "File_Format");
+        java.util.Iterator<Individual> iter = ontModel.listIndividuals(concept);
+        while (iter.hasNext()) {
+            Individual indi = (Individual) iter.next();
+            String s = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "file_postfix")).getLiteral().getString();
+            if (postfix.equals(s)) {
+                return indi;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public EConcept getEConcept(String cid) {
+        Individual indi = ontModel.getIndividual(Constant.NS + cid);
+        String name = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "name")).getLiteral().getString();
+        EConcept con = new EConcept(cid, name);
+        RDFNode difficulty = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "difficulty"));
+        if (difficulty == null) {
+            con.setDifficulty("diff");
+        } else {
+            con.setDifficulty(difficulty.asLiteral().getString());
+        }
+        return con;
+    }
+
+    @Override
+    public ELearner getELearner(String eid) {
+        ELearner elearner = new ELearner(eid);
+        Individual indi = ontModel.getIndividual(Constant.NS + eid);
+        elearner.setName(indi.getPropertyValue(ontModel.getProperty(Constant.NS + "name")).asLiteral().getString());
+        RDFNode email = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "email"));
+        if (email == null) {
+            elearner.setEmail(" ");
+        } else {
+            elearner.setEmail(email.asLiteral().getString());
+        }
+        RDFNode gender = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "gender"));
+        if (gender == null) {
+            elearner.setGender("secret");
+        } else {
+            elearner.setGender(gender.asLiteral().getString());
+        }
+        RDFNode address = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "address"));
+        if (address == null) {
+            elearner.setAddress(" ");
+        } else {
+            elearner.setAddress(address.asLiteral().getString());
+        }
+        RDFNode grade = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "grade"));
+        if (grade == null) {
+            elearner.setGrade(" ");
+        } else {
+            elearner.setGrade(grade.asLiteral().getString());
+        }
+        return elearner;
+    }
+
+    @Override
+    public ISCB_Resource getEResource(String rid) {
+        ISCB_Resource resource = new ISCB_Resource(rid);
+        Individual indi = ontModel.getIndividual(Constant.NS + rid);
+        resource.setName(indi.getPropertyValue(ontModel.getProperty(Constant.NS + "name")).asLiteral().getString());
+        RDFNode fl = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "file_location"));
+        if (fl != null) {
+            resource.setFileLocation(fl.asLiteral().getString());
+        } else {
+            resource.setFileLocation("");
+        }
+        RDFNode diff = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "difficulty"));
+        if (diff != null) {
+            resource.setDifficulty(diff.asLiteral().getString());
+        } else {
+            resource.setDifficulty("");
+        }
+        RDFNode rd = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "description"));
+        if (rd != null) {
+            resource.setResourceDescription(rd.asLiteral().getString());
+        } else {
+            resource.setResourceDescription("");
+        }
+        RDFNode rq = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "resource_quality"));
+        if (rq != null) {
+            resource.setResourceQuality(rq.asLiteral().getString());
+        } else {
+            resource.setResourceQuality("");
+        }
+        RDFNode rt = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "resource_type"));
+        if (rt != null) {
+            resource.setResourceType(rt.asLiteral().getString());
+        } else {
+            resource.setResourceType("");
+        }
+        RDFNode rdt = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "upload_time"));
+        if (rdt != null) {
+            resource.setUploadTime(StringExchanger.parseStringToDate(rdt.asLiteral().getString()));
+        } else {
+            resource.setUploadTime(new Date(System.currentTimeMillis()));
+        }
+        Resource fileFormat = indi.getPropertyResourceValue(ontModel.getProperty(Constant.NS + "has_postfix"));
+        if (fileFormat != null) {
+            resource.setPostfix(getPostFix(fileFormat));
+        } else {
+            resource.setPostfix("");
+        }
+
+        Resource appType = indi.getPropertyResourceValue(ontModel.getProperty(Constant.NS + "application_type"));
+        if (appType != null) {
+            resource.setAppType(appType.asLiteral().getString());
+        } else {
+            resource.setAppType("");
+        }
+        return resource;
+    }
+
+    @Override
+    public EPerformance getEPerformance(String pid) {
+        Individual indi = ontModel.getIndividual(Constant.NS + pid);
+        if (indi == null) {
+            return null;
+        }
+        EPerformance performance = new EPerformance();
+        performance.setId(indi.getLocalName());
+
+        Statement dateNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time"));
+        if (dateNode != null) {
+            String dateString = dateNode.getLiteral().getString();
+            Date datetime = StringExchanger.parseStringToDate(dateString);
+            performance.setDatetime(datetime);
+        }
+        EPerformanceAssessment ass = new EPerformanceAssessment();
+        RDFNode a1Node = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "a1"));
+        if (a1Node != null) {
+            ass.a1 = a1Node.asLiteral().getString();
+        }
+        RDFNode a2Node = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "a2"));
+        if (a2Node != null) {
+            ass.a2 = a2Node.asLiteral().getString();
+        }
+        RDFNode a3Node = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "a3"));
+        if (a3Node != null) {
+            ass.a3 = a3Node.asLiteral().getString();
+        }
+        RDFNode a4Node = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "a4"));
+        if (a4Node != null) {
+            ass.a4 = a4Node.asLiteral().getString();
+        }
+        RDFNode a5Node = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "a5"));
+        if (a5Node != null) {
+            ass.a5 = a5Node.asLiteral().getString();
+        }
+        RDFNode a6Node = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "a6"));
+        if (a6Node != null) {
+            ass.a6 = a6Node.asLiteral().getString();
+        }
+        performance.assessment = ass;
+//        System.out.println("assessment:" + ass);
+
+        Statement valueNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "value"));
+        if (valueNode != null) {
+            performance.setValue(ass.getValue());
+        }
+
+        return performance;
+    }
+
+    @Override
+    public EPortfolio getEPortfolio(String pid) {
+        Individual indi = ontModel.getIndividual(Constant.NS + pid);
+        if (indi == null) {
+            return null;
+        }
+        EPortfolio port = new EPortfolio();
+        port.setId(pid);
+        Statement valueNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "value"));
+        if (valueNode != null) {
+            float value = Float.valueOf(valueNode.getLiteral().getString());
+            port.setValue(value);
+        }
+        Statement dateNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time"));
+        if (dateNode != null) {
+            String dateString = dateNode.getLiteral().getString();
+            Date datetime = StringExchanger.parseStringToDate(dateString);
+            port.setDatetime(datetime);
+        }
+        Statement rateNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "rate"));
+        if (rateNode != null) {
+            int rateNodeInt = rateNode.getLiteral().getInt();
+            port.setRate(rateNodeInt);
+        } else {
+            port.setRate(0);
+        }
+        Statement rateStringNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "rateString"));
+        if (rateStringNode != null) {
+            String rateStringNodeString = rateStringNode.getLiteral().getString();
+            port.setRateString(rateStringNodeString);
+        } else {
+            port.setRateString("");
+        }
+
+        return port;
+    }
+
+    /**************************************************************************************************
+     * AdminOperation 管理员权限
+     **************************************************************************************************/
+    public void changeConcept(ISCB_Resource res, EConcept from, EConcept to) {
+        Individual resIndi = ontModel.getIndividual(Constant.NS + res.getRid());
+        //    Individual fromI
+    }
+
+    public ISCB_Resource getEResourceByLocation(String location) {
+        Iterator<Individual> iter = ontModel.listIndividuals(ontModel.getOntClass(Constant.NS + "ISCB_Resource"));
+        DatatypeProperty dp = ontModel.getDatatypeProperty(Constant.NS + "file_location");
+        while (iter.hasNext()) {
+            Individual indi = (Individual) iter.next();
+            if (indi.hasProperty(dp)) {
+                Statement locationNode = indi.getRequiredProperty(dp);
+                if (locationNode != null) {
+                    String locationString = locationNode.getLiteral().getString();
+                    if (locationString.equals(location)) {
+                        ISCB_Resource res = getEResource(indi.getLocalName());
+                        return res;
+                    }
+                }
+            }
+
+        }
+        return null;
     }
 
     public boolean isSonOfEConcept(EConcept father, EConcept son) {
@@ -473,39 +1117,6 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
      * @throws IndividualNotExistException
      *******************************************************************************************************/
     @Override
-    public boolean updateELearner(ELearner elearner) throws IndividualNotExistException {
-        if (!(containELearner(elearner.getId()))) {
-            throw new IndividualNotExistException("elearner " + elearner.getId() + " does not exist");
-        }
-        ELearner el = getELearner(elearner.getId());
-        Individual indi = ontModel.getIndividual(Constant.NS + elearner.getId());
-        if (!elearner.getName().equals(el.getName())) {
-//			SimpleSelector selector = new SimpleSelector(indi, ontModel.getProperty(Constant.NS+"name"), (RDFNode)null);
-//			StmtIterator iter = infModel.listStatements(selector);
-//			ontModel.remove(iter);
-            Property p = ontModel.getProperty(Constant.NS + "name");
-            ontModel.remove(indi, p, indi.getPropertyValue(p));
-            ontModel.add(indi, p, elearner.getName(), new XSDDatatype("string"));
-        }
-        if (!elearner.getAddress().equals(el.getAddress())) {
-            Property p = ontModel.getProperty(Constant.NS + "address");
-            ontModel.remove(indi, p, indi.getPropertyValue(p));
-            ontModel.add(indi, p, elearner.getAddress(), new XSDDatatype("string"));
-        }
-        if (!elearner.getEmail().equals(el.getEmail())) {
-            Property p = ontModel.getProperty(Constant.NS + "email");
-            ontModel.remove(indi, p, indi.getPropertyValue(p));
-            ontModel.add(indi, p, elearner.getEmail(), new XSDDatatype("string"));
-        }
-        if (!elearner.getGrade().equals(el.getGrade())) {
-            Property p = ontModel.getProperty(Constant.NS + "grade");
-            ontModel.remove(indi, p, indi.getPropertyValue(p));
-            ontModel.add(indi, p, elearner.getGrade(), new XSDDatatype("string"));
-        }
-        return true;
-    }
-
-    @Override
     public EInterest getEInterest(ELearner elearner, EConcept concept) {
         Individual el = ontModel.getIndividual(Constant.NS + elearner.getId());
         Individual con = ontModel.getIndividual(Constant.NS + concept.getCid());
@@ -569,70 +1180,8 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         return uninterest;
     }
 
-    /***************************************************************************************
-     *
-     */
-    @Override
-    public boolean addEInterest(EInterest interest) throws IndividualExistException {
-        if (containEInterest(interest.getId())) {
-            throw new IndividualExistException("EInterest " + interest.getId() + " already exist in the model");
-        }
-        ELearner el = interest.getELearner();
-        EConcept con = interest.getEConcept();
-        Resource in = ontModel.createResource(Constant.NS + interest.getId(), ontModel.getResource(Constant.NS + "E_Interest"));
-        in.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_has_interest"), ontModel.getResource(Constant.NS + el.getId()));
-        in.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_is_concept_of_I"), ontModel.getResource(Constant.NS + con.getCid()));
-        in.addLiteral(ontModel.getProperty(Constant.NS + "value"), interest.getValue());
-        return true;
-    }
-
-    @Override
-    public boolean removeEInterest(EInterest interest)
-            throws IndividualNotExistException {
-        if (!containEInterest(interest.getId())) {
-            throw new IndividualNotExistException("EInterest " + interest.getId() + " does not exist in the model");
-        }
-        Individual in = ontModel.getIndividual(Constant.NS + interest.getId());
-        in.remove();
-        return true;
-    }
-
-    @Override
-    public boolean removeEInterest(ELearner el, EConcept con)
-            throws IndividualNotExistException {
-        EInterest in = getEInterest(el, con);
-        if (in == null) {
-            throw new IndividualNotExistException("This EInterest does not exist in the model");
-        }
-        Individual interest = ontModel.getIndividual(Constant.NS + in.getId());
-        interest.remove();
-        return true;
-    }
-
-    @Override
-    public boolean updateEInterest(EInterest interest) throws IndividualNotExistException {
-        Individual indi = ontModel.getIndividual(Constant.NS + interest.getId());
-        if (indi == null) {
-            throw new IndividualNotExistException("EInterest " + interest.getId() + " does not exist in the model");
-        }
-        Property p = ontModel.getProperty(Constant.NS + "value");
-        indi.setPropertyValue(p, ontModel.createTypedLiteral(interest.getValue(), new XSDDatatype("float")));
-        return true;
-    }
-
-    public boolean containEInterest(ELearner elearner, EConcept concept) throws IndividualNotExistException {
-        if (!containELearner(elearner.getId())) {
-            throw new IndividualNotExistException("the elearner " + elearner.getName() + " does not exist in the model");
-        }
-        if (containEConcept(concept.getCid())) {
-            throw new IndividualNotExistException("the concept " + concept.getName() + " does not exist in the model");
-        }
-        //TODO:
-        return false;
-    }
     //return empty list if there is no concepts meet the need
     //else return the list of concept ids whoes concept name is the given name.
-
     public ArrayList<String> getConceptIds(String conceptName) {
         ArrayList<String> cids = new ArrayList<String>();
         Property p = ontModel.getDatatypeProperty(Constant.NS + "name");
@@ -859,7 +1408,7 @@ public class ELearnerModelImpl extends ELearnerModel implements ELearnerModelQue
         EConcept con = emi.getEConcept("A_cid_1_4");
 
         ArrayList<EGoal> goals = emi.getAllEGoals();
-        System.out.println(goals.size()+"ds");
+        System.out.println(goals.size() + "ds");
         //        EGoal goal = emi.getGoalById("goal_0004");
 //        System.out.println(goal.getGid());
 //        System.out.println(goal.getName());
