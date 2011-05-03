@@ -20,12 +20,15 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.vocabulary.RDF;
-import db.OwlOperation;
+import jena.OwlOperation;
 import exception.IllegalPersonException;
+import exception.jena.HasNoPropertyValueException;
 import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jena.ELearnerModelUtilMethod;
@@ -228,6 +231,7 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
     }
 
     @Override
+    //non-transitive function
     public boolean addPropertyIsSonOf(EConcept fatherConcept, EConcept sonConcept) throws IndividualNotExistException {
         if (!containEConcept(fatherConcept.getCid())) {
             throw new IndividualNotExistException("father EConcept " + fatherConcept.getCid() + " does not exist in the model");
@@ -240,7 +244,7 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
         ontModel.add(son, ontModel.getProperty(Constant.NS + "is_son_of"), father);
         return true;
     }
-
+    //transitive function
     public boolean addPropertyIsPartOf(EConcept fatherConcept, EConcept sonConcept) throws IndividualNotExistException {
         if (!containEConcept(fatherConcept.getCid())) {
             throw new IndividualNotExistException("father EConcept " + fatherConcept.getCid() + " does not exist in the model");
@@ -267,6 +271,15 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
         ontModel.add(res, ontModel.getProperty(Constant.NS + "is_resource_of_C"), con);
         ontModel.add(con, ontModel.getProperty(Constant.NS + "inverse_of_is_resource_of_C"), res);
         return true;
+    }
+
+    public void addPropertyIsLeafConcept(EConcept concept, boolean isLeaf) throws IndividualNotExistException {
+        if (!containEConcept(concept.getCid())) {
+            throw new IndividualNotExistException("EConcept " + concept.getCid() + " does not exist in the model");
+        }
+        Individual con = ontModel.getIndividual(Constant.NS + concept.getCid());
+        Statement ls = ontModel.createLiteralStatement(con, ontModel.getProperty(Constant.NS + "is_leaf_concept"), isLeaf);
+        ontModel.add(ls);
     }
 
     /*******************************************************************************************
@@ -769,6 +782,52 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
         while (iter.hasNext()) {
             Individual indi = (Individual) iter.next();
             concepts.add(getEConcept(indi.getLocalName()));
+        }
+        return concepts;
+    }
+
+    public HashSet<EConcept> getAllLeafEConcepts() {
+        HashSet<EConcept> concepts = new HashSet<EConcept>();
+        OntClass concept = ontModel.getOntClass(Constant.NS + "E_Concept");
+        Iterator<Individual> iter = ontModel.listIndividuals(concept);
+        while (iter.hasNext()) {
+            Individual indi = (Individual) iter.next();
+            RDFNode b = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "is_leaf_concept"));
+            if (b == null) {
+                try {
+                    throw new HasNoPropertyValueException("the concept " + indi.getLocalName() + " has no value of the property is_leaf_concept");
+                } catch (HasNoPropertyValueException ex) {
+                    Logger.getLogger(ELearnerModelImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                if (b.asLiteral().getBoolean()) {
+                    concepts.add(getEConcept(indi.getLocalName()));
+                }
+            }
+
+        }
+        return concepts;
+    }
+
+    public Set<EConcept> getAllBranchEConcepts() {
+       Set<EConcept> concepts = new HashSet<EConcept>();
+        OntClass concept = ontModel.getOntClass(Constant.NS + "E_Concept");
+        Iterator<Individual> iter = ontModel.listIndividuals(concept);
+        while (iter.hasNext()) {
+            Individual indi = (Individual) iter.next();
+            RDFNode b = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "is_leaf_concept"));
+            if (b == null) {
+                try {
+                    throw new HasNoPropertyValueException("the concept " + indi.getLocalName() + " has no value of the property is_leaf_concept");
+                } catch (HasNoPropertyValueException ex) {
+                    Logger.getLogger(ELearnerModelImpl.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                if (!b.asLiteral().getBoolean()) {
+                    concepts.add(getEConcept(indi.getLocalName()));
+                }
+            }
+
         }
         return concepts;
     }
