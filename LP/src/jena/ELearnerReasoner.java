@@ -327,18 +327,102 @@ public class ELearnerReasoner {
         return elearners;
     }
 
-    public static HashSet<EConcept> getRecommendEConcpets(ELearnerModelImpl model, ELearner elearner, EGoal goal) {
+    public static ArrayList<EConcept> getRecommendEConcpetList(ELearnerModelImpl model, ELearner elearner, EGoal goal) {
         HashSet<EConcept> cons = model.getEConceptsByGoal(goal);
         HashSet<EConcept> learnt = model.getLearntEConcept(elearner);
         cons.removeAll(learnt);
-        return cons;
+        ArrayList<EConcept> sorted = new ArrayList<EConcept>();
+        ArrayList<EConcept> e = new ArrayList<EConcept>();
+        ArrayList<EConcept> m = new ArrayList<EConcept>();
+        ArrayList<EConcept> h = new ArrayList<EConcept>();
+        for (EConcept con : cons) {
+            String id = con.getCid();
+            String[] ids = id.split("_");
+            if (ids[3].equals("e")) {
+                boolean b = true;
+                for (int i = 0; i < e.size(); i++) {
+                    String[] tempIds = e.get(i).getCid().split("_");
+                    if (Integer.parseInt(ids[4]) < Integer.parseInt(tempIds[4])) {
+                        e.add(i, con);
+                        b = false;
+                    }
+                }
+                if (b) {
+                    if (Integer.parseInt(ids[4]) > Integer.parseInt(e.get(e.size() - 1).getCid().split("_")[4])) {
+                        e.add(con);
+                    }
+                }
+
+            }
+            if (ids[3].equals("m")) {
+                boolean b = true;
+                for (int i = 0; i < m.size(); i++) {
+                    String[] tempIds = m.get(i).getCid().split("_");
+                    if (Integer.parseInt(ids[4]) < Integer.parseInt(tempIds[4])) {
+                        m.add(i, con);
+                        b = false;
+                    }
+                }
+                if (b) {
+                    if (Integer.parseInt(ids[4]) > Integer.parseInt(m.get(m.size() - 1).getCid().split("_")[4])) {
+                        m.add(con);
+                    }
+                }
+            }
+            if (ids[3].equals("h")) {
+                boolean b = true;
+                for (int i = 0; i < h.size(); i++) {
+                    String[] tempIds = h.get(i).getCid().split("_");
+                    if (Integer.parseInt(ids[4]) < Integer.parseInt(tempIds[4])) {
+                        h.add(i, con);
+                        b = false;
+                    }
+                }
+                if (b) {
+                    if (Integer.parseInt(ids[4]) > Integer.parseInt(h.get(h.size() - 1).getCid().split("_")[4])) {
+                        h.add(con);
+                    }
+                }
+            }
+            sorted.addAll(e);
+            sorted.addAll(m);
+            sorted.addAll(h);
+        }
+        return sorted;
+    }
+
+    public static EConcept getRecommendEConcpet(ELearnerModelImpl model, ELearner elearner, EGoal goal) {
+        ArrayList<EConcept> cons = getRecommendEConcpetList(model, elearner, goal);
+        if (cons.isEmpty()) {
+            return null;
+        }
+        EConcept con = cons.get(0);
+        HashSet<EConcept> learnt = model.getLearntEConcept(elearner);
+        ArrayList<EConcept> temp = new ArrayList<EConcept>();
+        HashSet<EConcept> pre = model.getPreEConcept(con.getCid());
+        while (!pre.isEmpty()) {
+            EConcept c = (EConcept) pre.toArray()[0];
+            HashSet<EConcept> pre_temp = model.getPreEConcept(c.getCid());
+            pre_temp.removeAll(learnt);
+            if (pre_temp.isEmpty()) {
+                temp.add(c);
+                pre.remove(c);
+            } else {
+                pre.remove(c);
+                pre.addAll(pre_temp);
+            }
+        }
+        return temp.get(0);
+
     }
 
     public static void main(String[] args) {
         ELearnerModelImpl emi = new ELearnerModelImpl();
         EGoal goal = emi.getGoalById("goal_0000");
         ELearner el = emi.getELearner("el005");
-        HashSet<EConcept> cons = getRecommendEConcpets(emi, el, goal);
+        ArrayList<EConcept> cons = getRecommendEConcpetList(emi, el, goal);
         System.out.println("size:" + cons.size());
+        EConcept con = getRecommendEConcpet(emi, el, goal);
+        System.out.println("result:" + con);
     }
 }
