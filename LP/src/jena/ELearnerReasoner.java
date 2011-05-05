@@ -15,6 +15,9 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
+import java.util.HashSet;
+import ontology.EGoal;
+import ontology.EPerformance;
 
 /*************************************************************
  * Elearner Reasoner is the class used for reasoning.
@@ -25,7 +28,7 @@ import com.hp.hpl.jena.rdf.model.StmtIterator;
  */
 public class ELearnerReasoner {
 
-    public static void main(String[] args) {
+    public static void main2(String[] args) {
         File file = new File("files\\owl\\conceptsAndresource_RDF-XML.owl");
         long init = System.currentTimeMillis();
         ELearnerModelImpl emi = new ELearnerModelImpl(file);
@@ -323,32 +326,19 @@ public class ELearnerReasoner {
         }
         return elearners;
     }
-    /*******************************************************************************************
-    public static ArrayList<Individual> getAllConcepts(OntModel ontModel){
-    ArrayList <Individual> concepts = new ArrayList<Individual>();
-    OntClass concept = ontModel.getOntClass(Constant.NS+"E_Concept");
-    Iterator <Individual>iter2 = ontModel.listIndividuals();
-    while(iter2.hasNext()){
-    Individual indi= (Individual) iter2.next();
-    if(concept.equals(indi.getOntClass())){
-    concepts.add(indi);
+
+    public static HashSet<EConcept> getRecommendEConcpets(ELearnerModelImpl model, ELearner elearner, EGoal goal) {
+        HashSet<EConcept> cons = model.getEConceptsByGoal(goal);
+        HashSet<EConcept> learnt = model.getLearntEConcept(elearner);
+        cons.removeAll(learnt);
+        return cons;
     }
+
+    public static void main(String[] args) {
+        ELearnerModelImpl emi = new ELearnerModelImpl();
+        EGoal goal = emi.getGoalById("goal_0000");
+        ELearner el = emi.getELearner("el005");
+        HashSet<EConcept> cons = getRecommendEConcpets(emi, el, goal);
+        System.out.println("size:" + cons.size());
     }
-    return concepts;
-    }
-    public static ArrayList<Individual> getAllResources(OntModel ontModel){
-    ArrayList <Individual> resources = new ArrayList<Individual>();
-    OntClass resource = ontModel.getOntClass(Constant.NS+"E_Resource");
-    Iterator <Individual>iter2 = ontModel.listIndividuals();
-    while(iter2.hasNext()){
-    Individual indi= (Individual) iter2.next();
-    if(indi==null)break;
-    if(resource.equals(indi.getOntClass())){
-    resources.add(indi);
-    System.out.println(indi.getLocalName());
-    }
-    }
-    return resources;
-    }
-     */
 }
