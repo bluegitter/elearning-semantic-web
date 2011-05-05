@@ -245,6 +245,7 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
         return true;
     }
     //transitive function
+
     public boolean addPropertyIsPartOf(EConcept fatherConcept, EConcept sonConcept) throws IndividualNotExistException {
         if (!containEConcept(fatherConcept.getCid())) {
             throw new IndividualNotExistException("father EConcept " + fatherConcept.getCid() + " does not exist in the model");
@@ -271,6 +272,19 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
         ontModel.add(res, ontModel.getProperty(Constant.NS + "is_resource_of_C"), con);
         ontModel.add(con, ontModel.getProperty(Constant.NS + "inverse_of_is_resource_of_C"), res);
         return true;
+    }
+
+    public void removePropertyIsResourceOfC(ISCB_Resource resource, EConcept concept) throws IndividualNotExistException {
+        if (!containEResource(resource.getRid())) {
+            throw new IndividualNotExistException("ISCB_Resource " + resource.getRid() + " does not exist in the model");
+        }
+        if (!containEConcept(concept.getCid())) {
+            throw new IndividualNotExistException("EConcept " + concept.getCid() + " does not exist in the model");
+        }
+        Individual res = ontModel.getIndividual(Constant.NS + resource.getRid());
+        Individual con = ontModel.getIndividual(Constant.NS + concept.getCid());
+        ontModel.remove(res, ontModel.getProperty(Constant.NS + "is_resource_of_C"), con);
+        ontModel.remove(con, ontModel.getProperty(Constant.NS + "inverse_of_is_resource_of_C"), res);
     }
 
     public void addPropertyIsLeafConcept(EConcept concept, boolean isLeaf) throws IndividualNotExistException {
@@ -810,7 +824,7 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
     }
 
     public Set<EConcept> getAllBranchEConcepts() {
-       Set<EConcept> concepts = new HashSet<EConcept>();
+        Set<EConcept> concepts = new HashSet<EConcept>();
         OntClass concept = ontModel.getOntClass(Constant.NS + "E_Concept");
         Iterator<Individual> iter = ontModel.listIndividuals(concept);
         while (iter.hasNext()) {
@@ -1460,15 +1474,29 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
         return gCons;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IndividualNotExistException {
         ELearnerModelImpl emi = new ELearnerModelImpl(new File(Constant.OWLFile));
         ELearner el = emi.getELearner("el005");
         System.out.println("el:" + el);
-        EConcept con = emi.getEConcept("A_cid_1_4");
-
-        ArrayList<EGoal> goals = emi.getAllEGoals();
-        System.out.println(goals.size() + "ds");
-        //        EGoal goal = emi.getGoalById("goal_0004");
+        //con_rid000024,A_cid_0_e_1
+        EConcept con = emi.getEConcept("A_cid_0_e_1");
+        ISCB_Resource res = emi.getEResource("con_rid000024");
+        emi.removePropertyIsResourceOfC(res, con);
+        File f = new File("X:/elearning/temp_owl/test.owl");
+        if (!f.exists()) {
+            try {
+                f.createNewFile();
+            } catch (IOException ex) {
+                Logger.getLogger(ELearnerModelImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        try {
+            jena.OwlOperation.writeRdfFile(emi.getOntModel(), f, null);
+        } catch (IOException ex) {
+            Logger.getLogger(ELearnerModelImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        jena.OwlOperation.writeOwlFileFromRdfFile(f, f);
+//        EGoal goal = emi.getGoalById("goal_0004");
 //        System.out.println(goal.getGid());
 //        System.out.println(goal.getName());
 //        System.out.println(goal.getCons().size());
