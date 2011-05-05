@@ -12905,6 +12905,16 @@
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#goal_0002">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Goal"/>
         <name rdf:datatype="&xsd;string">文件和查找</name>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_e_1"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_e_2"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_e_3"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_h_1"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_1"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_2"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_3"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_4"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_5"/>
+        <contain_concepts rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_6"/>
     </owl:NamedIndividual>
     
 
