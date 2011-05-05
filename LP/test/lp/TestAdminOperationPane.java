@@ -29,12 +29,5 @@ public class TestAdminOperationPane {
         f.setVisible(true);
 
     }
-    public static void main(String args[]){
-        javax.swing.JFrame f = new javax.swing.JFrame();
-        f.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        AdminOperatorPane pane = new AdminOperatorPane();
-        f.add(pane);
-        f.pack();
-        f.setVisible(true);
-    }
+    
 }

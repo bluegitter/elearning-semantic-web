@@ -395,8 +395,8 @@ public class AdminOperatorPane extends javax.swing.JPanel {
         EConcept con = (EConcept) concepts.toArray()[i];
         jTextField1.setText(con.getName());
         String diff = con.getDifficulty();
-       jTextField4.setText(diff);
-       
+        jTextField4.setText(diff);
+
     }//GEN-LAST:event_conceptJComboBoxChangedAction
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -434,4 +434,13 @@ public class AdminOperatorPane extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
+
+    public static void main(String args[]) {
+        javax.swing.JFrame f = new javax.swing.JFrame();
+        f.setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
+        AdminOperatorPane pane = new AdminOperatorPane();
+        f.add(pane);
+        f.pack();
+        f.setVisible(true);
+    }
 }

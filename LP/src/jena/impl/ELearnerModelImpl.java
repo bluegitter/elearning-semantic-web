@@ -9,19 +9,14 @@ import com.hp.hpl.jena.ontology.DatatypeProperty;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.OntClass;
 import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.ontology.OntModelSpec;
-import com.hp.hpl.jena.rdf.model.InfModel;
-import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
 import com.hp.hpl.jena.rdf.model.Resource;
 import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
-import com.hp.hpl.jena.reasoner.Reasoner;
 import com.hp.hpl.jena.vocabulary.RDF;
 import jena.OwlOperation;
-import exception.IllegalPersonException;
 import exception.jena.HasNoPropertyValueException;
 import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
@@ -534,6 +529,39 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
         return con;
     }
 
+    public HashSet<EConcept> getPreEConcept(String cid) {
+        Individual indi = ontModel.getIndividual(Constant.NS + cid);
+        Property p = ontModel.getObjectProperty(Constant.NS + "is_post_concept_of");
+        HashSet<EConcept> cons = new HashSet<EConcept>();
+        StmtIterator iter = indi.listProperties(p);
+        while (iter.hasNext()) {
+            Resource r = (Resource) iter.next().getObject();
+            cons.add(getEConcept(r.getLocalName()));
+        }
+        return cons;
+    }
+
+    public HashSet<EConcept> getPostEConcept(String cid) {
+        Individual indi = ontModel.getIndividual(Constant.NS + cid);
+        Property p = ontModel.getObjectProperty(Constant.NS + "is_pre_concept_of");
+        HashSet<EConcept> cons = new HashSet<EConcept>();
+        StmtIterator iter = indi.listProperties(p);
+        while (iter.hasNext()) {
+            Resource r = (Resource) iter.next().getObject();
+            cons.add(getEConcept(r.getLocalName()));
+        }
+        return cons;
+    }
+
+    public HashSet<EConcept> getLearntEConcept(ELearner el) {
+        HashSet<EConcept> cons = new HashSet<EConcept>();
+        ArrayList<EPerformance> ps = getEPerformances(el);
+        for (EPerformance p : ps) {
+            cons.add(p.getConcept());
+        }
+        return cons;
+    }
+
     @Override
     public ELearner getELearner(String eid) {
         ELearner elearner = new ELearner(eid);
@@ -631,12 +659,13 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
         }
         EPerformance performance = new EPerformance();
         performance.setId(indi.getLocalName());
-
-        Statement dateNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time"));
-        if (dateNode != null) {
-            String dateString = dateNode.getLiteral().getString();
-            Date datetime = StringExchanger.parseStringToDate(dateString);
-            performance.setDatetime(datetime);
+        if (indi.hasProperty(ontModel.getProperty(Constant.NS + "date_time"))) {
+            Statement dateNode = indi.getRequiredProperty(ontModel.getProperty(Constant.NS + "date_time"));
+            if (dateNode != null) {
+                String dateString = dateNode.getLiteral().getString();
+                Date datetime = StringExchanger.parseStringToDate(dateString);
+                performance.setDatetime(datetime);
+            }
         }
         EPerformanceAssessment ass = new EPerformanceAssessment();
         RDFNode a1Node = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "a1"));
@@ -1365,8 +1394,8 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
         elIndi.setPropertyValue(ontModel.getDatatypeProperty(Constant.NS + "current_goal"), ontModel.createTypedLiteral(goal, new XSDDatatype("string")));
         return true;
     }
-    //返回某个知识点的前后继知识点，并为每个知识点标识是否为用户所学过。
 
+    //返回某个知识点的前后继知识点，并为每个知识点标识是否为用户所学过。
     public LinkedEConcept getLinkedConceptsByEConcept(ELearner el, EConcept con) {
         ArrayList<EConcept> cons = new ArrayList<EConcept>();
         LinkedEConcept lcon = new LinkedEConcept(con);
@@ -1439,6 +1468,17 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
         return lcons;
     }
 
+    public HashSet<EConcept> getEConceptsByGoal(EGoal goal) {
+        HashSet<EConcept> cons = new HashSet<EConcept>();
+        Individual goalIndi = ontModel.getIndividual(Constant.NS + goal.getGid());
+        StmtIterator iter = goalIndi.listProperties(ontModel.getObjectProperty(Constant.NS + "contain_concepts"));
+        while (iter.hasNext()) {
+            Resource r = (Resource) iter.next().getObject();
+            cons.add(getEConcept(r.getLocalName()));
+        }
+        return cons;
+    }
+
     public ArrayList<EGoal> getAllEGoals() {
         ArrayList<EGoal> goals = new ArrayList<EGoal>();
         OntClass goal = ontModel.getOntClass(Constant.NS + "E_Goal");
@@ -1476,26 +1516,8 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
 
     public static void main(String[] args) throws IndividualNotExistException {
         ELearnerModelImpl emi = new ELearnerModelImpl(new File(Constant.OWLFile));
-        ELearner el = emi.getELearner("el005");
-        System.out.println("el:" + el);
-        //con_rid000024,A_cid_0_e_1
-        EConcept con = emi.getEConcept("A_cid_0_e_1");
-        ISCB_Resource res = emi.getEResource("con_rid000024");
-        emi.removePropertyIsResourceOfC(res, con);
-        File f = new File("X:/elearning/temp_owl/test.owl");
-        if (!f.exists()) {
-            try {
-                f.createNewFile();
-            } catch (IOException ex) {
-                Logger.getLogger(ELearnerModelImpl.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        try {
-            jena.OwlOperation.writeRdfFile(emi.getOntModel(), f, null);
-        } catch (IOException ex) {
-            Logger.getLogger(ELearnerModelImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        jena.OwlOperation.writeOwlFileFromRdfFile(f, f);
+        HashSet<EConcept> cons = emi.getPreEConcept("A_cid_1_e_3");
+        System.out.println("size:" + cons.size());
 //        EGoal goal = emi.getGoalById("goal_0004");
 //        System.out.println(goal.getGid());
 //        System.out.println(goal.getName());
