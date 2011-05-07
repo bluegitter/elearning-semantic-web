@@ -327,79 +327,52 @@ public class ELearnerReasoner {
         return elearners;
     }
 
-    public static ArrayList<EConcept> getRecommendEConcpetList(ELearnerModelImpl model, ELearner elearner, EGoal goal) {
-        HashSet<EConcept> cons = model.getEConceptsByGoal(goal);
+    public static ArrayList<EConcept> getRecommendEConcpetsInGoal(ELearnerModelImpl model, ELearner elearner, EGoal goal) {
+        ArrayList<EConcept> cons = model.getEConceptsByGoal(goal);
         HashSet<EConcept> learnt = model.getLearntEConcept(elearner);
         cons.removeAll(learnt);
         ArrayList<EConcept> sorted = new ArrayList<EConcept>();
-        ArrayList<EConcept> e = new ArrayList<EConcept>();
-        ArrayList<EConcept> m = new ArrayList<EConcept>();
-        ArrayList<EConcept> h = new ArrayList<EConcept>();
-        for (EConcept con : cons) {
+        for (int j = 0; j < cons.size(); j++) {
+            EConcept con = cons.get(j);
             String id = con.getCid();
-            String[] ids = id.split("_");
-            if (ids[3].equals("e")) {
+            if (sorted.isEmpty()) {
+                sorted.add(con);
+            } else {
+                int size = sorted.size();
                 boolean b = true;
-                for (int i = 0; i < e.size(); i++) {
-                    String[] tempIds = e.get(i).getCid().split("_");
-                    if (Integer.parseInt(ids[4]) < Integer.parseInt(tempIds[4])) {
-                        e.add(i, con);
+                for (int i = 0; i < size; i++) {
+                    EConcept con2 = sorted.get(i);
+                    String id2 = con2.getCid();
+                    if (ELearnerModelUtilMethod.compareEConceptIds(id, id2)) {
+                        sorted.add(i, con);
                         b = false;
+                        break;
                     }
                 }
                 if (b) {
-                    if (Integer.parseInt(ids[4]) > Integer.parseInt(e.get(e.size() - 1).getCid().split("_")[4])) {
-                        e.add(con);
-                    }
-                }
-
-            }
-            if (ids[3].equals("m")) {
-                boolean b = true;
-                for (int i = 0; i < m.size(); i++) {
-                    String[] tempIds = m.get(i).getCid().split("_");
-                    if (Integer.parseInt(ids[4]) < Integer.parseInt(tempIds[4])) {
-                        m.add(i, con);
-                        b = false;
-                    }
-                }
-                if (b) {
-                    if (Integer.parseInt(ids[4]) > Integer.parseInt(m.get(m.size() - 1).getCid().split("_")[4])) {
-                        m.add(con);
-                    }
+                    sorted.add(con);
                 }
             }
-            if (ids[3].equals("h")) {
-                boolean b = true;
-                for (int i = 0; i < h.size(); i++) {
-                    String[] tempIds = h.get(i).getCid().split("_");
-                    if (Integer.parseInt(ids[4]) < Integer.parseInt(tempIds[4])) {
-                        h.add(i, con);
-                        b = false;
-                    }
-                }
-                if (b) {
-                    if (Integer.parseInt(ids[4]) > Integer.parseInt(h.get(h.size() - 1).getCid().split("_")[4])) {
-                        h.add(con);
-                    }
-                }
-            }
-            sorted.addAll(e);
-            sorted.addAll(m);
-            sorted.addAll(h);
         }
         return sorted;
     }
 
-    public static EConcept getRecommendEConcpet(ELearnerModelImpl model, ELearner elearner, EGoal goal) {
-        ArrayList<EConcept> cons = getRecommendEConcpetList(model, elearner, goal);
+    /***************************************************************************************************************
+     * return null if the Recommend Concept list is empty
+     * else return the concept C on the top of the sorted list if there is no more pre concept of C not learnt by user..
+     * else there is any concept who is the pre concept of the given top concept, then return the pre concept first.
+     * ***************************************************************************************************************/
+    public static ArrayList<EConcept> getRecommendPreEConcpet(ELearnerModelImpl model, ELearner elearner, EGoal goal) {
+        ArrayList<EConcept> cons = getRecommendEConcpetsInGoal(model, elearner, goal);
         if (cons.isEmpty()) {
             return null;
         }
         EConcept con = cons.get(0);
+        System.out.println("rec con:" + con + "\t" + con.getCid());
         HashSet<EConcept> learnt = model.getLearntEConcept(elearner);
         ArrayList<EConcept> temp = new ArrayList<EConcept>();
-        HashSet<EConcept> pre = model.getPreEConcept(con.getCid());
+        ArrayList<EConcept> pre = new ArrayList<EConcept>();
+        pre.add(con);
         while (!pre.isEmpty()) {
             EConcept c = (EConcept) pre.toArray()[0];
             HashSet<EConcept> pre_temp = model.getPreEConcept(c.getCid());
@@ -412,17 +385,18 @@ public class ELearnerReasoner {
                 pre.addAll(pre_temp);
             }
         }
-        return temp.get(0);
-
+        temp = ELearnerModelUtilMethod.sortRecommendEConcepts(temp);
+        return temp;
     }
 
     public static void main(String[] args) {
         ELearnerModelImpl emi = new ELearnerModelImpl();
-        EGoal goal = emi.getGoalById("goal_0000");
+        EGoal goal = emi.getGoalById("goal_0001");
         ELearner el = emi.getELearner("el005");
-        ArrayList<EConcept> cons = getRecommendEConcpetList(emi, el, goal);
-        System.out.println("size:" + cons.size());
-        EConcept con = getRecommendEConcpet(emi, el, goal);
-        System.out.println("result:" + con);
+        ArrayList<EConcept> cons = getRecommendEConcpetsInGoal(emi, el, goal);
+        jena.ELearnerModelUtilMethod.printEConcepts(cons, "print recommend cons in goal");
+
+        ArrayList<EConcept> preCons = getRecommendPreEConcpet(emi, el, goal);
+        jena.ELearnerModelUtilMethod.printEConcepts(preCons, "print pre cons");
     }
 }
