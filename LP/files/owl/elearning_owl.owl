@@ -1776,6 +1776,7 @@
         <is_leaf_concept rdf:datatype="&xsd;boolean">true</is_leaf_concept>
         <difficulty rdf:datatype="&xsd;string">初级</difficulty>
         <name rdf:datatype="&xsd;string">队列</name>
+        <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_e_2"/>
     </owl:NamedIndividual>
     
 
@@ -1909,6 +1910,7 @@
         <name rdf:datatype="&xsd;string">快速排序</name>
         <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1"/>
         <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_2"/>
+        <is_post_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_4"/>
         <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_1"/>
         <is_pre_concept_of rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_1_m_2"/>
     </owl:NamedIndividual>

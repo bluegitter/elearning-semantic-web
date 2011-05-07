@@ -67,6 +67,7 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
     public void writeToFile(File file) {
         try {
             OwlOperation.writeRdfFile(ontModel, file, null);
+            OwlOperation.writeOwlFileFromRdfFile(file, file);
         } catch (IOException ex) {
             Logger.getLogger(ELearnerModelImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -119,6 +120,10 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
 
     public boolean containEInterest(String interestId) {
         return ontModel.containsResource(ontModel.getResource(Constant.NS + interestId));
+    }
+
+    public boolean containEGoal(String goalId) {
+        return ontModel.containsResource(ontModel.getResource(Constant.NS + goalId));
     }
 
     /*******************************************************************************************************
@@ -223,6 +228,14 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
             ontModel.add(perf, ontModel.getProperty(Constant.NS + "date_time"), StringExchanger.parseDateToString(performance.getDatetime()), new XSDDatatype("dateTime"));
         }
         return true;
+    }
+
+    public void addEGoal(EGoal goal) throws IndividualExistException {
+        if (containEGoal(goal.getGid())) {
+            throw new IndividualExistException("the goal has already existed");
+        }
+        Individual goalIndi = ontModel.createIndividual(Constant.NS + goal.getGid(), ontModel.getOntClass(Constant.NS + "E_Goal"));
+        ontModel.add(goalIndi, ontModel.getProperty(Constant.NS + "name"), goal.getName());
     }
 
     @Override
@@ -1468,8 +1481,8 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
         return lcons;
     }
 
-    public HashSet<EConcept> getEConceptsByGoal(EGoal goal) {
-        HashSet<EConcept> cons = new HashSet<EConcept>();
+    public ArrayList<EConcept> getEConceptsByGoal(EGoal goal) {
+        ArrayList<EConcept> cons = new ArrayList<EConcept>();
         Individual goalIndi = ontModel.getIndividual(Constant.NS + goal.getGid());
         StmtIterator iter = goalIndi.listProperties(ontModel.getObjectProperty(Constant.NS + "contain_concepts"));
         while (iter.hasNext()) {
@@ -1514,10 +1527,17 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
         return gCons;
     }
 
-    public static void main(String[] args) throws IndividualNotExistException {
+    public static void main(String[] args) throws IndividualNotExistException, IndividualExistException {
         ELearnerModelImpl emi = new ELearnerModelImpl(new File(Constant.OWLFile));
-        HashSet<EConcept> cons = emi.getPreEConcept("A_cid_1_e_3");
-        System.out.println("size:" + cons.size());
+        // HashSet<EConcept> cons = emi.getPreEConcept("A_cid_1_e_3");
+        //System.out.println("size:" + cons.size());
+        EGoal goal = new EGoal();
+        goal.setGid("test");
+        goal.setName("testName");
+        emi.addEGoal(goal);
+
+        File f = new File(Constant.OWLFile);
+        emi.writeToFile(f);
 //        EGoal goal = emi.getGoalById("goal_0004");
 //        System.out.println(goal.getGid());
 //        System.out.println(goal.getName());
