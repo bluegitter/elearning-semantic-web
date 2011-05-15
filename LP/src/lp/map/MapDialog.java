@@ -15,7 +15,6 @@ import java.awt.Stroke;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import lp.LPApp;
-import ontology.EGoal;
 
 /**
  *
