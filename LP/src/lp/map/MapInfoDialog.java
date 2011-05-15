@@ -19,8 +19,10 @@ import lp.LPApp;
 public class MapInfoDialog {
 
     public Rectangle bound;
+    private HashMap<Rectangle, Object> actions = new HashMap<Rectangle, Object>();
     private MapBg parent;
     private String title, info, action;
+    private int optionHeight, optionBase;
 
     private Stroke rstroke = new BasicStroke(2.0f);
 
@@ -36,5 +38,14 @@ public class MapInfoDialog {
 
     private void initDialog() {
         Graphics g = LPApp.getApplication().view.mainPanel.getGraphics();
+
+        g.setFont(new Font("微软雅黑", Font.BOLD, 16));
+        FontMetrics fm = g.getFontMetrics();
+        optionHeight = fm.getHeight();
+        optionBase = fm.getAscent();
+        
+        bound.setSize(400, (optionHeight + 20) * 5);
+
+
     }
 }
