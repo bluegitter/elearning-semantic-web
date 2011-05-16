@@ -46,6 +46,5 @@ public class MapInfoDialog {
         
         bound.setSize(400, (optionHeight + 20) * 5);
 
-
     }
 }
