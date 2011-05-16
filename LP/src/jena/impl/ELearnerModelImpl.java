@@ -36,9 +36,7 @@ import ontology.EPortfolio;
 import ontology.people.ELearner;
 import ontology.resources.ISCB_Resource;
 import util.Constant;
-import jena.interfaces.ELearnerModelQueryInterface;
 import jena.interfaces.ELearnerUserOperationInterface;
-import jena.interfaces.ELearnerUserQueryInterface;
 import ontology.EGoal;
 import ontology.EPerformanceAssessment;
 import util.StringExchanger;
@@ -48,7 +46,7 @@ import util.StringExchanger;
  * @author william
  *
  **************************************************************************/
-public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerUserOperationInterface, ELearnerUserQueryInterface, ELearnerModelOperationInterface {
+public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearnerModelOperationInterface {
 
     public OntModel ontModel;
 
@@ -193,7 +191,9 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
         }
         Individual con = ontModel.createIndividual(Constant.NS + concept.getCid(), ontModel.getResource(Constant.NS + "E_Concept"));
         ontModel.add(con, ontModel.getProperty(Constant.NS + "id"), concept.getCid());
-        ontModel.add(con, ontModel.getProperty(Constant.NS + "name"), concept.getName(), new XSDDatatype("string"));
+        XSDDatatype stringType = new XSDDatatype("string");
+        ontModel.add(con, ontModel.getProperty(Constant.NS + "name"), concept.getName(), stringType);
+        ontModel.add(con, ontModel.getProperty(Constant.NS + "difficulty"), concept.getDifficulty(), stringType);
         return true;
     }
 
@@ -314,9 +314,12 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
         }
         Individual indi = ontModel.getIndividual(Constant.NS + concept.getCid());
         Property p = ontModel.getProperty(Constant.NS + "name");
+        Property p2 = ontModel.getDatatypeProperty(Constant.NS + "difficulty");
         ontModel.remove(indi, p, indi.getPropertyValue(p));
         ontModel.add(indi, p, concept.getName(), new XSDDatatype("string"));
-        return false;
+        ontModel.remove(indi, p2, indi.getPropertyValue(p));
+        ontModel.add(indi, p2, concept.getDifficulty(), new XSDDatatype("string"));
+        return true;
     }
 
     @Override
@@ -484,6 +487,16 @@ public class ELearnerModelImpl implements ELearnerModelQueryInterface, ELearnerU
     /***************************************************************************************
      * REMOVE operations
      ***************************************************************************************/
+    @Override
+    public boolean removeEConcept(String cid) {
+        if (!containEConcept(cid)) {
+            return false;
+        }
+        Individual indi = ontModel.getIndividual(Constant.NS + cid);
+        indi.remove();
+        return true;
+    }
+
     @Override
     public boolean removeEInterest(EInterest interest)
             throws IndividualNotExistException {
