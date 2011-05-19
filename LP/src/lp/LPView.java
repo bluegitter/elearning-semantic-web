@@ -131,7 +131,7 @@ public class LPView extends FrameView {
     public void initTools() {
 
         javax.swing.JPanel[] pa = {new lp.display.MyConceptDemo(), new AllConceptPane(), new RecommendContainer(),
-            new SearchPane(), new UserProfilePane(), new AssessmentPane(), new MapBg(mainPanel)};
+            new SearchPane(), new UserProfilePane(), new AssessmentPane(), new MapBg(mainPanel),new AdminOperatorPane()};
         panes = pa;
 
         setMainTool(LPApp.MY_CONCEPT);
@@ -207,6 +207,7 @@ public class LPView extends FrameView {
         jToggleButton5 = new javax.swing.JToggleButton();
         jToggleButton6 = new javax.swing.JToggleButton();
         jToggleButton7 = new javax.swing.JToggleButton();
+        jToggleButton8 = new javax.swing.JToggleButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
 
         mainPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -216,11 +217,11 @@ public class LPView extends FrameView {
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 719, Short.MAX_VALUE)
+            .addGap(0, 826, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 534, Short.MAX_VALUE)
+            .addGap(0, 530, Short.MAX_VALUE)
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -330,11 +331,11 @@ public class LPView extends FrameView {
         statusPanel.setLayout(statusPanelLayout);
         statusPanelLayout.setHorizontalGroup(
             statusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+            .addComponent(statusPanelSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 555, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 652, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -489,6 +490,24 @@ public class LPView extends FrameView {
         });
         lpToolBar.add(jToggleButton7);
 
+        buttonGroup1.add(jToggleButton8);
+        jToggleButton8.setFont(resourceMap.getFont("jToggleButton8.font")); // NOI18N
+        jToggleButton8.setIcon(resourceMap.getIcon("jToggleButton8.icon")); // NOI18N
+        jToggleButton8.setFocusable(false);
+        jToggleButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jToggleButton8.setLabel(resourceMap.getString("jToggleButton8.label")); // NOI18N
+        jToggleButton8.setMaximumSize(new java.awt.Dimension(103, 90));
+        jToggleButton8.setMinimumSize(new java.awt.Dimension(103, 93));
+        jToggleButton8.setName("jToggleButton8"); // NOI18N
+        jToggleButton8.setPreferredSize(new java.awt.Dimension(103, 90));
+        jToggleButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToggleButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton8ActionPerformed(evt);
+            }
+        });
+        lpToolBar.add(jToggleButton8);
+
         setComponent(mainPanel);
         setMenuBar(menuBar);
         setStatusBar(statusPanel);
@@ -535,6 +554,11 @@ public class LPView extends FrameView {
         setMainTool(LPApp.NEW_MAP);
     }//GEN-LAST:event_jToggleButton7ActionPerformed
 
+    private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
+        // TODO add your handling code here:
+        setMainTool(LPApp.ADMIN);
+    }//GEN-LAST:event_jToggleButton8ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Navigator;
     javax.swing.JMenuItem aboutMenuItem;
@@ -558,6 +582,7 @@ public class LPView extends FrameView {
     private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JToggleButton jToggleButton6;
     private javax.swing.JToggleButton jToggleButton7;
+    private javax.swing.JToggleButton jToggleButton8;
     private javax.swing.JMenuItem loginItem;
     private javax.swing.JMenuItem logoutItem;
     public javax.swing.JToolBar lpToolBar;

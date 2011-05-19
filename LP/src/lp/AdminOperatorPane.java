@@ -12,8 +12,6 @@ package lp;
 
 import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
-import java.awt.Image;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashSet;
@@ -23,7 +21,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import jena.OwlOperation;
 import jena.impl.ELearnerModelImpl;
-import lp.admin.IdCheckListener;
 import ontology.EConcept;
 import ontology.EGoal;
 import ontology.resources.ISCB_Resource;
@@ -37,7 +34,8 @@ public class AdminOperatorPane extends javax.swing.JPanel {
 
     /** Creates new form AdminOperatorPane */
     public AdminOperatorPane() {
-        emi = new ELearnerModelImpl();
+        emi = LPApp.lpModel;
+        //emi = new ELearnerModelImpl();
         initComponents();
         //init the value of the compononets
         myInitComponents();
@@ -51,6 +49,8 @@ public class AdminOperatorPane extends javax.swing.JPanel {
         icon_yes = new javax.swing.ImageIcon("src/lp/admin/icon_yes.png");
         icon_no = new javax.swing.ImageIcon("src/lp/admin/icon_no.png");
         jTextField5.setText("");
+        jTextField7.setText("");
+        jTextField10.setText("");
         jLabel7.setIcon(icon_no);
         jLabel7.setText("no");
         jLabel20.setIcon(icon_no);
@@ -82,6 +82,13 @@ public class AdminOperatorPane extends javax.swing.JPanel {
         jTextField8.setText("");
         jTextField9.setText("");
         jTextArea1.setText("");
+        jComboBox7.setSelectedIndex(0);
+        jComboBox8.setSelectedIndex(0);
+        jComboBox9.setSelectedIndex(0);
+        //add Goal Panel
+        jTextField10.setText("");
+        jLabel32.setText("");
+        jLabel27.setText("");
     }
     private ELearnerModelImpl emi;
     private HashSet<EGoal> goals;
@@ -179,10 +186,14 @@ public class AdminOperatorPane extends javax.swing.JPanel {
         jTextField11 = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
+        jLabel32 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(800, 530));
 
         jTabbedPane1.setName("jTabbedPane1"); // NOI18N
 
@@ -249,7 +260,7 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                             .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
                         .addGap(26, 26, 26)
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(307, Short.MAX_VALUE))
+                .addContainerGap(280, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,7 +280,7 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("维护知识点", jPanel1);
@@ -321,7 +332,7 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                         .addGap(34, 34, 34)
                         .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(264, Short.MAX_VALUE))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,7 +350,7 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                     .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel10)
-                .addContainerGap(409, Short.MAX_VALUE))
+                .addContainerGap(352, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("维护资源", jPanel2);
@@ -402,7 +413,7 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                                 .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton11)))))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -429,7 +440,7 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton11))))))
-                .addContainerGap(350, Short.MAX_VALUE))
+                .addContainerGap(293, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("维护目标", jPanel4);
@@ -453,10 +464,11 @@ public class AdminOperatorPane extends javax.swing.JPanel {
             }
         });
 
-        jLabel7.setText("j7");
+        jLabel7.setText("j07");
         jLabel7.setName("jLabel7"); // NOI18N
+        jLabel7.setPreferredSize(new java.awt.Dimension(27, 27));
 
-        jLabel15.setText("ID 已经存在");
+        jLabel15.setText("jLabel15");
         jLabel15.setName("jLabel15"); // NOI18N
 
         jTextField6.setText("jTextField6");
@@ -508,25 +520,22 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                         .addComponent(jButton6))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel11))
-                                .addGap(18, 18, 18)))
+                            .addComponent(jLabel4)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel11)))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jTextField6)
                                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(37, 37, 37)
+                                .addGap(43, 43, 43)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel15))
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(324, Short.MAX_VALUE))
+                .addContainerGap(299, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -534,9 +543,9 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -552,7 +561,7 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                     .addComponent(jButton6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel24)
-                .addContainerGap(324, Short.MAX_VALUE))
+                .addContainerGap(267, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("增删知识点", jPanel3);
@@ -612,6 +621,11 @@ public class AdminOperatorPane extends javax.swing.JPanel {
 
         jButton4.setText("更新资源");
         jButton4.setName("jButton4"); // NOI18N
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateResAction(evt);
+            }
+        });
 
         jLabel29.setText("资源应用类型：");
         jLabel29.setName("jLabel29"); // NOI18N
@@ -621,6 +635,11 @@ public class AdminOperatorPane extends javax.swing.JPanel {
 
         jButton7.setText("删除资源");
         jButton7.setName("jButton7"); // NOI18N
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeResAction(evt);
+            }
+        });
 
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox7.setName("jComboBox7"); // NOI18N
@@ -639,7 +658,7 @@ public class AdminOperatorPane extends javax.swing.JPanel {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(82, 82, 82)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jButton3)
@@ -670,20 +689,27 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jTextField8)
                                         .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))))
-                            .addGap(61, 61, 61)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel31)
-                                .addComponent(jLabel30)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addGap(61, 61, 61)
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel31)
+                                        .addComponent(jLabel30)
+                                        .addComponent(jLabel29)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabel26))
-                                .addComponent(jLabel29))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(22, 22, 22)))
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addGap(10, 10, 10)
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel26)))
                             .addGap(260, 260, 260)))))
         );
         jPanel5Layout.setVerticalGroup(
@@ -693,8 +719,8 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel26))
+                    .addComponent(jLabel26)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
@@ -727,7 +753,7 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                     .addComponent(jButton7))
                 .addGap(26, 26, 26)
                 .addComponent(jLabel25)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("增删资源", jPanel5);
@@ -742,36 +768,82 @@ public class AdminOperatorPane extends javax.swing.JPanel {
 
         jTextField10.setText("jTextField10");
         jTextField10.setName("jTextField10"); // NOI18N
+        jTextField10.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                EGoalIdChangedCheck(evt);
+            }
+        });
 
         jTextField11.setText("jTextField11");
         jTextField11.setName("jTextField11"); // NOI18N
 
         jLabel23.setText("j23");
         jLabel23.setName("jLabel23"); // NOI18N
+        jLabel23.setPreferredSize(new java.awt.Dimension(27, 27));
 
         jLabel27.setText("jLabel27");
         jLabel27.setName("jLabel27"); // NOI18N
+
+        jButton8.setText("添加目标");
+        jButton8.setName("jButton8"); // NOI18N
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addGoalAction(evt);
+            }
+        });
+
+        jButton10.setText("更新目标");
+        jButton10.setName("jButton10"); // NOI18N
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateGoalAction(evt);
+            }
+        });
+
+        jButton12.setText("删除目标");
+        jButton12.setName("jButton12"); // NOI18N
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeGoalAction(evt);
+            }
+        });
+
+        jLabel32.setText("jLabel32");
+        jLabel32.setName("jLabel32"); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(68, 68, 68)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel22)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField11))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel21)
-                        .addGap(29, 29, 29)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(54, 54, 54)
-                .addComponent(jLabel23)
-                .addGap(32, 32, 32)
-                .addComponent(jLabel27)
-                .addContainerGap(331, Short.MAX_VALUE))
+                        .addComponent(jLabel32)
+                        .addContainerGap())
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addComponent(jButton8)
+                            .addGap(31, 31, 31)
+                            .addComponent(jButton10)
+                            .addGap(40, 40, 40)
+                            .addComponent(jButton12)
+                            .addGap(404, 404, 404))
+                        .addGroup(jPanel7Layout.createSequentialGroup()
+                            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel7Layout.createSequentialGroup()
+                                    .addComponent(jLabel22)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jTextField11))
+                                .addGroup(jPanel7Layout.createSequentialGroup()
+                                    .addComponent(jLabel21)
+                                    .addGap(29, 29, 29)
+                                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel27)
+                            .addGap(307, 307, 307)))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -780,13 +852,20 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
                     .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23)
-                    .addComponent(jLabel27))
+                    .addComponent(jLabel27)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(439, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton8)
+                    .addComponent(jButton12)
+                    .addComponent(jButton10))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel32)
+                .addContainerGap(280, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("增删目标", jPanel7);
@@ -808,22 +887,22 @@ public class AdminOperatorPane extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 552, Short.MAX_VALUE)
-                        .addComponent(jLabel28)
-                        .addGap(77, 77, 77))))
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 431, Short.MAX_VALUE)
+                .addComponent(jLabel28)
+                .addGap(171, 171, 171))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 759, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 566, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel28)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jLabel28))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -889,7 +968,6 @@ public class AdminOperatorPane extends javax.swing.JPanel {
         return con;
     }
     private void updateConceptAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateConceptAction
-        // TODO add your handling code here:
         if (jLabel7.getText().trim().equals("no")) {
             EConcept con = getEConceptFromAddConceptPanel();
             try {
@@ -897,7 +975,6 @@ public class AdminOperatorPane extends javax.swing.JPanel {
             } catch (IndividualNotExistException ex) {
                 Logger.getLogger(AdminOperatorPane.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         } else {
             jLabel24.setText("知识点ID不存在，无法更新");
         }
@@ -926,17 +1003,26 @@ public class AdminOperatorPane extends javax.swing.JPanel {
             Logger.getLogger(AdminOperatorPane.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_saveModelAction
+    private ISCB_Resource getEResourceFromAddResPanel() {
+        ISCB_Resource res = new ISCB_Resource(jTextField7.getText().trim());
+        res.setName(jTextField8.getText().trim());
+        res.setFileLocation(jTextField9.getText().trim());
+        res.setResourceDescription(jTextArea1.getText());
+        res.setAppType(jComboBox7.getSelectedItem().toString());
+        res.setResourceType(jComboBox8.getSelectedItem().toString());
+        res.setDifficulty(jComboBox9.getSelectedItem().toString());
+        return res;
+    }
     private void EResourceIdChangedCheck(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_EResourceIdChangedCheck
-        // TODO add your handling code here:
         clearData();
         String rid = jTextField7.getText().trim();
-        if(rid.equals("")){
+        if (rid.equals("")) {
             jLabel20.setIcon(icon_no);
             jLabel20.setText("no");
             jLabel26.setText("请输入Id，Id不能为空");
-        }else{
-            boolean b =  emi.containEResource(rid);
-            if(b){
+        } else {
+            boolean b = emi.containEResource(rid);
+            if (b) {
                 jLabel26.setText("ID已经存在于本体中，不能添加，可以更新资源");
                 jLabel20.setIcon(icon_no);
                 jLabel20.setText("no");
@@ -947,25 +1033,130 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                 jComboBox9.setSelectedItem(res.getDifficulty());
                 jComboBox7.setSelectedItem(res.getAppType());
                 jComboBox8.setSelectedItem(res.getResourceType());
-            }else{
+            } else {
+                clearData();
                 jLabel26.setText("新Id无记录,可以添加知识点");
+                jLabel20.setIcon(icon_yes);
+                jLabel20.setText("yes");
             }
         }
     }//GEN-LAST:event_EResourceIdChangedCheck
-
     private void addResAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addResAction
-        // TODO add your handling code here:
+        if (jLabel20.getText().trim().equals("yes")) {
+            ISCB_Resource res = getEResourceFromAddResPanel();
+            try {
+                emi.addEResource(res);
+            } catch (IndividualExistException ex) {
+                Logger.getLogger(AdminOperatorPane.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jLabel25.setText("添加资源成功.不要忘记点击“保存本体”哦");
+        } else {
+            jLabel25.setText("添加失败，请查看提示");
+        }
     }//GEN-LAST:event_addResAction
+    private void updateResAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateResAction
+        if (jLabel20.getText().trim().equals("no")) {
+            ISCB_Resource res = getEResourceFromAddResPanel();
+            try {
+                emi.updateEResource(res);
+            } catch (IndividualNotExistException ex) {
+                Logger.getLogger(AdminOperatorPane.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            jLabel25.setText("资源不存在，无法更新");
+        }
+    }//GEN-LAST:event_updateResAction
+    private void removeResAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeResAction
+        String rid = jTextField7.getText().trim();
+        if (jLabel20.getText().trim().equals("no")) {
+            boolean b = emi.removeEResource(rid);
+            if (b) {
+                jLabel25.setText("资源" + rid + "删除成功。不要忘记点击“保存本体”");
+            } else {
+                jLabel25.setText("资源" + rid + "未删除成功。");
+            }
+        } else {
+            jLabel25.setText("资源" + rid + "不存在");
+        }
+    }//GEN-LAST:event_removeResAction
+    private EGoal getGoalFromAddGoalPanel() {
+        EGoal goal = new EGoal();
+        goal.setName(jTextField10.getText().trim());
+        goal.setName(jTextField11.getText().trim());
+        return goal;
+    }
+    private void EGoalIdChangedCheck(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_EGoalIdChangedCheck
+        // TODO add your handling code here:
+        clearData();
+        String gid = jTextField10.getText().trim();
+        if (gid.equals("")) {
+            jLabel23.setIcon(icon_no);
+            jLabel23.setText("no");
+            jLabel27.setText("请输入Id，Id不能为空");
+        } else {
+            boolean b = emi.containEGoal(gid);
+            if (b) {
+                jLabel27.setText("ID已经存在于本体中，不能添加，可以更新资源");
+                jLabel23.setIcon(icon_no);
+                jLabel23.setText("no");
+                EGoal goal = emi.getEGoal(gid);
+                jTextField11.setText(goal.getName());
+            } else {
+                clearData();
+                jLabel27.setText("新Id无记录,可以添加知识点");
+                jLabel23.setIcon(icon_yes);
+                jLabel23.setText("yes");
+            }
+        }
+    }//GEN-LAST:event_EGoalIdChangedCheck
+    private void addGoalAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addGoalAction
+        if (jLabel23.getText().trim().equals("yes")) {
+            EGoal goal = getGoalFromAddGoalPanel();
+            try {
+                emi.addEGoal(goal);
+            } catch (IndividualExistException ex) {
+                Logger.getLogger(AdminOperatorPane.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            jLabel27.setText("添加目标成功.不要忘记点击“保存本体”哦");
+        } else {
+            jLabel27.setText("添加失败，请查看提示");
+        }
+    }//GEN-LAST:event_addGoalAction
+    private void updateGoalAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateGoalAction
+        if (jLabel23.getText().trim().equals("no")) {
+            EGoal goal = getGoalFromAddGoalPanel();
+            emi.updateEGoal(goal);
+            System.out.println("update goal successfully");
+        } else {
+            jLabel27.setText("目标不存在，无法更新");
+        }
+    }//GEN-LAST:event_updateGoalAction
 
+    private void removeGoalAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeGoalAction
+        String gid = jTextField10.getText().trim();
+        if (jLabel23.getText().trim().equals("no")) {
+            boolean b = emi.removeEGoal(gid);
+            if (b) {
+                jLabel27.setText("目标" + gid + "删除成功。不要忘记点击“保存本体”");
+            } else {
+                jLabel27.setText("目标" + gid + "未删除成功。");
+            }
+        } else {
+            jLabel27.setText("目标" + gid + "不存在");
+        }
+    }//GEN-LAST:event_removeGoalAction
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
@@ -1001,6 +1192,7 @@ public class AdminOperatorPane extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
