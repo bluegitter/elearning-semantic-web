@@ -153,6 +153,7 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         ontModel.add(re, ontModel.getProperty(Constant.NS + "name"), resource.getName(), new XSDDatatype("string"));
         ontModel.add(re, ontModel.getProperty(Constant.NS + "description"), resource.getResourceDescription(), new XSDDatatype("string"));
         ontModel.add(re, ontModel.getProperty(Constant.NS + "resource_quality"), resource.getResourceQuality(), new XSDDatatype("string"));
+        ontModel.add(re, ontModel.getProperty(Constant.NS + "application_type"), resource.getAppType(), new XSDDatatype("string"));
         ontModel.add(re, ontModel.getProperty(Constant.NS + "resource_type"), resource.getResourceType(), new XSDDatatype("string"));
         ontModel.add(re, ontModel.getProperty(Constant.NS + "upload_time"), StringExchanger.parseDateToString(resource.getUploadTime()), new XSDDatatype("date"));
         ontModel.add(re, ontModel.getProperty(Constant.NS + "file_location"), resource.getFileLocation(), new XSDDatatype("string"));
@@ -352,6 +353,20 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         return true;
     }
 
+    public boolean updateEGoal(EGoal goal) {
+        if (!containEGoal(goal.getGid())) {
+            return false;
+        }
+        EGoal g = getEGoal(goal.getGid());
+        Individual indi = ontModel.getIndividual(Constant.NS + goal.getGid());
+        if (!g.getName().equals(goal.getName())) {
+            Property p = ontModel.getProperty(Constant.NS + "name");
+            ontModel.remove(indi, p, indi.getPropertyValue(p));
+            ontModel.add(indi, p, goal.getName(), new XSDDatatype("string"));
+        }
+        return true;
+    }
+
     @Override
     public boolean updateEInterest(EInterest interest) throws IndividualNotExistException {
         Individual indi = ontModel.getIndividual(Constant.NS + interest.getId());
@@ -450,13 +465,20 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
             ontModel.remove(indi, p, indi.getPropertyValue(p));
             ontModel.add(indi, p, resource.getResourceType(), new XSDDatatype("string"));
         }
-        p = ontModel.getProperty(Constant.NS + "upload_time");
-        String upload_time = indi.getRequiredProperty(p).getLiteral().getString();
-        Date time = StringExchanger.parseStringToDate(upload_time);
-        if (!resource.getUploadTime().equals(time)) {
+        p = ontModel.getProperty(Constant.NS + "application_type");
+        String app_type = indi.getRequiredProperty(p).getLiteral().getString();
+        if (!resource.getAppType().equals(app_type)) {
             ontModel.remove(indi, p, indi.getPropertyValue(p));
-            ontModel.add(indi, p, StringExchanger.parseDateToString(resource.getUploadTime()), new XSDDatatype("date"));
+            ontModel.add(indi, p, resource.getAppType(), new XSDDatatype("string"));
         }
+        //upload time不应该随更新而改变
+//        p = ontModel.getProperty(Constant.NS + "upload_time");
+//        String upload_time = indi.getRequiredProperty(p).getLiteral().getString();
+//        Date time = StringExchanger.parseStringToDate(upload_time);
+//        if (!resource.getUploadTime().equals(time)) {
+//            ontModel.remove(indi, p, indi.getPropertyValue(p));
+//            ontModel.add(indi, p, StringExchanger.parseDateToString(resource.getUploadTime()), new XSDDatatype("date"));
+//        }
         p = ontModel.getProperty(Constant.NS + "file_location");
         String fileLocation = indi.getRequiredProperty(p).getLiteral().getString();
         if (!resource.getFileLocation().equals(fileLocation)) {
@@ -493,6 +515,24 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
             return false;
         }
         Individual indi = ontModel.getIndividual(Constant.NS + cid);
+        indi.remove();
+        return true;
+    }
+
+    public boolean removeEResource(String rid) {
+        if (!containEConcept(rid)) {
+            return false;
+        }
+        Individual indi = ontModel.getIndividual(Constant.NS + rid);
+        indi.remove();
+        return true;
+    }
+
+    public boolean removeEGoal(String gid) {
+        if (!containEGoal(gid)) {
+            return false;
+        }
+        Individual indi = ontModel.getIndividual(Constant.NS + gid);
         indi.remove();
         return true;
     }
@@ -1329,7 +1369,7 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         return cids;
     }
 
-    public EGoal getGoalById(String id) {
+    public EGoal getEGoal(String id) {
         EGoal goal = new EGoal();
         goal.setGid(id);
         Individual g = ontModel.getIndividual(Constant.NS + id);
@@ -1372,7 +1412,7 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         ArrayList<EGoal> goals = new ArrayList();
         while (iter.hasNext()) {
             Resource r = (Resource) iter.nextStatement().getObject();
-            EGoal g = getGoalById(r.getLocalName());
+            EGoal g = getEGoal(r.getLocalName());
             goals.add(g);
         }
         return goals;
@@ -1511,7 +1551,7 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         Iterator<Individual> iter = ontModel.listIndividuals(goal);
         while (iter.hasNext()) {
             Individual indi = (Individual) iter.next();
-            goals.add(getGoalById(indi.getLocalName()));
+            goals.add(getEGoal(indi.getLocalName()));
         }
         return goals;
     }

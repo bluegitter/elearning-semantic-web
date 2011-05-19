@@ -391,7 +391,7 @@ public class ELearnerReasoner {
 
     public static void main(String[] args) {
         ELearnerModelImpl emi = new ELearnerModelImpl();
-        EGoal goal = emi.getGoalById("goal_0001");
+        EGoal goal = emi.getEGoal("goal_0001");
         ELearner el = emi.getELearner("el005");
         ArrayList<EConcept> cons = getRecommendEConcpetsInGoal(emi, el, goal);
         jena.ELearnerModelUtilMethod.printEConcepts(cons, "print recommend cons in goal");
