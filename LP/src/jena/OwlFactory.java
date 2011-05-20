@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.mindswap.pellet.jena.PelletReasonerFactory;
 import util.Constant;
 import com.hp.hpl.jena.ontology.OntModel;
@@ -66,7 +68,7 @@ public class OwlFactory {
     }
 
     public static OntModel getOntModel(File file) {
-         OntModel model =ModelFactory.createOntologyModel(OntModelSpec.RDFS_MEM_TRANS_INF);
+        OntModel model =ModelFactory.createOntologyModel(OntModelSpec.RDFS_MEM_TRANS_INF); 
 //        OntModel model =ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_TRANS_INF);
 //        OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
         InputStream in = null;
@@ -81,7 +83,30 @@ public class OwlFactory {
         model.read(in, Constant.NS);
         Resource configuration = model.createResource();
         configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
-
+        return model;
+    }
+    public static OntModel getOntModel(File file1,File file2){
+        OntModel model =ModelFactory.createOntologyModel(OntModelSpec.RDFS_MEM_TRANS_INF);
+//        OntModel model =ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM_TRANS_INF);
+//        OntModel model = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM);
+        InputStream in = null;
+        InputStream in2 = null;
+        try {
+            in = new FileInputStream(file1);
+            in2 = new FileInputStream(file2);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(OwlFactory.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (in == null) {
+            throw new IllegalArgumentException("File: " + file1+ " not found");
+        }
+        if(in2 == null){
+             throw new IllegalArgumentException("File: " + file2+ " not found");
+        }
+        model.read(in, Constant.NS);
+        model.read(in2, Constant.NS);
+        Resource configuration = model.createResource();
+        configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
         return model;
     }
 
