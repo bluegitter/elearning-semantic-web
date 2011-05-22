@@ -13,6 +13,7 @@ import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -138,7 +139,7 @@ public class LuceneTest {
 
     public static void getModel() throws IOException {
         ELearnerModelImpl emi = new ELearnerModelImpl();
-        ArrayList<ISCB_Resource> res = emi.getAllEResources();
+        HashSet<ISCB_Resource> res = emi.getAllEResources();
 
         FileWriter fw = new FileWriter(file);
         for (ISCB_Resource r : res) {

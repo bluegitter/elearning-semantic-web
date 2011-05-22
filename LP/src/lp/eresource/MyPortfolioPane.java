@@ -11,6 +11,7 @@
 package lp.eresource;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import jena.impl.ELearnerModelImpl;
@@ -60,7 +61,7 @@ public class MyPortfolioPane extends javax.swing.JPanel {
         for (int i = 0; i < resourceList.size(); i++) {
             EPortfolio f = resourceList.get(i);
             ISCB_Resource res = f.getEResource();
-            ArrayList<EConcept> con = LPApp.lpModel.getEConcepts(res);
+            HashSet<EConcept> con = LPApp.lpModel.getEConcepts(res);
             String s = con.size() + "个知识点";
             String userRate = "点击评价";
             if (f.getRate() != 0) {

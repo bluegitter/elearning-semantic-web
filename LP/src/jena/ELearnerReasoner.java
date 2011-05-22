@@ -328,12 +328,11 @@ public class ELearnerReasoner {
     }
 
     public static ArrayList<EConcept> getRecommendEConcpetsInGoal(ELearnerModelImpl model, ELearner elearner, EGoal goal) {
-        ArrayList<EConcept> cons = model.getEConceptsByGoal(goal);
+        HashSet<EConcept> cons = model.getEConceptsByGoal(goal);
         HashSet<EConcept> learnt = model.getLearntEConcept(elearner);
         cons.removeAll(learnt);
         ArrayList<EConcept> sorted = new ArrayList<EConcept>();
-        for (int j = 0; j < cons.size(); j++) {
-            EConcept con = cons.get(j);
+        for (EConcept con:cons) {
             String id = con.getCid();
             if (sorted.isEmpty()) {
                 sorted.add(con);

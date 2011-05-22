@@ -12,30 +12,29 @@ import ontology.resources.ISCB_Resource;
 
 /**
  *
- * @author student
+ * @author William Ma <williamma.wm@gmail.com>
  */
-public class ConceptSelectPanelForRes extends ConceptSelectPanel {
+public class ConceptDisplayPanelForRes extends ConceptSelectPanel {
 
-    public ConceptSelectPanelForRes() {
+    public ConceptDisplayPanelForRes() {
         super();
         jButton3.setText("为资源添加知识点");
     }
 
-    public ConceptSelectPanelForRes(ELearnerModelImpl emi,HashSet<EConcept> cons) {
-        super(emi,cons);
+    public ConceptDisplayPanelForRes(ELearnerModelImpl emi, HashSet<EConcept> cons) {
+        super(emi, cons);
         this.cons = cons;
         jButton3.setText("为资源添加知识点");
     }
 
     @Override
     public void buttonAction() {
-        System.out.println("add Concept for res");
         System.out.println("remove Concept for res");
         JTable table = getTable();
         int[] is = table.getSelectedRows();
         for (int i : is) {
             String cid = table.getModel().getValueAt(i, 0).toString();
-            emi.addPropertyIsResourceOfC(res, emi.getEConcept(cid));
+            emi.removePropertyIsResourceOfC(res, emi.getEConcept(cid));
         }
         this.adminPanel.updateEditResPanel();
     }
@@ -48,5 +47,4 @@ public class ConceptSelectPanelForRes extends ConceptSelectPanel {
     public void setRes(ISCB_Resource res) {
         this.res = res;
     }
-    
 }

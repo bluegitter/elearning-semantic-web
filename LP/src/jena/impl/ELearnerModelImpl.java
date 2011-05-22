@@ -269,12 +269,14 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
     }
 
     @Override
-    public boolean addPropertyIsResourceOfC(ISCB_Resource resource, EConcept concept) throws IndividualNotExistException {
+    public boolean addPropertyIsResourceOfC(ISCB_Resource resource, EConcept concept) {
         if (!containEResource(resource.getRid())) {
-            throw new IndividualNotExistException("ISCB_Resource " + resource.getRid() + " does not exist in the model");
+            // throw new IndividualNotExistException("ISCB_Resource " + resource.getRid() + " does not exist in the model");
+            return false;
         }
         if (!containEConcept(concept.getCid())) {
-            throw new IndividualNotExistException("EConcept " + concept.getCid() + " does not exist in the model");
+            // throw new IndividualNotExistException("EConcept " + concept.getCid() + " does not exist in the model");
+            return false;
         }
         Individual res = ontModel.getIndividual(Constant.NS + resource.getRid());
         Individual con = ontModel.getIndividual(Constant.NS + concept.getCid());
@@ -283,17 +285,46 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         return true;
     }
 
-    public void removePropertyIsResourceOfC(ISCB_Resource resource, EConcept concept) throws IndividualNotExistException {
+    public boolean addPropertyContainsConcept(EGoal goal, EConcept con) {
+        if (!containEGoal(goal.getGid())) {
+            return false;
+        }
+        if (!containEConcept(con.getCid())) {
+            return false;
+        }
+        Individual g = ontModel.getIndividual(Constant.NS + goal.getGid());
+        Individual c = ontModel.getIndividual(Constant.NS + con.getCid());
+        ontModel.add(g, ontModel.getProperty(Constant.NS + "contain_concepts"), c);
+        return true;
+    }
+
+    public boolean removePropertyIsResourceOfC(ISCB_Resource resource, EConcept concept) {
         if (!containEResource(resource.getRid())) {
-            throw new IndividualNotExistException("ISCB_Resource " + resource.getRid() + " does not exist in the model");
+            return false;
+            // throw new IndividualNotExistException("ISCB_Resource " + resource.getRid() + " does not exist in the model");
         }
         if (!containEConcept(concept.getCid())) {
-            throw new IndividualNotExistException("EConcept " + concept.getCid() + " does not exist in the model");
+            return false;
+            //  throw new IndividualNotExistException("EConcept " + concept.getCid() + " does not exist in the model");
         }
         Individual res = ontModel.getIndividual(Constant.NS + resource.getRid());
         Individual con = ontModel.getIndividual(Constant.NS + concept.getCid());
         ontModel.remove(res, ontModel.getProperty(Constant.NS + "is_resource_of_C"), con);
         ontModel.remove(con, ontModel.getProperty(Constant.NS + "inverse_of_is_resource_of_C"), res);
+        return true;
+    }
+
+    public boolean removePropertyContainsConcept(EGoal goal, EConcept concept) {
+        if (!containEGoal(goal.getGid())) {
+            return false;
+        }
+        if (!containEConcept(concept.getCid())) {
+            return false;
+        }
+        Individual g = ontModel.getIndividual(Constant.NS + goal.getGid());
+        Individual con = ontModel.getIndividual(Constant.NS + concept.getCid());
+        ontModel.remove(g, ontModel.getProperty(Constant.NS + "contain_concepts"), con);
+        return true;
     }
 
     public void addPropertyIsLeafConcept(EConcept concept, boolean isLeaf) throws IndividualNotExistException {
@@ -895,6 +926,7 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         return concepts;
     }
 
+    @Override
     public HashSet<EConcept> getAllLeafEConcepts() {
         HashSet<EConcept> concepts = new HashSet<EConcept>();
         OntClass concept = ontModel.getOntClass(Constant.NS + "E_Concept");
@@ -942,16 +974,32 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
     }
 
     @Override
-    public ArrayList<ISCB_Resource> getAllEResources() {
+    public HashSet<ISCB_Resource> getAllEResources() {
         Resource resourceClass = ontModel.getResource(Constant.NS + "ISCB_Resource");
         SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NSRDF + "type"), resourceClass);
         StmtIterator iter = ontModel.listStatements(selector);
-        ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
+        HashSet<ISCB_Resource> resources = new HashSet<ISCB_Resource>();
         while (iter.hasNext()) {
             Statement s = iter.nextStatement();
             Resource r = s.getSubject();
             ISCB_Resource er = getEResource(r.getLocalName());
             resources.add(er);
+        }
+        return resources;
+    }
+    public HashSet<ISCB_Resource> getAllEReousrcesWithLeafConcept(){
+        Resource resourceClass = ontModel.getResource(Constant.NS + "ISCB_Resource");
+        SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NSRDF + "type"), resourceClass);
+        StmtIterator iter = ontModel.listStatements(selector);
+        HashSet<ISCB_Resource> resources = new HashSet<ISCB_Resource>();
+        while (iter.hasNext()) {
+            Statement s = iter.nextStatement();
+            Resource r = s.getSubject();
+            ISCB_Resource er = getEResource(r.getLocalName());
+            HashSet <EConcept> cs = getLeafConcepts(er);
+            if(!cs.isEmpty()){
+                 resources.add(er);
+            }
         }
         return resources;
     }
@@ -1240,8 +1288,8 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
     }
 
     @Override
-    public ArrayList<EConcept> getEConcepts(ISCB_Resource resource) {
-        ArrayList<EConcept> concepts = new ArrayList<EConcept>();
+    public HashSet<EConcept> getEConcepts(ISCB_Resource resource) {
+        HashSet<EConcept> concepts = new HashSet<EConcept>();
         Individual res = ontModel.getIndividual(Constant.NS + resource.getRid());
         SimpleSelector selector = new SimpleSelector(res, ontModel.getProperty(Constant.NS + "is_resource_of_C"), (RDFNode) null);
         StmtIterator iter = ontModel.listStatements(selector);
@@ -1251,7 +1299,20 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         }
         return concepts;
     }
-
+    public HashSet<EConcept> getLeafConcepts(ISCB_Resource resource){
+        HashSet<EConcept> concepts = new HashSet<EConcept>();
+        Individual res = ontModel.getIndividual(Constant.NS + resource.getRid());
+        SimpleSelector selector = new SimpleSelector(res, ontModel.getProperty(Constant.NS + "is_resource_of_C"), (RDFNode) null);
+        StmtIterator iter = ontModel.listStatements(selector);
+        while (iter.hasNext()) {
+            Resource con = (Resource) iter.nextStatement().getObject();
+            EConcept c = getEConcept(con.getLocalName());
+            if(!c.getDifficulty().equals("diff")){
+                concepts.add(c);
+            }
+        }
+        return concepts;
+    }
     @Override
     public ArrayList<EConcept> getSonConcepts(EConcept econcept) {
         ArrayList<EConcept> concepts = new ArrayList<EConcept>();
@@ -1534,8 +1595,8 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         return lcons;
     }
 
-    public ArrayList<EConcept> getEConceptsByGoal(EGoal goal) {
-        ArrayList<EConcept> cons = new ArrayList<EConcept>();
+    public HashSet<EConcept> getEConceptsByGoal(EGoal goal) {
+        HashSet<EConcept> cons = new HashSet<EConcept>();
         Individual goalIndi = ontModel.getIndividual(Constant.NS + goal.getGid());
         StmtIterator iter = goalIndi.listProperties(ontModel.getObjectProperty(Constant.NS + "contain_concepts"));
         while (iter.hasNext()) {
