@@ -40,6 +40,9 @@ public class EGoal {
     public void setName(String name) {
         this.name = name;
     }
+    public String toString(){
+        return name;
+    }
     private String gid;
     private String name;
     private ArrayList<EConcept> cons;

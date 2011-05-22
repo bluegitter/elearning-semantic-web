@@ -5,6 +5,7 @@ import com.hp.hpl.jena.rdf.model.Resource;
 import exception.jena.IndividualExistException;
 import exception.jena.IndividualNotExistException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.EPerformance;
@@ -45,8 +46,7 @@ public interface ELearnerModelOperationInterface {
     /*******************************************************************************************
      * REMOVE OPERATION INTERFACE
      *******************************************************************************************/
-     boolean removeEConcept(String cid);
-
+    boolean removeEConcept(String cid);
 
     Individual getFileFormat(String postfix);
 
@@ -67,6 +67,10 @@ public interface ELearnerModelOperationInterface {
 
     ArrayList<EConcept> getAllEConcepts();
 
+    HashSet<EConcept> getAllLeafEConcepts();
+
+    HashSet<ISCB_Resource> getAllEResources();
+
     /***************************************************************************
      * return a list of concepts which are the son of the given concept
      * @param concept
@@ -80,7 +84,7 @@ public interface ELearnerModelOperationInterface {
 
     ArrayList<EConcept> getUnInterestConcepts(ELearner elearner);
 
-    ArrayList<EConcept> getEConcepts(ISCB_Resource resource);
+    HashSet<EConcept> getEConcepts(ISCB_Resource resource);
 
     /***************************************************************************
      * return a list of EPortfolios which are the portfolios of the given elearner
@@ -113,8 +117,6 @@ public interface ELearnerModelOperationInterface {
     ArrayList<ISCB_Resource> getEResourcesByMeidaType(String mediaType);
 
     ArrayList<ISCB_Resource> getEResourcesByFileFormat(String fileFormat);
-
-    ArrayList<ISCB_Resource> getAllEResources();
 
     EInterest getEInterest(ELearner elearner, EConcept concept);
 

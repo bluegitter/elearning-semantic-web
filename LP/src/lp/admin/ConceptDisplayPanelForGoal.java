@@ -7,33 +7,34 @@ package lp.admin;
 import java.util.HashSet;
 import javax.swing.JTable;
 import jena.impl.ELearnerModelImpl;
+import lp.LPApp;
 import ontology.EConcept;
 import ontology.EGoal;
 
 /**
  *
- * @author student
+ * @author William Ma <williamma.wm@gmail.com>
  */
-public class ConceptSelectPanelForGoal extends ConceptSelectPanel {
+public class ConceptDisplayPanelForGoal extends ConceptSelectPanel {
 
-    public ConceptSelectPanelForGoal() {
+    public ConceptDisplayPanelForGoal() {
         super();
-        jButton3.setText("为目标添加知识点");
+        jButton3.setText("为目标删除知识点");
     }
 
-    public ConceptSelectPanelForGoal(ELearnerModelImpl emi, HashSet<EConcept> cons) {
+    public ConceptDisplayPanelForGoal(ELearnerModelImpl emi, HashSet<EConcept> cons) {
         super(emi, cons);
-        jButton3.setText("为目标添加知识点");
+        jButton3.setText("为目标删除知识点");
     }
 
     @Override
     public void buttonAction() {
-        System.out.println("add concepts for goals");
+        System.out.println("remove concepts for goals");
         JTable table = getTable();
         int[] is = table.getSelectedRows();
         for (int i : is) {
             String cid = table.getModel().getValueAt(i, 0).toString();
-            emi.addPropertyContainsConcept(goal, emi.getEConcept(cid));
+            emi.removePropertyContainsConcept(goal, emi.getEConcept(cid));
         }
         this.adminPanel.updateEditGoalPanel();
     }
@@ -45,5 +46,5 @@ public class ConceptSelectPanelForGoal extends ConceptSelectPanel {
     public EGoal getGoal() {
         return goal;
     }
-    private EGoal goal;
+    public EGoal goal;
 }

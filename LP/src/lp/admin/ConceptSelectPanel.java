@@ -10,10 +10,11 @@
  */
 package lp.admin;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import jena.impl.ELearnerModelImpl;
+import lp.AdminOperatorPane;
 import ontology.EConcept;
 
 /**
@@ -25,11 +26,28 @@ public class ConceptSelectPanel extends javax.swing.JPanel {
     /** Creates new form ConceptSelectPanel */
     public ConceptSelectPanel() {
         initComponents();
-        ELearnerModelImpl emi = new ELearnerModelImpl();
-        cons = emi.getAllEConcepts();
+        emi = new ELearnerModelImpl();
+        cons = emi.getAllLeafEConcepts();
+        allCons = emi.getAllLeafEConcepts();
 //        cons = new ArrayList<EConcept> ();
+        jTextField1.setText("");
         updateData();
     }
+
+    public ConceptSelectPanel(ELearnerModelImpl emi, HashSet<EConcept> cons) {
+        initComponents();
+        this.emi = emi;
+        this.cons = cons;
+        allCons = new HashSet<EConcept>();
+        for (EConcept con : cons) {
+            allCons.add(con);
+        }
+//        cons = new ArrayList<EConcept> ();
+        jTextField1.setText("");
+        updateData();
+    }
+
+    public AdminOperatorPane adminPanel;
 
     public static void main(String[] args) {
         javax.swing.JFrame f = new javax.swing.JFrame();
@@ -39,7 +57,13 @@ public class ConceptSelectPanel extends javax.swing.JPanel {
         f.pack();
         f.setVisible(true);
     }
-    protected ArrayList<EConcept> cons;
+    protected HashSet<EConcept> cons;
+    protected HashSet<EConcept> allCons;
+
+    protected JTable getTable() {
+        return jTable1;
+    }
+    protected ELearnerModelImpl emi;
 
     protected void updateData() {
         DefaultTableModel tm = getTableModel();
@@ -50,7 +74,7 @@ public class ConceptSelectPanel extends javax.swing.JPanel {
             Object[] o = {con.getCid(), con.getName(), con.getDifficulty()};
             tm.addRow(o);
         }
-        jLabel2.setText("共"+cons.size()+"个知识点");
+        jLabel2.setText("共" + cons.size() + "个知识点");
     }
 
     protected void clearData() {
@@ -64,7 +88,7 @@ public class ConceptSelectPanel extends javax.swing.JPanel {
         return (DefaultTableModel) jTable1.getModel();
     }
 
-    public void deleteAction() {
+    public void buttonAction() {
     }
 
     /** This method is called from within the constructor to
@@ -80,18 +104,21 @@ public class ConceptSelectPanel extends javax.swing.JPanel {
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
-
-        setPreferredSize(new java.awt.Dimension(500, 400));
 
         jLabel1.setText("知识点查询：");
         jLabel1.setName("jLabel1"); // NOI18N
 
         jTextField1.setText("jTextField1");
         jTextField1.setName("jTextField1"); // NOI18N
+        jTextField1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                conceptSearchCheck(evt);
+            }
+        });
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
@@ -117,19 +144,19 @@ public class ConceptSelectPanel extends javax.swing.JPanel {
         jTable1.setName("jTable1"); // NOI18N
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setText("上一页");
-        jButton1.setName("jButton1"); // NOI18N
-
-        jButton2.setText("下一页");
-        jButton2.setName("jButton2"); // NOI18N
-
-        jButton3.setText("移除知识点");
+        jButton3.setText("控制按钮");
         jButton3.setName("jButton3"); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+
+        jLabel3.setText("知识点难易度:");
+        jLabel3.setName("jLabel3"); // NOI18N
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "全部", "初级", "中级", "高级", " " }));
+        jComboBox1.setName("jComboBox1"); // NOI18N
 
         jLabel2.setText("jLabel2");
         jLabel2.setName("jLabel2"); // NOI18N
@@ -138,24 +165,20 @@ public class ConceptSelectPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(41, 41, 41))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3)
-                        .addContainerGap(127, Short.MAX_VALUE))))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(jScrollPane1, 0, 0, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,31 +186,59 @@ public class ConceptSelectPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel3)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addGap(60, 60, 60))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        deleteAction();
+        buttonAction();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void conceptSearchCheck(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_conceptSearchCheck
+        // TODO add your handling code here:
+        cons.clear();
+        boolean b = false;
+
+        String diff = jComboBox1.getSelectedItem().toString().trim();
+        if (diff.equals("全部")) {
+            b = true;
+        }
+        if (jTextField1.getText().trim().equals("")) {
+            for (EConcept con : allCons) {
+                if (b || con.getDifficulty().equals(diff)) {
+                    cons.add(con);
+                }
+            }
+        } else {
+            for (EConcept con : allCons) {
+                if (con.getName().startsWith(jTextField1.getText().trim())) {
+                    if (b || con.getDifficulty().equals(diff)) {
+                        cons.add(con);
+                    }
+                }
+            }
+        }
+        updateData();
+    }//GEN-LAST:event_conceptSearchCheck
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    protected javax.swing.JButton jButton3;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    protected javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

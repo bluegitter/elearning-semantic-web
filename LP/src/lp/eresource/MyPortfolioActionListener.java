@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.HashSet;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -59,7 +60,7 @@ public class MyPortfolioActionListener implements MouseListener {
                 PopCenterDialog conDisplay = new PopCenterDialog();
                 EPortfolio f = portfolioPane.resourceList.get(row);
                 ISCB_Resource res = f.getEResource();
-                ArrayList<EConcept> con = LPApp.lpModel.getEConcepts(res);
+                HashSet<EConcept> con = LPApp.lpModel.getEConcepts(res);
                 StringBuilder sb = new StringBuilder();
                 for (EConcept c : con) {
                     sb.append(c.getName());
