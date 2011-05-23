@@ -6792,7 +6792,6 @@
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-1">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest"/>
         <value rdf:datatype="&xsd;float">1.0</value>
-        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -6802,7 +6801,6 @@
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-2">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest"/>
         <value rdf:datatype="&xsd;float">0.3</value>
-        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -6812,7 +6810,6 @@
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-3">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest"/>
         <value rdf:datatype="&xsd;float">0.6</value>
-        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -6822,7 +6819,6 @@
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-4">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest"/>
         <value rdf:datatype="&xsd;float">0.5</value>
-        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -6832,7 +6828,6 @@
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-5">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest"/>
         <value rdf:datatype="&xsd;float">0.8</value>
-        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -6842,7 +6837,6 @@
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-6">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest"/>
         <value rdf:datatype="&xsd;float">0.5</value>
-        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -6852,7 +6846,6 @@
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-7">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest"/>
         <value rdf:datatype="&xsd;float">0.5</value>
-        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -6889,7 +6882,6 @@
         <a6 rdf:datatype="&xsd;string">20</a6>
         <date_time rdf:datatype="&xsd;dateTime">2010-12-20T14:31:45</date_time>
         <a5 rdf:datatype="&xsd;string">50</a5>
-        <inverse_of_has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -6906,7 +6898,6 @@
         <date_time rdf:datatype="&xsd;dateTime">2010-12-19T14:34:47</date_time>
         <a5 rdf:datatype="&xsd;string">50</a5>
         <a2 rdf:datatype="&xsd;string">92</a2>
-        <inverse_of_has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -6923,7 +6914,6 @@
         <a6 rdf:datatype="&xsd;string">20</a6>
         <date_time rdf:datatype="&xsd;dateTime">2010-12-02T14:34:53</date_time>
         <a5 rdf:datatype="&xsd;string">50</a5>
-        <inverse_of_has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -6940,7 +6930,6 @@
         <a6 rdf:datatype="&xsd;string">20</a6>
         <date_time rdf:datatype="&xsd;dateTime">2010-12-06T14:34:57</date_time>
         <a5 rdf:datatype="&xsd;string">50</a5>
-        <inverse_of_has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -6957,7 +6946,6 @@
         <a6 rdf:datatype="&xsd;string">20</a6>
         <date_time rdf:datatype="&xsd;dateTime">2010-12-09T17:48:10</date_time>
         <a5 rdf:datatype="&xsd;string">50</a5>
-        <inverse_of_has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -6974,7 +6962,6 @@
         <a6 rdf:datatype="&xsd;string">20</a6>
         <date_time rdf:datatype="&xsd;dateTime">2010-12-17T17:48:16</date_time>
         <a5 rdf:datatype="&xsd;string">50</a5>
-        <inverse_of_has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -6991,7 +6978,6 @@
         <a6 rdf:datatype="&xsd;string">20</a6>
         <date_time rdf:datatype="&xsd;dateTime">2010-12-10T18:01:00</date_time>
         <a5 rdf:datatype="&xsd;string">50</a5>
-        <inverse_of_has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -7008,7 +6994,6 @@
         <a6 rdf:datatype="&xsd;string">20</a6>
         <date_time rdf:datatype="&xsd;dateTime">2010-12-12T18:01:31</date_time>
         <a5 rdf:datatype="&xsd;string">50</a5>
-        <inverse_of_has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -7070,7 +7055,6 @@
         <date_time rdf:datatype="&xsd;dateTime">2010-12-19T22:31:40</date_time>
         <rate rdf:datatype="&xsd;int">5
 </rate>
-        <inverse_of_has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
         <inverse_of_is_resource_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000622"/>
     </owl:NamedIndividual>
     
@@ -7084,7 +7068,6 @@
         <rate rdf:datatype="&xsd;int">0</rate>
         <value rdf:datatype="&xsd;float">0.5</value>
         <date_time rdf:datatype="&xsd;dateTime">2010-12-19T22:31:56</date_time>
-        <inverse_of_has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
         <inverse_of_is_resource_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#rid000012"/>
     </owl:NamedIndividual>
     
@@ -7095,7 +7078,6 @@
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Study_Style_1">
         <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Study_Style"/>
         <rdfs:comment rdf:datatype="&xsd;string">DOC</rdfs:comment>
-        <inverse_of_has_study_style rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -12648,44 +12630,6 @@
     
 
 
-    <!-- http://www.owl-ontologies.com/e-learning.owl#el001 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#el001">
-        <rdf:type rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
-        <grade rdf:datatype="&xsd;string">Grade Two</grade>
-        <address rdf:datatype="&xsd;string">addr_el001</address>
-        <id rdf:datatype="&xsd;string">el001</id>
-        <gender rdf:datatype="&xsd;string">male</gender>
-        <email rdf:datatype="&xsd;string">williamma.wm@gmail.com</email>
-        <name rdf:datatype="&xsd;string">李小刚</name>
-        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-1"/>
-        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-2"/>
-        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-3"/>
-        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-4"/>
-        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-5"/>
-        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-6"/>
-        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-7"/>
-        <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance_1_1"/>
-        <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance_1_2"/>
-        <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance_1_3"/>
-        <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance_1_4"/>
-        <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance_1_5"/>
-        <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance_1_6"/>
-        <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance_1_7"/>
-        <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance_1_8"/>
-        <has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-1"/>
-        <has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-2"/>
-        <has_study_style rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Study_Style_1"/>
-        <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001PRF.psy_p"/>
-        <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001cid10_p"/>
-        <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001cid51_p"/>
-        <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001cid52_p"/>
-        <has_goal rdf:resource="http://www.owl-ontologies.com/e-learning.owl#goal_0000"/>
-        <has_goal rdf:resource="http://www.owl-ontologies.com/e-learning.owl#goal_0001"/>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://www.owl-ontologies.com/e-learning.owl#el001PRF.psy_p -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#el001PRF.psy_p">
@@ -12699,7 +12643,6 @@
         <date_time rdf:datatype="&xsd;dateTime">2011-01-20T10:01:28</date_time>
         <a5 rdf:datatype="&xsd;string">50</a5>
         <inverse_of_is_concept_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#PRF.psy"/>
-        <inverse_of_has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -12716,7 +12659,6 @@
         <a6 rdf:datatype="&xsd;string">20</a6>
         <date_time rdf:datatype="&xsd;dateTime">2011-01-20T01:03:46</date_time>
         <a5 rdf:datatype="&xsd;string">50</a5>
-        <inverse_of_has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -12733,7 +12675,6 @@
         <a6 rdf:datatype="&xsd;string">20</a6>
         <date_time rdf:datatype="&xsd;dateTime">2011-01-20T01:03:21</date_time>
         <a5 rdf:datatype="&xsd;string">50</a5>
-        <inverse_of_has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 
@@ -12750,7 +12691,6 @@
         <a6 rdf:datatype="&xsd;string">20</a6>
         <date_time rdf:datatype="&xsd;dateTime">2011-01-20T01:03:18</date_time>
         <a5 rdf:datatype="&xsd;string">50</a5>
-        <inverse_of_has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
     </owl:NamedIndividual>
     
 

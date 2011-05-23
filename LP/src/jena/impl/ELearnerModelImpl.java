@@ -62,6 +62,15 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         this.ontModel = OwlFactory.getOntModel(file, lang);
     }
 
+    //向模型中添加模型（合并模型）
+    public void addModel(File file) {
+        java.io.InputStream in1 = com.hp.hpl.jena.util.FileManager.get().open(file.getPath());
+        if (in1 == null) {
+            throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
+        }
+        ontModel.read(in1, Constant.NS);
+    }
+
     public void writeToFile(File file) {
         try {
             OwlOperation.writeRdfFile(ontModel, file, null);
@@ -987,7 +996,8 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         }
         return resources;
     }
-    public HashSet<ISCB_Resource> getAllEReousrcesWithLeafConcept(){
+
+    public HashSet<ISCB_Resource> getAllEReousrcesWithLeafConcept() {
         Resource resourceClass = ontModel.getResource(Constant.NS + "ISCB_Resource");
         SimpleSelector selector = new SimpleSelector(null, ontModel.getProperty(Constant.NSRDF + "type"), resourceClass);
         StmtIterator iter = ontModel.listStatements(selector);
@@ -996,9 +1006,9 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
             Statement s = iter.nextStatement();
             Resource r = s.getSubject();
             ISCB_Resource er = getEResource(r.getLocalName());
-            HashSet <EConcept> cs = getLeafConcepts(er);
-            if(!cs.isEmpty()){
-                 resources.add(er);
+            HashSet<EConcept> cs = getLeafConcepts(er);
+            if (!cs.isEmpty()) {
+                resources.add(er);
             }
         }
         return resources;
@@ -1299,7 +1309,8 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         }
         return concepts;
     }
-    public HashSet<EConcept> getLeafConcepts(ISCB_Resource resource){
+
+    public HashSet<EConcept> getLeafConcepts(ISCB_Resource resource) {
         HashSet<EConcept> concepts = new HashSet<EConcept>();
         Individual res = ontModel.getIndividual(Constant.NS + resource.getRid());
         SimpleSelector selector = new SimpleSelector(res, ontModel.getProperty(Constant.NS + "is_resource_of_C"), (RDFNode) null);
@@ -1307,12 +1318,13 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         while (iter.hasNext()) {
             Resource con = (Resource) iter.nextStatement().getObject();
             EConcept c = getEConcept(con.getLocalName());
-            if(!c.getDifficulty().equals("diff")){
+            if (!c.getDifficulty().equals("diff")) {
                 concepts.add(c);
             }
         }
         return concepts;
     }
+
     @Override
     public ArrayList<EConcept> getSonConcepts(EConcept econcept) {
         ArrayList<EConcept> concepts = new ArrayList<EConcept>();
@@ -1642,16 +1654,22 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
     }
 
     public static void main(String[] args) throws IndividualNotExistException, IndividualExistException {
-        ELearnerModelImpl emi = new ELearnerModelImpl(new File(Constant.OWLFile));
-        // HashSet<EConcept> cons = emi.getPreEConcept("A_cid_1_e_3");
-        //System.out.println("size:" + cons.size());
-        EGoal goal = new EGoal();
-        goal.setGid("test");
-        goal.setName("testName");
-        emi.addEGoal(goal);
+        //files/owl/elearning_owl.owl
+        File f1 = new File("files/owl/elearning_owl_1.owl");
+        File el001f = new File("files/owl/el001.owl");
+        File el005f = new File("files/owl/el005.owl");
+        ELearnerModelImpl emi = new ELearnerModelImpl(f1);
+        OntModel model = emi.getOntModel();
 
-        File f = new File(Constant.OWLFile);
-        emi.writeToFile(f);
+        java.io.InputStream in1 = com.hp.hpl.jena.util.FileManager.get().open(el001f.getPath());
+        java.io.InputStream in5 = com.hp.hpl.jena.util.FileManager.get().open(el005f.getPath());
+        if (in1 == null) {
+            throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
+        }
+        model.read(in1, Constant.NS);
+        model.read(in5, Constant.NS);
+        File writeF = new File("files/owl/write.owl");
+        emi.writeToFile(writeF);
 //        EGoal goal = emi.getGoalById("goal_0004");
 //        System.out.println(goal.getGid());
 //        System.out.println(goal.getName());
