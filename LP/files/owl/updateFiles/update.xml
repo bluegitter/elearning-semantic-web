@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : update.xml
+    Created on : 2011年5月23日, 下午5:20
+    Author     : student
+    Description:
+        Purpose of the document follows.
+-->
+
+<OwlUpdate>
+    <UpdateType>用户更新，模型更新</UpdateType>
+    <ModelVersion></ModelVersion>
+    <ModelOP>
+
+    </ModelOP>
+    <UserOP
+</OwlUpdate>
