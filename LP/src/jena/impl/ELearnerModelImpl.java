@@ -63,12 +63,13 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
     }
 
     //向模型中添加模型（合并模型）
-    public void addModel(File file) {
-        java.io.InputStream in1 = com.hp.hpl.jena.util.FileManager.get().open(file.getPath());
-        if (in1 == null) {
-            throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
+    public boolean addUpdateModel(File file) {
+        if (file == null) {
+            System.out.println("File: " + file + " not found");
+            return false;
         }
-        ontModel.read(in1, Constant.NS);
+
+        return true;
     }
 
     public void writeToFile(File file) {

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : bak.xml
+    Created on : 2011年5月26日, 下午3:30
+    Author     : Administrator
+    Description:
+        Purpose of the document follows.
+-->
+
+<OwlUpdate>
+    <UpdateType>用户更新，模型更新</UpdateType>
+    <ModelVersion>1.0</ModelVersion>
+    <Updates>
+        <Operation>
+            <OPType>AddELearner</OPType>
+            <Id>AELEARNER</Id>
+            <Name>AELEARNER Name</Name>
+            <Gender>Male</Gender>
+            <EMail>AELEARNER MAIl</EMail>
+        </Operation>
+        <Operation>
+            <OPType>AddEConcept</OPType>
+            <Id>ACIDNEW</Id>
+            <Name>ACIDNEW</Name>
+        </Operation>
+        <Operation>
+            <OPType>AddEResource</OPType>
+            <Id>A_rid_NEW</Id>
+            <Name> A Name</Name>
+        </Operation>
+        <Operation>
+            <OPType>AddEGoal</OPType>
+            <Id>goaltestID</Id>
+            <Name>goaltestName</Name>
+        </Operation>
+        <Operation><OPType>AddInterest</OPType>
+        <EL>el001</EL>
+        <CID>ACIDNEW</CID>
+        </Operation>
+        <Operation>
+            <OPType>RemoveEConcept</OPType>
+        </Operation>
+        <Statement>
+            <Subject>el001</Subject>
+            <Property></Property>
+            <Object></Object>
+        </Statement>
+    </Updates>
+</OwlUpdate>
