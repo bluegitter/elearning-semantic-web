@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
+    Document   : update.xml
+    Created on : 2011年5月23日, 下午5:20
+    Author     : student
+    Description:
+        Purpose of the document follows.
+-->
+<OwlUpdate>
+    <UpdateType>用户更新，模型更新</UpdateType>
+    <ModelVersion>1.0</ModelVersion>
+    <Updates>
+        <Operation>
+            <OPType>AddELearner</OPType>
+            <ELearner>
+                <Id>AELEARNER</Id>
+                <Name>AELEARNER Name</Name>
+                <Gender>Male</Gender>
+                <Grade>Grade Two</Grade>
+                <EMail>AELEARNER MAIl</EMail>
+                <Address>ADDELearner Address</Address>
+            </ELearner>
+        </Operation>
+        <Operation>
+            <OPType>AddELearner</OPType>
+            <ELearner>
+                <Id>AELEARNER22</Id>
+                <Name>AELEARNER Name22</Name>
+                <Gender>Male</Gender>
+                <Grade>Grade Two</Grade>
+                <EMail>AELEARNER MAIl</EMail>
+                <Address>ADDELearner Address</Address>
+            </ELearner>
+        </Operation>
+        <Operation>
+            <OPType>AddEConcept</OPType>
+            <EConcept>
+                <Id>newCONCEPT</Id>
+                <Name>newCONCEPT Name22</Name>
+                <Difficulty>中级</Difficulty>
+            </EConcept>
+        </Operation>
+    </Updates>
+</OwlUpdate>
