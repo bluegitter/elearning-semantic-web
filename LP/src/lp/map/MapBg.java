@@ -38,7 +38,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
     private boolean mapDragged = false, dialogShow = false;
     private int mapShow = 0;
     private final Object showLock = new Object();
-    private MapDialog dialog;
+    private MMDialog dialog;
     private ArrayList<EGoal> goals;
 
     public MapBg(javax.swing.JPanel p) {
@@ -67,7 +67,8 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
             lhm.put(goal.getName(), goal);
         }
 
-        showMapDialog(new MapDialog(this, "请选择您的学习目标", lhm, "确　定"));
+        //showMapDialog(new MapDialog(this, "请选择您的学习目标", lhm, "确　定"));
+        showMapDialog(new MapInfoDialog(this, "请选择您的学习目标", "你已经选了那个烂的目标", "要不要换一换？？？", "确　定"));
     }
 
     private void initCastle() {
@@ -161,7 +162,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         }
     }
 
-    public void showMapDialog(MapDialog d) {
+    public void showMapDialog(MMDialog d) {
         dialog = d;
         dialogShow = true;
         repaint();
@@ -351,9 +352,9 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
         if (mapShow <= 0 && dialogShow) {
             if (dialog.bound.contains(x, y)) {
-                dialog.mouseOn(x - dialog.bound.x, y - dialog.bound.y);
-
-                repaint();
+                if (dialog.mouseOn(x - dialog.bound.x, y - dialog.bound.y)) {
+                    repaint();
+                }
             }
         }
     }
