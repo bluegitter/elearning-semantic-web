@@ -20,9 +20,8 @@ import lp.LPApp;
  *
  * @author shuaiguo
  */
-public class MapDialog {
-
-    public Rectangle bound;
+public class MapDialog extends MMDialog {
+    
     private HashMap<Rectangle, Object> actions = new HashMap<Rectangle, Object>();
     private LinkedHashMap<String, Object> options;
     private Object selected;
@@ -33,7 +32,8 @@ public class MapDialog {
     private Stroke rstroke = new BasicStroke(2.0f);
 
     public MapDialog(MapBg parent, String title, LinkedHashMap<String, Object> options, String action) {
-        bound = new Rectangle();
+        super();
+        
         this.options = options;
         this.title = title;
         this.parent = parent;
@@ -65,6 +65,7 @@ public class MapDialog {
         actions.put(new Rectangle((bound.width - abLength) / 2 - 10, cy, abLength + 20, 10 + optionHeight), "ok");
     }
 
+    @Override
     public void paint(Graphics2D g, int vw, int vh) {
         int cy = bound.y;
         bound.setLocation((vw - bound.width) / 2, (vh - bound.height) / 2);
@@ -118,20 +119,32 @@ public class MapDialog {
         }
     }
 
-    public void mouseOn(int x, int y) {
+    @Override
+    public boolean mouseOn(int x, int y) {
+        boolean rtv;
         for(Rectangle rect : actions.keySet()) {
             if(rect.contains(x, y)) {
-                if(ron != null && ron.equals(rselected))
+                if(ron != null && ron.equals(rselected)) {
                     ron = null;
-                else
+                    return true;
+                }
+                else {
+                    rtv = !rect.equals(ron);
                     ron = rect;
+                    
+                    return rtv;
+                }
                 
-                return;
             }
         }
+        
+        rtv = ron != null;
         ron = null;
+        
+        return rtv;
     }
 
+    @Override
     public boolean mouseClick(int x, int y) {
         for(Rectangle rect : actions.keySet()) {
             if(rect.contains(x, y)) {
