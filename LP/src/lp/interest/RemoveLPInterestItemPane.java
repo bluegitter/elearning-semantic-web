@@ -10,10 +10,7 @@
  */
 package lp.interest;
 
-import exception.jena.IndividualNotExistException;
 import java.awt.Color;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import lp.LPApp;
 import util.ColorConstant;
 import util.LogConstant;
@@ -86,6 +83,7 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
 
         setName("Form"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(415, 35));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 removeItemEntered(evt);
@@ -117,20 +115,28 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
         jLabel2.setIcon(resourceMap.getIcon("jLabel2.icon")); // NOI18N
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel2MouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -139,32 +145,63 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
         System.out.println("delete interest " + interest);
         jLabel2.setBackground(Color.RED);
         parent.removeInterest(this);
-        LPApp.lpLogs.writeLog(109, interest.getEConcept().getCid()+" "+interest.getEConcept().getName(),"移除",  LogConstant.STATUS109);
+        LPApp.lpLogs.writeLog(109, interest.getEConcept().getCid() + " " + interest.getEConcept().getName(), "移除", LogConstant.STATUS109);
     }//GEN-LAST:event_removeInterestClicked
 
     private void removeItemPaneMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeItemPaneMouseExited
-        jLabel1.setIcon(null);
-        this.setBackground(backgroundColor);
-        jLabel1.setBackground(backgroundColor);
-        jLabel2.setBackground(backgroundColor);
-        this.updateUI();
+        hideWhiteShade();
     }//GEN-LAST:event_removeItemPaneMouseExited
 
     private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
-        removeItemEntered(evt);
+        b1 = true;
+        displayWhiteShade();
     }//GEN-LAST:event_jLabel1MouseEntered
 
     private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
-        removeItemPaneMouseExited(evt);
+        b1 = false;
+        if (b1 || b2) {
+            displayWhiteShade();
+        } else {
+            hideWhiteShade();
+        }
     }//GEN-LAST:event_jLabel1MouseExited
 
     private void removeItemEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeItemEntered
+        displayWhiteShade();
+    }//GEN-LAST:event_removeItemEntered
+
+    private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
+        // TODO add your handling code here:
+        b2 = true;
+        displayWhiteShade();
+    }//GEN-LAST:event_jLabel2MouseEntered
+
+    private void jLabel2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseExited
+        // TODO add your handling code here:
+        b2 = false;
+        if (b1 || b2) {
+            displayWhiteShade();
+        } else {
+            hideWhiteShade();
+        }
+    }//GEN-LAST:event_jLabel2MouseExited
+    private void displayWhiteShade() {
         jLabel1.setIcon(icon);
         this.setBackground(mouseEnteredColor);
         jLabel2.setBackground(mouseEnteredColor);
         jLabel1.setBackground(mouseEnteredColor);
         this.updateUI();
-    }//GEN-LAST:event_removeItemEntered
+    }
+
+    private void hideWhiteShade() {
+        jLabel1.setIcon(null);
+        this.setBackground(backgroundColor);
+        jLabel1.setBackground(backgroundColor);
+        jLabel2.setBackground(backgroundColor);
+        this.updateUI();
+    }
+    private boolean b1 = false;
+    private boolean b2 = false;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JLabel jLabel1;
     protected javax.swing.JLabel jLabel2;

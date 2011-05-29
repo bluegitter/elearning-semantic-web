@@ -144,11 +144,9 @@ public class LoginPanel extends javax.swing.JPanel {
                         LPApp.lpLogs.writeLog(101, LPApp.getApplication().user.username, "登入", LogConstant.STATUS101);
                     } else {
                         ELearner el = LPApp.getApplication().user.learner;
-                        try {
-                            LPApp.lpModel.addELearner(el);
-                        } catch (IndividualExistException ex) {
-                            Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+
+                        LPApp.lpModel.addELearner(el);
+
                         //pop the navigator dialogs
                         NavigatorDialog d = new NavigatorDialog(LPApp.getApplication().getMainFrame());
                         d.setTitle("向导");

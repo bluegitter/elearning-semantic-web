@@ -122,8 +122,8 @@ public class ConceptPane extends javax.swing.JPanel {
         if (ep == null) {
             ep = new EPerformance();
             ep.setValue(-1);
-            ep.setConcept(cdec);
-            ep.setElearner(LPApp.getApplication().user.learner);
+            ep.setEConcept(cdec);
+            ep.setELearner(LPApp.getApplication().user.learner);
             ep.setId(LPApp.getApplication().user.learner.getId() + cdec.getCid() + "_p");
             ep.setDatetime(new Date(System.currentTimeMillis()));
             try {

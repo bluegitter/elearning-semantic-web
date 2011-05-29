@@ -33,8 +33,9 @@ public class UserInterestPane extends javax.swing.JPanel {
 
     private ArrayList<EInterest> interests;
     private ArrayList<EConcept> concepts;
-    private ELearner elearner ;
-private int randomInt;
+    private ELearner elearner;
+    private int randomInt;
+
     public static void main(String[] args) {
 //        ELearnerModelImpl emi = new ELearnerModelImpl();
 //        ELearner el = emi.getELearner("el001");
@@ -45,12 +46,12 @@ private int randomInt;
 //        f.add(uip);
 //        f.pack();
 //        f.setVisible(true);
-      Random ran = new Random();
-      for(int i =0;i<10;i++){
-           int ranInt = ran.nextInt(4);
-           System.out.println("ran\t"+ranInt);
-      }
-       
+        Random ran = new Random();
+        for (int i = 0; i < 10; i++) {
+            int ranInt = ran.nextInt(4);
+            System.out.println("ran\t" + ranInt);
+        }
+
 
     }
 
@@ -133,17 +134,17 @@ private int randomInt;
         jButton1 = new javax.swing.JButton();
         addInterestText = new javax.swing.JTextField();
 
-        setPreferredSize(new java.awt.Dimension(430, 625));
+        setPreferredSize(new java.awt.Dimension(430, 527));
 
         interestPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "有兴趣的知识点", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("宋体", 1, 14))); // NOI18N
         interestPane.setName("interestPane"); // NOI18N
-        interestPane.setPreferredSize(new java.awt.Dimension(336, 248));
+        interestPane.setPreferredSize(new java.awt.Dimension(430, 248));
 
         javax.swing.GroupLayout interestPaneLayout = new javax.swing.GroupLayout(interestPane);
         interestPane.setLayout(interestPaneLayout);
         interestPaneLayout.setHorizontalGroup(
             interestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 324, Short.MAX_VALUE)
+            .addGap(0, 418, Short.MAX_VALUE)
         );
         interestPaneLayout.setVerticalGroup(
             interestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,16 +153,17 @@ private int randomInt;
 
         unInterestPane.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "您可能感兴趣的知识点", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("宋体", 1, 14))); // NOI18N
         unInterestPane.setName("unInterestPane"); // NOI18N
+        unInterestPane.setPreferredSize(new java.awt.Dimension(416, 248));
 
         javax.swing.GroupLayout unInterestPaneLayout = new javax.swing.GroupLayout(unInterestPane);
         unInterestPane.setLayout(unInterestPaneLayout);
         unInterestPaneLayout.setHorizontalGroup(
             unInterestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 324, Short.MAX_VALUE)
+            .addGap(0, 418, Short.MAX_VALUE)
         );
         unInterestPaneLayout.setVerticalGroup(
             unInterestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 282, Short.MAX_VALUE)
+            .addGap(0, 221, Short.MAX_VALUE)
         );
 
         jButton3.setText("添加兴趣");
@@ -192,18 +194,17 @@ private int randomInt;
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(unInterestPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(interestPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(2, 2, 2)
                 .addComponent(addInterestText, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(jButton3)
-                .addContainerGap())
+                .addGap(64, 64, 64))
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(unInterestPane, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
+            .addComponent(interestPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,9 +217,8 @@ private int randomInt;
                     .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(unInterestPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addGap(14, 14, 14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -253,24 +253,22 @@ private int randomInt;
                     in.setEConcept(con);
                     in.setELearner(LPApp.getApplication().user.learner);
                     in.setValue(0.5f);
-                    try {
-                        LPApp.lpModel.addEInterest(in);
-                        interestPane.add(new RemoveLPInterestItemPane(this, in));
-                        interests.add(in);
-                        interestPane.updateUI();
-                        if (concepts.contains(con)) {
-                            concepts.remove(con);
-                            Component cs[] = unInterestPane.getComponents();
-                            for (Component c : cs) {
-                                AddLPInterestItemPane a = (AddLPInterestItemPane) c;
-                                if (a.concept.getCid().equals(conceptId)) {
-                                    unInterestPane.remove(a);
-                                }
+                    
+                    LPApp.lpModel.addEInterest(in);
+                    interestPane.add(new RemoveLPInterestItemPane(this, in));
+                    interests.add(in);
+                    interestPane.updateUI();
+                    if (concepts.contains(con)) {
+                        concepts.remove(con);
+                        Component cs[] = unInterestPane.getComponents();
+                        for (Component c : cs) {
+                            AddLPInterestItemPane a = (AddLPInterestItemPane) c;
+                            if (a.concept.getCid().equals(conceptId)) {
+                                unInterestPane.remove(a);
                             }
                         }
-                    } catch (IndividualExistException ex) {
-                        Logger.getLogger(UserInterestPane.class.getName()).log(Level.SEVERE, null, ex);
                     }
+
                 }
             }
         }
@@ -282,12 +280,12 @@ private int randomInt;
         ELearner el = LPApp.getApplication().user.learner;
         OntModel model = LPApp.lpModel.getOntModel();
         Random ran = new Random();
-         int ranInt = 0;
-         while(randomInt == ranInt){
-            ranInt =  ran.nextInt(3);
+        int ranInt = 0;
+        while (randomInt == ranInt) {
+            ranInt = ran.nextInt(3);
         }
         randomInt = ranInt;
-       
+
         switch (ranInt) {
             case 0:
                 unInterestsConcept = jena.ELearnerReasoner.getRecommendEConcepts_1(model, el);

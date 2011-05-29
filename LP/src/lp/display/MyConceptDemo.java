@@ -5,14 +5,8 @@
 package lp.display;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.SwingConstants;
 import lp.LPApp;
 import db.WebOperation;
 import ontology.EPerformance;
@@ -21,12 +15,6 @@ import ontology.resources.ISCB_Resource;
 import prefuse.Visualization;
 import prefuse.controls.ControlAdapter;
 import prefuse.data.Node;
-import prefuse.data.Table;
-import prefuse.data.query.SearchQueryBinding;
-import prefuse.data.search.SearchTupleSet;
-import prefuse.util.FontLib;
-import prefuse.util.ui.JFastLabel;
-import prefuse.util.ui.JSearchPanel;
 import prefuse.visual.VisualItem;
 import util.Constant;
 import util.LogConstant;
@@ -83,7 +71,7 @@ public class MyConceptDemo extends javax.swing.JPanel {
                 if (ec.isPerformance()) {
                     EPerformance ep = (EPerformance) ec.object;
                     LPApp.lpLogs.writeLog(104, "浏览知识点：" + ep.getId(), "已学过", LogConstant.STATUS104);
-                    ArrayList<ISCB_Resource> ra = LPApp.lpModel.getEResourcesByEConcept(ep.getConcept());
+                    ArrayList<ISCB_Resource> ra = LPApp.lpModel.getEResourcesByEConcept(ep.getEConcept());
                     Node n = MyConceptDisplay.t.getNode(item.getRow());
                     for (int i = 0; i < last_count; i++) {
                         MyConceptDisplay.t.removeNode(last[i]);
