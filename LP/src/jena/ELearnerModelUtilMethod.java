@@ -17,7 +17,7 @@ public class ELearnerModelUtilMethod {
 
     public static boolean isInPerformance(ArrayList<EPerformance> performs, EConcept con) {
         for (EPerformance perform : performs) {
-            if (perform.getConcept().equals(con)) {
+            if (perform.getEConcept().equals(con)) {
                 return true;
             }
         }

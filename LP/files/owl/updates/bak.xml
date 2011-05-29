@@ -14,37 +14,85 @@
     <Updates>
         <Operation>
             <OPType>AddELearner</OPType>
-            <Id>AELEARNER</Id>
-            <Name>AELEARNER Name</Name>
-            <Gender>Male</Gender>
-            <EMail>AELEARNER MAIl</EMail>
+            <E_Learner>
+                <Id>AELEARNER22</Id>
+                <Name>AELEARNER Name22</Name>
+                <Gender>Male</Gender>
+                <Grade>Grade Two</Grade>
+                <EMail>AELEARNER MAIl</EMail>
+                <Address>ADDELearner Address</Address>
+            </E_Learner>
         </Operation>
         <Operation>
             <OPType>AddEConcept</OPType>
-            <Id>ACIDNEW</Id>
-            <Name>ACIDNEW</Name>
+            <E_Concept>
+                <Id>newCONCEPT</Id>
+                <Name>newCONCEPT Name22</Name>
+                <Difficulty>中级</Difficulty>
+            </E_Concept>
         </Operation>
         <Operation>
             <OPType>AddEResource</OPType>
-            <Id>A_rid_NEW</Id>
-            <Name> A Name</Name>
+            <ISCB_Resource>
+                <Id>A_rid_NEW</Id>
+                <Name> A Name</Name>
+                <Difficulty>easy</Difficulty>
+                <AppType></AppType>
+                <MediaType></MediaType>
+                <Description></Description>
+                <FileLocation></FileLocation>
+            </ISCB_Resource>
         </Operation>
         <Operation>
             <OPType>AddEGoal</OPType>
-            <Id>goaltestID</Id>
-            <Name>goaltestName</Name>
-        </Operation>
-        <Operation><OPType>AddInterest</OPType>
-        <EL>el001</EL>
-        <CID>ACIDNEW</CID>
+            <E_Goal>
+                <Id>goaltestID</Id>
+                <Name>goaltestName</Name>
+            </E_Goal>
         </Operation>
         <Operation>
-            <OPType>RemoveEConcept</OPType>
+            <OPType>AddInterest</OPType>
+            <E_Interest>
+                <Id>inId</Id>
+                <ELearnerId>el001</ELearnerId>
+                <EConceptId>ACIDNEW</EConceptId>
+                <Value>29</Value>
+            </E_Interest>
         </Operation>
-        <Statement>
+        <Operation>
+            <OPType>AddEPerformance</OPType>
+
+        </Operation>
+        <Operation>
+            <OPType>RemoveIndividual</OPType>
+            <Id>goalId</Id>
+        </Operation>
+       
+        <Operation>
+            <OPType>AddObjectProperty</OPType>
             <Subject>el001</Subject>
             <Property></Property>
             <Object></Object>
-        </Statement>
+        </Operation>
+        <Operation>
+            <OPType>RemoveObjectProperty</OPType>
+            <Subject>el001</Subject>
+            <Property></Property>
+            <Object></Object>
+        </Operation>
+        <Operation>
+            <OPType>AddDataProperty</OPType>
+            <Subject>el001</Subject>
+            <Property></Property>
+            <Data></Data>
+            <DataType></DataType>
+        </Operation>
+         <Operation>
+            <OPType>RemoveDataProperty</OPType>
+            <Subject>el001</Subject>
+            <Property></Property>
+            <Data></Data>
+            <DataType></DataType>
+        </Operation>
     </Updates>
 </OwlUpdate>

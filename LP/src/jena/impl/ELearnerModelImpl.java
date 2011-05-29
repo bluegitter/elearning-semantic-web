@@ -139,9 +139,11 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
      * @throws IndividualNotExistException
      *******************************************************************************************************/
     @Override
-    public boolean addELearner(ELearner elearner) throws IndividualExistException {
+    public boolean addELearner(ELearner elearner) {
         if (containELearner(elearner.getId())) {
-            throw new IndividualExistException("elearner " + elearner.getId() + " has already existed in the model");
+            System.out.println("elearner " + elearner.getId() + " has already existed in the model");
+            return false;
+            //          throw new IndividualExistException("elearner " + elearner.getId() + " has already existed in the model");
         }
         Resource el = ontModel.createResource(Constant.NS + elearner.getId(), ontModel.getResource(Constant.NS + "E_Learner"));
         ontModel.add(el, ontModel.getProperty(Constant.NS + "id"), elearner.getId());
@@ -154,9 +156,11 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
     }
 
     @Override
-    public boolean addEResource(ISCB_Resource resource) throws IndividualExistException {
+    public boolean addEResource(ISCB_Resource resource) {
         if (containEResource(resource.getRid())) {
-            throw new IndividualExistException("EResource " + resource.getRid() + " has already existed in the model");
+            System.out.println("EResource " + resource.getRid() + " has already existed in the model");
+            return false;
+//            throw new IndividualExistException("EResource " + resource.getRid() + " has already existed in the model");
         }
         Resource re = ontModel.createResource(Constant.NS + resource.getRid(), ontModel.getResource(Constant.NS + "ISCB_Resource"));
         ontModel.add(re, ontModel.getProperty(Constant.NS + "id"), resource.getRid());
@@ -182,7 +186,7 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         if (containEPortfolio(portfolio.getId())) {
             throw new IndividualExistException("EPortfolio " + portfolio.getId() + " has already existed in the model");
         }
-        Individual el = ontModel.getIndividual(Constant.NS + portfolio.getElearner().getId());
+        Individual el = ontModel.getIndividual(Constant.NS + portfolio.getELearner().getId());
         Individual res = ontModel.getIndividual(Constant.NS + portfolio.getEResource().getRid());
         Individual port = ontModel.createIndividual(Constant.NS + portfolio.getId(), ontModel.getResource(Constant.NS + "E_Portfolio"));
         ontModel.add(el, ontModel.getProperty(Constant.NS + "has_portfolio"), port);
@@ -196,9 +200,11 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
     }
 
     @Override
-    public boolean addEConcept(EConcept concept) throws IndividualExistException {
+    public boolean addEConcept(EConcept concept) {
         if (containEConcept(concept.getCid())) {
-            throw new IndividualExistException("EConcept " + concept.getCid() + "  has already existed in the model");
+            System.out.println("EConcept " + concept.getCid() + "  has already existed in the model");
+            return false;
+//            throw new IndividualExistException("EConcept " + concept.getCid() + "  has already existed in the model");
         }
         Individual con = ontModel.createIndividual(Constant.NS + concept.getCid(), ontModel.getResource(Constant.NS + "E_Concept"));
         ontModel.add(con, ontModel.getProperty(Constant.NS + "id"), concept.getCid());
@@ -209,9 +215,11 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
     }
 
     @Override
-    public boolean addEInterest(EInterest interest) throws IndividualExistException {
+    public boolean addEInterest(EInterest interest) {
         if (containEInterest(interest.getId())) {
-            throw new IndividualExistException("EInterest " + interest.getId() + " already exist in the model");
+            System.out.println("EInterest " + interest.getId() + " already exist in the model");
+            return false;
+//            throw new IndividualExistException("EInterest " + interest.getId() + " already exist in the model");
         }
         ELearner el = interest.getELearner();
         EConcept con = interest.getEConcept();
@@ -227,8 +235,8 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         if (containEPerformance(performance.getId())) {
             throw new IndividualExistException("EPerformance " + performance.getId() + " has already existed in the model");
         }
-        Individual el = ontModel.getIndividual(Constant.NS + performance.getElearner().getId());
-        Individual con = ontModel.getIndividual(Constant.NS + performance.getConcept().getCid());
+        Individual el = ontModel.getIndividual(Constant.NS + performance.getELearner().getId());
+        Individual con = ontModel.getIndividual(Constant.NS + performance.getEConcept().getCid());
         Individual perf = ontModel.createIndividual(Constant.NS + performance.getId(), ontModel.getOntClass(Constant.NS + "E_Performance"));
         perf.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_has_performance"), el);
         perf.addProperty(ontModel.getProperty(Constant.NS + "inverse_of_is_concept_of_P"), con);
@@ -241,12 +249,15 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         return true;
     }
 
-    public void addEGoal(EGoal goal) throws IndividualExistException {
+    public boolean addEGoal(EGoal goal) {
         if (containEGoal(goal.getGid())) {
-            throw new IndividualExistException("the goal has already existed");
+            System.out.println("the goal has already existed");
+            return false;
+            //  throw new IndividualExistException("the goal has already existed");
         }
         Individual goalIndi = ontModel.createIndividual(Constant.NS + goal.getGid(), ontModel.getOntClass(Constant.NS + "E_Goal"));
         ontModel.add(goalIndi, ontModel.getProperty(Constant.NS + "name"), goal.getName());
+        return true;
     }
 
     @Override
@@ -664,7 +675,7 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         HashSet<EConcept> cons = new HashSet<EConcept>();
         ArrayList<EPerformance> ps = getEPerformances(el);
         for (EPerformance p : ps) {
-            cons.add(p.getConcept());
+            cons.add(p.getEConcept());
         }
         return cons;
     }
@@ -1029,8 +1040,8 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
                 StmtIterator iter_con = ontModel.listStatements(selector_con);
                 while (iter_con.hasNext()) {
                     EPerformance performance = getEPerformance(r.getLocalName());
-                    performance.setElearner(elearner);
-                    performance.setConcept(concept);
+                    performance.setELearner(elearner);
+                    performance.setEConcept(concept);
                     return performance;
                 }
             }
@@ -1052,8 +1063,8 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
                 Resource conResource = iter_con.nextStatement().getSubject();
                 EConcept concept = getEConcept(conResource.getLocalName());
                 EPerformance performance = getEPerformance(r.getLocalName());
-                performance.setElearner(elearner);
-                performance.setConcept(concept);
+                performance.setELearner(elearner);
+                performance.setEConcept(concept);
                 performances.add(performance);
             }
         }
@@ -1072,7 +1083,7 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
             while (iter_el.hasNext()) {
                 Resource port = (Resource) iter_el.nextStatement().getObject();
                 EPortfolio portfolio = getEPortfolio(port.getLocalName());
-                portfolio.setElearner(elearner);
+                portfolio.setELearner(elearner);
                 portfolio.setEResource(resource);
                 return portfolio;
             }
@@ -1100,7 +1111,7 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
             }
             EPortfolio port = getEPortfolio(portResource.getLocalName());
             port.setEResource(resource);
-            port.setElearner(elearner);
+            port.setELearner(elearner);
             portfolios.add(port);
         }
         return portfolios;
@@ -1639,7 +1650,7 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         ArrayList<EConcept> ignoreCons = getIgnoreConceptsByELearner(el);
         //去除目标知识点中已经学习过的
         for (EPerformance p : performs) {
-            EConcept con = p.getConcept();
+            EConcept con = p.getEConcept();
             if (gCons.contains(con)) {
                 gCons.remove(con);
             }

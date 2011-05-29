@@ -40,7 +40,7 @@ public class MyConceptPane extends javax.swing.JPanel {
         ArrayList<EPerformance> el = LPApp.lpModel.getEPerformances(LPApp.getApplication().user.learner);
 
         for (EPerformance er : el) {
-            Object[] oa = {er.getConcept().getName(), er.getValue()};
+            Object[] oa = {er.getEConcept().getName(), er.getValue()};
             model.addRow(oa);
         }
 

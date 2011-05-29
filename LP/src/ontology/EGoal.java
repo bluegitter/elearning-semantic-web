@@ -25,6 +25,10 @@ public class EGoal {
         this.gid = gid;
     }
 
+    public void addCon(EConcept con) {
+        cons.add(con);
+    }
+
     public ArrayList<EConcept> getCons() {
         return cons;
     }
@@ -40,7 +44,8 @@ public class EGoal {
     public void setName(String name) {
         this.name = name;
     }
-    public String toString(){
+
+    public String toString() {
         return name;
     }
     private String gid;

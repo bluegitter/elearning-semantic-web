@@ -42,7 +42,7 @@ public class MyPerformancePane extends javax.swing.JPanel {
         perList = LPApp.lpModel.getEPerformances(el);
         for (int i = 0; i < perList.size(); i++) {
             EPerformance p = perList.get(i);
-            EConcept c = p.getConcept();
+            EConcept c = p.getEConcept();
             Object[] oa = {c.getName(), p.getValue(), "双击评估"};
             model.addRow(oa);
         }

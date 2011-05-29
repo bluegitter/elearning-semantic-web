@@ -29,11 +29,11 @@ public class EPortfolio {
         rate = 0;
     }
 
-    public ELearner getElearner() {
+    public ELearner getELearner() {
         return elearner;
     }
 
-    public void setElearner(ELearner elearner) {
+    public void setELearner(ELearner elearner) {
         this.elearner = elearner;
     }
 

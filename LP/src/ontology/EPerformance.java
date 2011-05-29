@@ -10,19 +10,19 @@ public class EPerformance {
         assessment = new EPerformanceAssessment();
     }
 
-    public ELearner getElearner() {
+    public ELearner getELearner() {
         return elearner;
     }
 
-    public void setElearner(ELearner elearner) {
+    public void setELearner(ELearner elearner) {
         this.elearner = elearner;
     }
 
-    public EConcept getConcept() {
+    public EConcept getEConcept() {
         return concept;
     }
 
-    public void setConcept(EConcept concept) {
+    public void setEConcept(EConcept concept) {
         this.concept = concept;
     }
 
@@ -66,10 +66,10 @@ public class EPerformance {
             if(this.value !=perform.getValue()){
                 return false;
             }
-            if(!this.concept.equals(perform.getConcept())){
+            if(!this.concept.equals(perform.getEConcept())){
                 return false;
             }
-            if(!this.elearner.equals(perform.getElearner())){
+            if(!this.elearner.equals(perform.getELearner())){
                 return false;
             }
             

@@ -39,7 +39,7 @@
                       </Group>
                   </Group>
                   <Component id="learnBtn" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" alignment="0" pref="360" max="32767" attributes="1"/>
+                  <Component id="jScrollPane1" alignment="0" pref="372" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
