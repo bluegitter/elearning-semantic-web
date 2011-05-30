@@ -313,12 +313,8 @@ public class AllConceptDisplay extends Display {
 //                ms.cdec = ec;
 //                ms.updateData();
 //                ms.validate();
-
-                parent.conceptPane.setConceptName(ec.getName());
-                parent.conceptPane.setURIName(util.Constant.NS + ec.getCid());
-                parent.conceptPane.cdec = ec;
-                parent.conceptPane.updateData();
-                parent.conceptPane.updateResouceTable(ec);
+parent.conceptPane.initCon(ec);
+                
 
             } else {
                 m_cur.setLocation(m_start.getX() + frac * (m_end.getX() - m_start.getX()),

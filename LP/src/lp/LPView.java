@@ -554,6 +554,7 @@ public class LPView extends FrameView {
     private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
         // TODO add your handling code here:
         setMainTool(LPApp.ASSESSMENT);
+        ((AssessmentPane) panes[LPApp.ASSESSMENT]).updateAssessmentPane();
 
     }//GEN-LAST:event_jToggleButton6ActionPerformed
 
@@ -564,8 +565,11 @@ public class LPView extends FrameView {
     private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
         // TODO add your handling code here:
         setMainTool(LPApp.ADMIN);
-        lp.admin.AdminDialog admin = new lp.admin.AdminDialog(LPApp.getApplication().getMainFrame(), false);
-        admin.setVisible(true);
+       // lp.admin.AdminDialog admin = new lp.admin.AdminDialog(LPApp.getApplication().getMainFrame(), false);
+       // admin.setVisible(true);
+       // ontology.EConcept con = LPApp.lpModel.getEConcept("A_cid_0_e_1");
+       // ontology.people.ELearner el = LPApp.lpModel.getELearner("el005");
+       // LPApp.getApplication().popEPerformanceRadarDialog(con,el);
     }//GEN-LAST:event_jToggleButton8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed

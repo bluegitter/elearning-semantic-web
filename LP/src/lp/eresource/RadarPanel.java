@@ -369,6 +369,9 @@ public class RadarPanel extends javax.swing.JPanel {
         EPerformanceAssessment assessment = new EPerformanceAssessment(a1, a2, a3, a4, a5, a6);
         try {
             LPApp.lpModel.updateEPerformanceAssessment(perform, assessment);
+            int temp = Integer.parseInt(a1) + Integer.parseInt(a2) + Integer.parseInt(a3) + Integer.parseInt(a4) + Integer.parseInt(a5) + Integer.parseInt(a6);
+            perform.setValue(temp / 6);
+            LPApp.lpModel.updateEPerfomance(perform);
             UserProfilePane userProfilePane = (UserProfilePane) LPApp.getApplication().view.getPanes()[LPApp.PROFILE];
             userProfilePane.updateUserProfilePane();
             AssessmentPane assessmentPane = (AssessmentPane) LPApp.getApplication().view.getPanes()[LPApp.ASSESSMENT];

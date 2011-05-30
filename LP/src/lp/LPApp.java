@@ -3,6 +3,8 @@
  */
 package lp;
 
+import java.awt.Dimension;
+import java.awt.Rectangle;
 import jena.OwlOperation;
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +12,7 @@ import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import jena.impl.ELearnerModelImpl;
 import lp.eresource.RadarPanel;
 import lp.log.LPLogger;
@@ -42,9 +45,10 @@ public class LPApp extends SingleFrameApplication {
     public static final int PROFILE = 4;
     public static final int ASSESSMENT = 5;
     public static final int NEW_MAP = 6;
-    public static final int ADMIN =7;
+    public static final int ADMIN = 7;
 //    public static final int NAVIGATOR = 5;
 //    public static final int REGIST = 6;
+
     /**
      * At startup create and show the main frame of the application.
      */
@@ -139,17 +143,27 @@ public class LPApp extends SingleFrameApplication {
         return Application.getInstance(LPApp.class);
     }
 
-     public void popEPerformanceRadarDialog(EConcept con,ELearner el){
+    public void popEPerformanceRadarDialog(EConcept con, ELearner el) {
         EPerformance perform = new EPerformance();
-        perform.setId("EPerformance_"+el.getId()+"_"+con.getCid());
+        perform.setId("EPerformance_" + el.getId() + "_" + con.getCid());
         perform.setDatetime(new Date(System.currentTimeMillis()));
         perform.setEConcept(con);
         perform.setELearner(el);
         perform.setValue(0.5f);
         RadarPanel radar = new RadarPanel(perform);
-                PopCenterDialog pcd = new PopCenterDialog("知识点自我评估", radar);
+        PopCenterDialog pcd = new PopCenterDialog("知识点自我评估", radar);
     }
-   
+
+    public void popEConceptViewDialog(EConcept con) {
+        JDialog dialog = new JDialog(LPApp.getApplication().getMainFrame());
+        ConceptPane cp = new ConceptPane();
+        cp.initCon(con);
+        dialog.setContentPane(cp);
+        dialog.setTitle("知识点浏览");
+        dialog.pack();
+        dialog.setVisible(true);
+    }
+
     /**
      * Main method launching the application.
      */
