@@ -20,6 +20,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import lp.admin.AdminOperatorPane;
 import ontology.EConcept;
 import ontology.EGoal;
 import ontology.EInterest;
@@ -42,6 +43,18 @@ public class OwlUpdate {
     public static String[] optypes = {"AddELearner", "AddEConcept", "AddEResource", "AddEGoal",
         "AddEInterest", "AddEPerformance", "AddEPortfolio", "RemoveIndividual",
         "AddObjectProperty", "RemoveObjectProperty", "AddDataProperty", "RemoveDataProperty"};
+    public static int ADDELEARNER = 0;
+    public static int ADDECONCEPT = 1;
+    public static int ADDERESOURCE = 2;
+    public static int ADDEGOAL = 3;
+    public static int ADDEINTEREST = 4;
+    public static int ADDEPERFORMANCE = 5;
+    public static int ADDEPORTFOLIO = 6;
+    public static int REMOVEINDIVIDUAL = 7;
+    public static int ADDOBJECTPROPERTY = 8;
+    public static int REMOVEOBJECTPROPERTY = 9;
+    public static int ADDDATAPROPERTY = 10;
+    public static int REMOVEdATAPROPERTY = 11;
     private ELearnerModelImpl emi;
     private File inFile;
     private File toFile;
@@ -56,12 +69,14 @@ public class OwlUpdate {
             this.inFile = new File("files/owl/updates/update_write.xml");
             this.toFile = new File("files/owl/updates/update_write.xml");
             toFileElements = new ArrayList<Element>();
+
             this.emi = emi;
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             db = dbf.newDocumentBuilder();
+            doc = db.newDocument();
             op_types_map = new HashMap();
             for (int i = 0; i < optypes.length; i++) {
-                op_types_map.put(optypes[i], (i + 1));
+                op_types_map.put(optypes[i], i);
             }
 
         } catch (ParserConfigurationException ex) {
@@ -245,6 +260,12 @@ public class OwlUpdate {
         return element;
     }
 
+    public Element createRemoveElement(String id) {
+        Element element = doc.createElement("Id");
+        element.setTextContent(id);
+        return element;
+    }
+
     public Element createEResourceElementByEResource(ISCB_Resource res) {
         Element element = doc.createElement("ISCB_Resource");
         Element id = doc.createElement("Id");
@@ -335,43 +356,43 @@ public class OwlUpdate {
                 String op_type = ((Element) el.getElementsByTagName("OPType").item(0)).getTextContent();
                 int index = Integer.parseInt(op_types_map.get(op_type).toString());
                 switch (index) {
-                    case 1:
+                    case 0:
                         System.out.println("AddELearner");
                         Element elElement = (Element) el.getElementsByTagName("E_Learner").item(0);
                         ELearner newEl = getELearnerByElement(elElement);
                         emi.addELearner(newEl);
                         break;
-                    case 2:
+                    case 1:
                         System.out.println("AddEConcept");
                         Element conElement = (Element) el.getElementsByTagName("E_Concept").item(0);
                         EConcept newCon = getEConceptByElement(conElement);
                         emi.addEConcept(newCon);
                         break;
-                    case 3:
+                    case 2:
                         System.out.println("AddEResource");
                         Element resElement = (Element) el.getElementsByTagName("ISCB_Resource").item(0);
                         ISCB_Resource newRes = getEResourceByElement(resElement);
                         emi.addEResource(newRes);
                         break;
-                    case 4:
+                    case 3:
                         System.out.println("AddEGoal");
                         Element goalElement = (Element) el.getElementsByTagName("E_Goal").item(0);
                         EGoal newGoal = getEGoalByElement(goalElement);
                         emi.addEGoal(newGoal);
                         break;
-                    case 5:
+                    case 4:
                         System.out.println("AddEInterest");
                         Element inElement = (Element) el.getElementsByTagName("E_Interest").item(0);
                         EInterest newInterest = getEInterestByElement(inElement);
                         emi.addEInterest(newInterest);
                         break;
-                    case 6:
+                    case 5:
                         System.out.println("AddEPerformance");
                         break;
-                    case 7:
+                    case 6:
                         System.out.println("AddEPortfolio");
                         break;
-                    case 8:
+                    case 7:
                         System.out.println("RemoveIndividual");
                         String id = ((Element) el.getElementsByTagName("Id").item(0)).getTextContent();
                         Individual indi = emi.getOntModel().getIndividual(Constant.NS + id);
@@ -379,18 +400,18 @@ public class OwlUpdate {
                             indi.remove();
                         }
                         break;
-                    case 9:
+                    case 8:
                         System.out.println("AddObjectProperty");
 
                         break;
-                    case 10:
+                    case 9:
                         System.out.println("RemoveObjectProperty");
 
                         break;
-                    case 11:
+                    case 10:
                         System.out.println("AddDataProperty");
                         break;
-                    case 12:
+                    case 11:
                         System.out.println("RemoveDataProperty");
                         break;
                     default:
@@ -410,18 +431,25 @@ public class OwlUpdate {
         return true;
     }
 
-    public Document getToFile(String updateType, String verson) {
-        Document writeDoc = db.newDocument();
+    public void initToFile(String updateType, String verson) {
         Element root = doc.createElement("OwlUpdate");
         Element updateTypeElement = doc.createElement("UpdateType");
         updateTypeElement.setTextContent(updateType);
         Element versonElement = doc.createElement("ModelVersion");
         versonElement.setTextContent(verson);
         Element updates = doc.createElement("Updates");
+        System.out.println("size:" + toFileElements.size());
+        for (Element e : toFileElements) {
+            updates.appendChild(e);
+        }
         root.appendChild(updateTypeElement);
         root.appendChild(versonElement);
         root.appendChild(updates);
-        return writeDoc;
+        doc.appendChild(root);
+    }
+
+    public void addUpdate(Element element) {
+        toFileElements.add(element);
     }
 
     public void writeToFile(Document writeDoc) {
@@ -447,11 +475,51 @@ public class OwlUpdate {
     public static void main(String[] args) {
         ELearnerModelImpl emi = new ELearnerModelImpl(new File("files/owl/el001.owl"));
         File f = new File("files/owl/updates/update.xml");
-        OwlUpdate ou = new OwlUpdate(emi, f);
-        ou.parseFile();
-        ou.writeToFile(ou.getDoc());
+        AdminOperatorPane aop = new AdminOperatorPane();
     }
 
-    public static void TestELearnerInterest() {
+    public Element getOperationElement(String opType, Element element) {
+        Element op = doc.createElement("Operation");
+        Element type = doc.createElement("OPType");
+        type.setTextContent(opType);
+        op.appendChild(type);
+        op.appendChild(element);
+        return op;
+    }
+
+    public Element getObjectPropertyOperationElement(String opType,String subject, String property, String object) {
+        Element element = doc.createElement("Operation");
+        Element type = doc.createElement("OPType");
+        type.setTextContent(opType);
+        Element subElement = doc.createElement("Subject");
+        subElement.setTextContent(subject);
+        Element propElement = doc.createElement("Property");
+        propElement.setTextContent(property);
+        Element objElement = doc.createElement("Object");
+        objElement.setTextContent(object);
+        element.appendChild(type);
+        element.appendChild(subElement);
+        element.appendChild(propElement);
+        element.appendChild(objElement);
+        return element;
+    }
+    public Element getDataPropertyOperationElement(String opType,String subject,String property,String data,String dataType){
+         Element element = doc.createElement("Operation");
+        Element type = doc.createElement("OPType");
+        type.setTextContent(opType);
+        Element subElement = doc.createElement("Subject");
+        subElement.setTextContent(subject);
+        Element propElement = doc.createElement("Property");
+        propElement.setTextContent(property);
+        Element dataElement = doc.createElement("Data");
+        dataElement.setTextContent(data);
+        Element dataTypeElement = doc.createElement("DataType");
+        dataTypeElement.setTextContent(dataType);
+        element.appendChild(type);
+        element.appendChild(subElement);
+        element.appendChild(propElement);
+        element.appendChild(dataElement);
+        element.appendChild(dataTypeElement);
+        return element;
     }
 }

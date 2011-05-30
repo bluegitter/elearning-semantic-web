@@ -8,7 +8,7 @@
  *
  * Created on 2011-4-25, 9:24:12
  */
-package lp;
+package lp.admin;
 
 import exception.jena.IndividualNotExistException;
 import java.io.File;
@@ -29,6 +29,7 @@ import lp.admin.ConceptSelectPanelForRes;
 import ontology.EConcept;
 import ontology.EGoal;
 import ontology.resources.ISCB_Resource;
+import org.w3c.dom.Element;
 import util.Constant;
 
 /**
@@ -94,7 +95,7 @@ public class AdminOperatorPane extends javax.swing.JPanel {
         jComboBox8.setSelectedIndex(0);
         jComboBox9.setSelectedIndex(0);
         //add Goal Panel
-        jTextField10.setText("");
+        jTextField11.setText("");
         jLabel32.setText("");
         jLabel27.setText("");
     }
@@ -308,7 +309,7 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -472,10 +473,10 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                         .addComponent(jButton4)
                         .addGap(18, 18, 18)
                         .addComponent(jButton7)
-                        .addContainerGap(463, Short.MAX_VALUE))
+                        .addContainerGap(527, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel25)
-                        .addContainerGap(704, Short.MAX_VALUE))))
+                        .addContainerGap(746, Short.MAX_VALUE))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -521,7 +522,7 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                     .addComponent(jButton7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel25)
-                .addContainerGap(234, Short.MAX_VALUE))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("增删资源", jPanel5);
@@ -591,26 +592,21 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                             .addComponent(jLabel21)
                             .addComponent(jLabel22))
                         .addGap(25, 25, 25)
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                            .addComponent(jTextField10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
-                        .addGap(74, 74, 74)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField11)
+                            .addComponent(jTextField10, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                        .addGap(16, 16, 16)
                         .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel27))
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jButton8)
-                                .addGap(35, 35, 35)
-                                .addComponent(jButton10)
-                                .addGap(39, 39, 39)
-                                .addComponent(jButton12))
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jLabel32)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(337, 337, 337))
+                        .addComponent(jButton8)
+                        .addGap(35, 35, 35)
+                        .addComponent(jButton10)
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton12))
+                    .addComponent(jLabel32))
+                .addGap(440, 440, 440))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -632,7 +628,7 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                     .addComponent(jButton12))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel32)
-                .addContainerGap(434, Short.MAX_VALUE))
+                .addContainerGap(322, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("增删目标", jPanel7);
@@ -666,12 +662,12 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox5, 0, 668, Short.MAX_VALUE))
+                        .addComponent(jComboBox5, 0, 697, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -680,7 +676,7 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE))
@@ -723,7 +719,7 @@ public class AdminOperatorPane extends javax.swing.JPanel {
                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -749,19 +745,19 @@ public class AdminOperatorPane extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton2)
-                        .addGap(418, 418, 418)
-                        .addComponent(jLabel28))
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 809, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 809, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 369, Short.MAX_VALUE)
+                .addComponent(jLabel28)
+                .addGap(311, 311, 311))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 627, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -797,7 +793,6 @@ public class AdminOperatorPane extends javax.swing.JPanel {
     }//GEN-LAST:event_EConceptIdChangedCheck
 
     private void addConceptAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addConceptAction
-        // TODO add your handling code here:
         if (jLabel7.getText().trim().equals("yes")) {
             EConcept con = getEConceptFromAddConceptPanel();
             try {
@@ -807,6 +802,8 @@ public class AdminOperatorPane extends javax.swing.JPanel {
             } catch (IndividualNotExistException ex) {
                 Logger.getLogger(AdminOperatorPane.class.getName()).log(Level.SEVERE, null, ex);
             }
+            Element addCon = ou.getOperationElement(OwlUpdate.optypes[1], ou.createEConcpetElementByEConcpet(con));
+            ou.addUpdate(addCon);
             jLabel24.setText("添加知识点成功.不要忘记点击“保存本体”哦");
         } else {
             jLabel24.setText("添加失败，请查看提示");
@@ -837,6 +834,8 @@ public class AdminOperatorPane extends javax.swing.JPanel {
             boolean b = emi.removeEConcept(cid);
             if (b) {
                 jLabel24.setText("知识点" + cid + "删除成功。不要忘记点击“保存本体”");
+                Element removeIndi = ou.getOperationElement(OwlUpdate.optypes[OwlUpdate.REMOVEINDIVIDUAL], ou.createRemoveElement(cid));
+                ou.addUpdate(removeIndi);
             } else {
                 jLabel24.setText("知识点" + cid + "未删除成功");
             }
@@ -850,6 +849,8 @@ public class AdminOperatorPane extends javax.swing.JPanel {
             OwlOperation.writeRdfFile(emi.getOntModel(), f, null);
             OwlOperation.writeOwlFileFromRdfFile(f, f);
             jLabel28.setText("成功保存本体到文件" + f.getPath());
+            ou.initToFile("admin operation", "1.2");
+            ou.writeToFile(ou.getDoc());
         } catch (IOException ex) {
             Logger.getLogger(AdminOperatorPane.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -896,11 +897,15 @@ public class AdminOperatorPane extends javax.swing.JPanel {
         if (jLabel20.getText().trim().equals("yes")) {
             ISCB_Resource res = getEResourceFromAddResPanel();
             emi.addEResource(res);
-
             jLabel25.setText("添加资源成功.不要忘记点击“保存本体”哦");
+
+            Element addRes = ou.getOperationElement(OwlUpdate.optypes[OwlUpdate.ADDERESOURCE], ou.createEResourceElementByEResource(res));
+            ou.addUpdate(addRes);
         } else {
             jLabel25.setText("添加失败，请查看提示");
         }
+
+
     }//GEN-LAST:event_addResAction
     private void updateResAction(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateResAction
         if (jLabel20.getText().trim().equals("no")) {
@@ -920,6 +925,8 @@ public class AdminOperatorPane extends javax.swing.JPanel {
             boolean b = emi.removeEResource(rid);
             if (b) {
                 jLabel25.setText("资源" + rid + "删除成功。不要忘记点击“保存本体”");
+                Element removeIndi = ou.getOperationElement(OwlUpdate.optypes[OwlUpdate.REMOVEINDIVIDUAL], ou.createRemoveElement(rid));
+                ou.addUpdate(removeIndi);
             } else {
                 jLabel25.setText("资源" + rid + "未删除成功。");
             }
@@ -929,7 +936,7 @@ public class AdminOperatorPane extends javax.swing.JPanel {
     }//GEN-LAST:event_removeResAction
     private EGoal getGoalFromAddGoalPanel() {
         EGoal goal = new EGoal();
-        goal.setName(jTextField10.getText().trim());
+        goal.setGid(jTextField10.getText().trim());
         goal.setName(jTextField11.getText().trim());
         return goal;
     }
@@ -962,6 +969,8 @@ public class AdminOperatorPane extends javax.swing.JPanel {
             EGoal goal = getGoalFromAddGoalPanel();
             emi.addEGoal(goal);
             jLabel27.setText("添加目标成功.不要忘记点击“保存本体”哦");
+            Element addEGoal = ou.getOperationElement(OwlUpdate.optypes[OwlUpdate.ADDEGOAL], ou.createEGoalElementByEGoal(goal));
+            ou.addUpdate(addEGoal);
         } else {
             jLabel27.setText("添加失败，请查看提示");
         }
@@ -982,6 +991,8 @@ public class AdminOperatorPane extends javax.swing.JPanel {
             boolean b = emi.removeEGoal(gid);
             if (b) {
                 jLabel27.setText("目标" + gid + "删除成功。不要忘记点击“保存本体”");
+                Element removeIndi = ou.getOperationElement(OwlUpdate.optypes[OwlUpdate.REMOVEINDIVIDUAL], ou.createRemoveElement(gid));
+                ou.addUpdate(removeIndi);
             } else {
                 jLabel27.setText("目标" + gid + "未删除成功。");
             }
@@ -1046,6 +1057,20 @@ public class AdminOperatorPane extends javax.swing.JPanel {
             jPanel11.updateUI();
         }
     }
+
+    public void getPropertyContainsConcept(String optype,String gid, String cid) {
+        Element element = ou.getObjectPropertyOperationElement(optype, gid, "contain_concepts", cid);
+        ou.addUpdate(element);
+    }
+
+    public void getPropertyIsResourceOfC(String optype,String rid, String cid) {
+        Element element = ou.getObjectPropertyOperationElement(optype, rid, "is_resource_of_C", cid);
+        Element element2 = ou.getObjectPropertyOperationElement(optype, cid, "inverse_of_is_resource_of_C", rid);
+
+        ou.addUpdate(element);
+        ou.addUpdate(element2);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;

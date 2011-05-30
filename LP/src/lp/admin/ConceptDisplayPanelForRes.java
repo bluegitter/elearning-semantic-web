@@ -7,6 +7,7 @@ package lp.admin;
 import java.util.HashSet;
 import javax.swing.JTable;
 import jena.impl.ELearnerModelImpl;
+import jena.impl.OwlUpdate;
 import ontology.EConcept;
 import ontology.resources.ISCB_Resource;
 
@@ -35,6 +36,7 @@ public class ConceptDisplayPanelForRes extends ConceptSelectPanel {
         for (int i : is) {
             String cid = table.getModel().getValueAt(i, 0).toString();
             emi.removePropertyIsResourceOfC(res, emi.getEConcept(cid));
+            adminPanel.getPropertyIsResourceOfC(OwlUpdate.optypes[OwlUpdate.REMOVEOBJECTPROPERTY],res.getRid(),cid);
         }
         this.adminPanel.updateEditResPanel();
     }

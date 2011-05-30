@@ -131,7 +131,7 @@ public class LPView extends FrameView {
     public void initTools() {
 
         javax.swing.JPanel[] pa = {new lp.display.MyConceptDemo(), new AllConceptPane(), new RecommendContainer(),
-            new SearchPane(), new UserProfilePane(), new AssessmentPane(), new MapBg(mainPanel),new AdminOperatorPane()};
+            new SearchPane(), new UserProfilePane(), new AssessmentPane(), new MapBg(mainPanel), new JPanel()};
         panes = pa;
 
         setMainTool(LPApp.MY_CONCEPT);
@@ -177,6 +177,7 @@ public class LPView extends FrameView {
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         loginItem = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         logoutItem = new javax.swing.JMenuItem();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -221,7 +222,7 @@ public class LPView extends FrameView {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
+            .addGap(0, 531, Short.MAX_VALUE)
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -234,6 +235,16 @@ public class LPView extends FrameView {
         loginItem.setName("loginItem"); // NOI18N
         fileMenu.add(loginItem);
 
+        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_BACK_SPACE, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem9.setText(resourceMap.getString("jMenuItem9.text")); // NOI18N
+        jMenuItem9.setName("jMenuItem9"); // NOI18N
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        fileMenu.add(jMenuItem9);
+
         logoutItem.setText(resourceMap.getString("logoutItem.text")); // NOI18N
         logoutItem.setName("logoutItem"); // NOI18N
         fileMenu.add(logoutItem);
@@ -245,8 +256,6 @@ public class LPView extends FrameView {
         fileMenu.add(exitMenuItem);
 
         menuBar.add(fileMenu);
-
-        jMenu1.setText(resourceMap.getString("jMenu1.text")); // NOI18N
 
         jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
         jMenuItem1.setName("jMenuItem1"); // NOI18N
@@ -272,7 +281,6 @@ public class LPView extends FrameView {
         menuBar.add(jMenu3);
 
         jMenu2.setText(resourceMap.getString("jMenu2.text")); // NOI18N
-        jMenu2.setName("jMenu2"); // NOI18N
 
         jMenuItem4.setText(resourceMap.getString("jMenuItem4.text")); // NOI18N
         jMenuItem4.setName("jMenuItem4"); // NOI18N
@@ -285,7 +293,6 @@ public class LPView extends FrameView {
         menuBar.add(jMenu2);
 
         jMenu4.setText(resourceMap.getString("jMenu4.text")); // NOI18N
-        jMenu4.setName("jMenu4"); // NOI18N
 
         jMenuItem6.setText(resourceMap.getString("jMenuItem6.text")); // NOI18N
         jMenuItem6.setName("jMenuItem6"); // NOI18N
@@ -335,7 +342,7 @@ public class LPView extends FrameView {
             .addGroup(statusPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(statusMessageLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 652, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 662, Short.MAX_VALUE)
                 .addComponent(progressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(statusAnimationLabel)
@@ -557,8 +564,14 @@ public class LPView extends FrameView {
     private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
         // TODO add your handling code here:
         setMainTool(LPApp.ADMIN);
+        lp.admin.AdminDialog admin = new lp.admin.AdminDialog(LPApp.getApplication().getMainFrame(), false);
+        admin.setVisible(true);
     }//GEN-LAST:event_jToggleButton8ActionPerformed
 
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        lp.admin.AdminDialog admin = new lp.admin.AdminDialog(LPApp.getApplication().getMainFrame(), false);
+        admin.setVisible(true);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Navigator;
     javax.swing.JMenuItem aboutMenuItem;
@@ -575,6 +588,7 @@ public class LPView extends FrameView {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;

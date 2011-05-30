@@ -2,10 +2,10 @@
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=1" prefer="public" xml:base="">
         <uri id="Automatically generated entry, Timestamp=1303303043289" name="http://www.owl-ontologies.com/e-learning.owl" uri="elearning_rdf_bak.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1306116117621" name="http://www.owl-ontologies.com/e-learning.owl" uri="elearning_owl.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1306116173988" name="http://www.owl-ontologies.com/e-learning.owl" uri="el001.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1306116221746" name="http://www.owl-ontologies.com/e-learning.owl" uri="elearning_owl_1.owl"/>
         <uri id="Automatically generated entry, Timestamp=1306288324439" name="http://www.owl-ontologies.com/e-learning.owl" uri="el005.owl"/>
         <uri id="Automatically generated entry, Timestamp=1306288324439" name="http://www.owl-ontologies.com/e-learning.owl" uri="write.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1306738646014" name="http://www.owl-ontologies.com/e-learning.owl" uri="el001.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1306738646014" name="http://www.owl-ontologies.com/e-learning.owl" uri="elearning_owl_1.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1306739979624" name="http://www.owl-ontologies.com/e-learning.owl" uri="elearning_owl.owl"/>
     </group>
 </catalog>
