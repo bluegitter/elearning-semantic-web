@@ -54,7 +54,7 @@ public class EPerformance {
     @Override
     public String toString() {
 //        return id+"\t"+value+"\t"+elearner.getId()+"\t"+concept.getCid()+"\t"+datetime;
-        return concept.getName() + valueString();
+        return concept.getName() + valueString()+value;
     }
     @Override
     public boolean equals(Object o ){
