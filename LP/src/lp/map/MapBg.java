@@ -39,7 +39,8 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
     private int mapShow = 0;
     private final Object showLock = new Object();
     private MMDialog dialog;
-    private ArrayList<EGoal> goals;
+    public ArrayList<EGoal> goals;
+    private E_Castle menuShow;
 
     public MapBg(javax.swing.JPanel p) {
         pp = p;
@@ -55,6 +56,8 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
         mapLite = new Rectangle();
         viewLite = new Rectangle();
+
+        menuShow = null;
 
         initCastle();
         checkGoal();
@@ -147,6 +150,13 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         for (E_Castle c : castle) {
             c.paint(this, g2, c.x - cx, c.y - cy);
         }
+        
+        if(menuShow != null) {
+            //g2.setColor(Color.red);
+            //g2.drawRect(menuShow.getX() - cx - 10, menuShow.getY() - cy - 10, menuShow.getWidth() + 20, menuShow.getHeight() + 20);
+            
+            
+        }
 
         g2.drawImage(tMap, vw - tw - 5, 5, null);
         mapLite.setBounds(vw - tw - 5, 5, tw, th);
@@ -164,14 +174,83 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
     public void showMapDialog(MMDialog d) {
         dialog = d;
-        dialogShow = true;
+        dialog.showshow = true;
+
+        synchronized (showLock) {
+            mapShow++;
+        }
+
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+                    dialog.showRect.setBounds(0, 0, vw, vh);
+
+                    int offsetx = (vw - dialog.bound.width) / 16;
+                    int offsety = (vh - dialog.bound.height) / 16;
+
+                    for (int i = 0; i < 8; i++) {
+                        dialog.showRect.setBounds(i * offsetx, i * offsety, vw - 2 * i * offsetx, vh - 2 * i * offsety);
+                        Thread.sleep(50);
+                    }
+
+                    dialogShow = true;
+                    dialog.showshow = false;
+                    Thread.sleep(100);
+                    synchronized (showLock) {
+                        mapShow--;
+                    }
+                } catch (Exception ex) {
+                    System.err.println(ex.getLocalizedMessage());
+                }
+            }
+        });
+
+        thread.start();
+    }
+
+    public void switchDialog(MMDialog d) {
+        dialog = d;
         repaint();
     }
 
     public void hideMapDialog() {
-        dialogShow = false;
-        dialog = null;
-        repaint();
+        synchronized (showLock) {
+            mapShow++;
+        }
+
+        dialog.hideshow = true;
+
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                try {
+                    dialog.showRect.setBounds(dialog.bound);
+
+                    int offsetx = (vw - dialog.bound.width) / 16;
+                    int offsety = (vh - dialog.bound.height) / 16;
+
+                    for (int i = 7; i >= 0; i--) {
+                        dialog.showRect.setBounds(i * offsetx, i * offsety, vw - 2 * i * offsetx, vh - 2 * i * offsety);
+                        Thread.sleep(50);
+                    }
+
+                    dialog.hideshow = false;
+                    dialogShow = false;
+                    dialog = null;
+                    Thread.sleep(100);
+                    synchronized (showLock) {
+                        mapShow--;
+                    }
+                } catch (Exception ex) {
+                    System.err.println(ex.getLocalizedMessage());
+                }
+            }
+        });
+
+        thread.start();
     }
 
     private boolean insideShow(int x, int y, int w, int h) {
@@ -283,7 +362,13 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                 } else {
                     for (E_Castle c : castle) {
                         if (c.dian(x + cx, y + cy)) {
-                            javax.swing.JOptionPane.showMessageDialog(this, "被点中了。。。");
+                            if (menuShow == c) {
+                                menuShow = null;
+                            } else {
+                                menuShow = c;
+                            }
+                            //javax.swing.JOptionPane.showMessageDialog(this, "被点中了。。。");
+                            repaint();
                             break;
                         }
                     }
@@ -364,13 +449,13 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         while (true) {
             try {
                 while (true) {
-                    repaint();
-                    Thread.sleep(50);
-
-                    if (mapShow <= 0) {
-                        repaint();
+                    if (mapShow == 0) {
+                        //todo: 改一下
+                        //repaint();
                         break;
                     }
+                    repaint();
+                    Thread.sleep(50);
                 }
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
