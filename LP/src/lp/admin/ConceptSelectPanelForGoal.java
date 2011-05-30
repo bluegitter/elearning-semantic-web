@@ -7,6 +7,7 @@ package lp.admin;
 import java.util.HashSet;
 import javax.swing.JTable;
 import jena.impl.ELearnerModelImpl;
+import jena.impl.OwlUpdate;
 import ontology.EConcept;
 import ontology.EGoal;
 
@@ -34,6 +35,7 @@ public class ConceptSelectPanelForGoal extends ConceptSelectPanel {
         for (int i : is) {
             String cid = table.getModel().getValueAt(i, 0).toString();
             emi.addPropertyContainsConcept(goal, emi.getEConcept(cid));
+            adminPanel.getPropertyContainsConcept(OwlUpdate.optypes[OwlUpdate.ADDOBJECTPROPERTY],goal.getGid(),cid);
         }
         this.adminPanel.updateEditGoalPanel();
     }

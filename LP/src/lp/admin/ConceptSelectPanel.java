@@ -14,7 +14,6 @@ import java.util.HashSet;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import jena.impl.ELearnerModelImpl;
-import lp.AdminOperatorPane;
 import ontology.EConcept;
 
 /**

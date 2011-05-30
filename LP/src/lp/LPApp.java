@@ -11,7 +11,12 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jena.impl.ELearnerModelImpl;
+import lp.eresource.RadarPanel;
 import lp.log.LPLogger;
+import lp.log.PopCenterDialog;
+import ontology.EConcept;
+import ontology.EPerformance;
+import ontology.people.ELearner;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 import org.semanticweb.owlapi.model.OWLOntologyCreationException;
@@ -52,7 +57,6 @@ public class LPApp extends SingleFrameApplication {
         view = new LPView(this);
         view.mainPanel.setLayout(new CentralLayout());
         loginPane = new LoginPanel();
-
 
         view.mainPanel.add(loginPane);
         ColorConstant.backgroundGrayColor = view.mainPanel.getBackground();
@@ -135,6 +139,17 @@ public class LPApp extends SingleFrameApplication {
         return Application.getInstance(LPApp.class);
     }
 
+     public void popEPerformanceRadarDialog(EConcept con,ELearner el){
+        EPerformance perform = new EPerformance();
+        perform.setId("EPerformance_"+el.getId()+"_"+con.getCid());
+        perform.setDatetime(new Date(System.currentTimeMillis()));
+        perform.setEConcept(con);
+        perform.setELearner(el);
+        perform.setValue(0.5f);
+        RadarPanel radar = new RadarPanel(perform);
+                PopCenterDialog pcd = new PopCenterDialog("知识点自我评估", radar);
+    }
+   
     /**
      * Main method launching the application.
      */

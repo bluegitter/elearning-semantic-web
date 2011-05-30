@@ -37,6 +37,8 @@ import ontology.people.ELearner;
 import ontology.resources.ISCB_Resource;
 import util.Constant;
 import jena.interfaces.ELearnerUserOperationInterface;
+import lp.eresource.RadarPanel;
+import lp.log.PopCenterDialog;
 import ontology.EGoal;
 import ontology.EPerformanceAssessment;
 import util.StringExchanger;
@@ -166,18 +168,28 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         ontModel.add(re, ontModel.getProperty(Constant.NS + "id"), resource.getRid());
         ontModel.add(re, ontModel.getProperty(Constant.NS + "name"), resource.getName(), new XSDDatatype("string"));
         ontModel.add(re, ontModel.getProperty(Constant.NS + "description"), resource.getResourceDescription(), new XSDDatatype("string"));
-        ontModel.add(re, ontModel.getProperty(Constant.NS + "resource_quality"), resource.getResourceQuality(), new XSDDatatype("string"));
         ontModel.add(re, ontModel.getProperty(Constant.NS + "application_type"), resource.getAppType(), new XSDDatatype("string"));
         ontModel.add(re, ontModel.getProperty(Constant.NS + "resource_type"), resource.getResourceType(), new XSDDatatype("string"));
-        ontModel.add(re, ontModel.getProperty(Constant.NS + "upload_time"), StringExchanger.parseDateToString(resource.getUploadTime()), new XSDDatatype("date"));
         ontModel.add(re, ontModel.getProperty(Constant.NS + "file_location"), resource.getFileLocation(), new XSDDatatype("string"));
         ontModel.add(re, ontModel.getProperty(Constant.NS + "difficulty"), resource.getDifficulty(), new XSDDatatype("string"));
-        String postfix = resource.getPostfix();
-        Individual indi = getFileFormat(postfix);
-        if (indi != null) {
-            Statement s = ontModel.createStatement(re, ontModel.getProperty(Constant.NS + "has_postfix"), indi);
-            ontModel.add(s);
+        String rq = resource.getResourceQuality();
+        if (rq != null) {
+            ontModel.add(re, ontModel.getProperty(Constant.NS + "resource_quality"), rq, new XSDDatatype("string"));
         }
+        Date ut = resource.getUploadTime();
+        if (ut != null) {
+            ontModel.add(re, ontModel.getProperty(Constant.NS + "upload_time"), StringExchanger.parseDateToString(ut), new XSDDatatype("date"));
+
+        }
+        String postfix = resource.getPostfix();
+        if (postfix != null) {
+            Individual indi = getFileFormat(postfix);
+            if (indi != null) {
+                Statement s = ontModel.createStatement(re, ontModel.getProperty(Constant.NS + "has_postfix"), indi);
+                ontModel.add(s);
+            }
+        }
+
         return true;
     }
 
@@ -1667,92 +1679,24 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
 
     public static void main(String[] args) throws IndividualNotExistException, IndividualExistException {
         //files/owl/elearning_owl.owl
-        File f1 = new File("files/owl/elearning_owl_1.owl");
+        File f1 = new File("files/owl/elearning_owl.owl");
         File el001f = new File("files/owl/el001.owl");
         File el005f = new File("files/owl/el005.owl");
         ELearnerModelImpl emi = new ELearnerModelImpl(f1);
-        OntModel model = emi.getOntModel();
+        HashSet<EConcept> cons = emi.getAllLeafEConcepts();
+        EConcept father = emi.getEConcept("CMP.cf.2");
 
-        java.io.InputStream in1 = com.hp.hpl.jena.util.FileManager.get().open(el001f.getPath());
-        java.io.InputStream in5 = com.hp.hpl.jena.util.FileManager.get().open(el005f.getPath());
-        if (in1 == null) {
-            throw new IllegalArgumentException("File: " + Constant.OWLFile + " not found");
+        System.out.println("cons:" + cons.size());
+        for (EConcept con : cons) {
+            emi.addPropertyIsPartOf(father, con);
+            emi.addPropertyIsSonOf(father, con);
+
         }
-        model.read(in1, Constant.NS);
-        model.read(in5, Constant.NS);
-        File writeF = new File("files/owl/write.owl");
-        emi.writeToFile(writeF);
-//        EGoal goal = emi.getGoalById("goal_0004");
-//        System.out.println(goal.getGid());
-//        System.out.println(goal.getName());
-//        System.out.println(goal.getCons().size());
-//        throws IndividualNotExistException, IOException, IndividualExistException {
+        emi.writeToFile(f1);
 
-//        System.out.println("intitime:" + (System.currentTimeMillis() - init) + "ms");
-//        ELearner el = emi.getELearner("el001");
-//        EConcept cid1 = emi.getEConcept("CMP.cf.2");
-//        EConcept root = emi.getEConcept("Computer_Science");
-//        EConcept cid2 = emi.getEConcept("CMP.cf");
-//        EConcept cid3 = emi.getEConcept("CMP");
-//
-//        boolean b = emi.isPartOfEConcept(root, cid1);
-//        boolean b2 = emi.isPartOfEConcept(root, cid3);
-//        boolean b3 = emi.isPartOfEConcept(cid1, cid3);
-//        boolean b4 = emi.isPartOfEConcept(cid2, cid1);
-//        System.out.println(b + " " + b2 + " " + b3 + " " + b4);
-
-//        ArrayList<ISCB_Resource> r = emi.getEResourcesByTypes("鍏ㄩ儴", "all", "鍏ㄩ儴");
-//        for (ISCB_Resource res : r) {
-//            emi.addPropertyIsResourceOfC(res, cid1);
-//            emi.addPropertyIsResourceOfC(res, cid2);
-//            emi.addPropertyIsResourceOfC(res, cid3);
-//            emi.addPropertyIsResourceOfC(res, root);
-//        }
-//        EConcept con2 = emi.getEConcept("CMP.cf.3");
-//        emi.getEResourcesByName("鏁版嵁缁撴瀯姒傚康");
-//        emi.getEResourcesByMeidaType("鏂囨湰");
-//        ArrayList<ISCB_Resource> r = emi.getEResourcesByTypes("鍏ㄩ儴", "all", "鍏ㄩ儴");
-// add resourcess to the root concepts
-//        System.out.println("1" + emi.getMemberConcepts(root).size());
-//        ArrayList<EConcept> cons = emi.getAllEConcepts();
-//        for (EConcept con : cons) {
-//            ArrayList<EConcept> sons = emi.getSonConcepts(con);
-//            for (EConcept c : sons) {
-//                emi.addPropertyIsPartOf(con, c);
-//            }
-//        }
-//        System.out.println("2" + emi.getMemberConcepts(root).size());
-//        for (EConcept con : cons) {
-//            ArrayList<EConcept> sons = emi.getMemberConcepts(con);
-//            System.out.println("sons size:" + sons.size());
-//            ArrayList<ISCB_Resource> ress = emi.getEResourcesByEConcept(con);
-//            for (EConcept c : sons) {
-//                ArrayList<ISCB_Resource> r = emi.getEResourcesByEConcept(c);
-//                for (ISCB_Resource resource : r) {
-//                    if (!ress.contains(resource)) {
-//                        System.out.println("add  new resource" + resource);
-//                        emi.addPropertyIsResourceOfC(resource, con);
-//                    }
-//                }
-//            }
-//        }
-//        ArrayList<ISCB_Resource> all = emi.getEResourcesByEConcept(root);
-//        System.out.println("size:" + all.size());
-
-//        ArrayList<EPerformance> ps = emi.getEPerformances(el);
-//        System.out.println("size" + ps.size());
-//        EPerformance ep = new EPerformance();
-//        ep.setId("newId");
-//        ep.setValue(3f);
-//        ep.setConcept(con2);
-//        ep.setElearner(el);
-//        ep.setDatetime(new Date(System.currentTimeMillis()));
-//        emi.addEPerfomance(ep);
-//
-//        EPerformance ep2 = emi.getEPerformance(el, con2);
-//        System.out.println(ep2);
-//        ArrayList<EPerformance> ps2 = emi.getEPerformances(el);
-//        System.out.println("size2:" + ps2.size());
         System.out.println("end");
     }
+
+
+   
 }

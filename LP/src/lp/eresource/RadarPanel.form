@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.1" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
@@ -48,72 +48,92 @@
                   <Component id="jSlider2" alignment="0" max="32767" attributes="1"/>
                   <Component id="jSlider1" alignment="0" min="-2" pref="274" max="-2" attributes="1"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                              <Component id="jSlide2Value" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="jSlide1Value" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jSlide3Value" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jSlide2Value" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jSlide1Value" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jSlide3Value" min="-2" max="-2" attributes="0"/>
-                          <Component id="jSlide4Value" min="-2" max="-2" attributes="0"/>
-                          <Component id="jSlide5Value" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jSlide5Value" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jSlide4Value" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" pref="57" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jSlide6Value" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jSlide6Value" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jButton1" alignment="1" min="-2" pref="126" max="-2" attributes="0"/>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jSlider1" alignment="0" pref="25" max="32767" attributes="1"/>
-                          <Component id="jLabel2" pref="25" max="32767" attributes="0"/>
-                          <Component id="jSlide1Value" alignment="0" pref="25" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jLabel1" alignment="1" max="32767" attributes="1"/>
-                          <Component id="jSlider2" alignment="1" max="32767" attributes="1"/>
-                          <Component id="jSlide2Value" alignment="0" max="32767" attributes="1"/>
+                          <Component id="jLabel2" alignment="1" pref="25" max="32767" attributes="0"/>
+                          <Component id="jSlide1Value" pref="25" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jLabel3" max="32767" attributes="1"/>
-                          <Component id="jSlider3" alignment="1" max="32767" attributes="1"/>
-                          <Component id="jSlide3Value" alignment="0" max="32767" attributes="1"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jLabel1" alignment="1" max="32767" attributes="1"/>
+                              <Component id="jSlider2" alignment="1" max="32767" attributes="1"/>
+                          </Group>
+                          <Component id="jSlide2Value" pref="25" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jLabel4" max="32767" attributes="1"/>
-                          <Component id="jSlider4" alignment="1" max="32767" attributes="1"/>
-                          <Component id="jSlide4Value" alignment="0" max="32767" attributes="1"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jLabel3" max="32767" attributes="1"/>
+                              <Component id="jSlider3" alignment="1" max="32767" attributes="1"/>
+                          </Group>
+                          <Component id="jSlide3Value" pref="25" max="32767" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel5" alignment="1" max="32767" attributes="1"/>
-                          <Component id="jSlider5" alignment="1" max="32767" attributes="1"/>
-                          <Component id="jSlide5Value" alignment="0" max="32767" attributes="1"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jLabel4" max="32767" attributes="1"/>
+                              <Component id="jSlider4" alignment="1" max="32767" attributes="1"/>
+                          </Group>
+                          <Component id="jSlide4Value" pref="25" max="32767" attributes="1"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jSlide5Value" pref="25" max="32767" attributes="1"/>
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jLabel5" alignment="1" max="32767" attributes="1"/>
+                              <Component id="jSlider5" alignment="1" max="32767" attributes="1"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="jLabel6" max="32767" attributes="1"/>
-                  <Component id="jSlide6Value" alignment="0" max="32767" attributes="1"/>
-                  <Component id="jSlider6" alignment="0" max="32767" attributes="1"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="jLabel6" max="32767" attributes="1"/>
+                      <Component id="jSlider6" alignment="0" max="32767" attributes="1"/>
+                  </Group>
+                  <Component id="jSlide6Value" pref="25" max="32767" attributes="1"/>
               </Group>
-              <EmptySpace min="-2" pref="386" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="390" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

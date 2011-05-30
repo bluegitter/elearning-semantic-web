@@ -1,43 +1,108 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--
-    Document   : update.xml
-    Created on : 2011年5月23日, 下午5:20
-    Author     : student
-    Description:
-        Purpose of the document follows.
--->
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <OwlUpdate>
-    <UpdateType>用户更新，模型更新</UpdateType>
-    <ModelVersion>1.0</ModelVersion>
+    <UpdateType>admin operation</UpdateType>
+    <ModelVersion>1.2</ModelVersion>
     <Updates>
         <Operation>
-            <OPType>AddELearner</OPType>
-            <ELearner>
-                <Id>AELEARNER</Id>
-                <Name>AELEARNER Name</Name>
-                <Gender>Male</Gender>
-                <Grade>Grade Two</Grade>
-                <EMail>AELEARNER MAIl</EMail>
-                <Address>ADDELearner Address</Address>
-            </ELearner>
-        </Operation>
-        <Operation>
-            <OPType>AddELearner</OPType>
-            <ELearner>
-                <Id>AELEARNER22</Id>
-                <Name>AELEARNER Name22</Name>
-                <Gender>Male</Gender>
-                <Grade>Grade Two</Grade>
-                <EMail>AELEARNER MAIl</EMail>
-                <Address>ADDELearner Address</Address>
-            </ELearner>
+            <OPType>AddEConcept</OPType>
+            <E_Concept>
+                <Id>sdfsdfd</Id>
+                <Name>sdf</Name>
+                <Difficulty>初级</Difficulty>
+            </E_Concept>
         </Operation>
         <Operation>
             <OPType>AddEConcept</OPType>
-            <EConcept>
-                <Id>newCONCEPT</Id>
-                <Name>newCONCEPT Name22</Name>
+            <E_Concept>
+                <Id>sdfsdsfdfd</Id>
+                <Name>sdfsf</Name>
                 <Difficulty>中级</Difficulty>
-            </EConcept>
+            </E_Concept>
+        </Operation>
+        <Operation>
+            <OPType>AddEResource</OPType>
+            <ISCB_Resource>
+                <Id>gfsfdsdfdf</Id>
+                <Name>sdfsdfs</Name>
+                <Difficulty>初级</Difficulty>
+                <AppType>名词术语</AppType>
+                <MediaType>文本</MediaType>
+                <Description>sadgffs</Description>
+                <FileLocation>dfsdfsdg</FileLocation>
+            </ISCB_Resource>
+        </Operation>
+        <Operation>
+            <OPType>AddEGoal</OPType>
+            <E_Goal>
+                <Id>sdfsadfsdg</Id>
+                <Name>sdfsdf</Name>
+            </E_Goal>
+        </Operation>
+        <Operation>
+            <OPType>RemoveObjectProperty</OPType>
+            <Subject>rid000499</Subject>
+            <Property>is_resource_of_C</Property>
+            <Object>A_cid_2_m_6</Object>
+        </Operation>
+        <Operation>
+            <OPType>RemoveObjectProperty</OPType>
+            <Subject>A_cid_2_m_6</Subject>
+            <Property>inverse_of_is_resource_of_C</Property>
+            <Object>rid000499</Object>
+        </Operation>
+        <Operation>
+            <OPType>AddObjectProperty</OPType>
+            <Subject>rid000499</Subject>
+            <Property>is_resource_of_C</Property>
+            <Object>A_cid_2_m_5</Object>
+        </Operation>
+        <Operation>
+            <OPType>AddObjectProperty</OPType>
+            <Subject>A_cid_2_m_5</Subject>
+            <Property>inverse_of_is_resource_of_C</Property>
+            <Object>rid000499</Object>
+        </Operation>
+        <Operation>
+            <OPType>AddObjectProperty</OPType>
+            <Subject>rid000499</Subject>
+            <Property>is_resource_of_C</Property>
+            <Object>A_cid_4_m_1</Object>
+        </Operation>
+        <Operation>
+            <OPType>AddObjectProperty</OPType>
+            <Subject>A_cid_4_m_1</Subject>
+            <Property>inverse_of_is_resource_of_C</Property>
+            <Object>rid000499</Object>
+        </Operation>
+        <Operation>
+            <OPType>AddObjectProperty</OPType>
+            <Subject>rid000499</Subject>
+            <Property>is_resource_of_C</Property>
+            <Object>A_cid_2_h_1</Object>
+        </Operation>
+        <Operation>
+            <OPType>AddObjectProperty</OPType>
+            <Subject>A_cid_2_h_1</Subject>
+            <Property>inverse_of_is_resource_of_C</Property>
+            <Object>rid000499</Object>
+        </Operation>
+        <Operation>
+            <OPType>AddObjectProperty</OPType>
+            <Subject>null</Subject>
+            <Property>contain_concepts</Property>
+            <Object>A_cid_1_m_2</Object>
+        </Operation>
+        <Operation>
+            <OPType>AddObjectProperty</OPType>
+            <Subject>null</Subject>
+            <Property>contain_concepts</Property>
+            <Object>A_cid_0_e_4</Object>
+        </Operation>
+        <Operation>
+            <OPType>AddObjectProperty</OPType>
+            <Subject>null</Subject>
+            <Property>contain_concepts</Property>
+            <Object>A_cid_4_h_1</Object>
         </Operation>
     </Updates>
 </OwlUpdate>

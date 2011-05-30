@@ -52,6 +52,8 @@ public class ConceptPane extends javax.swing.JPanel {
         uriLabel = new javax.swing.JLabel();
         learnBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(null, "知识点-资源", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         setDoubleBuffered(false);
@@ -79,6 +81,12 @@ public class ConceptPane extends javax.swing.JPanel {
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(160, 160, 160), 1, true), "相关资源", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("微软雅黑", 0, 14))); // NOI18N
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
+        jLabel3.setText("难易度：");
+        jLabel3.setName("jLabel3"); // NOI18N
+
+        jLabel4.setText("diff");
+        jLabel4.setName("jLabel4"); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,10 +100,14 @@ public class ConceptPane extends javax.swing.JPanel {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(uriLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE)
+                            .addComponent(uriLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                             .addComponent(conceptName)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
                     .addComponent(learnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -109,9 +121,13 @@ public class ConceptPane extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(uriLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addGap(13, 13, 13)
                 .addComponent(learnBtn)
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -129,7 +145,7 @@ public class ConceptPane extends javax.swing.JPanel {
             try {
                 LPApp.lpModel.addEPerfomance(ep);
             } catch (IndividualExistException ex) {
-                Logger.getLogger(ConceptDialog.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ConceptPane.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         this.updateData();
@@ -151,6 +167,9 @@ public class ConceptPane extends javax.swing.JPanel {
 
     public void setURIName(String uri) {
         uriLabel.setText(uri);
+    }
+    public void setDifficulty(String diff){
+        jLabel4.setText(diff);
     }
 
     public void updateData() {
@@ -188,6 +207,8 @@ public class ConceptPane extends javax.swing.JPanel {
     public javax.swing.JLabel conceptName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton learnBtn;
     public javax.swing.JLabel uriLabel;
