@@ -284,23 +284,15 @@ public class RadarPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jSlide3Value)
-                                    .addComponent(jSlide2Value)
-                                    .addComponent(jSlide1Value))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jSlide5Value)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addComponent(jSlide4Value))
+                            .addComponent(jSlide5Value)
+                            .addComponent(jSlide4Value, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSlide3Value, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                            .addComponent(jSlide2Value, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                            .addComponent(jSlide1Value, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jSlide6Value)
-                        .addContainerGap())))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSlide6Value))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,8 +361,7 @@ public class RadarPanel extends javax.swing.JPanel {
         EPerformanceAssessment assessment = new EPerformanceAssessment(a1, a2, a3, a4, a5, a6);
         try {
             LPApp.lpModel.updateEPerformanceAssessment(perform, assessment);
-            int temp = Integer.parseInt(a1) + Integer.parseInt(a2) + Integer.parseInt(a3) + Integer.parseInt(a4) + Integer.parseInt(a5) + Integer.parseInt(a6);
-            perform.setValue(temp / 6);
+            perform.setValue(assessment.getValue());
             LPApp.lpModel.updateEPerfomance(perform);
             UserProfilePane userProfilePane = (UserProfilePane) LPApp.getApplication().view.getPanes()[LPApp.PROFILE];
             userProfilePane.updateUserProfilePane();

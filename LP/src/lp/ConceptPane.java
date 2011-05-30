@@ -146,12 +146,14 @@ public class ConceptPane extends javax.swing.JPanel {
         EPerformance ep = LPApp.lpModel.getEPerformance(new ELearner(LPApp.getApplication().user.username), cdec);
         if (ep == null) {
             ep = new EPerformance();
-            ep.setValue(-1);
+            ep.setValue(-1f);
             ep.setEConcept(cdec);
             ep.setELearner(LPApp.getApplication().user.learner);
-            ep.setId(LPApp.getApplication().user.learner.getId() + cdec.getCid() + "_p");
+            ep.setId("EPerformance_"+LPApp.getApplication().user.learner.getId() +"_"+ cdec.getCid());
+
             ep.setDatetime(new Date(System.currentTimeMillis()));
             try {
+                System.out.println("ep:"+ep);
                 LPApp.lpModel.addEPerfomance(ep);
             } catch (IndividualExistException ex) {
                 Logger.getLogger(ConceptPane.class.getName()).log(Level.SEVERE, null, ex);
@@ -173,9 +175,10 @@ public class ConceptPane extends javax.swing.JPanel {
     public void updateData() {
         if (cdec != null) {
             EPerformance ep = LPApp.lpModel.getEPerformance(LPApp.getApplication().user.learner, cdec);
+             System.out.println("update:"+ep);
 //            this.examScore.setText("");
             if (ep != null) {
-                if (ep.getValue() > -0.5) {
+                if (ep.getValue() > -0.5f) {
                     this.learnBtn.setText("已学过");
 //                    examScore.setVisible(true);
 //                    examScore.setText("成绩为" + ep.getValue());
@@ -191,6 +194,7 @@ public class ConceptPane extends javax.swing.JPanel {
 //                examBtn.setEnabled(false);
 //                examScore.setVisible(false);
             }
+           
         }
     }
 
