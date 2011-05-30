@@ -29,6 +29,10 @@ public class AssessmentPane extends javax.swing.JPanel {
         jScrollPane1.setViewportView(perform);
         jScrollPane2.setViewportView(port);
     }
+    public void updateAssessmentPane(){
+        perform.updatePerformanceTable();
+        port.updateResourceTable();
+    }
 
     /** This method is called from within the constructor to
      * initialize the form.

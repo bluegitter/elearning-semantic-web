@@ -802,9 +802,10 @@ public class AdminOperatorPane extends javax.swing.JPanel {
             } catch (IndividualNotExistException ex) {
                 Logger.getLogger(AdminOperatorPane.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Element addCon = ou.getOperationElement(OwlUpdate.optypes[1], ou.createEConcpetElementByEConcpet(con));
-            ou.addUpdate(addCon);
             jLabel24.setText("添加知识点成功.不要忘记点击“保存本体”哦");
+            Element addCon = ou.getOperationElement(OwlUpdate.optypes[OwlUpdate.ADDECONCEPT], ou.createEConcpetElementByEConcpet(con));
+            ou.addUpdate(addCon);
+
         } else {
             jLabel24.setText("添加失败，请查看提示");
         }
@@ -820,9 +821,13 @@ public class AdminOperatorPane extends javax.swing.JPanel {
             EConcept con = getEConceptFromAddConceptPanel();
             try {
                 emi.updateEConcept(con);
+                jLabel24.setText("更新知识点成功.不要忘记点击“保存本体”哦");
+                Element upCon = ou.getOperationElement(OwlUpdate.optypes[OwlUpdate.UPDATEECONCEPT], ou.createEConcpetElementByEConcpet(con));
+                ou.addUpdate(upCon);
             } catch (IndividualNotExistException ex) {
                 Logger.getLogger(AdminOperatorPane.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         } else {
             jLabel24.setText("知识点ID不存在，无法更新");
         }
@@ -912,6 +917,9 @@ public class AdminOperatorPane extends javax.swing.JPanel {
             ISCB_Resource res = getEResourceFromAddResPanel();
             try {
                 emi.updateEResource(res);
+                jLabel25.setText("更新资源成功.不要忘记点击“保存本体”哦");
+                Element upRes = ou.getOperationElement(OwlUpdate.optypes[OwlUpdate.UPDATEERESOURCE], ou.createEResourceElementByEResource(res));
+                ou.addUpdate(upRes);
             } catch (IndividualNotExistException ex) {
                 Logger.getLogger(AdminOperatorPane.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -979,7 +987,9 @@ public class AdminOperatorPane extends javax.swing.JPanel {
         if (jLabel23.getText().trim().equals("no")) {
             EGoal goal = getGoalFromAddGoalPanel();
             emi.updateEGoal(goal);
-            System.out.println("update goal successfully");
+            jLabel27.setText("更新目标成功.不要忘记点击“保存本体”哦");
+            Element upEGoal = ou.getOperationElement(OwlUpdate.optypes[OwlUpdate.UPDATEEGOAL], ou.createEGoalElementByEGoal(goal));
+            ou.addUpdate(upEGoal);
         } else {
             jLabel27.setText("目标不存在，无法更新");
         }
@@ -1058,19 +1068,18 @@ public class AdminOperatorPane extends javax.swing.JPanel {
         }
     }
 
-    public void getPropertyContainsConcept(String optype,String gid, String cid) {
+    public void getPropertyContainsConcept(String optype, String gid, String cid) {
         Element element = ou.getObjectPropertyOperationElement(optype, gid, "contain_concepts", cid);
         ou.addUpdate(element);
     }
 
-    public void getPropertyIsResourceOfC(String optype,String rid, String cid) {
+    public void getPropertyIsResourceOfC(String optype, String rid, String cid) {
         Element element = ou.getObjectPropertyOperationElement(optype, rid, "is_resource_of_C", cid);
         Element element2 = ou.getObjectPropertyOperationElement(optype, cid, "inverse_of_is_resource_of_C", rid);
 
         ou.addUpdate(element);
         ou.addUpdate(element2);
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;

@@ -6,36 +6,28 @@
         <Operation>
             <OPType>AddEConcept</OPType>
             <E_Concept>
-                <Id>sdfsdfd</Id>
-                <Name>sdf</Name>
+                <Id>testcon</Id>
+                <Name>testcon</Name>
                 <Difficulty>初级</Difficulty>
-            </E_Concept>
-        </Operation>
-        <Operation>
-            <OPType>AddEConcept</OPType>
-            <E_Concept>
-                <Id>sdfsdsfdfd</Id>
-                <Name>sdfsf</Name>
-                <Difficulty>中级</Difficulty>
             </E_Concept>
         </Operation>
         <Operation>
             <OPType>AddEResource</OPType>
             <ISCB_Resource>
-                <Id>gfsfdsdfdf</Id>
-                <Name>sdfsdfs</Name>
+                <Id>testres</Id>
+                <Name>ter</Name>
                 <Difficulty>初级</Difficulty>
                 <AppType>名词术语</AppType>
                 <MediaType>文本</MediaType>
-                <Description>sadgffs</Description>
-                <FileLocation>dfsdfsdg</FileLocation>
+                <Description/>
+                <FileLocation/>
             </ISCB_Resource>
         </Operation>
         <Operation>
             <OPType>AddEGoal</OPType>
             <E_Goal>
-                <Id>sdfsadfsdg</Id>
-                <Name>sdfsdf</Name>
+                <Id>testgoal</Id>
+                <Name>sdfsd</Name>
             </E_Goal>
         </Operation>
         <Operation>
@@ -54,55 +46,59 @@
             <OPType>AddObjectProperty</OPType>
             <Subject>rid000499</Subject>
             <Property>is_resource_of_C</Property>
-            <Object>A_cid_2_m_5</Object>
-        </Operation>
-        <Operation>
-            <OPType>AddObjectProperty</OPType>
-            <Subject>A_cid_2_m_5</Subject>
-            <Property>inverse_of_is_resource_of_C</Property>
-            <Object>rid000499</Object>
-        </Operation>
-        <Operation>
-            <OPType>AddObjectProperty</OPType>
-            <Subject>rid000499</Subject>
-            <Property>is_resource_of_C</Property>
-            <Object>A_cid_4_m_1</Object>
-        </Operation>
-        <Operation>
-            <OPType>AddObjectProperty</OPType>
-            <Subject>A_cid_4_m_1</Subject>
-            <Property>inverse_of_is_resource_of_C</Property>
-            <Object>rid000499</Object>
-        </Operation>
-        <Operation>
-            <OPType>AddObjectProperty</OPType>
-            <Subject>rid000499</Subject>
-            <Property>is_resource_of_C</Property>
-            <Object>A_cid_2_h_1</Object>
-        </Operation>
-        <Operation>
-            <OPType>AddObjectProperty</OPType>
-            <Subject>A_cid_2_h_1</Subject>
-            <Property>inverse_of_is_resource_of_C</Property>
-            <Object>rid000499</Object>
-        </Operation>
-        <Operation>
-            <OPType>AddObjectProperty</OPType>
-            <Subject>null</Subject>
-            <Property>contain_concepts</Property>
-            <Object>A_cid_1_m_2</Object>
-        </Operation>
-        <Operation>
-            <OPType>AddObjectProperty</OPType>
-            <Subject>null</Subject>
-            <Property>contain_concepts</Property>
             <Object>A_cid_0_e_4</Object>
         </Operation>
         <Operation>
             <OPType>AddObjectProperty</OPType>
-            <Subject>null</Subject>
+            <Subject>A_cid_0_e_4</Subject>
+            <Property>inverse_of_is_resource_of_C</Property>
+            <Object>rid000499</Object>
+        </Operation>
+        <Operation>
+            <OPType>AddObjectProperty</OPType>
+            <Subject>rid000499</Subject>
+            <Property>is_resource_of_C</Property>
+            <Object>A_cid_1_e_4</Object>
+        </Operation>
+        <Operation>
+            <OPType>AddObjectProperty</OPType>
+            <Subject>A_cid_1_e_4</Subject>
+            <Property>inverse_of_is_resource_of_C</Property>
+            <Object>rid000499</Object>
+        </Operation>
+        <Operation>
+            <OPType>RemoveObjectProperty</OPType>
+            <Subject>goal_0004</Subject>
             <Property>contain_concepts</Property>
-            <Object>A_cid_4_h_1</Object>
+            <Object>A_cid_4_m_1</Object>
+        </Operation>
+        <Operation>
+            <OPType>AddObjectProperty</OPType>
+            <Subject>goal_0004</Subject>
+            <Property>contain_concepts</Property>
+            <Object>A_cid_1_m_5</Object>
+        </Operation>
+        <Operation>
+            <OPType>UpdateEConcept</OPType>
+            <E_Concept>
+                <Id>testcon</Id>
+                <Name>testconsdfdsf</Name>
+                <Difficulty>初级</Difficulty>
+            </E_Concept>
+        </Operation>
+        <Operation>
+            <OPType>UpdateEGoal</OPType>
+            <E_Goal>
+                <Id>testgoal</Id>
+                <Name>sdfsdfdgd;slkg;df</Name>
+            </E_Goal>
+        </Operation>
+        <Operation>
+            <OPType>UpdateEGoal</OPType>
+            <E_Goal>
+                <Id>testgoal</Id>
+                <Name>sdfsdfdgd;slkg;df</Name>
+            </E_Goal>
         </Operation>
     </Updates>
 </OwlUpdate>

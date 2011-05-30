@@ -37,6 +37,15 @@ public class ConceptPane extends javax.swing.JPanel {
         jScrollPane1.setViewportView(resourceTablePane);
     }
 
+    public void initCon(EConcept con) {
+        conceptName.setText(con.getName());
+        uriLabel.setText(util.Constant.NS + con.getCid());
+        jLabel4.setText(con.getDifficulty());
+        cdec = con;
+        updateData();
+        updateResouceTable(con);
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -149,7 +158,7 @@ public class ConceptPane extends javax.swing.JPanel {
             }
         }
         this.updateData();
-        LPApp.lpLogs.writeLog(105,cdec.getCid()+" "+cdec.getName(),LogConstant.RESULT105,LogConstant.STATUS105);
+        LPApp.lpLogs.writeLog(105, cdec.getCid() + " " + cdec.getName(), LogConstant.RESULT105, LogConstant.STATUS105);
 }//GEN-LAST:event_learnBtnActionPerformed
     @Override
     public String toString() {
@@ -159,17 +168,6 @@ public class ConceptPane extends javax.swing.JPanel {
     public void updateResouceTable(EConcept ec) {
         ArrayList<ISCB_Resource> ra = LPApp.lpModel.getEResourcesByEConcept(ec);
         resourceTablePane.updateResources(ra);
-    }
-
-    public void setConceptName(String name) {
-        conceptName.setText(name);
-    }
-
-    public void setURIName(String uri) {
-        uriLabel.setText(uri);
-    }
-    public void setDifficulty(String diff){
-        jLabel4.setText(diff);
     }
 
     public void updateData() {

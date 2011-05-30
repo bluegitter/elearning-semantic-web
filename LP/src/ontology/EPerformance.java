@@ -8,6 +8,7 @@ public class EPerformance {
 
     public EPerformance() {
         assessment = new EPerformanceAssessment();
+        value = -1.0f;
     }
 
     public ELearner getELearner() {

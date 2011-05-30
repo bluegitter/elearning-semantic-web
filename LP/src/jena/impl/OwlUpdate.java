@@ -42,7 +42,9 @@ public class OwlUpdate {
 
     public static String[] optypes = {"AddELearner", "AddEConcept", "AddEResource", "AddEGoal",
         "AddEInterest", "AddEPerformance", "AddEPortfolio", "RemoveIndividual",
-        "AddObjectProperty", "RemoveObjectProperty", "AddDataProperty", "RemoveDataProperty"};
+        "AddObjectProperty", "RemoveObjectProperty", "AddDataProperty", "RemoveDataProperty",
+        "UpdateELearner", "UpdateEConcept", "UpdateEResource", "UpdateEGoal", "UpdateEInterest",
+        "UpdateEPerformance", "UpdateEportfolio"};
     public static int ADDELEARNER = 0;
     public static int ADDECONCEPT = 1;
     public static int ADDERESOURCE = 2;
@@ -55,6 +57,13 @@ public class OwlUpdate {
     public static int REMOVEOBJECTPROPERTY = 9;
     public static int ADDDATAPROPERTY = 10;
     public static int REMOVEdATAPROPERTY = 11;
+    public static int UPDATEELEARNER = 12;
+    public static int UPDATEECONCEPT = 13;
+    public static int UPDATEERESOURCE = 14;
+    public static int UPDATEEGOAL = 15;
+    public static int UPDATEEINTEREST = 16;
+    public static int UPDATEEPERFORMANCE= 17;
+    public static int UPDATEEPORTFOLIO = 18;
     private ELearnerModelImpl emi;
     private File inFile;
     private File toFile;
@@ -487,7 +496,7 @@ public class OwlUpdate {
         return op;
     }
 
-    public Element getObjectPropertyOperationElement(String opType,String subject, String property, String object) {
+    public Element getObjectPropertyOperationElement(String opType, String subject, String property, String object) {
         Element element = doc.createElement("Operation");
         Element type = doc.createElement("OPType");
         type.setTextContent(opType);
@@ -503,8 +512,9 @@ public class OwlUpdate {
         element.appendChild(objElement);
         return element;
     }
-    public Element getDataPropertyOperationElement(String opType,String subject,String property,String data,String dataType){
-         Element element = doc.createElement("Operation");
+
+    public Element getDataPropertyOperationElement(String opType, String subject, String property, String data, String dataType) {
+        Element element = doc.createElement("Operation");
         Element type = doc.createElement("OPType");
         type.setTextContent(opType);
         Element subElement = doc.createElement("Subject");

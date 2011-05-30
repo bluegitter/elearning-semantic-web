@@ -26,6 +26,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import jena.ELearnerModelUtilMethod;
 import jena.OwlFactory;
 import jena.interfaces.ELearnerModelOperationInterface;
@@ -286,6 +287,19 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         ontModel.add(son, ontModel.getProperty(Constant.NS + "is_son_of"), father);
         return true;
     }
+
+    public boolean addPropertyIgnoreEConcepts(ELearner el, EConcept con) {
+        if (!containEConcept(el.getId())) {
+            return false;
+        }
+        if (!containEConcept(con.getCid())) {
+            return false;
+        }
+        Individual indiEl = ontModel.getIndividual(Constant.NS + el.getId());
+        Individual indiCon = ontModel.getIndividual(Constant.NS + con.getCid());
+        ontModel.add(indiEl, ontModel.getObjectProperty(Constant.NS + "ignore_concepts"), indiCon);
+        return true;
+    }
     //transitive function
 
     public boolean addPropertyIsPartOf(EConcept fatherConcept, EConcept sonConcept) throws IndividualNotExistException {
@@ -517,12 +531,12 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
             ontModel.remove(indi, p, indi.getPropertyValue(p));
             ontModel.add(indi, p, resource.getResourceDescription(), new XSDDatatype("string"));
         }
-        p = ontModel.getProperty(Constant.NS + "resource_quality");
-        String resource_quality = indi.getRequiredProperty(p).getLiteral().getString();
-        if (!resource.getResourceQuality().equals(resource_quality)) {
-            ontModel.remove(indi, p, indi.getPropertyValue(p));
-            ontModel.add(indi, p, resource.getResourceQuality(), new XSDDatatype("string"));
-        }
+//        p = ontModel.getProperty(Constant.NS + "resource_quality");
+//        String resource_quality = indi.getRequiredProperty(p).getLiteral().getString();
+//        if (!resource.getResourceQuality().equals(resource_quality)) {
+//            ontModel.remove(indi, p, indi.getPropertyValue(p));
+//            ontModel.add(indi, p, resource.getResourceQuality(), new XSDDatatype("string"));
+//        }
         p = ontModel.getProperty(Constant.NS + "resource_type");
         String resource_type = indi.getRequiredProperty(p).getLiteral().getString();
         if (!resource.getResourceType().equals(resource_type)) {
@@ -556,17 +570,17 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
             ontModel.remove(indi, p, indi.getPropertyValue(p));
             ontModel.add(indi, p, resource.getDifficulty(), new XSDDatatype("string"));
         }
-        p = ontModel.getProperty(Constant.NS + "has_postfix");
-        Resource r = indi.getPropertyResourceValue(p);
-        String postfix = r.getRequiredProperty(ontModel.getProperty(Constant.NS + "file_postfix")).getLiteral().getString();
-        String newPostfixString = resource.getPostfix();
-        Individual newPostfix = getFileFormat(newPostfixString);
-        if (newPostfix != null) {
-            if (!newPostfixString.equals(postfix)) {
-                ontModel.remove(indi, p, indi.getPropertyResourceValue(p));
-                ontModel.add(ontModel.createStatement(indi, p, newPostfix));
-            }
-        }
+//        p = ontModel.getProperty(Constant.NS + "has_postfix");
+//        Resource r = indi.getPropertyResourceValue(p);
+//        String postfix = r.getRequiredProperty(ontModel.getProperty(Constant.NS + "file_postfix")).getLiteral().getString();
+//        String newPostfixString = resource.getPostfix();
+//        Individual newPostfix = getFileFormat(newPostfixString);
+//        if (newPostfix != null) {
+//            if (!newPostfixString.equals(postfix)) {
+//                ontModel.remove(indi, p, indi.getPropertyResourceValue(p));
+//                ontModel.add(ontModel.createStatement(indi, p, newPostfix));
+//            }
+//        }
         return true;
     }
 
@@ -1696,7 +1710,4 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
 
         System.out.println("end");
     }
-
-
-   
 }
