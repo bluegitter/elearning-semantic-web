@@ -14,6 +14,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 import lp.LPApp;
+import ontology.EPerformance;
 
 /**
  *
@@ -24,6 +25,8 @@ public class E_Castle {
     public int x, y, type;
     private Rectangle rect;
     public LinkedEConcept concept;
+    
+    private int rx, ry, rw, rh;
 
     private int labelWidth, labelHeight, labelBase;
 
@@ -32,8 +35,10 @@ public class E_Castle {
     public static final int HARD = 2;
 
     public static Color[] colors = {Color.GREEN, Color.YELLOW, Color.RED};
-    public static ImageIcon[] image = {new ImageIcon(MapBg.class.getResource("/lp/resources/easy.png")),
-        new ImageIcon(MapBg.class.getResource("/lp/resources/middle.png")), new ImageIcon(MapBg.class.getResource("/lp/resources/hard.png"))};
+    public static ImageIcon[][] image = {{new ImageIcon(MapBg.class.getResource("/lp/resources/easy_notlearn.png")),
+        new ImageIcon(MapBg.class.getResource("/lp/resources/middle_notlearn.png")), new ImageIcon(MapBg.class.getResource("/lp/resources/hard_notlearn.png"))}, 
+        {new ImageIcon(MapBg.class.getResource("/lp/resources/easy.png")),
+        new ImageIcon(MapBg.class.getResource("/lp/resources/middle.png")), new ImageIcon(MapBg.class.getResource("/lp/resources/hard.png"))}};
 
     public E_Castle(int x, int y, LinkedEConcept c) {
         this.x = x;
@@ -51,6 +56,15 @@ public class E_Castle {
         labelBase = fm.getAscent();
         labelHeight = fm.getHeight();
         labelWidth = fm.stringWidth(c.getConcept().getName());
+        
+        ImageIcon i = image[1][type];
+        int lx = x + i.getIconWidth() / 2 - labelWidth / 2 - 4;
+        
+        rw = (rect.width > this.labelWidth + 8) ? rect.width : (this.labelWidth + 8);
+        rh = rect.height + 8 + this.labelHeight + 4;
+        
+        rx = (lx > x) ? x : lx;
+        ry = y;
     }
 
     public boolean dian(int ex, int ey) {
@@ -58,7 +72,13 @@ public class E_Castle {
     }
 
     private ImageIcon getImage() {
-        return image[type];
+        EPerformance ep = LPApp.lpModel.getEPerformance(LPApp.getApplication().user.learner, concept.getConcept());
+        int learnt = 0;
+        
+        if(ep != null && ep.getValue() > -0.5)
+            learnt = 1;
+        
+        return image[learnt][type];
     }
 
     public Color getColor() {
@@ -66,9 +86,9 @@ public class E_Castle {
     }
 
     public void paint(Component c, Graphics2D g, int x, int y) {
-        ImageIcon i = image[type];
+        ImageIcon i = getImage();
         i.paintIcon(c, g, x, y);
-
+        
         int sx = x + i.getIconWidth() / 2 - labelWidth / 2;
         int sy = y + i.getIconHeight() + 8;
 
@@ -79,5 +99,21 @@ public class E_Castle {
 
         g.setFont(new Font("微软雅黑", Font.BOLD, 12));
         g.drawString(concept.getConcept().getName(), sx, sy + labelBase);
+    }
+    
+    public int getWidth() {
+        return rw; 
+    }
+    
+    public int getHeight() {
+        return rh;
+    }
+    
+    public int getX() {
+        return rx;
+    }
+    
+    public int getY() {
+        return ry;
     }
 }
