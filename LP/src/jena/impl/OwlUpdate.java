@@ -179,9 +179,10 @@ public class OwlUpdate {
         }
         return perf;
     }
-    public EPortfolio getEPortfolioByElement(Element element){
+
+    public EPortfolio getEPortfolioByElement(Element element) {
         EPortfolio port = new EPortfolio();
-        if(element.getTagName().equals("E_Portfolio")){
+        if (element.getTagName().equals("E_Portfolio")) {
             String id = ((Element) element.getElementsByTagName("Id").item(0)).getTextContent();
             String eid = ((Element) element.getElementsByTagName("ELearnerId").item(0)).getTextContent();
             String rid = ((Element) element.getElementsByTagName("EResourceId").item(0)).getTextContent();
@@ -190,8 +191,9 @@ public class OwlUpdate {
             port.setELearner(emi.getELearner(eid));
             port.setEResource(emi.getEResource(rid));
             port.setValue(Float.parseFloat(value));
-        }else{
-            return null;}
+        } else {
+            return null;
+        }
         return port;
     }
 
@@ -279,6 +281,44 @@ public class OwlUpdate {
         eid.setTextContent(in.getELearner().getId());
         cid.setTextContent(in.getEConcept().getCid());
         value.setTextContent(String.valueOf(in.getValue()));
+        element.appendChild(id);
+        element.appendChild(eid);
+        element.appendChild(cid);
+        element.appendChild(value);
+        return element;
+    }
+
+    public Element createEPerformanceElementByEPerformance(EPerformance perf) {
+        Element element = doc.createElement("E_Performance");
+        Element id = doc.createElement("Id");
+        Element eid = doc.createElement("ELearnerId");
+        Element cid = doc.createElement("EConceptId");
+        Element value = doc.createElement("Value");
+        id.setTextContent(perf.getId());
+        eid.setTextContent(perf.getELearner().getId());
+        cid.setTextContent(perf.getEConcept().getCid());
+        value.setTextContent(String.valueOf(perf.getValue()));
+        element.appendChild(id);
+        element.appendChild(eid);
+        element.appendChild(cid);
+        element.appendChild(value);
+        return element;
+    }
+
+    public Element createEPortfolioElementByEPortfolio(EPortfolio port) {
+        Element element = doc.createElement("E_Portfolio");
+        Element id = doc.createElement("Id");
+        Element eid = doc.createElement("ELearnerId");
+        Element rid = doc.createElement("EResourceId");
+        Element value = doc.createElement("Value");
+        id.setTextContent(port.getId());
+        eid.setTextContent(port.getELearner().getId());
+        rid.setTextContent(port.getEResource().getRid());
+        value.setTextContent(String.valueOf(port.getValue()));
+        element.appendChild(id);
+        element.appendChild(eid);
+        element.appendChild(rid);
+        element.appendChild(value);
         return element;
     }
 
