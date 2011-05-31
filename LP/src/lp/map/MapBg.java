@@ -3,6 +3,7 @@ package lp.map;
 import algorithm.datastructure.LinkedEConcept;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -16,9 +17,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.swing.ImageIcon;
 import lp.LPApp;
+import ontology.EConcept;
 import ontology.EGoal;
 import util.Constant;
 
@@ -31,7 +35,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
     private int cx, cy, vw, vh, bw, bh, ox, oy, dx, dy, vmx, vmy;
     private boolean xdone, ydone;
     private boolean init = false;
-    private ArrayList<E_Castle> castle;
+    private HashMap<String, E_Castle> castle;
     private BufferedImage tMap;
     private HashMap<String, Point> cities;
     private Rectangle mapLite, viewLite;
@@ -41,15 +45,22 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
     private MMDialog dialog;
     public ArrayList<EGoal> goals;
     private E_Castle menuShow;
+    private HashMap<Rectangle, EConcept> qMenu, hMenu;
+    private ImageIcon qicon, hicon;
 
     public MapBg(javax.swing.JPanel p) {
         pp = p;
         bgImage = new ImageIcon(MapBg.class.getResource("/lp/resources/grass.png"));
+        qicon = new ImageIcon(MapBg.class.getResource("/lp/resources/q.jpg"));
+        hicon = new ImageIcon(MapBg.class.getResource("/lp/resources/h.jpg"));
+
+        qMenu = new HashMap<Rectangle, EConcept>();
+        hMenu = new HashMap<Rectangle, EConcept>();
 
         bw = bgImage.getIconWidth();
         bh = bgImage.getIconHeight();
 
-        castle = new ArrayList<E_Castle>();
+        castle = new HashMap<String, E_Castle>();
         cities = new HashMap<String, Point>();
 
         tMap = new BufferedImage(tw, th, BufferedImage.TYPE_INT_ARGB);
@@ -95,7 +106,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
             for (LinkedEConcept le : list) {
                 Point p = cities.get(le.getConcept().getCid());
                 E_Castle ecastle = new E_Castle(p.x, p.y, le);
-                castle.add(ecastle);
+                castle.put(le.getConcept().getCid(), ecastle);
 
                 ig.setColor(ecastle.getColor());
                 ig.fillOval(p.x * tw / w, p.y * th / h, 5, 5);
@@ -125,6 +136,27 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
     }
 
+    private void createMenu(E_Castle ec) {
+        qMenu.clear();
+        hMenu.clear();
+
+        int offset = 50;
+
+        HashSet<EConcept> prelist = LPApp.lpModel.getPreEConcept(ec.concept.getConcept().getCid());
+        for (EConcept c : prelist) {
+            qMenu.put(new Rectangle(ec.getX() - 100, ec.getY() + offset, 90, 20), c);
+            offset += 30;
+        }
+
+        offset = 50;
+
+        HashSet<EConcept> postlist = LPApp.lpModel.getPostEConcept(ec.concept.getConcept().getCid());
+        for (EConcept c : postlist) {
+            hMenu.put(new Rectangle(ec.getX() + ec.getWidth() + 10, ec.getY() + offset, 90, 20), c);
+            offset += 30;
+        }
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -147,15 +179,35 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        for (E_Castle c : castle) {
+        for (E_Castle c : castle.values()) {
             c.paint(this, g2, c.x - cx, c.y - cy);
         }
-        
-        if(menuShow != null) {
+
+        if (menuShow != null) {
             //g2.setColor(Color.red);
             //g2.drawRect(menuShow.getX() - cx - 10, menuShow.getY() - cy - 10, menuShow.getWidth() + 20, menuShow.getHeight() + 20);
-            
-            
+
+            g.setFont(new Font("微软雅黑", Font.PLAIN, 11));
+
+            if (qMenu.size() > 0) {
+                qicon.paintIcon(this, g, menuShow.getX() - 80 - cx, menuShow.getY() + 20 - cy);
+                for (Map.Entry<Rectangle, EConcept> kv : qMenu.entrySet()) {
+                    g2.setColor(Color.DARK_GRAY);
+                    g2.fillRect(kv.getKey().x - cx, kv.getKey().y - cy, kv.getKey().width, kv.getKey().height);
+                    g2.setColor(Color.red);
+                    g2.drawString(kv.getValue().getName(), kv.getKey().x - cx + 10, kv.getKey().y - cy + 15);
+                }
+            }
+
+            if (hMenu.size() > 0) {
+                hicon.paintIcon(this, g, menuShow.getX() + 10 + menuShow.getWidth() - cx, menuShow.getY() + 20 - cy);
+                for (Map.Entry<Rectangle, EConcept> kv : hMenu.entrySet()) {
+                    g2.setColor(Color.DARK_GRAY);
+                    g2.fillRect(kv.getKey().x - cx, kv.getKey().y - cy, kv.getKey().width, kv.getKey().height);
+                    g2.setColor(Color.red);
+                    g2.drawString(kv.getValue().getName(), kv.getKey().x - cx + 10, kv.getKey().y - cy + 15);
+                }
+            }
         }
 
         g2.drawImage(tMap, vw - tw - 5, 5, null);
@@ -360,12 +412,41 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                     dy = (y - mapLite.y - viewLite.height / 2) * h / th;
                     viewMove();
                 } else {
-                    for (E_Castle c : castle) {
+                    if (menuShow != null) {
+                        for (Map.Entry<Rectangle, EConcept> kv : qMenu.entrySet()) {
+                            if (kv.getKey().contains(x + cx, y + cy)) {
+                                E_Castle ec = castle.get(kv.getValue().getCid());
+                                dx = ec.getX() + ec.getWidth() / 2 - vw / 2;
+                                dy = ec.getY() + ec.getHeight() / 2 - vh / 2;
+                                viewMove();
+                                menuShow = ec;
+                                createMenu(menuShow);
+                                return;
+                            }
+                        }
+                        
+                        for (Map.Entry<Rectangle, EConcept> kv : hMenu.entrySet()) {
+                            if (kv.getKey().contains(x + cx, y + cy)) {
+                                E_Castle ec = castle.get(kv.getValue().getCid());
+                                dx = ec.getX() + ec.getWidth() / 2 - vw / 2;
+                                dy = ec.getY() + ec.getHeight() / 2 - vh / 2;
+                                viewMove();
+                                menuShow = ec;
+                                createMenu(menuShow);
+                                System.out.println(kv.getValue().getName());
+                                return;
+                            }
+                        }
+                    }
+                    for (E_Castle c : castle.values()) {
                         if (c.dian(x + cx, y + cy)) {
                             if (menuShow == c) {
                                 menuShow = null;
                             } else {
                                 menuShow = c;
+                                if (c != null) {
+                                    createMenu(menuShow);
+                                }
                             }
                             //javax.swing.JOptionPane.showMessageDialog(this, "被点中了。。。");
                             repaint();
