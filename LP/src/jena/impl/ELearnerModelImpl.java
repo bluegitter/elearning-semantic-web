@@ -2,6 +2,7 @@ package jena.impl;
 
 import algorithm.datastructure.LinkedEConcept;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
@@ -16,6 +17,7 @@ import com.hp.hpl.jena.rdf.model.SimpleSelector;
 import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import com.hp.hpl.jena.vocabulary.RDF;
+import com.hp.hpl.jena.vocabulary.ReasonerVocabulary;
 import jena.OwlOperation;
 import exception.jena.HasNoPropertyValueException;
 import exception.jena.IndividualExistException;
@@ -64,14 +66,24 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
     public ELearnerModelImpl(File file, String lang) {
         this.ontModel = OwlFactory.getOntModel(file, lang);
     }
+    public ELearnerModelImpl(OntModel ontModel){
+        this.ontModel = ontModel;
+    }
 
     //向模型中添加模型（合并模型）
-    public boolean addUpdateModel(File file) {
-        if (file == null) {
-            System.out.println("File: " + file + " not found");
-            return false;
+    public boolean addNewModel(File file) {
+        try {
+            if (file == null) {
+                System.out.println("File: " + file + " not found");
+                return false;
+            }
+            java.io.InputStream in = new java.io.FileInputStream(file);
+            ontModel.read(in, Constant.NS);
+            Resource configuration = ontModel.createResource();
+            configuration.addProperty(ReasonerVocabulary.PROPruleMode, "hybrid");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ELearnerModelImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         return true;
     }
 
@@ -109,7 +121,12 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         if (containEConcept(concept.getCid())) {
             throw new IndividualNotExistException("the concept " + concept.getName() + " does not exist in the model");
         }
-        //TODO:
+        ArrayList<EInterest> ins = getEInterests(elearner);
+        for (EInterest in : ins) {
+            if (in.getEConcept().getCid().equals(concept.getCid())) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -1693,20 +1710,45 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
 
     public static void main(String[] args) throws IndividualNotExistException, IndividualExistException {
         //files/owl/elearning_owl.owl
-        File f1 = new File("files/owl/elearning_owl.owl");
+        File f1 = new File("files/owl/elearning_owl_1.owl");
         File el001f = new File("files/owl/el001.owl");
         File el005f = new File("files/owl/el005.owl");
-        ELearnerModelImpl emi = new ELearnerModelImpl(f1);
-        HashSet<EConcept> cons = emi.getAllLeafEConcepts();
-        EConcept father = emi.getEConcept("CMP.cf.2");
+        File writeTo = new File("files/owl/update_write.xml");
 
-        System.out.println("cons:" + cons.size());
-        for (EConcept con : cons) {
-            emi.addPropertyIsPartOf(father, con);
-            emi.addPropertyIsSonOf(father, con);
+        
+     OntModel model =  OwlFactory.getOntModel(el001f,f1);
+     ELearnerModelImpl emi = new ELearnerModelImpl(model);
+        //emi.addNewModel(el005f);
+      boolean b= emi.containELearner("el001");
+    
+            System.out.println("nulllllll\t"+b);
+            ELearner el = emi.getELearner("el001");
+             ArrayList< EInterest> ins = emi.getEInterests(el);
+              System.out.println("ins:"+ins.size());
+              ArrayList<EPerformance> perfs = emi.getEPerformances(el);
+              System.out.println("perfs:"+perfs.size());
+            System.out.println("el:"+el.getName());
 
-        }
-        emi.writeToFile(f1);
+            OntModel newModel = OwlFactory.getOntModel(new File("files/owl/el.owl"));
+//        StmtIterator nl = indi1.listProperties();
+//        int i = 0;
+//        while (nl.hasNext()) {
+//            Statement st = nl.next();
+//            i++;
+//        }
+//        System.out.println(" i:" + i);
+        emi.getOntModel();
+
+//        HashSet<EConcept> cons = emi.getAllLeafEConcepts();
+//        EConcept father = emi.getEConcept("CMP.cf.2");
+//
+//        System.out.println("cons:" + cons.size());
+//        for (EConcept con : cons) {
+//            emi.addPropertyIsPartOf(father, con);
+//            emi.addPropertyIsSonOf(father, con);
+//
+//        }
+    //    emi.writeToFile(writeTo);
 
         System.out.println("end");
     }

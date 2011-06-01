@@ -75,7 +75,13 @@ public class LPApp extends SingleFrameApplication {
         Date date = new Date(System.currentTimeMillis());
         File file = new File(Constant.OWLFile);
 // File file = new File("write1.owl");
-
+        String location="";
+        ELearner el = LPApp.getApplication().user.learner;
+        if(el ==null){
+            return ;
+        }else{
+            getFile(el.getId()+".owl",location);
+        }
         if (!file.exists()) {
             try {
                 file.createNewFile();
@@ -101,11 +107,10 @@ public class LPApp extends SingleFrameApplication {
 
     private void saveToFile(File file) {
         try {
-            OwlOperation.writeRdfFile(LPApp.lpModel.getOntModel(), new File(Constant.RDF_BAK_File), null);
+            //OwlOperation.writeRdfFile(LPApp.lpModel.getOntModel(), new File(Constant.RDF_BAK_File), null);
+           OwlOperation.writeRdfFile(LPApp.lpModel.getOntModel(), file, null);
             System.out.println("Complete saving the file before exiting the program.");
-            // org.semanticweb.owlapi.model.OWLOntologyManager manager = org.semanticweb.owlapi.apibinding.OWLManager.createOWLOntologyManager();
-            //org.semanticweb.owlapi.model.OWLOntology ontology = manager.loadOntologyFromOntologyDocument(file);
-            //OwlOperation.writeOwlFile22(ontology, file);
+            OwlOperation.writeOwlFileFromRdfFile(file, file);
             System.out.println("Complete saving the backup model file in type of RDF before exiting the program.");
         } catch (IOException ex) {
             Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
@@ -113,6 +118,7 @@ public class LPApp extends SingleFrameApplication {
 
     }
 
+    
     private void sendLogs() {
         try {
             lpLogs.sendLogs();
@@ -124,6 +130,9 @@ public class LPApp extends SingleFrameApplication {
         }
         lpLogs.close();
 
+    }
+    public File getFile(String name,String location){
+        return null;
     }
 
     /**
