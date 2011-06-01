@@ -4,8 +4,8 @@
         <uri id="Automatically generated entry, Timestamp=1303303043289" name="http://www.owl-ontologies.com/e-learning.owl" uri="elearning_rdf_bak.owl"/>
         <uri id="Automatically generated entry, Timestamp=1306288324439" name="http://www.owl-ontologies.com/e-learning.owl" uri="el005.owl"/>
         <uri id="Automatically generated entry, Timestamp=1306288324439" name="http://www.owl-ontologies.com/e-learning.owl" uri="write.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1306738646014" name="http://www.owl-ontologies.com/e-learning.owl" uri="el001.owl"/>
         <uri id="Automatically generated entry, Timestamp=1306738646014" name="http://www.owl-ontologies.com/e-learning.owl" uri="elearning_owl_1.owl"/>
-        <uri id="Automatically generated entry, Timestamp=1306747895108" name="http://www.owl-ontologies.com/e-learning.owl" uri="elearning_owl.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1306918438015" name="http://www.owl-ontologies.com/e-learning.owl" uri="elearning_owl.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1306920687171" name="http://www.owl-ontologies.com/e-learning.owl" uri="el001.owl"/>
     </group>
 </catalog>
