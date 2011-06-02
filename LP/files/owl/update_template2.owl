@@ -1,4 +1,19 @@
 <?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY swrl "http://www.w3.org/2003/11/swrl#" >
+    <!ENTITY swrlb "http://www.w3.org/2003/11/swrlb#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY j.0 "http://jena.hpl.hp.com/2003/RuleReasoner#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
+    <!ENTITY xsp "http://www.owl-ontologies.com/2005/08/07/xsp.owl#" >
+]>
+
+
 <rdf:RDF xmlns="http://www.owl-ontologies.com/e-learning.owl#"
      xml:base="http://www.owl-ontologies.com/e-learning.owl"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
@@ -88,7 +103,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#has_learnt -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#has_learnt">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
         <owl:propertyChainAxiom rdf:parseType="Collection">
@@ -122,7 +137,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#has_postfix -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#has_postfix">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#has_postfix"/>
@@ -226,7 +241,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_part_of -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_part_of">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_part_of"/>
@@ -237,7 +252,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_post -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_post">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_post"/>
         <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_post"/>
@@ -248,7 +263,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_pre -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_pre">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_pre"/>
     </owl:ObjectProperty>
@@ -491,7 +506,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#is_member_of -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_member_of">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_member_of"/>
@@ -502,7 +517,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#is_part_of -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_part_of">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_part_of"/>
@@ -514,7 +529,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#is_post -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_post">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_post"/>
     </owl:ObjectProperty>
@@ -524,7 +539,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#is_post_concept_of -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_post_concept_of">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_post_concept_of"/>
@@ -547,7 +562,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#is_pre -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_pre">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_pre"/>
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_pre"/>
@@ -558,7 +573,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#is_pre_concept_of -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_pre_concept_of">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_pre_concept_of"/>
@@ -782,7 +797,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#publish -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#publish">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Publisher"/>
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#publish"/>
     </owl:ObjectProperty>
@@ -792,7 +807,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#reasoning_brother -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#reasoning_brother">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdf:type rdf:resource="&owl;SymmetricProperty"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
         <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#reasoning_brother"/>
@@ -824,7 +839,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#studying_at -->
 
     <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#studying_at">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
         <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#studying_at"/>
@@ -938,7 +953,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#address -->
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#address">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
         <rdfs:domain>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -956,9 +971,9 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#application_type -->
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#application_type">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -967,7 +982,7 @@
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#assessment">
         <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#assessment"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -975,7 +990,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#book_isbn -->
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#book_isbn">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -983,9 +998,9 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#current_goal -->
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#current_goal">
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -993,7 +1008,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#date_time -->
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#date_time">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
         <rdfs:domain>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -1009,7 +1024,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#description -->
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#description">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
         <rdfs:domain>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -1026,7 +1041,7 @@
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#difficulty">
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -1035,7 +1050,7 @@
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#email">
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -1044,7 +1059,7 @@
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#file_location">
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -1053,7 +1068,7 @@
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#file_postfix">
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -1062,7 +1077,7 @@
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#file_type">
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -1075,17 +1090,17 @@
             <rdfs:Datatype>
                 <owl:oneOf>
                     <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">female</rdf:first>
+                        <rdf:type rdf:resource="&rdf;List"/>
+                        <rdf:first rdf:datatype="&xsd;string">female</rdf:first>
                         <rdf:rest>
                             <rdf:Description>
-                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">male</rdf:first>
+                                <rdf:type rdf:resource="&rdf;List"/>
+                                <rdf:first rdf:datatype="&xsd;string">male</rdf:first>
                                 <rdf:rest>
                                     <rdf:Description>
-                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">secret</rdf:first>
-                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                        <rdf:type rdf:resource="&rdf;List"/>
+                                        <rdf:first rdf:datatype="&xsd;string">secret</rdf:first>
+                                        <rdf:rest rdf:resource="&rdf;nil"/>
                                     </rdf:Description>
                                 </rdf:rest>
                             </rdf:Description>
@@ -1102,7 +1117,7 @@
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#grade">
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -1110,7 +1125,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#id -->
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#id">
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">id of objects</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string">id of objects</rdfs:comment>
         <rdfs:domain>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -1130,7 +1145,7 @@
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_leaf_concept">
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+        <rdfs:range rdf:resource="&xsd;boolean"/>
     </owl:DatatypeProperty>
     
 
@@ -1142,29 +1157,29 @@
             <rdfs:Datatype>
                 <owl:oneOf>
                     <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">动画</rdf:first>
+                        <rdf:type rdf:resource="&rdf;List"/>
+                        <rdf:first rdf:datatype="&xsd;string">动画</rdf:first>
                         <rdf:rest>
                             <rdf:Description>
-                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">图片</rdf:first>
+                                <rdf:type rdf:resource="&rdf;List"/>
+                                <rdf:first rdf:datatype="&xsd;string">图片</rdf:first>
                                 <rdf:rest>
                                     <rdf:Description>
-                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">文本</rdf:first>
+                                        <rdf:type rdf:resource="&rdf;List"/>
+                                        <rdf:first rdf:datatype="&xsd;string">文本</rdf:first>
                                         <rdf:rest>
                                             <rdf:Description>
-                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</rdf:first>
+                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                <rdf:first rdf:datatype="&xsd;string">程序</rdf:first>
                                                 <rdf:rest>
                                                     <rdf:Description>
-                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">视频</rdf:first>
+                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                        <rdf:first rdf:datatype="&xsd;string">视频</rdf:first>
                                                         <rdf:rest>
                                                             <rdf:Description>
-                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">音频</rdf:first>
-                                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                <rdf:first rdf:datatype="&xsd;string">音频</rdf:first>
+                                                                <rdf:rest rdf:resource="&rdf;nil"/>
                                                             </rdf:Description>
                                                         </rdf:rest>
                                                     </rdf:Description>
@@ -1186,7 +1201,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#name -->
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#name">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
         <rdfs:domain>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -1208,7 +1223,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#page_view -->
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#page_view">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
     </owl:DatatypeProperty>
     
 
@@ -1223,7 +1238,7 @@
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#privilege">
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Security"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -1232,7 +1247,7 @@
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#rate">
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+        <rdfs:range rdf:resource="&xsd;int"/>
     </owl:DatatypeProperty>
     
 
@@ -1241,7 +1256,7 @@
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#rateString">
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
     </owl:DatatypeProperty>
     
 
@@ -1253,17 +1268,17 @@
             <rdfs:Datatype>
                 <owl:oneOf>
                     <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">全部公开</rdf:first>
+                        <rdf:type rdf:resource="&rdf;List"/>
+                        <rdf:first rdf:datatype="&xsd;string">全部公开</rdf:first>
                         <rdf:rest>
                             <rdf:Description>
-                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">收费公开</rdf:first>
+                                <rdf:type rdf:resource="&rdf;List"/>
+                                <rdf:first rdf:datatype="&xsd;string">收费公开</rdf:first>
                                 <rdf:rest>
                                     <rdf:Description>
-                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">注册公开</rdf:first>
-                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                        <rdf:type rdf:resource="&rdf;List"/>
+                                        <rdf:first rdf:datatype="&xsd;string">注册公开</rdf:first>
+                                        <rdf:rest rdf:resource="&rdf;nil"/>
                                     </rdf:Description>
                                 </rdf:rest>
                             </rdf:Description>
@@ -1284,21 +1299,21 @@
             <rdfs:Datatype>
                 <owl:oneOf>
                     <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">中</rdf:first>
+                        <rdf:type rdf:resource="&rdf;List"/>
+                        <rdf:first rdf:datatype="&xsd;string">中</rdf:first>
                         <rdf:rest>
                             <rdf:Description>
-                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">优</rdf:first>
+                                <rdf:type rdf:resource="&rdf;List"/>
+                                <rdf:first rdf:datatype="&xsd;string">优</rdf:first>
                                 <rdf:rest>
                                     <rdf:Description>
-                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">差</rdf:first>
+                                        <rdf:type rdf:resource="&rdf;List"/>
+                                        <rdf:first rdf:datatype="&xsd;string">差</rdf:first>
                                         <rdf:rest>
                                             <rdf:Description>
-                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">良</rdf:first>
-                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                <rdf:first rdf:datatype="&xsd;string">良</rdf:first>
+                                                <rdf:rest rdf:resource="&rdf;nil"/>
                                             </rdf:Description>
                                         </rdf:rest>
                                     </rdf:Description>
@@ -1321,73 +1336,73 @@
             <rdfs:Datatype>
                 <owl:oneOf>
                     <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">audio</rdf:first>
+                        <rdf:type rdf:resource="&rdf;List"/>
+                        <rdf:first rdf:datatype="&xsd;string">audio</rdf:first>
                         <rdf:rest>
                             <rdf:Description>
-                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">caj</rdf:first>
+                                <rdf:type rdf:resource="&rdf;List"/>
+                                <rdf:first rdf:datatype="&xsd;string">caj</rdf:first>
                                 <rdf:rest>
                                     <rdf:Description>
-                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">code</rdf:first>
+                                        <rdf:type rdf:resource="&rdf;List"/>
+                                        <rdf:first rdf:datatype="&xsd;string">code</rdf:first>
                                         <rdf:rest>
                                             <rdf:Description>
-                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">doc</rdf:first>
+                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                <rdf:first rdf:datatype="&xsd;string">doc</rdf:first>
                                                 <rdf:rest>
                                                     <rdf:Description>
-                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">flash</rdf:first>
+                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                        <rdf:first rdf:datatype="&xsd;string">flash</rdf:first>
                                                         <rdf:rest>
                                                             <rdf:Description>
-                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">image</rdf:first>
+                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                <rdf:first rdf:datatype="&xsd;string">image</rdf:first>
                                                                 <rdf:rest>
                                                                     <rdf:Description>
-                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pdf</rdf:first>
+                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                        <rdf:first rdf:datatype="&xsd;string">pdf</rdf:first>
                                                                         <rdf:rest>
                                                                             <rdf:Description>
-                                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ppt</rdf:first>
+                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                <rdf:first rdf:datatype="&xsd;string">ppt</rdf:first>
                                                                                 <rdf:rest>
                                                                                     <rdf:Description>
-                                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">txt</rdf:first>
+                                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                                        <rdf:first rdf:datatype="&xsd;string">txt</rdf:first>
                                                                                         <rdf:rest>
                                                                                             <rdf:Description>
-                                                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">video</rdf:first>
+                                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                <rdf:first rdf:datatype="&xsd;string">video</rdf:first>
                                                                                                 <rdf:rest>
                                                                                                     <rdf:Description>
-                                                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">其他</rdf:first>
+                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                        <rdf:first rdf:datatype="&xsd;string">其他</rdf:first>
                                                                                                         <rdf:rest>
                                                                                                             <rdf:Description>
-                                                                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">动画</rdf:first>
+                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                <rdf:first rdf:datatype="&xsd;string">动画</rdf:first>
                                                                                                                 <rdf:rest>
                                                                                                                     <rdf:Description>
-                                                                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                                                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">图片</rdf:first>
+                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                        <rdf:first rdf:datatype="&xsd;string">图片</rdf:first>
                                                                                                                         <rdf:rest>
                                                                                                                             <rdf:Description>
-                                                                                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                                                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">文本</rdf:first>
+                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                <rdf:first rdf:datatype="&xsd;string">文本</rdf:first>
                                                                                                                                 <rdf:rest>
                                                                                                                                     <rdf:Description>
-                                                                                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                                                                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</rdf:first>
+                                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                        <rdf:first rdf:datatype="&xsd;string">程序</rdf:first>
                                                                                                                                         <rdf:rest>
                                                                                                                                             <rdf:Description>
-                                                                                                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                                                                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">视频</rdf:first>
+                                                                                                                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                                <rdf:first rdf:datatype="&xsd;string">视频</rdf:first>
                                                                                                                                                 <rdf:rest>
                                                                                                                                                     <rdf:Description>
-                                                                                                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                                                                                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">音频</rdf:first>
-                                                                                                                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                                                                                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                                                                                                                        <rdf:first rdf:datatype="&xsd;string">音频</rdf:first>
+                                                                                                                                                        <rdf:rest rdf:resource="&rdf;nil"/>
                                                                                                                                                     </rdf:Description>
                                                                                                                                                 </rdf:rest>
                                                                                                                                             </rdf:Description>
@@ -1435,25 +1450,25 @@
             <rdfs:Datatype>
                 <owl:oneOf>
                     <rdf:Description>
-                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">副教授</rdf:first>
+                        <rdf:type rdf:resource="&rdf;List"/>
+                        <rdf:first rdf:datatype="&xsd;string">副教授</rdf:first>
                         <rdf:rest>
                             <rdf:Description>
-                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">助理研究员</rdf:first>
+                                <rdf:type rdf:resource="&rdf;List"/>
+                                <rdf:first rdf:datatype="&xsd;string">助理研究员</rdf:first>
                                 <rdf:rest>
                                     <rdf:Description>
-                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">教授</rdf:first>
+                                        <rdf:type rdf:resource="&rdf;List"/>
+                                        <rdf:first rdf:datatype="&xsd;string">教授</rdf:first>
                                         <rdf:rest>
                                             <rdf:Description>
-                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">研究员</rdf:first>
+                                                <rdf:type rdf:resource="&rdf;List"/>
+                                                <rdf:first rdf:datatype="&xsd;string">研究员</rdf:first>
                                                 <rdf:rest>
                                                     <rdf:Description>
-                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
-                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">讲师</rdf:first>
-                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                        <rdf:type rdf:resource="&rdf;List"/>
+                                                        <rdf:first rdf:datatype="&xsd;string">讲师</rdf:first>
+                                                        <rdf:rest rdf:resource="&rdf;nil"/>
                                                     </rdf:Description>
                                                 </rdf:rest>
                                             </rdf:Description>
@@ -1474,7 +1489,7 @@
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#upload_time">
         <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:range rdf:resource="&xsd;dateTime"/>
     </owl:DatatypeProperty>
     
 
@@ -1482,7 +1497,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#value -->
 
     <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#value">
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
         <rdfs:domain>
             <owl:Class>
                 <owl:unionOf rdf:parseType="Collection">
@@ -1537,7 +1552,7 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#E_Concept -->
 
     <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Concept">
-        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
     </owl:Class>
     
 
@@ -1672,7 +1687,7 @@
     <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#Publisher">
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Organizations"/>
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Publisher"/>
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Press</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string">Press</rdfs:comment>
     </owl:Class>
     
 
@@ -1692,188 +1707,6 @@
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Organizations"/>
         <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
     </owl:Class>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // Individuals
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1">
-        <is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-1"/>
-        <is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-5"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_4 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_4">
-        <is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-6"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_4 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_4">
-        <is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-2"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_2_e_1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_e_1">
-        <is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-4"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_3_h_1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_h_1">
-        <is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-3"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-1">
-        <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1"/>
-        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-2 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-2">
-        <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_4"/>
-        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-3 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-3">
-        <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_h_1"/>
-        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-4 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-4">
-        <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_e_1"/>
-        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-5 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-5">
-        <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1"/>
-        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-6 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-6">
-        <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_4"/>
-        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-1 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-1">
-        <inverse_of_is_resource_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-1"/>
-        <inverse_of_has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-2 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-2">
-        <inverse_of_is_resource_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-2"/>
-        <inverse_of_has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#PRF.psy -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#PRF.psy">
-        <is_concept_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001PRF.psy_p"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#el001 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#el001">
-        <grade rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Grade Two</grade>
-        <address rdf:datatype="http://www.w3.org/2001/XMLSchema#string">addr_el001</address>
-        <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">el001</id>
-        <gender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">male</gender>
-        <email rdf:datatype="http://www.w3.org/2001/XMLSchema#string">williamma.wm@gmail.com</email>
-        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">李小刚</name>
-        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-1"/>
-        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-2"/>
-        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-3"/>
-        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-4"/>
-        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-5"/>
-        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-6"/>
-        <has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-1"/>
-        <has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-2"/>
-        <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001PRF.psy_p"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#el001PRF.psy_p -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#el001PRF.psy_p">
-        <inverse_of_is_concept_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#PRF.psy"/>
-        <inverse_of_has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#rid000012 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000012">
-        <is_resource_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-2"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.owl-ontologies.com/e-learning.owl#rid000622 -->
-
-    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000622">
-        <is_resource_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-1"/>
-    </owl:NamedIndividual>
+   
 </rdf:RDF>
-
-
-
-<!-- Generated by the OWL API (version 3.2.2.1502) http://owlapi.sourceforge.net -->
 
