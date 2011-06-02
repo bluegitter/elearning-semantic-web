@@ -28,7 +28,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JDialog;
 import jena.ELearnerModelUtilMethod;
 import jena.OwlFactory;
 import jena.interfaces.ELearnerModelOperationInterface;
@@ -40,8 +39,6 @@ import ontology.people.ELearner;
 import ontology.resources.ISCB_Resource;
 import util.Constant;
 import jena.interfaces.ELearnerUserOperationInterface;
-import lp.eresource.RadarPanel;
-import lp.log.PopCenterDialog;
 import ontology.EGoal;
 import ontology.EPerformanceAssessment;
 import util.StringExchanger;
@@ -66,7 +63,8 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
     public ELearnerModelImpl(File file, String lang) {
         this.ontModel = OwlFactory.getOntModel(file, lang);
     }
-    public ELearnerModelImpl(OntModel ontModel){
+
+    public ELearnerModelImpl(OntModel ontModel) {
         this.ontModel = ontModel;
     }
 
@@ -90,6 +88,20 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
     public void writeToFile(File file) {
         try {
             OwlOperation.writeRdfFile(ontModel, file, null);
+            OwlOperation.writeOwlFileFromRdfFile(file, file);
+        } catch (IOException ex) {
+            Logger.getLogger(ELearnerModelImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void writeUserModelToFile(File file) {
+        try {
+            ELearnerModelImpl newEmi = new ELearnerModelImpl(new File("files/owl/el.owl"));
+            ELearner newEL = getELearner("el001");
+            newEmi.addELearner(newEL);
+
+            //         newModel.add(newModel.createStatement(null, null, null))
+            OwlOperation.writeRdfFile(newEmi.getOntModel(), file, null);
             OwlOperation.writeOwlFileFromRdfFile(file, file);
         } catch (IOException ex) {
             Logger.getLogger(ELearnerModelImpl.class.getName()).log(Level.SEVERE, null, ex);
@@ -1708,6 +1720,7 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         return gCons;
     }
 
+   
     public static void main(String[] args) throws IndividualNotExistException, IndividualExistException {
         //files/owl/elearning_owl.owl
         File f1 = new File("files/owl/elearning_owl_1.owl");
@@ -1715,21 +1728,22 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         File el005f = new File("files/owl/el005.owl");
         File writeTo = new File("files/owl/update_write.xml");
 
-        
-     OntModel model =  OwlFactory.getOntModel(el001f,f1);
-     ELearnerModelImpl emi = new ELearnerModelImpl(model);
-        //emi.addNewModel(el005f);
-      boolean b= emi.containELearner("el001");
-    
-            System.out.println("nulllllll\t"+b);
-            ELearner el = emi.getELearner("el001");
-             ArrayList< EInterest> ins = emi.getEInterests(el);
-              System.out.println("ins:"+ins.size());
-              ArrayList<EPerformance> perfs = emi.getEPerformances(el);
-              System.out.println("perfs:"+perfs.size());
-            System.out.println("el:"+el.getName());
 
-            OntModel newModel = OwlFactory.getOntModel(new File("files/owl/el.owl"));
+        OntModel model = OwlFactory.getOntModel(el001f, f1);
+        ELearnerModelImpl emi = new ELearnerModelImpl(model);
+        //emi.addNewModel(el005f);
+        boolean b = emi.containELearner("el001");
+
+        System.out.println("nulllllll\t" + b);
+        ELearner el = emi.getELearner("el001");
+        ArrayList<EInterest> ins = emi.getEInterests(el);
+        System.out.println("ins:" + ins.size());
+        ArrayList<EPerformance> perfs = emi.getEPerformances(el);
+        System.out.println("perfs:" + perfs.size());
+        System.out.println("el:" + el.getName());
+
+
+
 //        StmtIterator nl = indi1.listProperties();
 //        int i = 0;
 //        while (nl.hasNext()) {
@@ -1737,7 +1751,6 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
 //            i++;
 //        }
 //        System.out.println(" i:" + i);
-        emi.getOntModel();
 
 //        HashSet<EConcept> cons = emi.getAllLeafEConcepts();
 //        EConcept father = emi.getEConcept("CMP.cf.2");
@@ -1748,7 +1761,7 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
 //            emi.addPropertyIsSonOf(father, con);
 //
 //        }
-    //    emi.writeToFile(writeTo);
+        //    emi.writeToFile(writeTo);
 
         System.out.println("end");
     }
