@@ -47,6 +47,8 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
     private E_Castle menuShow;
     private HashMap<Rectangle, EConcept> qMenu, hMenu;
     private ImageIcon qicon, hicon;
+    private ArrayList<MapButton> btns;
+    private MapButton over;
 
     public MapBg(javax.swing.JPanel p) {
         pp = p;
@@ -56,6 +58,8 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
         qMenu = new HashMap<Rectangle, EConcept>();
         hMenu = new HashMap<Rectangle, EConcept>();
+
+        btns = new ArrayList<MapButton>();
 
         bw = bgImage.getIconWidth();
         bh = bgImage.getIconHeight();
@@ -72,6 +76,37 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
         initCastle();
         checkGoal();
+        initButton();
+    }
+
+    private void initButton() {
+        over = null;
+
+        MapButton goalBtn = new MapButton(this, "当前目标", 50, 20) {
+
+            @Override
+            public void doAction() {
+                LinkedHashMap lhm = new LinkedHashMap<String, Object>();
+
+                for (EGoal goal : goals) {
+                    lhm.put(goal.getName(), goal);
+                }
+
+                MapBg.this.showMapDialog(new MapDialog(MapBg.this, "请选择您的学习目标", lhm, "确　定"));
+            }
+        };
+
+        btns.add(goalBtn);
+
+        MapButton currentBtn = new MapButton(this, "正在学习", 170, 20) {
+
+            @Override
+            public void doAction() {
+                ;
+            }
+        };
+
+        btns.add(currentBtn);
     }
 
     private void checkGoal() {
@@ -217,6 +252,10 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         g2.drawRect(vw - tw - 5 + cx * tw / w, 5 + cy * th / h, vw * tw / w, vh * th / h);
         viewLite.setBounds(vw - tw - 5 + cx * tw / w, 5 + cy * th / h, vw * tw / w, vh * th / h);
 
+        for (MapButton btn : btns) {
+            btn.paint(g2);
+        }
+
         if (dialogShow) {
             g2.setColor(new Color(0xaa, 0xaa, 0xaa, 160));
             g2.fillRect(0, 0, vw, vh);
@@ -225,12 +264,13 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
     }
 
     public void showMapDialog(MMDialog d) {
-        dialog = d;
-        dialog.showshow = true;
-
         synchronized (showLock) {
             mapShow++;
         }
+        
+        dialog = d;
+        dialogShow = true;
+        dialog.boundshow = true;
 
         Thread thread = new Thread(new Runnable() {
 
@@ -246,9 +286,8 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                         dialog.showRect.setBounds(i * offsetx, i * offsety, vw - 2 * i * offsetx, vh - 2 * i * offsety);
                         Thread.sleep(50);
                     }
-
-                    dialogShow = true;
-                    dialog.showshow = false;
+                    
+                    dialog.boundshow = false;
                     Thread.sleep(100);
                     synchronized (showLock) {
                         mapShow--;
@@ -272,7 +311,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
             mapShow++;
         }
 
-        dialog.hideshow = true;
+        dialog.boundshow = true;
 
         Thread thread = new Thread(new Runnable() {
 
@@ -289,7 +328,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                         Thread.sleep(50);
                     }
 
-                    dialog.hideshow = false;
+                    dialog.boundshow = false;
                     dialogShow = false;
                     dialog = null;
                     Thread.sleep(100);
@@ -412,6 +451,12 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                     dy = (y - mapLite.y - viewLite.height / 2) * h / th;
                     viewMove();
                 } else {
+                    for (MapButton btn : btns) {
+                        if (btn.bound.contains(x, y)) {
+                            btn.doAction();
+                            return;
+                        }
+                    }
                     if (menuShow != null) {
                         for (Map.Entry<Rectangle, EConcept> kv : qMenu.entrySet()) {
                             if (kv.getKey().contains(x + cx, y + cy)) {
@@ -424,7 +469,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                                 return;
                             }
                         }
-                        
+
                         for (Map.Entry<Rectangle, EConcept> kv : hMenu.entrySet()) {
                             if (kv.getKey().contains(x + cx, y + cy)) {
                                 E_Castle ec = castle.get(kv.getValue().getCid());
@@ -448,7 +493,6 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                                     createMenu(menuShow);
                                 }
                             }
-                            //javax.swing.JOptionPane.showMessageDialog(this, "被点中了。。。");
                             repaint();
                             break;
                         }
@@ -516,9 +560,25 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
     public void mouseMoved(MouseEvent e) {
         int x = e.getX(), y = e.getY();
 
-        if (mapShow <= 0 && dialogShow) {
-            if (dialog.bound.contains(x, y)) {
-                if (dialog.mouseOn(x - dialog.bound.x, y - dialog.bound.y)) {
+        if (mapShow <= 0) {
+            if (dialogShow) {
+                if (dialog.bound.contains(x, y) && dialog.mouseOn(x - dialog.bound.x, y - dialog.bound.y)) {
+                    repaint();
+                }
+            } else {
+                for (MapButton btn : btns) {
+                    if (btn.bound.contains(x, y)) {
+                        if (btn != over) {
+                            over = btn;
+                            over.hover = true;
+                            repaint();
+                        }
+                        return;
+                    }
+                }
+                if (over != null) {
+                    over.hover = false;
+                    over = null;
                     repaint();
                 }
             }

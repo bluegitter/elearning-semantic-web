@@ -9,12 +9,12 @@ import java.awt.Rectangle;
  */
 public abstract class MMDialog {
     public Rectangle bound, showRect;
-    public boolean showshow, hideshow;
+    public boolean boundshow;
     
     public MMDialog() {
         bound = new Rectangle();
         showRect = new Rectangle();
-        showshow = hideshow = false;
+        boundshow = false;
     }
     
     public abstract void paint(Graphics2D g, int vw, int vh);
