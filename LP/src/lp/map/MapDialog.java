@@ -67,7 +67,7 @@ public class MapDialog extends MMDialog {
 
     @Override
     public void paint(Graphics2D g, int vw, int vh) {
-        if (showshow || hideshow) {
+        if (boundshow) {
             g.setColor(Color.BLACK);
             g.draw(showRect);
         } else {
