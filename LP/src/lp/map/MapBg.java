@@ -49,6 +49,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
     private ImageIcon qicon, hicon;
     private ArrayList<MapButton> btns;
     private MapButton over;
+    private EConcept memuConcept;
 
     public MapBg(javax.swing.JPanel p) {
         pp = p;
@@ -73,6 +74,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         viewLite = new Rectangle();
 
         menuShow = null;
+        memuConcept = null;
 
         initCastle();
         checkGoal();
