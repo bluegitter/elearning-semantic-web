@@ -84,6 +84,10 @@ public class E_Castle {
     public Color getColor() {
         return colors[type];
     }
+    
+    public int getLabelX(int cx, int len) {
+        return x + image[1][type].getIconWidth() / 2 - len / 2 - cx;
+    }
 
     public void paint(Component c, Graphics2D g, int x, int y) {
         ImageIcon i = getImage();

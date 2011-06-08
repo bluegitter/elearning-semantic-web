@@ -46,9 +46,9 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
     public ArrayList<EGoal> goals;
     private E_Castle menuShow;
     private HashMap<Rectangle, EConcept> qMenu, hMenu;
-    private ImageIcon qicon, hicon;
+    private ImageIcon qicon, hicon, vicon, vicon_o, bicon, bicon_o;
     private ArrayList<MapButton> btns;
-    private MapButton over;
+    private MapButton over, vBtn, bBtn;
     private EConcept memuConcept;
 
     public MapBg(javax.swing.JPanel p) {
@@ -56,6 +56,11 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         bgImage = new ImageIcon(MapBg.class.getResource("/lp/resources/grass.png"));
         qicon = new ImageIcon(MapBg.class.getResource("/lp/resources/q.jpg"));
         hicon = new ImageIcon(MapBg.class.getResource("/lp/resources/h.jpg"));
+        
+        vicon = new ImageIcon(MapBg.class.getResource("/lp/resources/vali.png"));
+        vicon_o = new ImageIcon(MapBg.class.getResource("/lp/resources/vali_o.png"));
+        bicon = new ImageIcon(MapBg.class.getResource("/lp/resources/brow.png"));
+        bicon_o = new ImageIcon(MapBg.class.getResource("/lp/resources/brow_o.png"));
 
         qMenu = new HashMap<Rectangle, EConcept>();
         hMenu = new HashMap<Rectangle, EConcept>();
@@ -109,6 +114,23 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         };
 
         btns.add(currentBtn);
+        
+        //初始化评估按钮
+        vBtn = new MapButton(this, "", vicon, vicon_o) {
+
+            @Override
+            public void doAction() {
+                LPApp.getApplication().popEPerformanceRadarDialog(memuConcept, LPApp.getApplication().user.learner);
+            }
+        };
+        
+        bBtn = new MapButton(this, "", bicon, bicon_o) {
+
+            @Override
+            public void doAction() {
+                LPApp.getApplication().popEConceptViewDialog(memuConcept);
+            }
+        };
     }
 
     private void checkGoal() {
@@ -178,8 +200,10 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         hMenu.clear();
 
         int offset = 50;
+        
+        memuConcept = ec.concept.getConcept();
 
-        HashSet<EConcept> prelist = LPApp.lpModel.getPreEConcept(ec.concept.getConcept().getCid());
+        HashSet<EConcept> prelist = LPApp.lpModel.getPreEConcept(memuConcept.getCid());
         for (EConcept c : prelist) {
             qMenu.put(new Rectangle(ec.getX() - 100, ec.getY() + offset, 90, 20), c);
             offset += 30;
@@ -187,7 +211,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
         offset = 50;
 
-        HashSet<EConcept> postlist = LPApp.lpModel.getPostEConcept(ec.concept.getConcept().getCid());
+        HashSet<EConcept> postlist = LPApp.lpModel.getPostEConcept(memuConcept.getCid());
         for (EConcept c : postlist) {
             hMenu.put(new Rectangle(ec.getX() + ec.getWidth() + 10, ec.getY() + offset, 90, 20), c);
             offset += 30;
@@ -245,6 +269,14 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                     g2.drawString(kv.getValue().getName(), kv.getKey().x - cx + 10, kv.getKey().y - cy + 15);
                 }
             }
+            
+            int btnx = menuShow.getLabelX(cx, bBtn.getWidth());
+            
+            vBtn.bound.setLocation(btnx, menuShow.getY() + menuShow.getHeight() + 10 - cy);
+            bBtn.bound.setLocation(btnx, menuShow.getY() - cy - bBtn.getHeight() - 2);
+            
+            vBtn.paint(g2);
+            bBtn.paint(g2);
         }
 
         g2.drawImage(tMap, vw - tw - 5, 5, null);
@@ -460,6 +492,14 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                         }
                     }
                     if (menuShow != null) {
+                        if (bBtn.bound.contains(x, y)) {
+                            bBtn.doAction();
+                            return;
+                        } else if (vBtn.bound.contains(x, y)) {
+                            vBtn.doAction();
+                            return;
+                        }
+                        
                         for (Map.Entry<Rectangle, EConcept> kv : qMenu.entrySet()) {
                             if (kv.getKey().contains(x + cx, y + cy)) {
                                 E_Castle ec = castle.get(kv.getValue().getCid());
@@ -480,7 +520,6 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                                 viewMove();
                                 menuShow = ec;
                                 createMenu(menuShow);
-                                System.out.println(kv.getValue().getName());
                                 return;
                             }
                         }
@@ -572,6 +611,23 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                     if (btn.bound.contains(x, y)) {
                         if (btn != over) {
                             over = btn;
+                            over.hover = true;
+                            repaint();
+                        }
+                        return;
+                    }
+                }
+                if (menuShow != null) {
+                    if (bBtn.bound.contains(x, y)) {
+                        if (bBtn != over) {
+                            over = bBtn;
+                            over.hover = true;
+                            repaint();
+                        }
+                        return;
+                    } else if (vBtn.bound.contains(x, y)) {
+                        if (vBtn != over) {
+                            over = vBtn;
                             over.hover = true;
                             repaint();
                         }
