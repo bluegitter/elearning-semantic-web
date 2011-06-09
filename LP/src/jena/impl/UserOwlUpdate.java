@@ -9,31 +9,23 @@ import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.ObjectProperty;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.stream.events.Namespace;
 import ontology.EInterest;
 import ontology.EPerformance;
 import ontology.EPortfolio;
 import ontology.people.ELearner;
-import org.jdom.Attribute;
 import org.jdom.Document;
 import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.input.SAXBuilder;
-import org.jdom.output.XMLOutputter;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 import util.Constant;
 
 /**
@@ -49,9 +41,8 @@ public class UserOwlUpdate {
     public static File downloadFile(ELearner el){
         return null;
     }
-    public static void uploadFile(ELearner el){
-        
-    }
+
+    
     public void createNewDocWithEMI(ELearnerModelImpl emi, ELearner el) {
         BufferedReader b = null;
         try {
@@ -115,6 +106,7 @@ public class UserOwlUpdate {
             b = new BufferedReader(new FileReader(writeTo));
             boolean isHead = true;
             boolean isNamedIndividual = false;
+
             FileWriter fw = new FileWriter(new File("files/owl/" + el.getId() + ".owl"));
             while (true) {
                 String s = b.readLine();
