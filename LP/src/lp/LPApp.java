@@ -156,7 +156,7 @@ public class LPApp extends SingleFrameApplication {
         return Application.getInstance(LPApp.class);
     }
 
-    public void popEPerformanceRadarDialog(EConcept con, ELearner el) {
+    public void popEPerformanceRadarDialog(EConcept con, ELearner el, lp.map.MapCallback cb) {
 
         EPerformance perform = LPApp.lpModel.getEPerformance(el, con);
         if (perform == null) {
@@ -169,6 +169,7 @@ public class LPApp extends SingleFrameApplication {
         perform.setDatetime(new Date(System.currentTimeMillis()));
         RadarPanel radar = new RadarPanel(perform);
         PopCenterDialog pcd = new PopCenterDialog("知识点自我评估", radar);
+        cb.callback();
     }
 
     public void popEConceptViewDialog(EConcept con) {

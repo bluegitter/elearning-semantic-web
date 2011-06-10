@@ -21,6 +21,7 @@ import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.swing.ImageIcon;
+import jena.ELearnerReasoner;
 import lp.LPApp;
 import ontology.EConcept;
 import ontology.EGoal;
@@ -50,7 +51,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
     private ImageIcon qicon, hicon, vicon, vicon_o, bicon, bicon_o;
     private ArrayList<MapButton> btns;
     private MapButton over, vBtn, bBtn;
-    public EConcept memuConcept;
+    public EConcept menuConcept, recommendConcept;
     private EGoal currentGoal;
 
     public MapBg(javax.swing.JPanel p) {
@@ -81,7 +82,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         viewLite = new Rectangle();
 
         menuShow = null;
-        memuConcept = null;
+        menuConcept = recommendConcept = null;
 
         initCastle();
         checkGoal();
@@ -120,7 +121,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                 for (EGoal goal : goals) {
                     lhm.put(goal.getName(), goal);
                 }
-                
+
                 MapBg.this.showMapDialog(new MapDialog(MapBg.this, "请选择您的学习目标", lhm, "确　定"));
             }
         };
@@ -132,9 +133,21 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
             @Override
             public void doAction() {
-                EPerformance ep = LPApp.lpModel.getEPerformance(LPApp.getApplication().user.learner, memuConcept);
+                EPerformance ep = LPApp.lpModel.getEPerformance(LPApp.getApplication().user.learner, menuConcept);
                 if (ep != null) {
-                    LPApp.getApplication().popEPerformanceRadarDialog(memuConcept, LPApp.getApplication().user.learner);
+                    LPApp.getApplication().popEPerformanceRadarDialog(menuConcept, LPApp.getApplication().user.learner, new MapCallback() {
+
+                        @Override
+                        public void callback() {
+                            String gid = LPApp.lpModel.getCurrentGoal(LPApp.getApplication().user.learner);
+                            currentGoal = LPApp.lpModel.getEGoal(gid);
+                            ArrayList<EConcept> list = ELearnerReasoner.getRecommendPreEConcpet(LPApp.lpModel, LPApp.getApplication().user.learner, currentGoal);
+                            if (list.size() > 0) {
+                                recommendConcept = list.get(0);
+                                MapBg.this.showMapDialog(new MapInfoDialog(MapBg.this, "已经完成" + menuConcept.getName() + "的评估", "系统为你推荐了新的知识，供你学习！", "立即学习 “" + recommendConcept.getName() + "”", "recommend", "忽略对这一知识的推荐", "ignore"));
+                            }
+                        }
+                    });
                 } else {
                     MapBg.this.showMapDialog(new MapInfoDialog(MapBg.this, "提示", "您尚未学习过这一知识，不能评估！", "现在就展开学习？", "learn", "取　消"));
                 }
@@ -145,7 +158,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
             @Override
             public void doAction() {
-                LPApp.getApplication().popEConceptViewDialog(memuConcept);
+                LPApp.getApplication().popEConceptViewDialog(menuConcept);
             }
         };
     }
@@ -217,7 +230,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         }
 
         if (menuShow != null) {
-            Point p = cities.get(memuConcept.getCid());
+            Point p = cities.get(menuConcept.getCid());
             ig.setColor(Color.WHITE);
             ig.fillRect(p.x * tw / w, p.y * th / h, 6, 6);
         }
@@ -246,9 +259,9 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
         int offset = 50;
 
-        memuConcept = ec.concept.getConcept();
+        menuConcept = ec.concept.getConcept();
 
-        HashSet<EConcept> prelist = LPApp.lpModel.getPreEConcept(memuConcept.getCid());
+        HashSet<EConcept> prelist = LPApp.lpModel.getPreEConcept(menuConcept.getCid());
         for (EConcept c : prelist) {
             qMenu.put(new Rectangle(ec.getX() - 100, ec.getY() + offset, 90, 20), c);
             offset += 30;
@@ -256,7 +269,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
         offset = 50;
 
-        HashSet<EConcept> postlist = LPApp.lpModel.getPostEConcept(memuConcept.getCid());
+        HashSet<EConcept> postlist = LPApp.lpModel.getPostEConcept(menuConcept.getCid());
         for (EConcept c : postlist) {
             hMenu.put(new Rectangle(ec.getX() + ec.getWidth() + 10, ec.getY() + offset, 90, 20), c);
             offset += 30;

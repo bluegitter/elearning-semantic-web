@@ -22,13 +22,17 @@ public class MapInfoDialog extends MMDialog {
     private HashMap<Rectangle, Object> actions = new HashMap<Rectangle, Object>();
     private MapBg parent;
     private Object selected;
-    private String title, info, action, change, changeAction;
+    private String title, info, action, change, changeAction, actionAction;
     private int ilen, alen;
     private int optionHeight, optionBase;
     private Rectangle ron, rselected;
     private Stroke rstroke = new BasicStroke(2.0f);
 
     public MapInfoDialog(MapBg parent, String title, String info, String change, String changeAction, String action) {
+        this(parent, title, info, change, changeAction, action, "ok");
+    }
+    
+    public MapInfoDialog(MapBg parent, String title, String info, String change, String changeAction, String action, String actionAction) {
         super();
 
         this.title = title;
@@ -37,6 +41,7 @@ public class MapInfoDialog extends MMDialog {
         this.action = action;
         this.parent = parent;
         this.changeAction = changeAction;
+        this.actionAction = actionAction;
 
         initDialog();
     }
@@ -54,7 +59,7 @@ public class MapInfoDialog extends MMDialog {
         bound.setSize(400, (optionHeight + 20) * 5);
 
         actions.put(new Rectangle((bound.width - ilen) / 2 - 10, (optionHeight + 20) * 3, ilen + 20, 10 + optionHeight), changeAction);
-        actions.put(new Rectangle((bound.width - alen) / 2 - 10, (optionHeight + 20) * 4, alen + 20, 10 + optionHeight), "ok");
+        actions.put(new Rectangle((bound.width - alen) / 2 - 10, (optionHeight + 20) * 4, alen + 20, 10 + optionHeight), actionAction);
     }
 
     @Override
@@ -121,9 +126,20 @@ public class MapInfoDialog extends MMDialog {
 
                     @Override
                     public void callback() {
-                        LPApp.getApplication().popEConceptViewDialog(parent.memuConcept);
+                        LPApp.getApplication().popEConceptViewDialog(parent.menuConcept);
                     }
                 });
+            } else if (action.equals("recommend")) {
+                parent.hideMapDialog(new MapCallback() {
+
+                        @Override
+                        public void callback() {
+                            parent.centerConcept(parent.recommendConcept);
+                        }
+                    });
+            } else if (action.equals("ignore")) {
+                parent.hideMapDialog(null);
+                LPApp.lpModel.addPropertyIgnoreEConcepts(LPApp.getApplication().user.learner, parent.recommendConcept);
             }
         }
     }
