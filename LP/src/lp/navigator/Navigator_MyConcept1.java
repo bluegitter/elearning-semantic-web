@@ -95,7 +95,7 @@ private NavigatorDialog parent;
                 previousButtonActionPerformed(evt);
             }
         });
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/2.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/7.png"))); // NOI18N
         jLabel3.setText("查看用户学过的知识");
         jLabel3.setName("jLabel3"); // NOI18N
 

@@ -109,7 +109,7 @@ public class UserManual0 extends javax.swing.JPanel {
                 previousButtonActionPerformed(evt);
             }
         });
-        jLabel4.setText("第一步：【知识展示】中，展开知识树，点击要学习的知识点；在相关资源列表中点击资源，学习它；");
+        jLabel4.setText("第一步：【知识体系】中，展开知识树，点击要学习的知识点；在相关资源列表中点击资源，学习它；");
         jLabel4.setName("jLabel4"); // NOI18N
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/4.png"))); // NOI18N
@@ -121,13 +121,13 @@ public class UserManual0 extends javax.swing.JPanel {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/6.png"))); // NOI18N
         jLabel7.setName("jLabel7"); // NOI18N
 
-        jLabel8.setText("第三步：去【学习评估】中心，为您学习中的知识点和学习中的资源的学习效果做自我评价；");
+        jLabel8.setText("第三步：去【效果评估】中心，为您学习中的知识点和学习中的资源的学习效果做自我评价；");
         jLabel8.setName("jLabel8"); // NOI18N
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/2.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/7.png"))); // NOI18N
         jLabel9.setName("jLabel9"); // NOI18N
 
-        jLabel10.setText("第四步：【学习地图】中，您学习的知识点和资源形成地图，点击图标动态查看您的学习成果；");
+        jLabel10.setText("第四步：【学习全景】中，您学习的知识点和资源形成地图，点击图标动态查看您的学习成果；");
         jLabel10.setName("jLabel10"); // NOI18N
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lp/resources/5.png"))); // NOI18N
@@ -149,31 +149,19 @@ public class UserManual0 extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addContainerGap())
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addContainerGap())
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addContainerGap(22, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addContainerGap()))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel12)
-                            .addContainerGap()))))
+                    .addComponent(jLabel14)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel12))
+                .addContainerGap(14, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,9 +170,9 @@ public class UserManual0 extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel10)
-                .addGap(58, 58, 58))
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
