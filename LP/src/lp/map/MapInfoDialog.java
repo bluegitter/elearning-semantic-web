@@ -22,13 +22,13 @@ public class MapInfoDialog extends MMDialog {
     private HashMap<Rectangle, Object> actions = new HashMap<Rectangle, Object>();
     private MapBg parent;
     private Object selected;
-    private String title, info, action, change;
+    private String title, info, action, change, changeAction;
     private int ilen, alen;
     private int optionHeight, optionBase;
     private Rectangle ron, rselected;
     private Stroke rstroke = new BasicStroke(2.0f);
 
-    public MapInfoDialog(MapBg parent, String title, String info, String change, String action) {
+    public MapInfoDialog(MapBg parent, String title, String info, String change, String changeAction, String action) {
         super();
 
         this.title = title;
@@ -36,6 +36,7 @@ public class MapInfoDialog extends MMDialog {
         this.change = change;
         this.action = action;
         this.parent = parent;
+        this.changeAction = changeAction;
 
         initDialog();
     }
@@ -52,7 +53,7 @@ public class MapInfoDialog extends MMDialog {
 
         bound.setSize(400, (optionHeight + 20) * 5);
 
-        actions.put(new Rectangle((bound.width - ilen) / 2 - 10, (optionHeight + 20) * 3, ilen + 20, 10 + optionHeight), "change");
+        actions.put(new Rectangle((bound.width - ilen) / 2 - 10, (optionHeight + 20) * 3, ilen + 20, 10 + optionHeight), changeAction);
         actions.put(new Rectangle((bound.width - alen) / 2 - 10, (optionHeight + 20) * 4, alen + 20, 10 + optionHeight), "ok");
     }
 
@@ -107,7 +108,6 @@ public class MapInfoDialog extends MMDialog {
     private void doAction(Object action) {
         if (action instanceof String) {
             if (action.equals("ok")) {
-                //todo: 设定选定
                 parent.hideMapDialog(null);
             } else if (action.equals("change")) {
                 LinkedHashMap lhm = new LinkedHashMap<String, Object>();
@@ -116,6 +116,14 @@ public class MapInfoDialog extends MMDialog {
                     lhm.put(goal.getName(), goal);
                 }
                 parent.switchDialog(new MapDialog(parent, "请选择您的学习目标", lhm, "确　定"));
+            } else if (action.equals("learn")) {
+                parent.hideMapDialog(new MapCallback() {
+
+                    @Override
+                    public void callback() {
+                        LPApp.getApplication().popEConceptViewDialog(parent.memuConcept);
+                    }
+                });
             }
         }
     }

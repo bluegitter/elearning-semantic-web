@@ -24,6 +24,7 @@ import javax.swing.ImageIcon;
 import lp.LPApp;
 import ontology.EConcept;
 import ontology.EGoal;
+import ontology.EPerformance;
 import util.Constant;
 
 public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMotionListener, Runnable {
@@ -49,7 +50,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
     private ImageIcon qicon, hicon, vicon, vicon_o, bicon, bicon_o;
     private ArrayList<MapButton> btns;
     private MapButton over, vBtn, bBtn;
-    private EConcept memuConcept;
+    public EConcept memuConcept;
     private EGoal currentGoal;
 
     public MapBg(javax.swing.JPanel p) {
@@ -131,7 +132,12 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
             @Override
             public void doAction() {
-                LPApp.getApplication().popEPerformanceRadarDialog(memuConcept, LPApp.getApplication().user.learner);
+                EPerformance ep = LPApp.lpModel.getEPerformance(LPApp.getApplication().user.learner, memuConcept);
+                if (ep != null) {
+                    LPApp.getApplication().popEPerformanceRadarDialog(memuConcept, LPApp.getApplication().user.learner);
+                } else {
+                    MapBg.this.showMapDialog(new MapInfoDialog(MapBg.this, "提示", "您尚未学习过这一知识，不能评估！", "现在就展开学习？", "learn", "取　消"));
+                }
             }
         };
 
@@ -139,7 +145,6 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
             @Override
             public void doAction() {
-
                 LPApp.getApplication().popEConceptViewDialog(memuConcept);
             }
         };
@@ -155,7 +160,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         //showMapDialog(new MapDialog(this, "请选择您的学习目标", lhm, "确　定"));
         String gid = LPApp.lpModel.getCurrentGoal(LPApp.getApplication().user.learner);
         currentGoal = LPApp.lpModel.getEGoal(gid);
-        showMapDialog(new MapInfoDialog(this, "请选择您的学习目标", "已经为你预先设定了目标 " + currentGoal.getName(), "是否要换一换？", "确　定"));
+        showMapDialog(new MapInfoDialog(this, "请选择您的学习目标", "已经为你预先设定了目标 " + currentGoal.getName(), "是否要换一换？", "change", "确　定"));
     }
 
     private void initCastle() {
