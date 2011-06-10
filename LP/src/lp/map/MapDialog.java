@@ -64,7 +64,9 @@ public class MapDialog extends MMDialog {
         }
 
         cy += 20 + optionHeight;
+        
         actions.put(new Rectangle((bound.width - abLength) / 2 - 10, cy, abLength + 20, 10 + optionHeight), "ok");
+        actions.put(new Rectangle(bound.width - closeBtn.width - 3, 0, closeBtn.width, closeBtn.height), "close");
     }
 
     @Override
@@ -83,6 +85,9 @@ public class MapDialog extends MMDialog {
             int cy = bound.y;
             g.drawString(title, bound.x + 10, cy + 5 + optionBase);
             g.drawLine(bound.x, cy + 10 + optionHeight, bound.x + bound.width, cy + 10 + optionHeight);
+            
+            closeBtn.setLocation(bound.x + bound.width - closeBtn.width - 3, bound.y);
+            cicon.paintIcon(parent, g, closeBtn.x, cy);
 
             Stroke stroke = g.getStroke();
 
@@ -135,6 +140,8 @@ public class MapDialog extends MMDialog {
                 } else {
                     parent.hideMapDialog(null);
                 }
+            } else if (action.equals("close")) {
+                parent.hideMapDialog(null);
             }
         }
     }
