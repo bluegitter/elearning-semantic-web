@@ -60,6 +60,7 @@ public class MapInfoDialog extends MMDialog {
 
         actions.put(new Rectangle((bound.width - ilen) / 2 - 10, (optionHeight + 20) * 3, ilen + 20, 10 + optionHeight), changeAction);
         actions.put(new Rectangle((bound.width - alen) / 2 - 10, (optionHeight + 20) * 4, alen + 20, 10 + optionHeight), actionAction);
+        actions.put(new Rectangle(bound.width - closeBtn.width - 3, 0, closeBtn.width, closeBtn.height), "close");
     }
 
     @Override
@@ -78,6 +79,9 @@ public class MapInfoDialog extends MMDialog {
             int cy = bound.y;
             g.drawString(title, bound.x + 10, cy + 5 + optionBase);
             g.drawLine(bound.x, cy + 10 + optionHeight, bound.x + bound.width, cy + 10 + optionHeight);
+            
+            closeBtn.setLocation(bound.x + bound.width - closeBtn.width - 3, bound.y);
+            cicon.paintIcon(parent, g, closeBtn.x, cy);
 
             Stroke stroke = g.getStroke();
 
@@ -140,6 +144,8 @@ public class MapInfoDialog extends MMDialog {
             } else if (action.equals("ignore")) {
                 parent.hideMapDialog(null);
                 LPApp.lpModel.addPropertyIgnoreEConcepts(LPApp.getApplication().user.learner, parent.recommendConcept);
+            } else if (action.equals("close")) {
+                parent.hideMapDialog(null);
             }
         }
     }
