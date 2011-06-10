@@ -19,9 +19,9 @@ import util.LogConstant;
 public class WebOperation {
 
     public static void main(String[] arsg) {
-      //  runsBroswer("www.163.com");
+        //  runsBroswer("www.163.com");
         //uploadUserFile(new ELearner("el001"));
-   downloadUserFile(new ELearner("el001"));
+        downloadUserFile(new ELearner("el001"));
     }
 
     public static void registBroswer(String webSite) {
@@ -53,11 +53,14 @@ public class WebOperation {
         }
     }
 
-     public static void uploadUserFile(ELearner el){
+    //将个人用户信息上传到服务器上
+    public static void uploadUserFile(ELearner el) {
         UploaderComm uc = new UploaderComm(el);
         uc.uploadFiles(false);
     }
-     public static void downloadUserFile(ELearner el){
-         runsBroswer(UploaderConstants.DOWNLOAD_URL_STRING+"?elearner_id="+el.getId());
-     }
+
+    public static void downloadUserFile(ELearner el) {
+        runsBroswer(UploaderConstants.DOWNLOAD_URL_STRING + "?elearner_id=" + el.getId());
+    }
+
 }

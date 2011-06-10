@@ -38,12 +38,8 @@ public class UserOwlUpdate {
     private Document newDoc;
     private ArrayList<Element> els;
 
-    public static File downloadFile(ELearner el){
-        return null;
-    }
-
     
-    public void createNewDocWithEMI(ELearnerModelImpl emi, ELearner el) {
+    public static void createNewDocWithEMI(ELearnerModelImpl emi, ELearner el) {
         BufferedReader b = null;
         try {
             Individual elIndi = emi.getOntModel().getIndividual(Constant.NS + el.getId());

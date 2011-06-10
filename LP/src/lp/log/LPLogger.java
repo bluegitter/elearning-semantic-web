@@ -25,6 +25,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import lp.LPApp;
 import util.Constant;
 import util.MethodConstant;
 
@@ -55,12 +56,13 @@ public class LPLogger {
             Date date = MethodConstant.getSysDate();
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
             String s = dateFormat.format(date);
-            logFile = new File(Constant.TestLogFile + s);
+            logFile = new File(Constant.LogFileDirectory +LPApp.getApplication().user.learner.getId()+"-"+ s+".log");
             if (!logFile.exists()) {
                 logFile.createNewFile();
             }
             output = new BufferedWriter(new FileWriter(logFile));
         } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
     }
 
