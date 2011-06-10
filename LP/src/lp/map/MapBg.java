@@ -36,7 +36,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
     private boolean xdone, ydone;
     private boolean init = false;
     private HashMap<String, E_Castle> castle;
-    private BufferedImage tMap;
+    private BufferedImage tMap, ttMap;
     private HashMap<String, Point> cities;
     private Rectangle mapLite, viewLite;
     private boolean mapDragged = false, dialogShow = false;
@@ -50,13 +50,14 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
     private ArrayList<MapButton> btns;
     private MapButton over, vBtn, bBtn;
     private EConcept memuConcept;
+    private EGoal currentGoal;
 
     public MapBg(javax.swing.JPanel p) {
         pp = p;
         bgImage = new ImageIcon(MapBg.class.getResource("/lp/resources/grass.png"));
         qicon = new ImageIcon(MapBg.class.getResource("/lp/resources/q.jpg"));
         hicon = new ImageIcon(MapBg.class.getResource("/lp/resources/h.jpg"));
-        
+
         vicon = new ImageIcon(MapBg.class.getResource("/lp/resources/vali.png"));
         vicon_o = new ImageIcon(MapBg.class.getResource("/lp/resources/vali_o.png"));
         bicon = new ImageIcon(MapBg.class.getResource("/lp/resources/brow.png"));
@@ -95,26 +96,36 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
             public void doAction() {
                 LinkedHashMap lhm = new LinkedHashMap<String, Object>();
 
-                for (EGoal goal : goals) {
-                    lhm.put(goal.getName(), goal);
+                String gid = LPApp.lpModel.getCurrentGoal(LPApp.getApplication().user.learner);
+                currentGoal = LPApp.lpModel.getEGoal(gid);
+                ArrayList<LinkedEConcept> list = LPApp.lpModel.getConceptsByELearnerGoal(LPApp.getApplication().user.learner, currentGoal);
+
+                for (LinkedEConcept lc : list) {
+                    lhm.put(lc.getConcept().getName(), lc.getConcept());
                 }
 
-                MapBg.this.showMapDialog(new MapDialog(MapBg.this, "请选择您的学习目标", lhm, "确　定"));
+                MapBg.this.showMapDialog(new MapDialog(MapBg.this, "目标 " + currentGoal.getName() + " 下的知识点", lhm, "跳　转"));
             }
         };
 
         btns.add(goalBtn);
 
-        MapButton currentBtn = new MapButton(this, "正在学习", 170, 20) {
+        MapButton currentBtn = new MapButton(this, "更改目标", 170, 20) {
 
             @Override
             public void doAction() {
-                ;
+                LinkedHashMap lhm = new LinkedHashMap<String, Object>();
+
+                for (EGoal goal : goals) {
+                    lhm.put(goal.getName(), goal);
+                }
+                
+                MapBg.this.showMapDialog(new MapDialog(MapBg.this, "请选择您的学习目标", lhm, "确　定"));
             }
         };
 
         btns.add(currentBtn);
-        
+
         //初始化评估按钮
         vBtn = new MapButton(this, "", vicon, vicon_o) {
 
@@ -123,11 +134,12 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                 LPApp.getApplication().popEPerformanceRadarDialog(memuConcept, LPApp.getApplication().user.learner);
             }
         };
-        
+
         bBtn = new MapButton(this, "", bicon, bicon_o) {
 
             @Override
             public void doAction() {
+
                 LPApp.getApplication().popEConceptViewDialog(memuConcept);
             }
         };
@@ -141,7 +153,9 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         }
 
         //showMapDialog(new MapDialog(this, "请选择您的学习目标", lhm, "确　定"));
-        showMapDialog(new MapInfoDialog(this, "请选择您的学习目标", "你已经选了那个烂的目标", "要不要换一换？？？", "确　定"));
+        String gid = LPApp.lpModel.getCurrentGoal(LPApp.getApplication().user.learner);
+        currentGoal = LPApp.lpModel.getEGoal(gid);
+        showMapDialog(new MapInfoDialog(this, "请选择您的学习目标", "已经为你预先设定了目标 " + currentGoal.getName(), "是否要换一换？", "确　定"));
     }
 
     private void initCastle() {
@@ -178,6 +192,32 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         rpt.start();
     }
 
+    private void refreshMapImage() {
+        ttMap = new BufferedImage(tw, th, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D ig = ttMap.createGraphics();
+        ig.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        ig.drawImage(tMap, null, 0, 0);
+
+        for (EConcept ec : qMenu.values()) {
+            Point p = cities.get(ec.getCid());
+            ig.setColor(castle.get(ec.getCid()).getColor());
+            ig.fillRect(p.x * tw / w, p.y * th / h, 7, 7);
+        }
+
+        for (EConcept ec : hMenu.values()) {
+            Point p = cities.get(ec.getCid());
+            ig.setColor(castle.get(ec.getCid()).getColor());
+            ig.fillRect(p.x * tw / w, p.y * th / h, 7, 7);
+        }
+
+        if (menuShow != null) {
+            Point p = cities.get(memuConcept.getCid());
+            ig.setColor(Color.WHITE);
+            ig.fillRect(p.x * tw / w, p.y * th / h, 6, 6);
+        }
+    }
+
     private void loadLocation() {
         try {
             BufferedReader in = new BufferedReader(new FileReader(Constant.CITY_DATA));
@@ -200,7 +240,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         hMenu.clear();
 
         int offset = 50;
-        
+
         memuConcept = ec.concept.getConcept();
 
         HashSet<EConcept> prelist = LPApp.lpModel.getPreEConcept(memuConcept.getCid());
@@ -216,6 +256,8 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
             hMenu.put(new Rectangle(ec.getX() + ec.getWidth() + 10, ec.getY() + offset, 90, 20), c);
             offset += 30;
         }
+
+        refreshMapImage();
     }
 
     @Override
@@ -269,17 +311,21 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                     g2.drawString(kv.getValue().getName(), kv.getKey().x - cx + 10, kv.getKey().y - cy + 15);
                 }
             }
-            
+
             int btnx = menuShow.getLabelX(cx, bBtn.getWidth());
-            
+
             vBtn.bound.setLocation(btnx, menuShow.getY() + menuShow.getHeight() + 10 - cy);
             bBtn.bound.setLocation(btnx, menuShow.getY() - cy - bBtn.getHeight() - 2);
-            
+
             vBtn.paint(g2);
             bBtn.paint(g2);
         }
 
-        g2.drawImage(tMap, vw - tw - 5, 5, null);
+        if (menuShow == null) {
+            g2.drawImage(tMap, vw - tw - 5, 5, null);
+        } else {
+            g2.drawImage(ttMap, vw - tw - 5, 5, null);
+        }
         mapLite.setBounds(vw - tw - 5, 5, tw, th);
 
         g2.setColor(Color.WHITE);
@@ -301,7 +347,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         synchronized (showLock) {
             mapShow++;
         }
-        
+
         dialog = d;
         dialogShow = true;
         dialog.boundshow = true;
@@ -320,7 +366,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                         dialog.showRect.setBounds(i * offsetx, i * offsety, vw - 2 * i * offsetx, vh - 2 * i * offsety);
                         Thread.sleep(50);
                     }
-                    
+
                     dialog.boundshow = false;
                     Thread.sleep(100);
                     synchronized (showLock) {
@@ -340,7 +386,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         repaint();
     }
 
-    public void hideMapDialog() {
+    public void hideMapDialog(final MapCallback cb) {
         synchronized (showLock) {
             mapShow++;
         }
@@ -365,6 +411,10 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                     dialog.boundshow = false;
                     dialogShow = false;
                     dialog = null;
+
+                    if (cb != null) {
+                        cb.callback();
+                    }
                     Thread.sleep(100);
                     synchronized (showLock) {
                         mapShow--;
@@ -464,6 +514,15 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         thread.start();
     }
 
+    public void centerConcept(EConcept c) {
+        E_Castle ec = castle.get(c.getCid());
+        dx = ec.getX() + ec.getWidth() / 2 - vw / 2;
+        dy = ec.getY() + ec.getHeight() / 2 - vh / 2;
+        viewMove();
+        menuShow = ec;
+        createMenu(menuShow);
+    }
+
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(pp.getWidth(), pp.getHeight());
@@ -499,27 +558,17 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                             vBtn.doAction();
                             return;
                         }
-                        
+
                         for (Map.Entry<Rectangle, EConcept> kv : qMenu.entrySet()) {
                             if (kv.getKey().contains(x + cx, y + cy)) {
-                                E_Castle ec = castle.get(kv.getValue().getCid());
-                                dx = ec.getX() + ec.getWidth() / 2 - vw / 2;
-                                dy = ec.getY() + ec.getHeight() / 2 - vh / 2;
-                                viewMove();
-                                menuShow = ec;
-                                createMenu(menuShow);
+                                centerConcept(kv.getValue());
                                 return;
                             }
                         }
 
                         for (Map.Entry<Rectangle, EConcept> kv : hMenu.entrySet()) {
                             if (kv.getKey().contains(x + cx, y + cy)) {
-                                E_Castle ec = castle.get(kv.getValue().getCid());
-                                dx = ec.getX() + ec.getWidth() / 2 - vw / 2;
-                                dy = ec.getY() + ec.getHeight() / 2 - vh / 2;
-                                viewMove();
-                                menuShow = ec;
-                                createMenu(menuShow);
+                                centerConcept(kv.getValue());
                                 return;
                             }
                         }

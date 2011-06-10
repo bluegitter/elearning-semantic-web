@@ -108,7 +108,7 @@ public class MapInfoDialog extends MMDialog {
         if (action instanceof String) {
             if (action.equals("ok")) {
                 //todo: 设定选定
-                parent.hideMapDialog();
+                parent.hideMapDialog(null);
             } else if (action.equals("change")) {
                 LinkedHashMap lhm = new LinkedHashMap<String, Object>();
 
