@@ -1,46 +1,1879 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.owl-ontologies.com/e-learning.owl#"
+     xml:base="http://www.owl-ontologies.com/e-learning.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:j.0="http://jena.hpl.hp.com/2003/RuleReasoner#">
+    <owl:Ontology rdf:about="http://www.owl-ontologies.com/e-learning.owl"/>
+    
 
-<!--
-    Document   : update.xml
-    Created on : 2011年5月23日, 下午5:20
-    Author     : student
-    Description:
-        Purpose of the document follows.
--->
 
-<OwlUpdate>
-    <UpdateType>用户更新，模型更新</UpdateType>
-    <ModelVersion>1.0</ModelVersion>
-    <Updates>
-        <Operation>
-            <OPType>AddELearner</OPType>
-            <ELearner>
-                <Id>AELEARNER</Id>
-                <Name>AELEARNER Name</Name>
-                <Gender>Male</Gender>
-                <Grade>Grade Two</Grade>
-                <EMail>AELEARNER MAIl</EMail>
-                <Address>ADDELearner Address</Address>
-            </ELearner>
-        </Operation>
-        <Operation>
-            <OPType>AddELearner</OPType>
-            <ELearner>
-                <Id>AELEARNER22</Id>
-                <Name>AELEARNER Name22</Name>
-                <Gender>Male</Gender>
-                <Grade>Grade Two</Grade>
-                <EMail>AELEARNER MAIl</EMail>
-                <Address>ADDELearner Address</Address>
-            </ELearner>
-        </Operation>
-        <Operation>
-            <OPType>AddEConcept</OPType>
-            <EConcept>
-                <Id>newCONCEPT</Id>
-                <Name>newCONCEPT Name22</Name>
-                <Difficulty>中级</Difficulty>
-            </EConcept>
-        </Operation>
-    </Updates>
-</OwlUpdate>
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Datatypes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#contain_concepts -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#contain_concepts">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Goal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#graduate_from -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#graduate_from">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#graduate_from"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#has_goal -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#has_goal">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Goal"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#has_interest -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#has_interest">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#has_interest"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#has_learnt -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#has_learnt">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <owl:propertyChainAxiom rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#has_performance"/>
+            <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_concept_of_P"/>
+        </owl:propertyChainAxiom>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#has_performance -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#has_performance">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#has_performance"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#has_portfolio -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#has_portfolio">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#has_portfolio"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#has_postfix -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#has_postfix">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#has_postfix"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#has_security -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#has_security">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Security"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#has_security"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#has_study_style -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#has_study_style">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Study_Style"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#has_study_style"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_has_study_style"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#ignore_concepts -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#ignore_concepts">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_has_interest -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_has_interest">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#has_interest"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_has_interest"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_has_performance -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_has_performance">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#has_performance"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_has_performance"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_has_portfolio -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_has_portfolio">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#has_portfolio"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_has_portfolio"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_has_study_style -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_has_study_style">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Study_Style"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_has_study_style"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_concept_of_I -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_concept_of_I">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_concept_of_I"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_concept_of_P -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_concept_of_P">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_concept_of_P"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_part_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_part_of">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_part_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_post -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_post">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_post"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_post"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_pre -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_pre">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_pre"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_L_0 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_L_0">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_L_0"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_L_1 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_L_1">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_L_1"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_0 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_0">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_0"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_0"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_1 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_1">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_1"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_1"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_2 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_2">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_2"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_2"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_3 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_3">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_3"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_3"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_4 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_4">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_4"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_4"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_5 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_5">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_5"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_5"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_6 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_6">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_6"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_6"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_7 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_7">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_7"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_7"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_8 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_8">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_c_8"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_8"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_r_0 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_r_0">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_r_0"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_0"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_r_1 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_r_1">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_r_1"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_1"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_r_2 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_r_2">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_r_2"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_2"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_r_3 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_r_3">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_r_3"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_resource_of_C -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_resource_of_C">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_resource_of_C"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_resource_of_C"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_resource_of_P -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_resource_of_P">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_resource_of_P"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_resource_of_P"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_son_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_son_of">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_son_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#inverse_of_writen_by -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#inverse_of_writen_by">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_writen_by"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_concept_of_I -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_concept_of_I">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_concept_of_I"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_concept_of_I"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_concept_of_P -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_concept_of_P">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_concept_of_P"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_concept_of_P"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_member_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_member_of">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_member_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_part_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_part_of">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_part_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_part_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_post -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_post">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_post"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_post_concept_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_post_concept_of">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_post_concept_of"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_pre_concept_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_post_of_R -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_post_of_R">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_post_of_R"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_pre_of_R"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_pre -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_pre">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_pre"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_pre"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_pre_concept_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_pre_concept_of">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_pre_concept_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_pre_of_R -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_pre_of_R">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_pre_of_R"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_published_by -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_published_by">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Publisher"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_published_by"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#publish"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_recommend_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_L_0 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_L_0">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_L_0"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_L_0"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_L_1 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_L_1">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_L_1"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_L_1"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_0 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_0">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_0"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_1 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_1">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_1"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_2 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_2">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_2"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_3 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_3">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_3"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_4 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_4">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_4"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_5 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_5">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_5"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_6 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_6">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_6"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_7 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_7">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_7"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_8 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_8">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_c_8"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_0 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_0">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_0"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_1 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_1">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_1"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_2 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_2">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_2"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_3 -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_3">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_recommend_of_r_3"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_recommend_of_r_3"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_resource_of_C -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_resource_of_C">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_resource_of_C"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_resource_of_P -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_resource_of_P">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_resource_of_P"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_son_of -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_son_of">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_is_son_of"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#is_son_of"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#publish -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#publish">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Publisher"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#publish"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#reasoning_brother -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#reasoning_brother">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#reasoning_brother"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#reasoning_brother"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#reasoning_hasPerformance -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#reasoning_hasPerformance">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#reasoning_hasPerformance"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#resource_uploader -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#resource_uploader">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#resource_uploader"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#studying_at -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#studying_at">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#studying_at"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#upload_resource -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#upload_resource">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#resource_uploader"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#upload_resource"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#working_at -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#working_at">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#working_at"/>
+        <rdfs:range>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#Corporations"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#University"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#writen_by -->
+
+    <owl:ObjectProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#writen_by">
+        <rdfs:range rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
+        <owl:inverseOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#inverse_of_writen_by"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#writen_by"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#a1 -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#a1">
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#a1"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#assessment"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#a2 -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#a2">
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#a2"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#assessment"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#a3 -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#a3">
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#a3"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#assessment"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#a4 -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#a4">
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#a4"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#assessment"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#a5 -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#a5">
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#a5"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#assessment"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#a6 -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#a6">
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#a6"/>
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#assessment"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#address -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#address">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Organizations"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#Publisher"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#University"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#application_type -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#application_type">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#assessment -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#assessment">
+        <rdfs:subPropertyOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#assessment"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#book_isbn -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#book_isbn">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#current_goal -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#current_goal">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#date_time -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#date_time">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Performance"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#description -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#description">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#difficulty -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#difficulty">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#email -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#email">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#file_location -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#file_location">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#file_postfix -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#file_postfix">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#file_type -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#file_type">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#gender -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#gender">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">female</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">male</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">secret</rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#grade -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#grade">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#id -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#id">
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">id of objects</rdfs:comment>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Organizations"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#is_leaf_concept -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#is_leaf_concept">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#media_type -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#media_type">
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">动画</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">图片</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">文本</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">视频</rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">音频</rdf:first>
+                                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#name">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Concept"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Organizations"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#Paper"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#Publisher"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#University"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#page_view -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#page_view">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#performance_rateing -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#performance_rateing"/>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#privilege -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#privilege">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Security"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#rate -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#rate">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#rateString -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#rateString">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#resource_public_level -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#resource_public_level">
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">全部公开</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">收费公开</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">注册公开</rdf:first>
+                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#resource_quality -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#resource_quality">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">中</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">优</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">差</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">良</rdf:first>
+                                                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#resource_type -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#resource_type">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">audio</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">caj</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">code</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">doc</rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">flash</rdf:first>
+                                                        <rdf:rest>
+                                                            <rdf:Description>
+                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">image</rdf:first>
+                                                                <rdf:rest>
+                                                                    <rdf:Description>
+                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">pdf</rdf:first>
+                                                                        <rdf:rest>
+                                                                            <rdf:Description>
+                                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">ppt</rdf:first>
+                                                                                <rdf:rest>
+                                                                                    <rdf:Description>
+                                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">txt</rdf:first>
+                                                                                        <rdf:rest>
+                                                                                            <rdf:Description>
+                                                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">video</rdf:first>
+                                                                                                <rdf:rest>
+                                                                                                    <rdf:Description>
+                                                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">其他</rdf:first>
+                                                                                                        <rdf:rest>
+                                                                                                            <rdf:Description>
+                                                                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">动画</rdf:first>
+                                                                                                                <rdf:rest>
+                                                                                                                    <rdf:Description>
+                                                                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">图片</rdf:first>
+                                                                                                                        <rdf:rest>
+                                                                                                                            <rdf:Description>
+                                                                                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">文本</rdf:first>
+                                                                                                                                <rdf:rest>
+                                                                                                                                    <rdf:Description>
+                                                                                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                                                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">程序</rdf:first>
+                                                                                                                                        <rdf:rest>
+                                                                                                                                            <rdf:Description>
+                                                                                                                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                                                                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">视频</rdf:first>
+                                                                                                                                                <rdf:rest>
+                                                                                                                                                    <rdf:Description>
+                                                                                                                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                                                                                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">音频</rdf:first>
+                                                                                                                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                                                                                                                    </rdf:Description>
+                                                                                                                                                </rdf:rest>
+                                                                                                                                            </rdf:Description>
+                                                                                                                                        </rdf:rest>
+                                                                                                                                    </rdf:Description>
+                                                                                                                                </rdf:rest>
+                                                                                                                            </rdf:Description>
+                                                                                                                        </rdf:rest>
+                                                                                                                    </rdf:Description>
+                                                                                                                </rdf:rest>
+                                                                                                            </rdf:Description>
+                                                                                                        </rdf:rest>
+                                                                                                    </rdf:Description>
+                                                                                                </rdf:rest>
+                                                                                            </rdf:Description>
+                                                                                        </rdf:rest>
+                                                                                    </rdf:Description>
+                                                                                </rdf:rest>
+                                                                            </rdf:Description>
+                                                                        </rdf:rest>
+                                                                    </rdf:Description>
+                                                                </rdf:rest>
+                                                            </rdf:Description>
+                                                        </rdf:rest>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#teacher_title -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#teacher_title">
+        <rdfs:range>
+            <rdfs:Datatype>
+                <owl:oneOf>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">副教授</rdf:first>
+                        <rdf:rest>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">助理研究员</rdf:first>
+                                <rdf:rest>
+                                    <rdf:Description>
+                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">教授</rdf:first>
+                                        <rdf:rest>
+                                            <rdf:Description>
+                                                <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">研究员</rdf:first>
+                                                <rdf:rest>
+                                                    <rdf:Description>
+                                                        <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#List"/>
+                                                        <rdf:first rdf:datatype="http://www.w3.org/2001/XMLSchema#string">讲师</rdf:first>
+                                                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                                                    </rdf:Description>
+                                                </rdf:rest>
+                                            </rdf:Description>
+                                        </rdf:rest>
+                                    </rdf:Description>
+                                </rdf:rest>
+                            </rdf:Description>
+                        </rdf:rest>
+                    </rdf:Description>
+                </owl:oneOf>
+            </rdfs:Datatype>
+        </rdfs:range>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#upload_time -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#upload_time">
+        <rdfs:domain rdf:resource="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#value -->
+
+    <owl:DatatypeProperty rdf:about="http://www.owl-ontologies.com/e-learning.owl#value">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+        <rdfs:domain>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Performance"/>
+                    <rdf:Description rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio"/>
+                </owl:unionOf>
+            </owl:Class>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#Book -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#Book">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#China_University -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#China_University">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#China_University"/>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
+        <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/e-learning.owl#USA_University"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#Corporations -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#Corporations">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Corporations"/>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Organizations"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Concept -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Concept">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Goal -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Goal"/>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest"/>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People_Characters"/>
+        <owl:disjointWith rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Study_Style"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Learner -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Learner">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Learner"/>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Organizations -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Organizations">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Organizations"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_People -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_People">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_People_Characters -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_People_Characters">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People_Characters"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Performance -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Performance">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People_Characters"/>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Performance"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Portfolio -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People_Characters"/>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Resource -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Resource">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Security -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Security">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People_Characters"/>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Security"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Study_Style -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Study_Style">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People_Characters"/>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Study_Style"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Teacher -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Teacher">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_People"/>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Teacher"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#File_Format -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#File_Format"/>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#ISCB_Resource">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#Paper -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#Paper">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Resource"/>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Paper"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#Publisher -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#Publisher">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Organizations"/>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#Publisher"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Press</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#USA_University -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#USA_University">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#USA_University"/>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#University -->
+
+    <owl:Class rdf:about="http://www.owl-ontologies.com/e-learning.owl#University">
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Organizations"/>
+        <rdfs:subClassOf rdf:resource="http://www.owl-ontologies.com/e-learning.owl#University"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1">
+        <is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-1"/>
+        <is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_4">
+        <is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_4">
+        <is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_2_e_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_e_1">
+        <is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_3_h_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_h_1">
+        <is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-1">
+        <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1"/>
+        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-2">
+        <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_4"/>
+        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-3">
+        <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_h_1"/>
+        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-4">
+        <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_e_1"/>
+        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-5">
+        <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1"/>
+        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-6">
+        <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_4"/>
+        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-1">
+        <inverse_of_is_resource_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-1"/>
+        <inverse_of_has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-2">
+        <inverse_of_is_resource_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-2"/>
+        <inverse_of_has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#PRF.psy -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#PRF.psy">
+        <is_concept_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001PRF.psy_p"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#el001 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#el001">
+        <grade rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Grade Two</grade>
+        <address rdf:datatype="http://www.w3.org/2001/XMLSchema#string">addr_el001</address>
+        <id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">el001</id>
+        <gender rdf:datatype="http://www.w3.org/2001/XMLSchema#string">male</gender>
+        <email rdf:datatype="http://www.w3.org/2001/XMLSchema#string">williamma.wm@gmail.com</email>
+        <name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">李小刚</name>
+        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-1"/>
+        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-2"/>
+        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-3"/>
+        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-4"/>
+        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-5"/>
+        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-6"/>
+        <has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-1"/>
+        <has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-2"/>
+        <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001PRF.psy_p"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#el001PRF.psy_p -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#el001PRF.psy_p">
+        <inverse_of_is_concept_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#PRF.psy"/>
+        <inverse_of_has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#rid000012 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000012">
+        <is_resource_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#rid000622 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000622">
+        <is_resource_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-1"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.2.2.1502) http://owlapi.sourceforge.net -->
+

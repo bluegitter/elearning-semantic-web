@@ -208,7 +208,6 @@ public class LPView extends FrameView {
         jToggleButton5 = new javax.swing.JToggleButton();
         jToggleButton6 = new javax.swing.JToggleButton();
         jToggleButton7 = new javax.swing.JToggleButton();
-        jToggleButton8 = new javax.swing.JToggleButton();
         buttonGroup1 = new javax.swing.ButtonGroup();
 
         mainPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -222,7 +221,7 @@ public class LPView extends FrameView {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 531, Short.MAX_VALUE)
+            .addGap(0, 536, Short.MAX_VALUE)
         );
 
         menuBar.setName("menuBar"); // NOI18N
@@ -497,24 +496,6 @@ public class LPView extends FrameView {
         });
         lpToolBar.add(jToggleButton7);
 
-        buttonGroup1.add(jToggleButton8);
-        jToggleButton8.setFont(resourceMap.getFont("jToggleButton8.font")); // NOI18N
-        jToggleButton8.setIcon(resourceMap.getIcon("jToggleButton8.icon")); // NOI18N
-        jToggleButton8.setFocusable(false);
-        jToggleButton8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton8.setLabel(resourceMap.getString("jToggleButton8.label")); // NOI18N
-        jToggleButton8.setMaximumSize(new java.awt.Dimension(103, 90));
-        jToggleButton8.setMinimumSize(new java.awt.Dimension(103, 93));
-        jToggleButton8.setName("jToggleButton8"); // NOI18N
-        jToggleButton8.setPreferredSize(new java.awt.Dimension(103, 90));
-        jToggleButton8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToggleButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton8ActionPerformed(evt);
-            }
-        });
-        lpToolBar.add(jToggleButton8);
-
         setComponent(mainPanel);
         setMenuBar(menuBar);
         setStatusBar(statusPanel);
@@ -562,16 +543,6 @@ public class LPView extends FrameView {
         setMainTool(LPApp.NEW_MAP);
     }//GEN-LAST:event_jToggleButton7ActionPerformed
 
-    private void jToggleButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton8ActionPerformed
-        // TODO add your handling code here:
-        setMainTool(LPApp.ADMIN);
-       // lp.admin.AdminDialog admin = new lp.admin.AdminDialog(LPApp.getApplication().getMainFrame(), false);
-       // admin.setVisible(true);
-       // ontology.EConcept con = LPApp.lpModel.getEConcept("A_cid_0_e_1");
-       // ontology.people.ELearner el = LPApp.lpModel.getELearner("el005");
-       // LPApp.getApplication().popEPerformanceRadarDialog(con,el);
-    }//GEN-LAST:event_jToggleButton8ActionPerformed
-
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         lp.admin.AdminDialog admin = new lp.admin.AdminDialog(LPApp.getApplication().getMainFrame(), false);
         admin.setVisible(true);
@@ -600,7 +571,6 @@ public class LPView extends FrameView {
     private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JToggleButton jToggleButton6;
     private javax.swing.JToggleButton jToggleButton7;
-    private javax.swing.JToggleButton jToggleButton8;
     private javax.swing.JMenuItem loginItem;
     private javax.swing.JMenuItem logoutItem;
     public javax.swing.JToolBar lpToolBar;

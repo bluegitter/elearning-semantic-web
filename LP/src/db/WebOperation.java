@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import lp.LPApp;
+import ontology.people.ELearner;
 import util.LogConstant;
 
 /**
@@ -18,7 +19,8 @@ import util.LogConstant;
 public class WebOperation {
 
     public static void main(String[] arsg) {
-        runsBroswer("www.163.com");
+      //  runsBroswer("www.163.com");
+        uploadUserFile(new ELearner("el001"));
     }
 
     public static void registBroswer(String webSite) {
@@ -49,4 +51,12 @@ public class WebOperation {
             System.out.println("URISyntaxException :" + ex.getMessage());
         }
     }
+
+     public static void uploadUserFile(ELearner el){
+        UploaderComm uc = new UploaderComm(el);
+        uc.uploadFiles(false);
+    }
+     public static void downloadUserFile(ELearner el){
+         runsBroswer(UploaderConstants.SERVER_URL_STRING+"/owl/downloadUserFile.jsp?elearner_id=el001.owl");
+     }
 }

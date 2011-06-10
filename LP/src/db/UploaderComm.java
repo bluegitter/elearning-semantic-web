@@ -1,17 +1,6 @@
 package db;
 
-import db.httpClient.Codecs;
-import db.httpClient.Cookie;
-import db.httpClient.CookieModule;
-import db.httpClient.CookiePolicyHandler;
-import db.httpClient.HTTPConnection;
-import db.httpClient.HTTPResponse;
-import db.httpClient.ModuleException;
-import db.httpClient.NVPair;
-import db.httpClient.ParseException;
-import db.httpClient.RoRequest;
-import db.httpClient.RoResponse;
-import db.httpClient.UploaderException;
+import HTTPClient.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -21,8 +10,6 @@ import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -33,8 +20,8 @@ import ontology.people.ELearner;
 
 public class UploaderComm {
 
-    public File upFile;
-    public ELearner el;
+    public File uploadFile;
+    public String eid;
 
     static {
         /* Configures HTTPClient to accept all cookies
@@ -51,7 +38,9 @@ public class UploaderComm {
             }
         });
 
-       // Create a trust manager that does not validate certificate chains
+        // http://cvs.sourceforge.net/viewcvs.py/jameleon/jameleon/src/java/net/sf/jameleon/util/JsseSettings.java?rev=1.4&view=markup
+        // http://tp.its.yale.edu/pipermail/cas/2004-March/000348.html
+        // Create a trust manager that does not validate certificate chains
         TrustManager[] trustAllCerts = new TrustManager[]{
             new X509TrustManager() {
 
@@ -79,105 +68,133 @@ public class UploaderComm {
     }
 
     public UploaderComm(ELearner el) {
-        this.el = el;
-        upFile = new File("files/owl/" + el.getId() + ".owl");
+        uploadFile = new File("files/owl/" + el.getId() + ".owl");
+        eid = el.getId();
     }
 
+    public void uploadFiles(boolean async) {
+        UploadTask uploadTask = new UploadTask();
+        doTask(uploadTask, async);
+    }
 
-    private static boolean tryComm(HTTPConnection mConnection, String urlPath) {
-        try {
-            HTTPResponse rsp;
-            rsp = mConnection.Head(urlPath);
+    abstract class ImazingTask implements Runnable {
 
-            int rspCode = rsp.getStatusCode();   // try actual communication
-            if (rspCode >= 300 && rspCode < 400) {
-                // retry, the library will have fixed the URL
-                rsp = mConnection.Head(urlPath);
-                rspCode = rsp.getStatusCode();
-            }
+        HTTPConnection mConnection;
+        boolean interrupt = false;
+        boolean terminated = false;
+        Thread thread = null;
 
-            return rspCode == 200;
-        } catch (UnknownHostException uhe) {
-        } catch (IOException ioe) {
+        public ImazingTask() {
+        }
+
+        public void run() {
+            thread = Thread.currentThread();
+
+            runTask();
+
+            cleanUp();
+        }
+
+        public void interrupt() {
+            thread.interrupt();
+            interrupt = true;
+        }
+
+        public void cleanUp() {
+            terminated = true;
+        }
+
+        abstract void runTask();
+    }
+
+    /**
+     * This class does upload job.
+     *
+     * @author Wannasoft
+     *
+     */
+    class UploadTask extends ImazingTask {
+
+        UploadTask() {
+            super();
+        }
+
+        void runTask() {
+            uploadPicture(uploadFile);
+        }
+
+        boolean uploadPicture(File file) {
             try {
-                if (ioe instanceof javax.net.ssl.SSLPeerUnverifiedException) {
-                    //JOptionPane.showMessageDialog(, JOptionPane.ERROR_MESSAGE);
-                } else {
-                }
-            } catch (NoClassDefFoundError ncdfe) {
-            }
-        } catch (ModuleException me) {
-        } catch (Exception e) {
-        }
-        return false;
-    }
 
-    public boolean uploadFiles() throws IOException, ModuleException {
-        NVPair[] opts = {
-            new NVPair("elearner_id", el.getId()),};
-        // setup the multipart form data
-        NVPair[] afile = {new NVPair("file", upFile.getAbsolutePath())};
-        NVPair[] hdrs = new NVPair[1];
-        byte[] data = Codecs.mpFormDataEncode(opts, afile, hdrs);
 
-        while (true) {
-            // load and validate the response
-            String responseString = requestResponse(hdrs, data, new URL(UploaderConstants.UPLOAD_URL_STRING), true);
+                // setup the protocol parameters
+                NVPair[] opts = {
+                    new NVPair("elearner_id", eid)
+                };
 
-            BufferedReader in = new BufferedReader(new StringReader(responseString));
-            String line = in.readLine();
-            int scode = 0;
-            while (line != null) {
-                line = line.trim();
-                if (line.length() > 0) {
-                    int codeEnd = line.indexOf(' ');
-                    if (codeEnd != -1) {
-                        scode = Integer.parseInt(line.substring(0, codeEnd));
-                        break;
-                    } else {
-                        try {
-                            throw new UploaderException("Status Code Not Found");
-                        } catch (UploaderException ex) {
-                            Logger.getLogger(UploaderComm.class.getName()).log(Level.SEVERE, null, ex);
+                // setup the multipart form data
+                NVPair[] afile = {new NVPair("picFile", uploadFile.getAbsolutePath())};
+                NVPair[] hdrs = new NVPair[1];
+                byte[] data = Codecs.mpFormDataEncode(opts, afile, hdrs);
+
+                while (true) {
+                    // load and validate the response
+                    String responseString = requestResponse(hdrs, data, new URL(UploaderConstants.UPLOAD_URL_STRING), true, this);
+
+                    BufferedReader in = new BufferedReader(new StringReader(responseString));
+                    String line = in.readLine();
+                    int scode = 0;
+                    while (line != null) {
+                        line = line.trim();
+                        if (line.length() > 0) {
+                            int codeEnd = line.indexOf(' ');
+                            if (codeEnd != -1) {
+                                scode = Integer.parseInt(line.substring(0, codeEnd));
+                                break;
+                            } else {
+                                throw new UploaderException("Status Code Not Found");
+                            }
                         }
+
+                        line = in.readLine();
                     }
+                    if (scode == 200) {
+                        return true;
+                    }
+                    break;
                 }
+            } catch (UploaderException ue) {
+                ;
+            } catch (NumberFormatException nfe) {
+                ;
+            } catch (SocketException swe) {
+            } catch (IOException ioe) {
+            } catch (ModuleException me) {
+            }
 
-                line = in.readLine();
-            }
-            if (scode == 200) {
-                return true;
-            } else if (scode == 401) {
-                continue;
-            }
-            break;
+            return false;
         }
-        return false;
     }
 
-//    /**
-//     * POSTSs a request to the iMazing server with the given form data.
-//     */
-//    String requestResponse(NVPair form_data[], ImazingTask task) throws ModuleException, IOException {
-//        return requestResponse(form_data, null, new URL(Imazing.LOGIN_URL_STRING), true, task);
-//    }
-//
-//    String requestResponse(NVPair form_data[], URL iUrl, ImazingTask task) throws ModuleException, IOException {
-//        return requestResponse(form_data, null, iUrl, true, task);
-//    }
-//
-    String requestResponse(NVPair form_data[], byte[] data, URL iUrl, boolean checkResult) throws ModuleException, IOException {
-        return requestResponse(form_data, data, iUrl, checkResult, false);
+    /**
+     * POSTSs a request to the iMazing server with the given form data.
+     */
+    String requestResponse(NVPair form_data[], URL iUrl, ImazingTask task) throws ModuleException, IOException {
+        return requestResponse(form_data, null, iUrl, true, task);
     }
+
+    String requestResponse(NVPair form_data[], byte[] data, URL iUrl, boolean checkResult, ImazingTask task) throws ModuleException, IOException {
+        return requestResponse(form_data, data, iUrl, checkResult, task, false);
+    }
+
     /**
      * POSTs a request to the iMazing server with the given form data.  If data is
      * not null, a multipart MIME post is performed.
      */
-    String requestResponse(NVPair form_data[], byte[] data, URL iUrl, boolean checkResult, boolean alreadyRetried) throws ModuleException, IOException {
+    String requestResponse(NVPair form_data[], byte[] data, URL iUrl, boolean checkResult, ImazingTask task, boolean alreadyRetried) throws ModuleException, IOException {
         // assemble the URL
         String urlPath = iUrl.getFile();
 
-        System.out.println("iUrl:"+iUrl);
         // create a connection
         HTTPConnection mConnection = new HTTPConnection(iUrl);
 
@@ -186,6 +203,14 @@ public class UploaderComm {
         ArrayList<NVPair> nvPairs = new ArrayList<NVPair>();
 
         nvPairs.add(new NVPair("Connection", "close"));
+
+        // If Imazing specified the user agent, then we'll use that.  If not, we'll let
+        // HTTPClient choose a default agent.
+        String userAgent = "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0)";
+        if (userAgent != null) {
+            nvPairs.add(new NVPair("User-Agent", userAgent));
+        }
+
         mConnection.setDefaultHeaders((NVPair[]) nvPairs.toArray(new NVPair[nvPairs.size()]));
 
         HTTPResponse rsp;
@@ -199,7 +224,9 @@ public class UploaderComm {
             }
         } else {
             rsp = mConnection.Post(urlPath, data, form_data);
-        } // handle 30x redirects
+        }
+
+        // handle 30x redirects
         if (rsp.getStatusCode() >= 300 && rsp.getStatusCode() < 400) {
             // retry, the library will have fixed the URL
             if (data == null) {
@@ -224,6 +251,7 @@ public class UploaderComm {
             } catch (ParseException e) {
                 response = new String(rsp.getData()).trim();
             }
+
             if (checkResult) {
                 // validate response
                 int i = response.indexOf(UploaderConstants.PROTOCOL_MAGIC);
@@ -233,17 +261,25 @@ public class UploaderComm {
                         throw new IOException("iMazing Not Found");
                     } else {
                         // try again
-                        return requestResponse(form_data, data, iUrl, checkResult, true);
+                        return requestResponse(form_data, data, iUrl, checkResult, task, true);
                     }
                 } else {
                     response = response.substring(i + UploaderConstants.PROTOCOL_MAGIC.length());
                 }
+
                 return response;
             } else {
                 return null;
-
-
             }
+        }
+    }
+
+    void doTask(ImazingTask task, boolean async) {
+        if (async) {
+            Thread t = new Thread(task);
+            t.start();
+        } else {
+            task.run();
         }
     }
 }

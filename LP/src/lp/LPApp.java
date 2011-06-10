@@ -164,13 +164,11 @@ public class LPApp extends SingleFrameApplication {
     }
 
     public void popEConceptViewDialog(EConcept con) {
-        JDialog dialog = new JDialog(LPApp.getApplication().getMainFrame());
+      //  JDialog dialog = new JDialog(LPApp.getApplication().getMainFrame());
         ConceptPane cp = new ConceptPane();
         cp.initCon(con);
-        dialog.setContentPane(cp);
+        PopCenterDialog dialog = new PopCenterDialog(cp);
         dialog.setTitle("知识点浏览");
-        dialog.pack();
-        dialog.setVisible(true);
     }
 
     /**
