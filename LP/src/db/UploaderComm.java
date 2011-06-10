@@ -22,7 +22,6 @@ public class UploaderComm {
 
     public File uploadFile;
     public String eid;
-
     static {
         /* Configures HTTPClient to accept all cookies
          * this should be done at least once per iMazing Uploader

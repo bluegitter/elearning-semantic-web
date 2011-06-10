@@ -74,7 +74,6 @@ public class LPApp extends SingleFrameApplication {
     protected void shutdown() {
         Date date = new Date(System.currentTimeMillis());
         File file = new File(Constant.OWLFile);
-// File file = new File("write1.owl");
         String location = "";
         ELearner el = LPApp.getApplication().user.learner;
         if (el == null) {
@@ -91,8 +90,10 @@ public class LPApp extends SingleFrameApplication {
 
         if (LPApp.lpModel != null) {
             //保存文件,发送日志
+           // sendLogs();
+            System.out.println("日志发送成功");
             saveToFile(file);
-            sendLogs();
+            
         }
 
         super.shutdown();
@@ -112,6 +113,8 @@ public class LPApp extends SingleFrameApplication {
             System.out.println("Complete saving the file before exiting the program.");
             OwlOperation.writeOwlFileFromRdfFile(file, file);
             System.out.println("Complete saving the backup model file in type of RDF before exiting the program.");
+            //save personal file
+            jena.impl.UserOwlUpdate.createNewDocWithEMI(LPApp.lpModel,LPApp.getApplication().user.learner);
         } catch (IOException ex) {
             Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -120,6 +123,7 @@ public class LPApp extends SingleFrameApplication {
 
     private void sendLogs() {
         try {
+            System.out.println("lPLOGS:"+lpLogs);
             lpLogs.sendLogs();
             System.out.println("Logs Sent..");
         } catch (MalformedURLException ex) {
