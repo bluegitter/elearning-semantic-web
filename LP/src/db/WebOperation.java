@@ -20,7 +20,8 @@ public class WebOperation {
 
     public static void main(String[] arsg) {
       //  runsBroswer("www.163.com");
-        uploadUserFile(new ELearner("el001"));
+        //uploadUserFile(new ELearner("el001"));
+   downloadUserFile(new ELearner("el001"));
     }
 
     public static void registBroswer(String webSite) {
@@ -57,6 +58,6 @@ public class WebOperation {
         uc.uploadFiles(false);
     }
      public static void downloadUserFile(ELearner el){
-         runsBroswer(UploaderConstants.SERVER_URL_STRING+"/owl/downloadUserFile.jsp?elearner_id=el001.owl");
+         runsBroswer(UploaderConstants.DOWNLOAD_URL_STRING+"?elearner_id="+el.getId());
      }
 }

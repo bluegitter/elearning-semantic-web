@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package lp.server;
+package lp.server.socket;
 
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
