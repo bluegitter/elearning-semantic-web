@@ -15,6 +15,8 @@ import java.awt.Stroke;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import lp.LPApp;
+import ontology.EConcept;
+import ontology.EGoal;
 
 /**
  *
@@ -119,8 +121,20 @@ public class MapDialog extends MMDialog {
     private void doAction(Object action) {
         if (action instanceof String) {
             if (action.equals("ok")) {
-                //todo: 设定选定
-                parent.hideMapDialog();
+                if(selected instanceof EGoal) {
+                    LPApp.lpModel.setCurrentGoal(LPApp.getApplication().user.learner, ((EGoal)selected).getGid());
+                    parent.hideMapDialog(null);
+                } else if (selected instanceof EConcept) {
+                    parent.hideMapDialog(new MapCallback() {
+
+                        @Override
+                        public void callback() {
+                            parent.centerConcept(((EConcept)selected));
+                        }
+                    });
+                } else {
+                    parent.hideMapDialog(null);
+                }
             }
         }
     }
@@ -153,9 +167,12 @@ public class MapDialog extends MMDialog {
     public boolean mouseClick(int x, int y) {
         for (Rectangle rect : actions.keySet()) {
             if (rect.contains(x, y)) {
-                rselected = rect;
-                selected = actions.get(rect);
-                doAction(selected);
+                Object ao = actions.get(rect);
+                if (!(ao instanceof String)) {
+                    rselected = rect;
+                    selected = ao;
+                }
+                doAction(ao);
                 return true;
             }
         }

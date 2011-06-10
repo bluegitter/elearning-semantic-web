@@ -31,7 +31,7 @@ public abstract class MapButton {
         this.outi = outi;
         this.overi = overi;
 
-        bound = new Rectangle(x, y, outi.getIconWidth(), outi.getIconWidth());
+        bound = new Rectangle(x, y, outi.getIconWidth(), outi.getIconHeight());
     }
     
     public MapButton(MapBg parent, String text, ImageIcon outi, ImageIcon overi) {
