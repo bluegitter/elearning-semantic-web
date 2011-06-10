@@ -90,10 +90,10 @@ public class LPApp extends SingleFrameApplication {
 
         if (LPApp.lpModel != null) {
             //保存文件,发送日志
-           // sendLogs();
+            // sendLogs();
             System.out.println("日志发送成功");
-            saveToFile(file);
-            
+            //     saveToFile(file);
+
         }
 
         super.shutdown();
@@ -114,7 +114,7 @@ public class LPApp extends SingleFrameApplication {
             OwlOperation.writeOwlFileFromRdfFile(file, file);
             System.out.println("Complete saving the backup model file in type of RDF before exiting the program.");
             //save personal file
-            jena.impl.UserOwlUpdate.createNewDocWithEMI(LPApp.lpModel,LPApp.getApplication().user.learner);
+            jena.impl.UserOwlUpdate.createNewDocWithEMI(LPApp.lpModel, LPApp.getApplication().user.learner);
         } catch (IOException ex) {
             Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -123,7 +123,7 @@ public class LPApp extends SingleFrameApplication {
 
     private void sendLogs() {
         try {
-            System.out.println("lPLOGS:"+lpLogs);
+            System.out.println("lPLOGS:" + lpLogs);
             lpLogs.sendLogs();
             System.out.println("Logs Sent..");
         } catch (MalformedURLException ex) {
@@ -157,12 +157,16 @@ public class LPApp extends SingleFrameApplication {
     }
 
     public void popEPerformanceRadarDialog(EConcept con, ELearner el) {
-        EPerformance perform = new EPerformance();
-        perform.setId("EPerformance_" + el.getId() + "_" + con.getCid());
+
+        EPerformance perform = LPApp.lpModel.getEPerformance(el, con);
+        if (perform == null) {
+            perform = new EPerformance();
+            perform.setId("EPerformance_" + el.getId() + "_" + con.getCid());
+            perform.setEConcept(con);
+            perform.setELearner(el);
+            perform.setValue(-1f);
+        }
         perform.setDatetime(new Date(System.currentTimeMillis()));
-        perform.setEConcept(con);
-        perform.setELearner(el);
-        perform.setValue(0.5f);
         RadarPanel radar = new RadarPanel(perform);
         PopCenterDialog pcd = new PopCenterDialog("知识点自我评估", radar);
     }
