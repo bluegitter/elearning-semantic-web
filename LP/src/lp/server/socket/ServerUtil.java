@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package lp.server;
+package lp.server.socket;
 
 /**
  *

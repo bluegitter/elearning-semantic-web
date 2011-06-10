@@ -68,8 +68,8 @@ public class UploaderComm {
     }
 
     public UploaderComm(ELearner el) {
-        uploadFile = new File("files/owl/" + el.getId() + ".owl");
         eid = el.getId();
+        uploadFile = new File("files/owl/" + eid + ".owl");
     }
 
     public void uploadFiles(boolean async) {
@@ -133,7 +133,7 @@ public class UploaderComm {
                 };
 
                 // setup the multipart form data
-                NVPair[] afile = {new NVPair("picFile", uploadFile.getAbsolutePath())};
+                NVPair[] afile = {new NVPair("file", uploadFile.getAbsolutePath())};
                 NVPair[] hdrs = new NVPair[1];
                 byte[] data = Codecs.mpFormDataEncode(opts, afile, hdrs);
 
@@ -214,7 +214,6 @@ public class UploaderComm {
         mConnection.setDefaultHeaders((NVPair[]) nvPairs.toArray(new NVPair[nvPairs.size()]));
 
         HTTPResponse rsp;
-
         // post multipart if there is data
         if (data == null) {
             if (form_data == null) {
