@@ -75,12 +75,12 @@ public class LPApp extends SingleFrameApplication {
         Date date = new Date(System.currentTimeMillis());
         File file = new File(Constant.OWLFile);
 // File file = new File("write1.owl");
-        String location="";
+        String location = "";
         ELearner el = LPApp.getApplication().user.learner;
-        if(el ==null){
-            return ;
-        }else{
-            getFile(el.getId()+".owl",location);
+        if (el == null) {
+            return;
+        } else {
+            getFile(el.getId() + ".owl", location);
         }
         if (!file.exists()) {
             try {
@@ -91,8 +91,8 @@ public class LPApp extends SingleFrameApplication {
 
         if (LPApp.lpModel != null) {
             //保存文件,发送日志
-            //         saveToFile(file);
-//            sendLogs();
+            saveToFile(file);
+            sendLogs();
         }
 
         super.shutdown();
@@ -108,7 +108,7 @@ public class LPApp extends SingleFrameApplication {
     private void saveToFile(File file) {
         try {
             //OwlOperation.writeRdfFile(LPApp.lpModel.getOntModel(), new File(Constant.RDF_BAK_File), null);
-           OwlOperation.writeRdfFile(LPApp.lpModel.getOntModel(), file, null);
+            OwlOperation.writeRdfFile(LPApp.lpModel.getOntModel(), file, null);
             System.out.println("Complete saving the file before exiting the program.");
             OwlOperation.writeOwlFileFromRdfFile(file, file);
             System.out.println("Complete saving the backup model file in type of RDF before exiting the program.");
@@ -118,7 +118,6 @@ public class LPApp extends SingleFrameApplication {
 
     }
 
-    
     private void sendLogs() {
         try {
             lpLogs.sendLogs();
@@ -131,7 +130,8 @@ public class LPApp extends SingleFrameApplication {
         lpLogs.close();
 
     }
-    public File getFile(String name,String location){
+
+    public File getFile(String name, String location) {
         return null;
     }
 
@@ -164,7 +164,7 @@ public class LPApp extends SingleFrameApplication {
     }
 
     public void popEConceptViewDialog(EConcept con) {
-      //  JDialog dialog = new JDialog(LPApp.getApplication().getMainFrame());
+        //  JDialog dialog = new JDialog(LPApp.getApplication().getMainFrame());
         ConceptPane cp = new ConceptPane();
         cp.initCon(con);
         PopCenterDialog dialog = new PopCenterDialog(cp);

@@ -133,39 +133,18 @@ public class UploaderComm {
                 };
 
                 // setup the multipart form data
+                
                 NVPair[] afile = {new NVPair("file", uploadFile.getAbsolutePath())};
                 NVPair[] hdrs = new NVPair[1];
                 byte[] data = Codecs.mpFormDataEncode(opts, afile, hdrs);
 
-                while (true) {
-                    // load and validate the response
-                    String responseString = requestResponse(hdrs, data, new URL(UploaderConstants.UPLOAD_URL_STRING), true, this);
+                String responseString = requestResponse(hdrs, data, new URL(UploaderConstants.UPLOAD_URL_STRING), true, this);
 
-                    BufferedReader in = new BufferedReader(new StringReader(responseString));
-                    String line = in.readLine();
-                    int scode = 0;
-                    while (line != null) {
-                        line = line.trim();
-                        if (line.length() > 0) {
-                            int codeEnd = line.indexOf(' ');
-                            if (codeEnd != -1) {
-                                scode = Integer.parseInt(line.substring(0, codeEnd));
-                                break;
-                            } else {
-                                throw new UploaderException("Status Code Not Found");
-                            }
-                        }
-
-                        line = in.readLine();
-                    }
-                    if (scode == 200) {
-                        return true;
-                    }
-                    break;
+                if(responseString.startsWith("success")) {
+                    return true;
                 }
-            } catch (UploaderException ue) {
-                ;
-            } catch (NumberFormatException nfe) {
+
+            }  catch (NumberFormatException nfe) {
                 ;
             } catch (SocketException swe) {
             } catch (IOException ioe) {
@@ -251,25 +230,7 @@ public class UploaderComm {
                 response = new String(rsp.getData()).trim();
             }
 
-            if (checkResult) {
-                // validate response
-                int i = response.indexOf(UploaderConstants.PROTOCOL_MAGIC);
-                if (i == -1) {
-                    if (alreadyRetried) {
-                        // failed one time too many
-                        throw new IOException("iMazing Not Found");
-                    } else {
-                        // try again
-                        return requestResponse(form_data, data, iUrl, checkResult, task, true);
-                    }
-                } else {
-                    response = response.substring(i + UploaderConstants.PROTOCOL_MAGIC.length());
-                }
-
-                return response;
-            } else {
-                return null;
-            }
+            return response;
         }
     }
 

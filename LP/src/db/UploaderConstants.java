@@ -10,7 +10,7 @@ package db;
  */
 class UploaderConstants {
 
-    public static final String SERVER_URL_STRING = "http://192.168.8.86:8080";
+    public static final String SERVER_URL_STRING = "http://192.168.9.161:8080";
     public static final String UPLOAD_URL_STRING = SERVER_URL_STRING + "/examples/uploadUserFile.jsp";
     public static final String DOWNLOAD_URL_STRING = SERVER_URL_STRING + "/examples/downloadUserFile.jsp";
     public static final String PROTOCOL_VERSION = "1.0";
