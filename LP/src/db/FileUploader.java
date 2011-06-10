@@ -4,7 +4,7 @@
  */
 package db;
 
-import db.httpClient.ModuleException;
+import HTTPClient.ModuleException;
 import java.io.IOException;
 import ontology.people.ELearner;
 
@@ -18,7 +18,7 @@ public class FileUploader {
 
         ELearner el = new ELearner("el001");
         UploaderComm uc = new UploaderComm(el);
-        uc.uploadFiles();
+        uc.uploadFiles(false);
         System.out.println("-----------------");
         System.out.println("结束演示");
     }

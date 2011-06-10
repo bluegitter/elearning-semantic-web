@@ -19,8 +19,9 @@ public final class PopCenterDialog extends JDialog {
     public PopCenterDialog(javax.swing.JPanel panel) {
         super(LPApp.getApplication().getMainFrame(), true);
         setContentPane(panel);
-        //this.setVisible(true);
-        //centerScreen();
+         pack();
+        centerScreen();
+        this.setVisible(true);
     }
 
     public PopCenterDialog()
