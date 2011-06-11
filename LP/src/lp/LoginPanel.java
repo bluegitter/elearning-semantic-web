@@ -138,13 +138,8 @@ public class LoginPanel extends javax.swing.JPanel {
                 if (rtvMsg == null) {
                     //if the elearner is in the model, then init its data
                     //else create a new elearner and show him the usage navigator.
-                    if (LPApp.lpModel.containELearner(LPApp.getApplication().user.learner.getId())) {
-                        view.setBusy("正在加载数据...");
-                        view.initTools();
-                        LPApp.lpLogs.writeLog(101, LPApp.getApplication().user.username, "登入", LogConstant.STATUS101);
-                    } else {
+                    if (!LPApp.lpModel.containELearner(LPApp.getApplication().user.learner.getId())) {
                         ELearner el = LPApp.getApplication().user.learner;
-
                         LPApp.lpModel.addELearner(el);
 
                         //pop the navigator dialogs
@@ -153,7 +148,11 @@ public class LoginPanel extends javax.swing.JPanel {
                         d.setModal(true);
                         d.pack();
                         d.setVisible(true);
+
                     }
+                    view.setBusy("正在加载数据...");
+                    view.initTools();
+                    LPApp.lpLogs.writeLog(101, LPApp.getApplication().user.username, "登入", LogConstant.STATUS101);
 
                 } else {
                     tipLabel.setText(rtvMsg);

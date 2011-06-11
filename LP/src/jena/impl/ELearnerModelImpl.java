@@ -179,11 +179,26 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         }
         Resource el = ontModel.createResource(Constant.NS + elearner.getId(), ontModel.getResource(Constant.NS + "E_Learner"));
         ontModel.add(el, ontModel.getProperty(Constant.NS + "id"), elearner.getId());
-        ontModel.add(el, ontModel.getProperty(Constant.NS + "name"), elearner.getName(), new XSDDatatype("string"));
-        ontModel.add(el, ontModel.getProperty(Constant.NS + "gender"), elearner.getGender(), new XSDDatatype("string"));
-        ontModel.add(el, ontModel.getProperty(Constant.NS + "grade"), elearner.getGrade(), new XSDDatatype("string"));
-        ontModel.add(el, ontModel.getProperty(Constant.NS + "address"), elearner.getAddress(), new XSDDatatype("string"));
-        ontModel.add(el, ontModel.getProperty(Constant.NS + "email"), elearner.getEmail(), new XSDDatatype("string"));
+        String name = elearner.getName();
+        if (name != null) {
+            ontModel.add(el, ontModel.getProperty(Constant.NS + "name"), name, new XSDDatatype("string"));
+        }
+        String gender = elearner.getGender();
+        if (gender != null) {
+            ontModel.add(el, ontModel.getProperty(Constant.NS + "gender"), gender, new XSDDatatype("string"));
+        }
+        String grade = elearner.getGrade();
+        if (grade != null) {
+            ontModel.add(el, ontModel.getProperty(Constant.NS + "grade"), grade, new XSDDatatype("string"));
+        }
+        String address = elearner.getAddress();
+        if (address != null) {
+            ontModel.add(el, ontModel.getProperty(Constant.NS + "address"), address, new XSDDatatype("string"));
+        }
+        String email = elearner.getEmail();
+        if (email != null) {
+            ontModel.add(el, ontModel.getProperty(Constant.NS + "email"), email, new XSDDatatype("string"));
+        }
         return true;
     }
 
@@ -739,7 +754,16 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
     public ELearner getELearner(String eid) {
         ELearner elearner = new ELearner(eid);
         Individual indi = ontModel.getIndividual(Constant.NS + eid);
-        elearner.setName(indi.getPropertyValue(ontModel.getProperty(Constant.NS + "name")).asLiteral().getString());
+        if (indi == null) {
+            return null;
+        }
+        RDFNode nameNode = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "name"));
+        if (nameNode == null) {
+            elearner.setEmail(" ");
+        } else {
+            elearner.setName(nameNode.asLiteral().getString());
+        }
+
         RDFNode email = indi.getPropertyValue(ontModel.getProperty(Constant.NS + "email"));
         if (email == null) {
             elearner.setEmail(" ");
@@ -1720,7 +1744,6 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         return gCons;
     }
 
-   
     public static void main(String[] args) throws IndividualNotExistException, IndividualExistException {
         //files/owl/elearning_owl.owl
         File f1 = new File("files/owl/elearning_owl_1.owl");
