@@ -83,7 +83,7 @@ public class NavigatorConceptFinishPane extends javax.swing.JPanel {
             }
 
         }
-
+        System.out.println("用户完成设定兴趣点");
         parent.setVisible(false);
         parent.dispose();
     }

@@ -101,7 +101,12 @@ public class LPApp extends SingleFrameApplication {
 
     public void initModel() {
         lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFile));
-        LPApp.getApplication().user.learner = LPApp.lpModel.getELearner(LPApp.getApplication().user.username);
+        ELearner el = LPApp.lpModel.getELearner(LPApp.getApplication().user.username);
+        if(el==null){
+            LPApp.getApplication().user.learner = new ELearner(LPApp.getApplication().user.username);
+        }else{
+            LPApp.getApplication().user.learner = el;
+        }
         lpLogs = new LPLogger();
         lpLogs.setUserId(user.username);
     }
