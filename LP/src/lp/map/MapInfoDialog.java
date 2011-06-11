@@ -4,6 +4,7 @@ import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -70,15 +71,17 @@ public class MapInfoDialog extends MMDialog {
             g.draw(showRect);
         } else {
             bound.setLocation((vw - bound.width) / 2, (vh - bound.height) / 2);
-            g.setColor(Color.LIGHT_GRAY);
-            g.setFont(new Font("微软雅黑", Font.BOLD, 14));
+            g.setColor(Color.WHITE);
             g.fill(bound);
-            g.setColor(Color.BLACK);
-            g.draw(bound);
 
             int cy = bound.y;
+            g.setPaint(new GradientPaint((float)bound.x, (float)cy, ttc, (float)bound.x, (float)(cy + 10 + optionHeight), tbc));
+            g.fillRect(bound.x, cy, bound.width, 10 + optionHeight);
+            
+            g.setColor(Color.BLACK);
+            g.draw(bound);
+            g.setFont(new Font("微软雅黑", Font.BOLD, 14));
             g.drawString(title, bound.x + 10, cy + 5 + optionBase);
-            g.drawLine(bound.x, cy + 10 + optionHeight, bound.x + bound.width, cy + 10 + optionHeight);
             
             closeBtn.setLocation(bound.x + bound.width - closeBtn.width - 3, bound.y);
             cicon.paintIcon(parent, g, closeBtn.x, cy);
@@ -87,7 +90,7 @@ public class MapInfoDialog extends MMDialog {
 
             g.setStroke(rstroke);
             if (ron != null) {
-                g.setColor(Color.YELLOW);
+                g.setColor(Color.RED);
                 g.drawRect(ron.x + bound.x, ron.y + bound.y, ron.width, ron.height);
             }
 
