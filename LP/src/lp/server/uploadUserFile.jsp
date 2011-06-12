@@ -1,60 +1,61 @@
-<%@ page contentType="text/html; charset=gb2312" language="java" 
+<%@ page contentType="text/html; charset=utf-8" language="java" 
 import="java.util.*,com.jspsmart.upload.*" errorPage="" %>
 <html>
 <head>
-<title>ÎÄ¼şÉÏ´«´¦ÀíÒ³Ãæ</title>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>æ–‡ä»¶ä¸Šä¼ å¤„ç†é¡µé¢</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 
 <body>
 <%
-	// ĞÂ½¨Ò»¸öSmartUpload¶ÔÏó
+	// æ–°å»ºä¸€ä¸ªSmartUploadå¯¹è±¡
 	SmartUpload su = new SmartUpload();
-	// ÉÏ´«³õÊ¼»¯
+	// ä¸Šä¼ åˆå§‹åŒ–
 	su.initialize(pageContext);
-	// Éè¶¨ÉÏ´«ÏŞÖÆ
-	// 1.ÏŞÖÆÃ¿¸öÉÏ´«ÎÄ¼şµÄ×î´ó³¤¶È¡£
+	// è®¾å®šä¸Šä¼ é™åˆ¶
+	// 1.é™åˆ¶æ¯ä¸ªä¸Šä¼ æ–‡ä»¶çš„æœ€å¤§é•¿åº¦ã€‚
 	// su.setMaxFileSize(10000);
-	// 2.ÏŞÖÆ×ÜÉÏ´«Êı¾İµÄ³¤¶È¡£
+	// 2.é™åˆ¶æ€»ä¸Šä¼ æ•°æ®çš„é•¿åº¦ã€‚
 	// su.setTotalMaxFileSize(20000);
-	// 3.Éè¶¨ÔÊĞíÉÏ´«µÄÎÄ¼ş£¨Í¨¹ıÀ©Õ¹ÃûÏŞÖÆ£©,½öÔÊĞídoc,txtÎÄ¼ş¡£
+	// 3.è®¾å®šå…è®¸ä¸Šä¼ çš„æ–‡ä»¶ï¼ˆé€šè¿‡æ‰©å±•åé™åˆ¶ï¼‰,ä»…å…è®¸doc,txtæ–‡ä»¶ã€‚
 	 su.setAllowedFilesList("owl,doc,txt");
-	// 4.Éè¶¨½ûÖ¹ÉÏ´«µÄÎÄ¼ş£¨Í¨¹ıÀ©Õ¹ÃûÏŞÖÆ£©,½ûÖ¹ÉÏ´«´øÓĞexe,bat,
-//	jsp,htm,htmlÀ©Õ¹ÃûµÄÎÄ¼şºÍÃ»ÓĞÀ©Õ¹ÃûµÄÎÄ¼ş¡£
+	// 4.è®¾å®šç¦æ­¢ä¸Šä¼ çš„æ–‡ä»¶ï¼ˆé€šè¿‡æ‰©å±•åé™åˆ¶ï¼‰,ç¦æ­¢ä¸Šä¼ å¸¦æœ‰exe,bat,
+//	jsp,htm,htmlæ‰©å±•åçš„æ–‡ä»¶å’Œæ²¡æœ‰æ‰©å±•åçš„æ–‡ä»¶ã€‚
 	// su.setDeniedFilesList("exe,bat,jsp,htm,html,,");
-	// ÉÏ´«ÎÄ¼ş
+	// ä¸Šä¼ æ–‡ä»¶
 	su.upload();
-	// ½«ÉÏ´«ÎÄ¼şÈ«²¿±£´æµ½Ö¸¶¨Ä¿Â¼
+	// å°†ä¸Šä¼ æ–‡ä»¶å…¨éƒ¨ä¿å­˜åˆ°æŒ‡å®šç›®å½•
 	int count = su.save("/owl");
-	out.println(count+"¸öÎÄ¼şÉÏ´«³É¹¦£¡<br>");
+	out.println("success");
+	//out.println(count+"ä¸ªæ–‡ä»¶ä¸Šä¼ æˆåŠŸï¼<br>");
 	
-	// ÀûÓÃRequest¶ÔÏó»ñÈ¡²ÎÊıÖ®Öµ
-	out.println("TEST="+su.getRequest().getParameter("elearner_id")+"<BR><BR>");
+	// åˆ©ç”¨Requestå¯¹è±¡è·å–å‚æ•°ä¹‹å€¼
+	//out.println("TEST="+su.getRequest().getParameter("elearner_id")+"<BR><BR>");
 
-	// ÖğÒ»ÌáÈ¡ÉÏ´«ÎÄ¼şĞÅÏ¢£¬Í¬Ê±¿É±£´æÎÄ¼ş¡£
-	for (int i=0;i<su.getFiles().getCount();i++)
+	// é€ä¸€æå–ä¸Šä¼ æ–‡ä»¶ä¿¡æ¯ï¼ŒåŒæ—¶å¯ä¿å­˜æ–‡ä»¶ã€‚
+	/*for (int i=0;i<su.getFiles().getCount();i++)
 	{
 		com.jspsmart.upload.File file = su.getFiles().getFile(i);
 		
-		// ÈôÎÄ¼ş²»´æÔÚÔò¼ÌĞø
+		// è‹¥æ–‡ä»¶ä¸å­˜åœ¨åˆ™ç»§ç»­
 		if (file.isMissing()) continue;
 
-		// ÏÔÊ¾µ±Ç°ÎÄ¼şĞÅÏ¢
+		// æ˜¾ç¤ºå½“å‰æ–‡ä»¶ä¿¡æ¯
 		out.println("<TABLE BORDER=1>");
-		out.println("<TR><TD>±íµ¥ÏîÃû£¨FieldName£©</TD><TD>"+ file.getFieldName() + "</TD></TR>");
-		out.println("<TR><TD>ÎÄ¼ş³¤¶È£¨Size£©</TD><TD>" + file.getSize() + "</TD></TR>");
-		out.println("<TR><TD>ÎÄ¼şÃû£¨FileName£©</TD><TD>" + file.getFileName() + "</TD></TR>");
-		out.println("<TR><TD>ÎÄ¼şÀ©Õ¹Ãû£¨FileExt£©</TD><TD>"+ file.getFileExt() + "</TD></TR>");
-		out.println("<TR><TD>ÎÄ¼şÈ«Ãû£¨FilePathName£©</TD><TD>"	+ file.getFilePathName() + "</TD></TR>");
+		out.println("<TR><TD>è¡¨å•é¡¹åï¼ˆFieldNameï¼‰</TD><TD>"+ file.getFieldName() + "</TD></TR>");
+		out.println("<TR><TD>æ–‡ä»¶é•¿åº¦ï¼ˆSizeï¼‰</TD><TD>" + file.getSize() + "</TD></TR>");
+		out.println("<TR><TD>æ–‡ä»¶åï¼ˆFileNameï¼‰</TD><TD>" + file.getFileName() + "</TD></TR>");
+		out.println("<TR><TD>æ–‡ä»¶æ‰©å±•åï¼ˆFileExtï¼‰</TD><TD>"+ file.getFileExt() + "</TD></TR>");
+		out.println("<TR><TD>æ–‡ä»¶å…¨åï¼ˆFilePathNameï¼‰</TD><TD>"	+ file.getFilePathName() + "</TD></TR>");
 		out.println("</TABLE><BR>");
 
-		// ½«ÎÄ¼şÁí´æ
+		// å°†æ–‡ä»¶å¦å­˜
 		// file.saveAs("/upload/" + myFile.getFileName());
-		// Áí´æµ½ÒÔWEBÓ¦ÓÃ³ÌĞòµÄ¸ùÄ¿Â¼ÎªÎÄ¼ş¸ùÄ¿Â¼µÄÄ¿Â¼ÏÂ
+		// å¦å­˜åˆ°ä»¥WEBåº”ç”¨ç¨‹åºçš„æ ¹ç›®å½•ä¸ºæ–‡ä»¶æ ¹ç›®å½•çš„ç›®å½•ä¸‹
 		// file.saveAs("/upload/" + myFile.getFileName(), su.SAVE_VIRTUAL);
-		// Áí´æµ½²Ù×÷ÏµÍ³µÄ¸ùÄ¿Â¼ÎªÎÄ¼ş¸ùÄ¿Â¼µÄÄ¿Â¼ÏÂ
+		// å¦å­˜åˆ°æ“ä½œç³»ç»Ÿçš„æ ¹ç›®å½•ä¸ºæ–‡ä»¶æ ¹ç›®å½•çš„ç›®å½•ä¸‹
 		// file.saveAs("c:\\temp\\" + myFile.getFileName(),su.SAVE_PHYSICAL);
-	}
+	}*/
 %>
 </body>
 </html>
