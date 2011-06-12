@@ -1,17 +1,17 @@
-<%@ page contentType="text/html;charset=gb2312" 
+<%@ page contentType="text/html;charset=utf-8" 
 import="com.jspsmart.upload.*" %><%
-		// ÐÂ½¨Ò»¸öSmartUpload¶ÔÏó
+		// æ–°å»ºä¸€ä¸ªSmartUploadå¯¹è±¡
 	SmartUpload su = new SmartUpload();
-		// ³õÊ¼»¯
+		// åˆå§‹åŒ–
 	su.initialize(pageContext);
-		// Éè¶¨contentDispositionÎªnullÒÔ½ûÖ¹ä¯ÀÀÆ÷×Ô¶¯´ò¿ªÎÄ¼þ£¬
-		//±£Ö¤µã»÷Á´½ÓºóÊÇÏÂÔØÎÄ¼þ¡£Èô²»Éè¶¨£¬ÔòÏÂÔØµÄÎÄ¼þÀ©Õ¹ÃûÎª
-		//docÊ±£¬ä¯ÀÀÆ÷½«×Ô¶¯ÓÃword´ò¿ªËü¡£À©Õ¹ÃûÎªpdfÊ±£¬
-		//ä¯ÀÀÆ÷½«ÓÃacrobat´ò¿ª¡£
+		// è®¾å®šcontentDispositionä¸ºnullä»¥ç¦æ­¢æµè§ˆå™¨è‡ªåŠ¨æ‰“å¼€æ–‡ä»¶ï¼Œ
+		//ä¿è¯ç‚¹å‡»é“¾æŽ¥åŽæ˜¯ä¸‹è½½æ–‡ä»¶ã€‚è‹¥ä¸è®¾å®šï¼Œåˆ™ä¸‹è½½çš„æ–‡ä»¶æ‰©å±•åä¸º
+		//docæ—¶ï¼Œæµè§ˆå™¨å°†è‡ªåŠ¨ç”¨wordæ‰“å¼€å®ƒã€‚æ‰©å±•åä¸ºpdfæ—¶ï¼Œ
+		//æµè§ˆå™¨å°†ç”¨acrobatæ‰“å¼€ã€‚
 	su.setContentDisposition(null);
-	String name = su.getRequest().getParameter("elearner_id");
-	// ÏÂÔØÎÄ¼þ
-	//su.downloadFile("/owl/"+name+".owl");
-	su.downloadFile("/owl/el001.owl");
+	String name = request.getParameter("elearner_id");
+	// ä¸‹è½½æ–‡ä»¶
+	su.downloadFile("/owl/"+name+".owl");
+	//su.downloadFile("/owl/el001.owl");
 %>
  
