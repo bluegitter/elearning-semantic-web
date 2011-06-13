@@ -139,12 +139,15 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
                         @Override
                         public void callback() {
-                            String gid = LPApp.lpModel.getCurrentGoal(LPApp.getApplication().user.learner);
-                            currentGoal = LPApp.lpModel.getEGoal(gid);
-                            ArrayList<EConcept> list = ELearnerReasoner.getRecommendPreEConcpet(LPApp.lpModel, LPApp.getApplication().user.learner, currentGoal);
-                            if (list.size() > 0) {
-                                recommendConcept = list.get(0);
-                                MapBg.this.showMapDialog(new MapInfoDialog(MapBg.this, "已经完成" + menuConcept.getName() + "的评估", "系统为你推荐了新的知识，供你学习！", "立即学习 “" + recommendConcept.getName() + "”", "recommend", "忽略对这一知识的推荐", "ignore"));
+                            EPerformance ep = LPApp.lpModel.getEPerformance(LPApp.getApplication().user.learner, menuConcept);
+                            if (ep != null) {
+                                String gid = LPApp.lpModel.getCurrentGoal(LPApp.getApplication().user.learner);
+                                currentGoal = LPApp.lpModel.getEGoal(gid);
+                                ArrayList<EConcept> list = ELearnerReasoner.getRecommendPreEConcpet(LPApp.lpModel, LPApp.getApplication().user.learner, currentGoal);
+                                if (list.size() > 0) {
+                                    recommendConcept = list.get(0);
+                                    MapBg.this.showMapDialog(new MapInfoDialog(MapBg.this, "已经完成" + menuConcept.getName() + "的评估", "系统为你推荐了新的知识，供你学习！", "立即学习 “" + recommendConcept.getName() + "”", "recommend", "忽略对这一知识的推荐", "ignore"));
+                                }
                             }
                         }
                     });
