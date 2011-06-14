@@ -140,7 +140,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                         @Override
                         public void callback() {
                             EPerformance ep = LPApp.lpModel.getEPerformance(LPApp.getApplication().user.learner, menuConcept);
-                            if (ep != null) {
+                            if (ep != null && ep.getValue() > -0.5f) {
                                 String gid = LPApp.lpModel.getCurrentGoal(LPApp.getApplication().user.learner);
                                 currentGoal = LPApp.lpModel.getEGoal(gid);
                                 ArrayList<EConcept> list = ELearnerReasoner.getRecommendPreEConcpet(LPApp.lpModel, LPApp.getApplication().user.learner, currentGoal);
