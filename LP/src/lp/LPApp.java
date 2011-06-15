@@ -90,7 +90,7 @@ public class LPApp extends SingleFrameApplication {
 
         if (LPApp.lpModel != null) {
             //保存文件,发送日志
-            // sendLogs();
+            sendLogs();
             System.out.println("日志发送成功");
             //     saveToFile(file);
 
