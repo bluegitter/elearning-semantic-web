@@ -39,7 +39,6 @@ public class ConceptPane extends javax.swing.JPanel {
 
     public void initCon(EConcept con) {
         conceptName.setText(con.getName());
-        uriLabel.setText(util.Constant.NS + con.getCid());
         jLabel4.setText(con.getDifficulty());
         cdec = con;
         updateData();
@@ -57,29 +56,26 @@ public class ConceptPane extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         conceptName = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        uriLabel = new javax.swing.JLabel();
         learnBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
-        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "知识点-资源", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        setBorder(javax.swing.BorderFactory.createTitledBorder(null, "知识点-资源", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("宋体", 0, 14))); // NOI18N
         setDoubleBuffered(false);
+        setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
 
+        jLabel1.setFont(new java.awt.Font("宋体", 0, 16)); // NOI18N
         jLabel1.setText("知识点：");
         jLabel1.setName("jLabel1"); // NOI18N
 
+        conceptName.setFont(new java.awt.Font("宋体", 0, 16)); // NOI18N
         conceptName.setText("知识点名称");
         conceptName.setName("conceptName"); // NOI18N
 
-        jLabel2.setText("URI:");
-        jLabel2.setName("jLabel2"); // NOI18N
-
-        uriLabel.setText("URI");
-        uriLabel.setName("uriLabel"); // NOI18N
-
-        learnBtn.setText("学习它");
+        learnBtn.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
+        learnBtn.setText("学习知识");
+        learnBtn.setBorder(null);
         learnBtn.setName("learnBtn"); // NOI18N
         learnBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,12 +83,15 @@ public class ConceptPane extends javax.swing.JPanel {
             }
         });
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(160, 160, 160), 1, true), "相关资源", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("微软雅黑", 0, 14))); // NOI18N
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(160, 160, 160), 1, true), "相关资源", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("宋体", 0, 14))); // NOI18N
+        jScrollPane1.setFont(new java.awt.Font("宋体", 0, 14)); // NOI18N
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
+        jLabel3.setFont(new java.awt.Font("宋体", 0, 16)); // NOI18N
         jLabel3.setText("难易度：");
         jLabel3.setName("jLabel3"); // NOI18N
 
+        jLabel4.setFont(new java.awt.Font("宋体", 0, 16)); // NOI18N
         jLabel4.setText("diff");
         jLabel4.setName("jLabel4"); // NOI18N
 
@@ -105,40 +104,37 @@ public class ConceptPane extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(uriLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
-                            .addComponent(conceptName)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
-                    .addComponent(learnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(conceptName))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel4)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                        .addComponent(learnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4)))
-                .addContainerGap())
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(conceptName, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(conceptName, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)))
+                    .addComponent(learnBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(uriLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(13, 13, 13)
-                .addComponent(learnBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -164,7 +160,7 @@ public class ConceptPane extends javax.swing.JPanel {
 }//GEN-LAST:event_learnBtnActionPerformed
     @Override
     public String toString() {
-        return conceptName.getText() + "\t" + uriLabel.getText();
+        return conceptName.getText() + "\t";
     }
 
     public void updateResouceTable(EConcept ec) {
@@ -208,12 +204,10 @@ public class ConceptPane extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel conceptName;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton learnBtn;
-    public javax.swing.JLabel uriLabel;
     // End of variables declaration//GEN-END:variables
     public ResourceTablePane resourceTablePane;
 }

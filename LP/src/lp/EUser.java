@@ -36,7 +36,7 @@ public class EUser {
             //http://166.111.80.250/iscb/regUser.jsp?userName=el001&password=el&login=false
             StringBuilder sb = new StringBuilder();
             sb.append(Constant.ISCBSERVER250);
-            sb.append("iscb/regUser.jsp?userName=");
+            sb.append("regUser.jsp?userName=");
             sb.append(username);
             sb.append("&password=");
             sb.append(passwd);

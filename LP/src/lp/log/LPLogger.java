@@ -111,7 +111,7 @@ public class LPLogger {
 //    }
     public void sendLogs() throws MalformedURLException, IOException {
         //http://e6.thss.tsinghua.edu.cn/iscb/uploadLogs.jsp?logs=2010-03-18%2016:51:13,el001,192.168.1.1,120,data,result,1
-        String u1 = Constant.ISCBSERVER250 + "iscb/uploadLogs.jsp?logs=";
+        String u1 = Constant.ISCBSERVER250 + "uploadLogs.jsp?logs=";
         String urlString = u1 + URLEncoder.encode(sb.toString(), "UTF-8");
         URL url = new URL(urlString);
         System.out.println("URL:" + url);
