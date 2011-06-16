@@ -175,7 +175,8 @@ public class ResourceTable extends JTable implements MouseListener, MouseMotionL
         } else {
             dif = "未知";
         }
-        Object[] oa = {er, (util.Constant.ISCBSERVER48 + er.getFileLocation()), dif};
+//        Object[] oa = {er, (util.Constant.ISCBSERVER48 + er.getFileLocation()), dif};
+         Object[] oa = {er, "浏览资源", dif};
         model.addRow(oa);
     }
 
@@ -203,16 +204,16 @@ public class ResourceTable extends JTable implements MouseListener, MouseMotionL
             int column = this.columnAtPoint(p);
             if (column == 1) {
                 String url = (String) this.getModel().getValueAt(row, column);
-                System.out.println("url:" + url);
-                System.out.println(this.getModel().getValueAt(row, 0));
+      //          System.out.println("url:" + url);
+       //         System.out.println(this.getModel().getValueAt(row, 0));
                 ISCB_Resource temp = (ISCB_Resource) this.getModel().getValueAt(row, 0);
-                System.out.println("temp:"+temp.getRid());
+         //       System.out.println("temp:"+temp.getRid());
                 WebOperation.viewResourceBroswer(url, temp.getRid(), temp.getIsLearntResult());
             }
             if (column != 1) {
                 ISCB_Resource resource = res.get(currentPage * num + row);
                 parent.goToEResourceDetailPane(resource);
-                System.out.println(row + "\tres:" + resource);
+           //     System.out.println(row + "\tres:" + resource);
             }
         }
     }
