@@ -1744,28 +1744,51 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         return gCons;
     }
 
+    public static void addProperty(String rid, String cid) {
+        File owlFile = new File("files/owl/elearning_owl.owl");
+        ELearnerModelImpl emi = new ELearnerModelImpl(owlFile);
+        //emi.addNewModel(el005f);
+        boolean b = emi.containELearner("el001");
+
+        ISCB_Resource res = emi.getEResource(rid);
+        EConcept con = emi.getEConcept(cid);
+        emi.addPropertyIsResourceOfC(res, con);
+        System.out.println("add " + res.getFileLocation() + "\t" + con.getCid() + "," + con.getName());
+        emi.writeToFile(owlFile);
+
+    }
+
+    public static void search(String cs) {
+        File owlFile = new File("files/owl/elearning_owl.owl");
+        ELearnerModelImpl emi = new ELearnerModelImpl(owlFile);
+        //emi.addNewModel(el005f);
+        boolean b = emi.containELearner("el001");
+        HashSet<ISCB_Resource> rs = emi.getAllEResources();
+        // String cs = "110401.asp";
+
+        for (ISCB_Resource res : rs) {
+            String loca = res.getFileLocation();
+            if (loca.contains(cs)) {
+                System.out.println("got:" + res.getRid() + "\t" + res.getName());
+            }
+        }
+    }
+
     public static void main(String[] args) throws IndividualNotExistException, IndividualExistException {
         //files/owl/elearning_owl.owl
         File f1 = new File("files/owl/elearning_owl_1.owl");
         File el001f = new File("files/owl/el001.owl");
         File el005f = new File("files/owl/el005.owl");
         File writeTo = new File("files/owl/update_write.xml");
-
-
-        OntModel model = OwlFactory.getOntModel(el001f, f1);
-        ELearnerModelImpl emi = new ELearnerModelImpl(model);
-        //emi.addNewModel(el005f);
-        boolean b = emi.containELearner("el001");
-
-        System.out.println("nulllllll\t" + b);
-        ELearner el = emi.getELearner("el001");
-        ArrayList<EInterest> ins = emi.getEInterests(el);
-        System.out.println("ins:" + ins.size());
-        ArrayList<EPerformance> perfs = emi.getEPerformances(el);
-        System.out.println("perfs:" + perfs.size());
-        System.out.println("el:" + el.getName());
-
-
+        search("060501");
+        String rid = "rid000149";
+        String rid2 = "rid000148";
+        String r3 = "rid000300";
+        String cid = "A_cid_3_m_2";
+        //addProperty(rid, cid);
+        //addProperty(rid2, cid);
+        //  addProperty(r3,cid);
+        // OntModel model = OwlFactory.getOntModel(el001f, f1);
 
 //        StmtIterator nl = indi1.listProperties();
 //        int i = 0;
