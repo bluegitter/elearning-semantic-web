@@ -15,9 +15,7 @@ public class EPortfolio {
     private int rate;
     private String rateString;
     public EPortfolio() {
-        elearner = new ELearner();
-        resource = new ISCB_Resource();
-        rate = 0;
+        
     }
 
     public EPortfolio(String id, ELearner elearner, ISCB_Resource resource, float value, Date datetime) {
@@ -27,6 +25,7 @@ public class EPortfolio {
         this.value = value;
         this.datetime = datetime;
         rate = 0;
+        rateString ="";
     }
 
     public ELearner getELearner() {

@@ -9,7 +9,7 @@ public class Constant {
     public static String NSRDF = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
     public static String OWLFile = "files/owl/elearning_owl.owl";
     public static String RDF_BAK_File = "files/owl/elearning_rdf_bak.owl";
-    public static String TEST_File = "file/owl/test.owl";
+    public static String TEST_File = "files/owl/test.owl";
     public static String RulesFile = "files/owl/elearning2.rules";
     public static String LuceneTestFile = "files/lucene/testlucene.txt";
     public static String LogFileDirectory = "files/log/";

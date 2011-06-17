@@ -32,7 +32,7 @@
                   <Component id="jPanel2" alignment="0" pref="435" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" pref="444" max="32767" attributes="0"/>
+              <Component id="jPanel1" pref="404" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -41,7 +41,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jPanel1" alignment="0" pref="527" max="32767" attributes="1"/>
+                  <Component id="jPanel1" alignment="0" pref="553" max="32767" attributes="1"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanel2" min="-2" pref="154" max="-2" attributes="1"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -56,7 +56,7 @@
                       <Component id="moreResources" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="37" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,22 +81,22 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel3" min="-2" pref="52" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="email" pref="241" max="32767" attributes="0"/>
+                          <Component id="email" pref="255" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel2" min="-2" pref="52" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="gender" pref="241" max="32767" attributes="0"/>
+                          <Component id="gender" pref="255" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel1" min="-2" pref="52" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="username" pref="241" max="32767" attributes="0"/>
+                          <Component id="username" pref="255" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel4" min="-2" pref="52" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="address" pref="241" max="32767" attributes="0"/>
+                          <Component id="address" pref="255" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -216,12 +216,12 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="444" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="404" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="527" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="553" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

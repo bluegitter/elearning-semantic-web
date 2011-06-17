@@ -239,20 +239,27 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
     }
 
     @Override
-    public boolean addEPortfolio(EPortfolio portfolio) throws IndividualExistException {
+    public boolean addEPortfolio(EPortfolio portfolio) {
         if (containEPortfolio(portfolio.getId())) {
-            throw new IndividualExistException("EPortfolio " + portfolio.getId() + " has already existed in the model");
+            //throw new IndividualExistException("EPortfolio " + portfolio.getId() + " has already existed in the model");
+            return false;
         }
         Individual el = ontModel.getIndividual(Constant.NS + portfolio.getELearner().getId());
         Individual res = ontModel.getIndividual(Constant.NS + portfolio.getEResource().getRid());
         Individual port = ontModel.createIndividual(Constant.NS + portfolio.getId(), ontModel.getResource(Constant.NS + "E_Portfolio"));
         ontModel.add(el, ontModel.getProperty(Constant.NS + "has_portfolio"), port);
-        ontModel.add(res, ontModel.getProperty(Constant.NS + "inverse_of_is_resource_of_P"), port);
+        ontModel.add(port, ontModel.getProperty(Constant.NS + "inverse_of_has_portfolio"), el);
+        ontModel.add(res, ontModel.getProperty(Constant.NS + "is_resource_of_P"), port);
+        ontModel.add(port, ontModel.getProperty(Constant.NS + "inverse_of_is_resource_of_P"), res);
+
 //        ontModel.addLiteral(port, ontModel.getProperty(Constant.NS + "value"), portfolio.getValue());
         port.addLiteral(ontModel.getProperty(Constant.NS + "value"), portfolio.getValue());
         if (portfolio.getDatetime() != null) {
             ontModel.add(port, ontModel.getProperty(Constant.NS + "date_time"), StringExchanger.parseDateToString(portfolio.getDatetime()), new XSDDatatype("dateTime"));
         }
+        port.addLiteral(ontModel.getProperty(Constant.NS + "rate"), portfolio.getRate());
+        port.addLiteral(ontModel.getDatatypeProperty(Constant.NS + "rateString"), portfolio.getRateString());
+   //     System.out.println("Add a portfolio");
         return true;
     }
 

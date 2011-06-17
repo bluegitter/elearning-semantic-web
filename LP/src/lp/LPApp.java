@@ -3,8 +3,6 @@
  */
 package lp;
 
-import java.awt.Dimension;
-import java.awt.Rectangle;
 import jena.OwlOperation;
 import java.io.File;
 import java.io.IOException;
@@ -12,7 +10,6 @@ import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JDialog;
 import jena.impl.ELearnerModelImpl;
 import lp.eresource.RadarPanel;
 import lp.log.LPLogger;
@@ -22,8 +19,6 @@ import ontology.EPerformance;
 import ontology.people.ELearner;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.model.OWLOntologyStorageException;
 import util.ColorConstant;
 import util.Constant;
 
@@ -90,9 +85,9 @@ public class LPApp extends SingleFrameApplication {
 
         if (LPApp.lpModel != null) {
             //保存文件,发送日志
-         //   sendLogs();
+            //   sendLogs();
             System.out.println("日志发送成功");
-            //saveToFile(file);
+            saveToFile(file);
 
         }
 
@@ -102,9 +97,9 @@ public class LPApp extends SingleFrameApplication {
     public void initModel() {
         lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFile));
         ELearner el = LPApp.lpModel.getELearner(LPApp.getApplication().user.username);
-        if(el==null){
+        if (el == null) {
             LPApp.getApplication().user.learner = new ELearner(LPApp.getApplication().user.username);
-        }else{
+        } else {
             LPApp.getApplication().user.learner = el;
         }
         lpLogs = new LPLogger();
@@ -115,9 +110,10 @@ public class LPApp extends SingleFrameApplication {
         try {
             //OwlOperation.writeRdfFile(LPApp.lpModel.getOntModel(), new File(Constant.RDF_BAK_File), null);
             OwlOperation.writeRdfFile(LPApp.lpModel.getOntModel(), file, null);
-            System.out.println("Complete saving the file before exiting the program.");
+            //    System.out.println("Complete saving the file before exiting the program.");
             OwlOperation.writeOwlFileFromRdfFile(file, file);
-            System.out.println("Complete saving the backup model file in type of RDF before exiting the program.");
+            //  System.out.println("Complete saving the backup model file in type of RDF before exiting the program.");
+
             //save personal file
             jena.impl.UserOwlUpdate.createNewDocWithEMI(LPApp.lpModel, LPApp.getApplication().user.learner);
         } catch (IOException ex) {

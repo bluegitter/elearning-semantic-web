@@ -55,28 +55,6 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
         }
     }
 
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            @Override
-            public void run() {
-                javax.swing.JFrame app = new javax.swing.JFrame();
-                RecommendPane p = new RecommendPane();
-                app.setContentPane(p);
-                p.setPreferredSize(new java.awt.Dimension(600, 400));
-                app.pack();
-                app.addWindowListener(new java.awt.event.WindowAdapter() {
-
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                app.setVisible(true);
-            }
-        });
-    }
-
     @Override
     public void mouseClicked(MouseEvent e) {
         if (on != null && on != clicked) {
@@ -214,4 +192,25 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
         showing = false;
         thread = null;
     }
+//       public static void main(String args[]) {
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//
+//            @Override
+//            public void run() {
+//                javax.swing.JFrame app = new javax.swing.JFrame();
+//                RecommendPane p = new RecommendPane();
+//                app.setContentPane(p);
+//                p.setPreferredSize(new java.awt.Dimension(600, 400));
+//                app.pack();
+//                app.addWindowListener(new java.awt.event.WindowAdapter() {
+//
+//                    @Override
+//                    public void windowClosing(java.awt.event.WindowEvent e) {
+//                        System.exit(0);
+//                    }
+//                });
+//                app.setVisible(true);
+//            }
+//        });
+//    }
 }

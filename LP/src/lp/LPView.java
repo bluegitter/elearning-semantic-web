@@ -150,18 +150,11 @@ public class LPView extends FrameView {
         } else if (i == LPApp.MY_CONCEPT) {
             //((lp.display.MyConceptDemo) this.panes[i]).renew();
         }
-        /*
-        if (i == LPApp.PROFILE) {
-        JDialog jd = new JDialog();
-        jd.setContentPane(new UserProfilePane());
-        jd.pack();
-        jd.setTitle("个人资料");
-        //  jd.setLocation(850, 50);
-        jd.setVisible(true);
-        // jd.setSize(800, 800);
 
+
+        if (i == LPApp.PROFILE) {
+            ((UserProfilePane) this.panes[i]).updateUserProfilePane();
         }
-         */
     }
 
     /** This method is called from within the constructor to
@@ -520,6 +513,7 @@ public class LPView extends FrameView {
 
     private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
         setMainTool(LPApp.PROFILE);
+
     }//GEN-LAST:event_jToggleButton5ActionPerformed
 
     private void NavigatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NavigatorActionPerformed

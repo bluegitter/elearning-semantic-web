@@ -10,25 +10,14 @@
  */
 package lp;
 
-import exception.jena.IndividualNotExistException;
-import java.awt.Color;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import lp.eresource.MyPerformancePane;
-import lp.eresource.MyPortfolioPane;
-import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
-import javax.swing.JDialog;
-import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import lp.interest.UserInterestPane;
-import lp.log.PopCenterDialog;
 import ontology.EConcept;
 import ontology.EInterest;
 import ontology.EPerformance;
 import ontology.EPortfolio;
-import ontology.people.ELearner;
 import ontology.resources.ISCB_Resource;
 import util.ColorConstant;
 
@@ -39,14 +28,12 @@ import util.ColorConstant;
 public class UserProfilePane extends javax.swing.JPanel {
 
     public UserInterestPane userInterestPane;
-    private ELearner el;
     private AssessmentPane assessmentPane;
 
     /** Creates new form UserProfilePane */
     public UserProfilePane() {
-        el = LPApp.getApplication().user.learner;
-        ArrayList<EInterest> interests = LPApp.lpModel.getEInterests(el);
-        ArrayList<EConcept> concepts = jena.ELearnerReasoner.getRecommendEConcepts_1(LPApp.lpModel.getOntModel(), el);
+        ArrayList<EInterest> interests = LPApp.lpModel.getEInterests(LPApp.getApplication().user.learner);
+        ArrayList<EConcept> concepts = jena.ELearnerReasoner.getRecommendEConcepts_1(LPApp.lpModel.getOntModel(), LPApp.getApplication().user.learner);
         initComponents();
         initUserPane();
         initInterests(interests, concepts);
@@ -67,13 +54,13 @@ public class UserProfilePane extends javax.swing.JPanel {
         conceptsTable.setBackground(ColorConstant.backgroundGrayColor);
         resourcesTable.setBackground(ColorConstant.backgroundGrayColor);
         // initial basic info for user
-        username.setText(el.getName());
+        username.setText(LPApp.getApplication().user.learner.getName());
         gender.setText("保密");
-        email.setText(el.getEmail());
-        address.setText(el.getAddress());
+        email.setText(LPApp.getApplication().user.learner.getEmail());
+        address.setText(LPApp.getApplication().user.learner.getAddress());
         //Image thead = new Image("/lp/src/resource.malehead.png");
         ImageIcon icon = new ImageIcon(UserProfilePane.class.getResource("/lp/resources/malehead.png"));
-        if (el.getGender().trim().equals("male")) {
+        if (LPApp.getApplication().user.learner.getGender().trim().equals("male")) {
             jLabel5.setIcon(icon);
             gender.setText("男");
         } else {
@@ -91,7 +78,7 @@ public class UserProfilePane extends javax.swing.JPanel {
         for (int index = model.getRowCount() - 1; index >= 0; index--) {
             model.removeRow(index);
         }
-        ArrayList<EPerformance> perList = LPApp.lpModel.getEPerformances(el);
+        ArrayList<EPerformance> perList = LPApp.lpModel.getEPerformances(LPApp.getApplication().user.learner);
         for (int i = 0; i < perList.size() && i < 5; i++) {
             EPerformance p = perList.get(i);
             EConcept c = p.getEConcept();
@@ -105,7 +92,7 @@ public class UserProfilePane extends javax.swing.JPanel {
         for (int index = model.getRowCount() - 1; index >= 0; index--) {
             model.removeRow(index);
         }
-        ArrayList<EPortfolio> resourceList = LPApp.lpModel.getEPortfolios(el);
+        ArrayList<EPortfolio> resourceList = LPApp.lpModel.getEPortfolios(LPApp.getApplication().user.learner);
         for (int i = 0; i < resourceList.size() && i < 5; i++) {
             EPortfolio f = resourceList.get(i);
             ISCB_Resource c = f.getEResource();
@@ -367,7 +354,7 @@ public class UserProfilePane extends javax.swing.JPanel {
 
     private void moreResourcesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moreResourcesActionPerformed
         // TODO add your handling code here:
-         LPApp.getApplication().view.setMainTool(LPApp.ASSESSMENT);
+        LPApp.getApplication().view.setMainTool(LPApp.ASSESSMENT);
 //        PopCenterDialog pcd = new PopCenterDialog();
 //        assessmentPane = (AssessmentPane) LPApp.getApplication().view.getPanes()[LPApp.ASSESSMENT];
 //        pcd.setContentPane(assessmentPane.port);
