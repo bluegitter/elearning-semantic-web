@@ -4,7 +4,6 @@
  */
 package jena.impl;
 
-import com.hp.hpl.jena.ontology.DatatypeProperty;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.ObjectProperty;
 import java.io.BufferedReader;
@@ -12,11 +11,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,24 +32,17 @@ public class UserOwlUpdate {
     private Document newDoc;
     private ArrayList<Element> els;
 
-    
     public static void createNewDocWithEMI(ELearnerModelImpl emi, ELearner el) {
         BufferedReader b = null;
         try {
             Individual elIndi = emi.getOntModel().getIndividual(Constant.NS + el.getId());
-            ELearnerModelImpl newEmi = new ELearnerModelImpl(new File("files/owl/update_template2.owl"));
-            DatatypeProperty idP = emi.getOntModel().getDatatypeProperty(Constant.NS + "id");
-            DatatypeProperty nameP = emi.getOntModel().getDatatypeProperty(Constant.NS + "name");
-            DatatypeProperty gradeP = emi.getOntModel().getDatatypeProperty(Constant.NS + "grade");
-            DatatypeProperty genderP = emi.getOntModel().getDatatypeProperty(Constant.NS + "gender");
-            DatatypeProperty emailP = emi.getOntModel().getDatatypeProperty(Constant.NS + "email");
-            DatatypeProperty addressP = emi.getOntModel().getDatatypeProperty(Constant.NS + "address");
-            newEmi.getOntModel().add(elIndi, idP, elIndi.getPropertyValue(idP));
-            newEmi.getOntModel().add(elIndi, nameP, elIndi.getPropertyValue(nameP));
-            newEmi.getOntModel().add(elIndi, gradeP, elIndi.getPropertyValue(gradeP));
-            newEmi.getOntModel().add(elIndi, genderP, elIndi.getPropertyValue(genderP));
-            newEmi.getOntModel().add(elIndi, emailP, elIndi.getPropertyValue(emailP));
-            newEmi.getOntModel().add(elIndi, addressP, elIndi.getPropertyValue(addressP));
+            ELearnerModelImpl newEmi = new ELearnerModelImpl(new File("files/owl/update_template.owl"));
+            newEmi.getOntModel().add(elIndi, emi.getOntModel().getDatatypeProperty(Constant.NS + "id"), newEmi.getOntModel().createLiteral(el.getId()));
+            newEmi.getOntModel().add(elIndi, emi.getOntModel().getDatatypeProperty(Constant.NS + "name"), newEmi.getOntModel().createLiteral(el.getName()));
+            newEmi.getOntModel().add(elIndi, emi.getOntModel().getDatatypeProperty(Constant.NS + "grade"), newEmi.getOntModel().createLiteral(el.getGrade()));
+            newEmi.getOntModel().add(elIndi, emi.getOntModel().getDatatypeProperty(Constant.NS + "gender"), newEmi.getOntModel().createLiteral(el.getGender()));
+            newEmi.getOntModel().add(elIndi, emi.getOntModel().getDatatypeProperty(Constant.NS + "email"), newEmi.getOntModel().createLiteral(el.getEmail()));
+            newEmi.getOntModel().add(elIndi, emi.getOntModel().getDatatypeProperty(Constant.NS + "address"), newEmi.getOntModel().createLiteral(el.getAddress()));
             ArrayList<EInterest> ins = emi.getEInterests(el);
             ObjectProperty hasIn = emi.getOntModel().getObjectProperty(Constant.NS + "has_interest");
             ObjectProperty inverseHasIn = emi.getOntModel().getObjectProperty(Constant.NS + "inverse_of_has_interest");
@@ -136,16 +123,5 @@ public class UserOwlUpdate {
                 Logger.getLogger(UserOwlUpdate.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }
-
-    public static void main(String[] args) {
-        ELearnerModelImpl emi = new ELearnerModelImpl(new File("files/owl/elearning_owl.owl"));
-        ELearner el = emi.getELearner("el001");
-        System.out.println("name:" + el.getName());
-        UserOwlUpdate uou = new UserOwlUpdate();
-        uou.createNewDocWithEMI(emi, el);
-        //      UserOwlUpdate uou = new UserOwlUpdate();
-//        uou.copyAndPasteDoc();
-
     }
 }

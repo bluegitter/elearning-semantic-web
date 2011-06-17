@@ -17,7 +17,6 @@ import com.hp.hpl.jena.rdf.model.Statement;
 import com.hp.hpl.jena.rdf.model.StmtIterator;
 import java.util.HashSet;
 import ontology.EGoal;
-import ontology.EPerformance;
 
 /*************************************************************
  * Elearner Reasoner is the class used for reasoning.
@@ -330,9 +329,11 @@ public class ELearnerReasoner {
     public static ArrayList<EConcept> getRecommendEConcpetsInGoal(ELearnerModelImpl model, ELearner elearner, EGoal goal) {
         HashSet<EConcept> cons = model.getEConceptsByGoal(goal);
         HashSet<EConcept> learnt = model.getLearntEConcept(elearner);
+        ArrayList<EConcept> ignores = model.getIgnoreConceptsByELearner(elearner);
         cons.removeAll(learnt);
+        cons.removeAll(ignores);
         ArrayList<EConcept> sorted = new ArrayList<EConcept>();
-        for (EConcept con:cons) {
+        for (EConcept con : cons) {
             String id = con.getCid();
             if (sorted.isEmpty()) {
                 sorted.add(con);
@@ -367,7 +368,7 @@ public class ELearnerReasoner {
             return null;
         }
         EConcept con = cons.get(0);
-        System.out.println("rec con:" + con + "\t" + con.getCid());
+        //    System.out.println("rec con:" + con + "\t" + con.getCid());
         HashSet<EConcept> learnt = model.getLearntEConcept(elearner);
         ArrayList<EConcept> temp = new ArrayList<EConcept>();
         ArrayList<EConcept> pre = new ArrayList<EConcept>();
@@ -385,6 +386,8 @@ public class ELearnerReasoner {
             }
         }
         temp = ELearnerModelUtilMethod.sortRecommendEConcepts(temp);
+        ArrayList<EConcept> ignores = model.getIgnoreConceptsByELearner(elearner);
+        temp.removeAll(ignores);
         return temp;
     }
 

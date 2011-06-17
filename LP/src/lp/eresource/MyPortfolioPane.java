@@ -46,7 +46,7 @@ public class MyPortfolioPane extends javax.swing.JPanel {
     }
 
     private void myInit() {
-        el = LPApp.lpModel.getELearner("el001");
+        el = LPApp.getApplication().user.learner;
         updateResourceTable();
         resources.addMouseListener(new MyPortfolioActionListener(this));
     }

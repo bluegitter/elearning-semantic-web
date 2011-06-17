@@ -144,7 +144,7 @@ public class UserInterestPane extends javax.swing.JPanel {
         interestPane.setLayout(interestPaneLayout);
         interestPaneLayout.setHorizontalGroup(
             interestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 418, Short.MAX_VALUE)
+            .addGap(0, 424, Short.MAX_VALUE)
         );
         interestPaneLayout.setVerticalGroup(
             interestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +159,7 @@ public class UserInterestPane extends javax.swing.JPanel {
         unInterestPane.setLayout(unInterestPaneLayout);
         unInterestPaneLayout.setHorizontalGroup(
             unInterestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 418, Short.MAX_VALUE)
+            .addGap(0, 424, Short.MAX_VALUE)
         );
         unInterestPaneLayout.setVerticalGroup(
             unInterestPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,14 +197,14 @@ public class UserInterestPane extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(2, 2, 2)
                 .addComponent(addInterestText, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addGap(64, 64, 64))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addComponent(unInterestPane, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
-            .addComponent(interestPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(unInterestPane, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+            .addComponent(interestPane, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,7 +253,7 @@ public class UserInterestPane extends javax.swing.JPanel {
                     in.setEConcept(con);
                     in.setELearner(LPApp.getApplication().user.learner);
                     in.setValue(0.5f);
-                    
+
                     LPApp.lpModel.addEInterest(in);
                     interestPane.add(new RemoveLPInterestItemPane(this, in));
                     interests.add(in);
@@ -301,6 +301,11 @@ public class UserInterestPane extends javax.swing.JPanel {
         }
 //        System.out.println("un:" + unInterestsConcept.size());
 
+        ArrayList<EConcept> inCons = new ArrayList<EConcept>();
+        for(EInterest in:interests){
+            inCons.add(in.getEConcept());
+        }
+        unInterestsConcept.removeAll(inCons);
         unInterestPane.removeAll();
         if (unInterestsConcept.size() < 10) {
             for (int i = 0; i < unInterestsConcept.size(); i++) {
