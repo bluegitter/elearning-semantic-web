@@ -1,7 +1,9 @@
 package lp.display;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import javax.swing.SwingUtilities;
 
 import lp.LPApp;
 import ontology.EConcept;
@@ -206,6 +208,45 @@ public class MyConceptDisplay extends Display {
         });
     }
 
+    public void refreshDisplay() {
+        SwingUtilities.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                ArrayList<EPerformance> el = LPApp.lpModel.getEPerformances(LPApp.getApplication().user.learner);
+                HashSet<Node> nodeSet = new HashSet<Node>();
+                
+                Node root = t.getRoot();
+
+                for (int i = 0; i < root.getChildCount(); i++) {
+                    Node n = root.getChild(i);
+                    EClass ec = (EClass) n.get(MyConceptDisplay.m_label);
+                    if (ec.isPerformance()) {
+                        EPerformance ep = (EPerformance) ec.object;
+                        if (el.contains(ep)) {
+                            el.remove(ep);
+                        } else {
+                            nodeSet.add(n);
+                        }
+                    }
+                }
+                
+                for(Node ln : nodeSet) {
+                    t.removeChild(ln);
+                }
+
+                for (EPerformance p : el) {
+                    Node cn = t.addChild(n);
+                    EClass tempclass = new EClass(p);
+                    cn.set(m_label, tempclass);
+                    cn.set(m_image_label, tempclass.getIconStr());
+                }
+                
+                m_vis.run("filter");
+            }
+        });
+    }
+
     private void addNodes(Tree t, Node n) {
         ArrayList<EPerformance> el = LPApp.lpModel.getEPerformances(LPApp.getApplication().user.learner);
 //        java.util.HashMap<EConcept, Integer> root = new java.util.HashMap<EConcept, Integer>();
@@ -255,7 +296,6 @@ public class MyConceptDisplay extends Display {
 //        }
 //        t.removeChild(l);
 //    }
-
     /**
      * Switch the root of the tree by requesting a new spanning tree
      * at the desired root

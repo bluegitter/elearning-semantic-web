@@ -148,7 +148,11 @@ public class LPView extends FrameView {
         if (i == LPApp.RECOMMEND) {
             ((RecommendContainer) this.panes[i]).renew();
         } else if (i == LPApp.MY_CONCEPT) {
-            //((lp.display.MyConceptDemo) this.panes[i]).renew();
+            if (mcdshow) {
+                ((lp.display.MyConceptDemo) this.panes[i]).renew();
+            } else {
+                mcdshow = true;
+            }
         }
 
 
@@ -583,4 +587,5 @@ public class LPView extends FrameView {
     private JDialog aboutBox;
     public NavigatorPane np = null;
     public Navi_InterestPane rp = null;
+    private boolean mcdshow = false;
 }

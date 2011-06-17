@@ -82,7 +82,6 @@ public class MyConceptDemo extends javax.swing.JPanel {
                         EClass tempclass = new EClass(r);
                         cn.set(MyConceptDisplay.m_label, tempclass);
                         cn.set(MyConceptDisplay.m_image_label, tempclass.getIconStr());
-                        System.out.println(cn.getRow());
                         last[count] = cn.getRow();
                         if (++count > 5) {
                             break;
@@ -108,5 +107,6 @@ public class MyConceptDemo extends javax.swing.JPanel {
     }
 
     public void renew() {
+        gview.refreshDisplay();
     }
 }

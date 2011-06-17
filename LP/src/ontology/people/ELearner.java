@@ -30,7 +30,7 @@ public class ELearner extends People {
     @Override
     public boolean equals(Object o) {
         if (o instanceof ELearner) {
-            if(!this.equals((People)o)){
+            if(!super.equals((People)o)){
                 return false;
             }
             ELearner el = (ELearner) o;
