@@ -176,7 +176,13 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         //showMapDialog(new MapDialog(this, "请选择您的学习目标", lhm, "确　定"));
         String gid = LPApp.lpModel.getCurrentGoal(LPApp.getApplication().user.learner);
         currentGoal = LPApp.lpModel.getEGoal(gid);
-        showMapDialog(new MapInfoDialog(this, "请选择您的学习目标", "已经为你预先设定了目标 " + currentGoal.getName(), "是否要换一换？", "change", "确　定"));
+        if (currentGoal != null) {
+            //showMapDialog(new MapInfoDialog(this, "请选择您的学习目标", "已经为你预先设定了目标 " + currentGoal.getName(), "是否要换一换？", "change", "确　定"));
+        } else {
+            currentGoal = LPApp.lpModel.getEGoal("goal_0000");
+            LPApp.lpModel.setCurrentGoal(LPApp.getApplication().user.learner, currentGoal.getGid());
+            showMapDialog(new MapInfoDialog(this, "请选择您的学习目标", "已经为你预先设定了目标 " + currentGoal.getName(), "是否要换一换？", "change", "确　定"));
+        }
     }
 
     private void initCastle() {
