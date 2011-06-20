@@ -1,14 +1,17 @@
 package lp;
 
-import exception.jena.IndividualExistException;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import db.WebOperation;
+import java.io.File;
+import jena.impl.ELearnerModelImpl;
 import lp.navigator.NavigatorDialog;
 import ontology.people.ELearner;
+import util.Constant;
 import util.LogConstant;
 
 /**
@@ -131,25 +134,43 @@ public class LoginPanel extends javax.swing.JPanel {
             @Override
             public void run() {
                 LPApp.getApplication().initModel();
-         //    String rtvMsg = LPApp.getApplication().user.login(new String(password.getPassword()));
+                String rtvMsg = LPApp.getApplication().user.login(new String(password.getPassword()));
                 //跳过身份验证
-                String rtvMsg = null;
+                //       String rtvMsg = null;
 //                boolean loginAuth = true;
                 if (rtvMsg == null) {
                     //if the elearner is in the model, then init its data
                     //else create a new elearner and show him the usage navigator.
-                    if (!LPApp.lpModel.containELearner(LPApp.getApplication().user.learner.getId())) {
-                        ELearner el = LPApp.getApplication().user.learner;
-                        LPApp.lpModel.addELearner(el);
-
+                    String uid = LPApp.getApplication().user.learner.getId();
+                    File f = new File("files/owl/" + uid + ".owl");
+                    boolean hasInfoFile = f.exists();
+                    if (!hasInfoFile) {
+                        boolean isDownloadFile = WebOperation.downloadUserFile(new ELearner(uid));
+                        if (isDownloadFile) {
+                            f = new File("files/owl/" + uid + ".owl");
+                             LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser),f);
+                        } else {
+                            try {
+                                f.createNewFile();
+                                LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser));
+                            } catch (IOException ex) {
+                                Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                        
+                        LPApp.lpModel.addELearner(new ELearner(uid));
                         //pop the navigator dialogs
                         NavigatorDialog d = new NavigatorDialog(LPApp.getApplication().getMainFrame());
                         d.setTitle("向导");
                         d.setModal(true);
                         d.pack();
                         d.setVisible(true);
-
+                    } else {
+                        LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);
+                        LPApp.getApplication().user.learner = LPApp.lpModel.getELearner(uid);
                     }
+
+
                     view.setBusy("正在加载数据...");
                     view.initTools();
                     LPApp.lpLogs.writeLog(101, LPApp.getApplication().user.username, "登入", LogConstant.STATUS101);

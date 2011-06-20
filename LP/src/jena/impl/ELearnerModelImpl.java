@@ -67,6 +67,9 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
     public ELearnerModelImpl(OntModel ontModel) {
         this.ontModel = ontModel;
     }
+    public ELearnerModelImpl(File file1,File file2){
+        this.ontModel = OwlFactory.getOntModel(file1, file2);
+    }
 
     //向模型中添加模型（合并模型）
     public boolean addNewModel(File file) {

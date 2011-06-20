@@ -8,6 +8,7 @@ public class Constant {
     public static String NS = "http://www.owl-ontologies.com/e-learning.owl#";
     public static String NSRDF = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
     public static String OWLFile = "files/owl/elearning_owl.owl";
+    public static String OWLFileEmptyUser = "files/owl/elearning_owl_user_empty.owl";
     public static String RDF_BAK_File = "files/owl/elearning_rdf_bak.owl";
     public static String TEST_File = "files/owl/test.owl";
     public static String RulesFile = "files/owl/elearning2.rules";

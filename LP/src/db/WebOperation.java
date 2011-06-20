@@ -5,9 +5,14 @@
 package db;
 
 import java.awt.Desktop;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.Date;
 import lp.LPApp;
 import ontology.EPortfolio;
@@ -24,7 +29,7 @@ public class WebOperation {
     public static void main(String[] arsg) {
         //  runsBroswer("www.163.com");
         //uploadUserFile(new ELearner("el001"));
-        downloadUserFile(new ELearner("el001"));
+        downloadUserFile(new ELearner("el008"));
     }
 
     public static void registBroswer(String webSite) {
@@ -38,7 +43,6 @@ public class WebOperation {
     }
 
     public static void viewResourceBroswer(String webSite, String id, String result) {
-
 
         ELearner elearner = LPApp.getApplication().user.learner;
         String pid = "E_Portfolio_" + elearner.getId() + "_" + id;
@@ -73,7 +77,52 @@ public class WebOperation {
         uc.uploadFiles(false);
     }
 
-    public static void downloadUserFile(ELearner el) {
-        runsBroswer(UploaderConstants.DOWNLOAD_URL_STRING + "?elearner_id=" + el.getId());
+    public static boolean downloadUserFile(ELearner el) {
+        String url = UploaderConstants.DOWNLOAD_URL_STRING + "?elearner_id=" + el.getId();
+        File f = new File("files/owl/" + el.getId() + ".owl");
+        System.out.println(url);
+//        runsBroswer(UploaderConstants.DOWNLOAD_URL_STRING + "?elearner_id=" + el.getId());
+        byte[] buffer = new byte[8 * 1024];
+        URLConnection connection = null;
+        try {
+            URL u = new URL(url);
+            connection = u.openConnection();
+        } catch (Exception e) {
+            System.out.println("ERR:" + url);
+        }
+        connection.setReadTimeout(100000);
+        InputStream is = null;
+        FileOutputStream fos = null;
+        
+        try {
+            f.createNewFile();
+            is = connection.getInputStream();
+            fos = new FileOutputStream(f);
+            int len = 0;
+            while ((len = is.read(buffer)) != -1) {
+                fos.write(buffer, 0, len);
+            }
+
+        } catch (Exception e) {
+            f.delete();
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                }
+            }
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+        buffer = null;
+        if(f.exists()){
+            return true;
+        }return false;
+        // System.gc();
     }
 }
