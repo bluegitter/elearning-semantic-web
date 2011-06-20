@@ -85,7 +85,7 @@ public class LPApp extends SingleFrameApplication {
 
         if (LPApp.lpModel != null) {
             //保存文件,发送日志
-            //   sendLogs();
+            sendLogs();
             System.out.println("日志发送成功");
             saveToFile(file);
 
@@ -95,13 +95,14 @@ public class LPApp extends SingleFrameApplication {
     }
 
     public void initModel() {
-        lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFile));
-        ELearner el = LPApp.lpModel.getELearner(LPApp.getApplication().user.username);
-        if (el == null) {
-            LPApp.getApplication().user.learner = new ELearner(LPApp.getApplication().user.username);
-        } else {
-            LPApp.getApplication().user.learner = el;
-        }
+//        lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFile));
+//        ELearner el = LPApp.lpModel.getELearner(LPApp.getApplication().user.username);
+//        if (el == null) {
+//            LPApp.getApplication().user.learner = new ELearner(LPApp.getApplication().user.username);
+//        } else {
+//            LPApp.getApplication().user.learner = el;
+//        }
+        LPApp.getApplication().user.learner = new ELearner(LPApp.getApplication().user.username);
         lpLogs = new LPLogger();
         lpLogs.setUserId(user.username);
     }

@@ -4,6 +4,7 @@
  */
 package jena.impl;
 
+import com.hp.hpl.jena.ontology.DatatypeProperty;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.ObjectProperty;
 import java.io.BufferedReader;
@@ -32,6 +33,12 @@ public class UserOwlUpdate {
     private Document newDoc;
     private ArrayList<Element> els;
 
+    public static void main(String[] args) {
+        ELearnerModelImpl emi = new ELearnerModelImpl();
+        ELearner el = emi.getELearner("el001");
+        createNewDocWithEMI(emi, el);
+    }
+
     public static void createNewDocWithEMI(ELearnerModelImpl emi, ELearner el) {
         BufferedReader b = null;
         try {
@@ -43,6 +50,8 @@ public class UserOwlUpdate {
             newEmi.getOntModel().add(elIndi, emi.getOntModel().getDatatypeProperty(Constant.NS + "gender"), newEmi.getOntModel().createLiteral(el.getGender()));
             newEmi.getOntModel().add(elIndi, emi.getOntModel().getDatatypeProperty(Constant.NS + "email"), newEmi.getOntModel().createLiteral(el.getEmail()));
             newEmi.getOntModel().add(elIndi, emi.getOntModel().getDatatypeProperty(Constant.NS + "address"), newEmi.getOntModel().createLiteral(el.getAddress()));
+
+            DatatypeProperty valueProperty = emi.getOntModel().getDatatypeProperty(Constant.NS + "value");
             ArrayList<EInterest> ins = emi.getEInterests(el);
             ObjectProperty hasIn = emi.getOntModel().getObjectProperty(Constant.NS + "has_interest");
             ObjectProperty inverseHasIn = emi.getOntModel().getObjectProperty(Constant.NS + "inverse_of_has_interest");
@@ -55,12 +64,15 @@ public class UserOwlUpdate {
                 newEmi.getOntModel().add(inIndi, inverseHasIn, elIndi);
                 newEmi.getOntModel().add(inIndi, inverseIsConceptOfI, conIndi);
                 newEmi.getOntModel().add(conIndi, isConceptOfI, inIndi);
+                newEmi.getOntModel().add(inIndi, valueProperty, inIndi.getPropertyValue(valueProperty));
             }
+            DatatypeProperty dateProperty = emi.getOntModel().getDatatypeProperty(Constant.NS + "date_time");
             ArrayList<EPerformance> performs = emi.getEPerformances(el);
             ObjectProperty hasPerform = emi.getOntModel().getObjectProperty(Constant.NS + "has_performance");
             ObjectProperty inverseHasPerform = emi.getOntModel().getObjectProperty(Constant.NS + "inverse_of_has_performance");
             ObjectProperty isConceptOfP = emi.getOntModel().getObjectProperty(Constant.NS + "is_concept_of_P");
             ObjectProperty inverseIsConceptOfP = emi.getOntModel().getObjectProperty(Constant.NS + "inverse_of_is_concept_of_P");
+
             for (EPerformance perform : performs) {
                 Individual perIndi = emi.getOntModel().getIndividual(Constant.NS + perform.getId());
                 Individual conIndi = emi.getOntModel().getIndividual(Constant.NS + perform.getEConcept().getCid());
@@ -68,12 +80,21 @@ public class UserOwlUpdate {
                 newEmi.getOntModel().add(perIndi, inverseHasPerform, elIndi);
                 newEmi.getOntModel().add(conIndi, isConceptOfP, perIndi);
                 newEmi.getOntModel().add(perIndi, inverseIsConceptOfP, conIndi);
+                newEmi.getOntModel().add(perIndi, valueProperty, perIndi.getPropertyValue(valueProperty));
+                for (int i = 1; i < 7; i++) {
+                    DatatypeProperty aProperty = emi.getOntModel().getDatatypeProperty(Constant.NS + "a" + i);
+                    newEmi.getOntModel().add(perIndi, aProperty, perIndi.getPropertyValue(aProperty));
+                }
+                newEmi.getOntModel().add(perIndi, dateProperty, perIndi.getPropertyValue(dateProperty));
             }
+
             ArrayList<EPortfolio> ports = emi.getEPortfolios(el);
             ObjectProperty hasPort = emi.getOntModel().getObjectProperty(Constant.NS + "has_portfolio");
             ObjectProperty inverseHasPort = emi.getOntModel().getObjectProperty(Constant.NS + "inverse_of_has_portfolio");
             ObjectProperty isResourceOfP = emi.getOntModel().getObjectProperty(Constant.NS + "is_resource_of_P");
             ObjectProperty inverseIsResourceOfP = emi.getOntModel().getObjectProperty(Constant.NS + "inverse_of_is_resource_of_P");
+           DatatypeProperty rateProperty = emi.getOntModel().getDatatypeProperty(Constant.NS + "rate");
+                   DatatypeProperty rateStringProperty = emi.getOntModel().getDatatypeProperty(Constant.NS + "rateString");
             for (EPortfolio port : ports) {
                 Individual portIndi = emi.getOntModel().getIndividual(Constant.NS + port.getId());
                 Individual resIndi = emi.getOntModel().getIndividual(Constant.NS + port.getEResource().getRid());
@@ -81,6 +102,10 @@ public class UserOwlUpdate {
                 newEmi.getOntModel().add(portIndi, inverseHasPort, elIndi);
                 newEmi.getOntModel().add(resIndi, isResourceOfP, portIndi);
                 newEmi.getOntModel().add(portIndi, inverseIsResourceOfP, portIndi);
+                newEmi.getOntModel().add(portIndi, valueProperty, portIndi.getPropertyValue(valueProperty));
+                  newEmi.getOntModel().add(portIndi, dateProperty, portIndi.getPropertyValue(dateProperty));
+                  newEmi.getOntModel().add(portIndi, rateProperty, portIndi.getPropertyValue(rateProperty));
+                  newEmi.getOntModel().add(portIndi, rateStringProperty, portIndi.getPropertyValue(rateStringProperty));
             }
 
             //文件写入write.owl并从中抽离必要信息储存
@@ -111,17 +136,13 @@ public class UserOwlUpdate {
                     break;
                 }
             }
+            b.close();
             fw.write("<!--Generated By ELearner Team (Version 1.0) Tsinghua-->");
             fw.flush();
             fw.close();
+
         } catch (IOException ex) {
             Logger.getLogger(UserOwlUpdate.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                b.close();
-            } catch (IOException ex) {
-                Logger.getLogger(UserOwlUpdate.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
     }
 }
