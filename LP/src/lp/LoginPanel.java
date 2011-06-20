@@ -134,7 +134,11 @@ public class LoginPanel extends javax.swing.JPanel {
             @Override
             public void run() {
                 LPApp.getApplication().initModel();
+                long t1 = System.currentTimeMillis();
                 String rtvMsg = LPApp.getApplication().user.login(new String(password.getPassword()));
+                long t2 = System.currentTimeMillis();
+                //System.out.println("用户通过认证时间:" + (t2 - t1) + "ms");
+                view.setBusy("正在从服务器取回用户信息...");
                 //跳过身份验证
                 //       String rtvMsg = null;
 //                boolean loginAuth = true;
@@ -143,12 +147,13 @@ public class LoginPanel extends javax.swing.JPanel {
                     //else create a new elearner and show him the usage navigator.
                     String uid = LPApp.getApplication().user.learner.getId();
                     File f = new File("files/owl/" + uid + ".owl");
+                    long t3 = System.currentTimeMillis();
                     boolean hasInfoFile = f.exists();
                     if (!hasInfoFile) {
                         boolean isDownloadFile = WebOperation.downloadUserFile(new ELearner(uid));
                         if (isDownloadFile) {
                             f = new File("files/owl/" + uid + ".owl");
-                             LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser),f);
+                            LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);
                         } else {
                             try {
                                 f.createNewFile();
@@ -157,7 +162,7 @@ public class LoginPanel extends javax.swing.JPanel {
                                 Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
                             }
                         }
-                        
+
                         LPApp.lpModel.addELearner(new ELearner(uid));
                         //pop the navigator dialogs
                         NavigatorDialog d = new NavigatorDialog(LPApp.getApplication().getMainFrame());
@@ -169,12 +174,14 @@ public class LoginPanel extends javax.swing.JPanel {
                         LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);
                         LPApp.getApplication().user.learner = LPApp.lpModel.getELearner(uid);
                     }
-
+                    long t4 = System.currentTimeMillis();
+                    System.out.println("初始化模型:" + (t4 - t3) + "ms");
 
                     view.setBusy("正在加载数据...");
                     view.initTools();
                     LPApp.lpLogs.writeLog(101, LPApp.getApplication().user.username, "登入", LogConstant.STATUS101);
-
+                    long t5 = System.currentTimeMillis();
+                    System.out.println("界面初始化" + (t5 - t4) + "ms");
                 } else {
                     tipLabel.setText(rtvMsg);
                     tipLabel.setForeground(Color.red);
