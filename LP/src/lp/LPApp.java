@@ -67,6 +67,7 @@ public class LPApp extends SingleFrameApplication {
 
     @Override
     protected void shutdown() {
+        this.view.getFrame().setVisible(false);
         Date date = new Date(System.currentTimeMillis());
         File file = new File(Constant.OWLFile);
         String location = "";
@@ -85,9 +86,15 @@ public class LPApp extends SingleFrameApplication {
 
         if (LPApp.lpModel != null) {
             //保存文件,发送日志
+            System.out.println("");
+            long t1 = System.currentTimeMillis();
             sendLogs();
-            System.out.println("日志发送成功");
+             
+            long t2 = System.currentTimeMillis();
+           System.out.println("日志发送成功:耗时"+(t2-t1)+"ms");
             saveToFile(file);
+            long t3 = System.currentTimeMillis();
+              System.out.println("保存文件成功:耗时"+(t3-t2)+"ms");
 
         }
 

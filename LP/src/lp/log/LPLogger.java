@@ -114,7 +114,7 @@ public class LPLogger {
         String u1 = Constant.ISCBSERVER250 + "uploadLogs.jsp?logs=";
         String urlString = u1 + URLEncoder.encode(sb.toString(), "UTF-8");
         URL url = new URL(urlString);
-        System.out.println("URL:" + url);
+       // System.out.println("URL:" + url);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setDoOutput(true);
         String sCurrentLine = "";
@@ -126,8 +126,8 @@ public class LPLogger {
             sTotalString += sCurrentLine + "\r\n";
 
         }
-        System.out.println(sTotalString);
-        System.out.println("result:" + result);
+     //   System.out.println(sTotalString);
+      //  System.out.println("result:" + result);
     }
 
     public void close() {

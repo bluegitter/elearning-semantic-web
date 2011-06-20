@@ -41,7 +41,7 @@ public class EUser {
             sb.append("&password=");
             sb.append(passwd);
             sb.append("&login=false");
-            System.out.println(sb.toString());
+         //  System.out.println(sb.toString());
             URL url = new URL(sb.toString());
             try {
                 String isChecked = sendRequest(url);
@@ -97,7 +97,7 @@ public class EUser {
                     if (s.contains("name:")) {
                         name = s.substring(5);
                         LPApp.getApplication().user.learner.setName(name);
-//                        System.out.println("name:" + name);
+                        System.out.println("name:" + name);
                     }
                     if (s.contains("email:")) {
                         email = s.substring(6);
