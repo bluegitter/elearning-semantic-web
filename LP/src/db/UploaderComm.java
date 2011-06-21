@@ -138,7 +138,7 @@ public class UploaderComm {
                 byte[] data = Codecs.mpFormDataEncode(opts, afile, hdrs);
 
                 String responseString = requestResponse(hdrs, data, new URL(UploaderConstants.UPLOAD_URL_STRING), true, this);
-
+                System.out.println(responseString);
                 if(responseString.startsWith("success")) {
                     return true;
                 }

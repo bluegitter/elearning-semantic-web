@@ -161,15 +161,14 @@ public class LoginPanel extends javax.swing.JPanel {
                             } catch (IOException ex) {
                                 Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
                             }
+                            LPApp.lpModel.addELearner(new ELearner(uid));
+                            //pop the navigator dialogs
+                            NavigatorDialog d = new NavigatorDialog(LPApp.getApplication().getMainFrame());
+                            d.setTitle("向导");
+                            d.setModal(true);
+                            d.pack();
+                            d.setVisible(true);
                         }
-
-                        LPApp.lpModel.addELearner(new ELearner(uid));
-                        //pop the navigator dialogs
-                        NavigatorDialog d = new NavigatorDialog(LPApp.getApplication().getMainFrame());
-                        d.setTitle("向导");
-                        d.setModal(true);
-                        d.pack();
-                        d.setVisible(true);
                     } else {
                         LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);
                         LPApp.getApplication().user.learner = LPApp.lpModel.getELearner(uid);

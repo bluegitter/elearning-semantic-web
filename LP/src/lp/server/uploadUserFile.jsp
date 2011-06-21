@@ -1,12 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" language="java" 
 import="java.util.*,com.jspsmart.upload.*" errorPage="" %>
-<html>
-<head>
-<title>文件上传处理页面</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-</head>
-
-<body>
 <%
 	// 新建一个SmartUpload对象
 	SmartUpload su = new SmartUpload();
@@ -57,5 +50,3 @@ import="java.util.*,com.jspsmart.upload.*" errorPage="" %>
 		// file.saveAs("c:\\temp\\" + myFile.getFileName(),su.SAVE_PHYSICAL);
 	}*/
 %>
-</body>
-</html>

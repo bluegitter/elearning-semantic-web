@@ -3,6 +3,7 @@
  */
 package lp;
 
+import db.WebOperation;
 import jena.OwlOperation;
 import java.io.File;
 import java.io.IOException;
@@ -123,6 +124,7 @@ public class LPApp extends SingleFrameApplication {
 
             //save personal file
             jena.impl.UserOwlUpdate.createNewDocWithEMI(LPApp.lpModel, LPApp.getApplication().user.learner);
+            WebOperation.uploadUserFile(LPApp.getApplication().user.learner);
         } catch (IOException ex) {
             Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
         }

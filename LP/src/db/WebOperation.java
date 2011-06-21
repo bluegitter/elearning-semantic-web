@@ -28,8 +28,8 @@ public class WebOperation {
 
     public static void main(String[] arsg) {
         //  runsBroswer("www.163.com");
-        //uploadUserFile(new ELearner("el001"));
-        downloadUserFile(new ELearner("el008"));
+        uploadUserFile(new ELearner("masheng"));
+       // downloadUserFile(new ELearner("el001"));
     }
 
     public static void registBroswer(String webSite) {
