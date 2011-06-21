@@ -34,7 +34,7 @@ public class Constant {
     public static String DBPASSWORD = "ms";
     public static String ISCBSERVER250 = "http://e6.thss.tsinghua.edu.cn/";
     public static String ISCBSERVER48 = "http://zyk.thss.tsinghua.edu.cn/";
-    public static String SERVERURL = "http://192.168.8.86:8080/myelearner";
+//    public static String SERVERURL = "http://192.168.8.86:8080/myelearner";
     public static String SERVERTESTURL = "http://192.168.8.86:8080/myelearner/webapp/mylife.jpg";
     /**********************************************************************
      * To Be Used, but now useless....
