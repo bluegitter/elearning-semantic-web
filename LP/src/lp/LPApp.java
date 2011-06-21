@@ -71,12 +71,12 @@ public class LPApp extends SingleFrameApplication {
         Date date = new Date(System.currentTimeMillis());
         File file = new File(Constant.OWLFile);
         String location = "";
-        ELearner el = LPApp.getApplication().user.learner;
-        if (el == null) {
+        ELearner el;
+        if (LPApp.getApplication().user == null || LPApp.getApplication().user.learner == null) {
             return;
-        } else {
-            getFile(el.getId() + ".owl", location);
         }
+        el = LPApp.getApplication().user.learner;
+        getFile(el.getId() + ".owl", location);
         if (!file.exists()) {
             try {
                 file.createNewFile();
@@ -89,12 +89,12 @@ public class LPApp extends SingleFrameApplication {
             System.out.println("");
             long t1 = System.currentTimeMillis();
             sendLogs();
-             
+
             long t2 = System.currentTimeMillis();
-           System.out.println("日志发送成功:耗时"+(t2-t1)+"ms");
+            System.out.println("日志发送成功:耗时" + (t2 - t1) + "ms");
             saveToFile(file);
             long t3 = System.currentTimeMillis();
-              System.out.println("保存文件成功:耗时"+(t3-t2)+"ms");
+            System.out.println("保存文件成功:耗时" + (t3 - t2) + "ms");
 
         }
 
