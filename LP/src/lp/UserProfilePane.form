@@ -29,10 +29,10 @@
                   <Component id="jLabel6" alignment="0" max="32767" attributes="1"/>
                   <Component id="jScrollPane1" alignment="0" min="0" pref="0" max="32767" attributes="1"/>
                   <Component id="jLabel9" alignment="0" max="32767" attributes="1"/>
-                  <Component id="jPanel2" alignment="0" pref="435" max="32767" attributes="1"/>
+                  <Component id="jPanel2" alignment="0" pref="447" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" pref="404" max="32767" attributes="0"/>
+              <Component id="jPanel1" pref="392" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,22 +81,24 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel3" min="-2" pref="52" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="email" pref="255" max="32767" attributes="0"/>
+                          <Component id="email" pref="267" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel2" min="-2" pref="52" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="gender" pref="255" max="32767" attributes="0"/>
+                          <Component id="genderBox" pref="168" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel1" min="-2" pref="52" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="username" pref="255" max="32767" attributes="0"/>
+                          <Component id="username" pref="267" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel4" min="-2" pref="52" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="address" pref="255" max="32767" attributes="0"/>
+                          <Component id="address" pref="267" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -120,7 +122,8 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel2" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="gender" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="genderBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
@@ -188,12 +191,26 @@
             <Property name="name" type="java.lang.String" value="jLabel5" noResource="true"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="gender">
+        <Component class="javax.swing.JComboBox" name="genderBox">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="text" type="java.lang.String" resourceKey="gender.text"/>
-            <Property name="name" type="java.lang.String" value="gender" noResource="true"/>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="3">
+                <StringItem index="0" value="&#x7537;"/>
+                <StringItem index="1" value="&#x5973;"/>
+                <StringItem index="2" value="&#x4fdd;&#x5bc6;"/>
+              </StringArray>
+            </Property>
+            <Property name="name" type="java.lang.String" value="genderBox" noResource="true"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="text" type="java.lang.String" resourceKey="jButton1.text"/>
+            <Property name="name" type="java.lang.String" value="jButton1" noResource="true"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -216,7 +233,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="404" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="392" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
