@@ -1,0 +1,248 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.owl-ontologies.com/e-learning.owl#"
+     xml:base="http://www.owl-ontologies.com/e-learning.owl"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:xsp="http://www.owl-ontologies.com/2005/08/07/xsp.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:j.0="http://jena.hpl.hp.com/2003/RuleReasoner#">
+    <owl:Ontology rdf:about="http://www.owl-ontologies.com/e-learning.owl"/>
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1">
+        <is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-1"/>
+        <is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-5"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_4">
+        <is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-6"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_4">
+        <is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_2_e_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_e_1">
+        <is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_3">
+        <is_concept_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#EPerformance_el001_A_cid_2_m_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#A_cid_3_h_1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_h_1">
+        <is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#EPerformance_el001_A_cid_2_m_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#EPerformance_el001_A_cid_2_m_3">
+        <a6 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</a6>
+        <a5 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</a5>
+        <a4 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</a4>
+        <a1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</a1>
+        <a2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">0</a2>
+        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</value>
+        <a3 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10</a3>
+        <date_time rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-06-22T10:56:30</date_time>
+        <inverse_of_is_concept_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_m_3"/>
+        <inverse_of_has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-1">
+        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</value>
+        <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1"/>
+        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-2">
+        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.3</value>
+        <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_m_4"/>
+        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-3">
+        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.6</value>
+        <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_3_h_1"/>
+        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-4">
+        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.5</value>
+        <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_2_e_1"/>
+        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-5">
+        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.8</value>
+        <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_1"/>
+        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-6">
+        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.5</value>
+        <inverse_of_is_concept_of_I rdf:resource="http://www.owl-ontologies.com/e-learning.owl#A_cid_0_e_4"/>
+        <inverse_of_has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-1">
+        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</value>
+        <rateString rdf:datatype="http://www.w3.org/2001/XMLSchema#string">1sfdsdf</rateString>
+        <date_time rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2010-12-19T22:31:40</date_time>
+        <rate rdf:datatype="http://www.w3.org/2001/XMLSchema#int">4</rate>
+        <inverse_of_is_resource_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-1"/>
+        <inverse_of_has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-2">
+        <rateString rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rateString>
+        <rate rdf:datatype="http://www.w3.org/2001/XMLSchema#int">0</rate>
+        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">0.5</value>
+        <date_time rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2010-12-19T22:31:56</date_time>
+        <inverse_of_is_resource_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-2"/>
+        <inverse_of_has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001_rid000501 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001_rid000501">
+        <rateString rdf:datatype="http://www.w3.org/2001/XMLSchema#string"></rateString>
+        <rate rdf:datatype="http://www.w3.org/2001/XMLSchema#long">0</rate>
+        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">1.0</value>
+        <date_time rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-06-22T11:09:09</date_time>
+        <inverse_of_is_resource_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001_rid000501"/>
+        <inverse_of_has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#PRF.psy -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#PRF.psy">
+        <is_concept_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001PRF.psy_p"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#el001 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#el001">
+        <id>el001</id>
+        <grade></grade>
+        <address></address>
+        <email></email>
+        <name>name</name>
+        <gender></gender>
+        <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#EPerformance_el001_A_cid_2_m_3"/>
+        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-1"/>
+        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-2"/>
+        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-3"/>
+        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-4"/>
+        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-5"/>
+        <has_interest rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Interest_el001-6"/>
+        <has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-1"/>
+        <has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-2"/>
+        <has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001_rid000501"/>
+        <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001PRF.psy_p"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#el001PRF.psy_p -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#el001PRF.psy_p">
+        <value rdf:datatype="http://www.w3.org/2001/XMLSchema#float">-1.0</value>
+        <a2 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10</a2>
+        <a1 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">10</a1>
+        <a4 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15</a4>
+        <a3 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">15</a3>
+        <a6 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">20</a6>
+        <date_time rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-01-20T10:01:28</date_time>
+        <a5 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">50</a5>
+        <inverse_of_is_concept_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#PRF.psy"/>
+        <inverse_of_has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#el001"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#rid000012 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000012">
+        <is_resource_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#rid000501 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000501">
+        <is_resource_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001_rid000501"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.owl-ontologies.com/e-learning.owl#rid000622 -->
+
+    <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#rid000622">
+        <is_resource_of_P rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el001-1"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+<!--Generated By ELearner Team (Version 1.0) Tsinghua-->
