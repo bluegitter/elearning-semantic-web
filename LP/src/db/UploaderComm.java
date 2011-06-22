@@ -119,13 +119,12 @@ public class UploaderComm {
         }
 
         void runTask() {
-            uploadPicture(uploadFile);
+           boolean b =uploadPicture(uploadFile);
+           // System.out.println("上传个人信息:"+b);
         }
 
         boolean uploadPicture(File file) {
             try {
-
-
                 // setup the protocol parameters
                 NVPair[] opts = {
                     new NVPair("elearner_id", eid)
@@ -138,16 +137,19 @@ public class UploaderComm {
                 byte[] data = Codecs.mpFormDataEncode(opts, afile, hdrs);
 
                 String responseString = requestResponse(hdrs, data, new URL(UploaderConstants.UPLOAD_URL_STRING), true, this);
-                System.out.println(responseString);
+                System.out.println("responseString:"+responseString);
                 if(responseString.startsWith("success")) {
                     return true;
                 }
 
             }  catch (NumberFormatException nfe) {
-                ;
+                nfe.printStackTrace();
             } catch (SocketException swe) {
+                swe.printStackTrace();
             } catch (IOException ioe) {
+                ioe.printStackTrace();
             } catch (ModuleException me) {
+                me.printStackTrace();
             }
 
             return false;

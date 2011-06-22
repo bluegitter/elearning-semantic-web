@@ -5,7 +5,9 @@ public class People {
     public People() {
     	gender = "male";
     	name = "name";
-    	
+    	email = "";
+        gender ="";
+        address="";
     }
 
     public String getId() {

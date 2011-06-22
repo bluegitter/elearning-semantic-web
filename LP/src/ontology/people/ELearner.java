@@ -6,19 +6,14 @@ public class ELearner extends People {
     private String password;
     private String grade = "";
 
-    public ELearner(String eid, String password) {
-        this.id = eid;
-        this.password = password;
-    }
-
-    public ELearner(String eid, String _password, String _email, String _address) {
-        this.id = eid;
-        this.password = _password;
-        this.email = _email;
-        this.address = _address;
-    }
+//    public ELearner(String eid, String password) {
+//        super();
+//        this.id = eid;
+//        this.password = password;
+//    }
 
     public ELearner() {
+        super();
         id = "user";
         password = "password";
     }
@@ -30,7 +25,7 @@ public class ELearner extends People {
     @Override
     public boolean equals(Object o) {
         if (o instanceof ELearner) {
-            if(!super.equals((People)o)){
+            if (!super.equals((People) o)) {
                 return false;
             }
             ELearner el = (ELearner) o;

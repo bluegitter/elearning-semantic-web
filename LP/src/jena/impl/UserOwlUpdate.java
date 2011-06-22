@@ -29,10 +29,6 @@ import util.Constant;
  */
 public class UserOwlUpdate {
 
-    private Document srcDoc;
-    private Document newDoc;
-    private ArrayList<Element> els;
-
     public static void main(String[] args) {
         ELearnerModelImpl emi = new ELearnerModelImpl();
         ELearner el = emi.getELearner("el001");
@@ -80,11 +76,15 @@ public class UserOwlUpdate {
                 newEmi.getOntModel().add(perIndi, inverseHasPerform, elIndi);
                 newEmi.getOntModel().add(conIndi, isConceptOfP, perIndi);
                 newEmi.getOntModel().add(perIndi, inverseIsConceptOfP, conIndi);
+                float value = perIndi.getPropertyValue(valueProperty).asLiteral().getFloat();
                 newEmi.getOntModel().add(perIndi, valueProperty, perIndi.getPropertyValue(valueProperty));
-                for (int i = 1; i < 7; i++) {
-                    DatatypeProperty aProperty = emi.getOntModel().getDatatypeProperty(Constant.NS + "a" + i);
-                    newEmi.getOntModel().add(perIndi, aProperty, perIndi.getPropertyValue(aProperty));
+                if (value > 0) {
+                    for (int i = 1; i < 7; i++) {
+                        DatatypeProperty aProperty = emi.getOntModel().getDatatypeProperty(Constant.NS + "a" + i);
+                        newEmi.getOntModel().add(perIndi, aProperty, perIndi.getPropertyValue(aProperty));
+                    }
                 }
+
                 newEmi.getOntModel().add(perIndi, dateProperty, perIndi.getPropertyValue(dateProperty));
             }
 
@@ -93,8 +93,8 @@ public class UserOwlUpdate {
             ObjectProperty inverseHasPort = emi.getOntModel().getObjectProperty(Constant.NS + "inverse_of_has_portfolio");
             ObjectProperty isResourceOfP = emi.getOntModel().getObjectProperty(Constant.NS + "is_resource_of_P");
             ObjectProperty inverseIsResourceOfP = emi.getOntModel().getObjectProperty(Constant.NS + "inverse_of_is_resource_of_P");
-           DatatypeProperty rateProperty = emi.getOntModel().getDatatypeProperty(Constant.NS + "rate");
-                   DatatypeProperty rateStringProperty = emi.getOntModel().getDatatypeProperty(Constant.NS + "rateString");
+            DatatypeProperty rateProperty = emi.getOntModel().getDatatypeProperty(Constant.NS + "rate");
+            DatatypeProperty rateStringProperty = emi.getOntModel().getDatatypeProperty(Constant.NS + "rateString");
             for (EPortfolio port : ports) {
                 Individual portIndi = emi.getOntModel().getIndividual(Constant.NS + port.getId());
                 Individual resIndi = emi.getOntModel().getIndividual(Constant.NS + port.getEResource().getRid());
@@ -103,9 +103,9 @@ public class UserOwlUpdate {
                 newEmi.getOntModel().add(resIndi, isResourceOfP, portIndi);
                 newEmi.getOntModel().add(portIndi, inverseIsResourceOfP, portIndi);
                 newEmi.getOntModel().add(portIndi, valueProperty, portIndi.getPropertyValue(valueProperty));
-                  newEmi.getOntModel().add(portIndi, dateProperty, portIndi.getPropertyValue(dateProperty));
-                  newEmi.getOntModel().add(portIndi, rateProperty, portIndi.getPropertyValue(rateProperty));
-                  newEmi.getOntModel().add(portIndi, rateStringProperty, portIndi.getPropertyValue(rateStringProperty));
+                newEmi.getOntModel().add(portIndi, dateProperty, portIndi.getPropertyValue(dateProperty));
+                newEmi.getOntModel().add(portIndi, rateProperty, portIndi.getPropertyValue(rateProperty));
+                newEmi.getOntModel().add(portIndi, rateStringProperty, portIndi.getPropertyValue(rateStringProperty));
             }
 
             //文件写入write.owl并从中抽离必要信息储存

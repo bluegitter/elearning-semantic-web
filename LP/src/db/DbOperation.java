@@ -95,7 +95,8 @@ public class DbOperation {
 		Statement st = con.createStatement();
 		String sql = "select * from elearner where elearner_id='"+userId+"'";
 		ResultSet rs =  st.executeQuery(sql);
-		ELearner el = new ELearner(userId,password);
+		ELearner el = new ELearner(userId);
+                el.setPassword(password);
 		while(rs.next()){
 			String pas=(String)rs.getString("password");
 			if(pas.equals(password)){
