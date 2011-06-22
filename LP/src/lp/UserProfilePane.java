@@ -29,6 +29,8 @@ public class UserProfilePane extends javax.swing.JPanel {
 
     public UserInterestPane userInterestPane;
     private AssessmentPane assessmentPane;
+    ImageIcon icon_male;
+    ImageIcon icon_female;
 
     /** Creates new form UserProfilePane */
     public UserProfilePane() {
@@ -55,23 +57,33 @@ public class UserProfilePane extends javax.swing.JPanel {
         resourcesTable.setBackground(ColorConstant.backgroundGrayColor);
         // initial basic info for user
         username.setText(LPApp.getApplication().user.learner.getName());
-        gender.setText("保密");
         email.setText(LPApp.getApplication().user.learner.getEmail());
         address.setText(LPApp.getApplication().user.learner.getAddress());
         //Image thead = new Image("/lp/src/resource.malehead.png");
-        ImageIcon icon = new ImageIcon(UserProfilePane.class.getResource("/lp/resources/malehead.png"));
-        if (LPApp.getApplication().user.learner.getGender().trim().equals("male")) {
-            jLabel5.setIcon(icon);
-            gender.setText("男");
-        } else {
-            icon = new ImageIcon(UserProfilePane.class.getResource("/lp/resources/femalehead.png"));
-            jLabel5.setIcon(icon);
-            gender.setText("女");
-        }
+        icon_male = new ImageIcon(UserProfilePane.class.getResource("/lp/resources/malehead.png"));
+        icon_female = new ImageIcon(UserProfilePane.class.getResource("/lp/resources/femalehead.png"));
+
         updateUserProfilePane();
     }
 
+    private void updateUserInfo() {
+   //     System.out.println("性别："+LPApp.getApplication().user.learner.getGender());
+        if (LPApp.getApplication().user.learner.getGender().equals("male")) {
+            jLabel5.setIcon(icon_male);
+            genderBox.setSelectedIndex(0);
+        } else if (LPApp.getApplication().user.learner.getGender().equals("female")) {
+            jLabel5.setIcon(icon_female);
+            genderBox.setSelectedIndex(1);
+        } else {
+            jLabel5.setIcon(icon_male);
+            genderBox.setSelectedIndex(2);
+        }
+        LPApp.lpModel.updateELearner(LPApp.getApplication().user.learner);
+    }
+
     public void updateUserProfilePane() {
+        updateUserInfo();
+
         //initial concepts in performance for user
         DefaultTableModel model;
         model = (DefaultTableModel) conceptsTable.getModel();
@@ -122,7 +134,8 @@ public class UserProfilePane extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        gender = new javax.swing.JTextField();
+        genderBox = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -163,9 +176,16 @@ public class UserProfilePane extends javax.swing.JPanel {
         jLabel5.setText(resourceMap.getString("jLabel5.text")); // NOI18N
         jLabel5.setName("jLabel5"); // NOI18N
 
-        gender.setEditable(false);
-        gender.setText(resourceMap.getString("gender.text")); // NOI18N
-        gender.setName("gender"); // NOI18N
+        genderBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "男", "女", "保密" }));
+        genderBox.setName("genderBox"); // NOI18N
+
+        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
+        jButton1.setName("jButton1"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -179,19 +199,21 @@ public class UserProfilePane extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))
+                        .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(gender, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))
+                        .addComponent(genderBox, 0, 168, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))
+                        .addComponent(username, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(address, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)))
+                        .addComponent(address, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -209,7 +231,8 @@ public class UserProfilePane extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(gender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(genderBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,11 +256,11 @@ public class UserProfilePane extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 444, Short.MAX_VALUE)
+            .addGap(0, 392, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 527, Short.MAX_VALUE)
+            .addGap(0, 553, Short.MAX_VALUE)
         );
 
         jScrollPane2.setName("jScrollPane2"); // NOI18N
@@ -324,16 +347,16 @@ public class UserProfilePane extends javax.swing.JPanel {
                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, 0, 0, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -346,7 +369,7 @@ public class UserProfilePane extends javax.swing.JPanel {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(moreResources)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         jLabel6.getAccessibleContext().setAccessibleName(resourceMap.getString("jLabel6.AccessibleContext.accessibleName")); // NOI18N
@@ -364,11 +387,24 @@ public class UserProfilePane extends javax.swing.JPanel {
 //        pcd.centerScreen();
 //       
     }//GEN-LAST:event_moreResourcesActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if (genderBox.getSelectedIndex() == 0) {
+            LPApp.getApplication().user.learner.setGender("male");
+        } else if (genderBox.getSelectedIndex() == 1) {
+            LPApp.getApplication().user.learner.setGender("female");
+        } else {
+            LPApp.getApplication().user.learner.setGender("secret");
+        }
+        updateUserInfo();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField address;
     private javax.swing.JTable conceptsTable;
     private javax.swing.JTextField email;
-    private javax.swing.JTextField gender;
+    private javax.swing.JComboBox genderBox;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

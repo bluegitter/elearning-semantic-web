@@ -67,7 +67,8 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
     public ELearnerModelImpl(OntModel ontModel) {
         this.ontModel = ontModel;
     }
-    public ELearnerModelImpl(File file1,File file2){
+
+    public ELearnerModelImpl(File file1, File file2) {
         this.ontModel = OwlFactory.getOntModel(file1, file2);
     }
 
@@ -262,7 +263,7 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         }
         port.addLiteral(ontModel.getProperty(Constant.NS + "rate"), portfolio.getRate());
         port.addLiteral(ontModel.getDatatypeProperty(Constant.NS + "rateString"), portfolio.getRateString());
-   //     System.out.println("Add a portfolio");
+        //     System.out.println("Add a portfolio");
         return true;
     }
 
@@ -456,9 +457,10 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
     }
 
     @Override
-    public boolean updateELearner(ELearner elearner) throws IndividualNotExistException {
+    public boolean updateELearner(ELearner elearner) {
         if (!(containELearner(elearner.getId()))) {
-            throw new IndividualNotExistException("elearner " + elearner.getId() + " does not exist");
+            // throw new IndividualNotExistException("elearner " + elearner.getId() + " does not exist");
+            return false;
         }
         ELearner el = getELearner(elearner.getId());
         Individual indi = ontModel.getIndividual(Constant.NS + elearner.getId());
