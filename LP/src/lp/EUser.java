@@ -122,7 +122,9 @@ public class EUser {
 
     public boolean reg(String passwd) {
         try {
-            return db.DbOperation.addELearner(new ELearner(username, passwd));
+            ELearner el = new ELearner (username);
+            el.setPassword(passwd);
+            return db.DbOperation.addELearner(el);
         } catch (Exception ex) {
             return false;
         }
@@ -130,7 +132,11 @@ public class EUser {
 
     public boolean regist(String passwd, String email, String address) {
         try {
-            return db.DbOperation.addELearner(new ELearner(username, passwd, email, address));
+            ELearner el = new ELearner(username);
+            el.setPassword(passwd);
+            el.setEmail(email);
+            el.setAddress(address);
+            return db.DbOperation.addELearner(el);
         } catch (Exception ex) {
             return false;
         }

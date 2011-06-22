@@ -6,6 +6,7 @@ package db;
 
 import java.awt.Desktop;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,8 +29,11 @@ public class WebOperation {
 
     public static void main(String[] arsg) {
         //  runsBroswer("www.163.com");
-        uploadUserFile(new ELearner("masheng"));
-       // downloadUserFile(new ELearner("el001"));
+//        uploadUserFile(new ELearner("el005"));
+        boolean b2 = downloadUserFile(new ELearner("el001"));
+   //     boolean b = downloadUserFile(new ELearner("el001"));
+     //   System.out.println("b:"+b+"\t"+b2);
+        System.out.println("b2:"+b2);
     }
 
     public static void registBroswer(String webSite) {
@@ -80,7 +84,7 @@ public class WebOperation {
     public static boolean downloadUserFile(ELearner el) {
         String url = UploaderConstants.DOWNLOAD_URL_STRING + "?elearner_id=" + el.getId();
         File f = new File("files/owl/" + el.getId() + ".owl");
-        System.out.println(url);
+       // System.out.println(url);
 //        runsBroswer(UploaderConstants.DOWNLOAD_URL_STRING + "?elearner_id=" + el.getId());
         byte[] buffer = new byte[8 * 1024];
         URLConnection connection = null;
@@ -93,7 +97,6 @@ public class WebOperation {
         connection.setReadTimeout(100000);
         InputStream is = null;
         FileOutputStream fos = null;
-        
         try {
             f.createNewFile();
             is = connection.getInputStream();
@@ -122,7 +125,7 @@ public class WebOperation {
         buffer = null;
         if(f.exists()){
             return true;
-        }return false;
-        // System.gc();
+        }
+        return false;
     }
 }

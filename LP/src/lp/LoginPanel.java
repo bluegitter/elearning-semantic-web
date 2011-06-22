@@ -135,12 +135,12 @@ public class LoginPanel extends javax.swing.JPanel {
             public void run() {
                 LPApp.getApplication().initModel();
                 long t1 = System.currentTimeMillis();
-                String rtvMsg = LPApp.getApplication().user.login(new String(password.getPassword()));
+            //    String rtvMsg = LPApp.getApplication().user.login(new String(password.getPassword()));
                 long t2 = System.currentTimeMillis();
                 //System.out.println("用户通过认证时间:" + (t2 - t1) + "ms");
                 view.setBusy("正在从服务器取回用户信息...");
                 //跳过身份验证
-                //       String rtvMsg = null;
+                     String rtvMsg = null;
 //                boolean loginAuth = true;
                 if (rtvMsg == null) {
                     //if the elearner is in the model, then init its data
@@ -151,6 +151,7 @@ public class LoginPanel extends javax.swing.JPanel {
                     boolean hasInfoFile = f.exists();
                     if (!hasInfoFile) {
                         boolean isDownloadFile = WebOperation.downloadUserFile(new ELearner(uid));
+                        System.out.println("是否成功下载OWL文件:"+isDownloadFile);
                         if (isDownloadFile) {
                             f = new File("files/owl/" + uid + ".owl");
                             LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);

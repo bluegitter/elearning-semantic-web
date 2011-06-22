@@ -11,10 +11,7 @@ import="com.jspsmart.upload.*" %><%
 	su.setContentDisposition(null);
 	String name = request.getParameter("elearner_id");
 	// 下载文件
-	try{
-		su.downloadFile("/owl/"+name+".owl");
-	}catch(java.io.IOException e){
-		out.println("notfound");
-	}
+	su.downloadFile("/owl/"+name+".owl","UTF-8");
+	
 %>
  

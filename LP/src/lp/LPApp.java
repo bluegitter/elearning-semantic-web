@@ -87,7 +87,7 @@ public class LPApp extends SingleFrameApplication {
                 //保存文件,发送日志
                 System.out.println("");
                 long t1 = System.currentTimeMillis();
-                sendLogs();
+                //  sendLogs();
 
                 long t2 = System.currentTimeMillis();
                 System.out.println("日志发送成功:耗时" + (t2 - t1) + "ms");
@@ -115,25 +115,26 @@ public class LPApp extends SingleFrameApplication {
     }
 
     private void saveToFile(File file) {
-        try {
-            //OwlOperation.writeRdfFile(LPApp.lpModel.getOntModel(), new File(Constant.RDF_BAK_File), null);
-            OwlOperation.writeRdfFile(LPApp.lpModel.getOntModel(), file, null);
-            //    System.out.println("Complete saving the file before exiting the program.");
-            OwlOperation.writeOwlFileFromRdfFile(file, file);
-            //  System.out.println("Complete saving the backup model file in type of RDF before exiting the program.");
-
-            //save personal file
-            jena.impl.UserOwlUpdate.createNewDocWithEMI(LPApp.lpModel, LPApp.getApplication().user.learner);
-            WebOperation.uploadUserFile(LPApp.getApplication().user.learner);
-        } catch (IOException ex) {
-            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        jena.impl.UserOwlUpdate.createNewDocWithEMI(LPApp.lpModel, LPApp.getApplication().user.learner);
+        WebOperation.uploadUserFile(LPApp.getApplication().user.learner);
+//        try {
+//            OwlOperation.writeRdfFile(LPApp.lpModel.getOntModel(), new File(Constant.RDF_BAK_File), null);
+//            OwlOperation.writeRdfFile(LPApp.lpModel.getOntModel(), file, null);
+//            System.out.println("Complete saving the file before exiting the program.");
+//            OwlOperation.writeOwlFileFromRdfFile(file, file);
+//            System.out.println("Complete saving the backup model file in type of RDF before exiting the program.");
+//
+//        
+//
+//
+//        } catch (IOException ex) {
+//            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
     }
 
     private void sendLogs() {
         try {
-            System.out.println("lPLOGS:" + lpLogs);
             lpLogs.sendLogs();
             System.out.println("Logs Sent..");
         } catch (MalformedURLException ex) {
