@@ -87,7 +87,7 @@ public class LPApp extends SingleFrameApplication {
                 //保存文件,发送日志
                 System.out.println("");
                 long t1 = System.currentTimeMillis();
-                //  sendLogs();
+                sendLogs();
 
                 long t2 = System.currentTimeMillis();
                 System.out.println("日志发送成功:耗时" + (t2 - t1) + "ms");
