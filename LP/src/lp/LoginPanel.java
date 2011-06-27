@@ -145,7 +145,7 @@ public class LoginPanel extends javax.swing.JPanel {
             public void run() {
                 LPApp.getApplication().initModel();
                 //long t1 = System.currentTimeMillis();
-               String rtvMsg = LPApp.getApplication().user.login(new String(password.getPassword()));
+                String rtvMsg = LPApp.getApplication().user.login(new String(password.getPassword()));
                 //long t2 = System.currentTimeMillis();
                 //System.out.println("用户通过认证时间:" + (t2 - t1) + "ms");
                 view.setBusy("正在从服务器取回用户信息...");
@@ -158,9 +158,12 @@ public class LoginPanel extends javax.swing.JPanel {
                     File f = new File("files/owl/" + uid + ".owl");
                     long t3 = System.currentTimeMillis();
                     boolean hasInfoFile = f.exists();
+                    System.out.println("是否存在用户文件:" + hasInfoFile);
+                    // hasInfoFile true: user info exist
+                    //              false: not exist
                     if (!hasInfoFile) {
                         boolean isDownloadFile = WebOperation.downloadUserFile(new ELearner(uid));
-                        System.out.println("是否成功下载OWL文件:"+isDownloadFile);
+                        System.out.println("是否成功下载OWL文件:" + isDownloadFile);
                         if (isDownloadFile) {
                             f = new File("files/owl/" + uid + ".owl");
                             LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);
@@ -180,7 +183,19 @@ public class LoginPanel extends javax.swing.JPanel {
                             d.setVisible(true);
                         }
                     } else {
-                        LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);
+                        System.out.println("fff:" + f.getName());
+                        File bak = new File("files/owl/" + f.getName() + ".bak");
+                        f.renameTo(bak);
+                        boolean isDownloadFile = WebOperation.downloadUserFile(new ELearner(uid));
+                        System.out.println("是否成功下载OWL文件:" + isDownloadFile);
+                        if (isDownloadFile) {
+                            f = new File("files/owl/" + uid + ".owl");
+                            if(f.exists()){
+                                 LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);
+                            }else{
+                                LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), bak);
+                            }
+                        }
                         LPApp.getApplication().user.learner = LPApp.lpModel.getELearner(uid);
                     }
                     long t4 = System.currentTimeMillis();
@@ -202,7 +217,7 @@ public class LoginPanel extends javax.swing.JPanel {
         };
         authThread.start();
     }
-    
+
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         doLoginTask();
 }//GEN-LAST:event_loginBtnActionPerformed
@@ -243,7 +258,7 @@ public class LoginPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_regBtnActionPerformed
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
-        if(this.password.getPassword().length < 1) {
+        if (this.password.getPassword().length < 1) {
             password.requestFocus();
         } else {
             doLoginTask();
@@ -253,7 +268,6 @@ public class LoginPanel extends javax.swing.JPanel {
     private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
         doLoginTask();
     }//GEN-LAST:event_passwordActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
