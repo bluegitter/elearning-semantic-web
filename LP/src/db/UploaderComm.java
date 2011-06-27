@@ -10,6 +10,8 @@ import java.net.URL;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -204,7 +206,7 @@ public class UploaderComm {
         } else {
             rsp = mConnection.Post(urlPath, data, form_data);
         }
-
+        
         // handle 30x redirects
         if (rsp.getStatusCode() >= 300 && rsp.getStatusCode() < 400) {
             // retry, the library will have fixed the URL
@@ -218,7 +220,16 @@ public class UploaderComm {
                 rsp = mConnection.Post(urlPath, data, form_data);
             }
         }
-
+System.out.println("rsp:"+rsp.getStatusCode());
+        try {
+            System.out.println("response:" + rsp.getText().trim());
+        } catch (IOException ex) {
+            Logger.getLogger(UploaderComm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ModuleException ex) {
+            Logger.getLogger(UploaderComm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(UploaderComm.class.getName()).log(Level.SEVERE, null, ex);
+        }
         // handle response
         if (rsp.getStatusCode() >= 300) {
             throw new IOException("HTTP POST ERROR");
