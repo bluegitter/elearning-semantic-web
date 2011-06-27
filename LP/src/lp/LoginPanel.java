@@ -46,6 +46,11 @@ public class LoginPanel extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(600, 439));
 
         username.setName("username"); // NOI18N
+        username.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(LoginPanel.class);
         regBtn.setText(resourceMap.getString("regBtn.text")); // NOI18N
@@ -78,6 +83,11 @@ public class LoginPanel extends javax.swing.JPanel {
 
         password.setText(resourceMap.getString("password.text")); // NOI18N
         password.setName("password"); // NOI18N
+        password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -120,11 +130,11 @@ public class LoginPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(regBtn)
                     .addComponent(loginBtn))
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+    private void doLoginTask() {
         final LPView view = LPApp.getApplication().view;
         LPApp.getApplication().user = new EUser(username.getText());
 
@@ -134,14 +144,13 @@ public class LoginPanel extends javax.swing.JPanel {
             @Override
             public void run() {
                 LPApp.getApplication().initModel();
-                long t1 = System.currentTimeMillis();
-            //    String rtvMsg = LPApp.getApplication().user.login(new String(password.getPassword()));
-                long t2 = System.currentTimeMillis();
+                //long t1 = System.currentTimeMillis();
+               String rtvMsg = LPApp.getApplication().user.login(new String(password.getPassword()));
+                //long t2 = System.currentTimeMillis();
                 //System.out.println("用户通过认证时间:" + (t2 - t1) + "ms");
                 view.setBusy("正在从服务器取回用户信息...");
                 //跳过身份验证
-                     String rtvMsg = null;
-//                boolean loginAuth = true;
+                //String rtvMsg = null;
                 if (rtvMsg == null) {
                     //if the elearner is in the model, then init its data
                     //else create a new elearner and show him the usage navigator.
@@ -192,6 +201,10 @@ public class LoginPanel extends javax.swing.JPanel {
             }
         };
         authThread.start();
+    }
+    
+    private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+        doLoginTask();
 }//GEN-LAST:event_loginBtnActionPerformed
 
     @Override
@@ -228,6 +241,19 @@ public class LoginPanel extends javax.swing.JPanel {
 //        d.setVisible(true);
         WebOperation.registBroswer("http://166.111.80.250/iscb/registerPage.jsp?roleId=0");
     }//GEN-LAST:event_regBtnActionPerformed
+
+    private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
+        if(this.password.getPassword().length < 1) {
+            password.requestFocus();
+        } else {
+            doLoginTask();
+        }
+    }//GEN-LAST:event_usernameActionPerformed
+
+    private void passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordActionPerformed
+        doLoginTask();
+    }//GEN-LAST:event_passwordActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
