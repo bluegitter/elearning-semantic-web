@@ -171,27 +171,6 @@ public class LPView extends FrameView {
     private void initComponents() {
 
         mainPanel = new javax.swing.JPanel();
-        menuBar = new javax.swing.JMenuBar();
-        javax.swing.JMenu fileMenu = new javax.swing.JMenu();
-        loginItem = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        logoutItem = new javax.swing.JMenuItem();
-        javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        javax.swing.JMenu helpMenu = new javax.swing.JMenu();
-        Navigator = new javax.swing.JMenuItem();
-        aboutMenuItem = new javax.swing.JMenuItem();
         statusPanel = new javax.swing.JPanel();
         javax.swing.JSeparator statusPanelSeparator = new javax.swing.JSeparator();
         statusMessageLabel = new javax.swing.JLabel();
@@ -218,106 +197,8 @@ public class LPView extends FrameView {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 536, Short.MAX_VALUE)
+            .addGap(0, 557, Short.MAX_VALUE)
         );
-
-        menuBar.setName("menuBar"); // NOI18N
-
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(LPView.class);
-        fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
-
-        loginItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_ENTER, 0));
-        loginItem.setText(resourceMap.getString("loginItem.text")); // NOI18N
-        loginItem.setName("loginItem"); // NOI18N
-        fileMenu.add(loginItem);
-
-        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_BACK_SPACE, java.awt.event.InputEvent.ALT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem9.setText(resourceMap.getString("jMenuItem9.text")); // NOI18N
-        jMenuItem9.setName("jMenuItem9"); // NOI18N
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
-            }
-        });
-        fileMenu.add(jMenuItem9);
-
-        logoutItem.setText(resourceMap.getString("logoutItem.text")); // NOI18N
-        logoutItem.setName("logoutItem"); // NOI18N
-        fileMenu.add(logoutItem);
-
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance().getContext().getActionMap(LPView.class, this);
-        exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
-        exitMenuItem.setText(resourceMap.getString("exitMenuItem.text")); // NOI18N
-        exitMenuItem.setName("exitMenuItem"); // NOI18N
-        fileMenu.add(exitMenuItem);
-
-        menuBar.add(fileMenu);
-
-        jMenuItem1.setText(resourceMap.getString("jMenuItem1.text")); // NOI18N
-        jMenuItem1.setName("jMenuItem1"); // NOI18N
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setText(resourceMap.getString("jMenuItem2.text")); // NOI18N
-        jMenuItem2.setName("jMenuItem2"); // NOI18N
-        jMenu1.add(jMenuItem2);
-
-        menuBar.add(jMenu1);
-
-        jMenu3.setText(resourceMap.getString("jMenu3.text")); // NOI18N
-        jMenu3.setName("jMenu3"); // NOI18N
-
-        jMenuItem3.setText(resourceMap.getString("jMenuItem3.text")); // NOI18N
-        jMenuItem3.setName("jMenuItem3"); // NOI18N
-        jMenu3.add(jMenuItem3);
-
-        jMenuItem8.setText(resourceMap.getString("jMenuItem8.text")); // NOI18N
-        jMenuItem8.setName("jMenuItem8"); // NOI18N
-        jMenu3.add(jMenuItem8);
-
-        menuBar.add(jMenu3);
-
-        jMenu2.setText(resourceMap.getString("jMenu2.text")); // NOI18N
-
-        jMenuItem4.setText(resourceMap.getString("jMenuItem4.text")); // NOI18N
-        jMenuItem4.setName("jMenuItem4"); // NOI18N
-        jMenu2.add(jMenuItem4);
-
-        jMenuItem5.setText(resourceMap.getString("jMenuItem5.text")); // NOI18N
-        jMenuItem5.setName("jMenuItem5"); // NOI18N
-        jMenu2.add(jMenuItem5);
-
-        menuBar.add(jMenu2);
-
-        jMenu4.setText(resourceMap.getString("jMenu4.text")); // NOI18N
-
-        jMenuItem6.setText(resourceMap.getString("jMenuItem6.text")); // NOI18N
-        jMenuItem6.setName("jMenuItem6"); // NOI18N
-        jMenu4.add(jMenuItem6);
-
-        jMenuItem7.setText(resourceMap.getString("jMenuItem7.text")); // NOI18N
-        jMenuItem7.setName("jMenuItem7"); // NOI18N
-        jMenu4.add(jMenuItem7);
-
-        menuBar.add(jMenu4);
-
-        helpMenu.setText(resourceMap.getString("helpMenu.text")); // NOI18N
-        helpMenu.setName("helpMenu"); // NOI18N
-
-        Navigator.setText(resourceMap.getString("Navigator.text")); // NOI18N
-        Navigator.setName("Navigator"); // NOI18N
-        Navigator.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NavigatorActionPerformed(evt);
-            }
-        });
-        helpMenu.add(Navigator);
-
-        aboutMenuItem.setAction(actionMap.get("showAboutBox")); // NOI18N
-        aboutMenuItem.setText(resourceMap.getString("aboutMenuItem.text")); // NOI18N
-        aboutMenuItem.setName("aboutMenuItem"); // NOI18N
-        helpMenu.add(aboutMenuItem);
-
-        menuBar.add(helpMenu);
 
         statusPanel.setName("statusPanel"); // NOI18N
 
@@ -364,6 +245,7 @@ public class LPView extends FrameView {
         lpToolBar.setPreferredSize(new java.awt.Dimension(624, 90));
 
         buttonGroup1.add(jToggleButton1);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance().getContext().getResourceMap(LPView.class);
         jToggleButton1.setFont(resourceMap.getFont("jToggleButton1.font")); // NOI18N
         jToggleButton1.setIcon(resourceMap.getIcon("jToggleButton1.icon")); // NOI18N
         jToggleButton1.setText(resourceMap.getString("jToggleButton1.text")); // NOI18N
@@ -494,7 +376,6 @@ public class LPView extends FrameView {
         lpToolBar.add(jToggleButton7);
 
         setComponent(mainPanel);
-        setMenuBar(menuBar);
         setStatusBar(statusPanel);
         setToolBar(lpToolBar);
     }// </editor-fold>//GEN-END:initComponents
@@ -520,16 +401,6 @@ public class LPView extends FrameView {
 
     }//GEN-LAST:event_jToggleButton5ActionPerformed
 
-    private void NavigatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NavigatorActionPerformed
-        // TODO add your handling code here:
-        JDialog d = new NavigatorDialog(LPApp.getApplication().getMainFrame());
-        d.setTitle("向导");
-        d.setModal(true);
-        d.pack();
-        d.setVisible(true);
-
-    }//GEN-LAST:event_NavigatorActionPerformed
-
     private void jToggleButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton6ActionPerformed
         // TODO add your handling code here:
         setMainTool(LPApp.ASSESSMENT);
@@ -541,27 +412,8 @@ public class LPView extends FrameView {
         setMainTool(LPApp.NEW_MAP);
     }//GEN-LAST:event_jToggleButton7ActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        lp.admin.AdminDialog admin = new lp.admin.AdminDialog(LPApp.getApplication().getMainFrame(), false);
-        admin.setVisible(true);
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem Navigator;
-    javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
@@ -569,11 +421,8 @@ public class LPView extends FrameView {
     private javax.swing.JToggleButton jToggleButton5;
     private javax.swing.JToggleButton jToggleButton6;
     private javax.swing.JToggleButton jToggleButton7;
-    private javax.swing.JMenuItem loginItem;
-    private javax.swing.JMenuItem logoutItem;
     public javax.swing.JToolBar lpToolBar;
     public javax.swing.JPanel mainPanel;
-    private javax.swing.JMenuBar menuBar;
     private javax.swing.JProgressBar progressBar;
     private javax.swing.JLabel statusAnimationLabel;
     private javax.swing.JLabel statusMessageLabel;
