@@ -1831,12 +1831,12 @@
     <!-- http://www.owl-ontologies.com/e-learning.owl#el005 -->
 
     <owl:NamedIndividual rdf:about="http://www.owl-ontologies.com/e-learning.owl#el005">
-        <email>williamma.wm@gmail.com</email>
-        <name>马晟</name>
-        <address> </address>
-        <grade> </grade>
+        <grade></grade>
+        <name>第五用户</name>
+        <gender></gender>
+        <email></email>
         <id>el005</id>
-        <gender>male</gender>
+        <address>IBM</address>
         <has_performance rdf:resource="http://www.owl-ontologies.com/e-learning.owl#EPerformance_el005_A_cid_4_h_1"/>
         <has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el005_con_rid000024"/>
         <has_portfolio rdf:resource="http://www.owl-ontologies.com/e-learning.owl#E_Portfolio_el005_con_rid000025"/>
