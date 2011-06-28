@@ -7,6 +7,8 @@ package jena.impl;
 import com.hp.hpl.jena.ontology.DatatypeProperty;
 import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.ObjectProperty;
+import com.hp.hpl.jena.rdf.model.Property;
+import com.hp.hpl.jena.rdf.model.RDFNode;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -32,12 +34,14 @@ public class UserOwlUpdate {
     public static void main(String[] args) {
         ELearnerModelImpl emi = new ELearnerModelImpl();
         ELearner el = emi.getELearner("el001");
+        emi.setCurrentGoal(el, "goal_0001");
         createNewDocWithEMI(emi, el);
     }
 
     public static void createNewDocWithEMI(ELearnerModelImpl emi, ELearner el) {
         BufferedReader b = null;
         try {
+            //get user basic info
             Individual elIndi = emi.getOntModel().getIndividual(Constant.NS + el.getId());
             ELearnerModelImpl newEmi = new ELearnerModelImpl(new File("files/owl/update_template.owl"));
             newEmi.getOntModel().add(elIndi, emi.getOntModel().getDatatypeProperty(Constant.NS + "id"), newEmi.getOntModel().createLiteral(el.getId()));
@@ -46,7 +50,13 @@ public class UserOwlUpdate {
             newEmi.getOntModel().add(elIndi, emi.getOntModel().getDatatypeProperty(Constant.NS + "gender"), newEmi.getOntModel().createLiteral(el.getGender()));
             newEmi.getOntModel().add(elIndi, emi.getOntModel().getDatatypeProperty(Constant.NS + "email"), newEmi.getOntModel().createLiteral(el.getEmail()));
             newEmi.getOntModel().add(elIndi, emi.getOntModel().getDatatypeProperty(Constant.NS + "address"), newEmi.getOntModel().createLiteral(el.getAddress()));
+            Property goalProperty = emi.getOntModel().getProperty(Constant.NS+"current_goal");
+            RDFNode goalNode = elIndi.getPropertyValue(goalProperty);
+            if(goalNode!=null){
+                 newEmi.getOntModel().add(elIndi ,goalProperty,goalNode);
+            }
 
+            //get user interests
             DatatypeProperty valueProperty = emi.getOntModel().getDatatypeProperty(Constant.NS + "value");
             ArrayList<EInterest> ins = emi.getEInterests(el);
             ObjectProperty hasIn = emi.getOntModel().getObjectProperty(Constant.NS + "has_interest");
@@ -61,7 +71,8 @@ public class UserOwlUpdate {
                 newEmi.getOntModel().add(inIndi, inverseIsConceptOfI, conIndi);
                 newEmi.getOntModel().add(conIndi, isConceptOfI, inIndi);
                 newEmi.getOntModel().add(inIndi, valueProperty, inIndi.getPropertyValue(valueProperty));
-            }
+            } 
+            //get user performance
             DatatypeProperty dateProperty = emi.getOntModel().getDatatypeProperty(Constant.NS + "date_time");
             ArrayList<EPerformance> performs = emi.getEPerformances(el);
             ObjectProperty hasPerform = emi.getOntModel().getObjectProperty(Constant.NS + "has_performance");
@@ -87,7 +98,7 @@ public class UserOwlUpdate {
 
                 newEmi.getOntModel().add(perIndi, dateProperty, perIndi.getPropertyValue(dateProperty));
             }
-
+            //get user portfolios
             ArrayList<EPortfolio> ports = emi.getEPortfolios(el);
             ObjectProperty hasPort = emi.getOntModel().getObjectProperty(Constant.NS + "has_portfolio");
             ObjectProperty inverseHasPort = emi.getOntModel().getObjectProperty(Constant.NS + "inverse_of_has_portfolio");
@@ -108,7 +119,9 @@ public class UserOwlUpdate {
                 newEmi.getOntModel().add(portIndi, rateStringProperty, portIndi.getPropertyValue(rateStringProperty));
             }
 
-            //文件写入write.owl并从中抽离必要信息储存
+
+
+            //文件写入write.owl并从中抽离必要信息储存(Properties )
             File writeTo = new File("files/owl/write.owl");
             newEmi.writeToFile(writeTo);
             b = new BufferedReader(new FileReader(writeTo));

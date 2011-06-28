@@ -1633,7 +1633,14 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         if (elIndi == null) {
             return false;
         }
-        elIndi.setPropertyValue(ontModel.getDatatypeProperty(Constant.NS + "current_goal"), ontModel.createTypedLiteral(goal, new XSDDatatype("string")));
+        Property goalProperty = ontModel.getDatatypeProperty(Constant.NS + "current_goal");
+        RDFNode goalNode = elIndi.getPropertyValue(goalProperty);
+        if(goalNode!=null){
+             elIndi.setPropertyValue(goalProperty, ontModel.createTypedLiteral(goal, new XSDDatatype("string")));
+        }else{
+           elIndi.addProperty(goalProperty, ontModel.createTypedLiteral(goal, new XSDDatatype("string")));
+        }
+       
         return true;
     }
 

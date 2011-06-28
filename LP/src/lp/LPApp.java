@@ -87,13 +87,13 @@ public class LPApp extends SingleFrameApplication {
                 //保存文件,发送日志
                 System.out.println("");
                 long t1 = System.currentTimeMillis();
-                sendLogs();
+                saveToFile(file);
 
                 long t2 = System.currentTimeMillis();
-                System.out.println("日志发送成功:耗时" + (t2 - t1) + "ms");
-                saveToFile(file);
+                System.out.println("保存文件成功耗时:" + (t2 - t1) + "ms");
+                sendLogs();
                 long t3 = System.currentTimeMillis();
-                System.out.println("保存文件成功:耗时" + (t3 - t2) + "ms");
+                System.out.println("日志成功发送耗时:" + (t3 - t2) + "ms");
 
             }
         }
