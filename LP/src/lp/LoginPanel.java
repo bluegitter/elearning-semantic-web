@@ -254,7 +254,7 @@ public class LoginPanel extends javax.swing.JPanel {
 //        d.setModal(true);
 //        d.pack();
 //        d.setVisible(true);
-        WebOperation.registBroswer("http://166.111.80.250/iscb/registerPage.jsp?roleId=0");
+        WebOperation.registBroswer("http://e6.thss.tsinghua.edu.cn/registerPage.jsp?roleId=0");
     }//GEN-LAST:event_regBtnActionPerformed
 
     private void usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameActionPerformed
