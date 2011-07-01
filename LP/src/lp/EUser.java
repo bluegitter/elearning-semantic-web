@@ -120,25 +120,4 @@ public class EUser {
         return result;
     }
 
-    public boolean reg(String passwd) {
-        try {
-            ELearner el = new ELearner (username);
-            el.setPassword(passwd);
-            return db.DbOperation.addELearner(el);
-        } catch (Exception ex) {
-            return false;
-        }
-    }
-
-    public boolean regist(String passwd, String email, String address) {
-        try {
-            ELearner el = new ELearner(username);
-            el.setPassword(passwd);
-            el.setEmail(email);
-            el.setAddress(address);
-            return db.DbOperation.addELearner(el);
-        } catch (Exception ex) {
-            return false;
-        }
-    }
 }
