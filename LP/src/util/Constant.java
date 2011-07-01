@@ -27,15 +27,15 @@ public class Constant {
     /********************************************************************
      * Database Connection Config
      ********************************************************************/
-    public static String DBURL = "jdbc:mysql://localhost:3306/elearning";
+    //public static String DBURL = "jdbc:mysql://localhost:3306/elearning";
     //public static String DBURL = "jdbc:mysql://192.168.8.86:3306/elearning"; //destop ip
     //public static String DBURL = "jdbc:mysql://192.168.9.161:3306/elearning"; 	//laptop ip
-    public static String DBUSER = "ms";
-    public static String DBPASSWORD = "ms";
+    //public static String DBUSER = "ms";
+    //public static String DBPASSWORD = "ms";
     public static String ISCBSERVER250 = "http://e6.thss.tsinghua.edu.cn/";
     public static String ISCBSERVER48 = "http://zyk.thss.tsinghua.edu.cn/";
 //    public static String SERVERURL = "http://192.168.8.86:8080/myelearner";
-    public static String SERVERTESTURL = "http://192.168.8.86:8080/myelearner/webapp/mylife.jpg";
+    //public static String SERVERTESTURL = "http://192.168.8.86:8080/myelearner/webapp/mylife.jpg";
     /**********************************************************************
      * To Be Used, but now useless....
      **********************************************************************/
