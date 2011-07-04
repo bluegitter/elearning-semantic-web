@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import db.WebOperation;
 import java.io.File;
+import jena.OwlOperation;
 import jena.impl.ELearnerModelImpl;
 import lp.navigator.NavigatorDialog;
 import ontology.people.ELearner;
@@ -144,10 +145,10 @@ public class LoginPanel extends javax.swing.JPanel {
             @Override
             public void run() {
                 LPApp.getApplication().initModel();
-                //long t1 = System.currentTimeMillis();
+                long t1 = System.currentTimeMillis();
                 String rtvMsg = LPApp.getApplication().user.login(new String(password.getPassword()));
-                //long t2 = System.currentTimeMillis();
-                //System.out.println("用户通过认证时间:" + (t2 - t1) + "ms");
+                long t2 = System.currentTimeMillis();
+                System.out.println("用户通过认证时间:" + (t2 - t1) + "ms");
                 view.setBusy("正在从服务器取回用户信息...");
                 //跳过身份验证
                 //String rtvMsg = null;
@@ -162,9 +163,12 @@ public class LoginPanel extends javax.swing.JPanel {
                     // hasInfoFile true: user info exist
                     //              false: not exist
                     if (!hasInfoFile) {
-                        boolean isDownloadFile = WebOperation.downloadUserFile(new ELearner(uid));
-                        System.out.println("是否成功下载OWL文件:" + isDownloadFile);
-                        if (isDownloadFile) {
+
+                        OwlOperation.downloadUserFile(uid);
+                        int version = OwlOperation.getVersion(uid);
+                        //    boolean isDownloadFile = WebOperation.downloadUserFile(new ELearner(uid));
+                        //   System.out.println("是否成功下载OWL文件:" + isDownloadFile);
+                        if (version > 0) {
                             f = new File("files/owl/" + uid + ".owl");
                             LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);
                         } else {
@@ -183,19 +187,16 @@ public class LoginPanel extends javax.swing.JPanel {
                             d.setVisible(true);
                         }
                     } else {
-                        System.out.println("fff:" + f.getName());
+                        //存在 Userfile检验是否最新版本
+                        //备份OWL BAK文件
                         File bak = new File("files/owl/" + f.getName() + ".bak");
                         f.renameTo(bak);
-                        boolean isDownloadFile = WebOperation.downloadUserFile(new ELearner(uid));
-                        System.out.println("是否成功下载OWL文件:" + isDownloadFile);
-                        if (isDownloadFile) {
-                            f = new File("files/owl/" + uid + ".owl");
-                            if(f.exists()){
-                                 LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);
-                            }else{
-                                LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), bak);
-                            }
-                        }
+//                      下载文件
+                        OwlOperation.downloadUserFile(uid);
+                        //boolean isDownloadFile = WebOperation.downloadUserFile(new ELearner(uid));
+                        //System.out.println("是否成功下载OWL文件:" + isDownloadFile);
+                        f = new File("files/owl/" + uid + ".owl");
+                        LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);
                         LPApp.getApplication().user.learner = LPApp.lpModel.getELearner(uid);
                     }
                     long t4 = System.currentTimeMillis();
@@ -210,7 +211,7 @@ public class LoginPanel extends javax.swing.JPanel {
                     tipLabel.setText(rtvMsg);
                     tipLabel.setForeground(Color.red);
                     username.grabFocus();
-//                    LPApp.lpLogs.writeLog(101, LPApp.getApplication().user.username , "登出", LogConstant.STATUS101);
+                    LPApp.lpLogs.writeLog(101, LPApp.getApplication().user.username, "登出", LogConstant.STATUS101);
                 }
                 view.setIdle();
             }

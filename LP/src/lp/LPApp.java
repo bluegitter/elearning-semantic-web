@@ -116,7 +116,8 @@ public class LPApp extends SingleFrameApplication {
 
     private void saveToFile(File file) {
         jena.impl.UserOwlUpdate.createNewDocWithEMI(LPApp.lpModel, LPApp.getApplication().user.learner);
-        WebOperation.uploadUserFile(LPApp.getApplication().user.learner);
+       // WebOperation.uploadUserFile(LPApp.getApplication().user.learner);
+        OwlOperation.uploadUserFile(LPApp.getApplication().user.learner.getId());
 //        try {
 //            OwlOperation.writeRdfFile(LPApp.lpModel.getOntModel(), new File(Constant.RDF_BAK_File), null);
 //            OwlOperation.writeRdfFile(LPApp.lpModel.getOntModel(), file, null);

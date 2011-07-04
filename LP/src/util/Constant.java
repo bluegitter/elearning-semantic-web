@@ -16,7 +16,8 @@ public class Constant {
     public static String LogFileDirectory = "files/log/";
     public static String newConceptFile = "files/owl/newConcepts.owl";
     public static final String CITY_DATA = "files/data/location.txt";
-    public static String USERVERSION= "files/USERVER";
+    public static String USERVERSION = "files/ver/";
+
     /*********************************************************************
      * SPARQL Prefix
      ********************************************************************/
@@ -25,8 +26,9 @@ public class Constant {
     public static String RDFSPRE = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> ";
     public static String XSDPRE = "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> ";
     public static String FNPRE = "PREFIX fn: <http://www.w3.org/2005/xpath-functions#> ";
+
     /********************************************************************
-     * Database Connection Config
+     * Server Connection Config
      ********************************************************************/
     //public static String DBURL = "jdbc:mysql://localhost:3306/elearning";
     //public static String DBURL = "jdbc:mysql://192.168.8.86:3306/elearning"; //destop ip
@@ -35,8 +37,20 @@ public class Constant {
     //public static String DBPASSWORD = "ms";
     public static String ISCBSERVER250 = "http://e6.thss.tsinghua.edu.cn/";
     public static String ISCBSERVER48 = "http://zyk.thss.tsinghua.edu.cn/";
-//    public static String SERVERURL = "http://192.168.8.86:8080/myelearner";
-    //public static String SERVERTESTURL = "http://192.168.8.86:8080/myelearner/webapp/mylife.jpg";
+    public static String SERVERURL = "http://192.168.8.86:8080/myelearner";
+    public static String SERVERTESTURL = "http://192.168.8.86:8080/myelearner/webapp/mylife.jpg";
+//    public static final String SERVER_URL_STRING = "http://192.168.9.161:8080";
+//    public static final String SERVER_URL_STRING = "http://e6.thss.tsinghua.edu.cn";
+    public static final String SERVER_URL_STRING = "http://166.111.80.179";
+    public static final String UPLOAD_URL_STRING = SERVER_URL_STRING + "/tools/uploadUserFile.jsp";
+    public static final String DOWNLOAD_URL_STRING = SERVER_URL_STRING + "/tools/downloadUserFile.jsp";
+    public static final String UPLOAD_URL_STRING_PHP = "ontology.sinaapp.com/uploadOwl.php";
+    public static final String DOWNLOAD_URL_STRING_PHP = "ontology.sinaapp.com/checkVersion.php";
+//    public static final String SERVER_URL_STRING = "http://localhost:8080";
+//    public static final String UPLOAD_URL_STRING = SERVER_URL_STRING + "/examples/uploadUserFile.jsp";
+//    public static final String DOWNLOAD_URL_STRING = SERVER_URL_STRING + "/examples/downloadUserFile.jsp";
+    public static final String PROTOCOL_VERSION = "1.0";
+    //public static final String PROTOCOL_MAGIC = "#__IMAZING_PROTOCOL__";
     /**********************************************************************
      * To Be Used, but now useless....
      **********************************************************************/
