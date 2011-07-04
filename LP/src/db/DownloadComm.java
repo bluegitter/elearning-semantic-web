@@ -155,6 +155,7 @@ public class DownloadComm {
                     result = vs[1].trim();
                     int version = Integer.parseInt(result);
                     LPApp.VERSION = version;
+                    OwlOperation.setVersion(eid, version);
                     if (version > 0) {
                         FileWriter fw = new FileWriter(userFile);
                         char[] buf = new char[1024];
@@ -280,7 +281,7 @@ public class DownloadComm {
     }
 
     public static void main(String[] args) {
-        DownloadComm dc = new DownloadComm("马晟ms");
+        DownloadComm dc = new DownloadComm("el001");
         dc.checkVersion();
     }
 }

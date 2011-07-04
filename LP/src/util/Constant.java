@@ -17,7 +17,6 @@ public class Constant {
     public static String newConceptFile = "files/owl/newConcepts.owl";
     public static final String CITY_DATA = "files/data/location.txt";
     public static String USERVERSION = "files/ver/";
-
     /*********************************************************************
      * SPARQL Prefix
      ********************************************************************/
@@ -26,7 +25,6 @@ public class Constant {
     public static String RDFSPRE = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> ";
     public static String XSDPRE = "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> ";
     public static String FNPRE = "PREFIX fn: <http://www.w3.org/2005/xpath-functions#> ";
-
     /********************************************************************
      * Server Connection Config
      ********************************************************************/
@@ -44,9 +42,9 @@ public class Constant {
     public static final String SERVER_URL_STRING = "http://166.111.80.179";
     public static final String UPLOAD_URL_STRING = SERVER_URL_STRING + "/tools/uploadUserFile.jsp";
     public static final String DOWNLOAD_URL_STRING = SERVER_URL_STRING + "/tools/downloadUserFile.jsp";
-    //public static final String UPLOAD_URL_STRING_PHP = "http://ontology.sinaapp.com/uploadOwl.php";
-  public static final String UPLOAD_URL_STRING_PHP = "http://ontology.sinaapp.com/test.php";
-  public static final String DOWNLOAD_URL_STRING_PHP = "http://ontology.sinaapp.com/checkVersion.php";
+    public static final String UPLOAD_URL_STRING_PHP = "http://ontology.sinaapp.com/uploadOwl.php";
+    //public static final String UPLOAD_URL_STRING_PHP = "http://ontology.sinaapp.com/test.php";
+    public static final String DOWNLOAD_URL_STRING_PHP = "http://ontology.sinaapp.com/checkVersion.php";
 //    public static final String SERVER_URL_STRING = "http://localhost:8080";
 //    public static final String UPLOAD_URL_STRING = SERVER_URL_STRING + "/examples/uploadUserFile.jsp";
 //    public static final String DOWNLOAD_URL_STRING = SERVER_URL_STRING + "/examples/downloadUserFile.jsp";
