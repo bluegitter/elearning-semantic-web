@@ -219,16 +219,16 @@ public class UploaderCommTwo {
                 rsp = mConnection.Post(urlPath, data, form_data);
             }
         }
-        System.out.println("rsp:" + rsp.getStatusCode());
-        try {
-            System.out.println("response:" + rsp.getText().trim());
-        } catch (IOException ex) {
-            Logger.getLogger(UploaderComm.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ModuleException ex) {
-            Logger.getLogger(UploaderComm.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParseException ex) {
-            Logger.getLogger(UploaderComm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        System.out.println("rsp:" + rsp.getStatusCode());
+//        try {
+//     /       System.out.println("response:" + rsp.getText().trim());
+//        } catch (IOException ex) {
+//            Logger.getLogger(UploaderComm.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (ModuleException ex) {
+//            Logger.getLogger(UploaderComm.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (ParseException ex) {
+//            Logger.getLogger(UploaderComm.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         // handle response
         if (rsp.getStatusCode() >= 300) {
             throw new IOException("HTTP POST ERROR");
