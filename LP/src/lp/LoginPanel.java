@@ -156,19 +156,16 @@ public class LoginPanel extends javax.swing.JPanel {
                     //if the elearner is in the model, then init its data
                     //else create a new elearner and show him the usage navigator.
                     String uid = LPApp.getApplication().user.learner.getId();
-                    LPApp.VERSION = OwlOperation.getVersion(uid);
                     File f = new File("files/owl/" + uid + ".owl");
                     long t3 = System.currentTimeMillis();
                     boolean hasInfoFile = f.exists();
                     System.out.println("是否存在用户文件:" + hasInfoFile);
-                    // hasInfoFile true: user info exist
-                    //              false: not exist
+                    // user info不存在 
                     if (!hasInfoFile) {
-                        OwlOperation.downloadUserFile(uid);
-                        int version = OwlOperation.getVersion(uid);
+                      boolean b=   OwlOperation.downloadUserFile(uid);
                         //    boolean isDownloadFile = WebOperation.downloadUserFile(new ELearner(uid));
                         //   System.out.println("是否成功下载OWL文件:" + isDownloadFile);
-                        if (version > 0) {
+                        if (b) {
                             f = new File("files/owl/" + uid + ".owl");
                             LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);
                         } else {
@@ -186,22 +183,38 @@ public class LoginPanel extends javax.swing.JPanel {
                             d.pack();
                             d.setVisible(true);
                         }
-                    } else {
+                    }//userInfo 存在
+                    else {
+                        System.out.println("存在 Userfile");
                         //存在 Userfile检验是否最新版本
                         //备份OWL BAK文件
                         File bak = new File("files/owl/" + f.getName() + ".bak");
-                        f.renameTo(bak);
+                        if(bak.exists()){
+                            bak.delete();
+                             f.renameTo(bak);
+                        }else{
+                            f.renameTo(bak);
+                        }
+
 //                      下载文件
-                        OwlOperation.downloadUserFile(uid);
+                      boolean b=  OwlOperation.downloadUserFile(uid);
+                        System.out.println("是否下载OWL:"+b);
                         //boolean isDownloadFile = WebOperation.downloadUserFile(new ELearner(uid));
                         //System.out.println("是否成功下载OWL文件:" + isDownloadFile);
                         f = new File("files/owl/" + uid + ".owl");
-                        try{
-                            LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);
-                        }catch(Exception e){
-                            LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), bak);
+                        if(b){
+                            System.out.println("使用OWL文件初始化模型");
+                            try{
+                                LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);
+
+                            }catch(Exception e){
+                                 System.out.println("使用备份文件初始化模型--网络文件出异常");
+                             LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), bak);
+                            }
+                        }else{
+                            System.out.println("使用备份文件初始化模型--没有更新文件");
+                             LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), bak);
                         }
-                        
                         LPApp.getApplication().user.learner = LPApp.lpModel.getELearner(uid);
                     }
                     long t4 = System.currentTimeMillis();

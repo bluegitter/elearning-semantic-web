@@ -1,13 +1,10 @@
 package db;
 
 import HTTPClient.*;
-import java.io.File;
 import java.io.IOException;
 import java.net.SocketException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -255,7 +252,7 @@ public class UploaderCommTwo {
     }
 
     public static void main(String[] args) {
-        UploaderCommTwo uct = new UploaderCommTwo("el001", "ss马晟mms");
+        UploaderCommTwo uct = new UploaderCommTwo("ghh", "ss马晟mms");
         uct.uploadFile();
     }
 }
