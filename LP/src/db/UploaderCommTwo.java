@@ -1,15 +1,11 @@
 package db;
 
 import HTTPClient.*;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.StringReader;
 import java.net.SocketException;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,15 +13,15 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-import javax.swing.JOptionPane;
 import jena.OwlOperation;
-import ontology.people.ELearner;
+import util.Constant;
 
 public class UploaderCommTwo {
 
     public File uploadFile;
     public String eid;
     public String version;
+    public String result;
 
     static {
         /* Configures HTTPClient to accept all cookies
@@ -71,13 +67,15 @@ public class UploaderCommTwo {
         }
     }
 
-    public UploaderCommTwo(ELearner el) {
-        eid = el.getId();
-        version = String.valueOf(OwlOperation.getVersion());
+    public UploaderCommTwo(String eid) {
+        this.eid = eid;
+        version = String.valueOf(OwlOperation.getVersion(eid));
         uploadFile = new File("files/owl/" + eid + ".owl");
+        result = "";
     }
 
-    public void uploadFiles(boolean async) {
+    public void uploadFile() {
+        boolean async = false;
         UploadTask uploadTask = new UploadTask();
         doTask(uploadTask, async);
     }
@@ -125,8 +123,8 @@ public class UploaderCommTwo {
         }
 
         void runTask() {
-            boolean b = uploadPicture(uploadFile);
-            // System.out.println("上传个人信息:"+b);
+            uploadPicture(uploadFile);
+
         }
 
         boolean uploadPicture(File file) {
@@ -138,14 +136,21 @@ public class UploaderCommTwo {
                 };
 
                 // setup the multipart form data
-
+                if (!uploadFile.exists()) {
+                    result = "FileNotExisted";
+                    return false;
+                }
                 NVPair[] afile = {new NVPair("file", uploadFile.getAbsolutePath())};
                 NVPair[] hdrs = new NVPair[1];
                 byte[] data = Codecs.mpFormDataEncode(opts, afile, hdrs);
 
-                String responseString = requestResponse(hdrs, data, new URL(UploaderConstants.UPLOAD_URL_STRING_PHP), true, this);
+                String responseString = requestResponse(hdrs, data, new URL(Constant.UPLOAD_URL_STRING_PHP), true, this);
                 System.out.println("responseString:" + responseString);
                 if (responseString.startsWith("success")) {
+                    result = "success";
+                    //version increase
+                    int version = OwlOperation.getVersion(eid);
+                    OwlOperation.setVersion(eid, (version + 1));
                     return true;
                 }
 
@@ -258,5 +263,10 @@ public class UploaderCommTwo {
         } else {
             task.run();
         }
+    }
+
+    public static void main(String[] args) {
+        UploaderCommTwo uct = new UploaderCommTwo("el001");
+        uct.uploadFile();
     }
 }

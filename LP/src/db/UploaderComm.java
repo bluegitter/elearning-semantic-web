@@ -1,24 +1,19 @@
 package db;
 
 import HTTPClient.*;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.StringReader;
 import java.net.SocketException;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-import javax.swing.JOptionPane;
 import ontology.people.ELearner;
+import util.Constant;
 
 public class UploaderComm {
 
@@ -29,11 +24,9 @@ public class UploaderComm {
          * this should be done at least once per iMazing Uploader
          * invokation */
         CookieModule.setCookiePolicyHandler(new CookiePolicyHandler() {
-
             public boolean acceptCookie(Cookie cookie, RoRequest req, RoResponse resp) {
                 return true;
             }
-
             public boolean sendCookie(Cookie cookie, RoRequest req) {
                 return true;
             }
@@ -44,15 +37,12 @@ public class UploaderComm {
         // Create a trust manager that does not validate certificate chains
         TrustManager[] trustAllCerts = new TrustManager[]{
             new X509TrustManager() {
-
                 public java.security.cert.X509Certificate[] getAcceptedIssuers() {
                     return new java.security.cert.X509Certificate[0];
                 }
-
                 public void checkClientTrusted(
                         java.security.cert.X509Certificate[] certs, String authType) {
                 }
-
                 public void checkServerTrusted(
                         java.security.cert.X509Certificate[] certs, String authType) {
                 }
@@ -138,7 +128,7 @@ public class UploaderComm {
                 NVPair[] hdrs = new NVPair[1];
                 byte[] data = Codecs.mpFormDataEncode(opts, afile, hdrs);
 
-                String responseString = requestResponse(hdrs, data, new URL(UploaderConstants.UPLOAD_URL_STRING), true, this);
+                String responseString = requestResponse(hdrs, data, new URL(Constant.UPLOAD_URL_STRING), true, this);
                 System.out.println("responseString:"+responseString);
                 if(responseString.startsWith("success")) {
                     return true;

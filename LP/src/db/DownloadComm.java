@@ -1,43 +1,35 @@
 package db;
 
 import HTTPClient.*;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.StringReader;
 import java.net.SocketException;
 import java.net.URL;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-import javax.swing.JOptionPane;
 import jena.OwlOperation;
-import ontology.people.ELearner;
+import util.Constant;
 
 public class DownloadComm {
 
     public File userFile;
     public String eid;
     public String version;
-
+    public String result;
     static {
         /* Configures HTTPClient to accept all cookies
          * this should be done at least once per iMazing Uploader
          * invokation */
         CookieModule.setCookiePolicyHandler(new CookiePolicyHandler() {
-
             public boolean acceptCookie(Cookie cookie, RoRequest req, RoResponse resp) {
                 return true;
             }
-
             public boolean sendCookie(Cookie cookie, RoRequest req) {
                 return true;
             }
@@ -48,15 +40,12 @@ public class DownloadComm {
         // Create a trust manager that does not validate certificate chains
         TrustManager[] trustAllCerts = new TrustManager[]{
             new X509TrustManager() {
-
                 public java.security.cert.X509Certificate[] getAcceptedIssuers() {
                     return new java.security.cert.X509Certificate[0];
                 }
-
                 public void checkClientTrusted(
                         java.security.cert.X509Certificate[] certs, String authType) {
                 }
-
                 public void checkServerTrusted(
                         java.security.cert.X509Certificate[] certs, String authType) {
                 }
@@ -72,10 +61,11 @@ public class DownloadComm {
         }
     }
 
-    public DownloadComm(ELearner el) {
-        eid = el.getId();
-        version = String.valueOf(OwlOperation.getVersion());
+    public DownloadComm(String eid) {
+        this.eid = eid;
+        version = String.valueOf(OwlOperation.getVersion(eid));
         userFile = new File("files/owl/" + eid + ".owl");
+        result = "";
         if (!userFile.exists()) {
             try {
                 userFile.createNewFile();
@@ -85,7 +75,8 @@ public class DownloadComm {
         }
     }
 
-    public void uploadFiles(boolean async) {
+    public void checkVersion() {
+        boolean async = false;
         UploadTask uploadTask = new UploadTask();
         doTask(uploadTask, async);
     }
@@ -133,11 +124,11 @@ public class DownloadComm {
         }
 
         void runTask() {
-            boolean b = uploadPicture(userFile);
-            System.out.println("是否需要下载:" + b);
+            String b = uploadPicture(userFile);
+            System.out.println("下载返回值:" + b);
         }
 
-        boolean uploadPicture(File file) {
+        String uploadPicture(File file) {
             try {
                 // setup the protocol parameters
                 NVPair[] opts = {
@@ -151,10 +142,11 @@ public class DownloadComm {
                 NVPair[] hdrs = new NVPair[1];
                 //     byte[] data = Codecs.mpFormDataEncode(opts, afile, hdrs);
 
-                String responseString = requestResponse(hdrs, new URL(UploaderConstants.UPLOAD_URL_STRING_PHP), this);
+                String responseString = requestResponse(hdrs, new URL(Constant.DOWNLOAD_URL_STRING_PHP), this);
                 System.out.println("responseString:" + responseString);
                 if (responseString.startsWith("latest")) {
-                    return false;
+                    result = "latest";
+                    return result;
                 } else {
                     FileWriter fw = new FileWriter(userFile);
                     int i = 0;
@@ -162,13 +154,18 @@ public class DownloadComm {
                         i++;
                     }
                     String ver = responseString.substring(0, i - 1);
-                    String owl = responseString.substring(i);
-                    fw.write(owl);
-                    fw.flush();
-                    fw.close();
-                    String[] vs = responseString.split(" ");
-                    int version = Integer.parseInt(vs[1]);
-                    OwlOperation.setVersion(version);
+                    String[] vs = ver.split(" ");
+                    String result = vs[1].trim();
+                    int version = Integer.parseInt(result);
+                    if (version > 0) {
+                        String owl = responseString.substring(i);
+                        fw.write(owl);
+                        fw.flush();
+                        fw.close();
+                    }
+
+                    OwlOperation.setVersion(eid,version);
+                    return result;
                 }
 
             } catch (NumberFormatException nfe) {
@@ -180,8 +177,7 @@ public class DownloadComm {
             } catch (ModuleException me) {
                 me.printStackTrace();
             }
-
-            return true;
+            return null;
         }
     }
 
@@ -280,5 +276,9 @@ public class DownloadComm {
         } else {
             task.run();
         }
+    }
+    public static void main(String[] args) {
+        DownloadComm dc = new DownloadComm("el001");
+        dc.checkVersion();
     }
 }
