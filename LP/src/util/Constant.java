@@ -16,6 +16,7 @@ public class Constant {
     public static String LogFileDirectory = "files/log/";
     public static String newConceptFile = "files/owl/newConcepts.owl";
     public static final String CITY_DATA = "files/data/location.txt";
+    public static String USERVERSION= "files/USERVER";
     /*********************************************************************
      * SPARQL Prefix
      ********************************************************************/
