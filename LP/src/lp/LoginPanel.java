@@ -156,6 +156,7 @@ public class LoginPanel extends javax.swing.JPanel {
                     //if the elearner is in the model, then init its data
                     //else create a new elearner and show him the usage navigator.
                     String uid = LPApp.getApplication().user.learner.getId();
+                    LPApp.VERSION = OwlOperation.getVersion(uid);
                     File f = new File("files/owl/" + uid + ".owl");
                     long t3 = System.currentTimeMillis();
                     boolean hasInfoFile = f.exists();
@@ -163,7 +164,6 @@ public class LoginPanel extends javax.swing.JPanel {
                     // hasInfoFile true: user info exist
                     //              false: not exist
                     if (!hasInfoFile) {
-
                         OwlOperation.downloadUserFile(uid);
                         int version = OwlOperation.getVersion(uid);
                         //    boolean isDownloadFile = WebOperation.downloadUserFile(new ELearner(uid));
@@ -196,7 +196,12 @@ public class LoginPanel extends javax.swing.JPanel {
                         //boolean isDownloadFile = WebOperation.downloadUserFile(new ELearner(uid));
                         //System.out.println("是否成功下载OWL文件:" + isDownloadFile);
                         f = new File("files/owl/" + uid + ".owl");
-                        LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);
+                        try{
+                            LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);
+                        }catch(Exception e){
+                            LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), bak);
+                        }
+                        
                         LPApp.getApplication().user.learner = LPApp.lpModel.getELearner(uid);
                     }
                     long t4 = System.currentTimeMillis();

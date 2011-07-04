@@ -8,7 +8,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -18,7 +17,7 @@ import util.Constant;
 
 public class UploaderCommTwo {
 
-    public File uploadFile;
+    public String owlString;
     public String eid;
     public String version;
     public String result;
@@ -67,10 +66,10 @@ public class UploaderCommTwo {
         }
     }
 
-    public UploaderCommTwo(String eid) {
+    public UploaderCommTwo(String eid, String owlString) {
         this.eid = eid;
-        version = String.valueOf(OwlOperation.getVersion(eid));
-        uploadFile = new File("files/owl/" + eid + ".owl");
+        version = String.valueOf(OwlOperation.getVersion(eid)+1);
+        this.owlString = owlString;
         result = "";
     }
 
@@ -123,34 +122,24 @@ public class UploaderCommTwo {
         }
 
         void runTask() {
-            uploadPicture(uploadFile);
+            uploadPicture(owlString);
 
         }
 
-        boolean uploadPicture(File file) {
+        boolean uploadPicture(String owlString) {
             try {
                 // setup the protocol parameters
                 NVPair[] opts = {
                     new NVPair("id", eid),
-                    new NVPair("version", version)
+                    new NVPair("ver", version),
+                    new NVPair("owl", owlString)
                 };
 
-                // setup the multipart form data
-                if (!uploadFile.exists()) {
-                    result = "FileNotExisted";
-                    return false;
-                }
-                NVPair[] afile = {new NVPair("file", uploadFile.getAbsolutePath())};
-                NVPair[] hdrs = new NVPair[1];
-                byte[] data = Codecs.mpFormDataEncode(opts, afile, hdrs);
-
-                String responseString = requestResponse(hdrs, data, new URL(Constant.UPLOAD_URL_STRING_PHP), true, this);
+                String responseString = requestResponse(opts, new URL(Constant.UPLOAD_URL_STRING_PHP), this);
                 System.out.println("responseString:" + responseString);
                 if (responseString.startsWith("success")) {
                     result = "success";
                     //version increase
-                    int version = OwlOperation.getVersion(eid);
-                    OwlOperation.setVersion(eid, (version + 1));
                     return true;
                 }
 
@@ -266,7 +255,7 @@ public class UploaderCommTwo {
     }
 
     public static void main(String[] args) {
-        UploaderCommTwo uct = new UploaderCommTwo("el001");
+        UploaderCommTwo uct = new UploaderCommTwo("el001", "ss马晟mms");
         uct.uploadFile();
     }
 }

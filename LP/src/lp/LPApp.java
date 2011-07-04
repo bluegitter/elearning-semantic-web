@@ -42,6 +42,7 @@ public class LPApp extends SingleFrameApplication {
     public static final int ASSESSMENT = 5;
     public static final int NEW_MAP = 6;
     public static final int ADMIN = 7;
+    public static int VERSION = -1;
 //    public static final int NAVIGATOR = 5;
 //    public static final int REGIST = 6;
 
@@ -58,6 +59,7 @@ public class LPApp extends SingleFrameApplication {
         view.mainPanel.setLayout(new CentralLayout());
         loginPane = new LoginPanel();
 
+       
         view.mainPanel.add(loginPane);
         ColorConstant.backgroundGrayColor = view.mainPanel.getBackground();
         view.lpToolBar.setVisible(false);
@@ -115,9 +117,8 @@ public class LPApp extends SingleFrameApplication {
     }
 
     private void saveToFile(File file) {
-        jena.impl.UserOwlUpdate.createNewDocWithEMI(LPApp.lpModel, LPApp.getApplication().user.learner);
-       // WebOperation.uploadUserFile(LPApp.getApplication().user.learner);
-        OwlOperation.uploadUserFile(LPApp.getApplication().user.learner.getId());
+        String owlUserString = jena.impl.UserOwlUpdate.createNewDocWithEMI(LPApp.lpModel, LPApp.getApplication().user.learner);
+        OwlOperation.uploadUserFile(LPApp.getApplication().user.learner.getId(),owlUserString);
 //        try {
 //            OwlOperation.writeRdfFile(LPApp.lpModel.getOntModel(), new File(Constant.RDF_BAK_File), null);
 //            OwlOperation.writeRdfFile(LPApp.lpModel.getOntModel(), file, null);
