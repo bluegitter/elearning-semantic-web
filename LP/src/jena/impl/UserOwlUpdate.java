@@ -47,7 +47,8 @@ public class UserOwlUpdate {
         try {
             //get user basic info
             Individual elIndi = emi.getOntModel().getIndividual(Constant.NS + el.getId());
-            ELearnerModelImpl newEmi = new ELearnerModelImpl(new File("files/owl/update_template.owl"));
+            File templateFile = new File(Constant.USERTEMPLATE);
+            ELearnerModelImpl newEmi = new ELearnerModelImpl(templateFile);
             newEmi.getOntModel().add(elIndi, emi.getOntModel().getDatatypeProperty(Constant.NS + "id"), newEmi.getOntModel().createLiteral(el.getId()));
             newEmi.getOntModel().add(elIndi, emi.getOntModel().getDatatypeProperty(Constant.NS + "name"), newEmi.getOntModel().createLiteral(el.getName()));
             newEmi.getOntModel().add(elIndi, emi.getOntModel().getDatatypeProperty(Constant.NS + "grade"), newEmi.getOntModel().createLiteral(el.getGrade()));
@@ -126,7 +127,7 @@ public class UserOwlUpdate {
 
 
             //文件写入write.owl并从中抽离必要信息储存(Properties )
-            File writeTo = new File("files/owl/write.owl");
+            File writeTo = new File(Constant.WRITEFILE);
             newEmi.writeToFile(writeTo);
             b = new BufferedReader(new FileReader(writeTo));
             boolean isHead = true;

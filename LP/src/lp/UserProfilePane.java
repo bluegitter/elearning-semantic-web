@@ -19,7 +19,7 @@ import ontology.EInterest;
 import ontology.EPerformance;
 import ontology.EPortfolio;
 import ontology.resources.ISCB_Resource;
-import util.ColorConstant;
+import util.Constant;
 
 /**
  *
@@ -53,8 +53,8 @@ public class UserProfilePane extends javax.swing.JPanel {
     }
 
     private void initUserPane() {
-        conceptsTable.setBackground(ColorConstant.backgroundGrayColor);
-        resourcesTable.setBackground(ColorConstant.backgroundGrayColor);
+        conceptsTable.setBackground(Constant.backgroundGrayColor);
+        resourcesTable.setBackground(Constant.backgroundGrayColor);
         // initial basic info for user
         username.setText(LPApp.getApplication().user.learner.getName());
         email.setText(LPApp.getApplication().user.learner.getEmail());

@@ -3,7 +3,6 @@
  */
 package lp;
 
-import db.WebOperation;
 import jena.OwlOperation;
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +19,6 @@ import ontology.EPerformance;
 import ontology.people.ELearner;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
-import util.ColorConstant;
 import util.Constant;
 
 /**
@@ -61,7 +59,7 @@ public class LPApp extends SingleFrameApplication {
 
        
         view.mainPanel.add(loginPane);
-        ColorConstant.backgroundGrayColor = view.mainPanel.getBackground();
+        Constant.backgroundGrayColor = view.mainPanel.getBackground();
         view.lpToolBar.setVisible(false);
         view.getFrame().setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
         show(view);
