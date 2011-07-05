@@ -1,5 +1,7 @@
 package util;
 
+import java.awt.Color;
+
 public class Constant {
 
     /*******************************************************************
@@ -7,8 +9,10 @@ public class Constant {
      *********************************************************************/
     public static String NS = "http://www.owl-ontologies.com/e-learning.owl#";
     public static String NSRDF = "http://www.w3.org/1999/02/22-rdf-syntax-ns#";
-    public static String OWLFile = "files/owl/elearning_owl.owl";
-    public static String OWLFileEmptyUser = "files/owl/elearning_owl_user_empty.owl";
+    public static String OWLFile = "files/owl/sys/elearning_owl.owl";
+    public static String OWLFileEmptyUser = "files/owl/sys/elearning_owl_user_empty.owl";
+    public static String USERTEMPLATE = "files/owl/sys/update_template.owl";
+    public static String WRITEFILE = "files/owl/sys/write.owl";
     public static String RDF_BAK_File = "files/owl/elearning_rdf_bak.owl";
     public static String TEST_File = "files/owl/test.owl";
     public static String RulesFile = "files/owl/elearning2.rules";
@@ -50,6 +54,13 @@ public class Constant {
 //    public static final String DOWNLOAD_URL_STRING = SERVER_URL_STRING + "/examples/downloadUserFile.jsp";
     public static final String PROTOCOL_VERSION = "1.0";
     //public static final String PROTOCOL_MAGIC = "#__IMAZING_PROTOCOL__";
+
+
+    /***************************************************************************************
+     * Color for the APP
+     *************************************************************************************/
+     public static Color backgroundGrayColor = new Color(236,233,216);
+
     /**********************************************************************
      * To Be Used, but now useless....
      **********************************************************************/

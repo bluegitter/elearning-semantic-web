@@ -12,7 +12,7 @@ package lp.interest;
 
 import java.awt.Color;
 import lp.LPApp;
-import util.ColorConstant;
+import util.Constant;
 import util.LogConstant;
 
 /**
@@ -64,7 +64,7 @@ public class AddLPInterestItemPane extends javax.swing.JPanel {
         mouseEnteredColor = new java.awt.Color(255, 255, 255);
         jLabel3.setIcon(null);
         jLabel2.setText(concept.getName());
-        backgroundColor = ColorConstant.backgroundGrayColor;
+        backgroundColor = Constant.backgroundGrayColor;
     }
 
     /** This method is called from within the constructor to

@@ -12,7 +12,7 @@ package lp.interest;
 
 import java.awt.Color;
 import lp.LPApp;
-import util.ColorConstant;
+import util.Constant;
 import util.LogConstant;
 
 /**
@@ -64,7 +64,7 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
         jLabel1.setIcon(null);
         jLabel2.setText(interest.getEConcept().getName());
         mouseEnteredColor = new Color(255, 255, 255);
-        backgroundColor = ColorConstant.backgroundGrayColor;
+        backgroundColor = Constant.backgroundGrayColor;
     }
     public Color mouseEnteredColor;
     public ontology.EInterest interest;
