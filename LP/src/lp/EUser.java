@@ -75,6 +75,7 @@ public class EUser {
         String name = "name";
         String email = "email";
         String company = "company";
+        
         while ((sCurrentLine = l_reader.readLine()) != null) {
             sTotalString += sCurrentLine + "\r\n";
             if (sCurrentLine.trim().equals("<body>")) {

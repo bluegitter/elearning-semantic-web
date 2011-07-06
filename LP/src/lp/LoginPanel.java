@@ -153,78 +153,50 @@ public class LoginPanel extends javax.swing.JPanel {
                 //跳过身份验证
                 //String rtvMsg = null;
                 if (rtvMsg == null) {
-                    //if the elearner is in the model, then init its data
-                    //else create a new elearner and show him the usage navigator.
-                    String uid = LPApp.getApplication().user.learner.getId();
-                    File f = new File("files/owl/" + uid + ".owl");
-                    long t3 = System.currentTimeMillis();
-                    boolean hasInfoFile = f.exists();
-                    System.out.println("是否存在用户文件:" + hasInfoFile);
-                    // user info不存在 
-                    if (!hasInfoFile) {
-                      boolean b=   OwlOperation.downloadUserFile(uid);
-                        //    boolean isDownloadFile = WebOperation.downloadUserFile(new ELearner(uid));
-                        //   System.out.println("是否成功下载OWL文件:" + isDownloadFile);
-                        if (b) {
-                            f = new File("files/owl/" + uid + ".owl");
+                    try {
+                        //if the elearner is in the model, then init its data
+                        //else create a new elearner and show him the usage navigator.
+                        String uid = LPApp.getApplication().user.learner.getId();
+                        File f = new File("files/owl/" + uid + ".owl");
+                        long t3 = System.currentTimeMillis();
+                        String check = OwlOperation.downloadUserFile(uid);
+                        if (check.equals("latest")) {
                             LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);
-                        } else {
-                            try {
-                                f.createNewFile();
-                                LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser));
-                            } catch (IOException ex) {
-                                Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                            LPApp.lpModel.addELearner(new ELearner(uid));
+                        } else if (check.equals("ver 0")) {
+                            LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser));
+                            LPApp.lpModel.addELearner(LPApp.getApplication().user.learner);
                             //pop the navigator dialogs
                             NavigatorDialog d = new NavigatorDialog(LPApp.getApplication().getMainFrame());
                             d.setTitle("向导");
                             d.setModal(true);
                             d.pack();
                             d.setVisible(true);
-                        }
-                    }//userInfo 存在
-                    else {
-                        System.out.println("存在 Userfile");
-                        //存在 Userfile检验是否最新版本
-                        //备份OWL BAK文件
-                        File bak = new File("files/owl/" + f.getName() + ".bak");
-                        if(bak.exists()){
-                            bak.delete();
-                             f.renameTo(bak);
-                        }else{
-                            f.renameTo(bak);
-                        }
-
-//                      下载文件
-                      boolean b=  OwlOperation.downloadUserFile(uid);
-                        System.out.println("是否下载OWL:"+b);
-                        //boolean isDownloadFile = WebOperation.downloadUserFile(new ELearner(uid));
-                        //System.out.println("是否成功下载OWL文件:" + isDownloadFile);
-                        f = new File("files/owl/" + uid + ".owl");
-                        if(b){
-                            System.out.println("使用OWL文件初始化模型");
-                            try{
+                        } else if (check.equals("success")) {
+                            try {
                                 LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);
-
-                            }catch(Exception e){
-                                 System.out.println("使用备份文件初始化模型--网络文件出异常");
-                             LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), bak);
+                            } catch (Exception e) {
+                                System.out.println("使用备份文件初始化模型--网络文件出异常");
+                                File bak = new File("files/owl/" + f.getName() + ".bak");
+                                if (f.exists()) {
+                                    LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), bak);
+                                } else {
+                                    LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser));
+                                }
                             }
-                        }else{
-                            System.out.println("使用备份文件初始化模型--没有更新文件");
-                             LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), bak);
+                        } else {
+                            System.out.println("其他情况");
                         }
                         LPApp.getApplication().user.learner = LPApp.lpModel.getELearner(uid);
+                        long t4 = System.currentTimeMillis();
+                        System.out.println("初始化模型:" + (t4 - t3) + "ms");
+                        view.setBusy("正在加载数据...");
+                        view.initTools();
+                        LPApp.lpLogs.writeLog(101, LPApp.getApplication().user.username, "登入", LogConstant.STATUS101);
+                        long t5 = System.currentTimeMillis();
+                        System.out.println("界面初始化" + (t5 - t4) + "ms");
+                    } catch (IOException ex) {
+                        Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    long t4 = System.currentTimeMillis();
-                    System.out.println("初始化模型:" + (t4 - t3) + "ms");
-
-                    view.setBusy("正在加载数据...");
-                    view.initTools();
-                    LPApp.lpLogs.writeLog(101, LPApp.getApplication().user.username, "登入", LogConstant.STATUS101);
-                    long t5 = System.currentTimeMillis();
-                    System.out.println("界面初始化" + (t5 - t4) + "ms");
                 } else {
                     tipLabel.setText(rtvMsg);
                     tipLabel.setForeground(Color.red);
