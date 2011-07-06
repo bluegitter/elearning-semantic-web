@@ -139,10 +139,15 @@ public class LPView extends FrameView {
         jToggleButton1.setSelected(true);
     }
 
+    public void setBtnSelected() {
+        jToggleButton6.setSelected(true);
+    }
+
     public void setMainTool(int i) {
         LPApp.TOOL_STATE = i;
         mainPanel.removeAll();
         mainPanel.add(panes[i]);
+
         this.mainPanel.updateUI();
 
         if (i == LPApp.RECOMMEND) {
