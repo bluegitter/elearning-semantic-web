@@ -21,6 +21,6 @@ public class LogConstant {
     public static String STATUS108 = "精确查找";
     public static String STATUS109 = "感兴趣的知识点";
     public static String STATUS110 = "访问网站";
-    public static String STATUS111 = "";
+    public static String MAP_OP = "地图操作";
     public static String STATUS112 = "";
 }

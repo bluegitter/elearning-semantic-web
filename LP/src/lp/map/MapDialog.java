@@ -18,6 +18,7 @@ import java.util.LinkedHashMap;
 import lp.LPApp;
 import ontology.EConcept;
 import ontology.EGoal;
+import util.LogConstant;
 
 /**
  *
@@ -131,6 +132,7 @@ public class MapDialog extends MMDialog {
             if (action.equals("ok")) {
                 if(selected instanceof EGoal) {
                     LPApp.lpModel.setCurrentGoal(LPApp.getApplication().user.learner, ((EGoal)selected).getGid());
+                    LPApp.lpLogs.writeLog("更改学习目标为：" + ((EGoal)selected).getGid(), LogConstant.MAP_OP);
                     parent.hideMapDialog(null);
                 } else if (selected instanceof EConcept) {
                     parent.hideMapDialog(new MapCallback() {

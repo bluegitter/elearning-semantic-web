@@ -104,6 +104,7 @@ public class LPLogger {
             // Get the response
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
             String head = br.readLine();
+            System.out.println(head);
             if (head.trim().equals("success")) {
             //    System.out.println("send a log");
             } else {
