@@ -177,7 +177,7 @@ public class LoginPanel extends javax.swing.JPanel {
                             } catch (Exception e) {
                                 System.out.println("使用备份文件初始化模型--网络文件出异常");
                                 File bak = new File("files/owl/" + f.getName() + ".bak");
-                                if (f.exists()) {
+                                if (bak.exists()) {
                                     LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), bak);
                                 } else {
                                     LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser));
