@@ -69,25 +69,17 @@ public class LPApp extends SingleFrameApplication {
     @Override
     protected void shutdown() {
         this.view.getFrame().setVisible(false);
-        Date date = new Date(System.currentTimeMillis());
-        File file = new File(Constant.OWLFile);
         String location = "";
 
         if (LPApp.getApplication().user != null && LPApp.getApplication().user.learner != null) {
             ELearner el = LPApp.getApplication().user.learner;
             getFile(el.getId() + ".owl", location);
-            if (!file.exists()) {
-                try {
-                    file.createNewFile();
-                } catch (IOException ex) {
-                }
-            }
 
             if (LPApp.lpModel != null) {
                 //保存文件,发送日志
                 System.out.println("");
                 long t1 = System.currentTimeMillis();
-                saveToFile(file);
+                saveToFile();
 
                 long t2 = System.currentTimeMillis();
                 System.out.println("保存文件成功耗时:" + (t2 - t1) + "ms");
@@ -114,7 +106,7 @@ public class LPApp extends SingleFrameApplication {
         lpLogs.setUserId(user.username);
     }
 
-    private void saveToFile(File file) {
+    private void saveToFile() {
         String owlUserString = jena.impl.UserOwlUpdate.createNewDocWithEMI(LPApp.lpModel, LPApp.getApplication().user.learner);
         OwlOperation.uploadUserFile(LPApp.getApplication().user.learner.getId(),owlUserString);
 //        try {
