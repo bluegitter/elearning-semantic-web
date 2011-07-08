@@ -237,12 +237,9 @@ public class UserInterestPane extends javax.swing.JPanel {
                 PopMesDialog pop = new PopMesDialog();
                 pop.setTitle("查询不到");
                 pop.setMessage("知识点没找到，请重新输入");
-                LPApp.lpLogs.writeLog(109, name, "不存在知识点", LogConstant.STATUS109);
-                System.out.println("concept not exist");
+                LPApp.lpLogs.writeLog(  "不存在知识点:"+name, LogConstant.STATUS109);
             } else {
-                System.out.println("get the name");
-                LPApp.lpLogs.writeLog(109, name, "手动添加兴趣知识点", LogConstant.STATUS109);
-
+                LPApp.lpLogs.writeLog(  "手动添加知识点:"+name, LogConstant.STATUS109);
                 for (int i = 0; i < cids.size(); i++) {
                     String conceptId = cids.get(i);
                     EConcept con = LPApp.lpModel.getEConcept(conceptId);
@@ -266,7 +263,6 @@ public class UserInterestPane extends javax.swing.JPanel {
                             }
                         }
                     }
-
                 }
             }
         }

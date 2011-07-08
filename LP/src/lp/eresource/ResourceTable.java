@@ -4,7 +4,7 @@
  */
 package lp.eresource;
 
-import db.WebOperation;
+import jena.WebOperation;
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -209,7 +209,7 @@ public class ResourceTable extends JTable implements MouseListener, MouseMotionL
        //         System.out.println(this.getModel().getValueAt(row, 0));
                 ISCB_Resource temp = (ISCB_Resource) this.getModel().getValueAt(row, 0);
          //       System.out.println("temp:"+temp.getRid());
-                WebOperation.viewResourceBroswer(url, temp.getRid(), temp.getIsLearntResult());
+                WebOperation.viewResourceBroswer(url, temp.getRid(),temp.getIsLearntResult());
             }
             if (column != 1) {
                 ISCB_Resource resource = res.get(currentPage * num + row);

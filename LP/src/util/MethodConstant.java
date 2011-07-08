@@ -4,7 +4,7 @@
  */
 package util;
 
-import db.WebOperation;
+import jena.WebOperation;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

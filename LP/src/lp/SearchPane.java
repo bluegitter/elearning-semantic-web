@@ -17,7 +17,7 @@ import javax.swing.JFrame;
 import jena.impl.ELearnerModelImpl;
 import lp.eresource.ResourceTable;
 import lp.eresource.ResourceTablePane;
-import db.WebOperation;
+import jena.WebOperation;
 import ontology.resources.ISCB_Resource;
 import org.jdesktop.application.Action;
 import util.Constant;
@@ -267,7 +267,7 @@ public class SearchPane extends javax.swing.JPanel {
 //        System.out.println(appType);
 //        System.out.println(mediaType);
         ArrayList<ISCB_Resource> res = LPApp.lpModel.getEResourcesByTypes(appType, "all", mediaType);
-        LPApp.lpLogs.writeLog(107, appType+" "+mediaType, LogConstant.RESULT107, LogConstant.STATUS107);
+        LPApp.lpLogs.writeLog("应用类型:" + appType + " 媒体类型:" + mediaType, LogConstant.STATUS107);
         updateEResources(res);
     }//GEN-LAST:event_searchAction
     //search the resource by the given name
@@ -276,25 +276,23 @@ public class SearchPane extends javax.swing.JPanel {
         String name = jTextField1.getText().trim();
         ArrayList<ISCB_Resource> res = LPApp.lpModel.getEResourcesByName(name);
         if (res.isEmpty()) {
-            LPApp.lpLogs.writeLog(108, name, "未查到", LogConstant.STATUS108);
-        }else{
-             LPApp.lpLogs.writeLog(108, name, "查到"+res.size()+"个结果", LogConstant.STATUS108);
+            LPApp.lpLogs.writeLog("资源名：" + name + " 未查到结果", LogConstant.STATUS108);
+        } else {
+            LPApp.lpLogs.writeLog("资源名：" + name + " 查到" + res.size() + "个结果", LogConstant.STATUS108);
         }
         updateEResources(res);
     }//GEN-LAST:event_exactSearchAction
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
-        if(evt.getClickCount()==2){
-             WebOperation.searchMoreBrowser("http://e6.thss.tsinghua.edu.cn/");
+        if (evt.getClickCount() == 2) {
+            WebOperation.searchMoreBrowser("http://e6.thss.tsinghua.edu.cn/");
         }
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
         // TODO add your handling code here:
-
     }//GEN-LAST:event_jLabel1MouseEntered
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
