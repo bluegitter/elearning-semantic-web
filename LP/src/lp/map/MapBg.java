@@ -27,6 +27,7 @@ import ontology.EConcept;
 import ontology.EGoal;
 import ontology.EPerformance;
 import util.Constant;
+import util.LogConstant;
 
 public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMotionListener, Runnable {
 
@@ -107,6 +108,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                 }
 
                 MapBg.this.showMapDialog(new MapDialog(MapBg.this, "目标 " + currentGoal.getName() + " 下的知识点", lhm, "跳　转"));
+                LPApp.lpLogs.writeLog("用户点击当前目标按钮", LogConstant.MAP_OP);
             }
         };
 
@@ -146,6 +148,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
                                 ArrayList<EConcept> list = ELearnerReasoner.getRecommendPreEConcpet(LPApp.lpModel, LPApp.getApplication().user.learner, currentGoal);
                                 if (list.size() > 0) {
                                     recommendConcept = list.get(0);
+                                    LPApp.lpLogs.writeLog("完成评估：" + menuConcept.getCid(), LogConstant.MAP_OP);
                                     MapBg.this.showMapDialog(new MapInfoDialog(MapBg.this, "已经完成" + menuConcept.getName() + "的评估", "系统为你推荐了新的知识，供你学习！", "立即学习 “" + recommendConcept.getName() + "”", "recommend", "忽略对这一知识的推荐", "ignore"));
                                 }
                             }
@@ -161,6 +164,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
 
             @Override
             public void doAction() {
+                LPApp.lpLogs.writeLog("浏览知识点的资源：" + menuConcept.getCid(), LogConstant.MAP_OP);
                 LPApp.getApplication().popEConceptViewDialog(menuConcept);
             }
         };
@@ -285,6 +289,7 @@ public class MapBg extends javax.swing.JPanel implements MouseListener, MouseMot
         }
 
         refreshMapImage();
+        LPApp.lpLogs.writeLog("用户来到知识点：" + ec.concept.getConcept().getCid(), LogConstant.MAP_OP);
     }
 
     @Override
