@@ -9,7 +9,6 @@ import com.hp.hpl.jena.ontology.Individual;
 import com.hp.hpl.jena.ontology.ObjectProperty;
 import com.hp.hpl.jena.rdf.model.Property;
 import com.hp.hpl.jena.rdf.model.RDFNode;
-import db.UploaderCommTwo;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -33,12 +32,6 @@ import util.Constant;
 public class UserOwlUpdate {
 
     public static void main(String[] args) {
-        ELearnerModelImpl emi = new ELearnerModelImpl();
-        ELearner el = emi.getELearner("el001");
-        emi.setCurrentGoal(el, "goal_0001");
-       String s =  createNewDocWithEMI(emi, el);
-         UploaderCommTwo uct = new UploaderCommTwo("el001", s);
-        uct.uploadFile();
     }
 
     public static String createNewDocWithEMI(ELearnerModelImpl emi, ELearner el) {
