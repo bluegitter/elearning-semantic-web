@@ -5,7 +5,6 @@
 package lp.log;
 
 import java.io.BufferedReader;
-import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
@@ -22,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -56,7 +57,7 @@ public class LPLogger {
             Date date = MethodConstant.getSysDate();
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
             String s = dateFormat.format(date);
-            logFile = new File(Constant.LogFileDirectory +LPApp.getApplication().user.learner.getId()+"-"+ s+".log");
+            logFile = new File(Constant.LogFileDirectory + LPApp.getApplication().user.learner.getId() + "-" + s + ".log");
             if (!logFile.exists()) {
                 logFile.createNewFile();
             }
@@ -74,8 +75,31 @@ public class LPLogger {
         output = null;
         // createNewLogFileOnDisk();
     }
+    public void writeLog(String log,String status){
+        try{
+         String data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(userId, "UTF-8");
+            data += "&" + URLEncoder.encode("log", "UTF-8") + "=" + URLEncoder.encode(log, "UTF-8");
+            data += "&" + URLEncoder.encode("status", "UTF-8") + "=" + URLEncoder.encode(status, "UTF-8");
 
-    public void writeLog(int action, String data, String result, String status) {
+            // Send data
+            URL url = new URL(Constant.DOWNLOAD_URL_STRING_PHP);
+            URLConnection conn = url.openConnection();
+            conn.setDoOutput(true);
+            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+            wr.write(data);
+            wr.flush();
+            wr.close();
+            // Get the response
+            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+            String head = br.readLine();
+            if (head.trim().equals("success")) {
+                System.out.println("send a log");
+            }
+        }catch(Exception e){
+            System.err.println(e.getMessage());
+        }
+    }
+    public void writeLog_(int action, String data, String result, String status) {
         String time = MethodConstant.getSysDateString();
         sb.append(time);
         sb.append(",");
@@ -101,20 +125,15 @@ public class LPLogger {
         }
     }
 
-//    public void writeMessage(String mes) {
-//        try {
-//            output.write(userId + ":" + getSysDate() + ":");
-//            output.write(mes);
-//        } catch (IOException ex) {
-//            Logger.getLogger(LPLogger.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-    public void sendLogs() throws MalformedURLException, IOException {
+    public void sendLogs() {
+    }
+
+    public void sendLogs_bak() throws MalformedURLException, IOException {
         //http://e6.thss.tsinghua.edu.cn/iscb/uploadLogs.jsp?logs=2010-03-18%2016:51:13,el001,192.168.1.1,120,data,result,1
         String u1 = Constant.ISCBSERVER250 + "uploadLogs.jsp?logs=";
         String urlString = u1 + URLEncoder.encode(sb.toString(), "UTF-8");
         URL url = new URL(urlString);
-       // System.out.println("URL:" + url);
+        // System.out.println("URL:" + url);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setDoOutput(true);
         String sCurrentLine = "";
@@ -126,8 +145,8 @@ public class LPLogger {
             sTotalString += sCurrentLine + "\r\n";
 
         }
-     //   System.out.println(sTotalString);
-      //  System.out.println("result:" + result);
+        //   System.out.println(sTotalString);
+        //  System.out.println("result:" + result);
     }
 
     public void close() {

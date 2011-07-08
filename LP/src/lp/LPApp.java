@@ -57,7 +57,7 @@ public class LPApp extends SingleFrameApplication {
         view.mainPanel.setLayout(new CentralLayout());
         loginPane = new LoginPanel();
 
-       
+
         view.mainPanel.add(loginPane);
         Constant.backgroundGrayColor = view.mainPanel.getBackground();
         view.lpToolBar.setVisible(false);
@@ -70,20 +70,19 @@ public class LPApp extends SingleFrameApplication {
     protected void shutdown() {
         this.view.getFrame().setVisible(false);
         String location = "";
-
         if (LPApp.getApplication().user != null && LPApp.getApplication().user.learner != null) {
             ELearner el = LPApp.getApplication().user.learner;
             getFile(el.getId() + ".owl", location);
-
             if (LPApp.lpModel != null) {
                 //保存文件,发送日志
                 System.out.println("");
                 long t1 = System.currentTimeMillis();
                 saveToFile();
-
                 long t2 = System.currentTimeMillis();
                 System.out.println("保存文件成功耗时:" + (t2 - t1) + "ms");
-                sendLogs();
+                lpLogs.sendLogs();
+                lpLogs.close();
+                System.out.println("Logs Sent..");
                 long t3 = System.currentTimeMillis();
                 System.out.println("日志成功发送耗时:" + (t3 - t2) + "ms");
 
@@ -108,7 +107,7 @@ public class LPApp extends SingleFrameApplication {
 
     private void saveToFile() {
         String owlUserString = jena.impl.UserOwlUpdate.createNewDocWithEMI(LPApp.lpModel, LPApp.getApplication().user.learner);
-        OwlOperation.uploadUserFile(LPApp.getApplication().user.learner.getId(),owlUserString);
+        OwlOperation.uploadUserFile(LPApp.getApplication().user.learner.getId(), owlUserString);
 //        try {
 //            OwlOperation.writeRdfFile(LPApp.lpModel.getOntModel(), new File(Constant.RDF_BAK_File), null);
 //            OwlOperation.writeRdfFile(LPApp.lpModel.getOntModel(), file, null);
@@ -124,20 +123,6 @@ public class LPApp extends SingleFrameApplication {
 //        }
 
     }
-
-    private void sendLogs() {
-        try {
-            lpLogs.sendLogs();
-            System.out.println("Logs Sent..");
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(LPApp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        lpLogs.close();
-
-    }
-
     public File getFile(String name, String location) {
         return null;
     }

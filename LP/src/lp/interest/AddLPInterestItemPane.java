@@ -161,7 +161,7 @@ public class AddLPInterestItemPane extends javax.swing.JPanel {
     private void addInterestItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addInterestItemMouseClicked
         System.out.println("add interest item clicked");
         parent.addInterest(this);
-        LPApp.lpLogs.writeLog(109, concept.getCid() + " " + concept.getName(), "添加", LogConstant.STATUS109);
+        LPApp.lpLogs.writeLog( "添加知识点:"+concept.getCid() + " " + concept.getName(), LogConstant.STATUS109);
     }//GEN-LAST:event_addInterestItemMouseClicked
 
     private void jLabel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseEntered

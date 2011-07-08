@@ -64,7 +64,7 @@ public class RecommendPane extends javax.swing.JPanel implements MouseListener, 
             clicked = on;
             on.isClicked = true;
 
-            LPApp.lpLogs.writeLog(104, "浏览知识点：" + on.ec.getCid(), "泡泡推荐", LogConstant.STATUS104);
+            LPApp.lpLogs.writeLog(  "泡泡推荐：" + on.ec.getCid(), LogConstant.STATUS104);
             resPane.updateResources(LPApp.lpModel.getEResourcesByEConcept(on.ec));
 
             repaint();

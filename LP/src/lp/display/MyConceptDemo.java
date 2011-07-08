@@ -8,7 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import lp.LPApp;
-import db.WebOperation;
+import jena.WebOperation;
 import ontology.EPerformance;
 import ontology.resources.E_Resource;
 import ontology.resources.ISCB_Resource;
@@ -70,7 +70,7 @@ public class MyConceptDemo extends javax.swing.JPanel {
                 EClass ec = (EClass) item.get(MyConceptDisplay.m_label);
                 if (ec.isPerformance()) {
                     EPerformance ep = (EPerformance) ec.object;
-                    LPApp.lpLogs.writeLog(104, "浏览知识点：" + ep.getId(), "已学过", LogConstant.STATUS104);
+                    LPApp.lpLogs.writeLog( "已学过知识点：" + ep.getId(), LogConstant.STATUS104);
                     ArrayList<ISCB_Resource> ra = LPApp.lpModel.getEResourcesByEConcept(ep.getEConcept());
                     Node n = MyConceptDisplay.t.getNode(item.getRow());
                     for (int i = 0; i < last_count; i++) {
@@ -90,7 +90,7 @@ public class MyConceptDemo extends javax.swing.JPanel {
                     last_count = count;
                 } else if (ec.isResource()) {
                     ISCB_Resource res = (ISCB_Resource) ec.object;
-                    WebOperation.viewResourceBroswer(Constant.ISCBSERVER48 + res.getFileLocation(), res.getRid(), "已学过");
+                    WebOperation.viewResourceBroswer(Constant.ISCBSERVER48 + res.getFileLocation(), res.getRid(),res.getIsLearntResult());
                 }
             }
         });

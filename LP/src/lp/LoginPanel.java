@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import db.WebOperation;
+import jena.WebOperation;
 import java.io.File;
 import jena.OwlOperation;
 import jena.impl.ELearnerModelImpl;
@@ -192,7 +192,7 @@ public class LoginPanel extends javax.swing.JPanel {
                         System.out.println("初始化模型:" + (t4 - t3) + "ms");
                         view.setBusy("正在加载数据...");
                         view.initTools();
-                        LPApp.lpLogs.writeLog(101, LPApp.getApplication().user.username, "登入", LogConstant.STATUS101);
+                        LPApp.lpLogs.writeLog(  "用户:"+LPApp.getApplication().user.username,  LogConstant.STATUS1010);
                         long t5 = System.currentTimeMillis();
                         System.out.println("界面初始化" + (t5 - t4) + "ms");
                     } catch (IOException ex) {
@@ -202,7 +202,7 @@ public class LoginPanel extends javax.swing.JPanel {
                     tipLabel.setText(rtvMsg);
                     tipLabel.setForeground(Color.red);
                     username.grabFocus();
-                    LPApp.lpLogs.writeLog(101, LPApp.getApplication().user.username, "登出", LogConstant.STATUS101);
+                    LPApp.lpLogs.writeLog( "用户："+LPApp.getApplication().user.username,  LogConstant.STATUS1011);
                 }
                 view.setIdle();
             }

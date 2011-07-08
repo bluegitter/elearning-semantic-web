@@ -156,7 +156,7 @@ public class ConceptPane extends javax.swing.JPanel {
             }
         }
         this.updateData();
-        LPApp.lpLogs.writeLog(105, cdec.getCid() + " " + cdec.getName(), LogConstant.RESULT105, LogConstant.STATUS105);
+        LPApp.lpLogs.writeLog( "学习了知识点:"+ cdec.getCid() + " " + cdec.getName(),  LogConstant.STATUS105);
 }//GEN-LAST:event_learnBtnActionPerformed
     @Override
     public String toString() {

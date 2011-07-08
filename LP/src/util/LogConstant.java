@@ -9,8 +9,9 @@ package util;
  * @author student
  */
 public class LogConstant {
-
-    public static String STATUS101 = "登入登出";
+    public static String STATUS1010="登入";
+    public static String STATUS1011="登出";
+    public static String STATUS1012 ="新用户注册";
     public static String STATUS102 = "浏览资源";
     public static String STATUS103 = "学习资源";
     public static String STATUS104 = "浏览知识点";
@@ -22,6 +23,4 @@ public class LogConstant {
     public static String STATUS110 = "访问网站";
     public static String STATUS111 = "";
     public static String STATUS112 = "";
-    public static String RESULT107 = "分类搜索";
-    public static String RESULT105 = "学习了知识点";
 }

@@ -145,7 +145,7 @@ public class RemoveLPInterestItemPane extends javax.swing.JPanel {
         System.out.println("delete interest " + interest);
         jLabel2.setBackground(Color.RED);
         parent.removeInterest(this);
-        LPApp.lpLogs.writeLog(109, interest.getEConcept().getCid() + " " + interest.getEConcept().getName(), "移除", LogConstant.STATUS109);
+        LPApp.lpLogs.writeLog( "移除知识点"+interest.getEConcept().getCid() + " " + interest.getEConcept().getName(), LogConstant.STATUS109);
     }//GEN-LAST:event_removeInterestClicked
 
     private void removeItemPaneMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeItemPaneMouseExited

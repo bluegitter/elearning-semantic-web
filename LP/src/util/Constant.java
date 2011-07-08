@@ -49,6 +49,7 @@ public class Constant {
     public static final String UPLOAD_URL_STRING_PHP = "http://ontology.sinaapp.com/uploadOwl.php";
     //public static final String UPLOAD_URL_STRING_PHP = "http://ontology.sinaapp.com/test.php";
     public static final String DOWNLOAD_URL_STRING_PHP = "http://ontology.sinaapp.com/checkVersion.php";
+    public static final String LOG_PHP = "http://ontology.sinaapp.com/log.php";
 //    public static final String SERVER_URL_STRING = "http://localhost:8080";
 //    public static final String UPLOAD_URL_STRING = SERVER_URL_STRING + "/examples/uploadUserFile.jsp";
 //    public static final String DOWNLOAD_URL_STRING = SERVER_URL_STRING + "/examples/downloadUserFile.jsp";
