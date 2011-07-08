@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.mindswap.pellet.jena.PelletReasonerFactory;
 import util.Constant;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
@@ -140,10 +139,10 @@ public class OwlFactory {
         return reasoner;
     }
 
-    public static Reasoner getPelletReasonerModel() {
-        Reasoner reasoner = PelletReasonerFactory.theInstance().create();
-        return reasoner;
-    }
+//    public static Reasoner getPelletReasonerModel() {
+//        Reasoner reasoner = PelletReasonerFactory.theInstance().create();
+//        return reasoner;
+//    }
 
     public static InfModel getInfoModel(Reasoner reasoner, Model model) {
         OntModel ontModel = ModelFactory.createOntologyModel(OntModelSpec.OWL_MEM, model);
