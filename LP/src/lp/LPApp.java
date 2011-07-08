@@ -3,8 +3,6 @@
  */
 package lp;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import jena.OwlOperation;
 import java.io.File;
 import java.util.Date;
