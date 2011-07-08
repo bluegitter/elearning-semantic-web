@@ -18,6 +18,5 @@ public interface ELearnerUserOperationInterface {
     boolean removeEInterest(EInterest interest) throws IndividualNotExistException;
 
     boolean removeEInterest(ELearner el, EConcept con) throws IndividualNotExistException;
-
     ArrayList<EConcept> getIgnoreConceptsByELearner(ELearner el);
 }

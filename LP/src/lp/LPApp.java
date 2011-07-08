@@ -3,13 +3,11 @@
  */
 package lp;
 
-import jena.OwlOperation;
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import jena.OwlOperation;
+import java.io.File;
+import java.util.Date;
 import jena.impl.ELearnerModelImpl;
 import lp.eresource.RadarPanel;
 import lp.log.LPLogger;
@@ -20,6 +18,7 @@ import ontology.people.ELearner;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 import util.Constant;
+import util.LogConstant;
 
 /**
  * The main class of the application.
@@ -80,15 +79,10 @@ public class LPApp extends SingleFrameApplication {
                 saveToFile();
                 long t2 = System.currentTimeMillis();
                 System.out.println("保存文件成功耗时:" + (t2 - t1) + "ms");
-                lpLogs.sendLogs();
-                lpLogs.close();
-                System.out.println("Logs Sent..");
-                long t3 = System.currentTimeMillis();
-                System.out.println("日志成功发送耗时:" + (t3 - t2) + "ms");
-
             }
         }
-
+        System.out.println( LPApp.getApplication().user.username);
+        LPApp.lpLogs.sendLog("用户：" + LPApp.getApplication().user.username, LogConstant.STATUS1011);
         super.shutdown();
     }
 
@@ -123,6 +117,7 @@ public class LPApp extends SingleFrameApplication {
 //        }
 
     }
+
     public File getFile(String name, String location) {
         return null;
     }
