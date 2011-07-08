@@ -26,6 +26,7 @@ import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import javax.swing.SwingUtilities;
 import lp.LPApp;
 import util.Constant;
 import util.MethodConstant;
@@ -47,11 +48,10 @@ public class LPLogger {
         init();
     }
 
-    public LPLogger(File file) {
-        logFile = file;
-        init();
-    }
-
+//    public LPLogger(File file) {
+//        logFile = file;
+//        init();
+//    }
     private void createNewLogFileOnDisk() {
         try {
             Date date = MethodConstant.getSysDate();
@@ -75,14 +75,26 @@ public class LPLogger {
         output = null;
         // createNewLogFileOnDisk();
     }
-    public void writeLog(String log,String status){
-        try{
-         String data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(userId, "UTF-8");
+
+    public void writeLog(final String log, final String status) {
+        SwingUtilities.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                sendLog(log, status);
+            }
+        });
+
+    }
+
+    public void sendLog(String log, String status) {
+        try {
+            String data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(userId, "UTF-8");
             data += "&" + URLEncoder.encode("log", "UTF-8") + "=" + URLEncoder.encode(log, "UTF-8");
             data += "&" + URLEncoder.encode("status", "UTF-8") + "=" + URLEncoder.encode(status, "UTF-8");
 
             // Send data
-            URL url = new URL(Constant.DOWNLOAD_URL_STRING_PHP);
+            URL url = new URL(Constant.LOG_PHP);
             URLConnection conn = url.openConnection();
             conn.setDoOutput(true);
             OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
@@ -93,12 +105,15 @@ public class LPLogger {
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
             String head = br.readLine();
             if (head.trim().equals("success")) {
-                System.out.println("send a log");
+            //    System.out.println("send a log");
+            } else {
+              //  System.out.println("send failed");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
     }
+
     public void writeLog_(int action, String data, String result, String status) {
         String time = MethodConstant.getSysDateString();
         sb.append(time);
@@ -124,9 +139,9 @@ public class LPLogger {
             Logger.getLogger(LPLogger.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
-    public void sendLogs() {
-    }
+//
+//    public void sendLogs() {
+//    }
 
     public void sendLogs_bak() throws MalformedURLException, IOException {
         //http://e6.thss.tsinghua.edu.cn/iscb/uploadLogs.jsp?logs=2010-03-18%2016:51:13,el001,192.168.1.1,120,data,result,1
@@ -173,25 +188,9 @@ public class LPLogger {
 //    }
 
     public static void main(String[] args) throws MalformedURLException, IOException {
-        String u1 = Constant.ISCBSERVER250 + "iscb/uploadLogs.jsp?logs=";
-        String urlString = "http://e6.thss.tsinghua.edu.cn/iscb/uploadLogs.jsp?logs=2010-03-18+16%3A51%3A13%2Cel001%2C192.168.1.1%2C120%2Cdata%2Cresult%2C1";
-        URL url = new URL(urlString);
-        System.out.println("URL:" + url);
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setDoOutput(true);
-        String sCurrentLine = "";
-//        String response = connection.getResponseMessage();
-//        System.out.println("res:"+response);
-        InputStream l_urlStream = connection.getInputStream();
-        BufferedReader l_reader = new BufferedReader(new InputStreamReader(l_urlStream));
-        String result = "";
-        String sTotalString = "";
-        while ((sCurrentLine = l_reader.readLine()) != null) {
-            sTotalString += sCurrentLine + "\r\n";
-
-        }
-        System.out.println(sTotalString);
-        System.out.println("result:" + result);
+        LPLogger lp = new LPLogger();
+        lp.setUserId("el001");
+        lp.writeLog("log", "test");
     }
 
     /***************************************************

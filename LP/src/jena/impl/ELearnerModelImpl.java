@@ -1254,6 +1254,29 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         return resources;
     }
 
+    public ArrayList<ISCB_Resource> getLearntEResources(ELearner elearner) {
+        ArrayList<ISCB_Resource> resources = new ArrayList<ISCB_Resource>();
+        Individual el = ontModel.getIndividual(Constant.NS + elearner.getId());
+        Property p1 = ontModel.getProperty(Constant.NS + "has_portfolio");
+        Property p2 = ontModel.getProperty(Constant.NS + "is_resource_of_P");
+        SimpleSelector selector_port = new SimpleSelector(el, p1, (RDFNode) null);
+        StmtIterator iter_port = ontModel.listStatements(selector_port);
+        while (iter_port.hasNext()) {
+            Resource port = (Resource) iter_port.nextStatement().getObject();
+            SimpleSelector selector_res = new SimpleSelector(null, p2, port);
+            StmtIterator iter_res = ontModel.listStatements(selector_res);
+            while (iter_res.hasNext()) {
+                Resource res = iter_res.nextStatement().getSubject();
+                resources.add(getEResource(res.getLocalName()));
+            }
+        }
+        return resources;
+    }
+    public boolean isLearntResource(ELearner el,ISCB_Resource res){
+        ArrayList<ISCB_Resource> rs = getLearntEResources(el);
+        return rs.contains(res);
+    }
+
     @Override
     public ArrayList<ISCB_Resource> getEResourcesByTypes(String applicationType, String fileFormat, String mediaType) {
         ArrayList<ISCB_Resource> r1 = new ArrayList<ISCB_Resource>();
@@ -1635,12 +1658,12 @@ public class ELearnerModelImpl implements ELearnerUserOperationInterface, ELearn
         }
         Property goalProperty = ontModel.getDatatypeProperty(Constant.NS + "current_goal");
         RDFNode goalNode = elIndi.getPropertyValue(goalProperty);
-        if(goalNode!=null){
-             elIndi.setPropertyValue(goalProperty, ontModel.createTypedLiteral(goal, new XSDDatatype("string")));
-        }else{
-           elIndi.addProperty(goalProperty, ontModel.createTypedLiteral(goal, new XSDDatatype("string")));
+        if (goalNode != null) {
+            elIndi.setPropertyValue(goalProperty, ontModel.createTypedLiteral(goal, new XSDDatatype("string")));
+        } else {
+            elIndi.addProperty(goalProperty, ontModel.createTypedLiteral(goal, new XSDDatatype("string")));
         }
-       
+
         return true;
     }
 

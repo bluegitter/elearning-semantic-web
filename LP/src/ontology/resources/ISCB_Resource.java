@@ -1,6 +1,7 @@
 package ontology.resources;
 
 import java.util.Date;
+import lp.LPApp;
 
 public class ISCB_Resource extends E_Resource {
 
@@ -13,7 +14,15 @@ public class ISCB_Resource extends E_Resource {
     protected String postfix;
 
     public String getIsLearntResult() {
-        return "未学过";
+       boolean b = LPApp.lpModel.isLearntResource(LPApp.getApplication().user.learner, this);
+       String result ="";
+       if(b){
+           result= "已学过";
+       }else{
+            result= "未学过";
+       }
+   //     System.out.println(result);
+        return result;
     }
 
     public ISCB_Resource() {
