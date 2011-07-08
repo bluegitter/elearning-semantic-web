@@ -160,6 +160,7 @@ public class LoginPanel extends javax.swing.JPanel {
                         File f = new File("files/owl/" + uid + ".owl");
                         long t3 = System.currentTimeMillis();
                         String check = OwlOperation.downloadUserFile(uid);
+                        System.out.println(check);
                         if (check.equals("latest")) {
                             LPApp.lpModel = new ELearnerModelImpl(new java.io.File(Constant.OWLFileEmptyUser), f);
                         } else if (check.equals("ver 0")) {
