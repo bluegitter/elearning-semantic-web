@@ -44,8 +44,8 @@ public class Constant {
 //    public static final String SERVER_URL_STRING = "http://192.168.9.161:8080";
 //    public static final String SERVER_URL_STRING = "http://e6.thss.tsinghua.edu.cn";
     public static final String SERVER_URL_STRING = "http://166.111.80.179";
-    public static final String UPLOAD_URL_STRING = SERVER_URL_STRING + "/tools/uploadUserFile.jsp";
-    public static final String DOWNLOAD_URL_STRING = SERVER_URL_STRING + "/tools/downloadUserFile.jsp";
+//    public static final String UPLOAD_URL_STRING = SERVER_URL_STRING + "/tools/uploadUserFile.jsp";
+//    public static final String DOWNLOAD_URL_STRING = SERVER_URL_STRING + "/tools/downloadUserFile.jsp";
     public static final String UPLOAD_URL_STRING_PHP = "http://ontology.sinaapp.com/uploadOwl.php";
     //public static final String UPLOAD_URL_STRING_PHP = "http://ontology.sinaapp.com/test.php";
     public static final String DOWNLOAD_URL_STRING_PHP = "http://ontology.sinaapp.com/checkVersion.php";
