@@ -46,7 +46,7 @@ public class WebOperation {
             LPApp.lpModel.addEPortfolio(port);
         }
         LPApp.lpLogs.writeLog( "浏览了资源:" + id+" 资源是否被学过："+ isLearnt, LogConstant.STATUS102);
-        runsBroswer(webSite);
+        runsBroswer(util.Constant.JUMP_URL + webSite);
     }
 
     public static void runsBroswer(String webSite) {
