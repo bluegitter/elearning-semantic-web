@@ -1,0 +1,15 @@
+# Useful links #
+
+RDF入门标准http://zh.transwiki.org/cn/rdfprimer.htm
+
+# 介绍SPARQL的网页 #
+
+http://www.cnblogs.com/jghhandsome/articles/775302.html
+
+http://www.w3.org/TR/rdf-sparql-query/#docDataDesc
+
+http://www.ibm.com/developerworks/java/library/j-sparql/?S_TACT=105AGX52&S_CMP=cn-a-j
+
+http://www.ibm.com/developerworks/cn/education/xml/x-sparql/section2.html
+
+# Details #

@@ -1,0 +1,133 @@
+# 推荐相关规则 #
+
+# 知识储备相关 #
+1.根据用户现有知识储备，向用户推荐后继概念(未学过)；
+```
+[rule_c_1: (?learner_c_1 el:reasoning_hasPerformance ?concept_c_1_1)         
+           (?concept_c_1_2 el:is_post_concept_of ?concept_c_1_1)
+           noValue(?learner_c_1 el:reasoning_hasPerformance ?concept_c_1_2)  
+           ->(?concept_c_1_2 el:is_recommend_of_c_1 ?learner_c_1)]
+```
+
+2.根据用户现有知识储备，向用户推荐同一个父概念下的其他子概念；
+```
+[rule_c_2: (?learner_c_2 el:reasoning_hasPerformance ?concept_c_2_1)
+           (?concept_c_2_2 el:reasoning_brother ?concept_c_2_1)
+           noValue(?learner_c_2 el:reasoning_hasPerformance ?concept_c_2_2)
+           ->(?concept_c_2_2 el:is_recommend_of_c_2 ?learner_c_2)]
+```
+
+# 兴趣度 #
+3.根据当前概念热度，向用户推荐热门知识点；
+value的平均值高
+
+4.根据当前概念热度，向用户推荐热门知识点；
+interest的instance中该concept出现的次数最多？
+
+5.若一概念属于用户感兴趣的概念集合，
+  * 5.1用户未学习该概念
+    * 5.1.1其前序节点已学习且效果好，只推荐该概念
+```
+[rule_c_4: (?concept_c_4_1 el:is_concept_of_I ?interest_c_4)
+ 	   (?learner_c_4 el:has_interest ?interest_c_4)
+           (?learner_c_4 el:has_performance ?performance_c_4)
+           noValue(?concept_c_4_1 el:is_concept_of_P ?performance_c_4)
+           (?concept_c_4_2 el:is_concept_of_P ?performance_c_4)
+           (?concept_c_4_2 el:is_pre_concept_of ?concept_c_4_1)
+           (?performance_c_4 el:value ?perValue_c_4)
+           greaterThan(?perValue_c_4,0.5) 
+           ->(?concept_c_4_1 el:is_recommend_of_c_4 ?learner_c_4)]
+```
+
+  * 5.1.2其前序节点未学习或学习效果差，推荐其前序节点
+```
+[rule_c_5: (?concept_c_5_1 el:is_concept_of_I ?interest_c_5)
+ 	   (?learner_c_5 el:has_interest ?interest_c_5)
+           (?learner_c_5 el:has_performance ?performance_c_5)
+           noValue(?concept_c_5_1 el:is_concept_of_P ?performance_c_5)
+           (?concept_c_5_2 el:is_concept_of_P ?performance_c_5)
+           (?concept_c_5_2 el:is_pre_concept_of ?concept_c_5_1)
+           (?performance_c_5 el:value ?perValue_c_5)
+           greaterThan(0.5,?perValue_c_5) 
+           ->(?concept_c_5_2 el:is_recommend_of_c_5 ?learner_c_5)]
+```
+
+  * 5.2用户已学习该概念且学习效果差 ->推荐该概念及其前序节点
+```
+[rule_c_6: (?concept_c_6_1 el:is_concept_of ?interest_c_6) 
+           (?learner_c_6 el:has_interest ?interest_c_6)
+       	   (?learner_c_6 el:has_performance ?performanc_c_6)
+           (?concept_c_6_2 el:is_concept_of_P ?performance_c_6) 
+           (?performance_c_6 el:value ?perValue_c_6)
+           greaterThan(0.5,?perValue_c_6)
+           (?concept_c_6_2 el:is_pre_concept_of ?concept_c_6_1) 
+           ->(?concept_c_6_2 el:is_recommend_of_c_6 ?learner_c_6)]
+```
+
+6.向用户推荐此概念以及后继概念；
+```
+[rule_c_7: (?concept_c_7_1 el:is_concept_of_I ?interest_c_7)
+           (?learner_c_7 el:has_interest ?interest_c_7)
+           (?concept_c_7_2 el:is_post_concept_of ?concept_c_7_1)
+           ->(?concept_c_7_2 el:is_recommend_of_c_7 ?learner_c_7)]
+```
+
+7.根据用户感兴趣的概念集合，向用户推荐同一个父概念下的其他子概念和该概念；
+```
+[rule_c_8: (?concept_c_8_1 el:is_concept_of_I ?interest_c_8)
+           (?learner_c_8 el:has_interest ?interest_c_8)
+           (?concept_c_8_1 el:is_post_concpet_of ?parentConcept_c_8)
+           (?concept_c_8_2 el:is_post_concpet_of ?parentConcept_c_8) 
+           ->(?concept_c_8_2 el:is_recommend_of_c_8 ?learner_c_8)]
+```
+
+8.向用户推荐用户
+  * 8.1 用户A对某概念感兴趣，并且用户B,C已经学过此概念；若B的学习效果好于C，则向用户A推荐用户B
+```
+[rule_L_1:  (?concept_L_1 el:is_concept_of_I ?interest_L_1)
+            (?learner_L_1_1 el:has_interest ?interest_L_1)
+	    (?concept_L_1 el:is_concept_of_P ?performance_L_1_1)
+	    (?learner_L_1_1 el:has_performance ?performance_L_1_1)
+	    (?performance_L_1_1 el:value ?perValue_L_1_1)
+	    (?concept_L_1 el:is_concept_of_P ?performance_L_1_2)
+    	    (?learner_L_1_2 el:has_performance ?performance_L_1_2)
+	    (?performance_L_1_2 el:value ?perValue_L_1_2)
+	    greaterThan(?perValue_L_1_1,?perValue_L_1_2)
+	    ->(?learner_L_1_2 el:is_recommend_of_L_1 ?learner_L_1_1)]
+```
+
+  * 8.2 用户学习某概念多次且学习效果始终差，期间推荐用户为B；则不再向A推荐B
+
+
+# 资源相关 #
+9．如果用户正在学习某知识点(performance value<0)，则先向用户推荐与概念相关的资源；
+
+9.1 时间戳
+```
+[rule_r_1:(?resource_r_1_1 el:is_resource_of_P ?portfolio_r_1)
+	  (?learner_r_1 el:has_portfolio ?portfolio_r_1)
+	  (?resource_r_1_1 el:is_resource_of_C ?concept_r_1)
+          (?resource_r_1_2 el:is_resource_of_C ?concept_r_1)
+          notEqual(?resource_r_1_1 ?resource_r_1_2)
+	  ->(?resource_r_1_2 el:is_recommend_of_r_1 ?learner_r_1)]
+```
+
+10．向用户推荐后继资源
+```
+[rule_r_2:(?resource_r_2_1 el:is_resource_of_P ?portfolio_r_2)
+	  (?learner_r_2 el:has_portfolio ?portfolio_r_2)
+	  (?resource_r_2_1 el:is_resource_of_C ?concept_r12_1)
+	  (?concept_r_2_2 el:is_post_concept_of ?concept_r_2_1)
+	  (?resource_r_2_2 el:is_resource_of_C ?concept_r_2_2)
+          notEqual(?resource_r_2_1 ?resource_r_2_2)
+	  ->(?resource_r_2_2 el:is_recommend_of_r_2 ?learner_r_2)]
+```
+
+11．推荐资源的优先级：用户偏好的资源类型优先级最高
+```
+[rule_r_3:(?resource_r_3 rdf:type el:E_Resource_DOC)
+	  (?learner_r_3 el:has_study_style el:E_Study_Style_1)
+	   ->(?resource_r_3 el:is_recommend_of_r_3 ?learner_r_3)]
+```
+
+12．根据当前资源热度，向用户推荐热门资源；
